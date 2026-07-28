@@ -993,20 +993,22 @@ ol {
 
 .cta__meta {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: baseline;
   justify-content: center;
-  gap: 0.4rem 0.75rem;
+  gap: var(--s-3);
   margin-top: var(--s-2);
 }
 
-.cta__meta li::after {
-  content: '·';
-  margin-left: 0.75rem;
-  color: rgb(15 33 38 / 0.4);
+.cta__meta li {
+  white-space: nowrap;
 }
 
-.cta__meta li:last-child::after {
-  content: none;
+/* Separator leads the item it belongs to, so it can never trail the row. */
+.cta__meta li + li::before {
+  content: '·';
+  margin-right: var(--s-3);
+  color: rgb(15 33 38 / 0.4);
 }
 
 .cta__meta a {
@@ -1133,14 +1135,40 @@ ol {
 
   /* Stacked instead of wrapped, so no separator is left dangling
      at the end of a broken line. */
-  .hero__meta,
-  .cta__meta {
+  .hero__meta {
     flex-direction: column;
     gap: var(--s-2);
   }
 
-  .hero__meta li::after,
-  .cta__meta li::after {
+  .hero__meta li::after {
+    content: none;
+  }
+
+  /* Tightened just enough to hold the row together on small screens. */
+  .cta__meta {
+    gap: var(--s-2);
+    letter-spacing: 0.06em;
+  }
+
+  .cta__meta li + li::before {
+    margin-right: var(--s-2);
+  }
+}
+
+@media (max-width: 520px) {
+  /* Too narrow for one row: break after the email and keep the remaining
+     pair together on a single centered line, so no separator is orphaned. */
+  .cta__meta {
+    flex-wrap: wrap;
+    row-gap: var(--s-3);
+  }
+
+  .cta__meta li:first-child {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .cta__meta li:nth-child(2)::before {
     content: none;
   }
 }
