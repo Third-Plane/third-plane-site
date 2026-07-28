@@ -22,14 +22,11 @@ hook (`src/useReveal.js`) and everything else is CSS.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173/third-plane-site/
+npm run dev      # http://localhost:5173/
 npm run build    # production build into dist/
 npm run preview  # serve the built output
 npm run lint     # oxlint
 ```
-
-The dev URL includes the `/third-plane-site/` path because `base` is set for GitHub Pages —
-see [Publishing](#publishing-to-github-pages).
 
 ## Editing the copy
 
@@ -55,25 +52,25 @@ Breakpoints are at 1024px (4-up grids become 2-up), 940px (hero and 3-up grids s
 against horizontal overflow, left-edge alignment, card baseline alignment, text line length,
 and touch-target size at 1440 / 1024 / 768 / 390.
 
-## Publishing to GitHub Pages
+## Publishing
 
-The repo ships with [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which
-builds on every push to `main` and deploys `dist/` to Pages.
+Production is **https://www.thirdplane.com/**, hosted on Vercel and built from `main`. The
+apex `thirdplane.com` redirects to `www`. Because that site is served from the root,
+`vite.config.js` defaults `base` to `/`, which is what makes the emitted asset URLs
+root-relative (`/assets/…`).
 
-1. Create a GitHub repo named **`third-plane-site`** and push to `main`.
-2. In the repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
-3. Push. The workflow builds and publishes to
-   `https://<user>.github.io/third-plane-site/`.
+The domain is managed in Vercel, not in GitHub Pages, so there is deliberately no
+`public/CNAME` — adding one would make the Pages deploy try to claim the same hostname.
 
-### Using a different repo name or a custom domain
+### The GitHub Pages mirror
 
-`vite.config.js` sets `base` to `/third-plane-site/` because project Pages sites are served
-from a subpath. If you rename the repo, update that default. If you deploy to a custom domain
-or a `<user>.github.io` user site — both served from the root — build with the override
-instead:
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) also builds every push to
+`main` and publishes `dist/` to `https://third-plane.github.io/third-plane-site/`. Pages
+project sites are served from a subpath, so that build sets the override:
 
 ```bash
-BASE_PATH=/ npm run build
+BASE_PATH=/third-plane-site/ npm run build
 ```
 
-Set it in the workflow as an env var on the `npm run build` step to make it permanent.
+That env var lives on the workflow's build step. A single build cannot serve both a root
+domain and a subpath, so change the `base` default only if the canonical home moves.

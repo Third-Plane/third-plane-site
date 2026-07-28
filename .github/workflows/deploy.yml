@@ -26,7 +26,12 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # Pages serves this project site from /third-plane-site/, unlike the custom
+      # domain the default base targets.
       - run: npm run build
+        env:
+          BASE_PATH: /third-plane-site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

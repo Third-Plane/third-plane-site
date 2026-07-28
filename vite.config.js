@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// GitHub Pages serves project sites from /<repo>/, so assets need that prefix.
-// Override with BASE_PATH=/ when deploying to a custom domain or a user/org site.
+// Production lives at the root of www.thirdplane.com, so assets are root-relative.
+// Hosts that serve the site from a subpath (GitHub Pages project sites) must build
+// with BASE_PATH set to that subpath — see .github/workflows/deploy.yml.
 export default defineConfig({
-  base: process.env.BASE_PATH ?? '/third-plane-site/',
+  base: process.env.BASE_PATH ?? '/',
   plugins: [react()],
 })
