@@ -1,10 +1,13 @@
 // Single source of truth for all page copy.
 // Edit text here; components handle layout only.
 
+const email = 'sales@thirdplane.com'
+
 export const site = {
   name: 'Third Plane',
   wordmark: 'Thirdplane',
-  email: 'sales@thirdplane.com',
+  email,
+  mailto: `mailto:${email}`,
   ctaLabel: 'Request a conversation',
   year: 2026,
 }

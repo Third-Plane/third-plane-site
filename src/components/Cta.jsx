@@ -9,10 +9,10 @@ export default function Cta() {
           <Pill>{cta.eyebrow}</Pill>
           <h2 className="display-2">{cta.title}</h2>
           <p className="lead">{cta.body}</p>
-          <Button href={`mailto:${site.email}`} />
+          <Button />
           <ul className="mono cta__meta">
             <li>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
+              <a href={site.mailto}>{site.email}</a>
             </li>
             {cta.meta.map((item) => (
               <li key={item}>{item}</li>

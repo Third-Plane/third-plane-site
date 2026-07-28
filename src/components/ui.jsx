@@ -4,7 +4,7 @@ export function Pill({ children, dark = false }) {
   return <span className={dark ? 'pill pill--dark' : 'pill'}>{children}</span>
 }
 
-export function Button({ children = site.ctaLabel, small = false, href = '#contact' }) {
+export function Button({ children = site.ctaLabel, small = false, href = site.mailto }) {
   return (
     <a className={small ? 'btn btn--sm' : 'btn'} href={href}>
       {children}
