@@ -14,7 +14,16 @@ export function Button({ children = site.ctaLabel, small = false, href = site.ma
   return (
     <a className={small ? 'btn btn--sm' : 'btn'} href={href}>
       {children}
+      <ArrowRight className="btn__arrow" />
     </a>
+  )
+}
+
+export function ArrowRight({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
 

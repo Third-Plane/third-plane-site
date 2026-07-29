@@ -264,6 +264,7 @@ ol {
 .btn {
   display: inline-flex;
   align-items: center;
+  gap: var(--s-2);
   padding: 0.8rem 1.35rem;
   border-radius: var(--radius);
   background: var(--teal);
@@ -287,6 +288,21 @@ ol {
 .btn--sm {
   padding: 0.6rem 1.05rem;
   font-size: 0.8125rem;
+}
+
+/* Sized in em so the arrow tracks the label at every button size, and
+   nudged up a hair because the glyph is centred on its box while the
+   label's weight sits above the line-box centre. */
+.btn__arrow {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.05em;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(3px);
 }
 
 /* ==========================================================================
