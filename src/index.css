@@ -34,9 +34,9 @@
   --line-dark: rgb(242 239 230 / 0.16);
 
   /* Type */
-  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-display: 'Sora', system-ui, sans-serif;
   --font-body: 'Work Sans', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-mono: 'Fragment Mono', ui-monospace, monospace;
 
   /* Spacing scale: every gap in the page comes from these */
   --s-1: 0.25rem;
@@ -138,24 +138,24 @@ ol {
   font-family: var(--font-display);
   color: var(--ink);
   font-weight: 700;
-  letter-spacing: -0.008em;
+  letter-spacing: -0.024em;
 }
 
 .display-1 {
   font-size: clamp(2.75rem, 6.4vw, 4.5rem);
-  line-height: 1.09;
+  line-height: 1.05;
   font-weight: 800;
 }
 
 .display-2 {
   font-size: clamp(2rem, 4.4vw, 3.15rem);
-  line-height: 1.14;
+  line-height: 1.1;
 }
 
 .display-3 {
   font-size: clamp(1.5rem, 2.4vw, 1.875rem);
-  line-height: 1.2;
-  letter-spacing: -0.004em;
+  line-height: 1.16;
+  letter-spacing: -0.018em;
 }
 
 .lead {
@@ -220,7 +220,7 @@ ol {
   background: var(--teal-soft);
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--teal);
@@ -321,10 +321,10 @@ ol {
 
 .card__title {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   line-height: 1.35;
-  letter-spacing: 0;
+  letter-spacing: -0.005em;
   color: var(--ink);
 }
 
@@ -337,7 +337,7 @@ ol {
 .card__figure {
   font-family: var(--font-mono);
   font-size: clamp(2rem, 3.6vw, 2.5rem);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--teal);
@@ -534,7 +534,7 @@ ol {
   border-left: 2px solid var(--teal);
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--teal);
@@ -658,7 +658,7 @@ ol {
 }
 
 .kv b {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--ink-body);
 }
 
@@ -859,7 +859,7 @@ ol {
 .panel__title {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink);
@@ -1012,9 +1012,9 @@ ol {
 
 .stat__figure {
   font-family: var(--font-display);
-  font-size: clamp(2.375rem, 4.6vw, 2.9rem);
+  font-size: clamp(2.25rem, 4.4vw, 2.75rem);
   font-weight: 700;
-  letter-spacing: -0.008em;
+  letter-spacing: -0.024em;
   line-height: 1.06;
   color: var(--teal);
 }
@@ -1048,7 +1048,7 @@ ol {
 .step__index {
   font-family: var(--font-mono);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--teal);
 }
@@ -1074,7 +1074,7 @@ ol {
 }
 
 .cta__shell .display-2 {
-  max-width: 26ch;
+  max-width: 22ch;
 }
 
 .cta__shell .lead {

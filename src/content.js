@@ -113,7 +113,7 @@ export const alpine = {
 
 export const proof = {
   eyebrow: 'Proof',
-  title: "QuoteWell Inbox. We're customer zero.",
+  title: "QuoteWell Inbox. We're our own first customer.",
   body: 'We built an interface and experience every broker already knows how to use: email.',
   cards: [
     {
