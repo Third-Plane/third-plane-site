@@ -5,7 +5,7 @@ export default function Alpine() {
   return (
     <section className="section" id="alpine">
       <div className="container">
-        <SectionHead eyebrow={alpine.eyebrow} title={alpine.title} body={alpine.body} />
+        <SectionHead eyebrow={alpine.eyebrow} title={alpine.title} body={alpine.body} outline />
 
         <div className="grid grid--3">
           {alpine.cards.map((card, i) => (

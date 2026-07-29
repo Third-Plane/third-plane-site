@@ -5,7 +5,7 @@ const email = 'sales@thirdplane.com'
 
 export const site = {
   name: 'Third Plane',
-  wordmark: 'Thirdplane',
+  wordmark: 'Third Plane',
   email,
   mailto: `mailto:${email}`,
   ctaLabel: 'Request a conversation',
@@ -20,10 +20,10 @@ export const nav = [
 ]
 
 export const hero = {
-  eyebrow: 'For retail insurance agencies',
-  titleLead: 'An AI workforce',
-  titleAccent: 'for insurance.',
-  body: 'Governed AI, deployed into your operation — built by insurance people, proven on our own book first.',
+  eyebrow: 'Automated placement for retail insurance agencies',
+  titleLead: 'An AI workforce,',
+  titleAccent: 'right in your inbox.',
+  body: 'Governed AI, deployed into your operation — incubated and built by insurance professionals.',
   meta: ['Not a pilot', 'Production deployment', '60–90 day rollout'],
 }
 
@@ -38,29 +38,29 @@ export const ticker = [
 export const problem = {
   eyebrow: 'The problem',
   title: 'The work is outpacing the workforce.',
-  body: 'Clients feel the queue. Every deal waits its turn in a stack of manual work — and the hours your team once spent with clients now go to chasing paperwork.',
+  body: 'Renewals that were remarketed every three years to three markets now go out many more, every year.',
   cards: [
     {
-      figure: '400k',
-      title: "Your best AM doesn't scale",
-      body: "The person holding it all together is your costliest employee, and there isn't a second one of them on the market. Insurance professionals are retiring with no bench behind them.",
+      figure: '01',
+      title: 'Slow quotes and service',
+      body: 'Every deal passes through placement. Clients wait while the queue clears.',
     },
     {
-      figure: '4%',
-      title: "Hiring isn't a growth plan",
-      body: 'Only 4% of millennials want in. Funded seats sit open for months, and the grind burns people out faster than you can backfill them.',
+      figure: '02',
+      title: 'Growth means headcount',
+      body: 'Scaling means more account managers, a cost center that drags on EBITDA. The work burns people out, so you keep rehiring.',
     },
     {
-      figure: '100%',
-      title: 'The playbook lives in heads',
-      body: 'Appetite, carrier quirks, and relationships are tribal knowledge. Every departure is an erasure; every hire is a slow rebuild.',
+      figure: '03',
+      title: 'No standard procedures',
+      body: "Rules, appetite, and relationships live in people's heads. New hires take months to ramp.",
     },
   ],
 }
 
 export const product = {
   eyebrow: 'What we sell',
-  titleLines: ["We don't sell software.", 'We deploy a workforce.'],
+  title: "We don't sell software. We deploy a workforce.",
   body: 'You keep the judgment and the relationships. We take the grind.',
   not: {
     title: "What we're not",
@@ -114,7 +114,7 @@ export const alpine = {
 export const proof = {
   eyebrow: 'Proof',
   title: "QuoteWell Inbox — we're customer zero.",
-  body: "We didn't build this for a demo. We built it because we're a brokerage, and we needed it.",
+  body: 'We built an interface and experience every broker already knows how to use — email.',
   cards: [
     {
       index: '01',
@@ -145,7 +145,7 @@ export const proof = {
 
 export const evidence = {
   eyebrow: 'Evidence',
-  title: 'Numbers from our own book.',
+  title: 'Real Results, Proven in Production.',
   body: 'Production data from working brokers — not a pilot, not a survey.',
   stats: [
     { figure: '+41%', label: 'More unique clients handled per broker after adopting playbooks' },

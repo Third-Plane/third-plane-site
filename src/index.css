@@ -8,8 +8,8 @@
   --bg-band: #e6dcc3;
   --surface: #f5f1e4;
   --surface-2: #faf7ee;
-  --slate: #3b474a;
-  --slate-card: #47555a;
+  --deep: #1c2a2c;
+  --deep-card: #223032;
 
   /* Ink */
   --ink: #0f2126;
@@ -22,6 +22,11 @@
   --teal: #1e6b7d;
   --teal-hover: #175665;
   --teal-soft: #d9e2dc;
+
+  /* Logo mark — sampled from the deck artwork, top bar to bottom */
+  --mark-coral: #e2573f;
+  --mark-teal: #3e7f84;
+  --mark-deep: #1c3f44;
 
   /* Lines */
   --line: rgb(15 33 38 / 0.14);
@@ -134,7 +139,6 @@ ol {
   color: var(--ink);
   font-weight: 700;
   letter-spacing: -0.028em;
-  text-wrap: balance;
 }
 
 .display-1 {
@@ -199,7 +203,7 @@ ol {
 }
 
 .section-head .display-2 {
-  margin-top: var(--s-6);
+  margin-top: var(--s-4);
 }
 
 .section-head .lead {
@@ -207,24 +211,50 @@ ol {
 }
 
 .pill {
-  display: inline-block;
-  padding: 0.4rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.7rem 1rem;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--teal-soft);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--teal);
   line-height: 1.4;
+}
+
+/* Sits outside the text flow so it stays centred on the pill even when
+   the label wraps to a second line. */
+.pill__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .pill--dark {
   background: rgb(242 239 230 / 0.1);
   border-color: var(--line-dark);
   color: var(--on-dark);
+}
+
+.pill--outline {
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-lg);
+  border-color: var(--teal);
+  background: none;
+}
+
+.pill--outline .pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  transform: rotate(45deg);
 }
 
 /* ==========================================================================
@@ -234,7 +264,6 @@ ol {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--s-2);
   padding: 0.8rem 1.35rem;
   border-radius: var(--radius);
   background: var(--teal);
@@ -258,14 +287,6 @@ ol {
 .btn--sm {
   padding: 0.6rem 1.05rem;
   font-size: 0.8125rem;
-}
-
-.btn__arrow {
-  transition: transform 0.2s ease;
-}
-
-.btn:hover .btn__arrow {
-  transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -299,7 +320,7 @@ ol {
 
 .card__figure {
   font-family: var(--font-mono);
-  font-size: clamp(1.75rem, 2.8vw, 2.125rem);
+  font-size: clamp(2rem, 3.6vw, 2.5rem);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -385,19 +406,18 @@ ol {
 .nav__brand {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.7rem;
   padding-block: 0.65rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
   margin-right: auto;
 }
 
 .nav__mark {
-  color: var(--teal);
   flex: none;
 }
 
@@ -740,6 +760,46 @@ ol {
 }
 
 /* ==========================================================================
+   Problem — one bordered row divided into thirds
+   ========================================================================== */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: clamp(1.75rem, 2.6vw, 2.25rem);
+  border-left: 1px solid var(--line-soft);
+}
+
+.tile:first-child {
+  border-left: 0;
+}
+
+/* Shared rows so figure, title and body stay level across the three
+   thirds even when one title wraps and its neighbours don't. */
+@supports (grid-template-rows: subgrid) {
+  .tiles {
+    grid-template-rows: auto auto auto;
+  }
+
+  .tiles > .tile {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: var(--s-4);
+  }
+}
+
+/* ==========================================================================
    Product — what we're not / what you get
    ========================================================================== */
 
@@ -781,35 +841,40 @@ ol {
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
 }
 
 .list li {
   display: grid;
-  grid-template-columns: 1rem 1fr;
+  grid-template-columns: 0.65rem 1fr;
   gap: 0.65rem;
+  padding-block: var(--s-3);
   font-size: 0.9375rem;
   line-height: 1.58;
 }
 
-.list svg {
-  margin-top: 0.36rem;
-  flex: none;
+/* Leads the item it belongs to, so the list never ends on a rule. */
+.list li + li {
+  border-top: 1px solid var(--line-soft);
 }
 
 .list--not li {
   color: var(--ink-muted);
 }
 
-.list--not svg {
-  color: var(--ink-muted);
+.list--not li::before {
+  content: '–';
 }
 
 .list--get li {
   color: rgb(255 255 255 / 0.92);
 }
 
-.list--get svg {
+.list--get li + li {
+  border-top-color: var(--line-dark);
+}
+
+.list--get li::before {
+  content: '✓';
   color: rgb(255 255 255 / 0.75);
 }
 
@@ -835,7 +900,7 @@ ol {
 
 .proof__shell {
   padding: clamp(1.75rem, 3.4vw, 3rem);
-  background: var(--slate);
+  background: var(--deep);
   border-radius: var(--radius-lg);
   color: var(--on-dark);
 }
@@ -852,7 +917,7 @@ ol {
    shell, so full card padding would starve the text of line length. */
 .card--dark {
   padding: clamp(1.125rem, 1.5vw, 1.375rem);
-  background: var(--slate-card);
+  background: var(--deep-card);
   border-color: var(--line-dark);
 }
 
@@ -904,10 +969,9 @@ ol {
 .stat {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--s-4);
-  padding: clamp(1.75rem, 2.6vw, 2.25rem) clamp(1.25rem, 1.8vw, 1.75rem);
-  text-align: center;
+  align-items: flex-start;
+  gap: var(--s-5);
+  padding: clamp(2rem, 3vw, 2.5rem) clamp(1.5rem, 2vw, 2rem);
   border-left: 1px solid var(--line-soft);
 }
 
@@ -916,9 +980,9 @@ ol {
 }
 
 .stat__figure {
-  font-family: var(--font-mono);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.4vw, 2.75rem);
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--teal);
@@ -1096,6 +1160,29 @@ ol {
 
   .compare {
     grid-template-columns: 1fr;
+  }
+
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .tile {
+    border-left: 0;
+  }
+
+  .tile:not(:first-child) {
+    border-top: 1px solid var(--line-soft);
+  }
+
+  @supports (grid-template-rows: subgrid) {
+    .tiles {
+      grid-template-rows: none;
+    }
+
+    .tiles > .tile {
+      display: flex;
+      grid-row: auto;
+    }
   }
 }
 
