@@ -10,6 +10,10 @@ export function Pill({ children, dark = false, outline = false }) {
   )
 }
 
+export function HeroEyebrow({ children }) {
+  return <p className="hero__eyebrow">{children}</p>
+}
+
 export function Button({ children = site.ctaLabel, small = false, href = site.mailto }) {
   return (
     <a className={small ? 'btn btn--sm' : 'btn'} href={href}>

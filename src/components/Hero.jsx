@@ -1,5 +1,5 @@
 import { hero } from '../content'
-import { Button, Pill } from './ui'
+import { Button, HeroEyebrow } from './ui'
 import Diagram from './Diagram'
 
 export default function Hero() {
@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="container hero__grid">
         <div className="hero__copy">
           <div data-reveal>
-            <Pill>{hero.eyebrow}</Pill>
+            <HeroEyebrow>{hero.eyebrow}</HeroEyebrow>
           </div>
 
           <h1 className="display-1 hero__title" data-reveal style={{ '--i': 1 }}>
