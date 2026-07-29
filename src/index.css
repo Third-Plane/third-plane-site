@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Third Plane — design tokens
+   Third Plane: design tokens
    ========================================================================== */
 
 :root {
@@ -23,7 +23,7 @@
   --teal-hover: #175665;
   --teal-soft: #d9e2dc;
 
-  /* Logo mark — sampled from the deck artwork, top bar to bottom */
+  /* Logo mark: sampled from the deck artwork, top bar to bottom */
   --mark-coral: #e2573f;
   --mark-teal: #3e7f84;
   --mark-deep: #1c3f44;
@@ -34,11 +34,11 @@
   --line-dark: rgb(242 239 230 / 0.16);
 
   /* Type */
-  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Spacing scale — every gap in the page comes from these */
+  /* Spacing scale: every gap in the page comes from these */
   --s-1: 0.25rem;
   --s-2: 0.5rem;
   --s-3: 0.75rem;
@@ -87,7 +87,7 @@ body {
   color: var(--ink-body);
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -138,29 +138,29 @@ ol {
   font-family: var(--font-display);
   color: var(--ink);
   font-weight: 700;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.008em;
 }
 
 .display-1 {
   font-size: clamp(2.75rem, 6.4vw, 4.5rem);
-  line-height: 1.02;
+  line-height: 1.09;
   font-weight: 800;
 }
 
 .display-2 {
   font-size: clamp(2rem, 4.4vw, 3.15rem);
-  line-height: 1.08;
+  line-height: 1.14;
 }
 
 .display-3 {
   font-size: clamp(1.5rem, 2.4vw, 1.875rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.004em;
 }
 
 .lead {
   font-size: clamp(1rem, 1.15vw, 1.0625rem);
-  line-height: 1.65;
+  line-height: 1.62;
   color: var(--ink-body);
   max-width: 54ch;
 }
@@ -306,7 +306,7 @@ ol {
 }
 
 /* ==========================================================================
-   Cards — one shared card so padding never drifts between sections
+   Cards: one shared card so padding never drifts between sections
    ========================================================================== */
 
 .card {
@@ -321,10 +321,10 @@ ol {
 
 .card__title {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.35;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
@@ -791,7 +791,7 @@ ol {
 }
 
 /* ==========================================================================
-   Problem — one bordered row divided into thirds
+   Problem: one bordered row divided into thirds
    ========================================================================== */
 
 .tiles {
@@ -831,7 +831,7 @@ ol {
 }
 
 /* ==========================================================================
-   Product — what we're not / what you get
+   Product: what we're not / what you get
    ========================================================================== */
 
 .compare {
@@ -922,7 +922,7 @@ ol {
 }
 
 /* ==========================================================================
-   Proof — dark inset section
+   Proof: dark inset section
    ========================================================================== */
 
 .proof {
@@ -985,7 +985,7 @@ ol {
 }
 
 /* ==========================================================================
-   Evidence — stat row + footnote
+   Evidence: stat row + footnote
    ========================================================================== */
 
 .stats {
@@ -1012,10 +1012,10 @@ ol {
 
 .stat__figure {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 4.4vw, 2.75rem);
+  font-size: clamp(2.375rem, 4.6vw, 2.9rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  letter-spacing: -0.008em;
+  line-height: 1.06;
   color: var(--teal);
 }
 
@@ -1036,7 +1036,7 @@ ol {
 }
 
 /* ==========================================================================
-   Engage — numbered steps
+   Engage: numbered steps
    ========================================================================== */
 
 .step {
@@ -1074,7 +1074,7 @@ ol {
 }
 
 .cta__shell .display-2 {
-  max-width: 24ch;
+  max-width: 26ch;
 }
 
 .cta__shell .lead {

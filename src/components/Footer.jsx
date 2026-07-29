@@ -7,7 +7,6 @@ export default function Footer() {
         <p className="mono">
           © {site.year} {site.name}
         </p>
-        <p className="mono">Built on Alpine</p>
       </div>
     </footer>
   )

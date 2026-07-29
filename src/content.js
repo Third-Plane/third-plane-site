@@ -23,14 +23,14 @@ export const hero = {
   eyebrow: 'Automated placement for retail insurance agencies',
   titleLead: 'An AI workforce,',
   titleAccent: 'right in your inbox.',
-  body: 'Governed AI, deployed into your operation — incubated and built by insurance professionals.',
+  body: 'Governed AI, deployed into your operation. Incubated and built by insurance professionals.',
   meta: ['Not a pilot', 'Production deployment', '60–90 day rollout'],
 }
 
 export const ticker = [
   'Commercial P&C',
   'Retail insurance agencies',
-  'Production deployment — not a pilot',
+  'Production deployment, not a pilot',
   'Integrates with your existing AMS',
   '60–90 day deployment',
 ]
@@ -75,7 +75,7 @@ export const product = {
     title: 'What you get',
     items: [
       'AI teammates that work your book the way you do',
-      'Your appetite, rules, and playbooks — made executable',
+      'Your appetite, rules, and playbooks made executable',
       'Engineers on your floor who own adoption',
       'Pricing that tracks output, not seats',
     ],
@@ -91,7 +91,7 @@ export const alpine = {
       index: '01',
       kicker: 'Context',
       title: 'Auditable',
-      body: 'Every agent action is logged with its authority and its reasoning — a trail your regulators and E&O carrier can read.',
+      body: 'Every agent action is logged with its authority and its reasoning, a trail your regulators and E&O carrier can read.',
       meta: 'Emails · submissions · quotes · policies · endorsements · loss runs',
     },
     {
@@ -105,7 +105,7 @@ export const alpine = {
       index: '03',
       kicker: 'Workers',
       title: 'Secure',
-      body: 'Runs inside your compliance boundary and your security requirements — not ours.',
+      body: 'Runs inside your compliance boundary and your security requirements, not ours.',
       meta: 'Roles · functions · carrier-navigation mandates',
     },
   ],
@@ -113,20 +113,20 @@ export const alpine = {
 
 export const proof = {
   eyebrow: 'Proof',
-  title: "QuoteWell Inbox — we're customer zero.",
-  body: 'We built an interface and experience every broker already knows how to use — email.',
+  title: "QuoteWell Inbox. We're customer zero.",
+  body: 'We built an interface and experience every broker already knows how to use: email.',
   cards: [
     {
       index: '01',
       kicker: 'Inbox-native',
       title: 'Emails in, with context',
-      body: 'The AI meets brokers in email — the place insurance actually happens. Threads, docs, and quotes structured as they land.',
+      body: 'The AI meets brokers in email, the place insurance actually happens. Threads, docs, and quotes structured as they land.',
     },
     {
       index: '02',
       kicker: 'Playbooks authored',
       title: 'Playbooks beside the work',
-      body: 'Brokers author and tune automations next to the threads they run on — the plays the agent workforce runs.',
+      body: 'Brokers author and tune automations next to the threads they run on. These are the plays the agent workforce runs.',
     },
     {
       index: '03',
@@ -138,7 +138,7 @@ export const proof = {
       index: '04',
       kicker: 'Data wired in',
       title: 'Clean submission & agency data',
-      body: 'Carrier appointments structured and indexed; AMS and agency data connected — nothing re-keyed.',
+      body: 'Carrier appointments structured and indexed; AMS and agency data connected. Nothing re-keyed.',
     },
   ],
 }
@@ -146,15 +146,15 @@ export const proof = {
 export const evidence = {
   eyebrow: 'Evidence',
   title: 'Real Results, Proven in Production.',
-  body: 'Production data from working brokers — not a pilot, not a survey.',
+  body: 'Production data from working brokers. Not a pilot, not a survey.',
   stats: [
     { figure: '+41%', label: 'More unique clients handled per broker after adopting playbooks' },
-    { figure: '+30%', label: 'The median experience — the bottom ~70% of playbook users' },
+    { figure: '+30%', label: 'The median experience: the bottom ~70% of playbook users' },
     { figure: '+71%', label: 'What power users pull out of the same tools' },
     { figure: '100%', label: 'Of our brokers work through the core features daily' },
   ],
   footnote:
-    '13 QuoteWell brokers with sufficient pre/post history. Lift compares average monthly unique clients in the 3 months before first playbook use to months 3–6 after, excluding a 2-month onboarding ramp. Directional and observational, not a controlled study.',
+    'The sample is 13 QuoteWell brokers with sufficient pre/post history; departed brokers and recent hires without a baseline are excluded. Lift compares average monthly unique clients in the 3 months before first playbook use to months 3–6 after, excluding a 2-month onboarding ramp. Directional and observational, not a controlled study.',
 }
 
 export const engage = {
@@ -170,7 +170,7 @@ export const engage = {
     {
       index: '02',
       title: 'Build',
-      body: 'Your rules and playbooks become a working proof of concept on Alpine — on your workflows, not a demo dataset.',
+      body: 'Your rules and playbooks become a working proof of concept on Alpine. Built on your workflows, not a demo dataset.',
     },
     {
       index: '03',
@@ -188,6 +188,6 @@ export const engage = {
 export const cta = {
   eyebrow: 'Next step',
   title: 'Ready to see how Third Plane fits into your agency?',
-  body: 'Meet with the team, walk through your current workflows, and review where the opportunity is. No generic sales demo — and no pressure to move forward.',
-  meta: ['no sign-up form', 'no sales funnel'],
+  body: 'Meet with the team, walk through your current workflows, and review where the opportunity is. No generic sales demo. No pressure to move forward.',
+  meta: [],
 }

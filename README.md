@@ -1,4 +1,4 @@
-# Third Plane — landing page
+# Third Plane landing page
 
 A single-page marketing site for Third Plane, built from the v1 wireframe. Ten sections:
 sticky nav, hero with an agent-run diagram, a scrolling proof ticker, the problem, what we
@@ -11,7 +11,7 @@ engagement process, and a closing CTA.
 | --- | --- |
 | Framework | React 19 |
 | Build tool | Vite 8 |
-| Styling | Plain CSS with custom properties (`src/index.css`) — no CSS framework |
+| Styling | Plain CSS with custom properties (`src/index.css`), no CSS framework |
 | Linting | oxlint |
 | Fonts | Plus Jakarta Sans (display), Inter (body), JetBrains Mono (labels) via Google Fonts |
 
@@ -36,7 +36,7 @@ object per section (`hero`, `problem`, `product`, `alpine`, `proof`, `evidence`,
 and handle layout only, so you can rewrite the entire page without touching JSX.
 
 To change the headline, edit `hero.titleLead` / `hero.titleAccent`. To add a fourth problem
-card, push another object onto `problem.cards` — the grid picks it up automatically. Contact
+card, push another object onto `problem.cards`. The grid picks it up automatically. Contact
 details and the CTA button label come from `site`.
 
 ## Layout and spacing
@@ -60,7 +60,7 @@ apex `thirdplane.com` redirects to `www`. Because that site is served from the r
 root-relative (`/assets/…`).
 
 The domain is managed in Vercel, not in GitHub Pages, so there is deliberately no
-`public/CNAME` — adding one would make the Pages deploy try to claim the same hostname.
+`public/CNAME`. Adding one would make the Pages deploy try to claim the same hostname.
 
 ### The GitHub Pages mirror
 

@@ -44,7 +44,7 @@ export default function Diagram() {
       </div>
 
       <div className="diagram__panel">
-        <span className="diagram__label">Clean agency data — every run</span>
+        <span className="diagram__label">Clean agency data, every run</span>
         <div className="diagram__chips">
           {outputs.map((item) => (
             <span className="tag" key={item}>
