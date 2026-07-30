@@ -5,7 +5,7 @@ import Diagram from './Diagram'
 export default function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="container hero__grid">
+      <div className="container hero__stack">
         <div className="hero__copy">
           <div data-reveal>
             <HeroEyebrow>{hero.eyebrow}</HeroEyebrow>
@@ -20,20 +20,20 @@ export default function Hero() {
             {hero.body}
           </p>
 
-          <div data-reveal style={{ '--i': 3 }}>
+          <div className="hero__cta" data-reveal style={{ '--i': 3 }}>
             <Button />
           </div>
-
-          <ul className="mono hero__meta" data-reveal style={{ '--i': 4 }}>
-            {hero.meta.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
         </div>
 
-        <div data-reveal style={{ '--i': 2 }}>
+        <div className="hero__figure" data-reveal style={{ '--i': 4 }}>
           <Diagram />
         </div>
+
+        <ul className="mono hero__meta" data-reveal style={{ '--i': 5 }}>
+          {hero.meta.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </div>
     </section>
   )

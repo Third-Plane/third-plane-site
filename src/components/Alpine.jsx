@@ -3,7 +3,7 @@ import { SectionHead } from './ui'
 
 export default function Alpine() {
   return (
-    <section className="section" id="alpine">
+    <section className="section alpine" id="alpine">
       <div className="container">
         <SectionHead eyebrow={alpine.eyebrow} title={alpine.title} body={alpine.body} outline />
 

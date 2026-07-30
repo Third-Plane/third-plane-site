@@ -20,8 +20,8 @@ export const nav = [
 ]
 
 export const hero = {
-  eyebrow: 'Automated placement for retail insurance agencies',
-  titleLead: 'An AI workforce,',
+  eyebrow: 'Automated Placement for Retail Insurance Agencies',
+  titleLead: 'An AI workforce',
   titleAccent: 'right in your inbox.',
   body: 'Governed AI, deployed into your operation. Incubated and built by insurance professionals.',
   meta: ['Not a pilot', 'Production deployment', '60–90 day rollout'],
@@ -147,11 +147,29 @@ export const evidence = {
   eyebrow: 'Evidence',
   title: 'Real Results, Proven in Production.',
   body: 'Production data from working brokers. Not a pilot, not a survey.',
+  // Three groups, matching the deck's three slides' worth of figures rather than
+  // one group per figure: the middle group is a pair that shares a single
+  // caption, because the deck draws it as two bars under one sentence and its
+  // second sentence ("that lift") only resolves against its first. Figures,
+  // labels and bodies are the deck's wording verbatim, including the deck's own
+  // inconsistencies: the plus sign on the two paired figures but not on 41% or
+  // 100%, and the missing full stop on the first body.
   stats: [
-    { figure: '+41%', label: 'More unique clients handled per broker after adopting playbooks' },
-    { figure: '+30%', label: 'The median experience: the bottom ~70% of playbook users' },
-    { figure: '+71%', label: 'What power users pull out of the same tools' },
-    { figure: '100%', label: 'Of our brokers work through the core features daily' },
+    {
+      figures: [{ figure: '41%', label: 'Lift from Playbooks' }],
+      body: 'Across all users, 41% more unique clients handled after adopting playbooks',
+    },
+    {
+      figures: [
+        { figure: '+30%', label: 'Typical Users' },
+        { figure: '+71%', label: 'Power Users' },
+      ],
+      body: 'The bottom ~70% of playbook users handled 30% more clients per month. The top 30% more than doubled that lift.',
+    },
+    {
+      figures: [{ figure: '100%', label: 'User Adoption' }],
+      body: 'Every customer uses the core features. Power users go further.',
+    },
   ],
   footnote:
     'The sample is 13 QuoteWell brokers with sufficient pre/post history; departed brokers and recent hires without a baseline are excluded. Lift compares average monthly unique clients in the 3 months before first playbook use to months 3–6 after, excluding a 2-month onboarding ramp. Directional and observational, not a controlled study.',

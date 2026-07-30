@@ -31,6 +31,34 @@ export function ArrowRight({ className }) {
   )
 }
 
+/* Problem card glyphs. Same 14 box, 1.4 stroke and round caps as ArrowRight, so
+   the three read as one set: a round one, a jagged one, a square one. */
+export function Clock({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="5.3" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M7 4.3V7l2 1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function BarsRising({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M3 11.8V7.6M7 11.8V5M11 11.8V2.4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function Doc({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <rect x="3.5" y="2" width="7" height="10" rx="1" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M5.4 5.4h3.2M5.4 8h1.9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function SectionHead({ eyebrow, title, body, dark = false, outline = false, id }) {
   return (
     <header className="section-head" data-reveal>
