@@ -1209,7 +1209,7 @@ ol {
 }
 
 .strategies__head .display-2 {
-  max-width: 18ch;
+  max-width: 22ch;
   text-wrap: balance;
 }
 
@@ -1218,14 +1218,12 @@ ol {
   max-width: 42ch;
 }
 
-/* One shared surface split in two, matching the deck's paired strategies. */
+/* Two separate panels (same language as Product compare), not one fused shell —
+   on the band surface a split box read as a low-contrast slab with stranded air. */
 .strategies__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  gap: var(--gap-grid);
 }
 
 .strategy {
@@ -1233,10 +1231,9 @@ ol {
   flex-direction: column;
   gap: var(--s-3);
   padding: clamp(1.75rem, 2.6vw, 2.5rem);
-}
-
-.strategy + .strategy {
-  border-left: 1px solid var(--line-soft);
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
 }
 
 .strategy__kicker {
@@ -1262,16 +1259,46 @@ ol {
   color: var(--ink-body);
 }
 
+/* Metrics sit under a rule so the pair compares as two data blocks, not
+   prose continuing into numbers. */
 .strategy__lines {
   display: flex;
   flex-direction: column;
-  gap: var(--s-2);
-  margin-top: var(--s-2);
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line-soft);
+}
+
+.strategy__line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'cohort delta'
+    'result result';
+  gap: 0.15rem var(--s-3);
+  align-items: baseline;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  line-height: 1.55;
+  line-height: 1.45;
   letter-spacing: 0.01em;
+}
+
+.strategy__cohort {
+  grid-area: cohort;
+  color: var(--ink-muted);
+}
+
+.strategy__result {
+  grid-area: result;
   color: var(--ink-body);
+}
+
+.strategy__delta {
+  grid-area: delta;
+  color: var(--teal);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .strategies__payback {
@@ -1472,11 +1499,6 @@ ol {
   /* Four stats → two-up at this width so nothing orphans; full stack at 720. */
   .stats {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .strategy + .strategy {
-    border-left: 0;
-    border-top: 1px solid var(--line-soft);
   }
 
   /* A card runs the full container here, up to 1030px, which would set the body

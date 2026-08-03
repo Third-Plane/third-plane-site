@@ -36,7 +36,11 @@ export default function Evidence() {
                 <p className="strategy__body">{option.body}</p>
                 <ul className="strategy__lines">
                   {option.lines.map((line) => (
-                    <li key={line}>{line}</li>
+                    <li className="strategy__line" key={line.cohort}>
+                      <span className="strategy__cohort">{line.cohort}</span>
+                      <span className="strategy__result">{line.result}</span>
+                      <span className="strategy__delta">{line.delta}</span>
+                    </li>
                   ))}
                 </ul>
               </article>

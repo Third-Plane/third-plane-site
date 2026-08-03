@@ -189,8 +189,8 @@ export const evidence = {
         title: 'Realize it as savings',
         body: 'Fewer account managers, same book',
         lines: [
-          'Typical team: 10 AMs → 8 AMs (23% fewer)',
-          'Power users: 10 AMs → 6 AMs (42% fewer)',
+          { cohort: 'Typical team', result: '10 AMs → 8 AMs', delta: '23% fewer' },
+          { cohort: 'Power users', result: '10 AMs → 6 AMs', delta: '42% fewer' },
         ],
       },
       {
@@ -198,8 +198,8 @@ export const evidence = {
         title: 'Redirect it into growth',
         body: 'More inbound, same team',
         lines: [
-          'Typical team: 10 AMs → output of 13 (30% more)',
-          'Power users: 10 AMs → output of 17 (71% more)',
+          { cohort: 'Typical team', result: '10 AMs → output of 13', delta: '30% more' },
+          { cohort: 'Power users', result: '10 AMs → output of 17', delta: '71% more' },
         ],
       },
     ],
