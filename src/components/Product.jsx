@@ -3,7 +3,7 @@ import { SectionHead } from './ui'
 
 export default function Product() {
   return (
-    <section className="section" id="product">
+    <section className="section section--band" id="product">
       <div className="container">
         <SectionHead eyebrow={product.eyebrow} title={product.title} body={product.body} />
 

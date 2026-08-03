@@ -1,17 +1,11 @@
 import { site } from '../content'
 
-export function Pill({ children, dark = false, outline = false }) {
-  const variant = dark ? ' pill--dark' : outline ? ' pill--outline' : ''
-  return (
-    <span className={`pill${variant}`}>
-      <i className="pill__dot" aria-hidden="true" />
-      {children}
-    </span>
-  )
+export function Eyebrow({ children, dark = false }) {
+  return <p className={dark ? 'eyebrow eyebrow--dark' : 'eyebrow'}>{children}</p>
 }
 
 export function HeroEyebrow({ children }) {
-  return <p className="hero__eyebrow">{children}</p>
+  return <Eyebrow>{children}</Eyebrow>
 }
 
 export function Button({ children = site.ctaLabel, small = false, href = site.mailto }) {
@@ -59,12 +53,10 @@ export function Doc({ className }) {
   )
 }
 
-export function SectionHead({ eyebrow, title, body, dark = false, outline = false, id }) {
+export function SectionHead({ eyebrow, title, body, dark = false, id }) {
   return (
     <header className="section-head" data-reveal>
-      <Pill dark={dark} outline={outline}>
-        {eyebrow}
-      </Pill>
+      <Eyebrow dark={dark}>{eyebrow}</Eyebrow>
       <h2 className="display-2" id={id}>
         {title}
       </h2>

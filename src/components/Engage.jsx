@@ -16,6 +16,10 @@ export default function Engage() {
             </li>
           ))}
         </ol>
+
+        <p className="engage__timeline" data-reveal style={{ '--i': 4 }}>
+          {engage.timeline}
+        </p>
       </div>
     </section>
   )

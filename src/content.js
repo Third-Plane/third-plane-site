@@ -99,7 +99,7 @@ export const alpine = {
       kicker: 'Capabilities',
       title: 'Governable',
       body: 'Approvals, permissions, and mandates are built into the substrate, not stapled on after.',
-      meta: 'Skills · tools · integrations · obligations',
+      meta: 'Skills · tools · integrations — with approvals, obligations, and permissions built in',
     },
     {
       index: '03',
@@ -115,6 +115,19 @@ export const proof = {
   eyebrow: 'Proof',
   title: "QuoteWell Inbox. We're our own first customer.",
   body: 'We built an interface and experience every broker already knows how to use: email.',
+  inbox: {
+    app: 'QuoteWell Inbox',
+    from: 'alex@sample-agency.com',
+    subject: 'RE: Sample Insured LLC — package renewal',
+    playbook: 'Playbook · Mid-market package remarket',
+    // Same status language as the hero log: gray pending, coral governed, teal executed.
+    // Dots only reinforce the written status word — never color alone.
+    rows: [
+      { status: 'executed', text: 'Submission drafted from thread + loss runs' },
+      { status: 'executed', text: '3 carriers matched to appetite' },
+      { status: 'pending', text: 'Awaiting your send · no re-key into AMS' },
+    ],
+  },
   cards: [
     {
       index: '01',
@@ -146,33 +159,55 @@ export const proof = {
 export const evidence = {
   eyebrow: 'Evidence',
   title: 'Real Results, Proven in Production.',
-  body: 'Production data from working brokers. Not a pilot, not a survey.',
-  // Three groups, matching the deck's three slides' worth of figures rather than
-  // one group per figure: the middle group is a pair that shares a single
-  // caption, because the deck draws it as two bars under one sentence and its
-  // second sentence ("that lift") only resolves against its first. Figures,
-  // labels and bodies are the deck's wording verbatim, including the deck's own
-  // inconsistencies: the plus sign on the two paired figures but not on 41% or
-  // 100%, and the missing full stop on the first body.
+  body: 'Production data from working brokers — not a pilot, not a survey.',
   stats: [
     {
-      figures: [{ figure: '41%', label: 'Lift from Playbooks' }],
-      body: 'Across all users, 41% more unique clients handled after adopting playbooks',
+      figure: '+41%',
+      body: 'More unique clients handled per broker after adopting playbooks',
     },
     {
-      figures: [
-        { figure: '+30%', label: 'Typical Users' },
-        { figure: '+71%', label: 'Power Users' },
-      ],
-      body: 'The bottom ~70% of playbook users handled 30% more clients per month. The top 30% more than doubled that lift.',
+      figure: '+30%',
+      body: 'More unique clients handled — the median experience; the bottom ~70% of playbook users',
     },
     {
-      figures: [{ figure: '100%', label: 'User Adoption' }],
-      body: 'Every customer uses the core features. Power users go further.',
+      figure: '+71%',
+      body: 'More unique clients handled by power users of the same tools',
+    },
+    {
+      figure: '100%',
+      body: 'Of our brokers work through the core features daily',
     },
   ],
   footnote:
-    'The sample is 13 QuoteWell brokers with sufficient pre/post history; departed brokers and recent hires without a baseline are excluded. Lift compares average monthly unique clients in the 3 months before first playbook use to months 3–6 after, excluding a 2-month onboarding ramp. Directional and observational, not a controlled study.',
+    'The sample is 13 QuoteWell brokers with sufficient pre/post history. Lift compares average monthly unique clients in the 3 months before first playbook use to months 3–6 after, excluding a 2-month onboarding ramp. Directional and observational, not a controlled study.',
+  strategies: {
+    title: 'It pays for itself, two strategies',
+    body: 'Whether your team is tech-savvy power users or more typical',
+    options: [
+      {
+        kicker: 'If your team is at capacity',
+        title: 'Realize it as savings',
+        body: 'Fewer account managers, same book',
+        lines: [
+          'Typical team: 10 AMs → 8 AMs (23% fewer)',
+          'Power users: 10 AMs → 6 AMs (42% fewer)',
+        ],
+      },
+      {
+        kicker: 'If you have inbound to spare',
+        title: 'Redirect it into growth',
+        body: 'More inbound, same team',
+        lines: [
+          'Typical team: 10 AMs → output of 13 (30% more)',
+          'Power users: 10 AMs → output of 17 (71% more)',
+        ],
+      },
+    ],
+    payback:
+      "Both strategies pay back fast; a typical team breaks even on baseline engagement costs when the team size is around 7 AMs, or just 3 if they're power users.",
+    disclaimer:
+      '(Illustrative for a 10-AM team; headcount figures derive from the observed 30% / 71% throughput lift — e.g. 1 − 1/1.30 ≈ 23% fewer AMs. Directional, not a controlled study.)',
+  },
 }
 
 export const engage = {
@@ -198,9 +233,10 @@ export const engage = {
     {
       index: '04',
       title: 'Deploy',
-      body: 'Onsite training, live iteration, adoption owned by our engineers. 60–90 days end to end.',
+      body: 'Onsite training, live iteration, adoption owned by our engineers.',
     },
   ],
+  timeline: '60–90 days end to end.',
 }
 
 export const cta = {

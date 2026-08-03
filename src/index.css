@@ -192,7 +192,14 @@ ol {
   padding-block: calc(var(--section-y) * 0.62);
 }
 
-/* Consistent section intro block: pill → heading → lead.
+/* Soft mid-page reset so the cream scroll doesn't read as one continuous slab.
+   Border keeps the band from dissolving into the page at either edge. */
+.section--band {
+  background: var(--bg-band);
+  border-block: 1px solid var(--line-soft);
+}
+
+/* Consistent section intro block: eyebrow → heading → lead.
    Explicit margins (not gap) so the two steps can differ. */
 .section-head {
   display: flex;
@@ -203,7 +210,9 @@ ol {
 }
 
 .section-head .display-2 {
-  margin-top: var(--s-4);
+  /* Match the hero's eyebrow → title rhythm now that section labels share
+     the same thin rule mark instead of taller pills. */
+  margin-top: var(--s-5);
 }
 
 .section-head .lead {
@@ -215,8 +224,7 @@ ol {
    over either of those puts the head on one axis and the content on another,
    which is the disagreement this fixes. Scoped by section class, so Problem,
    Product, Proof and Engage keep their left-aligned heads, and listed together
-   so "which sections centre" is one legible decision rather than two. The pill
-   centres too: a left pill over a centred heading reads as a mistake. */
+   so "which sections centre" is one legible decision rather than two. */
 .alpine .section-head,
 .evidence .section-head {
   align-items: center;
@@ -224,51 +232,49 @@ ol {
   text-align: center;
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.7rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--teal-soft);
+/* Left-aligned sections share the hero's teal side rule. */
+.eyebrow {
+  display: inline-block;
+  max-width: 30rem;
+  padding-left: var(--s-4);
+  border-left: 2px solid var(--teal);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--teal);
-  line-height: 1.4;
+  line-height: 1.75;
 }
 
-/* Sits outside the text flow so it stays centred on the pill even when
-   the label wraps to a second line. */
-.pill__dot {
-  flex: none;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
+.eyebrow--dark {
+  border-left-color: #8fc0c9;
+  color: #8fc0c9;
 }
 
-.pill--dark {
-  background: rgb(242 239 230 / 0.1);
-  border-color: var(--line-dark);
-  color: var(--on-dark);
+/* Centred heads use a short top tick instead — a left bar reads lopsided
+   when the label sits on the page axis. */
+.alpine .section-head .eyebrow,
+.evidence .section-head .eyebrow,
+.cta__shell .eyebrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding-left: 0;
+  border-left: 0;
 }
 
-.pill--outline {
-  padding: 0.5rem 0.85rem;
-  border-radius: var(--radius-lg);
-  border-color: var(--teal);
-  background: none;
+.alpine .section-head .eyebrow::before,
+.evidence .section-head .eyebrow::before,
+.cta__shell .eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  background: var(--teal);
 }
 
-.pill--outline .pill__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 1px;
-  transform: rotate(45deg);
+.eyebrow--dark::before {
+  background: #8fc0c9;
 }
 
 /* ==========================================================================
@@ -573,20 +579,6 @@ ol {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-/* The rule is a border on the text box rather than a sized pseudo-element,
-   so it keeps covering every line once the label wraps. */
-.hero__eyebrow {
-  max-width: 30rem;
-  padding-left: var(--s-4);
-  border-left: 2px solid var(--teal);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--teal);
-  line-height: 1.75;
 }
 
 /* Capped below --display-1 so each of the two explicit lines holds together
@@ -981,6 +973,133 @@ ol {
   color: var(--on-dark-muted);
 }
 
+/* Tighter than the default section-head margin: the inbox visual sits in the
+   same beat as the cards, so head → inbox and inbox → cards share one step. */
+.proof__shell .section-head {
+  margin-bottom: var(--s-6);
+}
+
+/* Product visual: email chrome that restates the Proof claim in the same
+   mono/log language as the hero diagram, tuned for the dark shell. */
+.inbox {
+  margin: 0 0 var(--s-6);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 40rem;
+}
+
+.inbox__chrome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--line-dark);
+  background: rgb(242 239 230 / 0.04);
+}
+
+.inbox__app {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8fc0c9;
+}
+
+.inbox__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin: 0;
+}
+
+.inbox__meta div {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: var(--s-3);
+  align-items: baseline;
+}
+
+.inbox__meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-dark-muted);
+}
+
+.inbox__meta dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--on-dark);
+  overflow-wrap: anywhere;
+}
+
+.inbox__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-5);
+}
+
+.inbox__playbook {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: #8fc0c9;
+}
+
+.inbox__rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.inbox__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: var(--s-4);
+  align-items: baseline;
+  padding-block: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.inbox__row + .inbox__row {
+  border-top: 1px solid var(--line-dark);
+}
+
+/* Same triad as .log__status: the written status carries meaning; the dot only
+   reinforces it. Coral here is the established governed amber, not a new red. */
+.inbox__status {
+  white-space: nowrap;
+  color: var(--on-dark);
+}
+
+.inbox__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.55em;
+  border-radius: 50%;
+  vertical-align: middle;
+  background: var(--on-dark-muted);
+}
+
+.inbox__status[data-status='governed'] .inbox__dot {
+  background: var(--mark-coral);
+}
+
+.inbox__status[data-status='executed'] .inbox__dot {
+  background: var(--teal);
+}
+
+.inbox__text {
+  color: var(--on-dark);
+}
+
 /* Tighter than --card-pad: these sit 4-up inside an already-inset
    shell, so full card padding would starve the text of line length. */
 .card--dark {
@@ -1022,53 +1141,23 @@ ol {
 }
 
 /* ==========================================================================
-   Evidence: stat row + footnote
+   Evidence: stat row + footnote + two strategies
    ========================================================================== */
 
-/* No card, no rules between columns: the stats float on the section
-   background, so the only structure is the even columns and the centring.
-   Three groups, one per figure except the middle, which carries the deck's pair
-   of comparison figures under a single caption. Three columns divide the row
-   evenly, so nothing is stranded on a short last row; below the page's stacking
-   width the row goes straight to one column rather than to a 2-up, which with
-   three groups would orphan the third. */
+/* Four equal columns on the section background: figure, then the sentence that
+   names what the figure means. No cards, no rules between columns. */
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--s-7) var(--gap-grid);
 }
 
-/* Three tiers, matching the deck: figure, a short title-case label, then the
-   sentence that carries the methodology. The row gap is the tight one so the
-   label reads as the figure's caption; the body buys its own space back with a
-   margin, which keeps the three tiers grouped two-and-one rather than evenly
-   spaced, where the label would float between them belonging to neither. */
 .stat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--s-2);
+  gap: var(--s-3);
   text-align: center;
-}
-
-/* The figure/label tiers sit in their own row so a group can hold either one
-   figure or the deck's pair, with the body beneath spanning whatever is above
-   it. Shrink-to-fit and centred rather than equal halves: the pair then sits as
-   one compact block in the middle of its column, so the space inside the pair
-   stays visibly smaller than the space between the groups even though the grid
-   gap is the smaller number. --s-6 rather than the grid gap because the two
-   figures are being compared and have to read as one unit. */
-.stat__figures {
-  display: flex;
-  justify-content: center;
-  gap: var(--s-6);
-}
-
-.stat__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--s-2);
 }
 
 .stat__figure {
@@ -1080,56 +1169,122 @@ ol {
   color: var(--teal);
 }
 
-/* The display face at the card-title size, so the tier below it can stay at the
-   old label size and still read as subordinate. Every label in the deck fits one
-   line at the narrowest space the row ever gives it, which is the half of the
-   middle column that "Typical Users" gets in the three-up. That is what puts all
-   three bodies on a common baseline without subgrid: tiers one and two are a
-   single line each in every group, the pair included. Capped anyway so a longer
-   label added later wraps inside the column instead of widening it. */
-.stat__label {
-  font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-  color: var(--ink);
+/* Balanced so a centred sentence never orphans one word on the last line.
+   22ch keeps each body to a short stack under its figure. */
+.stat__body {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--ink-body);
   max-width: 22ch;
   text-wrap: balance;
-}
-
-/* Balanced so these never drop a single word onto a last line, which is loud
-   once the sentence is centred with nothing else around it. 26ch holds the
-   single-figure bodies to three lines, the same shape they have on the slide. */
-.stat__body {
-  margin-top: var(--s-2);
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--ink-body);
-  max-width: 26ch;
-  text-wrap: balance;
-}
-
-/* The pair's caption belongs to both figures, so it is measured to the pair
-   rather than to one figure. It is two sentences where the others are one, and
-   at the shared 26ch it ran to four lines and pushed the middle group a line
-   past its neighbours; 34ch is the first step that holds it to three, matching
-   the group beside it. 275px at that measure, against 301px for the two figures
-   and the gap between them in the three-up, so it reads as spanning the pair
-   rather than sitting under the left figure. Stays inside the 280px container at
-   320px, which is the narrowest the page goes. */
-.stat--pair .stat__body {
-  max-width: 34ch;
 }
 
 /* Deliberately left-aligned under a centred head and centred stats. It is a
    dense methodology paragraph that gets read line by line, and centring would
    ragged the left edge of every line. It introduces no third axis because it
    runs the full container measure, so its block is symmetric even though its
-   text is not; the axis problem only arises for a narrow block sitting off to
-   one side, which is what the head used to be. */
+   text is not. */
 .footnote {
   margin-top: var(--s-5);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+}
+
+/* Second Evidence beat: same section, more air after the methodology note. */
+.strategies {
+  margin-top: var(--s-9);
+}
+
+.strategies__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--s-7);
+  text-align: center;
+}
+
+.strategies__head .display-2 {
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.strategies__head .lead {
+  margin-top: var(--s-5);
+  max-width: 42ch;
+}
+
+/* One shared surface split in two, matching the deck's paired strategies. */
+.strategies__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.strategy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: clamp(1.75rem, 2.6vw, 2.5rem);
+}
+
+.strategy + .strategy {
+  border-left: 1px solid var(--line-soft);
+}
+
+.strategy__kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.strategy__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.strategy__body {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-body);
+}
+
+.strategy__lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--ink-body);
+}
+
+.strategies__payback {
+  margin-top: var(--s-5);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--ink-body);
+}
+
+.strategies__disclaimer {
+  margin-top: var(--s-4);
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   line-height: 1.85;
@@ -1157,6 +1312,18 @@ ol {
 
 .step .card__body {
   font-size: 0.875rem;
+}
+
+/* Section-level summary of the whole Discover → Deploy arc, not a Deploy-only
+   duration. Mono + muted so it reads as the closing line of the four steps. */
+.engage__timeline {
+  margin-top: var(--s-6);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -1293,7 +1460,8 @@ ol {
      threshold here that is measured rather than picked, so it is the one the
      others move to rather than the other way round. */
   .compare,
-  .grid--3 {
+  .grid--3,
+  .strategies__grid {
     grid-template-columns: 1fr;
   }
 
@@ -1301,14 +1469,14 @@ ol {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Stacked, not a 2-up: there are three groups, so two columns would leave the
-     third alone on a second row. Straight to one column rather than stacking
-     later at 720, so the stats share the page's single stacking threshold with
-     the tiles, Product and Alpine and the page changes shape once. The three-up
-     is safe right down to this edge: at 1121px the column is 332px and the pair
-     needs 301px, so it clears with about 30px in hand. */
+  /* Four stats → two-up at this width so nothing orphans; full stack at 720. */
   .stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .strategy + .strategy {
+    border-left: 0;
+    border-top: 1px solid var(--line-soft);
   }
 
   /* A card runs the full container here, up to 1030px, which would set the body
@@ -1343,10 +1511,19 @@ ol {
     margin-left: auto;
   }
 
-  /* .stats is not listed here: with three groups it already stacks at 1120,
-     so a second declaration for it at this width would be dead. */
+  /* .stats stacks fully here after the 2-up at 1120. */
+  .stats,
   .grid--4 {
     grid-template-columns: 1fr;
+  }
+
+  .inbox__meta div {
+    grid-template-columns: auto 1fr;
+  }
+
+  .inbox__row {
+    grid-template-columns: 1fr;
+    gap: var(--s-2);
   }
 
   /* Stacked instead of wrapped, so no separator is left dangling

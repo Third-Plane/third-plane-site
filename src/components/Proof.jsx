@@ -1,5 +1,6 @@
 import { proof } from '../content'
 import { SectionHead } from './ui'
+import Inbox from './Inbox'
 
 export default function Proof() {
   return (
@@ -7,6 +8,8 @@ export default function Proof() {
       <div className="container">
         <div className="proof__shell">
           <SectionHead eyebrow={proof.eyebrow} title={proof.title} body={proof.body} dark />
+
+          <Inbox />
 
           <div className="grid grid--4">
             {proof.cards.map((card, i) => (
