@@ -549,27 +549,26 @@ ol {
    Hero
    ========================================================================== */
 
-/* Both ends pulled in from 7vw so the whole hero, meta strip included, lands
-   inside one screen on a 800px-tall laptop. The comp shows the hero filling
-   exactly one viewport with the ticker just beyond it, so honouring that
-   intent is worth more than matching the comp's own nav-to-eyebrow gap. */
+/* Both ends pulled in from 7vw so the whole hero lands inside one screen on a
+   800px-tall laptop, with the ticker just beyond it. */
 .hero {
   padding-block: clamp(3rem, 5.5vw, 5.5rem) clamp(3.5rem, 5.5vw, 6rem);
 }
 
-/* One stacked column at every width, so the hero reads eyebrow → headline →
-   subhead → CTA → illustration → meta strip even while the nav is still in its
-   desktop state. Rows step by explicit margins rather than one row-gap, because
-   the copy cluster, the illustration and the strip each want a different break. */
+/* Desktop: copy left, elevated activity log right. Meta stays in the copy
+   column under the CTA, matching the mock. */
 .hero__stack {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 3.5rem);
 }
 
-/* The tightest step that still reads deliberate, so the illustration stays
-   tucked under the CTA rather than floating off as a separate block. */
 .hero__figure {
-  margin-top: var(--s-6);
+  margin-top: 0;
+  justify-self: end;
+  width: 100%;
+  max-width: 34rem;
 }
 
 /* No gap: the steps inside the cluster differ, so each child sets its own.
@@ -605,16 +604,26 @@ ol {
   font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
 
-/* Its own step, wider than the subhead's, because the button is a different
-   kind of object rather than a continuation of the sentence. Scoped to the
-   wrapper so the nav's .btn can never pick this margin up. */
+/* Button + email sit as one CTA row. */
 .hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4) var(--s-5);
   margin-top: var(--s-5);
 }
 
-/* Detached as a footer to the whole hero, and still the largest step on the
-   first screen: 48 against the illustration's 32 and the cluster's 24, so the
-   order holds even after the fold budget took a step off it. */
+.hero__email {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  transition: color 0.18s ease;
+}
+
+.hero__email:hover {
+  color: var(--teal);
+}
+
+/* Under the CTA in the copy column — not full-bleed under both columns. */
 .hero__meta {
   display: flex;
   flex-wrap: wrap;
@@ -632,24 +641,71 @@ ol {
   content: none;
 }
 
-/* ---- Hero illustration: activity log ---- */
+/* ---- Hero illustration: elevated activity log ---- */
 
-/* Left-aligned with the copy, not centred: in the comp the panel's left edge
-   sits exactly on the copy's left edge. Capped well short of the container
-   because a log row is read across, and at the full 1144px the status would end
-   up half a screen from the time that produced it. The cap is sized off the
-   longest task string rather than off the comp, whose absolute scale is not
-   reliable; it clears that string with room and still leaves the panel the
-   widest element in the hero, as the comp has it. */
 .diagram {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
   width: 100%;
-  max-width: 34rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
 }
 
-/* No fill: sampled inside and outside the panel in the comp and both return the
-   same page background, so this is rules on the page rather than a card. */
+.diagram__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.diagram__live {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mark-coral);
+}
+
+/* Stage holds the floating card and the ghost outlines behind it. */
+.diagram__stage {
+  position: relative;
+  z-index: 0;
+}
+
+.diagram__stage::before,
+.diagram__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius-lg) + 2px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.diagram__stage::before {
+  transform: translate(10px, 10px) scale(1.02);
+  opacity: 0.45;
+}
+
+.diagram__stage::after {
+  transform: translate(18px, 18px) scale(1.04);
+  opacity: 0.28;
+}
+
+.diagram__card {
+  position: relative;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 40px rgb(15 33 38 / 0.08);
+  overflow: hidden;
+}
+
 .log {
   width: 100%;
   border-collapse: collapse;
@@ -670,10 +726,9 @@ ol {
   vertical-align: baseline;
 }
 
-/* Same size as the rows, told apart by case, tracking and colour, which is how
-   the comp does it. The heavier rule under the header matches the panel border
-   while the rules between rows are a step lighter, the two weights the comp
-   uses. */
+/* Same size as the rows, told apart by case, tracking and colour. The heavier
+   rule under the header matches the panel border while the rules between rows
+   are a step lighter. */
 .log th {
   border-bottom: 1px solid var(--line);
   letter-spacing: 0.14em;
@@ -703,8 +758,7 @@ ol {
 }
 
 /* inline-block rather than a flex child, so the cell stays a real table-cell
-   and the columns keep lining up. vertical-align centres it on the x-height of
-   the lower-case label beside it. */
+   and the columns keep lining up. */
 .log__dot {
   display: inline-block;
   width: 6px;
@@ -715,17 +769,38 @@ ol {
   background: var(--ink-muted);
 }
 
-/* Sampled from the comp and mapped to the nearest existing token: queued work
-   is neutral, work under governance carries the coral from the logo mark, and
-   the completed action gets the page's teal accent. The word carries the
-   meaning; the dot only reinforces it, which is why the label itself stays in
-   the body ink rather than taking the coral, which cannot make AA at this size. */
+/* Same triad as elsewhere: pending muted, governed coral, executed teal. The
+   word carries the meaning; the dot only reinforces it. */
 .log__status[data-status='governed'] .log__dot {
   background: var(--mark-coral);
 }
 
 .log__status[data-status='executed'] .log__dot {
   background: var(--teal);
+}
+
+.diagram__footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+
+.diagram__footer-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.diagram__duration {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ==========================================================================
@@ -1515,6 +1590,21 @@ ol {
   .tile .card__body,
   .alpine-card .card__body {
     max-width: 40ch;
+  }
+}
+
+/* Hero stacks before other page grids: the log needs horizontal room for its
+   three columns, so it drops under the copy rather than crushing beside it. */
+@media (max-width: 900px) {
+  .hero__stack {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .hero__figure {
+    justify-self: stretch;
+    max-width: 34rem;
+    margin-top: var(--s-2);
   }
 }
 

@@ -1,4 +1,4 @@
-import { hero } from '../content'
+import { hero, site } from '../content'
 import { Button, HeroEyebrow } from './ui'
 import Diagram from './Diagram'
 
@@ -22,18 +22,21 @@ export default function Hero() {
 
           <div className="hero__cta" data-reveal style={{ '--i': 3 }}>
             <Button />
+            <a className="hero__email" href={site.mailto}>
+              {site.email}
+            </a>
           </div>
+
+          <ul className="mono hero__meta" data-reveal style={{ '--i': 4 }}>
+            {hero.meta.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
 
-        <div className="hero__figure" data-reveal style={{ '--i': 4 }}>
+        <div className="hero__figure" data-reveal style={{ '--i': 5 }}>
           <Diagram />
         </div>
-
-        <ul className="mono hero__meta" data-reveal style={{ '--i': 5 }}>
-          {hero.meta.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
       </div>
     </section>
   )

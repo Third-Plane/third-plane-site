@@ -25,6 +25,11 @@ export const hero = {
   titleAccent: 'right in your inbox.',
   body: 'Governed AI, deployed into your operation. Incubated and built by insurance professionals.',
   meta: ['Not a pilot', 'Production deployment', '60–90 day rollout'],
+  diagram: {
+    label: 'Live activity log — sample placement',
+    footerLabel: 'Submission to bound',
+    duration: '11m 28s',
+  },
 }
 
 export const ticker = [
