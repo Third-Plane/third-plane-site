@@ -262,28 +262,6 @@ ol {
   color: #8fc0c9;
 }
 
-/* Centred CTA head uses a short top tick — a left bar reads lopsided
-   when the label sits on the page axis. */
-.cta__shell .eyebrow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--s-3);
-  padding-left: 0;
-  border-left: 0;
-}
-
-.cta__shell .eyebrow::before {
-  content: '';
-  width: 1.5rem;
-  height: 2px;
-  background: var(--teal);
-}
-
-.eyebrow--dark::before {
-  background: #8fc0c9;
-}
-
 /* ==========================================================================
    Buttons
    ========================================================================== */

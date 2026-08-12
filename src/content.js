@@ -245,7 +245,6 @@ export const engage = {
 }
 
 export const cta = {
-  eyebrow: 'Next step',
   title: 'Ready to see how Third Plane fits into your agency?',
   body: 'Meet with the team, walk through your current workflows, and review where the opportunity is. No generic sales demo. No pressure to move forward.',
   meta: [],
