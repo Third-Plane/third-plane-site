@@ -220,9 +220,9 @@ ol {
   max-width: 62ch;
 }
 
-.section-head .display-2 {
-  /* Match the hero's eyebrow → title rhythm now that section labels share
-     the same thin rule mark instead of taller pills. */
+/* Only when an eyebrow is present — Alpine/Evidence drop the label and
+   start on the title, so they shouldn't inherit the hero's label→title gap. */
+.section-head .eyebrow + .display-2 {
   margin-top: var(--s-5);
 }
 
@@ -262,10 +262,8 @@ ol {
   color: #8fc0c9;
 }
 
-/* Centred heads use a short top tick instead — a left bar reads lopsided
+/* Centred CTA head uses a short top tick — a left bar reads lopsided
    when the label sits on the page axis. */
-.alpine .section-head .eyebrow,
-.evidence .section-head .eyebrow,
 .cta__shell .eyebrow {
   display: flex;
   flex-direction: column;
@@ -275,8 +273,6 @@ ol {
   border-left: 0;
 }
 
-.alpine .section-head .eyebrow::before,
-.evidence .section-head .eyebrow::before,
 .cta__shell .eyebrow::before {
   content: '';
   width: 1.5rem;
@@ -1116,6 +1112,7 @@ ol {
    ========================================================================== */
 
 .alpine-card {
+  position: relative;
   gap: var(--s-4);
   background: var(--surface-2);
   /* Mark-teal accent — same weight as problem tiles, different hue so the
@@ -1125,6 +1122,18 @@ ol {
 
 .alpine-card .card__index {
   justify-content: flex-start;
+}
+
+/* Same 6px coral dot as governed status — pinned to the card corner so it
+   marks Auditable without sitting in the title. */
+.alpine-card__flag {
+  position: absolute;
+  top: var(--card-pad);
+  right: var(--card-pad);
+  width: 9px;
+  height: 9px;
+  margin: 0;
+  background: var(--mark-coral);
 }
 
 /* ==========================================================================
@@ -1386,6 +1395,14 @@ ol {
   color: var(--teal);
 }
 
+/* Lead figure (+41%): coral underline instead of teal fill — same number,
+   same order, just marked as the one that earns the row. */
+.stat--lead .stat__figure {
+  color: var(--ink);
+  padding-bottom: 0.12em;
+  border-bottom: 3px solid var(--mark-coral);
+}
+
 /* Balanced so a centred sentence never orphans one word on the last line.
    22ch keeps each body to a short stack under its figure. */
 .stat__body {
@@ -1639,9 +1656,10 @@ ol {
    Footer
    ========================================================================== */
 
+/* Dark anchor — cream page gets a second contrast beat (Herald navy /
+   Kalepa black territory) without turning the rest of the site dark. */
 .footer {
-  border-top: 1px solid var(--line-soft);
-  background: var(--bg-band);
+  background: var(--deep);
 }
 
 .footer__inner {
@@ -1651,6 +1669,10 @@ ol {
   justify-content: space-between;
   gap: var(--s-4);
   padding-block: var(--s-6);
+}
+
+.footer .mono {
+  color: var(--on-dark-muted);
 }
 
 /* ==========================================================================

@@ -7,11 +7,11 @@ export default function Evidence() {
   return (
     <section className="section section--band evidence" id="evidence">
       <div className="container">
-        <SectionHead eyebrow={evidence.eyebrow} title={evidence.title} body={evidence.body} />
+        <SectionHead title={evidence.title} body={evidence.body} />
 
         <div className="stats" data-reveal>
-          {evidence.stats.map((stat) => (
-            <div className="stat" key={stat.figure}>
+          {evidence.stats.map((stat, i) => (
+            <div className={i === 0 ? 'stat stat--lead' : 'stat'} key={stat.figure}>
               <p className="stat__figure">{stat.figure}</p>
               <p className="stat__body">{stat.body}</p>
             </div>

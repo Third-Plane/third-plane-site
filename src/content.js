@@ -88,7 +88,6 @@ export const product = {
 }
 
 export const alpine = {
-  eyebrow: 'Alpine substrate',
   title: 'The substrate under every deployment.',
   body: "This is why bespoke doesn't mean black box.",
   cards: [
@@ -96,6 +95,8 @@ export const alpine = {
       index: '01',
       kicker: 'Context',
       title: 'Auditable',
+      // Same coral log-dot as governed status — top-right on Auditable.
+      flag: true,
       body: 'Every agent action is logged with its authority and its reasoning, a trail your regulators and E&O carrier can read.',
       meta: 'Emails · submissions · quotes · policies · endorsements · loss runs',
     },
@@ -162,7 +163,6 @@ export const proof = {
 }
 
 export const evidence = {
-  eyebrow: 'Evidence',
   title: 'Real Results, Proven in Production.',
   body: 'Production data from working brokers — not a pilot, not a survey.',
   stats: [

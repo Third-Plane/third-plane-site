@@ -5,11 +5,17 @@ export default function Alpine() {
   return (
     <section className="section alpine" id="alpine">
       <div className="container">
-        <SectionHead eyebrow={alpine.eyebrow} title={alpine.title} body={alpine.body} />
+        <SectionHead title={alpine.title} body={alpine.body} />
 
         <div className="grid grid--3">
           {alpine.cards.map((card, i) => (
-            <article className="card alpine-card" key={card.index} data-reveal style={{ '--i': i }}>
+            <article
+              className={card.flag ? 'card alpine-card alpine-card--flag' : 'card alpine-card'}
+              key={card.index}
+              data-reveal
+              style={{ '--i': i }}
+            >
+              {card.flag ? <i className="log__dot alpine-card__flag" aria-hidden="true" /> : null}
               <p className="card__index">
                 <span>{card.index}</span> · {card.kicker}
               </p>

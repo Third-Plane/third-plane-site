@@ -56,7 +56,7 @@ export function Doc({ className }) {
 export function SectionHead({ eyebrow, title, body, dark = false, id }) {
   return (
     <header className="section-head" data-reveal>
-      <Eyebrow dark={dark}>{eyebrow}</Eyebrow>
+      {eyebrow ? <Eyebrow dark={dark}>{eyebrow}</Eyebrow> : null}
       <h2 className="display-2" id={id}>
         {title}
       </h2>
