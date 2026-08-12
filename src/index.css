@@ -55,8 +55,19 @@
   --container: 1240px;
   --gap-grid: clamp(1rem, 1.6vw, 1.5rem);
   --card-pad: clamp(1.5rem, 2.2vw, 2rem);
-  --radius: 4px;
-  --radius-lg: 10px;
+  /* Elevation: tiles/panels share one radius; shells get the larger step so
+     the page no longer jumps between sharp and soft for no reason. */
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  /* Soft, low-opacity lifts — borders stay for edge definition; shadows carry
+     the sense of surface. Teal variant warms the "get" panel without changing
+     its fill or copy hierarchy. */
+  --shadow: 0 8px 24px rgb(15 33 38 / 0.06);
+  --shadow-hover: 0 14px 32px rgb(15 33 38 / 0.1);
+  --shadow-lg: 0 16px 40px rgb(15 33 38 / 0.08);
+  --shadow-teal: 0 12px 32px rgb(30 107 125 / 0.28);
+  --shadow-deep: 0 18px 44px rgb(15 33 38 / 0.2);
 
   /* Header offset for anchor scrolling */
   --nav-h: 72px;
@@ -337,6 +348,7 @@ ol {
   background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .card__title {
@@ -415,7 +427,7 @@ ol {
 }
 
 /* Hover for the card groups that sit on the light page background: one step
-   warmer on the surface and the border, nothing that can move or resize.
+   warmer on the surface, a soft lift matching the button's translateY language.
    Hung off .tile / .alpine-card / .step rather than the shared .card, because
    Proof's cards carry .card too and these light values would blow out against
    the dark shell. The transition is repeated in the scroll-reveal block, which
@@ -424,7 +436,11 @@ ol {
   .tile,
   .alpine-card,
   .step {
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
   }
 
   .tile:hover,
@@ -432,6 +448,27 @@ ol {
   .step:hover {
     background: var(--surface-2);
     border-color: var(--line);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+
+  .tile:hover {
+    box-shadow: var(--shadow-hover), inset 0 2px 0 rgb(30 107 125 / 0.4);
+  }
+
+  .alpine-card:hover {
+    box-shadow: var(--shadow-hover), inset 0 2px 0 rgb(62 127 132 / 0.45);
+  }
+
+  .step:hover {
+    box-shadow: var(--shadow-hover), inset 0 2px 0 rgb(15 33 38 / 0.12);
+  }
+
+  /* Outrank the revealed `transform: none` so the lift still fires after scroll-in. */
+  .reveal-ready [data-reveal][data-revealed='true'].tile:hover,
+  .reveal-ready [data-reveal][data-revealed='true'].alpine-card:hover,
+  .reveal-ready [data-reveal][data-revealed='true'].step:hover {
+    transform: translateY(-1px);
   }
 }
 
@@ -663,11 +700,36 @@ ol {
 }
 
 .diagram__live {
+  position: relative;
   flex: none;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--mark-coral);
+}
+
+/* Soft pulse so the "live" label reads as live without competing with the log. */
+@media (prefers-reduced-motion: no-preference) {
+  .diagram__live::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid var(--mark-coral);
+    opacity: 0.55;
+    animation: live-pulse 2.2s ease-out infinite;
+  }
+}
+
+@keyframes live-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+  }
 }
 
 /* Stage holds the floating card and the ghost outlines behind it. */
@@ -683,18 +745,19 @@ ol {
   inset: 0;
   border: 1px solid var(--line);
   border-radius: calc(var(--radius-lg) + 2px);
+  background: rgb(250 247 238 / 0.35);
   pointer-events: none;
   z-index: -1;
 }
 
 .diagram__stage::before {
-  transform: translate(10px, 10px) scale(1.02);
-  opacity: 0.45;
+  transform: translate(10px, 12px) rotate(0.6deg);
+  opacity: 0.7;
 }
 
 .diagram__stage::after {
-  transform: translate(18px, 18px) scale(1.04);
-  opacity: 0.28;
+  transform: translate(18px, 20px) rotate(1.1deg);
+  opacity: 0.4;
 }
 
 .diagram__card {
@@ -702,8 +765,41 @@ ol {
   background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 18px 40px rgb(15 33 38 / 0.08);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
+}
+
+/* Window chrome — same traffic-light language as the inbox mock so the two
+   product illustrations read as one family. */
+.diagram__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem var(--s-4) 0.55rem;
+  background: linear-gradient(180deg, rgb(15 33 38 / 0.03), transparent);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.diagram__traffic,
+.inbox__traffic {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.diagram__traffic--close,
+.inbox__traffic--close {
+  background: #e8a09a;
+}
+
+.diagram__traffic--min,
+.inbox__traffic--min {
+  background: #e2c48a;
+}
+
+.diagram__traffic--max,
+.inbox__traffic--max {
+  background: #9cbc9a;
 }
 
 .log {
@@ -726,22 +822,24 @@ ol {
   vertical-align: baseline;
 }
 
-/* Same size as the rows, told apart by case, tracking and colour. The heavier
-   rule under the header matches the panel border while the rules between rows
-   are a step lighter. */
 .log th {
   border-bottom: 1px solid var(--line);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted);
+  background: rgb(15 33 38 / 0.025);
 }
 
 .log tbody tr + tr {
   border-top: 1px solid var(--line-soft);
 }
 
-/* The timestamps are the argument this illustration makes, so they never wrap
-   and never shrink: the task column is the only one that reflows. */
+/* The closed loop lands on "executed" — a soft teal wash marks the finish
+   without inventing a fifth status color. */
+.log tbody tr[data-status='executed'] {
+  background: rgb(30 107 125 / 0.06);
+}
+
 .log__time {
   white-space: nowrap;
   color: var(--ink-muted);
@@ -757,8 +855,6 @@ ol {
   color: var(--ink-body);
 }
 
-/* inline-block rather than a flex child, so the cell stays a real table-cell
-   and the columns keep lining up. */
 .log__dot {
   display: inline-block;
   width: 6px;
@@ -769,8 +865,6 @@ ol {
   background: var(--ink-muted);
 }
 
-/* Same triad as elsewhere: pending muted, governed coral, executed teal. The
-   word carries the meaning; the dot only reinforces it. */
 .log__status[data-status='governed'] .log__dot {
   background: var(--mark-coral);
 }
@@ -799,7 +893,7 @@ ol {
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: var(--teal);
   font-variant-numeric: tabular-nums;
 }
 
@@ -879,6 +973,8 @@ ol {
   background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
+  /* Top accent differentiates problem tiles from Alpine/Engage cards. */
+  box-shadow: var(--shadow), inset 0 2px 0 rgb(30 107 125 / 0.4);
 }
 
 /* --card-pad climbs on 2.2vw until 1454px, long after --gutter has capped and
@@ -952,12 +1048,14 @@ ol {
   background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .panel--teal {
   background: var(--teal);
   border-color: var(--teal);
   color: var(--on-dark);
+  box-shadow: var(--shadow-teal);
 }
 
 .panel__title {
@@ -1019,6 +1117,10 @@ ol {
 
 .alpine-card {
   gap: var(--s-4);
+  background: var(--surface-2);
+  /* Mark-teal accent — same weight as problem tiles, different hue so the
+     sections don't read as one repeated card skin. */
+  box-shadow: var(--shadow), inset 0 2px 0 rgb(62 127 132 / 0.45);
 }
 
 .alpine-card .card__index {
@@ -1038,6 +1140,7 @@ ol {
   background: var(--deep);
   border-radius: var(--radius-lg);
   color: var(--on-dark);
+  box-shadow: var(--shadow-deep);
 }
 
 .proof__shell .display-2 {
@@ -1058,19 +1161,25 @@ ol {
    mono/log language as the hero diagram, tuned for the dark shell. */
 .inbox {
   margin: 0 0 var(--s-6);
+  background: var(--deep-card);
   border: 1px solid var(--line-dark);
   border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.28);
   overflow: hidden;
   max-width: 40rem;
 }
 
-.inbox__chrome {
+.inbox__titlebar {
   display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  padding: var(--s-4) var(--s-5);
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem var(--s-5);
   border-bottom: 1px solid var(--line-dark);
   background: rgb(242 239 230 / 0.04);
+}
+
+.inbox__titlebar .inbox__app {
+  margin-left: var(--s-3);
 }
 
 .inbox__app {
@@ -1079,6 +1188,15 @@ ol {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #8fc0c9;
+}
+
+.inbox__chrome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--line-dark);
+  background: rgb(242 239 230 / 0.03);
 }
 
 .inbox__meta {
@@ -1120,15 +1238,24 @@ ol {
 }
 
 .inbox__playbook {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgb(143 192 201 / 0.35);
+  border-radius: 999px;
+  background: rgb(143 192 201 / 0.1);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
   color: #8fc0c9;
 }
 
 .inbox__rows {
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .inbox__row {
@@ -1136,7 +1263,7 @@ ol {
   grid-template-columns: 7.5rem 1fr;
   gap: var(--s-4);
   align-items: baseline;
-  padding-block: var(--s-3);
+  padding: var(--s-3) var(--s-4);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.5;
@@ -1144,6 +1271,14 @@ ol {
 
 .inbox__row + .inbox__row {
   border-top: 1px solid var(--line-dark);
+}
+
+.inbox__row[data-status='executed'] {
+  background: rgb(30 107 125 / 0.12);
+}
+
+.inbox__row[data-status='pending'] {
+  background: rgb(242 239 230 / 0.03);
 }
 
 /* Same triad as .log__status: the written status carries meaning; the dot only
@@ -1181,6 +1316,7 @@ ol {
   padding: clamp(1.125rem, 1.5vw, 1.375rem);
   background: var(--deep-card);
   border-color: var(--line-dark);
+  box-shadow: inset 0 2px 0 rgb(143 192 201 / 0.35);
 }
 
 .card--dark .card__title {
@@ -1219,12 +1355,13 @@ ol {
    Evidence: stat row + footnote + two strategies
    ========================================================================== */
 
-/* Four equal columns on the section background: figure, then the sentence that
-   names what the figure means. No cards, no rules between columns. */
+/* Four equal columns: figure, then the sentence that names what it means.
+   Hairline dividers separate the columns without turning them into cards. */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--s-7) var(--gap-grid);
+  column-gap: 0;
+  row-gap: var(--s-7);
 }
 
 .stat {
@@ -1232,7 +1369,12 @@ ol {
   flex-direction: column;
   align-items: center;
   gap: var(--s-3);
+  padding-inline: clamp(0.75rem, 1.8vw, 1.5rem);
   text-align: center;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--line);
 }
 
 .stat__figure {
@@ -1309,6 +1451,7 @@ ol {
   background: var(--surface-2);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .strategy__kicker {
@@ -1402,6 +1545,8 @@ ol {
   align-items: center;
   gap: var(--s-4);
   text-align: center;
+  /* Quiet ink accent — Engage reads softer than Problem/Alpine. */
+  box-shadow: var(--shadow), inset 0 2px 0 rgb(15 33 38 / 0.12);
 }
 
 .step__index {
@@ -1441,6 +1586,7 @@ ol {
   background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   text-align: center;
 }
 
@@ -1527,7 +1673,8 @@ ol {
       opacity 0.7s ease calc(var(--i, 0) * 70ms),
       transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i, 0) * 70ms),
       background 0.2s ease,
-      border-color 0.2s ease;
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .reveal-ready [data-reveal][data-revealed='true'] {
@@ -1571,9 +1718,18 @@ ol {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Four stats → two-up at this width so nothing orphans; full stack at 720. */
+  /* Four stats → two-up at this width so nothing orphans; full stack at 720.
+     Only odd→even pairs keep a vertical rule; row starts drop the left border. */
   .stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat + .stat {
+    border-left: 0;
+  }
+
+  .stat:nth-child(2n) {
+    border-left: 1px solid var(--line);
   }
 
   /* A card runs the full container here, up to 1030px, which would set the body
@@ -1627,6 +1783,16 @@ ol {
   .stats,
   .grid--4 {
     grid-template-columns: 1fr;
+  }
+
+  .stat:nth-child(2n),
+  .stat + .stat {
+    border-left: 0;
+  }
+
+  .stat + .stat {
+    border-top: 1px solid var(--line-soft);
+    padding-top: var(--s-5);
   }
 
   .inbox__meta div {

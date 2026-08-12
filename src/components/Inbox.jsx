@@ -9,8 +9,14 @@ export default function Inbox() {
       data-reveal
       aria-label="QuoteWell Inbox thread: an agent drafts a submission from email context, matches carriers, and waits for the broker to send"
     >
-      <div className="inbox__chrome">
+      <div className="inbox__titlebar" aria-hidden="true">
+        <span className="inbox__traffic inbox__traffic--close" />
+        <span className="inbox__traffic inbox__traffic--min" />
+        <span className="inbox__traffic inbox__traffic--max" />
         <p className="inbox__app">{inbox.app}</p>
+      </div>
+
+      <div className="inbox__chrome">
         <dl className="inbox__meta">
           <div>
             <dt>From</dt>
@@ -27,7 +33,7 @@ export default function Inbox() {
         <p className="inbox__playbook">{inbox.playbook}</p>
         <ul className="inbox__rows">
           {inbox.rows.map((row) => (
-            <li className="inbox__row" key={row.text}>
+            <li className="inbox__row" key={row.text} data-status={row.status}>
               <span className="inbox__status" data-status={row.status}>
                 <i className="inbox__dot" aria-hidden="true" />
                 {row.status}

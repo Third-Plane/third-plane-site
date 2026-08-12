@@ -28,6 +28,11 @@ export default function Diagram() {
 
       <div className="diagram__stage">
         <div className="diagram__card">
+          <div className="diagram__chrome" aria-hidden="true">
+            <span className="diagram__traffic diagram__traffic--close" />
+            <span className="diagram__traffic diagram__traffic--min" />
+            <span className="diagram__traffic diagram__traffic--max" />
+          </div>
           <table className="log">
             <thead>
               <tr>
@@ -40,7 +45,7 @@ export default function Diagram() {
             </thead>
             <tbody>
               {entries.map(({ time, task, status }) => (
-                <tr key={time}>
+                <tr key={time} data-status={status}>
                   <td className="log__time">{time}</td>
                   <td className="log__task">{task}</td>
                   <td className="log__status" data-status={status}>
