@@ -1,7 +1,6 @@
 import useReveal from './useReveal'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import Ticker from './components/Ticker'
 import Problem from './components/Problem'
 import Product from './components/Product'
 import Alpine from './components/Alpine'
@@ -19,7 +18,6 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Ticker />
         <Problem />
         <Product />
         <Alpine />

@@ -561,7 +561,7 @@ ol {
    ========================================================================== */
 
 /* Both ends pulled in from 7vw so the whole hero lands inside one screen on a
-   800px-tall laptop, with the ticker just beyond it. */
+   800px-tall laptop. */
 .hero {
   padding-block: clamp(3rem, 5.5vw, 5.5rem) clamp(3.5rem, 5.5vw, 6rem);
 }
@@ -869,57 +869,6 @@ ol {
   letter-spacing: -0.02em;
   color: var(--teal);
   font-variant-numeric: tabular-nums;
-}
-
-/* ==========================================================================
-   Ticker band
-   ========================================================================== */
-
-.ticker {
-  overflow: hidden;
-  padding-block: var(--s-5);
-  background: var(--bg-band);
-  border-block: 1px solid var(--line-soft);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-
-.ticker__track {
-  display: flex;
-  width: max-content;
-  gap: var(--s-7);
-  padding-left: var(--s-7);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .ticker__track {
-    animation: marquee 38s linear infinite;
-  }
-}
-
-.ticker__item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-body);
-  white-space: nowrap;
-}
-
-.ticker__item::before {
-  content: '';
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--teal);
-  flex: none;
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 /* ==========================================================================

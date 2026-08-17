@@ -19,7 +19,10 @@ export default function useReveal() {
 
     try {
       const targets = document.querySelectorAll('[data-reveal]')
-      if (!targets.length || !('IntersectionObserver' in window)) return
+      if (!targets.length || !('IntersectionObserver' in window)) {
+        showEverything()
+        return
+      }
 
       root.classList.add(READY_CLASS)
 
@@ -52,6 +55,9 @@ export default function useReveal() {
     return () => {
       clearTimeout(failsafe)
       observer?.disconnect()
+      // Drop the hide class on teardown so Vite HMR / Strict Mode remounts
+      // can't leave the page stuck at opacity 0 with no observer attached.
+      showEverything()
     }
   }, [])
 }

@@ -32,14 +32,6 @@ export const hero = {
   },
 }
 
-export const ticker = [
-  'Commercial P&C',
-  'Retail insurance agencies',
-  'Production deployment, not a pilot',
-  'Integrates with your existing AMS',
-  '60–90 day deployment',
-]
-
 export const problem = {
   eyebrow: 'The problem',
   title: 'The work is outpacing the workforce.',
