@@ -230,14 +230,13 @@ ol {
   margin-top: var(--s-5);
 }
 
-/* The two sections whose content is symmetric about the container's centre:
-   Alpine's three equal cards and Evidence's row of centred stats. A left head
-   over either of those puts the head on one axis and the content on another,
-   which is the disagreement this fixes. Scoped by section class, so Problem,
-   Product, Proof and Engage keep their left-aligned heads, and listed together
-   so "which sections centre" is one legible decision rather than two. */
+/* Sections whose content is symmetric about the container centre: Problem's
+   three tiles, Alpine's three cards, Evidence's stat row. A left head over
+   any of those puts the head on one axis and the content on another.
+   Product, Proof and Engage keep left-aligned heads. */
 .alpine .section-head,
-.evidence .section-head {
+.evidence .section-head,
+.problem .section-head {
   align-items: center;
   margin-inline: auto;
   text-align: center;
@@ -260,6 +259,23 @@ ol {
 .eyebrow--dark {
   border-left-color: #8fc0c9;
   color: #8fc0c9;
+}
+
+/* Centred Problem head: short top tick — a left bar reads lopsided on axis. */
+.problem .section-head .eyebrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding-left: 0;
+  border-left: 0;
+}
+
+.problem .section-head .eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  background: var(--teal);
 }
 
 /* ==========================================================================

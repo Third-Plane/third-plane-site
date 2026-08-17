@@ -9,7 +9,7 @@ const icons = [Clock, BarsRising, Doc]
 
 export default function Problem() {
   return (
-    <section className="section" id="problem">
+    <section className="section problem" id="problem">
       <div className="container">
         <SectionHead eyebrow={problem.eyebrow} title={problem.title} body={problem.body} />
 
