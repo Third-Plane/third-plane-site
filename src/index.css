@@ -576,10 +576,23 @@ ol {
    Hero
    ========================================================================== */
 
-/* Both ends pulled in from 7vw so the whole hero lands inside one screen on a
-   800px-tall laptop. */
+/* Both ends pulled in from 7vw so the stack sits comfortably in the first
+   screen; desktop also fills the viewport under the sticky nav so Problem
+   stays below the fold until you scroll. */
 .hero {
   padding-block: clamp(3rem, 5.5vw, 5.5rem) clamp(3.5rem, 5.5vw, 6rem);
+}
+
+@media (min-width: 901px) {
+  .hero {
+    min-height: calc(100svh - var(--nav-h));
+    display: flex;
+    align-items: center;
+  }
+
+  .hero > .container {
+    width: 100%;
+  }
 }
 
 /* Desktop: copy left, elevated activity log right. Meta stays in the copy
