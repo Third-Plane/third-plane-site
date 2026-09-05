@@ -1,76 +1,50 @@
-# Third Plane landing page
+# Third Plane website
 
-A single-page marketing site for Third Plane, built from the v1 wireframe. Ten sections:
-sticky nav, hero with an agent-run diagram, a scrolling proof ticker, the problem, what we
-sell, the Alpine substrate, the QuoteWell Inbox proof section, evidence numbers, the
-engagement process, and a closing CTA.
+Marketing site for Third Plane: AI workforces for insurance. Two pages in one bundle:
+
+- `/` the homepage: hero, the capacity problem, where AI sits, the Placement Desk, how it is
+  deployed, why Third Plane, horizon, closing CTA.
+- `/placement-desk` the product page: how work enters, what the desk does, how much it takes
+  on, carrier channels, what stays with people, CTA.
 
 ## Tech stack
 
 | | |
 | --- | --- |
-| Framework | React 19 |
-| Build tool | Vite 8 |
-| Styling | Plain CSS with custom properties (`src/index.css`), no CSS framework |
-| Linting | oxlint |
-| Fonts | Plus Jakarta Sans (display), Inter (body), JetBrains Mono (labels) via Google Fonts |
+| Framework | Vite + React 19, no other runtime dependencies |
+| Styling | Plain CSS in `src/index.css`, design tokens at the top |
+| Copy | `src/content.js` is the single source of truth; components handle layout only |
+| Fonts | Karla (headlines) and Archivo (everything else) from Google Fonts |
+| Lint | oxlint |
 
-There is no runtime dependency beyond React. Scroll reveals use a small `IntersectionObserver`
-hook (`src/useReveal.js`) and everything else is CSS.
+## Brand
 
-## Local development
+Palette, type and graphic language follow the CSTMR identity (v1): cream `#F6F3F0`, bright
+purple `#6338E3`, dark purple `#2D1F57`, soft pink `#F2D8FF`, soft blue `#E9F2F7`. Pill
+buttons. Two atmospheric graphics are drawn in code in `src/components/ui.jsx`: the isometric
+Plane Network and the Intelligence Field dot texture.
 
-```bash
-npm install
-npm run dev      # http://localhost:5173/
-npm run build    # production build into dist/
-npm run preview  # serve the built output
-npm run lint     # oxlint
-```
+Logo lockups in `public/brand/` are raster extractions from the identity deck. Replace them with
+the vector files when those are available.
 
-## Editing the copy
+## Messaging
 
-Every piece of text on the page lives in [`src/content.js`](src/content.js), exported as one
-object per section (`hero`, `problem`, `product`, `alpine`, `proof`, `evidence`, `engage`,
-`cta`, plus `site`, `nav`, and `ticker`). Components in `src/components/` import those objects
-and handle layout only, so you can rewrite the entire page without touching JSX.
+Copy follows the Brand Messaging Framework and Positioning Narrative. Rules that shape the site:
 
-To change the headline, edit `hero.titleLead` / `hero.titleAccent`. To add a fourth problem
-card, push another object onto `problem.cards`. The grid picks it up automatically. Contact
-details and the CTA button label come from `site`.
+- Insurance operators who understand AI, not AI people impressing insurance. Specific, calm,
+  operational, commercial.
+- Capacity and growth, never "efficiency" or headcount elimination.
+- Placement Desk is the only named product. Future desks are not marketed. Platform names stay
+  below the messaging layer.
+- No performance claims, carrier counts, or end-to-end claims until tied to a measured deployment.
 
-## Layout and spacing
-
-`src/index.css` defines the design tokens at the top: colours, fonts, and a spacing scale
-(`--s-1` … `--s-9`) plus shared rhythm values (`--section-y`, `--gutter`, `--container`,
-`--gap-grid`, `--card-pad`). Sections share a single `.section` padding rule and a single
-`.card` component, so vertical rhythm and card padding stay consistent by construction rather
-than by repetition. Prefer adjusting a token over adding one-off pixel values.
-
-Breakpoints are at 1024px (4-up grids become 2-up), 940px (hero and 3-up grids stack), and
-720px (everything single column, nav collapses to a drawer). The layout has been verified
-against horizontal overflow, left-edge alignment, card baseline alignment, text line length,
-and touch-target size at 1440 / 1024 / 768 / 390.
-
-## Publishing
-
-Production is **https://www.thirdplane.com/**, hosted on Vercel and built from `main`. The
-apex `thirdplane.com` redirects to `www`. Because that site is served from the root,
-`vite.config.js` defaults `base` to `/`, which is what makes the emitted asset URLs
-root-relative (`/assets/…`).
-
-The domain is managed in Vercel, not in GitHub Pages, so there is deliberately no
-`public/CNAME`. Adding one would make the Pages deploy try to claim the same hostname.
-
-### The GitHub Pages mirror
-
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) also builds every push to
-`main` and publishes `dist/` to `https://third-plane.github.io/third-plane-site/`. Pages
-project sites are served from a subpath, so that build sets the override:
+## Scripts
 
 ```bash
-BASE_PATH=/third-plane-site/ npm run build
+npm run dev      # dev server on :5173
+npm run build    # production build to dist/
+npm run lint
 ```
 
-That env var lives on the workflow's build step. A single build cannot serve both a root
-domain and a subpath, so change the `base` default only if the canonical home moves.
+Production is served from the root of www.thirdplane.com. GitHub Pages builds with
+`BASE_PATH=/third-plane-site/` (see `.github/workflows/deploy.yml`).

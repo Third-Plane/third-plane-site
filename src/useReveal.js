@@ -9,7 +9,10 @@ const READY_CLASS = 'reveal-ready'
 const FAILSAFE_MS = 1500
 
 // Fades elements marked with `data-reveal` in as they enter the viewport.
-export default function useReveal() {
+// `key` re-arms the observer when the rendered page changes under a
+// client-side route swap (artifact mode); on normal full-page loads it never
+// changes.
+export default function useReveal(key) {
   useEffect(() => {
     const root = document.documentElement
     const showEverything = () => root.classList.remove(READY_CLASS)
@@ -59,5 +62,5 @@ export default function useReveal() {
       // can't leave the page stuck at opacity 0 with no observer attached.
       showEverything()
     }
-  }, [])
+  }, [key])
 }
