@@ -402,7 +402,7 @@ export const placementDesk = {
       {
         kicker: "Personal and small commercial lines",
         title: "Toward near-zero-touch placement",
-        body: "Where the business is programmatic, the desk can carry placement end to end, with review points set by your controls.",
+        body: "Where the business is programmatic, the desk can increasingly carry placement through to returned quotes, with human review at the points your controls set.",
       },
       {
         kicker: "Mid-market and complex business",
@@ -580,7 +580,7 @@ export const companyPage = {
   team: {
     eyebrow: "The team",
     title: "People who have run placement, alongside people who build AI systems.",
-    body: "Insurance operations, carrier relationships and agency workflows on one side of the table. Agentic systems, integrations and deployment on the other. The two have to sit together for this to work.",
+    body: "Insurance operations, carrier relationships and agency workflows on one side of the table. AI systems that do real work, integrations and deployment on the other. The two have to sit together for this to work.",
     photo: { src: "", alt: "The Third Plane team in Austin." },
     photoNote: "Team photo to come.",
   },
@@ -657,7 +657,7 @@ export const securityPage = {
       },
       {
         title: "Model-agnostic by design",
-        body: "We route work to the model best suited to it, including open-source models, under the same controls. No single provider holds your data hostage.",
+        body: "We route work to the model best suited to it, including open-source models, under the same controls. No single provider is load-bearing, and your data never depends on one.",
       },
     ],
   },
@@ -687,8 +687,8 @@ export const underwritingDesk = {
   crumb: "Underwriting Desk",
   status: "In development",
   title: ["Submissions in.", "Quotes out, ready for review."],
-  lead: "The Underwriting Desk is the Placement Desk seen from the other side of the submission. Risks come in from brokers, the workforce carries each one through intake, appetite, rating and quoting, and a finished quote comes back to your underwriters for final review.",
-  body: "Underwriters spend most of their day on work that happens before the decision. The desk does that work, all the way to a quote, and hands the decision back.",
+  lead: "The Underwriting Desk is the Placement Desk seen from the other side of the submission. Risks come in from brokers, the workforce is designed to carry each one through intake, appetite, rating and quoting, and a finished quote comes back to your underwriters for final review.",
+  body: "Underwriters spend much of their day on work that happens before the decision. The desk is built to take on that work, through to a quote, and hand the decision back.",
   entry: {
     eyebrow: "How submissions arrive",
     title: "The desk meets the submission where it lands.",
@@ -744,7 +744,7 @@ export const underwritingDesk = {
       {
         kicker: "Programmatic business",
         title: "Quote-ready with a light review",
-        body: "Where risks fit clean guidelines, the desk carries a submission all the way to a quote and the underwriter’s review is a confirmation, at the points your controls define.",
+        body: "Where risks fit clean guidelines, the desk is designed to carry a submission through to a quote, with the underwriter’s review at the points your controls define.",
       },
       {
         kicker: "Referrals and complex risks",
@@ -772,9 +772,9 @@ export const underwritingDesk = {
 
 export const careersPage = {
   crumb: "Careers",
-  title: ["Work on the operating model", "insurance will run on."],
+  title: ["Work on how", "insurance work gets done."],
   lead: "We are a small team in Austin building AI workforces for insurance. The problems are concrete, the customers are real, and the work ships into live brokerage operations.",
-  body: "We hire people who know insurance deeply, people who build agentic systems well, and people who can do both.",
+  body: "We hire people who know insurance deeply, people who build AI systems that do real work, and people who can do both.",
   why: {
     eyebrow: "Why Third Plane",
     title: "What you would be part of.",
@@ -811,7 +811,7 @@ export const careersPage = {
     eyebrow: "Open roles",
     title: "Roles we are hiring for.",
     empty:
-      "No open roles are listed right now. If you know insurance operations or build agentic systems and want to work on this, write to jbuchard@thirdplane.com anyway.",
+      "No open roles are listed right now. If you know insurance operations or build AI systems that do real work, and want to work on this, write to jbuchard@thirdplane.com anyway.",
     items: [] as Array<{ title: string; team: string; location: string; href: string }>,
   },
   cta: {
@@ -889,7 +889,7 @@ export const alpinePage = {
     note: "Integrations are configured per deployment. Common targets include Applied Epic, AMS360, Sagitta, ImageRight, SharePoint, Outlook and Teams.",
   },
   real: {
-    eyebrow: "Proven in use",
+    eyebrow: "Where it comes from",
     title: "Built inside a brokerage before it was offered to one.",
     body: "Alpine took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
     facts: [
@@ -920,12 +920,12 @@ export const carrierChannelsPage = {
       {
         kicker: "Carrier portals",
         title: "Filled the way a person would",
-        body: "The desk holds its own logins, completes the forms, answers the qualifying questions, uploads what the portal asks for and retrieves the quote. Minutes, unattended, and indistinguishable from a straight-through API inside your operations.",
+        body: "The desk holds its own logins, completes the forms, answers the qualifying questions, uploads what the portal asks for and retrieves the quote. No one sits at the keyboard; a person reviews where you say so.",
       },
       {
         kicker: "Carrier APIs",
         title: "Direct, where a carrier offers one",
-        body: "Structured request out, structured quote back, in seconds. Comparative raters and carrier APIs are used as one component of the desk rather than as the limit of its reach.",
+        body: "Structured request out, structured quote back. Comparative raters and carrier APIs are used as one component of the desk rather than as the limit of its reach.",
       },
       {
         kicker: "Underwriter email",
