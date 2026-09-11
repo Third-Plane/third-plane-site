@@ -10,6 +10,7 @@ import {
 } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
+import { Showcase } from "../components/Showcase";
 import {
   Arrow,
   Button,
@@ -56,6 +57,8 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <Showcase />
 
       <section className="section section--white" id="problem">
         <div className="container">

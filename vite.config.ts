@@ -2,6 +2,7 @@ import { copyFileSync, mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
+import { posts } from "./src/data/posts.js";
 
 // Production lives at the root of www.thirdplane.com, so assets are root-relative.
 // Hosts that serve the site from a subpath (GitHub Pages project sites) must build
@@ -10,7 +11,18 @@ import react from "@vitejs/plugin-react";
 // Every page shares one bundle and picks its content from the pathname, so on
 // a static host without rewrites (GitHub Pages) each route needs its own
 // index.html. Vercel has a rewrite in vercel.json; this covers everything else.
-const ROUTES = ["placement-desk"];
+const ROUTES = [
+  "placement-desk",
+  "underwriting-desk",
+  "alpine",
+  "security",
+  "company",
+  "careers",
+  "resources",
+  ...posts
+    .filter((post: { draft?: boolean }) => !post.draft)
+    .map((post: { slug: string }) => `resources/${post.slug}`),
+];
 
 function staticRoutes(): Plugin {
   let outDir = "dist";

@@ -443,3 +443,422 @@ export const placementDesk = {
     body: "We start with how placement runs today: lines, markets, systems and volume. From there we can show you what the Placement Desk would own and where your team stays in the loop.",
   },
 };
+
+// ---------------------------------------------------------------------------
+// Site structure: primary nav with a Desks group, and the footer.
+// ---------------------------------------------------------------------------
+
+export const primaryNav = {
+  desks: {
+    label: "Desks",
+    items: [
+      {
+        label: "Placement Desk",
+        href: "/placement-desk",
+        note: "Available now",
+        live: true,
+      },
+      {
+        label: "Underwriting Desk",
+        href: "/underwriting-desk",
+        note: "In development",
+        live: false,
+      },
+    ],
+    capabilities: {
+      label: "Capabilities",
+      items: [
+        { label: "Alpine, the platform", href: "/alpine" },
+        { label: "Carrier channels", href: "/placement-desk#channels" },
+        { label: "Security and governance", href: "/security" },
+      ],
+    },
+  },
+  links: [
+    { label: "Security", href: "/security" },
+    { label: "Company", href: "/company" },
+    { label: "Resources", href: "/resources" },
+    { label: "Careers", href: "/careers" },
+  ],
+};
+
+export const siteFooter = {
+  tagline: "AI workforces for insurance.",
+  location: "Austin, Texas",
+  columns: [
+    {
+      label: "Desks",
+      links: [
+        { label: "Placement Desk", href: "/placement-desk" },
+        { label: "Underwriting Desk", href: "/underwriting-desk" },
+        { label: "Alpine", href: "/alpine" },
+        { label: "Security and governance", href: "/security" },
+      ],
+    },
+    {
+      label: "Company",
+      links: [
+        { label: "About", href: "/company" },
+        { label: "Careers", href: "/careers" },
+        { label: "Resources", href: "/resources" },
+      ],
+    },
+    {
+      label: "Contact",
+      links: [{ label: "sales@thirdplane.com", href: "mailto:sales@thirdplane.com" }],
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// Video showcase. Hidden until `src` is set. Drop the production file (or a
+// hosted MP4 URL) into `src` and a poster frame into `poster`.
+// ---------------------------------------------------------------------------
+
+export const showcase = {
+  eyebrow: "See the Placement Desk work",
+  title: "Two minutes on what changes when the work moves to a desk.",
+  src: "",
+  poster: "",
+  caption: "",
+};
+
+// ---------------------------------------------------------------------------
+// /company
+// ---------------------------------------------------------------------------
+
+export const companyPage = {
+  crumb: "Company",
+  title: ["Insurance operators", "who build AI workforces."],
+  lead: "Third Plane is based in Austin, Texas. We give insurance businesses dedicated AI operating capacity: desks that take responsibility for defined work across the systems and carrier channels the business already uses.",
+  body: "We started with placement because it is where skilled work, execution burden and growth meet. The model extends from there.",
+  origin: {
+    eyebrow: "Where we come from",
+    title: "We were our own first customer.",
+    body: [
+      "Third Plane grew out of QuoteWell, a technology-driven wholesale brokerage. Before we offered an AI workforce to anyone else, we ran one against our own book: real producers, real markets, real placement work.",
+      "That is where we learned how to capture what a good broker knows, connect AI to the systems and carrier channels a brokerage already uses, and define the authority and controls it needs to do insurance work responsibly.",
+    ],
+  },
+  principles: {
+    eyebrow: "Principles",
+    title: "What we believe, and how it shows up in the work.",
+    items: [
+      {
+        title: "Assign the work, not the tool",
+        body: "AI creates the most value when the business gives it responsibility for defined work, rather than asking every employee to operate another piece of software.",
+      },
+      {
+        title: "Judgment stays with people",
+        body: "Advice, relationships, negotiation and regulated decisions remain with licensed professionals. A desk returns finished work, not decisions.",
+      },
+      {
+        title: "Authority is written down",
+        body: "What a desk may do on its own is scoped, recorded and revocable. Accountability always attaches to a named person.",
+      },
+      {
+        title: "Deployment is the product",
+        body: "An AI worker without your context cannot do meaningful insurance work. Capturing how your business operates and connecting your systems is part of what we deliver.",
+      },
+      {
+        title: "Insurance first, models second",
+        body: "We use the best model for each job, including open source. Our edge is insurance context and the operating model around it, not any one lab’s tokens.",
+      },
+      {
+        title: "Say what works today",
+        body: "We separate what a desk does now from what we believe it will do next. High conviction, plainly stated, with the boundaries marked.",
+      },
+    ],
+  },
+  team: {
+    eyebrow: "The team",
+    title: "People who have run placement, alongside people who build AI systems.",
+    body: "Insurance operations, carrier relationships and agency workflows on one side of the table. Agentic systems, integrations and deployment on the other. The two have to sit together for this to work.",
+    photo: { src: "", alt: "The Third Plane team in Austin." },
+    photoNote: "Team photo to come.",
+  },
+  cta: {
+    title: "Talk to us.",
+    body: "Whether you run a brokerage, sit on the carrier side, or want to work on this problem with us, the conversation starts the same way.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /security
+// ---------------------------------------------------------------------------
+
+export const securityPage = {
+  crumb: "Security and governance",
+  title: ["Built for regulated", "environments."],
+  lead: "An AI workforce does insurance work under authority your compliance officer can read. Every action is scoped, recorded and attributable to a named person.",
+  body: "Governance is not a layer added after the desk works. It is how the desk is allowed to work at all.",
+  authority: {
+    eyebrow: "Authority",
+    title: "An AI worker can execute. It is never the principal.",
+    items: [
+      {
+        title: "Scoped grants",
+        body: "Every action a desk takes runs under a grant that names what it may do, on which accounts and channels, and for how long.",
+      },
+      {
+        title: "Time-bounded and revocable",
+        body: "Grants expire and can be withdrawn at any time. Access can be narrowed without stopping the work that remains in scope.",
+      },
+      {
+        title: "A named person, always",
+        body: "Accountability attaches to a human supervisor for every desk. The same rules apply to people and AI workers alike.",
+      },
+      {
+        title: "Review points you set",
+        body: "Where a decision should stay human, the desk stops and returns the work. Those points are configured to your controls, not ours.",
+      },
+    ],
+  },
+  record: {
+    eyebrow: "Record",
+    title: "Any decision can be reconstructed exactly as it happened.",
+    items: [
+      {
+        title: "Full audit logging",
+        body: "Every consequential action is written to an append-only record with attribution: what was done, through which channel, under whose authority.",
+      },
+      {
+        title: "Complete worker traces",
+        body: "The inputs a worker received and the full course of its work are retained, so a carrier, a regulator or your own E&O review can see how a result was reached.",
+      },
+      {
+        title: "Managed by output",
+        body: "Because the record is complete, a desk can be managed the way any function is: by what it produces, against the standard you set.",
+      },
+    ],
+  },
+  data: {
+    eyebrow: "Data",
+    title: "Your data stays yours, and stays separate.",
+    items: [
+      {
+        title: "Isolated at the database layer",
+        body: "Each customer’s data is isolated with row-level security enforced on every table. Nothing commingles across customers.",
+      },
+      {
+        title: "Your identity provider",
+        body: "Access is controlled through your own single sign-on, with role-based permissions for the people who supervise and review.",
+      },
+      {
+        title: "No third-party telemetry",
+        body: "Prompts, documents and completions are never sent to outside analytics or telemetry vendors. Content stays in our own systems.",
+      },
+      {
+        title: "Model-agnostic by design",
+        body: "We route work to the model best suited to it, including open-source models, under the same controls. No single provider holds your data hostage.",
+      },
+    ],
+  },
+  human: {
+    eyebrow: "What stays with your people",
+    title: "The line between execution and judgment is drawn on purpose.",
+    items: [
+      "Advice and recommendations to clients",
+      "Binding and other regulated decisions",
+      "Negotiation with markets",
+      "Approval at every review point you define",
+    ],
+  },
+  cta: {
+    title: "Bring your compliance and IT teams to the first conversation.",
+    body: "We would rather answer the hard questions early. We can walk through authority, records, data isolation and access with the people who will own them.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /underwriting-desk
+// Copy is a first draft for review: it applies the desk model to underwriting
+// support and makes no claims about a live deployment.
+// ---------------------------------------------------------------------------
+
+export const underwritingDesk = {
+  crumb: "Underwriting Desk",
+  status: "In development",
+  title: ["The work around", "the underwriting decision."],
+  lead: "The Underwriting Desk applies the Third Plane model to the other side of the submission: the gathering, checking and preparation that happens before an underwriter can decide.",
+  body: "Underwriters spend much of their day on work that is not underwriting. The desk takes that work on and returns a decision-ready file.",
+  work: {
+    eyebrow: "What the desk takes on",
+    title: "Decision-ready, not decided.",
+    steps: [
+      {
+        title: "Intake and triage",
+        body: "Submissions read as they arrive, structured, and sorted against appetite and guidelines before they reach a queue.",
+      },
+      {
+        title: "Completeness",
+        body: "Missing information identified and requested from the broker early, with the thread worked until the file is complete.",
+      },
+      {
+        title: "Enrichment",
+        body: "Third-party data, loss history and prior terms pulled together and reconciled against the application.",
+      },
+      {
+        title: "Preparation",
+        body: "The file summarised against your guidelines, with the questions an underwriter would ask already answered where they can be.",
+      },
+      {
+        title: "Correspondence",
+        body: "Broker questions answered and follow-ups sent from the desk’s own address, with a record of every exchange.",
+      },
+      {
+        title: "Return",
+        body: "A decision-ready file, a recommendation where your rules allow one, and the record of how it was assembled.",
+      },
+    ],
+  },
+  human: {
+    eyebrow: "What stays with your underwriters",
+    title: "The desk prepares. Your underwriters decide.",
+    items: ["Risk selection and pricing", "Terms and conditions", "Referrals and exceptions", "Broker relationships"],
+  },
+  status_note:
+    "The Underwriting Desk is in development with early partners. It follows the same governance model as the Placement Desk: scoped authority, a complete record, and a named person accountable for its work.",
+  cta: {
+    title: "Shape the Underwriting Desk with us.",
+    body: "We are working with a small number of carriers and MGAs on the first deployments. If underwriting capacity is the constraint in your business, we would like to talk.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /careers
+// ---------------------------------------------------------------------------
+
+export const careersPage = {
+  crumb: "Careers",
+  title: ["Work on the operating model", "insurance will run on."],
+  lead: "We are a small team in Austin building AI workforces for insurance. The problems are concrete, the customers are real, and the work ships into live brokerage operations.",
+  body: "We hire people who know insurance deeply, people who build agentic systems well, and people who can do both.",
+  why: {
+    eyebrow: "Why Third Plane",
+    title: "What you would be part of.",
+    items: [
+      {
+        title: "Real work, in production",
+        body: "Desks run against live submissions, carriers and renewals. You see what you build change how a business operates.",
+      },
+      {
+        title: "Insurance and engineering, together",
+        body: "You will sit with people who have run placement and people who have built the systems that do it. Both learn from each other every day.",
+      },
+      {
+        title: "Forward deployed",
+        body: "Much of the work happens inside customers’ operations: capturing context, connecting systems, earning adoption. Deployment is the product.",
+      },
+      {
+        title: "Early, with a foundation",
+        body: "Third Plane grew out of QuoteWell, so the model was tested before it was sold. You join early without starting from zero.",
+      },
+    ],
+  },
+  how: {
+    eyebrow: "How we work",
+    title: "Calm, specific, accountable.",
+    items: [
+      "We say what works today and what we believe will work next, and we keep the two separate.",
+      "We write things down: authority, decisions, and the reasons behind them.",
+      "We prefer a finished outcome over a demo, and a plain sentence over a slogan.",
+      "We are in Austin and we like being in the same room.",
+    ],
+  },
+  roles: {
+    eyebrow: "Open roles",
+    title: "Roles we are hiring for.",
+    empty:
+      "No open roles are listed right now. If you know insurance operations or build agentic systems and want to work on this, write to us anyway.",
+    items: [] as Array<{ title: string; team: string; location: string; href: string }>,
+  },
+  cta: {
+    title: "Introduce yourself.",
+    body: "Tell us what you have built or what you have run, and what you would want to work on here.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /resources
+// ---------------------------------------------------------------------------
+
+export const resourcesPage = {
+  crumb: "Resources",
+  title: ["Writing from", "Third Plane."],
+  lead: "Technical notes on how AI workforces do insurance work, perspectives on where the industry is going, and company news.",
+  types: {
+    technical: "Technical",
+    perspective: "Perspective",
+    press: "Press",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /alpine
+// The platform underneath every desk. Public for the first time; drawn from
+// the architecture and "how we work" material in the sales deck.
+// ---------------------------------------------------------------------------
+
+export const alpinePage = {
+  crumb: "Alpine",
+  title: ["The platform", "every desk runs on."],
+  lead: "Alpine is how Third Plane builds, governs and runs AI workers. Every desk is assembled on it: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
+  body: "Customers do not configure Alpine. They receive a desk built on it. But the platform is real, it is ours, and it is why a desk can be deployed into a brokerage rather than demonstrated to one.",
+  layers: {
+    eyebrow: "What Alpine provides",
+    title: "Four layers, one operating model.",
+    items: [
+      {
+        title: "Agent building",
+        body: "Workers are assembled from playbooks that capture how your business does a piece of work: the steps, the standards, the exceptions, and where a person must be asked.",
+      },
+      {
+        title: "Governance",
+        body: "Scoped, time-bounded, revocable grants for every action. Role-based access through your identity provider. An append-only record with full attribution.",
+      },
+      {
+        title: "Model routing",
+        body: "Model-agnostic by design. Each task is routed to the model best suited to it, including open-source models, under the same controls and the same record.",
+      },
+      {
+        title: "Connections",
+        body: "Carrier portals, carrier APIs and underwriter email. Your AMS, document repository and inboxes as sources and destinations. Read and written back where you allow it.",
+      },
+    ],
+  },
+  architecture: {
+    eyebrow: "How it fits together",
+    title: "Between the request and the system of record.",
+    columns: [
+      {
+        kicker: "Work in",
+        items: ["Email and attachments", "AMS events", "Documents and forms", "Your team, directly"],
+      },
+      {
+        kicker: "Alpine",
+        accent: true,
+        items: ["Desks and their workers", "Playbooks and standards", "Governance and record", "Model routing"],
+      },
+      {
+        kicker: "Systems reached",
+        items: ["Carrier portals and APIs", "Underwriter email", "Agency management systems", "Document repositories and inboxes"],
+      },
+    ],
+    note: "Integrations are configured per deployment. Common targets include Applied Epic, AMS360, Sagitta, ImageRight, SharePoint, Outlook and Teams.",
+  },
+  real: {
+    eyebrow: "Proven in use",
+    title: "Built inside a brokerage before it was offered to one.",
+    body: "Alpine took shape inside QuoteWell, where it ran placement against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
+    facts: [
+      { title: "Forward deployed", body: "Third Plane engineers capture your context and configure the desk. You are not handed an agent builder." },
+      { title: "Every action recorded", body: "Traces and grants are part of the platform, not an add-on, so governance holds on day one." },
+      { title: "Model-agnostic", body: "No single lab’s model is load-bearing. We choose per task and can change as models change." },
+    ],
+  },
+  cta: {
+    title: "See a desk running on Alpine.",
+    body: "The fastest way to understand the platform is to watch a desk do real work on it. We can show you one against a sample of your own submissions.",
+  },
+};

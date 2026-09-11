@@ -1,6 +1,36 @@
 # Third Plane site (Vite + React)
 
-Marketing site for [thirdplane.com](https://www.thirdplane.com): Home and Placement Desk.
+Marketing site for [thirdplane.com](https://www.thirdplane.com).
+
+| Route | Page | Copy lives in |
+| --- | --- | --- |
+| `/` | Home | `homeHero`, `problem`, `approach`, `desk`, `deployment`, `company`, `horizon`, `contact` |
+| `/placement-desk` | Placement Desk | `placementDesk` |
+| `/underwriting-desk` | Underwriting Desk (in development) | `underwritingDesk` |
+| `/alpine` | Alpine, the platform | `alpinePage` |
+| `/security` | Security and governance | `securityPage` |
+| `/company` | Company: Austin, origin, principles, team | `companyPage` |
+| `/careers` | Careers, with an open-roles list | `careersPage` |
+| `/resources` | Resources index: technical, perspective, press | `resourcesPage` |
+| `/resources/:slug` | One post | `src/data/posts.ts` |
+
+All of the above are exports of `src/data/content.ts` unless noted. The primary nav (`primaryNav`)
+has a Desks menu with a Capabilities group; the footer is `siteFooter`.
+
+**Adding a page:** add the route in `src/App.tsx`, add its path to `ROUTES` in `vite.config.ts`
+(so static hosts get an `index.html` for it), and link it from `primaryNav` or `siteFooter`.
+
+**Adding a post:** append to `posts` in `src/data/posts.ts`. Posts marked `draft: true` render in
+the dev server only. Remove the flag to publish; the build emits `resources/<slug>/index.html`.
+
+**Video:** set `showcase.src` (and optionally `poster`) in `content.ts`. The section on the home
+page appears as soon as a source is present.
+
+**Team photo:** set `companyPage.team.photo.src`. Until then the Company page shows a marked
+placeholder.
+
+**Open roles:** add entries to `careersPage.roles.items`. With none, the page shows an invitation
+to write in.
 
 ## Tech stack
 
