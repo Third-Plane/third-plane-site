@@ -24,3 +24,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Shareable single-file bundle (npm run package)
+package
+package.zip
+dist-package

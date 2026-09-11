@@ -35,3 +35,23 @@ The domain is managed in Vercel, not in GitHub Pages, so there is deliberately n
 ```bash
 BASE_PATH=/third-plane-site/ npm run build
 ```
+
+## Brand assets
+
+The logo is the three-bar isometric mark from the sales deck. `public/brand/` holds raster
+lockups and marks extracted from it (purple for light surfaces, white for dark), and the
+favicons are cut from the same mark. Replace them with vector files when those exist.
+
+The Intelligence Field texture is painted in code by `src/components/ParticleField.tsx`; the
+isometric Plane Network in `src/components/Ui.tsx` is used only as a faint layer on the
+horizon band and for the channel card marks.
+
+## Sharing a build
+
+```bash
+npm run package
+```
+
+Bundles the site into `package/index.html` (JS and CSS inlined, routes in the hash) with the
+brand images beside it, and zips the folder to `package.zip`. Open it from disk or host the
+folder anywhere. Both outputs are ignored by git.
