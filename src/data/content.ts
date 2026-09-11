@@ -429,6 +429,7 @@ export const placementDesk = {
       },
     ],
     note: "Channel coverage is configured per deployment, market by market.",
+    link: { label: "More on carrier channels", href: "/carrier-channels" },
   },
   human: {
     eyebrow: "What stays with your people",
@@ -451,35 +452,31 @@ export const placementDesk = {
 // ---------------------------------------------------------------------------
 
 export const primaryNav = {
-  desks: {
-    label: "Desks",
-    items: [
-      {
-        label: "Placement Desk",
-        href: "/placement-desk",
-        note: "Available now",
-        live: true,
-      },
-      {
-        label: "Underwriting Desk",
-        href: "/underwriting-desk",
-        note: "In development",
-        live: false,
-      },
-    ],
-    capabilities: {
-      label: "Capabilities",
+  menus: [
+    {
+      label: "Desks",
       items: [
-        { label: "Platform", href: "/platform" },
-        { label: "Carrier channels", href: "/placement-desk#channels" },
+        { label: "Placement Desk", href: "/placement-desk", note: "Available now", live: true },
+        { label: "Underwriting Desk", href: "/underwriting-desk", note: "In development", live: false },
       ],
     },
-  },
-  links: [
-    { label: "Security", href: "/security" },
-    { label: "Company", href: "/company" },
-    { label: "Resources", href: "/resources" },
-    { label: "Careers", href: "/careers" },
+    {
+      label: "Capabilities",
+      items: [
+        { label: "Platform", href: "/platform", note: "Alpine, the platform every desk runs on" },
+        { label: "Security", href: "/security", note: "Authority, record and data isolation" },
+        { label: "Carrier channels", href: "/carrier-channels", note: "Portals, APIs and underwriter email" },
+        { label: "System integrations", href: "/integrations", note: "AMS, documents, inboxes and data" },
+      ],
+    },
+    {
+      label: "Company",
+      items: [
+        { label: "About", href: "/company", note: "Austin, origin and principles" },
+        { label: "Careers", href: "/careers", note: "Work with us" },
+        { label: "Resources", href: "/resources", note: "Writing, technical notes and press" },
+      ],
+    },
   ],
 };
 
@@ -492,8 +489,15 @@ export const siteFooter = {
       links: [
         { label: "Placement Desk", href: "/placement-desk" },
         { label: "Underwriting Desk", href: "/underwriting-desk" },
+      ],
+    },
+    {
+      label: "Capabilities",
+      links: [
         { label: "Platform", href: "/platform" },
-        { label: "Security and governance", href: "/security" },
+        { label: "Security", href: "/security" },
+        { label: "Carrier channels", href: "/carrier-channels" },
+        { label: "System integrations", href: "/integrations" },
       ],
     },
     {
@@ -502,11 +506,8 @@ export const siteFooter = {
         { label: "About", href: "/company" },
         { label: "Careers", href: "/careers" },
         { label: "Resources", href: "/resources" },
+        { label: "sales@thirdplane.com", href: "mailto:sales@thirdplane.com" },
       ],
-    },
-    {
-      label: "Contact",
-      links: [{ label: "sales@thirdplane.com", href: "mailto:sales@thirdplane.com" }],
     },
   ],
 };
@@ -900,5 +901,112 @@ export const alpinePage = {
   cta: {
     title: "See a desk running on Alpine.",
     body: "The fastest way to understand the platform is to watch a desk do real work on it. We can show you one against a sample of your own submissions.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /carrier-channels
+// ---------------------------------------------------------------------------
+
+export const carrierChannelsPage = {
+  crumb: "Carrier channels",
+  title: ["Three ways", "to a market."],
+  lead: "A desk reaches each carrier the way that carrier actually works: through its portal, through its API where one exists, or through the underwriter’s inbox. One quote experience comes back regardless of the route.",
+  body: "Your producers should not have to know which carrier answers by which channel. The desk knows, and works all three in parallel.",
+  channels: {
+    eyebrow: "The channels",
+    title: "Whichever way that market works.",
+    items: [
+      {
+        kicker: "Carrier portals",
+        title: "Filled the way a person would",
+        body: "The desk holds its own logins, completes the forms, answers the qualifying questions, uploads what the portal asks for and retrieves the quote. Minutes, unattended, and indistinguishable from a straight-through API inside your operations.",
+      },
+      {
+        kicker: "Carrier APIs",
+        title: "Direct, where a carrier offers one",
+        body: "Structured request out, structured quote back, in seconds. Comparative raters and carrier APIs are used as one component of the desk rather than as the limit of its reach.",
+      },
+      {
+        kicker: "Underwriter email",
+        title: "Working the thread",
+        body: "Where a market runs on relationships, the desk sends from its own address on your domain, answers the underwriter’s questions, chases stale threads and files every exchange to the record.",
+      },
+    ],
+  },
+  identity: {
+    eyebrow: "The desk’s own identity",
+    title: "Its own credentials, not your producers’.",
+    body: "A desk operates under its own portal logins and its own email address. That is what lets it work carriers without a person sitting beside it, present a single consistent counterparty to every market, and leave a record that is attributable to the desk rather than to whichever producer happened to be logged in.",
+    points: [
+      "Portal credentials issued to the desk and scoped to the markets in play",
+      "An email address on your domain, monitored and worked by the desk",
+      "Every submission, follow-up and quote attributed and recorded",
+    ],
+  },
+  coverage: {
+    eyebrow: "Coverage",
+    title: "Configured market by market.",
+    body: "Channel coverage is set up per deployment. For each appointed market we confirm which route it answers by, what the desk may do on that route, and where a person reviews. Coverage grows path by path as your appetite and appointments change.",
+  },
+  cta: {
+    title: "Tell us which markets you work.",
+    body: "Bring your appointment list. We will show you which carriers the desk reaches by API, which by portal, which by email, and what that means for the capacity of your placement team.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /integrations
+// ---------------------------------------------------------------------------
+
+export const integrationsPage = {
+  crumb: "System integrations",
+  title: ["Your systems", "as they are."],
+  lead: "A desk works inside the systems your business already runs. It reads from your agency management system, document repository and inboxes, and writes results back where your team expects to find them.",
+  body: "No new system of record, no second login for producers, no migration. Integration is part of deploying a desk, not a project you run first.",
+  systems: {
+    eyebrow: "What a desk connects to",
+    title: "Sources in, results back.",
+    items: [
+      {
+        title: "Agency management systems",
+        body: "Client and policy data read for the submission; activities, documents and results written back. Applied Epic, AMS360, Sagitta and others are configured per deployment.",
+      },
+      {
+        title: "Document repositories",
+        body: "Applications, loss runs, schedules and correspondence pulled from where they live today: ImageRight, SharePoint, shared drives.",
+      },
+      {
+        title: "Email and collaboration",
+        body: "Outlook and Teams as both a source of work and the place results land, alongside the desk’s own inbox on your domain.",
+      },
+      {
+        title: "Carrier channels",
+        body: "Portals, APIs and underwriter email, worked by the desk directly. Covered in detail on the carrier channels page.",
+      },
+      {
+        title: "Rating and policy systems",
+        body: "For the Underwriting Desk: submissions from your intake systems, rating in your engine or by your rules, quotes back to your workbench.",
+      },
+      {
+        title: "Data and reporting",
+        body: "Every action and outcome available to your data lake or reporting tools, so desk performance sits next to the rest of the business.",
+      },
+    ],
+  },
+  how: {
+    eyebrow: "How integration works",
+    title: "Read where you allow. Write where you expect.",
+    steps: [
+      { title: "Map", body: "In discovery we map which systems hold what, who owns them, and where the desk’s results should land." },
+      { title: "Connect", body: "Connections are established with credentials issued to the desk, scoped to the data and actions the work requires." },
+      { title: "Configure", body: "What is read, what is written back, and in what shape, is set to your standards and your controls." },
+      { title: "Record", body: "Every read and write is logged against the desk’s record, so integration activity is as auditable as the work itself." },
+    ],
+  },
+  note: "Integration targets are confirmed per deployment during discovery. If your systems are not named here, ask; the platform connects through APIs, email and browsers, so the list is not the limit.",
+  cta: {
+    title: "Tell us what you run.",
+    body: "Your AMS, your document system, your inboxes and your carriers. We will come back with how a desk would connect to each and what your team would see change.",
   },
 };

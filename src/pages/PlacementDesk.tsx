@@ -6,6 +6,7 @@ import {
   Eyebrow,
   SectionHead,
   Slash,
+  TextLink,
 } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
@@ -141,9 +142,10 @@ export function PlacementDesk() {
               </article>
             ))}
           </div>
-          <p className="footnote" data-reveal>
-            {placementDesk.channels.note}
-          </p>
+          <div className="flow__foot" data-reveal>
+            <p className="footnote">{placementDesk.channels.note}</p>
+            <TextLink href={placementDesk.channels.link.href}>{placementDesk.channels.link.label}</TextLink>
+          </div>
         </div>
       </section>
 

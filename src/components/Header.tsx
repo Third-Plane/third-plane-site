@@ -11,12 +11,18 @@ function Chevron() {
   );
 }
 
+type Item = { label: string; href: string; note?: string; live?: boolean };
+
+function Note({ item }: { item: Item }) {
+  if (!item.note) return null;
+  return <span className={item.live ? "nav__note nav__note--live" : "nav__note"}>{item.note}</span>;
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const { desks, links } = primaryNav;
+  const [menu, setMenu] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -45,11 +51,11 @@ export function Header() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
-        setMenu(false);
+        setMenu(null);
       }
     };
     const onPointer = (event: PointerEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) setMenu(false);
+      if (navRef.current && !navRef.current.contains(event.target as Node)) setMenu(null);
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("pointerdown", onPointer);
@@ -61,7 +67,7 @@ export function Header() {
 
   const close = () => {
     setOpen(false);
-    setMenu(false);
+    setMenu(null);
   };
 
   return (
@@ -71,48 +77,37 @@ export function Header() {
           <Logo className="nav__logo" />
         </AppLink>
 
-        <nav className="nav__links" aria-label="Main">
-          <div
-            className="nav__menu"
-            data-open={menu}
-            ref={menuRef}
-            onMouseEnter={() => setMenu(true)}
-            onMouseLeave={() => setMenu(false)}
-          >
-            <button
-              className="nav__link nav__menu-btn"
-              type="button"
-              aria-expanded={menu}
-              onClick={() => setMenu((value) => !value)}
-            >
-              {desks.label}
-              <Chevron />
-            </button>
-            <div className="nav__panel" role="menu">
-              <div className="nav__panel-group">
-                {desks.items.map((item) => (
-                  <AppLink className="nav__panel-item" href={item.href} key={item.href} onClick={close}>
-                    <span>{item.label}</span>
-                    <span className={item.live ? "nav__note nav__note--live" : "nav__note"}>{item.note}</span>
-                  </AppLink>
-                ))}
+        <nav className="nav__links" aria-label="Main" ref={navRef}>
+          {primaryNav.menus.map((group) => {
+            const isOpen = menu === group.label;
+            return (
+              <div
+                className="nav__menu"
+                data-open={isOpen}
+                key={group.label}
+                onMouseEnter={() => setMenu(group.label)}
+                onMouseLeave={() => setMenu((current) => (current === group.label ? null : current))}
+              >
+                <button
+                  className="nav__link nav__menu-btn"
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setMenu(isOpen ? null : group.label)}
+                >
+                  {group.label}
+                  <Chevron />
+                </button>
+                <div className="nav__panel" role="menu">
+                  {(group.items as Item[]).map((item) => (
+                    <AppLink className="nav__panel-item" href={item.href} key={item.href} onClick={close}>
+                      <span>{item.label}</span>
+                      <Note item={item} />
+                    </AppLink>
+                  ))}
+                </div>
               </div>
-              <div className="nav__panel-group nav__panel-group--caps">
-                <p className="nav__panel-label">{desks.capabilities.label}</p>
-                {desks.capabilities.items.map((item) => (
-                  <AppLink className="nav__panel-item nav__panel-item--cap" href={item.href} key={item.label} onClick={close}>
-                    {item.label}
-                  </AppLink>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {links.map((link) => (
-            <AppLink className="nav__link" href={link.href} key={link.href}>
-              {link.label}
-            </AppLink>
-          ))}
+            );
+          })}
         </nav>
 
         <div className="nav__cta">
@@ -138,24 +133,16 @@ export function Header() {
 
       <div className="nav__drawer" data-open={open}>
         <div className="container">
-          <p className="nav__drawer-group">{desks.label}</p>
-          {desks.items.map((item) => (
-            <AppLink className="nav__drawer-link" href={item.href} key={item.href} onClick={close}>
-              {item.label}
-              <span className={item.live ? "nav__note nav__note--live" : "nav__note"}>{item.note}</span>
-            </AppLink>
-          ))}
-          <p className="nav__drawer-group">{desks.capabilities.label}</p>
-          {desks.capabilities.items.map((item) => (
-            <AppLink className="nav__drawer-link nav__drawer-link--sub" href={item.href} key={item.label} onClick={close}>
-              {item.label}
-            </AppLink>
-          ))}
-          <p className="nav__drawer-group">More</p>
-          {links.map((link) => (
-            <AppLink className="nav__drawer-link" href={link.href} key={link.href} onClick={close}>
-              {link.label}
-            </AppLink>
+          {primaryNav.menus.map((group) => (
+            <div key={group.label}>
+              <p className="nav__drawer-group">{group.label}</p>
+              {(group.items as Item[]).map((item) => (
+                <AppLink className="nav__drawer-link" href={item.href} key={item.href} onClick={close}>
+                  {item.label}
+                  {item.live !== undefined ? <Note item={item} /> : null}
+                </AppLink>
+              ))}
+            </div>
           ))}
           <Button variant="dark" />
         </div>

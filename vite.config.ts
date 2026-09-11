@@ -16,6 +16,8 @@ const ROUTES = [
   "underwriting-desk",
   "platform",
   "security",
+  "carrier-channels",
+  "integrations",
   "company",
   "careers",
   "resources",

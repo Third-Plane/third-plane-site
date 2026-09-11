@@ -8,6 +8,8 @@ import {
 import { Layout } from "./components/Layout";
 import { Alpine } from "./pages/Alpine";
 import { Careers } from "./pages/Careers";
+import { CarrierChannels } from "./pages/CarrierChannels";
+import { Integrations } from "./pages/Integrations";
 import { Company } from "./pages/Company";
 import { Home } from "./pages/Home";
 import { PlacementDesk } from "./pages/PlacementDesk";
@@ -41,6 +43,8 @@ export default function App() {
         <Route path="platform" element={<Alpine />} />
         <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="security" element={<Security />} />
+        <Route path="carrier-channels" element={<CarrierChannels />} />
+        <Route path="integrations" element={<Integrations />} />
         <Route path="company" element={<Company />} />
         <Route path="careers" element={<Careers />} />
         <Route path="resources" element={<Resources />} />
