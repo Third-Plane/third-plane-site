@@ -13,20 +13,20 @@ import { Ledger } from "../components/Ledger";
 import {
   Arrow,
   Button,
-  Dots,
   Eyebrow,
   Network,
   SectionHead,
   Slash,
   TextLink,
 } from "../components/Ui";
+import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 
 export function Home() {
   return (
     <>
       <section className="hero" id="top">
-        <Network className="hero__network" />
+        <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
         <div className="container hero__grid">
           <div className="hero__copy">
             <div data-reveal>
@@ -87,7 +87,12 @@ export function Home() {
       </section>
 
       <section className="section section--deep" id="approach">
-        <Dots className="section__dots" id="shift-dots" direction="up" />
+        <ParticleField
+          className="section__particles"
+          tone="cream"
+          alpha={0.75}
+          density={0.8}
+        />
         <div className="container">
           <SectionHead
             dark
@@ -220,6 +225,12 @@ export function Home() {
       </section>
 
       <section className="section section--purple horizon">
+        <ParticleField
+          className="section__particles"
+          tone="white"
+          alpha={0.8}
+          density={0.9}
+        />
         <Network className="horizon__network" />
         <div className="container horizon__inner" data-reveal>
           <h2 className="display-2">{horizon.title}</h2>

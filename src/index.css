@@ -357,18 +357,19 @@ ol {
   color: var(--on-dark);
   overflow: hidden;
 }
-.section__dots {
-  color: #f6f3f029;
+/* Particle field. The canvas fills its positioned parent and sits above the
+   background but below .container (z 2), so points never cross copy. */
+.particles {
   pointer-events: none;
   z-index: 1;
   width: 100%;
-  height: 62%;
-  position: absolute;
-  inset: auto 0 0;
-}
-.dots {
-  width: 100%;
   height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.section__particles {
+  -webkit-mask-image: linear-gradient(180deg, #0000 0%, #000 45%);
+  mask-image: linear-gradient(180deg, #0000 0%, #000 45%);
 }
 .grid {
   gap: var(--gap);
@@ -407,18 +408,17 @@ ol {
   position: relative;
   overflow: hidden;
 }
-.hero__network {
-  width: min(68vw, 980px);
-  color: var(--purple);
-  opacity: 0.34;
-  pointer-events: none;
-  z-index: 2;
-  position: absolute;
-  top: -2%;
-  right: -10%;
-  -webkit-mask-image: linear-gradient(90deg, #0000 0%, #000 38%);
-  mask-image: linear-gradient(90deg, #0000 0%, #000 38%);
-  transition: opacity 0.22s ease;
+.hero__particles {
+  /* Keep the field out from under the headline: fade in from the copy column
+     toward the figure, and thicken toward the foot of the hero. */
+  -webkit-mask-image:
+    linear-gradient(90deg, #0000 0%, #00000059 40%, #000 62%),
+    linear-gradient(180deg, #0000 0%, #000 55%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, #0000 0%, #00000059 40%, #000 62%),
+    linear-gradient(180deg, #0000 0%, #000 55%);
+  mask-composite: intersect;
 }
 .network__hit {
   fill: transparent;
@@ -442,42 +442,6 @@ ol {
   transition:
     stroke 0.22s ease,
     stroke-width 0.22s ease;
-}
-@media (hover: hover) {
-  .hero__network .network__box {
-    pointer-events: auto;
-    cursor: pointer;
-  }
-  .hero__network:has(.network__box:hover) {
-    opacity: 0.78;
-  }
-  .hero__network .network__box:hover {
-    filter: drop-shadow(
-      0 10px 22px color-mix(in srgb, var(--purple) 42%, transparent)
-    );
-  }
-  .hero__network .network__box:hover .network__face {
-    fill: var(--pink);
-  }
-  .hero__network .network__box:hover .network__face--top {
-    fill-opacity: 1;
-  }
-  .hero__network .network__box:hover .network__face--east {
-    fill-opacity: 0.58;
-  }
-  .hero__network .network__box:hover .network__face--south {
-    fill-opacity: 0.38;
-  }
-  .hero__network .network__box:hover path {
-    stroke: var(--deep);
-    stroke-width: 1.85;
-  }
-}
-.hero__network--page {
-  opacity: 0.18;
-  width: min(60vw, 820px);
-  top: -10%;
-  right: -14%;
 }
 .network {
   width: 100%;
@@ -541,11 +505,11 @@ ol {
   .hero__grid {
     grid-template-columns: 1fr;
   }
-  .hero__network {
-    opacity: 0.14;
-    width: 90vw;
-    top: -6%;
-    right: -30%;
+  .hero__particles {
+    -webkit-mask-image: linear-gradient(180deg, #0000 0%, #00000080 45%, #000 100%);
+    -webkit-mask-composite: source-over;
+    mask-image: linear-gradient(180deg, #0000 0%, #00000080 45%, #000 100%);
+    mask-composite: add;
   }
 }
 .ledger {
@@ -1185,7 +1149,7 @@ ol {
 .horizon__network {
   width: min(60vw, 760px);
   color: var(--white);
-  opacity: 0.35;
+  opacity: 0.16;
   pointer-events: none;
   z-index: 1;
   position: absolute;
@@ -1322,13 +1286,9 @@ ol {
   position: relative;
   overflow: hidden;
 }
-.cta__dots {
-  color: #f6f3f024;
-  pointer-events: none;
-  width: 60%;
-  height: 100%;
-  position: absolute;
-  inset: 0 0 0 40%;
+.cta__particles {
+  -webkit-mask-image: linear-gradient(90deg, #0000 30%, #000 70%);
+  mask-image: linear-gradient(90deg, #0000 30%, #000 70%);
 }
 .cta__inner {
   max-width: 640px;

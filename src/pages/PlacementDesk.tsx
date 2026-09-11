@@ -3,12 +3,11 @@ import { Cta } from "../components/Cta";
 import {
   Button,
   CardMark,
-  Dots,
   Eyebrow,
-  Network,
   SectionHead,
   Slash,
 } from "../components/Ui";
+import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 
 const channelMarks = ["portal", "api", "mail"] as const;
@@ -17,7 +16,7 @@ export function PlacementDesk() {
   return (
     <>
       <section className="hero hero--page" id="top">
-        <Network className="hero__network hero__network--page" />
+        <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
         <div className="container hero__page-copy">
           <div data-reveal>
             <Slash className="hero__slash" />
@@ -66,7 +65,12 @@ export function PlacementDesk() {
       </section>
 
       <section className="section section--deep" id="work">
-        <Dots className="section__dots" id="work-dots" direction="up" />
+        <ParticleField
+          className="section__particles"
+          tone="cream"
+          alpha={0.75}
+          density={0.8}
+        />
         <div className="container">
           <SectionHead
             dark
