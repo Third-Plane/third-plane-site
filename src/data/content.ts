@@ -411,29 +411,21 @@ export const placementDesk = {
   },
   channels: {
     eyebrow: "Carrier channels",
-    title: "Portal fill, as seamless as an API.",
-    body: "The desk holds its own carrier credentials and completes the form a person would. One answers in seconds, one in minutes. Neither needs a person.",
+    title: "Three ways to a market.",
     items: [
       {
-        kicker: "Seconds",
-        title: "Carrier APIs",
-        body: "A request goes out. A structured quote comes back.",
-      },
-      {
-        kicker: "Minutes, unattended",
         title: "Carrier portals",
-        body: "The desk signs in, fills the forms, answers the qualifying questions, pulls the quote and structures it.",
+        body: "The desk holds its own logins, fills the forms, answers the qualifying questions and retrieves the quote.",
       },
       {
-        kicker: "Worked as a thread",
+        title: "Carrier APIs",
+        body: "Direct, where a carrier offers one.",
+      },
+      {
         title: "Email",
         body: "Where a market runs on underwriter relationships, the desk sends from its own address and works the thread.",
       },
     ],
-    result: {
-      title: "One quote experience",
-      body: "Every quote arrives in the same shape and lands in the same place, however many come back for one account.",
-    },
     note: "Channel coverage is configured per deployment, market by market.",
   },
   human: {

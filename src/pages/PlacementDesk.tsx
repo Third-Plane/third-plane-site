@@ -11,7 +11,7 @@ import {
 } from "../components/Ui";
 import { delayStyle } from "../lib/style";
 
-const channelMarks = ["api", "portal", "mail"] as const;
+const channelMarks = ["portal", "api", "mail"] as const;
 
 export function PlacementDesk() {
   return (
@@ -120,7 +120,6 @@ export function PlacementDesk() {
           <SectionHead
             eyebrow={placementDesk.channels.eyebrow}
             title={placementDesk.channels.title}
-            body={placementDesk.channels.body}
           />
           <div className="grid grid--3">
             {placementDesk.channels.items.map((item, i) => (
@@ -131,17 +130,10 @@ export function PlacementDesk() {
                 key={item.title}
               >
                 <CardMark name={channelMarks[i]} variant="wide" />
-                <p className="card__kicker">{item.kicker}</p>
                 <h3 className="card__title">{item.title}</h3>
                 <p className="card__body">{item.body}</p>
               </article>
             ))}
-          </div>
-          <div className="unify" data-reveal>
-            <h3 className="unify__title">
-              {placementDesk.channels.result.title}
-            </h3>
-            <p className="unify__body">{placementDesk.channels.result.body}</p>
           </div>
           <p className="footnote" data-reveal>
             {placementDesk.channels.note}

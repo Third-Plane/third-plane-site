@@ -4,7 +4,6 @@ import {
   company,
   deployment,
   desk,
-  discovery,
   homeHero,
   horizon,
   problem,
@@ -227,35 +226,6 @@ export function Home() {
         <div className="container horizon__inner" data-reveal>
           <h2 className="display-2">{horizon.title}</h2>
           <p className="horizon__body">{horizon.body}</p>
-        </div>
-      </section>
-
-      <section className="section section--white" id="discovery">
-        <div className="container">
-          <SectionHead
-            eyebrow={discovery.eyebrow}
-            title={discovery.title}
-            body={discovery.body}
-          />
-          <div className="grid grid--3">
-            {discovery.steps.map((step, i) => (
-              <article
-                className="point"
-                data-reveal
-                style={delayStyle(i)}
-                key={step.title}
-              >
-                <span className="point__index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="point__title">{step.title}</h3>
-                <p className="point__body">{step.body}</p>
-              </article>
-            ))}
-          </div>
-          <p className="closing" data-reveal>
-            {discovery.closing}
-          </p>
         </div>
       </section>
 
