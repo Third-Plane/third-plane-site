@@ -11,7 +11,7 @@ export function Logo({ tone = "purple", className = "", mark = false }: Props) {
   return (
     <img
       className={`logo ${className}`.trim()}
-      src={`/brand/${file}`}
+      src={`${import.meta.env.BASE_URL}brand/${file}`}
       alt="Third Plane"
     />
   );
