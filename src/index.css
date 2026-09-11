@@ -1092,24 +1092,10 @@ ol {
   color: var(--ink-body);
   font-size: 0.975rem;
 }
-.company__still {
-  grid-column: 1 / -1;
-}
 @media (width<=860px) {
   .company {
     grid-template-columns: 1fr;
   }
-}
-.still {
-  margin: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.still img {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 .horizon {
   padding-block: clamp(4rem, 7vw, 6.5rem);

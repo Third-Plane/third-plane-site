@@ -218,14 +218,6 @@ export function Home() {
               </li>
             ))}
           </ul>
-          <figure className="still company__still" data-reveal>
-            <img
-              src="/brand/still-perspective.jpg"
-              alt="A new perspective on wholesale insurance."
-              width="2416"
-              height="1523"
-            />
-          </figure>
         </div>
       </section>
 
