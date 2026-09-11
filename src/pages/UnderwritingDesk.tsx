@@ -7,7 +7,7 @@ import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
 export function UnderwritingDesk() {
-  useTitle("Underwriting Desk");
+  useTitle("Underwriting Desk", page.lead);
   return (
     <>
       <PageHero crumb={page.crumb} status={page.status} title={page.title} lead={page.lead} body={page.body}>
@@ -16,6 +16,21 @@ export function UnderwritingDesk() {
           See the Placement Desk
         </Button>
       </PageHero>
+
+      <section className="section section--white" id="entry">
+        <div className="container">
+          <SectionHead eyebrow={page.entry.eyebrow} title={page.entry.title} />
+          <div className="grid grid--3">
+            {page.entry.items.map((item, i) => (
+              <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
+                <span className="point__index">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="point__title">{item.title}</h3>
+                <p className="point__body">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="section section--deep" id="work">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
@@ -30,6 +45,21 @@ export function UnderwritingDesk() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="section section--white" id="scope">
+        <div className="container">
+          <SectionHead eyebrow={page.scope.eyebrow} title={page.scope.title} />
+          <div className="grid grid--2">
+            {page.scope.tiers.map((tier, i) => (
+              <article className="tier" data-reveal style={delayStyle(i)} key={tier.title}>
+                <p className="tier__kicker">{tier.kicker}</p>
+                <h3 className="tier__title">{tier.title}</h3>
+                <p className="tier__body">{tier.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -3,6 +3,8 @@ export const site = {
   tagline: "AI workforces for insurance",
   email: "sales@thirdplane.com",
   mailto: "mailto:sales@thirdplane.com",
+  careersEmail: "jbuchard@thirdplane.com",
+  careersMailto: "mailto:jbuchard@thirdplane.com",
   ctaLabel: "Start a conversation",
   year: 2026,
 };
@@ -265,19 +267,19 @@ export const deployment = {
 
 export const company = {
   eyebrow: "Why Third Plane",
-  title: "We learned this inside a brokerage first.",
+  title: "We ran a wholesale brokerage first.",
   body: [
-    "Third Plane grew out of QuoteWell, a technology-driven wholesale brokerage. We were our own first customer: real producers, real markets, real placement work.",
+    "Third Plane was spun out of QuoteWell, a technology-driven wholesale brokerage we built and ran. Before we offered an AI workforce to anyone else, we ran one against our own book: real producers, real markets, real placement work.",
     "That is where we learned how to capture what a good broker knows, connect AI to the systems and carrier channels a brokerage already uses, and define the authority and controls it needs to do insurance work responsibly.",
   ],
   facts: [
     {
       title: "Insurance operators and engineers",
-      body: "People who have run placement alongside people who build and deploy AI systems.",
+      body: "People who have run a brokerage alongside people who build and deploy AI systems.",
     },
     {
-      title: "Tested on real work",
-      body: "The model was developed against live insurance workflows before it was offered to anyone else.",
+      title: "Tested on our own book",
+      body: "The model was developed against live placement work at QuoteWell before it was offered to anyone else.",
     },
     {
       title: "Now deploying externally",
@@ -468,9 +470,8 @@ export const primaryNav = {
     capabilities: {
       label: "Capabilities",
       items: [
-        { label: "Alpine, the platform", href: "/alpine" },
+        { label: "Platform", href: "/platform" },
         { label: "Carrier channels", href: "/placement-desk#channels" },
-        { label: "Security and governance", href: "/security" },
       ],
     },
   },
@@ -491,7 +492,7 @@ export const siteFooter = {
       links: [
         { label: "Placement Desk", href: "/placement-desk" },
         { label: "Underwriting Desk", href: "/underwriting-desk" },
-        { label: "Alpine", href: "/alpine" },
+        { label: "Platform", href: "/platform" },
         { label: "Security and governance", href: "/security" },
       ],
     },
@@ -534,10 +535,15 @@ export const companyPage = {
   body: "We started with placement because it is where skilled work, execution burden and growth meet. The model extends from there.",
   origin: {
     eyebrow: "Where we come from",
-    title: "We were our own first customer.",
+    title: "We ran a wholesale brokerage first.",
     body: [
-      "Third Plane grew out of QuoteWell, a technology-driven wholesale brokerage. Before we offered an AI workforce to anyone else, we ran one against our own book: real producers, real markets, real placement work.",
-      "That is where we learned how to capture what a good broker knows, connect AI to the systems and carrier channels a brokerage already uses, and define the authority and controls it needs to do insurance work responsibly.",
+      "Third Plane was spun out of QuoteWell, a technology-driven wholesale brokerage we built and ran. Placing complex insurance for retail agents taught us where skilled work, execution burden and growth collide, and how much of a broker’s day goes to work that is not brokering.",
+      "We used AI inside that brokerage before we offered it to anyone else. That is where we learned how to capture what a good broker knows, connect AI to the systems and carrier channels a brokerage already uses, and define the authority and controls it needs to do insurance work responsibly. Third Plane is that model, made available to other insurance businesses.",
+    ],
+    facts: [
+      { title: "Brokerage operators", body: "We built and ran QuoteWell, a wholesale brokerage, before we built Third Plane." },
+      { title: "Spun out, not started from scratch", body: "The platform, the playbooks and the operating model came with us." },
+      { title: "Based in Austin, Texas", body: "A small team of insurance operators and engineers in one room." },
     ],
   },
   principles: {
@@ -679,49 +685,83 @@ export const securityPage = {
 export const underwritingDesk = {
   crumb: "Underwriting Desk",
   status: "In development",
-  title: ["The work around", "the underwriting decision."],
-  lead: "The Underwriting Desk applies the Third Plane model to the other side of the submission: the gathering, checking and preparation that happens before an underwriter can decide.",
-  body: "Underwriters spend much of their day on work that is not underwriting. The desk takes that work on and returns a decision-ready file.",
+  title: ["Submissions in.", "Quotes out, ready for review."],
+  lead: "The Underwriting Desk is the Placement Desk seen from the other side of the submission. Risks come in from brokers, the workforce carries each one through intake, appetite, rating and quoting, and a finished quote comes back to your underwriters for final review.",
+  body: "Underwriters spend most of their day on work that happens before the decision. The desk does that work, all the way to a quote, and hands the decision back.",
+  entry: {
+    eyebrow: "How submissions arrive",
+    title: "The desk meets the submission where it lands.",
+    items: [
+      {
+        title: "Broker email",
+        body: "Submissions and supplementals arriving at an underwriting inbox, in whatever shape the broker sends them.",
+      },
+      {
+        title: "Portal and API intake",
+        body: "Applications submitted through your portal or received through an API or comparative rater.",
+      },
+      {
+        title: "Your systems",
+        body: "A new submission in your policy administration or workbench system, or another trigger you define.",
+      },
+    ],
+  },
   work: {
-    eyebrow: "What the desk takes on",
-    title: "Decision-ready, not decided.",
+    eyebrow: "What the desk does",
+    title: "From submission to quote.",
     steps: [
       {
-        title: "Intake and triage",
-        body: "Submissions read as they arrive, structured, and sorted against appetite and guidelines before they reach a queue.",
+        title: "Intake and structure",
+        body: "The submission read as it arrives, with the application, schedules and loss runs structured into your data model.",
       },
       {
-        title: "Completeness",
-        body: "Missing information identified and requested from the broker early, with the thread worked until the file is complete.",
+        title: "Appetite and guidelines",
+        body: "Every risk checked against your appetite and underwriting guidelines, with out-of-appetite submissions declined or referred by your rules.",
       },
       {
-        title: "Enrichment",
-        body: "Third-party data, loss history and prior terms pulled together and reconciled against the application.",
+        title: "Complete the file",
+        body: "Missing information identified and requested from the broker, the thread worked until the file is complete, and third-party data pulled in where you use it.",
       },
       {
-        title: "Preparation",
-        body: "The file summarised against your guidelines, with the questions an underwriter would ask already answered where they can be.",
+        title: "Rate",
+        body: "The risk rated in your rating engine or by your rating rules, with the inputs and the derivation recorded.",
       },
       {
-        title: "Correspondence",
-        body: "Broker questions answered and follow-ups sent from the desk’s own address, with a record of every exchange.",
+        title: "Quote",
+        body: "Terms, conditions and pricing assembled into a quote to your standards, ready for the underwriter to review rather than to build.",
       },
       {
-        title: "Return",
-        body: "A decision-ready file, a recommendation where your rules allow one, and the record of how it was assembled.",
+        title: "Return for review",
+        body: "The quote, the file behind it and the record of how it was produced, returned to the underwriter for the final decision and release to the broker.",
+      },
+    ],
+  },
+  scope: {
+    eyebrow: "How much the desk takes on",
+    title: "The same model as placement, tuned to your book.",
+    tiers: [
+      {
+        kicker: "Programmatic business",
+        title: "Quote-ready with a light review",
+        body: "Where risks fit clean guidelines, the desk carries a submission all the way to a quote and the underwriter’s review is a confirmation, at the points your controls define.",
+      },
+      {
+        kicker: "Referrals and complex risks",
+        title: "The file prepared, the judgment yours",
+        body: "Where a risk needs an underwriter’s judgment, the desk completes and structures the file, applies your guidelines, and presents the questions that remain. Your underwriters price and decide.",
       },
     ],
   },
   human: {
     eyebrow: "What stays with your underwriters",
-    title: "The desk prepares. Your underwriters decide.",
-    items: ["Risk selection and pricing", "Terms and conditions", "Referrals and exceptions", "Broker relationships"],
+    title: "The desk quotes. Your underwriters decide.",
+    items: ["Final review and release of every quote", "Referrals, exceptions and declinations", "Pricing judgment on complex risks", "Broker relationships"],
   },
   status_note:
-    "The Underwriting Desk is in development with early partners. It follows the same governance model as the Placement Desk: scoped authority, a complete record, and a named person accountable for its work.",
+    "The Underwriting Desk is in development and follows the same governance model as the Placement Desk: scoped authority, a complete record of every action, and a named person accountable for its work.",
   cta: {
-    title: "Shape the Underwriting Desk with us.",
-    body: "We are working with a small number of carriers and MGAs on the first deployments. If underwriting capacity is the constraint in your business, we would like to talk.",
+    title: "Talk to us about underwriting capacity.",
+    body: "Tell us how submissions reach your underwriters today, how they are rated and quoted, and where the queue builds up. We will show you what the desk would take on.",
   },
 };
 
@@ -770,12 +810,12 @@ export const careersPage = {
     eyebrow: "Open roles",
     title: "Roles we are hiring for.",
     empty:
-      "No open roles are listed right now. If you know insurance operations or build agentic systems and want to work on this, write to us anyway.",
+      "No open roles are listed right now. If you know insurance operations or build agentic systems and want to work on this, write to jbuchard@thirdplane.com anyway.",
     items: [] as Array<{ title: string; team: string; location: string; href: string }>,
   },
   cta: {
     title: "Introduce yourself.",
-    body: "Tell us what you have built or what you have run, and what you would want to work on here.",
+    body: "Tell us what you have built or what you have run, and what you would want to work on here. Write to jbuchard@thirdplane.com.",
   },
 };
 
@@ -801,8 +841,8 @@ export const resourcesPage = {
 // ---------------------------------------------------------------------------
 
 export const alpinePage = {
-  crumb: "Alpine",
-  title: ["The platform", "every desk runs on."],
+  crumb: "Platform",
+  title: ["Alpine.", "The platform every desk runs on."],
   lead: "Alpine is how Third Plane builds, governs and runs AI workers. Every desk is assembled on it: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
   body: "Customers do not configure Alpine. They receive a desk built on it. But the platform is real, it is ours, and it is why a desk can be deployed into a brokerage rather than demonstrated to one.",
   layers: {
@@ -850,7 +890,7 @@ export const alpinePage = {
   real: {
     eyebrow: "Proven in use",
     title: "Built inside a brokerage before it was offered to one.",
-    body: "Alpine took shape inside QuoteWell, where it ran placement against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
+    body: "Alpine took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
     facts: [
       { title: "Forward deployed", body: "Third Plane engineers capture your context and configure the desk. You are not handed an agent builder." },
       { title: "Every action recorded", body: "Traces and grants are part of the platform, not an add-on, so governance holds on day one." },

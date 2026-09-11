@@ -22,8 +22,10 @@ import {
 } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
+import { useTitle } from "../hooks/useTitle";
 
 export function Home() {
+  useTitle();
   return (
     <>
       <section className="hero" id="top">

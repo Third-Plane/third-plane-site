@@ -9,10 +9,12 @@ import {
 } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
+import { useTitle } from "../hooks/useTitle";
 
 const channelMarks = ["portal", "api", "mail"] as const;
 
 export function PlacementDesk() {
+  useTitle("Placement Desk", placementDesk.lead);
   return (
     <>
       <section className="hero hero--page" id="top">

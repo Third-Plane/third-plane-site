@@ -38,7 +38,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="placement-desk" element={<PlacementDesk />} />
         <Route path="underwriting-desk" element={<UnderwritingDesk />} />
-        <Route path="alpine" element={<Alpine />} />
+        <Route path="platform" element={<Alpine />} />
+        <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="security" element={<Security />} />
         <Route path="company" element={<Company />} />
         <Route path="careers" element={<Careers />} />

@@ -7,7 +7,7 @@ import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
 export function Security() {
-  useTitle("Security and governance");
+  useTitle("Security and governance", page.lead);
   return (
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>

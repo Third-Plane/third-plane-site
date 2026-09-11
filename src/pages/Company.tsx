@@ -7,7 +7,7 @@ import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
 export function Company() {
-  useTitle("Company");
+  useTitle("Company", page.lead);
   return (
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
@@ -27,6 +27,14 @@ export function Company() {
                 {paragraph}
               </p>
             ))}
+            <ul className="company__facts company__facts--inline">
+              {page.origin.facts.map((fact) => (
+                <li key={fact.title}>
+                  <h3>{fact.title}</h3>
+                  <p>{fact.body}</p>
+                </li>
+              ))}
+            </ul>
           </div>
           <figure className="team" data-reveal style={delayStyle(1)}>
             {page.team.photo.src ? (

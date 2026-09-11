@@ -30,7 +30,7 @@ function BlockView({ block }: { block: Block }) {
 export function Post() {
   const { slug = "" } = useParams();
   const post = findPost(slug);
-  useTitle(post?.title);
+  useTitle(post?.title, post?.standfirst);
 
   if (!post || (post.draft && !import.meta.env.DEV)) {
     return <Navigate to="/resources" replace />;

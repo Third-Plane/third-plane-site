@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync } from "node:fs";
+import { copyFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
@@ -14,7 +14,7 @@ import { posts } from "./src/data/posts.js";
 const ROUTES = [
   "placement-desk",
   "underwriting-desk",
-  "alpine",
+  "platform",
   "security",
   "company",
   "careers",
@@ -40,6 +40,17 @@ function staticRoutes(): Plugin {
         copyFileSync(entry, resolve(dir, "index.html"));
       }
       copyFileSync(entry, resolve(outDir, "404.html"));
+      // Sitemap for the production origin only; the Pages mirror lives at a
+      // different URL and should not advertise itself to crawlers.
+      if ((process.env.BASE_PATH ?? "/") === "/") {
+        const urls = ["", ...ROUTES].map(
+          (route) => `  <url><loc>https://www.thirdplane.com/${route}</loc></url>`,
+        );
+        writeFileSync(
+          resolve(outDir, "sitemap.xml"),
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`,
+        );
+      }
     },
   };
 }

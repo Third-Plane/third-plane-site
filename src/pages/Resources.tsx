@@ -18,7 +18,7 @@ const formatDate = (iso: string) =>
 const publishedPosts = sortedPosts.filter((post) => !post.draft || import.meta.env.DEV);
 
 export function Resources() {
-  useTitle("Resources");
+  useTitle("Resources", page.lead);
   return (
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} />

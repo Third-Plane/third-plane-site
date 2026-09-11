@@ -6,14 +6,14 @@ import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
 export function Careers() {
-  useTitle("Careers");
+  useTitle("Careers", page.lead);
   return (
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" href="/careers#roles">
           See open roles
         </Button>
-        <Button variant="ghost" href={site.mailto}>
+        <Button variant="ghost" href={site.careersMailto}>
           Write to us
         </Button>
       </PageHero>
@@ -72,7 +72,7 @@ export function Careers() {
         </div>
       </section>
 
-      <Cta title={page.cta.title} body={page.cta.body} />
+      <Cta title={page.cta.title} body={page.cta.body} email={site.careersEmail} />
     </>
   );
 }

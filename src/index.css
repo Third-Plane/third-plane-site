@@ -304,38 +304,6 @@ ol {
 .nav__drawer {
   display: none;
 }
-@media (width<=860px) {
-  .nav__links,
-  .nav__cta {
-    display: none;
-  }
-  .nav__toggle {
-    display: inline-flex;
-  }
-  .nav__drawer[data-open="true"] {
-    border-top: 1px solid var(--line-soft);
-    padding: 0.5rem 0 1.75rem;
-    display: block;
-  }
-  .nav__drawer .container {
-    gap: 0.25rem;
-    display: grid;
-  }
-  .nav__drawer .btn {
-    justify-self: start;
-    margin-top: 1rem;
-  }
-  .nav__drawer-link {
-    font-family: var(--font-head);
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    border-bottom: 1px solid var(--line-soft);
-    padding: 0.85rem 0;
-    font-size: 1.35rem;
-    font-weight: 500;
-    display: block;
-  }
-}
 .section {
   padding-block: var(--section-y);
   background: var(--cream);
@@ -1371,20 +1339,6 @@ ol {
   margin-top: 1rem;
   font-size: 0.95rem;
 }
-.footer__links {
-  color: var(--on-dark);
-  flex-wrap: wrap;
-  gap: 1.75rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  display: flex;
-}
-.footer__links a {
-  transition: color 0.2s;
-}
-.footer__links a:hover {
-  color: var(--pink);
-}
 .footer__legal {
   color: var(--on-dark-faint);
   justify-content: space-between;
@@ -1923,4 +1877,12 @@ ol {
   .footer__columns {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.company__facts--inline {
+  margin-top: 2rem;
+  border-top: 1.5px solid var(--line);
+}
+.company__facts--inline li {
+  padding: 1rem 0;
 }

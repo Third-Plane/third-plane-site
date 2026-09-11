@@ -7,7 +7,7 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 | `/` | Home | `homeHero`, `problem`, `approach`, `desk`, `deployment`, `company`, `horizon`, `contact` |
 | `/placement-desk` | Placement Desk | `placementDesk` |
 | `/underwriting-desk` | Underwriting Desk (in development) | `underwritingDesk` |
-| `/alpine` | Alpine, the platform | `alpinePage` |
+| `/platform` | Platform (Alpine) | `alpinePage` |
 | `/security` | Security and governance | `securityPage` |
 | `/company` | Company: Austin, origin, principles, team | `companyPage` |
 | `/careers` | Careers, with an open-roles list | `careersPage` |

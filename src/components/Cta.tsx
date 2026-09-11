@@ -5,10 +5,13 @@ import { ParticleField } from "./ParticleField";
 export function Cta({
   title = contact.title,
   body = contact.body,
+  email = site.email,
 }: {
   title?: string;
   body?: string;
+  email?: string;
 }) {
+  const mailto = `mailto:${email}`;
   return (
     <section className="section" id="contact">
       <div className="container">
@@ -23,9 +26,9 @@ export function Cta({
             <h2 className="display-2">{title}</h2>
             <p className="cta__body">{body}</p>
             <div className="cta__actions">
-              <Button variant="dark" />
-              <a className="cta__email" href={site.mailto}>
-                {site.email}
+              <Button variant="dark" href={mailto} />
+              <a className="cta__email" href={mailto}>
+                {email}
               </a>
             </div>
             <ul className="cta__meta">
