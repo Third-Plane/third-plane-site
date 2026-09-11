@@ -13,7 +13,6 @@ import { Ledger } from "../components/Ledger";
 import {
   Arrow,
   Button,
-  CardMark,
   Dots,
   Eyebrow,
   Network,
@@ -182,7 +181,6 @@ export function Home() {
                 style={delayStyle(i)}
                 key={card.title}
               >
-                <CardMark name={card.icon} />
                 <h3 className="card__title">{card.title}</h3>
                 <p className="card__body">{card.body}</p>
               </article>
