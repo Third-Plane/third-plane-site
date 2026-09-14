@@ -2,6 +2,8 @@
 // `body` is a list of blocks so posts render consistently without a markdown
 // dependency. Add a post by appending here; the build emits its page.
 
+import { aiWorkforceDefinition } from "./content";
+
 export type PostType = "technical" | "perspective" | "press";
 
 export type Block =
@@ -43,7 +45,7 @@ export const posts: Post[] = [
         p: "Instead of putting AI underneath every employee as another tool, an insurance business can assign defined work to AI as part of how the organization itself operates. AI can take responsibility for work, operate across existing systems and channels, and return completed outcomes to the people who need them.",
       },
       {
-        p: "That is what we mean by an AI workforce for insurance. It is deployed as operating capacity within the business. It has defined responsibilities, works within established processes and systems, and is managed against outcomes, much like another team or function.",
+        p: aiWorkforceDefinition,
       },
       { h: "Placement first" },
       {

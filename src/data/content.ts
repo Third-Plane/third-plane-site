@@ -7,10 +7,13 @@ export const site = {
   year: 2026,
 };
 
+export const aiWorkforceDefinition =
+  "An AI workforce is dedicated operating capacity that takes responsibility for defined work across the systems and carrier channels you already use.";
+
 export const homeHero = {
   eyebrow: "AI workforces for insurance",
   title: ["Assign the work to AI.", "Keep the judgment with your people."],
-  lead: "Third Plane gives insurance businesses dedicated AI operating capacity: a workforce that takes responsibility for defined work across the systems and carrier channels you already use.",
+  lead: aiWorkforceDefinition,
   body: "It starts with placement. Send the Placement Desk a submission or a renewal. Your team gets the markets, the quotes and a record of the work back.",
   secondary: { label: "See the Placement Desk", href: "/placement-desk" },
   ledger: {
@@ -133,6 +136,7 @@ export const approach = {
   ],
   definition: {
     kicker: "What we mean by an AI workforce",
+    body: aiWorkforceDefinition,
     items: [
       {
         title: "Defined responsibilities",
@@ -199,6 +203,12 @@ export const desk = {
     { label: "Security", href: "/security" },
     { label: "About", href: "/company" },
   ],
+  next: {
+    eyebrow: "Where this goes next",
+    status: "In development",
+    title: "The Underwriting Desk is next.",
+    body: "The Underwriting Desk is in development and follows the same governance model as the Placement Desk: scoped authority, a complete record of every action, and a named person accountable for its work.",
+  },
 };
 
 export const horizon = {
@@ -329,22 +339,21 @@ export const placementDesk = {
 };
 
 // ---------------------------------------------------------------------------
-// Site structure: primary nav with a Desks group, and the footer.
+// Site structure: primary nav with a Products group, and the footer.
 // ---------------------------------------------------------------------------
 
 export const primaryNav = {
   menus: [
     {
-      label: "Desks",
+      label: "Products",
       items: [
         { label: "Placement Desk", href: "/placement-desk", note: "Available now", live: true },
-        { label: "Underwriting Desk", href: "/underwriting-desk", note: "In development", live: false },
       ],
     },
     {
       label: "Capabilities",
       items: [
-        { label: "Platform", href: "/platform", note: "Alpine, the platform every desk runs on" },
+        { label: "Platform", href: "/platform", note: "How a desk is built and governed" },
         { label: "Security", href: "/security", note: "Authority, record and data isolation" },
         { label: "Carrier channels", href: "/carrier-channels", note: "Portals, APIs and underwriter email" },
         { label: "System integrations", href: "/integrations", note: "AMS, documents, inboxes and data" },
@@ -366,10 +375,9 @@ export const siteFooter = {
   location: "Austin, Texas",
   columns: [
     {
-      label: "Desks",
+      label: "Products",
       links: [
         { label: "Placement Desk", href: "/placement-desk" },
-        { label: "Underwriting Desk", href: "/underwriting-desk" },
       ],
     },
     {
@@ -413,7 +421,7 @@ export const showcase = {
 export const companyPage = {
   crumb: "Company",
   title: ["Insurance operators", "who build AI workforces."],
-  lead: "Third Plane is based in Austin, Texas. We give insurance businesses dedicated AI operating capacity: desks that take responsibility for defined work across the systems and carrier channels the business already uses.",
+  lead: `Third Plane is based in Austin, Texas. ${aiWorkforceDefinition}`,
   body: "We started with placement because it is where skilled work, execution burden and growth meet. The model extends from there.",
   origin: {
     eyebrow: "Where we come from",
@@ -478,7 +486,7 @@ export const companyPage = {
 export const securityPage = {
   crumb: "Security and governance",
   title: ["Built for regulated", "environments."],
-  lead: "An AI workforce does insurance work under authority your compliance officer can read. Every action is scoped, recorded and attributable to a named person.",
+  lead: `${aiWorkforceDefinition} Every action is scoped, recorded and attributable to a named person.`,
   body: "Governance is not a layer added after the desk works. It is how the desk is allowed to work at all.",
   authority: {
     eyebrow: "Authority",
@@ -717,18 +725,18 @@ export const resourcesPage = {
 };
 
 // ---------------------------------------------------------------------------
-// /alpine
-// The platform underneath every desk. Public for the first time; drawn from
-// the architecture and "how we work" material in the sales deck.
+// /platform
+// How a desk is assembled and governed. The internal platform name is not
+// used on the public site.
 // ---------------------------------------------------------------------------
 
 export const alpinePage = {
   crumb: "Platform",
-  title: ["Alpine.", "The platform every desk runs on."],
-  lead: "Alpine is how Third Plane builds, governs and runs AI workers. Every desk is assembled on it: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
-  body: "Customers do not configure Alpine. They receive a desk built on it. But the platform is real, it is ours, and it is why a desk can be deployed into a brokerage rather than demonstrated to one.",
+  title: ["Workers, rules, systems", "and a complete record."],
+  lead: "Every desk is assembled from the workers, the rules they follow, the systems they reach, and the record they leave behind. The work is governed, bounded and auditable.",
+  body: "You do not configure that yourself. You receive a desk built this way, which is why a desk can be deployed into a brokerage rather than demonstrated to one.",
   layers: {
-    eyebrow: "What Alpine provides",
+    eyebrow: "How a desk is built",
     title: "Four layers, one operating model.",
     items: [
       {
@@ -758,7 +766,7 @@ export const alpinePage = {
         items: ["Email and attachments", "AMS events", "Documents and forms", "Your team, directly"],
       },
       {
-        kicker: "Alpine",
+        kicker: "The desk",
         accent: true,
         items: ["Desks and their workers", "Playbooks and standards", "Governance and record", "Model routing"],
       },
@@ -772,16 +780,16 @@ export const alpinePage = {
   real: {
     eyebrow: "Where it comes from",
     title: "Built inside a brokerage before it was offered to one.",
-    body: "Alpine took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
+    body: "This operating model took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
     facts: [
       { title: "Forward deployed", body: "Third Plane engineers capture your context and configure the desk. You are not handed an agent builder." },
-      { title: "Every action recorded", body: "Traces and grants are part of the platform, not an add-on, so governance holds on day one." },
+      { title: "Every action recorded", body: "Traces and grants are built in, not an add-on, so governance holds on day one." },
       { title: "Model-agnostic", body: "No single lab’s model is load-bearing. We choose per task and can change as models change." },
     ],
   },
   cta: {
-    title: "See a desk running on Alpine.",
-    body: "The fastest way to understand the platform is to watch a desk do real work on it. We can show you one against a sample of your own submissions.",
+    title: "See a desk do the work.",
+    body: "The fastest way to understand it is to watch a desk do real work. The work is governed, bounded and auditable. We can show you one against a sample of your own submissions.",
   },
 };
 

@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { site } from "../data/content";
+import { aiWorkforceDefinition, site } from "../data/content";
 
 const ORIGIN = "https://www.thirdplane.com";
-const DEFAULT_DESCRIPTION =
-  "Third Plane builds AI workforces for insurance: dedicated operating capacity that takes responsibility for defined work across the systems and carrier channels you already use. It starts with the Placement Desk.";
+const DEFAULT_DESCRIPTION = `${aiWorkforceDefinition} It starts with the Placement Desk.`;
 
 function setMeta(selector: string, attr: string, value: string) {
   let el = document.head.querySelector<HTMLMetaElement | HTMLLinkElement>(selector);

@@ -124,6 +124,7 @@ export function Home() {
           </div>
           <div className="definition" data-reveal>
             <p className="definition__kicker">{approach.definition.kicker}</p>
+            <p className="definition__body">{approach.definition.body}</p>
             <ul className="definition__list">
               {approach.definition.items.map((item) => (
                 <li key={item.title}>
@@ -171,6 +172,12 @@ export function Home() {
                 </TextLink>
               ))}
             </div>
+          </div>
+          <div className="desk-next" id="next" data-reveal>
+            <Eyebrow>{desk.next.eyebrow}</Eyebrow>
+            <p className="status-pill">{desk.next.status}</p>
+            <h2 className="display-2">{desk.next.title}</h2>
+            <p className="closing closing--left">{desk.next.body}</p>
           </div>
         </div>
       </section>

@@ -6,8 +6,7 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 | --- | --- | --- |
 | `/` | Home | `homeHero`, `problem`, `approach`, `desk`, `deployment`, `company`, `horizon`, `contact` |
 | `/placement-desk` | Placement Desk | `placementDesk` |
-| `/underwriting-desk` | Underwriting Desk (in development) | `underwritingDesk` |
-| `/platform` | Platform (Alpine) | `alpinePage` |
+| `/platform` | Platform | `alpinePage` |
 | `/security` | Security and governance | `securityPage` |
 | `/carrier-channels` | Carrier channels | `carrierChannelsPage` |
 | `/integrations` | System integrations | `integrationsPage` |
@@ -17,7 +16,8 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 | `/resources/:slug` | One post | `src/data/posts.ts` |
 
 All of the above are exports of `src/data/content.ts` unless noted. The primary nav (`primaryNav`)
-is three menus: Desks, Capabilities and Company; the footer is `siteFooter`.
+is three menus: Products, Capabilities and Company; the footer is `siteFooter`.
+`/underwriting-desk` redirects to `/#next` (the Underwriting Desk is no longer a standalone page).
 
 **Adding a page:** add the route in `src/App.tsx`, add its path to `ROUTES` in `vite.config.ts`
 (so static hosts get an `index.html` for it), and link it from `primaryNav` or `siteFooter`.

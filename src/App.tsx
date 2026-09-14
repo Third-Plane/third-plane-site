@@ -16,7 +16,6 @@ import { PlacementDesk } from "./pages/PlacementDesk";
 import { Post } from "./pages/Post";
 import { Resources } from "./pages/Resources";
 import { Security } from "./pages/Security";
-import { UnderwritingDesk } from "./pages/UnderwritingDesk";
 
 // Served normally, routes are real paths under the configured base (root on
 // Vercel, /third-plane-site/ on the GitHub Pages mirror). When the bundle
@@ -39,7 +38,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="placement-desk" element={<PlacementDesk />} />
-        <Route path="underwriting-desk" element={<UnderwritingDesk />} />
+        <Route path="underwriting-desk" element={<Navigate to={{ pathname: "/", hash: "next" }} replace />} />
         <Route path="platform" element={<Alpine />} />
         <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="security" element={<Security />} />
