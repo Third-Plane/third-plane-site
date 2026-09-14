@@ -6,7 +6,7 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 | --- | --- | --- |
 | `/` | Home | `homeHero`, `problem`, `approach`, `desk`, `deployment`, `company`, `horizon`, `contact` |
 | `/placement-desk` | Placement Desk | `placementDesk` |
-| `/platform` | Platform | `alpinePage` |
+| `/platform` | Platform (Alpine) | `alpinePage` |
 | `/security` | Security and governance | `securityPage` |
 | `/carrier-channels` | Carrier channels | `carrierChannelsPage` |
 | `/integrations` | System integrations | `integrationsPage` |
