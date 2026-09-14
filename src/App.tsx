@@ -38,7 +38,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="placement-desk" element={<PlacementDesk />} />
-        <Route path="underwriting-desk" element={<Navigate to={{ pathname: "/", hash: "next" }} replace />} />
+        <Route path="underwriting-desk" element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />} />
         <Route path="platform" element={<Alpine />} />
         <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="security" element={<Security />} />

@@ -1,4 +1,4 @@
-import { desk, placementDesk } from "../data/content";
+import { placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
 import {
   Button,
@@ -160,17 +160,6 @@ export function PlacementDesk() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="section section--blend" id="next">
-        <div className="container">
-          <div className="desk-next desk-next--page" data-reveal>
-            <Eyebrow>{desk.next.eyebrow}</Eyebrow>
-            <p className="status-pill">{desk.next.status}</p>
-            <h2 className="display-2">{desk.next.title}</h2>
-            <p className="lead">{desk.next.body}</p>
-          </div>
         </div>
       </section>
 

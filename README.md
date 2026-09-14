@@ -17,7 +17,7 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 
 All of the above are exports of `src/data/content.ts` unless noted. The primary nav (`primaryNav`)
 is three menus: Products, Capabilities and Company; the footer is `siteFooter`.
-`/underwriting-desk` redirects to `/#next` (the Underwriting Desk is no longer a standalone page).
+`/underwriting-desk` redirects to `/company#next` (the Underwriting Desk is no longer a standalone page).
 
 **Adding a page:** add the route in `src/App.tsx`, add its path to `ROUTES` in `vite.config.ts`
 (so static hosts get an `index.html` for it), and link it from `primaryNav` or `siteFooter`.

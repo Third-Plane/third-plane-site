@@ -173,12 +173,6 @@ export function Home() {
               ))}
             </div>
           </div>
-          <div className="desk-next" id="next" data-reveal>
-            <Eyebrow>{desk.next.eyebrow}</Eyebrow>
-            <p className="status-pill">{desk.next.status}</p>
-            <h2 className="display-2">{desk.next.title}</h2>
-            <p className="closing closing--left">{desk.next.body}</p>
-          </div>
         </div>
       </section>
 
