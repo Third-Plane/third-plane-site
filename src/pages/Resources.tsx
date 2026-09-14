@@ -1,4 +1,4 @@
-import { resourcesPage as page } from "../data/content";
+import { companyPage, resourcesPage as page } from "../data/content";
 import { sortedPosts } from "../data/posts";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
@@ -51,7 +51,7 @@ export function Resources() {
         </div>
       </section>
 
-      <Cta />
+      <Cta title={companyPage.cta.title} body={companyPage.cta.body} />
     </>
   );
 }

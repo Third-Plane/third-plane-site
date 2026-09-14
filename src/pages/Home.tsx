@@ -1,13 +1,5 @@
 import { Fragment } from "react";
-import {
-  approach,
-  company,
-  deployment,
-  desk,
-  homeHero,
-  horizon,
-  problem,
-} from "../data/content";
+import { approach, desk, homeHero, horizon, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { Showcase } from "../components/Showcase";
@@ -171,63 +163,19 @@ export function Home() {
           </div>
           <div className="flow__foot" data-reveal>
             <p className="closing closing--left">{desk.closing}</p>
-            <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
+            <div className="flow__links">
+              <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
+              {desk.more.map((link) => (
+                <TextLink href={link.href} key={link.href}>
+                  {link.label}
+                </TextLink>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section section--blend" id="deployment">
-        <div className="container">
-          <SectionHead
-            eyebrow={deployment.eyebrow}
-            title={deployment.title}
-            body={deployment.body}
-          />
-          <div className="grid grid--4">
-            {deployment.cards.map((card, i) => (
-              <article
-                className="card"
-                data-reveal
-                style={delayStyle(i)}
-                key={card.title}
-              >
-                <h3 className="card__title">{card.title}</h3>
-                <p className="card__body">{card.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="company">
-        <div className="container company">
-          <div className="company__copy" data-reveal>
-            <Eyebrow>{company.eyebrow}</Eyebrow>
-            <h2 className="display-2">{company.title}</h2>
-            {company.body.map((paragraph) => (
-              <p className="company__para" key={paragraph.slice(0, 20)}>
-                {paragraph}
-              </p>
-            ))}
-          </div>
-          <ul className="company__facts" data-reveal style={delayStyle(1)}>
-            {company.facts.map((fact) => (
-              <li key={fact.title}>
-                <h3>{fact.title}</h3>
-                <p>{fact.body}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
       <section className="section section--purple horizon">
-        <ParticleField
-          className="section__particles"
-          tone="white"
-          alpha={0.8}
-          density={0.9}
-        />
         <Network className="horizon__network" />
         <div className="container horizon__inner" data-reveal>
           <h2 className="display-2">{horizon.title}</h2>

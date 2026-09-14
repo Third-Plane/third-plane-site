@@ -1,5 +1,5 @@
 import { Navigate, useParams } from "react-router-dom";
-import { resourcesPage } from "../data/content";
+import { companyPage, resourcesPage } from "../data/content";
 import { findPost, type Block } from "../data/posts";
 import { Cta } from "../components/Cta";
 import { ParticleField } from "../components/ParticleField";
@@ -64,7 +64,7 @@ export function Post() {
           </div>
         </div>
       </article>
-      <Cta />
+      <Cta title={companyPage.cta.title} body={companyPage.cta.body} />
     </>
   );
 }

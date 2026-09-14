@@ -1,4 +1,4 @@
-import { careersPage as page, site } from "../data/content";
+import { careersPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { Arrow, Button, Eyebrow, SectionHead } from "../components/Ui";
@@ -13,9 +13,7 @@ export function Careers() {
         <Button variant="dark" href="/careers#roles">
           See open roles
         </Button>
-        <Button variant="ghost" href={site.careersMailto}>
-          Write to us
-        </Button>
+        <Button variant="ghost">Write to us</Button>
       </PageHero>
 
       <section className="section section--white" id="why">
@@ -72,7 +70,7 @@ export function Careers() {
         </div>
       </section>
 
-      <Cta title={page.cta.title} body={page.cta.body} email={site.careersEmail} />
+      <Cta title={page.cta.title} body={page.cta.body} />
     </>
   );
 }

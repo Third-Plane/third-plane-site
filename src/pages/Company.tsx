@@ -1,8 +1,8 @@
-import { companyPage as page, horizon } from "../data/content";
+import { companyPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { ParticleField } from "../components/ParticleField";
-import { Button, Eyebrow, Network, SectionHead } from "../components/Ui";
+import { Button, Eyebrow, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -67,15 +67,6 @@ export function Company() {
       <section className="section section--blend" id="team">
         <div className="container">
           <SectionHead eyebrow={page.team.eyebrow} title={page.team.title} body={page.team.body} />
-        </div>
-      </section>
-
-      <section className="section section--purple horizon">
-        <ParticleField className="section__particles" tone="white" alpha={0.8} density={0.9} />
-        <Network className="horizon__network" />
-        <div className="container horizon__inner" data-reveal>
-          <h2 className="display-2">{horizon.title}</h2>
-          <p className="horizon__body">{horizon.body}</p>
         </div>
       </section>
 

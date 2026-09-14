@@ -3,18 +3,8 @@ export const site = {
   tagline: "AI workforces for insurance",
   email: "sales@thirdplane.com",
   mailto: "mailto:sales@thirdplane.com",
-  careersEmail: "jbuchard@thirdplane.com",
-  careersMailto: "mailto:jbuchard@thirdplane.com",
   ctaLabel: "Start a conversation",
   year: 2026,
-};
-
-export const nav = {
-  links: [
-    { label: "Placement Desk", href: "/placement-desk" },
-    { label: "Approach", href: "/#approach" },
-    { label: "Company", href: "/#company" },
-  ],
 };
 
 export const homeHero = {
@@ -205,86 +195,9 @@ export const desk = {
   closing:
     "The desk works carriers on its own credentials, handles accounts in parallel, and applies the same standard whether the account sits with a new hire or your best producer.",
   cta: { label: "How the Placement Desk works", href: "/placement-desk" },
-};
-
-export const roles = {
-  eyebrow: "Where the work sits",
-  title: "Procurement is not consultation.",
-  body: "Today the same people do both. One of these should be automated to the floor. The other is the only reason to have people at all.",
-  columns: [
-    {
-      kicker: "The Placement Desk",
-      title: "Procurement",
-      accent: true,
-      items: [
-        "Reading the risk and building the submission",
-        "Filling portals and answering qualifying questions",
-        "Emailing underwriters and chasing replies",
-        "Normalizing quotes so they can be compared",
-      ],
-    },
-    {
-      kicker: "Your people",
-      title: "Consultation",
-      items: [
-        "Explaining what the coverage actually does",
-        "Handling the exception and the objection",
-        "Owning the client relationship",
-      ],
-    },
-  ],
-  closing:
-    "Procurement becomes a function. Consultation stays with your people.",
-};
-
-export const deployment = {
-  eyebrow: "How it is deployed",
-  title: "Built for deployment, not demonstration.",
-  body: "An AI worker without your context cannot do meaningful insurance work. Standing up a desk means capturing how your business places, connecting your systems and carrier channels, and defining what the desk may do on its own.",
-  cards: [
-    {
-      icon: "context" as const,
-      title: "Your context, captured",
-      body: "Appointments, appetite knowledge, submission standards and operating rules. The way your brokerage actually works, kept by the organization rather than in individual inboxes.",
-    },
-    {
-      icon: "authority" as const,
-      title: "Authority, defined",
-      body: "What the desk may do without asking, where it stops, and who reviews. Access is scoped to the work and can be constrained or revoked.",
-    },
-    {
-      icon: "record" as const,
-      title: "Every action, recorded",
-      body: "A record of what was done, through which channel, and what came back. You manage the desk by what it produces.",
-    },
-    {
-      icon: "human" as const,
-      title: "Judgment stays human",
-      body: "Advice, client relationships, negotiation and regulated decisions remain with your licensed professionals. The desk hands them finished work, not decisions.",
-    },
-  ],
-};
-
-export const company = {
-  eyebrow: "Why Third Plane",
-  title: "We ran a wholesale brokerage first.",
-  body: [
-    "Third Plane was spun out of QuoteWell, a technology-driven wholesale brokerage we built and ran. Before we offered an AI workforce to anyone else, we ran one against our own book: real producers, real markets, real placement work.",
-    "That is where we learned how to capture what a good broker knows, connect AI to the systems and carrier channels a brokerage already uses, and define the authority and controls it needs to do insurance work responsibly.",
-  ],
-  facts: [
-    {
-      title: "Insurance operators and engineers",
-      body: "People who have run a brokerage alongside people who build and deploy AI systems.",
-    },
-    {
-      title: "Tested on our own book",
-      body: "The model was developed against live placement work at QuoteWell before it was offered to anyone else.",
-    },
-    {
-      title: "Now deploying externally",
-      body: "Working with insurance businesses to stand up their first desk.",
-    },
+  more: [
+    { label: "Security", href: "/security" },
+    { label: "About", href: "/company" },
   ],
 };
 
@@ -293,44 +206,12 @@ export const horizon = {
   body: "The same model extends to other defined insurance work as AI becomes capable of owning more of it. Our ambition is to help insurance businesses organize work around what people and AI are each best equipped to do.",
 };
 
-export const discovery = {
-  eyebrow: "How we start",
-  title: "Start with discovery.",
-  body: "Before we propose anything, we learn how placement actually runs in your business today.",
-  steps: [
-    {
-      title: "Sit with the work",
-      body: "Half a day with whoever owns the queue today. We watch how it runs, not how the diagram says it runs.",
-    },
-    {
-      title: "Map the channels",
-      body: "Which markets answer by API, which need a portal, which need an email, and what each one costs you in hours.",
-    },
-    {
-      title: "Come back with a plan",
-      body: "A named deployment spec, a measured baseline for the work we mapped, and the authority boundaries written down.",
-    },
-  ],
-  closing:
-    "Nothing to buy at this stage. Discovery is how we both find out whether there is a deployment worth building.",
-};
-
 export const contact = {
   title: "Talk to us about placement capacity.",
   body: "Tell us how placement runs in your business today. We will show you where a desk fits, what it would take on, and what your team would get back.",
   meta: [
     "Built for brokerage leadership",
     "Deployed with your systems and carrier channels",
-  ],
-};
-
-export const footer = {
-  tagline: "AI workforces for insurance.",
-  links: [
-    { label: "Placement Desk", href: "/placement-desk" },
-    { label: "Approach", href: "/#approach" },
-    { label: "Company", href: "/#company" },
-    { label: "Contact", href: "mailto:sales@thirdplane.com" },
   ],
 };
 
@@ -811,12 +692,12 @@ export const careersPage = {
     eyebrow: "Open roles",
     title: "Roles we are hiring for.",
     empty:
-      "No open roles are listed right now. If you know insurance operations or build AI systems that do real work, and want to work on this, write to jbuchard@thirdplane.com anyway.",
+      "No open roles are listed right now. If you know insurance operations or build AI systems that do real work, and want to work on this, write to us anyway.",
     items: [] as Array<{ title: string; team: string; location: string; href: string }>,
   },
   cta: {
     title: "Introduce yourself.",
-    body: "Tell us what you have built or what you have run, and what you would want to work on here. Write to jbuchard@thirdplane.com.",
+    body: "Tell us what you have built or what you have run, and what you would want to work on here.",
   },
 };
 
