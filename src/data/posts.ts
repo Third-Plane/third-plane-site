@@ -2,7 +2,7 @@
 // `body` is a list of blocks so posts render consistently without a markdown
 // dependency. Add a post by appending here; the build emits its page.
 
-import { aiWorkforceDefinition } from "./content";
+import { aiWorkforceDefinition } from "./content.js";
 
 export type PostType = "technical" | "perspective" | "press";
 
