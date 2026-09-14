@@ -344,7 +344,7 @@ export const primaryNav = {
     {
       label: "Capabilities",
       items: [
-        { label: "Platform", href: "/platform", note: "Alpine, the platform every desk runs on" },
+        { label: "Platform", href: "/platform", note: "The platform every desk runs on" },
         { label: "Security", href: "/security", note: "Authority, record and data isolation" },
         { label: "Carrier channels", href: "/carrier-channels", note: "Portals, APIs and underwriter email" },
         { label: "System integrations", href: "/integrations", note: "AMS, documents, inboxes and data" },
@@ -717,18 +717,18 @@ export const resourcesPage = {
 };
 
 // ---------------------------------------------------------------------------
-// /alpine
+// /platform
 // The platform underneath every desk. Public for the first time; drawn from
 // the architecture and "how we work" material in the sales deck.
 // ---------------------------------------------------------------------------
 
 export const alpinePage = {
   crumb: "Platform",
-  title: ["Alpine.", "The platform every desk runs on."],
-  lead: "Alpine is how Third Plane builds, governs and runs AI workers. Every desk is assembled on it: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
-  body: "Customers do not configure Alpine. They receive a desk built on it. But the platform is real, it is ours, and it is why a desk can be deployed into a brokerage rather than demonstrated to one.",
+  title: ["The platform", "every desk runs on."],
+  lead: "The platform is how Third Plane builds, governs and runs AI workers. Every desk is assembled on it: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
+  body: "Customers do not configure the platform. They receive a desk built on it. But the platform is real, it is ours, and it is why a desk can be deployed into a brokerage rather than demonstrated to one.",
   layers: {
-    eyebrow: "What Alpine provides",
+    eyebrow: "What the platform provides",
     title: "Four layers, one operating model.",
     items: [
       {
@@ -758,7 +758,7 @@ export const alpinePage = {
         items: ["Email and attachments", "AMS events", "Documents and forms", "Your team, directly"],
       },
       {
-        kicker: "Alpine",
+        kicker: "Platform",
         accent: true,
         items: ["Desks and their workers", "Playbooks and standards", "Governance and record", "Model routing"],
       },
@@ -772,7 +772,7 @@ export const alpinePage = {
   real: {
     eyebrow: "Where it comes from",
     title: "Built inside a brokerage before it was offered to one.",
-    body: "Alpine took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
+    body: "The platform took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
     facts: [
       { title: "Forward deployed", body: "Third Plane engineers capture your context and configure the desk. You are not handed an agent builder." },
       { title: "Every action recorded", body: "Traces and grants are part of the platform, not an add-on, so governance holds on day one." },
@@ -780,7 +780,7 @@ export const alpinePage = {
     ],
   },
   cta: {
-    title: "See a desk running on Alpine.",
+    title: "See a desk running on the platform.",
     body: "The fastest way to understand the platform is to watch a desk do real work on it. We can show you one against a sample of your own submissions.",
   },
 };
