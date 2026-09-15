@@ -1540,7 +1540,10 @@ ol {
   margin-bottom: 0;
 }
 .hero__crumbs .slash {
-  flex-basis: 100%;
+  flex: none;
+  width: 44px;
+  height: 28px;
+  margin-bottom: 0;
 }
 .status-pill {
   display: inline-block;
