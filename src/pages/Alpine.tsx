@@ -20,7 +20,7 @@ export function Alpine() {
       <section className="section section--white" id="layers">
         <div className="container">
           <SectionHead eyebrow={page.layers.eyebrow} title={page.layers.title} />
-          <div className="grid grid--4">
+          <div className="grid grid--3">
             {page.layers.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
                 <span className="point__index">{String(i + 1).padStart(2, "0")}</span>

@@ -353,7 +353,7 @@ export const primaryNav = {
     {
       label: "Capabilities",
       items: [
-        { label: "Platform", href: "/platform", note: "How a desk is built and governed" },
+        { label: "Platform", href: "/platform", note: "Governed, bounded and auditable" },
         { label: "Security", href: "/security", note: "Authority, record and data isolation" },
         { label: "Carrier channels", href: "/carrier-channels", note: "Portals, APIs and underwriter email" },
         { label: "System integrations", href: "/integrations", note: "AMS, documents, inboxes and data" },
@@ -432,7 +432,7 @@ export const companyPage = {
     ],
     facts: [
       { title: "Brokerage operators", body: "We built and ran QuoteWell, a wholesale brokerage, before we built Third Plane." },
-      { title: "Spun out, not started from scratch", body: "The platform, the playbooks and the operating model came with us." },
+      { title: "Spun out, not started from scratch", body: "The playbooks, the operating model and how a desk is governed came with us." },
       { title: "Based in Austin, Texas", body: "A small team of insurance operators and engineers in one room." },
     ],
   },
@@ -726,39 +726,35 @@ export const resourcesPage = {
 
 // ---------------------------------------------------------------------------
 // /platform
-// How a desk is built, governed and run. The internal product name is not
-// used on the public site.
+// What the reader gets with a desk: governed, bounded, auditable work.
+// The internal platform name is not used on the public site.
 // ---------------------------------------------------------------------------
 
 export const alpinePage = {
   crumb: "Platform",
-  title: ["How a desk is allowed to work."],
-  lead: "Every desk is assembled the same way: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
-  body: "You do not configure this. You receive a desk, with those controls already in place, so it can be deployed into a brokerage rather than demonstrated to one.",
+  title: ["The work is governed,", "bounded and auditable."],
+  lead: "A desk runs with scoped authority, a named person accountable, and a complete record of what it did. You receive that with the desk.",
+  body: "You do not assemble those controls yourself. You receive a desk that is already allowed to work this way, so it can be deployed into a brokerage rather than demonstrated to one.",
   layers: {
-    eyebrow: "What holds in production",
-    title: "Four layers, one operating model.",
+    eyebrow: "What you get",
+    title: "What comes with the desk.",
     items: [
       {
-        title: "Agent building",
-        body: "Workers are assembled from playbooks that capture how your business does a piece of work: the steps, the standards, the exceptions, and where a person must be asked.",
+        title: "Governed",
+        body: "Every action runs under a grant that names what the desk may do, on which accounts and channels, and for how long. Grants expire and can be withdrawn. Accountability attaches to a named person.",
       },
       {
-        title: "Governance",
-        body: "Scoped, time-bounded, revocable grants for every action. Role-based access through your identity provider. An append-only record with full attribution.",
+        title: "Bounded",
+        body: "The desk follows playbooks that capture how your business does the work: the steps, the standards, the exceptions, and where a person must be asked. You are not handed an agent builder.",
       },
       {
-        title: "Model routing",
-        body: "Model-agnostic by design. Each task is routed to the model best suited to it, including open-source models, under the same controls and the same record.",
-      },
-      {
-        title: "Connections",
-        body: "Carrier portals, carrier APIs and underwriter email. Your AMS, document repository and inboxes as sources and destinations. Read and written back where you allow it.",
+        title: "Auditable",
+        body: "Every consequential action is written to an append-only record with attribution, so a result can be reconstructed exactly as it happened.",
       },
     ],
   },
   architecture: {
-    eyebrow: "How it fits together",
+    eyebrow: "How the work moves",
     title: "Between the request and the system of record.",
     columns: [
       {
@@ -766,9 +762,9 @@ export const alpinePage = {
         items: ["Email and attachments", "AMS events", "Documents and forms", "Your team, directly"],
       },
       {
-        kicker: "In production",
+        kicker: "The desk",
         accent: true,
-        items: ["Desks and their workers", "Playbooks and standards", "Governance and record", "Model routing"],
+        items: ["Playbooks and standards", "Scoped, revocable grants", "A complete record"],
       },
       {
         kicker: "Systems reached",
@@ -778,18 +774,18 @@ export const alpinePage = {
     note: "Integrations are configured per deployment. Common targets include Applied Epic, AMS360, Sagitta, ImageRight, SharePoint, Outlook and Teams.",
   },
   real: {
-    eyebrow: "Where it comes from",
-    title: "Built inside a brokerage before it was offered to one.",
-    body: "The Placement Desk is the first deployed function. It ran against live carrier appointments and real renewals inside QuoteWell, the wholesale brokerage we ran.",
+    eyebrow: "How it is delivered",
+    title: "Forward deployed, not self-serve.",
+    body: "Third Plane engineers capture your context and configure the desk. Model choice is ours, per task, under the same controls and the same record.",
     facts: [
-      { title: "Forward deployed", body: "Third Plane engineers capture your context and configure the desk. You are not handed an agent builder." },
-      { title: "Every action recorded", body: "Traces and grants are part of how the desk runs, not an add-on, so governance holds on day one." },
+      { title: "You are not handed a builder", body: "The desk arrives with the work, the rules and the record already in place." },
+      { title: "Every action recorded", body: "Traces and grants are how the desk runs, not an add-on, so governance holds on day one." },
       { title: "Model-agnostic", body: "No single lab’s model is load-bearing. We choose per task and can change as models change." },
     ],
   },
   cta: {
     title: "See a desk do the work.",
-    body: "The fastest way to understand how a desk is governed is to watch one do real work. We can show you one against a sample of your own submissions.",
+    body: "The fastest way to see that the work is governed, bounded and auditable is to watch a desk do it. We can show you one against a sample of your own submissions.",
   },
 };
 
@@ -893,7 +889,7 @@ export const integrationsPage = {
       { title: "Record", body: "Every read and write is logged against the desk’s record, so integration activity is as auditable as the work itself." },
     ],
   },
-  note: "Integration targets are confirmed per deployment during discovery. If your systems are not named here, ask; the platform connects through APIs, email and browsers, so the list is not the limit.",
+  note: "Integration targets are confirmed per deployment during discovery. If your systems are not named here, ask; a desk connects through APIs, email and browsers, so the list is not the limit.",
   cta: {
     title: "Tell us what you run.",
     body: "Your AMS, your document system, your inboxes and your carriers. We will come back with how a desk would connect to each and what your team would see change.",

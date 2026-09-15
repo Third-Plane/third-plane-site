@@ -13,7 +13,7 @@ export function Integrations() {
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
         <Button variant="ghost" href="/platform">
-          About the platform
+          How a desk is governed
         </Button>
       </PageHero>
 
