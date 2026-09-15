@@ -493,12 +493,12 @@ export const securityPage = {
     title: "An AI worker can execute. It is never the principal.",
     items: [
       {
-        title: "Scoped grants",
-        body: "Every action a desk takes runs under a grant that names what it may do, on which accounts and channels, and for how long.",
+        title: "Scoped authority",
+        body: "Every action a desk takes runs under a defined scope of authority that names what it may do, on which accounts and channels, and for how long.",
       },
       {
         title: "Time-bounded and revocable",
-        body: "Grants expire and can be withdrawn at any time. Access can be narrowed without stopping the work that remains in scope.",
+        body: "That authority expires and can be withdrawn at any time. Access can be narrowed without stopping the work that remains in scope.",
       },
       {
         title: "A named person, always",
@@ -519,7 +519,7 @@ export const securityPage = {
         body: "Every consequential action is written to an append-only record with attribution: what was done, through which channel, under whose authority.",
       },
       {
-        title: "Complete worker traces",
+        title: "The full course of the work",
         body: "The inputs a worker received and the full course of its work are retained, so a carrier, a regulator or your own E&O review can see how a result was reached.",
       },
       {
@@ -677,7 +677,7 @@ export const careersPage = {
         body: "You will sit with people who have run placement and people who have built the systems that do it. Both learn from each other every day.",
       },
       {
-        title: "Forward deployed",
+        title: "Inside the customer’s operation",
         body: "Much of the work happens inside customers’ operations: capturing context, connecting systems, earning adoption. Deployment is the product.",
       },
       {
@@ -741,7 +741,7 @@ export const alpinePage = {
     items: [
       {
         title: "Governed",
-        body: "Every action runs under a grant that names what the desk may do, on which accounts and channels, and for how long. Grants expire and can be withdrawn. Accountability attaches to a named person.",
+        body: "Every action runs under a defined scope of authority that names what the desk may do, on which accounts and channels, and for how long. That authority expires and can be withdrawn. Accountability attaches to a named person.",
       },
       {
         title: "Bounded",
@@ -764,7 +764,7 @@ export const alpinePage = {
       {
         kicker: "The desk",
         accent: true,
-        items: ["Playbooks and standards", "Scoped, revocable grants", "A complete record"],
+        items: ["Playbooks and standards", "Scoped, revocable authority", "A complete record"],
       },
       {
         kicker: "Systems reached",
@@ -775,11 +775,11 @@ export const alpinePage = {
   },
   real: {
     eyebrow: "How it is delivered",
-    title: "Forward deployed, not self-serve.",
+    title: "Configured for you, not self-serve.",
     body: "Third Plane engineers capture your context and configure the desk. Model choice is ours, per task, under the same controls and the same record.",
     facts: [
       { title: "You are not handed a builder", body: "The desk arrives with the work, the rules and the record already in place." },
-      { title: "Every action recorded", body: "Traces and grants are how the desk runs, not an add-on, so governance holds on day one." },
+      { title: "Every action recorded", body: "Authority and record are how the desk runs, not an add-on, so governance holds on day one." },
       { title: "Model-agnostic", body: "No single lab’s model is load-bearing. We choose per task and can change as models change." },
     ],
   },
