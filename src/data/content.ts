@@ -353,7 +353,7 @@ export const primaryNav = {
     {
       label: "Capabilities",
       items: [
-        { label: "Platform", href: "/platform", note: "Alpine, the platform every desk runs on" },
+        { label: "Platform", href: "/platform", note: "How a desk is built and governed" },
         { label: "Security", href: "/security", note: "Authority, record and data isolation" },
         { label: "Carrier channels", href: "/carrier-channels", note: "Portals, APIs and underwriter email" },
         { label: "System integrations", href: "/integrations", note: "AMS, documents, inboxes and data" },
@@ -725,18 +725,18 @@ export const resourcesPage = {
 };
 
 // ---------------------------------------------------------------------------
-// /alpine
-// The platform underneath every desk. Public for the first time; drawn from
-// the architecture and "how we work" material in the sales deck.
+// /platform
+// How a desk is built, governed and run. The internal product name is not
+// used on the public site.
 // ---------------------------------------------------------------------------
 
 export const alpinePage = {
   crumb: "Platform",
-  title: ["Alpine.", "The platform every desk runs on."],
-  lead: "Alpine is how Third Plane builds, governs and runs AI workers. Every desk is assembled on it: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
-  body: "Customers do not configure Alpine. They receive a desk built on it. But the platform is real, it is ours, and it is why a desk can be deployed into a brokerage rather than demonstrated to one.",
+  title: ["How a desk is allowed to work."],
+  lead: "Every desk is assembled the same way: the workers, the rules they follow, the systems they reach, and the record they leave behind.",
+  body: "You do not configure this. You receive a desk, with those controls already in place, so it can be deployed into a brokerage rather than demonstrated to one.",
   layers: {
-    eyebrow: "What Alpine provides",
+    eyebrow: "What holds in production",
     title: "Four layers, one operating model.",
     items: [
       {
@@ -766,7 +766,7 @@ export const alpinePage = {
         items: ["Email and attachments", "AMS events", "Documents and forms", "Your team, directly"],
       },
       {
-        kicker: "Alpine",
+        kicker: "In production",
         accent: true,
         items: ["Desks and their workers", "Playbooks and standards", "Governance and record", "Model routing"],
       },
@@ -780,16 +780,16 @@ export const alpinePage = {
   real: {
     eyebrow: "Where it comes from",
     title: "Built inside a brokerage before it was offered to one.",
-    body: "Alpine took shape inside QuoteWell, the wholesale brokerage we ran, where it placed business against live carrier appointments and real renewals. The Placement Desk is its first deployed function. The Underwriting Desk is the next.",
+    body: "The Placement Desk is the first deployed function. It ran against live carrier appointments and real renewals inside QuoteWell, the wholesale brokerage we ran.",
     facts: [
       { title: "Forward deployed", body: "Third Plane engineers capture your context and configure the desk. You are not handed an agent builder." },
-      { title: "Every action recorded", body: "Traces and grants are part of the platform, not an add-on, so governance holds on day one." },
+      { title: "Every action recorded", body: "Traces and grants are part of how the desk runs, not an add-on, so governance holds on day one." },
       { title: "Model-agnostic", body: "No single lab’s model is load-bearing. We choose per task and can change as models change." },
     ],
   },
   cta: {
-    title: "See a desk running on Alpine.",
-    body: "The fastest way to understand the platform is to watch a desk do real work on it. We can show you one against a sample of your own submissions.",
+    title: "See a desk do the work.",
+    body: "The fastest way to understand how a desk is governed is to watch one do real work. We can show you one against a sample of your own submissions.",
   },
 };
 
