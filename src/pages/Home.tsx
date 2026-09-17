@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { approach, desk, homeHero, horizon, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
@@ -99,14 +98,12 @@ export function Home() {
                 <p className="model__kicker">{model.kicker}</p>
                 <div className="model__chain" role="list">
                   {model.chain.map((step, stepIndex) => (
-                    <Fragment key={step}>
+                    <span className="model__item" role="listitem" key={step}>
                       {stepIndex > 0 ? (
                         <Arrow className="model__arrow" />
                       ) : null}
-                      <span className="model__step" role="listitem">
-                        {step}
-                      </span>
-                    </Fragment>
+                      <span className="model__step">{step}</span>
+                    </span>
                   ))}
                 </div>
                 <p className="model__note">{model.note}</p>
