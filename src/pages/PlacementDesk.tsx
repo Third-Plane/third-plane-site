@@ -37,7 +37,7 @@ export function PlacementDesk() {
             {placementDesk.body}
           </p>
           <div className="hero__actions" data-reveal style={delayStyle(4)}>
-            <Button variant="dark" />
+            <Button variant="dark">{placementDesk.cta.label}</Button>
           </div>
         </div>
       </section>
@@ -163,7 +163,11 @@ export function PlacementDesk() {
         </div>
       </section>
 
-      <Cta title={placementDesk.cta.title} body={placementDesk.cta.body} />
+      <Cta
+        title={placementDesk.cta.title}
+        body={placementDesk.cta.body}
+        label={placementDesk.cta.label}
+      />
     </>
   );
 }

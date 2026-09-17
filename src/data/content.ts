@@ -333,8 +333,9 @@ export const placementDesk = {
     ],
   },
   cta: {
-    title: "See what the desk would take on in your book.",
-    body: "We start with how placement runs today: lines, markets, systems and volume. From there we can show you what the Placement Desk would own and where your team stays in the loop.",
+    title: "Talk to us about placement capacity.",
+    body: "The first conversation covers your current placement workflow, carrier mix and systems.",
+    label: "Talk to us about placement capacity",
   },
 };
 
