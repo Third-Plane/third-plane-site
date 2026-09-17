@@ -1,4 +1,4 @@
-import { approach, desk, homeHero, horizon, problem } from "../data/content";
+import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { Showcase } from "../components/Showcase";
@@ -6,7 +6,6 @@ import {
   Arrow,
   Button,
   Eyebrow,
-  Network,
   SectionHead,
   Slash,
   TextLink,
@@ -155,14 +154,6 @@ export function Home() {
             </p>
             <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
           </div>
-        </div>
-      </section>
-
-      <section className="section section--purple horizon">
-        <Network className="horizon__network" />
-        <div className="container horizon__inner" data-reveal>
-          <h2 className="display-2">{horizon.title}</h2>
-          <p className="horizon__body">{horizon.body}</p>
         </div>
       </section>
 
