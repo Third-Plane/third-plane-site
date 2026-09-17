@@ -333,7 +333,7 @@ export const placementDesk = {
     ],
   },
   cta: {
-    title: "Talk to us about placement capacity.",
+    title: "Tell us how placement runs today.",
     body: "The first conversation covers your current placement workflow, carrier mix and systems.",
     label: "Talk to us about placement capacity",
   },
