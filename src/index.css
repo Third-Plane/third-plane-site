@@ -459,10 +459,17 @@ ol {
 .hero > .container {
   pointer-events: none;
 }
+.hero > .container.hero__page-copy {
+  pointer-events: auto;
+}
 .hero__copy,
 .hero__page-copy {
   position: relative;
   z-index: 3;
+  pointer-events: auto;
+}
+.hero .btn,
+.hero__actions {
   pointer-events: auto;
 }
 .hero .ledger {
