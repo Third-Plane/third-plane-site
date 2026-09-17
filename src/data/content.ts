@@ -184,7 +184,7 @@ export const desk = {
   ],
   closing:
     "The desk works carriers on its own credentials, handles accounts in parallel, and applies the same standard whether the account sits with a new hire or your best producer.",
-  cta: { label: "How the Placement Desk works", href: "/placement-desk" },
+  cta: { label: "See Placement Desk", href: "/placement-desk" },
   more: [
     { label: "Security", href: "/security" },
     { label: "About", href: "/company" },

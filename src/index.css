@@ -1118,10 +1118,23 @@ ol {
   top: calc(-1 * var(--gap) / 2 - 11px);
   transform: rotate(90deg);
 }
+.desk-stage__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
 .desk-stage__closing {
   color: var(--on-dark);
   max-width: 46ch;
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+.desk-stage .textlink {
+  color: var(--pink);
+}
+.desk-stage .textlink:hover {
+  border-color: var(--pink);
 }
 @media (width<=900px) {
   .desk-stage__board {

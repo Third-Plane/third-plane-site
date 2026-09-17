@@ -9,6 +9,7 @@ import {
   Network,
   SectionHead,
   Slash,
+  TextLink,
 } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
@@ -148,9 +149,12 @@ export function Home() {
               ))}
             </div>
           </div>
-          <p className="closing closing--left desk-stage__closing" data-reveal>
-            {desk.closing}
-          </p>
+          <div className="desk-stage__foot" data-reveal>
+            <p className="closing closing--left desk-stage__closing">
+              {desk.closing}
+            </p>
+            <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
+          </div>
         </div>
       </section>
 
