@@ -10,7 +10,6 @@ import {
   Network,
   SectionHead,
   Slash,
-  TextLink,
 } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
@@ -61,38 +60,30 @@ export function Home() {
             title={problem.title}
             body={problem.body}
           />
-          <div className="grid grid--3">
+          <div className="fit">
             {problem.points.map((point, i) => (
               <article
-                className="point"
+                className="fit__row"
                 data-reveal
                 style={delayStyle(i)}
                 key={point.title}
               >
-                <span className="point__index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="point__title">{point.title}</h3>
-                <p className="point__body">{point.body}</p>
+                <h3 className="fit__label">{point.title}</h3>
+                <div className="fit__copy">
+                  <p className="fit__body">{point.body}</p>
+                </div>
               </article>
             ))}
           </div>
-          <p className="closing" data-reveal>
+          <p className="closing closing--left" data-reveal>
             {problem.closing}
           </p>
         </div>
       </section>
 
-      <section className="section section--deep" id="approach">
-        <ParticleField
-          className="section__particles"
-          tone="cream"
-          alpha={0.75}
-          density={0.8}
-        />
+      <section className="section" id="approach">
         <div className="container">
           <SectionHead
-            dark
             eyebrow={approach.eyebrow}
             title={approach.title}
             body={approach.body}
@@ -125,54 +116,44 @@ export function Home() {
           <div className="definition" data-reveal>
             <p className="definition__kicker">{approach.definition.kicker}</p>
             <p className="definition__body">{approach.definition.body}</p>
-            <ul className="definition__list">
-              {approach.definition.items.map((item) => (
-                <li key={item.title}>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
 
-      <section className="section section--white" id="desk">
+      <section className="section section--deep desk-stage" id="desk">
+        <ParticleField
+          className="section__particles"
+          tone="cream"
+          alpha={0.75}
+          density={0.8}
+        />
         <div className="container">
-          <SectionHead
-            eyebrow={desk.eyebrow}
-            title={desk.title}
-            body={desk.body}
-          />
-          <div className="flow" data-reveal>
-            {desk.columns.map((column, i) => (
-              <div
-                className={
-                  column.accent ? "flow__col flow__col--accent" : "flow__col"
-                }
-                key={column.kicker}
-              >
-                {i > 0 ? <Arrow className="flow__arrow" /> : null}
-                <p className="flow__kicker">{column.kicker}</p>
-                <ul className="flow__list">
-                  {column.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="flow__foot" data-reveal>
-            <p className="closing closing--left">{desk.closing}</p>
-            <div className="flow__links">
-              <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
-              {desk.more.map((link) => (
-                <TextLink href={link.href} key={link.href}>
-                  {link.label}
-                </TextLink>
+          <h2 className="desk-stage__name" data-reveal>
+            {desk.name}
+          </h2>
+          <div className="desk-stage__board">
+            <div className="desk-stage__head" data-reveal>
+              <p className="display-2">{desk.title}</p>
+              <p className="lead">{desk.body}</p>
+            </div>
+            <div className="flow flow--dark" data-reveal>
+              {desk.columns.map((column, i) => (
+                <div
+                  className={
+                    column.accent ? "flow__col flow__col--accent" : "flow__col"
+                  }
+                  key={column.kicker}
+                >
+                  {i > 0 ? <Arrow className="flow__arrow" /> : null}
+                  <p className="flow__kicker">{column.kicker}</p>
+                  <p className="flow__line">{column.line}</p>
+                </div>
               ))}
             </div>
           </div>
+          <p className="closing closing--left desk-stage__closing" data-reveal>
+            {desk.closing}
+          </p>
         </div>
       </section>
 

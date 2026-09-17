@@ -163,37 +163,23 @@ export const approach = {
 };
 
 export const desk = {
+  name: "Placement Desk",
   eyebrow: "The Placement Desk",
   title: "Send the work to the Placement Desk. Your team gets the quotes back.",
   body: "A dedicated placement function staffed by AI workers. It takes defined placement work from request to returned market results, new business and renewals alike.",
   columns: [
     {
       kicker: "Work goes in",
-      items: [
-        "A producer forwards a submission",
-        "A renewal lands in the desk’s own inbox",
-        "An AMS event or another defined trigger",
-      ],
+      line: "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event.",
     },
     {
       kicker: "The desk works it",
       accent: true,
-      items: [
-        "Gathers and structures the account information",
-        "Flags what is missing and asks for it",
-        "Assesses appetite and selects markets",
-        "Submits through carrier portals, APIs and email",
-        "Follows up with carriers and answers questions",
-        "Collects quotes, declinations and responses",
-      ],
+      line: "Gathers and structures the account, assesses appetite, and submits through carrier portals, APIs and email.",
     },
     {
       kicker: "Results come back",
-      items: [
-        "Market results and quotes, compared",
-        "A record of what was done and when",
-        "Ready for your team’s judgment and the client conversation",
-      ],
+      line: "Market results and quotes, compared, with a record — ready for your team’s judgment.",
     },
   ],
   closing:
