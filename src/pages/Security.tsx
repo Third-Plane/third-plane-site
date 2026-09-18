@@ -20,7 +20,6 @@ export function Security() {
           <div className="grid grid--4">
             {page.authority.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-                <span className="point__index">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="point__title">{item.title}</h3>
                 <p className="point__body">{item.body}</p>
               </article>
@@ -36,7 +35,6 @@ export function Security() {
           <ol className="steps steps--3">
             {page.record.items.map((item, i) => (
               <li className="step" data-reveal style={delayStyle(i)} key={item.title}>
-                <span className="step__index">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="step__title">{item.title}</h3>
                 <p className="step__body">{item.body}</p>
               </li>
