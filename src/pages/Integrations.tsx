@@ -35,16 +35,12 @@ export function Integrations() {
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
           <SectionHead dark title={page.how.title} />
-          <ol className="process" data-reveal>
+          <ol className="steps">
             {page.how.steps.map((step, i) => (
-              <li className="process__node" key={step.title}>
-                <span className="process__index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="process__title">{step.title}</h3>
-                  <p className="process__note">{step.body}</p>
-                </div>
+              <li className="step" data-reveal style={delayStyle(i)} key={step.title}>
+                <span className="step__index">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="step__title">{step.title}</h3>
+                <p className="step__body">{step.body}</p>
               </li>
             ))}
           </ol>

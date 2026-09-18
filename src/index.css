@@ -1468,26 +1468,6 @@ ol {
     padding-bottom: 0;
   }
 }
-#how .process {
-  grid-template-rows: repeat(2, auto);
-  grid-auto-flow: row;
-}
-#how .process__node:nth-child(1),
-#how .process__node:nth-child(2) {
-  padding-top: 0;
-}
-#how .process__node:nth-child(3),
-#how .process__node:nth-child(4) {
-  padding-bottom: 0;
-}
-@media (width<=760px) {
-  #how .process__node:nth-child(2) {
-    padding-top: 0.85rem;
-  }
-  #how .process__node:nth-child(3) {
-    padding-bottom: 0.85rem;
-  }
-}
 .tier {
   padding: var(--pad);
   border-radius: var(--radius);
