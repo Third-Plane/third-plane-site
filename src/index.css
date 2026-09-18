@@ -173,6 +173,22 @@ ol {
 #problem .closing {
   margin-top: clamp(2rem, 3.5vw, 2.75rem);
 }
+#problem .card {
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+#problem .card:hover {
+  box-shadow: none;
+  transform: none;
+}
+@media (width > 900px) {
+  #problem .grid--3:has(> .card) {
+    grid-template-rows: auto 1fr;
+  }
+  #problem .grid--3 > .card {
+    grid-row: span 2;
+  }
+}
 .fit {
   border-top: 1.5px solid var(--line);
 }

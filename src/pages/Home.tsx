@@ -59,18 +59,16 @@ export function Home() {
             title={problem.title}
             body={problem.body}
           />
-          <div className="fit">
+          <div className="grid grid--3">
             {problem.points.map((point, i) => (
               <article
-                className="fit__row"
+                className="card"
                 data-reveal
                 style={delayStyle(i)}
                 key={point.title}
               >
-                <h3 className="fit__label">{point.title}</h3>
-                <div className="fit__copy">
-                  <p className="fit__body">{point.body}</p>
-                </div>
+                <h3 className="card__title">{point.title}</h3>
+                <p className="card__body">{point.body}</p>
               </article>
             ))}
           </div>
