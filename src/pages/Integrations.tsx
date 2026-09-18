@@ -19,7 +19,7 @@ export function Integrations() {
 
       <section className="section section--white" id="systems">
         <div className="container">
-          <SectionHead eyebrow={page.systems.eyebrow} title={page.systems.title} />
+          <SectionHead title={page.systems.title} />
           <div className="grid grid--3">
             {page.systems.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i % 3)} key={item.title}>
@@ -34,7 +34,7 @@ export function Integrations() {
       <section className="section section--deep" id="how">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
-          <SectionHead dark eyebrow={page.how.eyebrow} title={page.how.title} />
+          <SectionHead dark title={page.how.title} />
           <ol className="steps">
             {page.how.steps.map((step, i) => (
               <li className="step" data-reveal style={delayStyle(i)} key={step.title}>

@@ -2,7 +2,7 @@ import { alpinePage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { ParticleField } from "../components/ParticleField";
-import { Arrow, Button, Eyebrow, SectionHead } from "../components/Ui";
+import { Arrow, Button, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -19,7 +19,7 @@ export function Alpine() {
 
       <section className="section section--white" id="layers">
         <div className="container">
-          <SectionHead eyebrow={page.layers.eyebrow} title={page.layers.title} />
+          <SectionHead title={page.layers.title} />
           <div className="grid grid--3">
             {page.layers.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
@@ -34,7 +34,7 @@ export function Alpine() {
       <section className="section section--deep" id="architecture">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
-          <SectionHead dark eyebrow={page.architecture.eyebrow} title={page.architecture.title} />
+          <SectionHead dark title={page.architecture.title} />
           <div className="flow flow--dark" data-reveal>
             {page.architecture.columns.map((column, i) => (
               <div className={column.accent ? "flow__col flow__col--accent" : "flow__col"} key={column.kicker}>
@@ -57,7 +57,6 @@ export function Alpine() {
       <section className="section" id="proven">
         <div className="container company">
           <div className="company__copy" data-reveal>
-            <Eyebrow>{page.real.eyebrow}</Eyebrow>
             <h2 className="display-2">{page.real.title}</h2>
             <p className="company__para">{page.real.body}</p>
           </div>

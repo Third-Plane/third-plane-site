@@ -5,7 +5,6 @@ import { Showcase } from "../components/Showcase";
 import {
   Arrow,
   Button,
-  Eyebrow,
   SectionHead,
   Slash,
   TextLink,
@@ -24,7 +23,6 @@ export function Home() {
           <div className="hero__copy">
             <div data-reveal>
               <Slash className="hero__slash" />
-              <Eyebrow>{homeHero.eyebrow}</Eyebrow>
             </div>
             <h1 className="display-1" data-reveal style={delayStyle(1)}>
               {homeHero.title.map((line) => (

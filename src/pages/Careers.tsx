@@ -1,7 +1,7 @@
 import { careersPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { Arrow, Button, Eyebrow, SectionHead } from "../components/Ui";
+import { Arrow, Button, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -16,7 +16,7 @@ export function Careers() {
 
       <section className="section section--white" id="why">
         <div className="container">
-          <SectionHead eyebrow={page.why.eyebrow} title={page.why.title} />
+          <SectionHead title={page.why.title} />
           <div className="grid grid--4">
             {page.why.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
@@ -31,7 +31,6 @@ export function Careers() {
       <section className="section" id="how">
         <div className="container human">
           <div data-reveal>
-            <Eyebrow>{page.how.eyebrow}</Eyebrow>
             <h2 className="display-2">{page.how.title}</h2>
           </div>
           <ul className="human__list human__list--prose" data-reveal style={delayStyle(1)}>
@@ -44,7 +43,7 @@ export function Careers() {
 
       <section className="section section--blend" id="roles">
         <div className="container">
-          <SectionHead eyebrow={page.roles.eyebrow} title={page.roles.title} />
+          <SectionHead title={page.roles.title} />
           {page.roles.items.length ? (
             <ul className="roles" data-reveal>
               {page.roles.items.map((role) => (

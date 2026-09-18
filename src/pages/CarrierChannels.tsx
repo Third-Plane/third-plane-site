@@ -2,7 +2,7 @@ import { carrierChannelsPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { ParticleField } from "../components/ParticleField";
-import { Button, Eyebrow, SectionHead } from "../components/Ui";
+import { Button, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -19,7 +19,7 @@ export function CarrierChannels() {
 
       <section className="section section--white" id="channels">
         <div className="container">
-          <SectionHead eyebrow={page.channels.eyebrow} title={page.channels.title} />
+          <SectionHead title={page.channels.title} />
           <div className="grid grid--3">
             {page.channels.items.map((item, i) => (
               <article className="tier" data-reveal style={delayStyle(i)} key={item.title}>
@@ -36,7 +36,6 @@ export function CarrierChannels() {
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container human">
           <div data-reveal>
-            <Eyebrow dark>{page.identity.eyebrow}</Eyebrow>
             <h2 className="display-2">{page.identity.title}</h2>
             <p className="human__body">{page.identity.body}</p>
           </div>
@@ -50,7 +49,7 @@ export function CarrierChannels() {
 
       <section className="section section--blend" id="coverage">
         <div className="container">
-          <SectionHead eyebrow={page.coverage.eyebrow} title={page.coverage.title} body={page.coverage.body} />
+          <SectionHead title={page.coverage.title} body={page.coverage.body} />
         </div>
       </section>
 

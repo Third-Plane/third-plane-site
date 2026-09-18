@@ -2,7 +2,7 @@ import { companyPage as page, desk } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { ParticleField } from "../components/ParticleField";
-import { Button, Eyebrow, SectionHead } from "../components/Ui";
+import { Button, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -20,7 +20,6 @@ export function Company() {
       <section className="section section--white" id="origin">
         <div className="container company">
           <div className="company__copy" data-reveal>
-            <Eyebrow>{page.origin.eyebrow}</Eyebrow>
             <h2 className="display-2">{page.origin.title}</h2>
             {page.origin.body.map((paragraph) => (
               <p className="company__para" key={paragraph.slice(0, 20)}>
@@ -51,7 +50,7 @@ export function Company() {
 
       <section className="section" id="principles">
         <div className="container">
-          <SectionHead eyebrow={page.principles.eyebrow} title={page.principles.title} />
+          <SectionHead title={page.principles.title} />
           <div className="grid grid--3">
             {page.principles.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i % 3)} key={item.title}>
@@ -65,14 +64,13 @@ export function Company() {
 
       <section className="section section--blend" id="team">
         <div className="container">
-          <SectionHead eyebrow={page.team.eyebrow} title={page.team.title} body={page.team.body} />
+          <SectionHead title={page.team.title} body={page.team.body} />
         </div>
       </section>
 
       <section className="section" id="next">
         <div className="container">
           <div className="desk-next desk-next--page" data-reveal>
-            <Eyebrow>{desk.next.eyebrow}</Eyebrow>
             <p className="status-pill">{desk.next.status}</p>
             <h2 className="display-2">{desk.next.title}</h2>
             <p className="lead">{desk.next.body}</p>

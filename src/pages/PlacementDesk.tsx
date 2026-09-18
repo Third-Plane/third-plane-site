@@ -44,10 +44,7 @@ export function PlacementDesk() {
 
       <section className="section section--white" id="entry">
         <div className="container">
-          <SectionHead
-            eyebrow={placementDesk.entry.eyebrow}
-            title={placementDesk.entry.title}
-          />
+          <SectionHead title={placementDesk.entry.title} />
           <div className="grid grid--3">
             {placementDesk.entry.items.map((item, i) => (
               <article
@@ -95,10 +92,7 @@ export function PlacementDesk() {
 
       <section className="section section--white" id="scope">
         <div className="container">
-          <SectionHead
-            eyebrow={placementDesk.scope.eyebrow}
-            title={placementDesk.scope.title}
-          />
+          <SectionHead title={placementDesk.scope.title} />
           <div className="grid grid--2">
             {placementDesk.scope.tiers.map((tier, i) => (
               <article
@@ -118,10 +112,7 @@ export function PlacementDesk() {
 
       <section className="section section--blend" id="channels">
         <div className="container">
-          <SectionHead
-            eyebrow={placementDesk.channels.eyebrow}
-            title={placementDesk.channels.title}
-          />
+          <SectionHead title={placementDesk.channels.title} />
           <div className="grid grid--3">
             {placementDesk.channels.items.map((item, i) => (
               <article
@@ -146,7 +137,6 @@ export function PlacementDesk() {
       <section className="section" id="human">
         <div className="container human">
           <div data-reveal>
-            <Eyebrow>{placementDesk.human.eyebrow}</Eyebrow>
             <h2 className="display-2">{placementDesk.human.title}</h2>
           </div>
           <ul className="human__list" data-reveal style={delayStyle(1)}>
