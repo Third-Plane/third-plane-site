@@ -43,10 +43,10 @@ export function Security() {
         </div>
       </section>
 
-      <section className="section section--blend" id="data">
+      <section className="section section--white" id="data">
         <div className="container">
           <SectionHead eyebrow={page.data.eyebrow} title={page.data.title} />
-          <div className="grid grid--4">
+          <div className="grid grid--2">
             {page.data.items.map((item, i) => (
               <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
                 <h3 className="card__title">{item.title}</h3>

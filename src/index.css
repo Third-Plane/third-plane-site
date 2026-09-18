@@ -181,6 +181,15 @@ ol {
   box-shadow: none;
   transform: none;
 }
+#data .card {
+  border: 1px solid var(--line);
+  box-shadow: none;
+  padding: 1.35rem 1.5rem;
+}
+#data .card:hover {
+  box-shadow: none;
+  transform: none;
+}
 @media (width > 900px) {
   #problem .grid--3:has(> .card) {
     grid-template-rows: auto 1fr;
