@@ -23,7 +23,6 @@ export function Alpine() {
           <div className="grid grid--3">
             {page.layers.items.map((item, i) => (
               <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-                <span className="point__index">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="point__title">{item.title}</h3>
                 <p className="point__body">{item.body}</p>
               </article>
