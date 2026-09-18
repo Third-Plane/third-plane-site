@@ -843,14 +843,17 @@ export const integrationsPage = {
       {
         title: "Agency management systems",
         body: "Client and policy data read for the submission; activities, documents and results written back. Applied Epic, AMS360, Sagitta and others are configured per deployment.",
+        names: "Applied Epic, AMS360, Sagitta",
       },
       {
         title: "Document repositories",
         body: "Applications, loss runs, schedules and correspondence pulled from where they live today: ImageRight, SharePoint, shared drives.",
+        names: "ImageRight, SharePoint, shared drives",
       },
       {
         title: "Email and collaboration",
         body: "Outlook and Teams as both a source of work and the place results land, alongside the desk’s own inbox on your domain.",
+        names: "Outlook, Teams",
       },
       {
         title: "Carrier channels",

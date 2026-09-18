@@ -20,11 +20,21 @@ export function Integrations() {
       <section className="section section--white" id="systems">
         <div className="container">
           <SectionHead title={page.systems.title} />
-          <div className="grid grid--3">
-            {page.systems.items.map((item, i) => (
-              <article className="point" data-reveal style={delayStyle(i % 3)} key={item.title}>
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
+          <div className="fit">
+            {page.systems.items.slice(0, 3).map((item, i) => (
+              <article
+                className="fit__row"
+                data-reveal
+                style={delayStyle(i)}
+                key={item.title}
+              >
+                <div className="fit__sys">
+                  <h3 className="fit__label">{item.title}</h3>
+                  {item.names ? <p className="fit__names">{item.names}</p> : null}
+                </div>
+                <div className="fit__copy">
+                  <p className="fit__body">{item.body}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -35,12 +45,16 @@ export function Integrations() {
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
           <SectionHead dark title={page.how.title} />
-          <ol className="steps">
+          <ol className="process" data-reveal>
             {page.how.steps.map((step, i) => (
-              <li className="step" data-reveal style={delayStyle(i)} key={step.title}>
-                <span className="step__index">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="step__title">{step.title}</h3>
-                <p className="step__body">{step.body}</p>
+              <li className="process__node" key={step.title}>
+                <span className="process__index">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="process__title">{step.title}</h3>
+                  <p className="process__note">{step.body}</p>
+                </div>
               </li>
             ))}
           </ol>
