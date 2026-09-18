@@ -43,7 +43,7 @@ export function Security() {
         </div>
       </section>
 
-      <section className="section section--white" id="data">
+      <section className="section section--blend" id="data">
         <div className="container">
           <SectionHead eyebrow={page.data.eyebrow} title={page.data.title} />
           <div className="grid grid--2">
