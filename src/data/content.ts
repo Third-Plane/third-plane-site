@@ -334,7 +334,7 @@ export const primaryNav = {
     {
       label: "Products",
       items: [
-        { label: "The Placement Desk", href: "/placement-desk", note: "Available now", live: true },
+        { label: "Placement Desk", href: "/placement-desk", note: "Available now", live: true },
       ],
     },
     {
@@ -364,7 +364,7 @@ export const siteFooter = {
     {
       label: "Products",
       links: [
-        { label: "The Placement Desk", href: "/placement-desk" },
+        { label: "Placement Desk", href: "/placement-desk" },
       ],
     },
     {
