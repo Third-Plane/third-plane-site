@@ -15,7 +15,7 @@ export const homeHero = {
   title: ["Assign the work to AI.", "Keep the judgment with your people."],
   lead: aiWorkforceDefinition,
   body: "It starts with placement. Send the Placement Desk a submission or a renewal. Your team gets the markets, the quotes and a record of the work back.",
-  secondary: { label: "See Placement Desk", href: "/placement-desk" },
+  secondary: { label: "See the Placement Desk", href: "/placement-desk" },
   ledger: {
     label: "Placement Desk",
     sublabel: "Activity",
@@ -184,7 +184,7 @@ export const desk = {
   ],
   closing:
     "The desk works carriers on its own credentials, handles accounts in parallel, and applies the same standard whether the account sits with a new hire or your best producer.",
-  cta: { label: "See Placement Desk", href: "/placement-desk" },
+  cta: { label: "See the Placement Desk", href: "/placement-desk" },
   more: [
     { label: "Security", href: "/security" },
     { label: "About", href: "/company" },

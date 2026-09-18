@@ -13,7 +13,7 @@ export function CarrierChannels() {
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
         <Button variant="ghost" href="/placement-desk">
-          See Placement Desk
+          See the Placement Desk
         </Button>
       </PageHero>
 
