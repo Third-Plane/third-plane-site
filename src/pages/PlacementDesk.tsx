@@ -77,19 +77,16 @@ export function PlacementDesk() {
             eyebrow={placementDesk.work.eyebrow}
             title={placementDesk.work.title}
           />
-          <ol className="steps">
+          <ol className="process" data-reveal>
             {placementDesk.work.steps.map((step, i) => (
-              <li
-                className="step"
-                data-reveal
-                style={delayStyle(i % 4)}
-                key={step.title}
-              >
-                <span className="step__index">
+              <li className="process__node" key={step.title}>
+                <span className="process__index">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="step__title">{step.title}</h3>
-                <p className="step__body">{step.body}</p>
+                <div>
+                  <h3 className="process__title">{step.title}</h3>
+                  <p className="process__note">{step.body}</p>
+                </div>
               </li>
             ))}
           </ol>
