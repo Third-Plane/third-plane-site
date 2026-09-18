@@ -15,9 +15,9 @@ export const homeHero = {
   title: ["Assign the work to AI.", "Keep the judgment with your people."],
   lead: aiWorkforceDefinition,
   body: "It starts with placement. Send the Placement Desk a submission or a renewal. Your team gets the markets, the quotes and a record of the work back.",
-  secondary: { label: "See the Placement Desk", href: "/placement-desk" },
+  secondary: { label: "See Placement Desk", href: "/placement-desk" },
   ledger: {
-    label: "The Placement Desk",
+    label: "Placement Desk",
     sublabel: "Activity",
     legend: [
       { status: "done" as const, label: "Completed by the desk" },
@@ -163,7 +163,7 @@ export const approach = {
 };
 
 export const desk = {
-  name: "The Placement Desk",
+  name: "Placement Desk",
   eyebrow: "The Placement Desk",
   title: "Send the work to the Placement Desk. Your team gets the quotes back.",
   body: "A dedicated placement function staffed by AI workers. It takes defined placement work from request to returned market results, new business and renewals alike.",
@@ -184,7 +184,7 @@ export const desk = {
   ],
   closing:
     "The desk works carriers on its own credentials, handles accounts in parallel, and applies the same standard whether the account sits with a new hire or your best producer.",
-  cta: { label: "See the Placement Desk", href: "/placement-desk" },
+  cta: { label: "See Placement Desk", href: "/placement-desk" },
   more: [
     { label: "Security", href: "/security" },
     { label: "About", href: "/company" },
@@ -212,7 +212,7 @@ export const contact = {
 };
 
 export const placementDesk = {
-  crumb: "The Placement Desk",
+  crumb: "Placement Desk",
   title: ["A placement function", "you can send work to."],
   lead: "The Third Plane Placement Desk takes defined placement work from request to returned market results, across the systems and carrier channels your brokerage already uses.",
   body: "Your producers should not have to log into five carrier portals to find out which markets will quote an account. The desk does that work and returns the answer.",

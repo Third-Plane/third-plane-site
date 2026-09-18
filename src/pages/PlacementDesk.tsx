@@ -15,7 +15,7 @@ import { useTitle } from "../hooks/useTitle";
 const channelMarks = ["portal", "api", "mail"] as const;
 
 export function PlacementDesk() {
-  useTitle("The Placement Desk", placementDesk.lead);
+  useTitle("Placement Desk", placementDesk.lead);
   return (
     <>
       <section className="hero hero--page" id="top">
