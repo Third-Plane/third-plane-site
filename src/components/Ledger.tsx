@@ -50,7 +50,7 @@ export function Ledger({
   return (
     <figure
       className="ledger"
-      aria-label="Placement Desk activity: work received, worked across carrier channels, and returned to a person"
+      aria-label="The Placement Desk activity: work received, worked across carrier channels, and returned to a person"
     >
       <div className="ledger__head">
         <div>

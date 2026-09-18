@@ -17,7 +17,7 @@ export const homeHero = {
   body: "It starts with placement. Send the Placement Desk a submission or a renewal. Your team gets the markets, the quotes and a record of the work back.",
   secondary: { label: "See the Placement Desk", href: "/placement-desk" },
   ledger: {
-    label: "Placement Desk",
+    label: "The Placement Desk",
     sublabel: "Activity",
     legend: [
       { status: "done" as const, label: "Completed by the desk" },
@@ -163,7 +163,7 @@ export const approach = {
 };
 
 export const desk = {
-  name: "Placement Desk",
+  name: "The Placement Desk",
   eyebrow: "The Placement Desk",
   title: "Send the work to the Placement Desk. Your team gets the quotes back.",
   body: "A dedicated placement function staffed by AI workers. It takes defined placement work from request to returned market results, new business and renewals alike.",
@@ -212,7 +212,7 @@ export const contact = {
 };
 
 export const placementDesk = {
-  crumb: "Placement Desk",
+  crumb: "The Placement Desk",
   title: ["A placement function", "you can send work to."],
   lead: "The Third Plane Placement Desk takes defined placement work from request to returned market results, across the systems and carrier channels your brokerage already uses.",
   body: "Your producers should not have to log into five carrier portals to find out which markets will quote an account. The desk does that work and returns the answer.",
@@ -334,7 +334,7 @@ export const primaryNav = {
     {
       label: "Products",
       items: [
-        { label: "Placement Desk", href: "/placement-desk", note: "Available now", live: true },
+        { label: "The Placement Desk", href: "/placement-desk", note: "Available now", live: true },
       ],
     },
     {
@@ -364,7 +364,7 @@ export const siteFooter = {
     {
       label: "Products",
       links: [
-        { label: "Placement Desk", href: "/placement-desk" },
+        { label: "The Placement Desk", href: "/placement-desk" },
       ],
     },
     {
