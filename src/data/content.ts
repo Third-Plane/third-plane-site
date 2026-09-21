@@ -856,16 +856,16 @@ export const integrationsPage = {
         names: "Outlook, Teams",
       },
       {
+        title: "Data and reporting",
+        body: "Every action and outcome available to your data lake or reporting tools, so desk performance sits next to the rest of the business.",
+      },
+      {
         title: "Carrier channels",
         body: "Portals, APIs and underwriter email, worked by the desk directly. Covered in detail on the carrier channels page.",
       },
       {
         title: "Rating and policy systems",
         body: "For the Underwriting Desk: submissions from your intake systems, rating in your engine or by your rules, quotes back to your workbench.",
-      },
-      {
-        title: "Data and reporting",
-        body: "Every action and outcome available to your data lake or reporting tools, so desk performance sits next to the rest of the business.",
       },
     ],
   },

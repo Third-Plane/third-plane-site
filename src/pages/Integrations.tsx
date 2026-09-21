@@ -21,7 +21,7 @@ export function Integrations() {
         <div className="container">
           <SectionHead title={page.systems.title} />
           <div className="fit">
-            {page.systems.items.slice(0, 3).map((item, i) => (
+            {page.systems.items.slice(0, 4).map((item, i) => (
               <article
                 className="fit__row"
                 data-reveal
