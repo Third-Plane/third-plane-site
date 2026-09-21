@@ -203,8 +203,8 @@ export const horizon = {
 };
 
 export const contact = {
-  title: "Talk to us about placement capacity.",
-  body: "Tell us how placement runs in your business today. We will show you where a desk fits, what it would take on, and what your team would get back.",
+  title: "We will show you where a desk fits.",
+  body: "What it would take on, and what your team would get back.",
   meta: [
     "Built for brokerage leadership",
     "Deployed with your systems and carrier channels",

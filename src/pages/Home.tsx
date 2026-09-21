@@ -81,7 +81,6 @@ export function Home() {
       <section className="section" id="approach">
         <div className="container">
           <SectionHead
-            eyebrow={approach.eyebrow}
             title={approach.title}
             body={approach.body}
           />
