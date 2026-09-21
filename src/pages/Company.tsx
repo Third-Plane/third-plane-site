@@ -12,9 +12,6 @@ export function Company() {
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
-        <Button variant="ghost" href="/careers">
-          Careers
-        </Button>
       </PageHero>
 
       <section className="section section--white" id="origin">

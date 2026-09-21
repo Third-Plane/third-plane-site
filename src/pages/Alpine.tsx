@@ -12,9 +12,6 @@ export function Alpine() {
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
-        <Button variant="ghost" href="/security">
-          Security and governance
-        </Button>
       </PageHero>
 
       <section className="section section--white" id="layers">

@@ -12,9 +12,6 @@ export function Integrations() {
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
-        <Button variant="ghost" href="/platform">
-          How a desk is governed
-        </Button>
       </PageHero>
 
       <section className="section section--white" id="systems">
