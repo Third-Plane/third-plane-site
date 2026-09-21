@@ -214,8 +214,14 @@ export const contact = {
 export const placementDesk = {
   crumb: "Placement Desk",
   title: ["A placement function", "you can send work to."],
-  lead: "The Third Plane Placement Desk takes defined placement work from request to returned market results, across the systems and carrier channels your brokerage already uses.",
-  body: "Your producers should not have to log into five carrier portals to find out which markets will quote an account. The desk does that work and returns the answer.",
+  problem:
+    "Your producers should not have to log into five carrier portals to find out which markets will quote an account. The desk does that work and returns the answer.",
+  does: "The Third Plane Placement Desk takes defined placement work from request to returned market results, across the systems and carrier channels your brokerage already uses.",
+  real: {
+    claim:
+      "We built and ran QuoteWell, a wholesale brokerage, before we built Third Plane.",
+    body: "We used AI inside that brokerage before we offered it to anyone else.",
+  },
   entry: {
     eyebrow: "How work enters",
     title: "The desk meets the work where it already is.",
@@ -307,6 +313,11 @@ export const placementDesk = {
     ],
     note: "Channel coverage is configured per deployment, market by market.",
     link: { label: "More on carrier channels", href: "/carrier-channels" },
+  },
+  systems: {
+    title: "Your systems as they are.",
+    body: "No new system of record, no second login for producers, no migration. Integration is part of deploying a desk, not a project you run first.",
+    link: { label: "More on system integrations", href: "/integrations" },
   },
   human: {
     eyebrow: "What stays with your people",

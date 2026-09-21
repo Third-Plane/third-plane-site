@@ -15,7 +15,7 @@ import { useTitle } from "../hooks/useTitle";
 const channelMarks = ["portal", "api", "mail"] as const;
 
 export function PlacementDesk() {
-  useTitle("Placement Desk", placementDesk.lead);
+  useTitle("Placement Desk", placementDesk.problem);
   return (
     <>
       <section className="hero hero--page" id="top">
@@ -31,32 +31,13 @@ export function PlacementDesk() {
             ))}
           </h1>
           <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
-            {placementDesk.lead}
+            {placementDesk.problem}
           </p>
           <p className="hero__body" data-reveal style={delayStyle(3)}>
-            {placementDesk.body}
+            {placementDesk.does}
           </p>
           <div className="hero__actions" data-reveal style={delayStyle(4)}>
             <Button variant="dark">{placementDesk.cta.label}</Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--white" id="entry">
-        <div className="container">
-          <SectionHead title={placementDesk.entry.title} />
-          <div className="grid grid--3">
-            {placementDesk.entry.items.map((item, i) => (
-              <article
-                className="point"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>
@@ -69,17 +50,10 @@ export function PlacementDesk() {
           density={0.8}
         />
         <div className="container">
-          <SectionHead
-            dark
-            eyebrow={placementDesk.work.eyebrow}
-            title={placementDesk.work.title}
-          />
+          <SectionHead dark title={placementDesk.work.title} />
           <ol className="process" data-reveal>
-            {placementDesk.work.steps.map((step, i) => (
+            {placementDesk.work.steps.map((step) => (
               <li className="process__node" key={step.title}>
-                <span className="process__index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 <div>
                   <h3 className="process__title">{step.title}</h3>
                   <p className="process__note">{step.body}</p>
@@ -87,26 +61,9 @@ export function PlacementDesk() {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      <section className="section section--white" id="scope">
-        <div className="container">
-          <SectionHead title={placementDesk.scope.title} />
-          <div className="grid grid--2">
-            {placementDesk.scope.tiers.map((tier, i) => (
-              <article
-                className="tier"
-                data-reveal
-                style={delayStyle(i)}
-                key={tier.title}
-              >
-                <p className="tier__kicker">{tier.kicker}</p>
-                <h3 className="tier__title">{tier.title}</h3>
-                <p className="tier__body">{tier.body}</p>
-              </article>
-            ))}
-          </div>
+          <p className="proof" data-reveal>
+            {placementDesk.real.claim} {placementDesk.real.body}
+          </p>
         </div>
       </section>
 
@@ -129,7 +86,23 @@ export function PlacementDesk() {
           </div>
           <div className="flow__foot" data-reveal>
             <p className="footnote">{placementDesk.channels.note}</p>
-            <TextLink href={placementDesk.channels.link.href}>{placementDesk.channels.link.label}</TextLink>
+            <TextLink href={placementDesk.channels.link.href}>
+              {placementDesk.channels.link.label}
+            </TextLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--white" id="systems">
+        <div className="container coverage">
+          <h2 className="display-2" data-reveal>
+            {placementDesk.systems.title}
+          </h2>
+          <div data-reveal style={delayStyle(1)}>
+            <p className="lead">{placementDesk.systems.body}</p>
+            <TextLink href={placementDesk.systems.link.href}>
+              {placementDesk.systems.link.label}
+            </TextLink>
           </div>
         </div>
       </section>
