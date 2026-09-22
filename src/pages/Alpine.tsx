@@ -1,7 +1,7 @@
 import { alpinePage as page, securityPage } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { Button, TextLink } from "../components/Ui";
+import { TextLink } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -13,9 +13,7 @@ export function Alpine() {
   useTitle("Platform", page.lead);
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} body={page.body}>
-        <Button variant="dark" />
-      </PageHero>
+      <PageHero title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="proven">
         <div className="container company">

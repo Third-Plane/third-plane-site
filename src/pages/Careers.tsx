@@ -1,7 +1,7 @@
 import { careersPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { Arrow, Button, SectionHead } from "../components/Ui";
+import { Arrow, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -14,10 +14,7 @@ export function Careers() {
         crumb={page.crumb}
         title={page.title}
         lead={page.lead}
-        body={page.body}
-      >
-        <Button variant="dark" />
-      </PageHero>
+      />
 
       <section className="section section--white" id="why">
         <div className="container">

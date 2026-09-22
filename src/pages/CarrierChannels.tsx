@@ -2,7 +2,7 @@ import { carrierChannelsPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { ParticleField } from "../components/ParticleField";
-import { Button, SectionHead } from "../components/Ui";
+import { SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -10,9 +10,7 @@ export function CarrierChannels() {
   useTitle("Carrier channels", page.lead);
   return (
     <>
-      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
-        <Button variant="dark" />
-      </PageHero>
+      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="channels">
         <div className="container">
