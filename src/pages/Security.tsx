@@ -10,7 +10,13 @@ export function Security() {
   useTitle("Security and governance", page.lead);
   return (
     <>
-      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
+      <PageHero
+        crumb={page.crumb}
+        title={page.title}
+        lead={page.lead}
+        body={page.body}
+        leadFirst
+      >
         <Button variant="dark" />
       </PageHero>
 

@@ -3,8 +3,6 @@ import { Eyebrow, Slash } from "./Ui";
 import { ParticleField } from "./ParticleField";
 import { delayStyle } from "../lib/style";
 
-// The single-column opener every inner page uses: crumb, two-line title,
-// purple lead, body, and whatever actions the page wants.
 export function PageHero({
   crumb,
   status,
@@ -12,31 +10,75 @@ export function PageHero({
   lead,
   body,
   children,
+  slash = false,
+  stacked = false,
+  leadFirst = false,
 }: {
-  crumb: string;
+  crumb?: string;
   status?: string;
   title: string[];
   lead: string;
   body?: string;
   children?: ReactNode;
+  slash?: boolean;
+  stacked?: boolean;
+  leadFirst?: boolean;
 }) {
+  const heading = stacked ? (
+    <h1 className="display-1" data-reveal style={delayStyle(leadFirst ? 2 : 1)}>
+      {title.map((line) => (
+        <span key={line}>{line}</span>
+      ))}
+    </h1>
+  ) : (
+    <h1
+      className="display-1 display-1--inline"
+      data-reveal
+      style={delayStyle(leadFirst ? 2 : 1)}
+    >
+      {title.join(" ")}
+    </h1>
+  );
+
+  const leadEl = (
+    <p
+      className="lead hero__lead"
+      data-reveal
+      style={delayStyle(leadFirst ? 1 : 2)}
+    >
+      {lead}
+    </p>
+  );
+
+  const chrome = slash || crumb || status;
+
   return (
-    <section className="hero hero--page" id="top">
+    <section
+      className={
+        leadFirst ? "hero hero--page hero--lead-first" : "hero hero--page"
+      }
+      id="top"
+    >
       <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
       <div className="container hero__page-copy">
-        <div data-reveal className="hero__crumbs">
-          <Slash className="hero__slash" />
-          <Eyebrow>{crumb}</Eyebrow>
-          {status ? <span className="status-pill">{status}</span> : null}
-        </div>
-        <h1 className="display-1" data-reveal style={delayStyle(1)}>
-          {title.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
-        </h1>
-        <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
-          {lead}
-        </p>
+        {chrome ? (
+          <div data-reveal className="hero__crumbs">
+            {slash ? <Slash className="hero__slash" /> : null}
+            {crumb ? <Eyebrow>{crumb}</Eyebrow> : null}
+            {status ? <span className="status-pill">{status}</span> : null}
+          </div>
+        ) : null}
+        {leadFirst ? (
+          <>
+            {leadEl}
+            {heading}
+          </>
+        ) : (
+          <>
+            {heading}
+            {leadEl}
+          </>
+        )}
         {body ? (
           <p className="hero__body" data-reveal style={delayStyle(3)}>
             {body}

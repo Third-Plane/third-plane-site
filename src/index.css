@@ -1860,14 +1860,20 @@ ol {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 .hero__crumbs .eyebrow {
   margin-bottom: 0;
 }
-.hero__crumbs .slash {
+.hero__crumbs .hero__slash {
   width: 44px;
   height: 28px;
+  margin-bottom: 0;
+}
+.hero--lead-first .hero__lead {
+  margin-top: 0;
+  margin-bottom: 1.15rem;
 }
 .status-pill {
   display: inline-block;

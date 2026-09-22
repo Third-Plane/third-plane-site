@@ -9,7 +9,14 @@ export function Careers() {
   useTitle("Careers", page.lead);
   return (
     <>
-      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
+      <PageHero
+        slash
+        stacked
+        crumb={page.crumb}
+        title={page.title}
+        lead={page.lead}
+        body={page.body}
+      >
         <Button variant="dark" />
       </PageHero>
 

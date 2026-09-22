@@ -10,7 +10,7 @@ export function Integrations() {
   useTitle("System integrations", page.lead);
   return (
     <>
-      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
+      <PageHero title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
       </PageHero>
 

@@ -1,12 +1,11 @@
 import { desk, placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
+import { PageHero } from "../components/PageHero";
 import {
   Arrow,
   Button,
   CardMark,
-  Eyebrow,
   SectionHead,
-  Slash,
   TextLink,
 } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
@@ -35,29 +34,14 @@ export function PlacementDesk() {
   useTitle("Placement Desk", placementDesk.problem);
   return (
     <>
-      <section className="hero hero--page" id="top">
-        <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
-        <div className="container hero__page-copy">
-          <div data-reveal>
-            <Slash className="hero__slash" />
-            <Eyebrow>{placementDesk.crumb}</Eyebrow>
-          </div>
-          <h1 className="display-1" data-reveal style={delayStyle(1)}>
-            {placementDesk.title.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </h1>
-          <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
-            {placementDesk.problem}
-          </p>
-          <p className="hero__body" data-reveal style={delayStyle(3)}>
-            {placementDesk.does}
-          </p>
-          <div className="hero__actions" data-reveal style={delayStyle(4)}>
-            <Button variant="dark">{placementDesk.cta.label}</Button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        crumb={placementDesk.crumb}
+        title={placementDesk.title}
+        lead={placementDesk.problem}
+        body={placementDesk.does}
+      >
+        <Button variant="dark">{placementDesk.cta.label}</Button>
+      </PageHero>
 
       <section className="section section--deep" id="work">
         <ParticleField
