@@ -1,6 +1,7 @@
-import { placementDesk } from "../data/content";
+import { desk, placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
 import {
+  Arrow,
   Button,
   CardMark,
   Eyebrow,
@@ -13,6 +14,22 @@ import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
 const channelMarks = ["portal", "api", "mail"] as const;
+
+const workflow = [
+  {
+    kicker: desk.columns[0].kicker,
+    items: placementDesk.work.steps.slice(0, 2),
+  },
+  {
+    kicker: desk.columns[1].kicker,
+    accent: true,
+    items: placementDesk.work.steps.slice(2, 6),
+  },
+  {
+    kicker: desk.columns[2].kicker,
+    items: placementDesk.work.steps.slice(6),
+  },
+];
 
 export function PlacementDesk() {
   useTitle("Placement Desk", placementDesk.problem);
@@ -51,16 +68,27 @@ export function PlacementDesk() {
         />
         <div className="container">
           <SectionHead dark title={placementDesk.work.title} />
-          <ol className="process" data-reveal>
-            {placementDesk.work.steps.map((step) => (
-              <li className="process__node" key={step.title}>
-                <div>
-                  <h3 className="process__title">{step.title}</h3>
-                  <p className="process__note">{step.body}</p>
-                </div>
-              </li>
+          <div className="flow flow--dark" data-reveal>
+            {workflow.map((stage, i) => (
+              <div
+                className={
+                  stage.accent ? "flow__col flow__col--accent" : "flow__col"
+                }
+                key={stage.kicker}
+              >
+                {i > 0 ? <Arrow className="flow__arrow" /> : null}
+                <p className="flow__kicker">{stage.kicker}</p>
+                <ul className="flow__list">
+                  {stage.items.map((step) => (
+                    <li key={step.title}>
+                      <p className="flow__item-title">{step.title}</p>
+                      <p className="flow__item-body">{step.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ol>
+          </div>
           <p className="proof" data-reveal>
             {placementDesk.real.claim} {placementDesk.real.body}
           </p>

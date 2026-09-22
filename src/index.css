@@ -1918,6 +1918,50 @@ ol {
   background: var(--deep);
   color: var(--pink);
 }
+#work .flow {
+  margin-top: 0.25rem;
+}
+#work .flow__kicker {
+  margin-bottom: 0.85rem;
+}
+#work .flow__list {
+  gap: 0;
+}
+#work .flow__list li {
+  padding: 0.85rem 0;
+  padding-left: 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+#work .flow__list li:first-child {
+  padding-top: 0;
+}
+#work .flow__list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+#work .flow__list li:before {
+  content: none;
+}
+#work .flow__item-title {
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--on-dark);
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+#work .flow__item-body {
+  color: var(--on-dark-muted);
+  text-wrap: pretty;
+  margin: 0.3rem 0 0;
+  font-size: 1rem;
+}
+#work .flow__col--accent .flow__item-title {
+  color: var(--on-dark);
+}
+#work .flow__col--accent .flow__item-body {
+  color: var(--on-dark-muted);
+}
 .footnote--dark {
   color: var(--on-dark-faint);
 }
