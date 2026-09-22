@@ -737,6 +737,18 @@ ol {
   color: var(--ink-body);
   text-wrap: pretty;
 }
+#why .section-head {
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+#why .grid--4 {
+  column-gap: clamp(1.5rem, 3vw, 2.5rem);
+  row-gap: 2rem;
+  align-items: start;
+}
+#why .point__title {
+  margin-bottom: 0.55rem;
+  font-size: 1.2rem;
+}
 @media (width > 900px) {
   .grid--3:has(> .point) {
     grid-template-rows: auto auto 1fr;
@@ -747,13 +759,11 @@ ol {
     grid-template-rows: subgrid;
     grid-row: span 3;
   }
-  .grid--4:has(> .card),
-  .grid--4:has(> .point) {
+  .grid--4:has(> .card) {
     grid-template-rows: auto 1fr;
     align-items: start;
   }
-  .grid--4 > .card,
-  .grid--4 > .point {
+  .grid--4 > .card {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 2;
@@ -1217,6 +1227,12 @@ ol {
 }
 .split__col {
   padding-top: 1.5rem;
+}
+.split__col .display-2 {
+  margin-bottom: 1.25rem;
+}
+.split__col .company__facts {
+  border-top: 0;
 }
 .split__col + .split__col {
   border-left: 1px solid var(--line-soft);
@@ -1904,6 +1920,41 @@ ol {
 }
 .footnote--dark {
   color: var(--on-dark-faint);
+}
+
+.audit {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-dark);
+}
+.audit__row {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.38fr) minmax(0, 1fr);
+  gap: 1rem 2.5rem;
+  padding: 1.45rem 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+.audit__title {
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--on-dark);
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+.audit__body {
+  color: var(--on-dark-muted);
+  text-wrap: pretty;
+  margin: 0;
+  max-width: 62ch;
+}
+@media (width<=760px) {
+  .audit__row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
 }
 
 /* Team photo, or its placeholder until one is supplied */

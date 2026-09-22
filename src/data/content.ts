@@ -488,23 +488,32 @@ export const securityPage = {
   body: "Governance is not a layer added after the desk works. It is how the desk is allowed to work at all.",
   authority: {
     eyebrow: "Authority",
-    title: "An AI worker can execute. It is never the principal.",
-    items: [
+    sides: [
       {
-        title: "Scoped authority",
-        body: "Every action a desk takes runs under a defined scope of authority that names what it may do, on which accounts and channels, and for how long.",
+        title: "An AI worker can execute.",
+        items: [
+          {
+            title: "Scoped authority",
+            body: "Every action a desk takes runs under a defined scope of authority that names what it may do, on which accounts and channels, and for how long.",
+          },
+          {
+            title: "Time-bounded and revocable",
+            body: "That authority expires and can be withdrawn at any time. Access can be narrowed without stopping the work that remains in scope.",
+          },
+        ],
       },
       {
-        title: "Time-bounded and revocable",
-        body: "That authority expires and can be withdrawn at any time. Access can be narrowed without stopping the work that remains in scope.",
-      },
-      {
-        title: "A named person, always",
-        body: "Accountability attaches to a human supervisor for every desk. The same rules apply to people and AI workers alike.",
-      },
-      {
-        title: "Review points you set",
-        body: "Where a decision should stay human, the desk stops and returns the work. Those points are configured to your controls, not ours.",
+        title: "It is never the principal.",
+        items: [
+          {
+            title: "A named person, always",
+            body: "Accountability attaches to a human supervisor for every desk. The same rules apply to people and AI workers alike.",
+          },
+          {
+            title: "Review points you set",
+            body: "Where a decision should stay human, the desk stops and returns the work. Those points are configured to your controls, not ours.",
+          },
+        ],
       },
     ],
   },

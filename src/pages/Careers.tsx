@@ -11,7 +11,6 @@ export function Careers() {
     <>
       <PageHero crumb={page.crumb} title={page.title} lead={page.lead} body={page.body}>
         <Button variant="dark" />
-        <Button variant="ghost">Write to us</Button>
       </PageHero>
 
       <section className="section section--white" id="why">

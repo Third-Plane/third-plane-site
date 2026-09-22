@@ -16,27 +16,48 @@ export function Security() {
 
       <section className="section section--white" id="authority">
         <div className="container">
-          <SectionHead title={page.authority.title} />
-          <div className="grid grid--4">
-            {page.authority.items.map((item, i) => (
-              <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
+          <div className="split">
+            {page.authority.sides.map((side, i) => (
+              <div
+                className="split__col"
+                data-reveal
+                style={delayStyle(i)}
+                key={side.title}
+              >
+                <h2 className="display-2">{side.title}</h2>
+                <ul className="company__facts">
+                  {side.items.map((item) => (
+                    <li key={item.title}>
+                      <h3>{item.title}</h3>
+                      <p>{item.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       <section className="section section--deep" id="record">
-        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
+        <ParticleField
+          className="section__particles"
+          tone="cream"
+          alpha={0.75}
+          density={0.8}
+        />
         <div className="container">
           <SectionHead dark title={page.record.title} />
-          <ol className="steps steps--3">
+          <ol className="audit">
             {page.record.items.map((item, i) => (
-              <li className="step" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="step__title">{item.title}</h3>
-                <p className="step__body">{item.body}</p>
+              <li
+                className="audit__row"
+                data-reveal
+                style={delayStyle(i)}
+                key={item.title}
+              >
+                <p className="audit__title">{item.title}</p>
+                <p className="audit__body">{item.body}</p>
               </li>
             ))}
           </ol>
@@ -44,27 +65,16 @@ export function Security() {
       </section>
 
       <section className="section section--blend" id="data">
-        <div className="container">
-          <SectionHead title={page.data.title} />
-          <div className="grid grid--2">
-            {page.data.items.map((item, i) => (
-              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="card__title">{item.title}</h3>
-                <p className="card__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="human">
-        <div className="container human">
-          <div data-reveal>
-            <h2 className="display-2">{page.human.title}</h2>
-          </div>
-          <ul className="human__list" data-reveal style={delayStyle(1)}>
-            {page.human.items.map((item) => (
-              <li key={item}>{item}</li>
+        <div className="container coverage">
+          <h2 className="display-2" data-reveal>
+            {page.data.title}
+          </h2>
+          <ul className="company__facts" data-reveal style={delayStyle(1)}>
+            {page.data.items.map((item) => (
+              <li key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </li>
             ))}
           </ul>
         </div>
