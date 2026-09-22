@@ -1,10 +1,13 @@
-import { alpinePage as page } from "../data/content";
+import { alpinePage as page, securityPage } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { ParticleField } from "../components/ParticleField";
-import { Arrow, Button, SectionHead } from "../components/Ui";
+import { Button, TextLink } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
+
+const delivery = page.real.facts.filter(
+  (fact) => fact.title !== "Every action recorded",
+);
 
 export function Alpine() {
   useTitle("Platform", page.lead);
@@ -14,51 +17,15 @@ export function Alpine() {
         <Button variant="dark" />
       </PageHero>
 
-      <section className="section section--white" id="layers">
-        <div className="container">
-          <SectionHead title={page.layers.title} />
-          <div className="grid grid--3">
-            {page.layers.items.map((item, i) => (
-              <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--deep" id="architecture">
-        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-        <div className="container">
-          <SectionHead dark title={page.architecture.title} />
-          <div className="flow flow--dark" data-reveal>
-            {page.architecture.columns.map((column, i) => (
-              <div className={column.accent ? "flow__col flow__col--accent" : "flow__col"} key={column.kicker}>
-                {i > 0 ? <Arrow className="flow__arrow" /> : null}
-                <p className="flow__kicker">{column.kicker}</p>
-                <ul className="flow__list">
-                  {column.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <p className="footnote footnote--dark" data-reveal>
-            {page.architecture.note}
-          </p>
-        </div>
-      </section>
-
-      <section className="section" id="proven">
+      <section className="section section--white" id="proven">
         <div className="container company">
           <div className="company__copy" data-reveal>
             <h2 className="display-2">{page.real.title}</h2>
             <p className="company__para">{page.real.body}</p>
+            <TextLink href="/security">{securityPage.crumb}</TextLink>
           </div>
           <ul className="company__facts" data-reveal style={delayStyle(1)}>
-            {page.real.facts.map((fact) => (
+            {delivery.map((fact) => (
               <li key={fact.title}>
                 <h3>{fact.title}</h3>
                 <p>{fact.body}</p>
