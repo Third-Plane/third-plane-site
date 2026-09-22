@@ -826,16 +826,6 @@ export const carrierChannelsPage = {
       },
     ],
   },
-  identity: {
-    eyebrow: "The desk’s own identity",
-    title: "Its own credentials, not your producers’.",
-    body: "A desk operates under its own portal logins and its own email address. That is what lets it work carriers without a person sitting beside it, present a single consistent counterparty to every market, and leave a record that is attributable to the desk rather than to whichever producer happened to be logged in.",
-    points: [
-      "Portal credentials issued to the desk and scoped to the markets in play",
-      "An email address on your domain, monitored and worked by the desk",
-      "Every submission, follow-up and quote attributed and recorded",
-    ],
-  },
   coverage: {
     eyebrow: "Coverage",
     title: "Configured market by market.",

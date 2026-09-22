@@ -1,7 +1,6 @@
 import { carrierChannelsPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { ParticleField } from "../components/ParticleField";
 import { SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
@@ -24,21 +23,6 @@ export function CarrierChannels() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section section--deep" id="identity">
-        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-        <div className="container human">
-          <div data-reveal>
-            <h2 className="display-2">{page.identity.title}</h2>
-            <p className="human__body">{page.identity.body}</p>
-          </div>
-          <ul className="human__list human__list--dark" data-reveal style={delayStyle(1)}>
-            {page.identity.points.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
         </div>
       </section>
 
