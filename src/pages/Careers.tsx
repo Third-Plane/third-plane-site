@@ -11,7 +11,6 @@ export function Careers() {
     <>
       <PageHero
         slash
-        stacked
         crumb={page.crumb}
         title={page.title}
         lead={page.lead}

@@ -36,7 +36,8 @@ export function PageHero({
       data-reveal
       style={delayStyle(leadFirst ? 2 : 1)}
     >
-      {title.join(" ")}
+      {title[0]}{" "}
+      <span>{title.slice(1).join(" ")}</span>
     </h1>
   );
 
