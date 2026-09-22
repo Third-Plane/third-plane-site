@@ -707,7 +707,7 @@ export const careersPage = {
     eyebrow: "Open roles",
     title: "Roles we are hiring for.",
     empty:
-      "No open roles are listed right now. If you know insurance operations or build AI systems that do real work, and want to work on this, write to us anyway.",
+      "No open roles are listed right now. If you know insurance operations or build AI systems that do real work and want to work on this, write to us anyway.",
     items: [] as Array<{ title: string; team: string; location: string; href: string }>,
   },
   cta: {
