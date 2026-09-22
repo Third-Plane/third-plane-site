@@ -744,13 +744,8 @@ ol {
 #why .section-head {
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
-#why .grid--4 {
-  column-gap: clamp(1.5rem, 3vw, 2.5rem);
-  row-gap: 2rem;
-  align-items: start;
-}
-#why .point__title {
-  margin-bottom: 0.55rem;
+#why .company__facts {
+  max-width: 62ch;
 }
 @media (width > 900px) {
   .grid--3:has(> .point) {

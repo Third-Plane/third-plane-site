@@ -22,14 +22,14 @@ export function Careers() {
       <section className="section section--white" id="why">
         <div className="container">
           <SectionHead title={page.why.title} />
-          <div className="grid grid--4">
-            {page.why.items.map((item, i) => (
-              <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
+          <ul className="company__facts" data-reveal>
+            {page.why.items.map((item) => (
+              <li key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
