@@ -32,6 +32,8 @@
   --shadow: 0 10px 30px #2d1f5714;
   --shadow-lg: 0 30px 80px #2d1f5724;
   --type-xs: 0.875rem;
+  --type-sm: 1rem;
+  --type-md: 1.25rem;
 }
 *,
 :before,
@@ -229,6 +231,7 @@ ol {
   color: var(--ink-body);
   text-wrap: pretty;
   margin: 0;
+  font-size: var(--type-sm);
 }
 #systems .fit__sys {
   display: grid;
@@ -250,7 +253,7 @@ ol {
 .footnote {
   color: var(--ink-muted);
   margin-top: 2rem;
-  font-size: 0.9rem;
+  font-size: var(--type-sm);
 }
 .btn {
   border-radius: var(--pill);
@@ -730,12 +733,13 @@ ol {
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 0.75rem;
-  font-size: 1.35rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 .point__body {
   color: var(--ink-body);
   text-wrap: pretty;
+  font-size: var(--type-sm);
 }
 #why .section-head {
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
@@ -747,7 +751,6 @@ ol {
 }
 #why .point__title {
   margin-bottom: 0.55rem;
-  font-size: 1.2rem;
 }
 @media (width > 900px) {
   .grid--3:has(> .point) {
@@ -850,14 +853,14 @@ ol {
   color: var(--ink);
   text-wrap: balance;
   margin-bottom: 0.75rem;
-  font-size: 1.3rem;
+  font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.2;
 }
 .card__body {
   color: var(--ink-body);
   text-wrap: pretty;
-  font-size: 1rem;
+  font-size: var(--type-sm);
 }
 .card__kicker {
   letter-spacing: 0.08em;
@@ -887,6 +890,7 @@ ol {
   color: var(--on-dark-muted);
   text-wrap: pretty;
   max-width: 62ch;
+  font-size: var(--type-sm);
 }
 .models {
   gap: var(--gap);
@@ -969,7 +973,7 @@ ol {
   max-width: 64ch;
   color: var(--ink-body);
   margin-top: 1.25rem;
-  font-size: 1rem;
+  font-size: var(--type-sm);
 }
 .model--accent .model__note {
   color: #ffffffe0;
@@ -1003,12 +1007,12 @@ ol {
   letter-spacing: -0.02em;
   color: var(--on-dark);
   margin-bottom: 0.4rem;
-  font-size: 1.1rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 .definition__list p {
   color: var(--on-dark-muted);
-  font-size: 0.925rem;
+  font-size: var(--type-sm);
 }
 @media (width<=1200px) {
   .definition__list {
@@ -1074,7 +1078,7 @@ ol {
   margin: 0;
   color: var(--ink);
   text-wrap: pretty;
-  font-size: 1.05rem;
+  font-size: var(--type-sm);
 }
 .flow__col--accent .flow__line,
 .flow--dark .flow__line {
@@ -1273,6 +1277,7 @@ ol {
   text-wrap: pretty;
   padding-left: 1.35rem;
   position: relative;
+  font-size: var(--type-sm);
 }
 .split__list li:before {
   content: "";
@@ -1332,12 +1337,12 @@ ol {
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 0.35rem;
-  font-size: 1.15rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 .company__facts p {
   color: var(--ink-body);
-  font-size: 0.975rem;
+  font-size: var(--type-sm);
 }
 @media (width<=860px) {
   .company {
@@ -1400,13 +1405,13 @@ ol {
   letter-spacing: -0.02em;
   color: var(--on-dark);
   margin-bottom: 0.6rem;
-  font-size: 1.25rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 .step__body {
   color: var(--on-dark-muted);
   text-wrap: pretty;
-  font-size: 0.95rem;
+  font-size: var(--type-sm);
 }
 @media (width > 1020px) {
   .steps {
@@ -1497,7 +1502,7 @@ ol {
   letter-spacing: -0.02em;
   color: var(--on-dark);
   margin: 0;
-  font-size: 1.05rem;
+  font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.25;
 }
@@ -1597,7 +1602,7 @@ ol {
   letter-spacing: -0.02em;
   color: var(--ink);
   padding: 1.5rem 0;
-  font-size: 1.3rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 @media (width<=860px) {
@@ -1629,7 +1634,7 @@ ol {
   color: var(--on-dark-muted);
   text-wrap: pretty;
   margin-top: 1.25rem;
-  font-size: 1.05rem;
+  font-size: var(--type-sm);
 }
 .cta__actions {
   flex-wrap: wrap;
@@ -1697,7 +1702,7 @@ ol {
 .footer__tagline {
   color: var(--on-dark-muted);
   margin-top: 1rem;
-  font-size: 0.95rem;
+  font-size: var(--type-sm);
 }
 .footer__legal {
   color: var(--on-dark-faint);
@@ -1891,7 +1896,7 @@ ol {
 
 .human__list--prose li {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: var(--type-sm);
   letter-spacing: 0;
   font-weight: 400;
   color: var(--ink-body);
@@ -1947,14 +1952,14 @@ ol {
   letter-spacing: -0.02em;
   color: var(--on-dark);
   margin: 0;
-  font-size: 1.05rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 #work .flow__item-body {
   color: var(--on-dark-muted);
   text-wrap: pretty;
   margin: 0.3rem 0 0;
-  font-size: 1rem;
+  font-size: var(--type-sm);
 }
 #work .flow__col--accent .flow__item-title {
   color: var(--on-dark);
@@ -1984,7 +1989,7 @@ ol {
   letter-spacing: -0.02em;
   color: var(--on-dark);
   margin: 0;
-  font-size: 1.2rem;
+  font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.25;
 }
@@ -1993,6 +1998,7 @@ ol {
   text-wrap: pretty;
   margin: 0;
   max-width: 62ch;
+  font-size: var(--type-sm);
 }
 @media (width<=760px) {
   .audit__row {
@@ -2057,7 +2063,7 @@ ol {
 .role__title {
   font-family: var(--font-head);
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: var(--type-md);
   letter-spacing: -0.02em;
 }
 .role__meta {
@@ -2071,7 +2077,7 @@ ol {
 }
 .roles__empty {
   max-width: 60ch;
-  font-size: 1.1rem;
+  font-size: var(--type-sm);
   color: var(--ink);
 }
 
@@ -2149,7 +2155,7 @@ ol {
 }
 .post-card__standfirst {
   color: var(--ink-body);
-  font-size: 0.975rem;
+  font-size: var(--type-sm);
 }
 .post-card__more {
   display: inline-flex;
@@ -2271,7 +2277,7 @@ ol {
   display: grid;
   gap: 0.6rem;
   align-content: start;
-  font-size: 0.95rem;
+  font-size: var(--type-sm);
   color: var(--on-dark);
 }
 .footer__column a {
