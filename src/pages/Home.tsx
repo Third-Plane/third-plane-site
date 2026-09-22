@@ -26,10 +26,13 @@ export function Home() {
               <Slash className="hero__slash" />
               <Eyebrow>{homeHero.eyebrow}</Eyebrow>
             </div>
-            <h1 className="display-1" data-reveal style={delayStyle(1)}>
-              {homeHero.title.map((line) => (
-                <span key={line}>{line}</span>
-              ))}
+            <h1
+              className="display-1 display-1--inline"
+              data-reveal
+              style={delayStyle(1)}
+            >
+              <span className="display-1__plain">{homeHero.title[0]}</span>{" "}
+              <span>{homeHero.title[1]}</span>
             </h1>
             <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
               {homeHero.lead}
@@ -54,23 +57,19 @@ export function Home() {
 
       <section className="section section--white" id="problem">
         <div className="container">
-          <SectionHead
-            eyebrow={problem.eyebrow}
-            title={problem.title}
-            body={problem.body}
-          />
-          <div className="grid grid--3">
-            {problem.points.map((point, i) => (
-              <article
-                className="card"
-                data-reveal
-                style={delayStyle(i)}
-                key={point.title}
-              >
-                <h3 className="card__title">{point.title}</h3>
-                <p className="card__body">{point.body}</p>
-              </article>
-            ))}
+          <div className="company">
+            <div className="company__copy" data-reveal>
+              <h2 className="display-2">{problem.title}</h2>
+              <p className="company__para">{problem.body}</p>
+            </div>
+            <ul className="company__facts" data-reveal style={delayStyle(1)}>
+              {problem.points.map((point) => (
+                <li key={point.title}>
+                  <h3>{point.title}</h3>
+                  <p>{point.body}</p>
+                </li>
+              ))}
+            </ul>
           </div>
           <p className="closing closing--left" data-reveal>
             {problem.closing}

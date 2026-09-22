@@ -107,6 +107,21 @@ ol {
 .display-1 span + span {
   color: var(--purple);
 }
+.display-1--inline {
+  text-wrap: pretty;
+}
+.display-1--inline span {
+  display: inline;
+  color: var(--purple);
+}
+.display-1--inline .display-1__plain {
+  color: inherit;
+}
+@media (width > 640px) {
+  .display-1--inline .display-1__plain {
+    white-space: nowrap;
+  }
+}
 .display-2 {
   letter-spacing: -0.03em;
   font-size: clamp(1.9rem, 3.4vw, 2.85rem);
@@ -172,14 +187,7 @@ ol {
 }
 #problem .closing {
   margin-top: clamp(2rem, 3.5vw, 2.75rem);
-}
-#problem .card {
-  border: 1px solid var(--line);
-  box-shadow: none;
-}
-#problem .card:hover {
-  box-shadow: none;
-  transform: none;
+  max-width: 62ch;
 }
 #data .card {
   border: 1px solid var(--line);
@@ -189,14 +197,6 @@ ol {
 #data .card:hover {
   box-shadow: none;
   transform: none;
-}
-@media (width > 900px) {
-  #problem .grid--3:has(> .card) {
-    grid-template-rows: auto 1fr;
-  }
-  #problem .grid--3 > .card {
-    grid-row: span 2;
-  }
 }
 .fit {
   border-top: 1.5px solid var(--line);
