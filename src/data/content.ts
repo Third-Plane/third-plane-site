@@ -812,7 +812,7 @@ export const carrierChannelsPage = {
       {
         kicker: "Carrier portals",
         title: "Filled the way a person would",
-        body: "The desk holds its own logins, completes the forms, answers the qualifying questions, uploads what the portal asks for and retrieves the quote. No one sits at the keyboard; a person reviews where you say so.",
+        body: "The desk completes the forms, answers the qualifying questions, uploads what the portal asks for and retrieves the quote. No one sits at the keyboard; a person reviews where you say so.",
       },
       {
         kicker: "Carrier APIs",
@@ -822,7 +822,7 @@ export const carrierChannelsPage = {
       {
         kicker: "Underwriter email",
         title: "Working the thread",
-        body: "Where a market runs on relationships, the desk sends from its own address on your domain, answers the underwriter’s questions, chases stale threads and files every exchange to the record.",
+        body: "Where a market runs on relationships, the desk answers the underwriter’s questions, chases stale threads and files every exchange to the record.",
       },
     ],
   },
