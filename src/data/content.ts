@@ -300,7 +300,7 @@ export const placementDesk = {
     items: [
       {
         title: "Carrier portals",
-        body: "The desk holds its own logins, fills the forms, answers the qualifying questions and retrieves the quote.",
+        body: "The desk fills the forms, answers the qualifying questions and retrieves the quote.",
       },
       {
         title: "Carrier APIs",
@@ -308,7 +308,7 @@ export const placementDesk = {
       },
       {
         title: "Email",
-        body: "Where a market runs on underwriter relationships, the desk sends from its own address and works the thread.",
+        body: "Where a market runs on underwriter relationships, the desk works the thread.",
       },
     ],
     note: "Channel coverage is configured per deployment, market by market.",
