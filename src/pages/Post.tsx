@@ -1,17 +1,10 @@
 import { Navigate, useParams } from "react-router-dom";
 import { companyPage, resourcesPage } from "../data/content";
-import { findPost, type Block } from "../data/posts";
+import { findPost, formatPostDate, type Block } from "../data/posts";
 import { Cta } from "../components/Cta";
 import { ParticleField } from "../components/ParticleField";
 import { AppLink, Arrow } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
-
-const formatDate = (iso: string) =>
-  new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
 function BlockView({ block }: { block: Block }) {
   if ("h" in block) return <h2>{block.h}</h2>;
@@ -22,6 +15,14 @@ function BlockView({ block }: { block: Block }) {
           <li key={item}>{item}</li>
         ))}
       </ul>
+    );
+  if ("ol" in block)
+    return (
+      <ol>
+        {block.ol.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ol>
     );
   if ("quote" in block) return <blockquote>{block.quote}</blockquote>;
   return <p>{block.p}</p>;
@@ -48,7 +49,7 @@ export function Post() {
             </AppLink>
             <div className="post-card__meta">
               <span className={`type-pill type-pill--${post.type}`}>{resourcesPage.types[post.type]}</span>
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               {post.draft ? <span className="type-pill type-pill--draft">Draft</span> : null}
             </div>
             <h1 className="display-1 post__title">{post.title}</h1>

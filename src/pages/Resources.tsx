@@ -1,17 +1,10 @@
 import { companyPage, resourcesPage as page } from "../data/content";
-import { sortedPosts } from "../data/posts";
+import { formatPostDate, sortedPosts } from "../data/posts";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { AppLink, Arrow } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
-
-const formatDate = (iso: string) =>
-  new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
 // Drafts show in the dev server only, so a post can be reviewed at its real
 // URL before it is published.
@@ -32,7 +25,7 @@ export function Resources() {
                   <AppLink className="post-card" href={`/resources/${post.slug}`}>
                     <div className="post-card__meta">
                       <span className={`type-pill type-pill--${post.type}`}>{page.types[post.type]}</span>
-                      <time dateTime={post.date}>{formatDate(post.date)}</time>
+                      <time dateTime={post.date}>{formatPostDate(post.date)}</time>
                       {post.draft ? <span className="type-pill type-pill--draft">Draft</span> : null}
                     </div>
                     <h2 className="post-card__title">{post.title}</h2>

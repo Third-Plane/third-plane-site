@@ -539,7 +539,8 @@ ol {
 .hero > .container {
   pointer-events: none;
 }
-.hero > .container.hero__page-copy {
+.hero > .container.hero__page-copy,
+.hero > .container.post__head {
   pointer-events: auto;
 }
 .hero__copy,
@@ -2093,6 +2094,9 @@ ol {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--gap);
 }
+.posts:has(> :only-child) {
+  grid-template-columns: minmax(0, 28rem);
+}
 @media (width<=1020px) {
   .posts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2171,6 +2175,10 @@ ol {
   font-weight: 500;
   margin-top: auto;
 }
+.post-card__more .textlink__arrow {
+  width: 16px;
+  height: 16px;
+}
 
 /* A single post */
 .post__hero {
@@ -2180,6 +2188,9 @@ ol {
   max-width: 760px;
   display: grid;
   gap: 1.25rem;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
 }
 .post__back {
   display: inline-flex;
@@ -2189,10 +2200,12 @@ ol {
   font-weight: 500;
   font-size: 0.9rem;
   justify-self: start;
+  pointer-events: auto;
 }
 .post__back-arrow {
   width: 14px;
   height: 14px;
+  flex-shrink: 0;
   transform: rotate(180deg);
 }
 .post__title {
@@ -2225,15 +2238,19 @@ ol {
   margin-top: 1.25rem;
   text-wrap: balance;
 }
-.post__body ul {
+.post__body ul,
+.post__body ol {
   display: grid;
   gap: 0.6rem;
   padding-left: 1.35rem;
 }
+.post__body ol {
+  list-style: decimal;
+}
 .post__body li {
   position: relative;
 }
-.post__body li::before {
+.post__body ul li::before {
   content: "";
   position: absolute;
   left: -1.35rem;
