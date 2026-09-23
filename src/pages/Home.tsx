@@ -106,10 +106,6 @@ export function Home() {
               </div>
             ))}
           </div>
-          <div className="definition" data-reveal>
-            <p className="definition__kicker">{approach.definition.kicker}</p>
-            <p className="definition__body">{approach.definition.body}</p>
-          </div>
         </div>
       </section>
 
