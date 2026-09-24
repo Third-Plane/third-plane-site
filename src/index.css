@@ -51,7 +51,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
   margin: 0;
-  font-size: 1.0625rem;
+  font-size: var(--type-sm);
   line-height: 1.6;
 }
 img,
@@ -179,7 +179,7 @@ ol {
   color: var(--ink);
   text-wrap: pretty;
   margin: clamp(2.5rem, 4vw, 3.5rem) auto 0;
-  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.45;
 }
@@ -678,7 +678,7 @@ ol {
   flex-wrap: wrap;
   gap: 1.25rem;
   padding-top: 0.9rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-sm);
   display: flex;
 }
 .ledger__legend li {
@@ -880,12 +880,21 @@ ol {
   font-size: var(--type-sm);
 }
 .card__kicker {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 0.55rem;
-  font-size: var(--type-xs);
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.45rem;
+  font-size: var(--type-md);
   font-weight: 500;
+  line-height: 1.2;
+}
+.card__kicker + .card__title {
+  font-family: var(--font-body);
+  letter-spacing: 0;
+  font-size: var(--type-sm);
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
 }
 .unify {
   background: var(--deep);
@@ -899,7 +908,7 @@ ol {
 .unify__title {
   font-family: var(--font-head);
   letter-spacing: -0.02em;
-  font-size: 1.45rem;
+  font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.15;
 }
@@ -932,15 +941,16 @@ ol {
   background: color-mix(in srgb, var(--purple) 88%, var(--white));
 }
 .model__kicker {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--ink);
   margin-bottom: 1.25rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-md);
   font-weight: 500;
+  line-height: 1.2;
 }
 .model--accent .model__kicker {
-  color: var(--pink);
+  color: var(--on-dark);
 }
 .model__chain {
   flex-wrap: wrap;
@@ -962,7 +972,7 @@ ol {
   background: var(--cream);
   align-items: center;
   padding: 0.7rem 1.1rem;
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  font-size: var(--type-sm);
   font-weight: 500;
   display: inline-flex;
   white-space: nowrap;
@@ -1001,12 +1011,13 @@ ol {
   padding-top: 2.5rem;
 }
 .definition__kicker {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--purple);
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--ink);
   margin-bottom: 1.1rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-md);
   font-weight: 500;
+  line-height: 1.2;
 }
 .definition__body {
   color: var(--ink-body);
@@ -1081,15 +1092,16 @@ ol {
   z-index: 1;
 }
 .flow__kicker {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--purple);
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--ink);
   margin-bottom: 1.25rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-md);
   font-weight: 500;
+  line-height: 1.2;
 }
 .flow__col--accent .flow__kicker {
-  color: var(--pink);
+  color: var(--on-dark);
 }
 .flow__line {
   margin: 0;
@@ -1268,19 +1280,20 @@ ol {
   display: block;
 }
 .split__kicker {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--purple);
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--ink);
   margin-bottom: 0.65rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-md);
   font-weight: 500;
+  line-height: 1.2;
 }
 .split__title {
   font-family: var(--font-head);
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 1.15rem;
-  font-size: 1.45rem;
+  font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.15;
 }
@@ -1334,7 +1347,7 @@ ol {
 .company__para:first-of-type {
   color: var(--ink);
   margin-top: 1.5rem;
-  font-size: 1.1rem;
+  font-size: var(--type-sm);
   font-weight: 500;
 }
 .company__copy .textlink {
@@ -1386,7 +1399,7 @@ ol {
   color: #ffffffe0;
   text-wrap: pretty;
   margin-top: 1.25rem;
-  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  font-size: var(--type-md);
   line-height: 1.5;
 }
 @media (width<=760px) {
@@ -1571,19 +1584,28 @@ ol {
   background: var(--cream);
 }
 .tier__kicker {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 1.25rem;
-  font-size: var(--type-xs);
+  font-family: var(--font-head);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.45rem;
+  font-size: var(--type-md);
   font-weight: 500;
+  line-height: 1.2;
+}
+.tier__kicker + .tier__title {
+  font-family: var(--font-body);
+  letter-spacing: 0;
+  font-size: var(--type-sm);
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
 }
 .tier__title {
   font-family: var(--font-head);
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 0.75rem;
-  font-size: 1.5rem;
+  font-size: var(--type-md);
   font-weight: 500;
 }
 .tier__body {
@@ -1682,7 +1704,7 @@ ol {
   flex-wrap: wrap;
   gap: 0.5rem 1.75rem;
   margin-top: 2.25rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-sm);
   display: flex;
 }
 .cta__meta li {
@@ -1726,7 +1748,7 @@ ol {
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1.5rem;
-  font-size: var(--type-xs);
+  font-size: var(--type-sm);
   display: flex;
 }
 @media (width<=640px) {
@@ -1812,7 +1834,7 @@ ol {
   background: var(--cream);
 }
 .nav__note {
-  font-size: var(--type-xs);
+  font-size: var(--type-sm);
   font-weight: 400;
   color: var(--ink-muted);
 }
@@ -1831,10 +1853,10 @@ ol {
   margin-left: 0.6rem;
   font-family: var(--font-body);
   letter-spacing: 0;
-  font-size: var(--type-xs);
+  font-size: var(--type-sm);
 }
 .nav__drawer-link--sub {
-  font-size: 1.05rem;
+  font-size: var(--type-sm);
   font-family: var(--font-body);
   letter-spacing: 0;
 }
@@ -1940,7 +1962,7 @@ ol {
   background: var(--pink);
 }
 .flow--dark .flow__kicker {
-  color: var(--pink);
+  color: var(--on-dark);
 }
 .flow--dark .flow__arrow {
   background: var(--deep);
@@ -2174,7 +2196,7 @@ ol {
 .post-card__title {
   font-family: var(--font-head);
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: var(--type-md);
   letter-spacing: -0.02em;
   line-height: 1.15;
   text-wrap: balance;
