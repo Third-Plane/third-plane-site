@@ -9,7 +9,7 @@ export function CarrierChannels() {
   useTitle("Carrier channels", page.lead);
   return (
     <>
-      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} />
+      <PageHero title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="channels">
         <div className="container">

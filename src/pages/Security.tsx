@@ -9,7 +9,7 @@ export function Security() {
   useTitle("Security and governance", page.lead);
   return (
     <>
-      <PageHero crumb={page.crumb} title={page.title} lead={page.lead} />
+      <PageHero title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="authority">
         <div className="container">

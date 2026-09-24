@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { Eyebrow, Slash } from "./Ui";
 import { delayStyle } from "../lib/style";
 
+export type HeroFamily = "evidence" | "editorial" | "careers" | "platform";
+
 export function PageHero({
   crumb,
   status,
@@ -9,9 +11,7 @@ export function PageHero({
   lead,
   body,
   children,
-  slash = false,
-  stacked = false,
-  leadFirst = false,
+  family = "evidence",
 }: {
   crumb?: string;
   status?: string;
@@ -19,10 +19,14 @@ export function PageHero({
   lead: string;
   body?: string;
   children?: ReactNode;
-  slash?: boolean;
-  stacked?: boolean;
-  leadFirst?: boolean;
+  family?: HeroFamily;
 }) {
+  const slash = family === "careers";
+  const showCrumb = family === "careers" && Boolean(crumb);
+  const stacked = family === "careers";
+  const leadFirst = family === "platform";
+  const chrome = slash || showCrumb || status;
+
   const heading = stacked ? (
     <h1 className="display-1" data-reveal style={delayStyle(leadFirst ? 2 : 1)}>
       {title.map((line) => (
@@ -31,12 +35,11 @@ export function PageHero({
     </h1>
   ) : (
     <h1
-      className="display-1 display-1--inline"
+      className="display-1 display-1--inline display-1--plain"
       data-reveal
       style={delayStyle(leadFirst ? 2 : 1)}
     >
-      {title[0]}{" "}
-      <span>{title.slice(1).join(" ")}</span>
+      {title.join(" ")}
     </h1>
   );
 
@@ -50,20 +53,23 @@ export function PageHero({
     </p>
   );
 
-  const chrome = slash || crumb || status;
-
   return (
     <section
-      className={
-        leadFirst ? "hero hero--page hero--lead-first" : "hero hero--page"
-      }
+      className={[
+        "hero",
+        "hero--page",
+        `hero--${family}`,
+        leadFirst ? "hero--lead-first" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       id="top"
     >
       <div className="container hero__page-copy">
         {chrome ? (
           <div data-reveal className="hero__crumbs">
             {slash ? <Slash className="hero__slash" /> : null}
-            {crumb ? <Eyebrow>{crumb}</Eyebrow> : null}
+            {showCrumb ? <Eyebrow>{crumb}</Eyebrow> : null}
             {status ? <span className="status-pill">{status}</span> : null}
           </div>
         ) : null}

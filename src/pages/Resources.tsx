@@ -14,7 +14,7 @@ export function Resources() {
   useTitle("Resources", page.lead);
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} />
+      <PageHero family="editorial" title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="posts">
         <div className="container">

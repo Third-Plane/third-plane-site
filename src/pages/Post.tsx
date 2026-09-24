@@ -39,7 +39,7 @@ export function Post() {
   return (
     <>
       <article className="post">
-        <header className="hero hero--page post__hero">
+        <header className="hero hero--page hero--editorial post__hero">
           <div className="container post__head">
             <AppLink className="post__back" href="/resources">
               <Arrow className="post__back-arrow" />

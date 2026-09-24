@@ -13,7 +13,7 @@ export function Alpine() {
   useTitle("Platform", page.lead);
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} />
+      <PageHero family="platform" title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="proven">
         <div className="container company">

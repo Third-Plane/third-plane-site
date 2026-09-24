@@ -1,10 +1,11 @@
 import { desk, placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
-import { PageHero } from "../components/PageHero";
+import { Ledger } from "../components/Ledger";
 import {
   Arrow,
   Button,
   CardMark,
+  Eyebrow,
   SectionHead,
   TextLink,
 } from "../components/Ui";
@@ -34,14 +35,33 @@ export function PlacementDesk() {
   useTitle("Placement Desk", placementDesk.problem);
   return (
     <>
-      <PageHero
-        crumb={placementDesk.crumb}
-        title={placementDesk.title}
-        lead={placementDesk.problem}
-        body={placementDesk.does}
-      >
-        <Button variant="dark">{placementDesk.cta.label}</Button>
-      </PageHero>
+      <section className="hero hero--product" id="top">
+        <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
+        <div className="container hero__grid">
+          <div className="hero__copy">
+            <div data-reveal>
+              <Eyebrow>{placementDesk.crumb}</Eyebrow>
+            </div>
+            <h1 className="display-1" data-reveal style={delayStyle(1)}>
+              {placementDesk.title.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </h1>
+            <p className="hero__lead" data-reveal style={delayStyle(2)}>
+              {placementDesk.problem}
+            </p>
+            <p className="hero__body" data-reveal style={delayStyle(3)}>
+              {placementDesk.does}
+            </p>
+            <div className="hero__actions" data-reveal style={delayStyle(4)}>
+              <Button variant="dark">{placementDesk.cta.label}</Button>
+            </div>
+          </div>
+          <div className="hero__figure" data-reveal style={delayStyle(3)}>
+            <Ledger />
+          </div>
+        </div>
+      </section>
 
       <section className="section section--deep" id="work">
         <ParticleField
