@@ -63,18 +63,23 @@ export function Security() {
       </section>
 
       <section className="section section--blend" id="data">
-        <div className="container coverage">
+        <div className="container">
           <h2 className="display-2" data-reveal>
             {page.data.title}
           </h2>
-          <ul className="company__facts" data-reveal style={delayStyle(1)}>
-            {page.data.items.map((item) => (
-              <li key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </li>
+          <div className="grid grid--2">
+            {page.data.items.map((item, i) => (
+              <article
+                className="card"
+                data-reveal
+                style={delayStyle(i)}
+                key={item.title}
+              >
+                <h3 className="card__title">{item.title}</h3>
+                <p className="card__body">{item.body}</p>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 

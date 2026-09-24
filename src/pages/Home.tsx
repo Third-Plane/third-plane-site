@@ -57,19 +57,19 @@ export function Home() {
 
       <section className="section section--white" id="problem">
         <div className="container">
-          <div className="company">
-            <div className="company__copy" data-reveal>
-              <h2 className="display-2">{problem.title}</h2>
-              <p className="company__para">{problem.body}</p>
-            </div>
-            <ul className="company__facts" data-reveal style={delayStyle(1)}>
-              {problem.points.map((point) => (
-                <li key={point.title}>
-                  <h3>{point.title}</h3>
-                  <p>{point.body}</p>
-                </li>
-              ))}
-            </ul>
+          <SectionHead title={problem.title} body={problem.body} />
+          <div className="grid grid--3">
+            {problem.points.map((point, i) => (
+              <article
+                className="card"
+                data-reveal
+                style={delayStyle(i)}
+                key={point.title}
+              >
+                <h3 className="card__title">{point.title}</h3>
+                <p className="card__body">{point.body}</p>
+              </article>
+            ))}
           </div>
           <p className="closing closing--left" data-reveal>
             {problem.closing}
