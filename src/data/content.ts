@@ -183,7 +183,7 @@ export const desk = {
     },
   ],
   closing:
-    "The desk works carriers on its own credentials, handles accounts in parallel, and applies the same standard whether the account sits with a new hire or your best producer.",
+    "The desk handles accounts in parallel and applies the same standard whether the account sits with a new hire or your best producer.",
   cta: { label: "See Placement Desk", href: "/placement-desk" },
   more: [
     { label: "Security", href: "/security" },
@@ -884,7 +884,7 @@ export const integrationsPage = {
     title: "Read where you allow. Write where you expect.",
     steps: [
       { title: "Map", body: "In discovery we map which systems hold what, who owns them, and where the desk’s results should land." },
-      { title: "Connect", body: "Connections are established with credentials issued to the desk, scoped to the data and actions the work requires." },
+      { title: "Connect", body: "Connections are established and scoped to the data and actions the work requires." },
       { title: "Configure", body: "What is read, what is written back, and in what shape, is set to your standards and your controls." },
       { title: "Record", body: "Every read and write is logged against the desk’s record, so integration activity is as auditable as the work itself." },
     ],

@@ -38,16 +38,14 @@ export function Integrations() {
       <section className="section section--deep" id="how">
         <div className="container">
           <SectionHead dark title={page.how.title} />
-          <ol className="process" data-reveal>
+          <ol className="steps">
             {page.how.steps.map((step, i) => (
-              <li className="process__node" key={step.title}>
-                <span className="process__index">
+              <li className="step" data-reveal style={delayStyle(i)} key={step.title}>
+                <span className="step__index">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div>
-                  <h3 className="process__title">{step.title}</h3>
-                  <p className="process__note">{step.body}</p>
-                </div>
+                <h3 className="step__title">{step.title}</h3>
+                <p className="step__body">{step.body}</p>
               </li>
             ))}
           </ol>
