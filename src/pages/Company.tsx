@@ -1,7 +1,6 @@
 import { companyPage as page, desk } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { ParticleField } from "../components/ParticleField";
 import { SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
@@ -43,7 +42,6 @@ export function Company() {
               <img src={page.team.photo.src} alt={page.team.photo.alt} />
             ) : (
               <div className="team__placeholder" aria-label={page.team.photoNote}>
-                <ParticleField tone="purple" alpha={0.8} density={1.2} />
                 <span>{page.team.photoNote}</span>
               </div>
             )}

@@ -1,6 +1,5 @@
 import { contact, site } from "../data/content";
 import { Button } from "./Ui";
-import { ParticleField } from "./ParticleField";
 
 export function Cta({
   title = contact.title,
@@ -22,12 +21,6 @@ export function Cta({
     <section className="section" id="contact">
       <div className="container">
         <div className="cta" data-reveal>
-          <ParticleField
-            className="cta__particles"
-            tone="cream"
-            alpha={0.7}
-            density={0.9}
-          />
           <div className="cta__inner">
             <h2 className="display-2">{title}</h2>
             <p className="cta__body">{body}</p>

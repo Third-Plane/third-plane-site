@@ -1,7 +1,6 @@
 import { securityPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { ParticleField } from "../components/ParticleField";
 import { SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
@@ -38,12 +37,6 @@ export function Security() {
       </section>
 
       <section className="section section--deep" id="record">
-        <ParticleField
-          className="section__particles"
-          tone="cream"
-          alpha={0.75}
-          density={0.8}
-        />
         <div className="container">
           <SectionHead dark title={page.record.title} />
           <ol className="audit">

@@ -2,7 +2,6 @@ import { Navigate, useParams } from "react-router-dom";
 import { companyPage, resourcesPage } from "../data/content";
 import { findPost, formatPostDate, type Block } from "../data/posts";
 import { Cta } from "../components/Cta";
-import { ParticleField } from "../components/ParticleField";
 import { AppLink, Arrow } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 
@@ -41,7 +40,6 @@ export function Post() {
     <>
       <article className="post">
         <header className="hero hero--page post__hero">
-          <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
           <div className="container post__head">
             <AppLink className="post__back" href="/resources">
               <Arrow className="post__back-arrow" />

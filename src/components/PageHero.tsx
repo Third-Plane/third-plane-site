@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Eyebrow, Slash } from "./Ui";
-import { ParticleField } from "./ParticleField";
 import { delayStyle } from "../lib/style";
 
 export function PageHero({
@@ -60,7 +59,6 @@ export function PageHero({
       }
       id="top"
     >
-      <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
       <div className="container hero__page-copy">
         {chrome ? (
           <div data-reveal className="hero__crumbs">
