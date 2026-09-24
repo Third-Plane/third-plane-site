@@ -39,16 +39,11 @@ export function Security() {
       <section className="section section--deep" id="record">
         <div className="container">
           <SectionHead dark title={page.record.title} />
-          <ol className="audit">
+          <ol className="steps steps--3">
             {page.record.items.map((item, i) => (
-              <li
-                className="audit__row"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
-                <p className="audit__title">{item.title}</p>
-                <p className="audit__body">{item.body}</p>
+              <li className="step" data-reveal style={delayStyle(i)} key={item.title}>
+                <h3 className="step__title">{item.title}</h3>
+                <p className="step__body">{item.body}</p>
               </li>
             ))}
           </ol>
