@@ -64,9 +64,7 @@ export function Security() {
 
       <section className="section section--blend" id="data">
         <div className="container">
-          <h2 className="display-2" data-reveal>
-            {page.data.title}
-          </h2>
+          <SectionHead title={page.data.title} />
           <div className="grid grid--2">
             {page.data.items.map((item, i) => (
               <article
