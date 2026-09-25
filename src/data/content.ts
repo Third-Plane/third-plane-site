@@ -928,7 +928,7 @@ export const appliedEpicPage = {
   date: "",
   title: ["An AI workforce built to work with Applied Epic."],
   titlePending: ["Applied Epic, as it already runs."],
-  lead: "Third Plane’s Placement Desk works with Applied Epic to execute placement work and return activities, documents and results where your team already works.",
+  lead: "Third Plane’s Placement Desk works with Applied Epic to execute placement work and return activities, documents and results where your team already lives.",
   badge: {
     src: "",
     alt: "Certified Applied Vendor",
@@ -939,7 +939,7 @@ export const appliedEpicPage = {
     items: [
       { title: "Epic stays your system of record" },
       { title: "Placement Desk works around your existing workflow" },
-      { title: "Your team gets the results back where they already work" },
+      { title: "Your team gets the results back where they already live" },
     ],
   },
   work: {
@@ -951,7 +951,7 @@ export const appliedEpicPage = {
       },
       {
         title: "Writes the work back.",
-        body: "Activities, documents and results return to Epic where your team already works.",
+        body: "Activities, documents and results return to Epic where your team already lives.",
       },
       {
         title: "Starts renewal work automatically.",
