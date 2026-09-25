@@ -712,7 +712,20 @@ export const careersPage = {
     title: "Roles we are hiring for.",
     empty:
       "No open roles are listed right now. If you know insurance operations or build AI systems that do real work and want to work on this, write to us anyway.",
-    items: [] as Array<{ title: string; team: string; location: string; href: string }>,
+    items: [
+      {
+        title: "Senior Product Manager",
+        team: "Product",
+        location: "Austin, TX and New York, NY",
+        href: "https://ats.rippling.com/quotewell/jobs/71209457-1914-4d8d-b9da-3ae577faec6a",
+      },
+      {
+        title: "Software Engineer",
+        team: "Product",
+        location: "Austin, TX and New York, NY",
+        href: "https://ats.rippling.com/quotewell/jobs/87ba22da-e236-4a79-84ac-d5a78bc9f75b",
+      },
+    ],
   },
   cta: {
     title: "Introduce yourself.",

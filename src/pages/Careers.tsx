@@ -1,7 +1,7 @@
 import { careersPage as page, site } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { Arrow, SectionHead } from "../components/Ui";
+import { Arrow, AppLink, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -44,14 +44,14 @@ export function Careers() {
           {page.roles.items.length ? (
             <ul className="roles" data-reveal>
               {page.roles.items.map((role) => (
-                <li key={role.title}>
-                  <a className="role" href={role.href}>
+                <li key={role.href}>
+                  <AppLink className="role" href={role.href}>
                     <span className="role__title">{role.title}</span>
                     <span className="role__meta">
                       {role.team} · {role.location}
                     </span>
                     <Arrow className="role__arrow" />
-                  </a>
+                  </AppLink>
                 </li>
               ))}
             </ul>
