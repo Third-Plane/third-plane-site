@@ -4,6 +4,30 @@ import { PageHero } from "../components/PageHero";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
+function PointGrid({
+  items,
+  columns = 3,
+}: {
+  items: Array<{ title: string; body?: string }>;
+  columns?: 2 | 3 | 4;
+}) {
+  return (
+    <div className={`grid grid--${columns}`}>
+      {items.map((item, i) => (
+        <article
+          className="point"
+          data-reveal
+          style={delayStyle(i)}
+          key={item.title}
+        >
+          <h3 className="point__title">{item.title}</h3>
+          {item.body ? <p className="point__body">{item.body}</p> : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
 export function AppliedEpic() {
   const title = page.certified ? page.title : page.titlePending;
   const status = [page.status, page.date].filter(Boolean).join(" · ");
@@ -17,52 +41,38 @@ export function AppliedEpic() {
         status={page.certified ? status : undefined}
       />
 
-      <section className="section section--white" id="work">
+      <section className="section section--white" id="who">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <h2 className="display-2">{page.who.title}</h2>
+            <p className="lead">{page.who.body}</p>
+          </div>
+          <PointGrid items={page.who.items} />
+        </div>
+      </section>
+
+      <section className="section section--blend" id="work">
         <div className="container">
           <div className="section-head" data-reveal>
             <h2 className="display-2">{page.work.title}</h2>
           </div>
-          <div className="grid grid--3">
-            {page.work.items.map((item, i) => (
-              <article
-                className="point"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
+          <PointGrid items={page.work.items} />
         </div>
       </section>
 
       {page.certified ? (
-        <section className="section section--blend" id="meaning">
+        <section className="section section--white" id="meaning">
           <div className="container">
             <div className="section-head" data-reveal>
               <h2 className="display-2">{page.meaning.title}</h2>
             </div>
-            <div className="grid grid--3">
-              {page.meaning.items.map((item, i) => (
-                <article
-                  className="point"
-                  data-reveal
-                  style={delayStyle(i)}
-                  key={item.title}
-                >
-                  <h3 className="point__title">{item.title}</h3>
-                  <p className="point__body">{item.body}</p>
-                </article>
-              ))}
-            </div>
+            <PointGrid items={page.meaning.items} columns={2} />
           </div>
         </section>
       ) : null}
 
       {page.quote.text ? (
-        <section className="section section--white" id="quote">
+        <section className="section section--blend" id="quote">
           <div className="container">
             <blockquote className="applied-quote" data-reveal>
               <p>{page.quote.text}</p>

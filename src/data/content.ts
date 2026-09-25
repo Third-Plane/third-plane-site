@@ -926,50 +926,63 @@ export const appliedEpicPage = {
   crumb: "Applied Epic",
   status: "Certified Applied Vendor",
   date: "",
-  title: ["Third Plane is a Certified Applied Vendor."],
+  title: ["An AI workforce built to work with Applied Epic."],
   titlePending: ["Applied Epic, as it already runs."],
-  lead: "A desk reads from Applied Epic and writes results back where your team already works: activities, documents and the record of the placement work.",
+  lead: "Third Plane’s Placement Desk works with Applied Epic to execute placement work and return activities, documents and results where your team already works.",
   badge: {
     src: "",
     alt: "Certified Applied Vendor",
   },
-  meaning: {
-    title: "What a certified connection means.",
+  who: {
+    title: "Keep Epic at the center of your operation.",
+    body: "Third Plane works with the systems and workflows your brokerage already uses. For Applied Epic agencies, Placement Desk can take on defined placement work without requiring your team to move into a new system or manage another daily tool.",
     items: [
-      {
-        title: "Vetted by Applied",
-        body: "The integration goes through Applied’s certification process and is kept current with Epic releases.",
-      },
-      {
-        title: "Faster to connect",
-        body: "A certified path is how Applied expects partners to attach. It is not a custom project you buy from them first.",
-      },
-      {
-        title: "No extra Applied purchase",
-        body: "Connecting a desk to Epic does not require a separate product buy from Applied.",
-      },
+      { title: "Epic stays your system of record" },
+      { title: "Placement Desk works around your existing workflow" },
+      { title: "Your team gets the results back where they already work" },
     ],
   },
   work: {
-    title: "How Third Plane’s AI-staffed desks execute work directly in Applied Epic.",
+    title: "How your AI workforce works with Applied Epic.",
     items: [
       {
-        title: "AMS Data Perfected",
-        body: "Third Plane’s AI workforces ensure data that should be in your AMS is never lost.",
+        title: "Works from your Epic data.",
+        body: "Placement Desk uses the account and policy information already available in Applied Epic.",
       },
       {
-        title: "Write the work back",
-        body: "Activities, documents and results land in Epic, where producers already expect to find them.",
+        title: "Writes the work back.",
+        body: "Activities, documents and results return to Epic where your team already works.",
       },
       {
-        title: "Renewals Made Easy",
-        body: "When it's time to renew an account, our workforces begin the renewal process without being told. By the time a producer thinks about a renewal, it's already been quoted.",
+        title: "Starts renewal work automatically.",
+        body: "Placement Desk can identify upcoming renewals in Epic and begin defined placement work before your team has to start it manually.",
+      },
+    ],
+  },
+  meaning: {
+    title: "What Applied certification means for your brokerage.",
+    items: [
+      {
+        title: "Vetted by Applied",
+        body: "The integration goes through Applied’s certification process.",
+      },
+      {
+        title: "Faster to connect",
+        body: "A certified integration provides a faster path to connecting with Applied Epic.",
+      },
+      {
+        title: "No additional purchase from Applied",
+        body: "Connecting a desk to Epic does not require a separate product buy from Applied.",
+      },
+      {
+        title: "Built to stay current with Epic",
+        body: "Certified vendors receive access to the latest Applied Epic releases so their integrations can remain current as Epic changes.",
       },
     ],
   },
   quote: { text: "", attribution: "" },
   cta: {
-    title: "Tell us you run Epic.",
-    body: "We will come back with how a desk would connect and what your placement team would see change.",
+    title: "Run Epic? Give the work somewhere to go.",
+    body: "Tell us how placement works in your brokerage. We’ll show you where an AI workforce can connect to Epic and take defined work off your team’s plate.",
   },
 };
