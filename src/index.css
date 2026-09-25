@@ -2400,6 +2400,19 @@ ol {
   font-size: 0.9rem;
   color: var(--on-dark-faint);
 }
+.footer__social {
+  display: inline-flex;
+  margin-top: 0.85rem;
+  color: var(--on-dark-faint);
+  transition: color 0.2s;
+}
+.footer__social:hover {
+  color: var(--pink);
+}
+.footer__social svg {
+  width: 18px;
+  height: 18px;
+}
 @media (width<=900px) {
   .footer__inner {
     flex-direction: column;
