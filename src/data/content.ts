@@ -951,19 +951,19 @@ export const appliedEpicPage = {
     ],
   },
   work: {
-    title: "Read where Epic holds the account. Write back where your team looks.",
+    title: "How Third Plane’s AI-staffed desks execute work directly in Applied Epic.",
     items: [
       {
-        title: "Read from the account",
-        body: "Client and policy data for the submission, from Epic as it already holds them.",
+        title: "AMS data perfected.",
+        body: "Third Plane’s AI workforces ensure data that should be in your AMS is never lost.",
       },
       {
         title: "Write the work back",
         body: "Activities, documents and results land in Epic, where producers already expect to find them.",
       },
       {
-        title: "Leave a record",
-        body: "Every read and write is logged against the desk’s record, so integration activity is as auditable as the work itself.",
+        title: "Renewals made easy.",
+        body: "When it is time to renew an account, our workforces begin the renewal process without being told. By the time a producer thinks about a renewal, it has already been quoted.",
       },
     ],
   },
