@@ -93,7 +93,22 @@ export function AppLink({
   onClick?: () => void;
   "aria-label"?: string;
 }) {
-  if (href.startsWith("mailto:") || href.startsWith("http")) {
+  if (href.startsWith("http")) {
+    return (
+      <a
+        className={className}
+        href={href}
+        onClick={onClick}
+        target="_blank"
+        rel="noreferrer"
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  if (href.startsWith("mailto:")) {
     return (
       <a className={className} href={href} onClick={onClick} {...rest}>
         {children}

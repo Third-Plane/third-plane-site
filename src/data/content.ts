@@ -3,6 +3,7 @@ export const site = {
   tagline: "AI workforces for insurance",
   email: "sales@thirdplane.com",
   mailto: "mailto:sales@thirdplane.com",
+  linkedin: "https://www.linkedin.com/company/third-plane/",
   ctaLabel: "Start a conversation",
   year: 2026,
 };
@@ -394,6 +395,7 @@ export const siteFooter = {
         { label: "About", href: "/company" },
         { label: "Careers", href: "/careers" },
         { label: "Resources", href: "/resources" },
+        { label: "LinkedIn", href: site.linkedin },
         { label: "sales@thirdplane.com", href: "mailto:sales@thirdplane.com" },
       ],
     },
