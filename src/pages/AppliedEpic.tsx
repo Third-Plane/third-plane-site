@@ -17,8 +17,29 @@ export function AppliedEpic() {
         status={page.certified ? status : undefined}
       />
 
+      <section className="section section--white" id="work">
+        <div className="container">
+          <div className="section-head" data-reveal>
+            <h2 className="display-2">{page.work.title}</h2>
+          </div>
+          <div className="grid grid--3">
+            {page.work.items.map((item, i) => (
+              <article
+                className="point"
+                data-reveal
+                style={delayStyle(i)}
+                key={item.title}
+              >
+                <h3 className="point__title">{item.title}</h3>
+                <p className="point__body">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {page.certified ? (
-        <section className="section section--white" id="meaning">
+        <section className="section section--blend" id="meaning">
           <div className="container">
             <div className="section-head" data-reveal>
               <h2 className="display-2">{page.meaning.title}</h2>
@@ -39,27 +60,6 @@ export function AppliedEpic() {
           </div>
         </section>
       ) : null}
-
-      <section className="section section--blend" id="work">
-        <div className="container">
-          <div className="section-head" data-reveal>
-            <h2 className="display-2">{page.work.title}</h2>
-          </div>
-          <div className="grid grid--3">
-            {page.work.items.map((item, i) => (
-              <article
-                className="point"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {page.quote.text ? (
         <section className="section section--white" id="quote">

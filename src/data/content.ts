@@ -954,7 +954,7 @@ export const appliedEpicPage = {
     title: "How Third Plane’s AI-staffed desks execute work directly in Applied Epic.",
     items: [
       {
-        title: "AMS data perfected.",
+        title: "AMS Data Perfected",
         body: "Third Plane’s AI workforces ensure data that should be in your AMS is never lost.",
       },
       {
@@ -962,8 +962,8 @@ export const appliedEpicPage = {
         body: "Activities, documents and results land in Epic, where producers already expect to find them.",
       },
       {
-        title: "Renewals made easy.",
-        body: "When it is time to renew an account, our workforces begin the renewal process without being told. By the time a producer thinks about a renewal, it has already been quoted.",
+        title: "Renewals Made Easy",
+        body: "When it's time to renew an account, our workforces begin the renewal process without being told. By the time a producer thinks about a renewal, it's already been quoted.",
       },
     ],
   },
