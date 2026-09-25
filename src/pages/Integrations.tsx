@@ -26,8 +26,7 @@ export function Integrations() {
                   <h3 className="fit__label">{item.title}</h3>
                   {item.link ? (
                     <p className="fit__names">
-                      <AppLink href={item.link.href}>{item.link.label}</AppLink>
-                      {"names" in item && item.names ? `, ${item.names}` : null}
+                      <AppLink href={item.link.href}>{item.link.label}</AppLink>{item.names ? `, ${item.names}` : null}
                     </p>
                   ) : "names" in item && item.names ? (
                     <p className="fit__names">{item.names}</p>
