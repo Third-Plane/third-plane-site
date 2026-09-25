@@ -34,7 +34,7 @@ type ButtonProps = {
 
 export function Button({
   children = site.ctaLabel,
-  href = site.mailto,
+  href = site.ctaHref,
   variant = "primary",
   small = false,
 }: ButtonProps) {
@@ -52,7 +52,7 @@ export function Button({
 
   if (href.startsWith("http")) {
     return (
-      <a className={className} href={href} target="_blank" rel="noreferrer">
+      <a className={className} href={href}>
         {children}
       </a>
     );

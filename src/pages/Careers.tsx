@@ -1,4 +1,4 @@
-import { careersPage as page } from "../data/content";
+import { careersPage as page, site } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { Arrow, SectionHead } from "../components/Ui";
@@ -63,7 +63,7 @@ export function Careers() {
         </div>
       </section>
 
-      <Cta title={page.cta.title} body={page.cta.body} />
+      <Cta title={page.cta.title} body={page.cta.body} href={site.mailto} />
     </>
   );
 }

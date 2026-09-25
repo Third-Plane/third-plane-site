@@ -5,6 +5,7 @@ export const site = {
   mailto: "mailto:sales@thirdplane.com",
   linkedin: "https://www.linkedin.com/company/third-plane/",
   ctaLabel: "Start a conversation",
+  ctaHref: "https://form.jotform.com/262674737838070",
   year: 2026,
 };
 
