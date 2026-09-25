@@ -5,14 +5,6 @@ import { SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
-const principles = page.principles.items.filter((item) =>
-  [
-    "Assign the work, not the tool",
-    "Deployment is the product",
-    "Say what works today",
-  ].includes(item.title),
-);
-
 export function Company() {
   useTitle("Company", page.lead);
   return (
@@ -52,9 +44,14 @@ export function Company() {
       <section className="section" id="principles">
         <div className="container">
           <SectionHead title={page.principles.title} />
-          <div className="grid grid--3">
-            {principles.map((item, i) => (
-              <article className="point" data-reveal style={delayStyle(i % 3)} key={item.title}>
+          <div className="grid grid--2">
+            {page.principles.items.map((item, i) => (
+              <article
+                className="point"
+                data-reveal
+                style={delayStyle(i)}
+                key={item.title}
+              >
                 <h3 className="point__title">{item.title}</h3>
                 <p className="point__body">{item.body}</p>
               </article>

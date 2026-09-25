@@ -440,31 +440,23 @@ export const companyPage = {
   },
   principles: {
     eyebrow: "Principles",
-    title: "What we believe, and how it shows up in the work.",
+    title: "Third Plane principles.",
     items: [
       {
-        title: "Assign the work, not the tool",
-        body: "AI creates the most value when the business gives it responsibility for defined work, rather than asking every employee to operate another piece of software.",
+        title: "Outcomes, not outputs.",
+        body: "Effort and velocity are inputs, not scorecards. We judge ourselves on the value we deliver — co-developing with customers to achieve step change transformation.",
       },
       {
-        title: "Judgment stays with people",
-        body: "Advice, relationships, negotiation and regulated decisions remain with licensed professionals. A desk returns finished work, not decisions.",
+        title: "Stay curious.",
+        body: "Execution is cheap now. Judgment isn’t. Ask why before you ask how.",
       },
       {
-        title: "Authority is written down",
-        body: "What a desk may do on its own is scoped, recorded and revocable. Accountability always attaches to a named person.",
+        title: "Bias to action.",
+        body: "Don’t wait for permission — find the gap, close it. Everyone is here for a reason — a high agency team is the difference between our success and failure.",
       },
       {
-        title: "Deployment is the product",
-        body: "An AI worker without your context cannot do meaningful insurance work. Capturing how your business operates and connecting your systems is part of what we deliver.",
-      },
-      {
-        title: "Insurance first, models second",
-        body: "We use the best model for each job, including open source. Our edge is insurance context and the operating model around it, not any one lab’s tokens.",
-      },
-      {
-        title: "Say what works today",
-        body: "We separate what a desk does now from what we believe it will do next. High conviction, plainly stated, with the boundaries marked.",
+        title: "Build together.",
+        body: "Share work early, iterate live, ask for help and expect your first answer to change. Our size is an advantage: foster debate, move quickly and disagree/commit.",
       },
     ],
   },
