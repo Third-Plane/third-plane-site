@@ -1,7 +1,7 @@
 import { integrationsPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { SectionHead } from "../components/Ui";
+import { AppLink, SectionHead } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
@@ -24,7 +24,14 @@ export function Integrations() {
               >
                 <div className="fit__sys">
                   <h3 className="fit__label">{item.title}</h3>
-                  {item.names ? <p className="fit__names">{item.names}</p> : null}
+                  {item.link ? (
+                    <p className="fit__names">
+                      <AppLink href={item.link.href}>{item.link.label}</AppLink>
+                      {"names" in item && item.names ? `, ${item.names}` : null}
+                    </p>
+                  ) : "names" in item && item.names ? (
+                    <p className="fit__names">{item.names}</p>
+                  ) : null}
                 </div>
                 <div className="fit__copy">
                   <p className="fit__body">{item.body}</p>

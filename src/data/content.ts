@@ -385,6 +385,7 @@ export const siteFooter = {
         { label: "Security", href: "/security" },
         { label: "Carrier channels", href: "/carrier-channels" },
         { label: "System integrations", href: "/integrations" },
+        { label: "Applied Epic", href: "/applied-epic" },
       ],
     },
     {
@@ -853,7 +854,8 @@ export const integrationsPage = {
       {
         title: "Agency management systems",
         body: "Client and policy data read for the submission; activities, documents and results written back. Applied Epic, AMS360, Sagitta and others are configured per deployment.",
-        names: "Applied Epic, AMS360, Sagitta",
+        names: "AMS360, Sagitta",
+        link: { label: "Applied Epic", href: "/applied-epic" },
       },
       {
         title: "Document repositories",
@@ -893,5 +895,65 @@ export const integrationsPage = {
   cta: {
     title: "Tell us what you run.",
     body: "Your AMS, your document system, your inboxes and your carriers. We will come back with how a desk would connect to each and what your team would see change.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// /applied-epic
+// Page Applied can link to. Designation is "Certified Applied Vendor".
+// Fill badge.src from Applied’s media kit when it arrives. Do not hotlink
+// a mark from another vendor’s site.
+// ---------------------------------------------------------------------------
+
+export const appliedEpicPage = {
+  certified: true,
+  crumb: "Applied Epic",
+  status: "Certified Applied Vendor",
+  date: "",
+  title: ["Third Plane is a Certified Applied Vendor."],
+  titlePending: ["Applied Epic, as it already runs."],
+  lead: "A desk reads from Applied Epic and writes results back where your team already works: activities, documents and the record of the placement work.",
+  badge: {
+    src: "",
+    alt: "Certified Applied Vendor",
+  },
+  meaning: {
+    title: "What a certified connection means.",
+    items: [
+      {
+        title: "Vetted by Applied",
+        body: "The integration goes through Applied’s certification process and is kept current with Epic releases.",
+      },
+      {
+        title: "Faster to connect",
+        body: "A certified path is how Applied expects partners to attach. It is not a custom project you buy from them first.",
+      },
+      {
+        title: "No extra Applied purchase",
+        body: "Connecting a desk to Epic does not require a separate product buy from Applied.",
+      },
+    ],
+  },
+  work: {
+    title: "Read where Epic holds the account. Write back where your team looks.",
+    items: [
+      {
+        title: "Read from the account",
+        body: "Client and policy data for the submission, from Epic as it already holds them.",
+      },
+      {
+        title: "Write the work back",
+        body: "Activities, documents and results land in Epic, where producers already expect to find them.",
+      },
+      {
+        title: "Leave a record",
+        body: "Every read and write is logged against the desk’s record, so integration activity is as auditable as the work itself.",
+      },
+    ],
+  },
+  quote: { text: "", attribution: "" },
+  cta: {
+    title: "Tell us you run Epic.",
+    body: "We will come back with how a desk would connect and what your placement team would see change.",
   },
 };

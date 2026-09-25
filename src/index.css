@@ -2434,3 +2434,51 @@ ol {
 .flow__foot .footnote {
   margin-top: 0;
 }
+#systems .fit__names a {
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+#systems .fit__names a:hover {
+  color: var(--purple);
+}
+.coverage__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.25rem;
+}
+.coverage__links .textlink {
+  margin-top: 0;
+}
+.applied-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+}
+.applied-hero__badge {
+  width: min(220px, 100%);
+  height: auto;
+}
+.applied-quote {
+  max-width: 58ch;
+  margin: 0;
+}
+.applied-quote p {
+  font-family: var(--font-head);
+  font-size: var(--type-md);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.applied-quote footer {
+  margin-top: 1rem;
+  color: var(--ink-muted);
+  font-size: var(--type-xs);
+}
+@media (width<=760px) {
+  .applied-hero {
+    grid-template-columns: 1fr;
+  }
+}

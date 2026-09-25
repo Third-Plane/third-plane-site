@@ -18,6 +18,7 @@ const ROUTES = [
   "security",
   "carrier-channels",
   "integrations",
+  "applied-epic",
   "company",
   "careers",
   "resources",

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Alpine } from "./pages/Alpine";
+import { AppliedEpic } from "./pages/AppliedEpic";
 import { Careers } from "./pages/Careers";
 import { CarrierChannels } from "./pages/CarrierChannels";
 import { Integrations } from "./pages/Integrations";
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="security" element={<Security />} />
         <Route path="carrier-channels" element={<CarrierChannels />} />
         <Route path="integrations" element={<Integrations />} />
+        <Route path="applied-epic" element={<AppliedEpic />} />
         <Route path="company" element={<Company />} />
         <Route path="careers" element={<Careers />} />
         <Route path="resources" element={<Resources />} />

@@ -132,9 +132,12 @@ export function PlacementDesk() {
           </h2>
           <div data-reveal style={delayStyle(1)}>
             <p className="lead">{placementDesk.systems.body}</p>
-            <TextLink href={placementDesk.systems.link.href}>
-              {placementDesk.systems.link.label}
-            </TextLink>
+            <div className="coverage__links">
+              <TextLink href={placementDesk.systems.link.href}>
+                {placementDesk.systems.link.label}
+              </TextLink>
+              <TextLink href="/applied-epic">Applied Epic</TextLink>
+            </div>
           </div>
         </div>
       </section>
