@@ -789,37 +789,37 @@ export const alpinePage = {
 export const carrierChannelsPage = {
   crumb: "Carrier channels",
   title: ["Three ways", "to a market."],
-  lead: "A desk reaches each carrier the way that carrier actually works: through its portal, through its API where one exists, or through the underwriter’s inbox. One quote experience comes back regardless of the route.",
+  lead: "Placement Desk works each carrier through its portal, API or underwriter email, so your team can reach more of the markets you already have.",
   body: "Your producers should not have to know which carrier answers by which channel. The desk knows, and works all three in parallel.",
   channels: {
     eyebrow: "The channels",
-    title: "Whichever way that market works.",
+    title: "One placement process, regardless of channel.",
     items: [
       {
-        kicker: "Carrier portals",
-        title: "Filled the way a person would",
-        body: "The desk completes the forms, answers the qualifying questions, uploads what the portal asks for and retrieves the quote. No one sits at the keyboard; a person reviews where you say so.",
+        kicker: "",
+        title: "Carrier portals",
+        body: "Works the portal from submission through quote.",
       },
       {
-        kicker: "Carrier APIs",
-        title: "Direct, where a carrier offers one",
-        body: "Structured request out, structured quote back. Comparative raters and carrier APIs are used as one component of the desk rather than as the limit of its reach.",
+        kicker: "",
+        title: "Carrier APIs",
+        body: "Connects directly where the carrier supports it.",
       },
       {
-        kicker: "Underwriter email",
-        title: "Working the thread",
-        body: "Where a market runs on relationships, the desk answers the underwriter’s questions, chases stale threads and files every exchange to the record.",
+        kicker: "",
+        title: "Underwriter email",
+        body: "Manages the thread from submission through response.",
       },
     ],
   },
   coverage: {
     eyebrow: "Coverage",
     title: "Configured market by market.",
-    body: "Channel coverage is set up per deployment. For each appointed market we confirm which route it answers by, what the desk may do on that route, and where a person reviews. Coverage grows path by path as your appetite and appointments change.",
+    body: "Placement Desk is configured around your carrier appointments and how each market works, so more of your panel gets worked without adding manual placement effort.",
   },
   cta: {
     title: "Tell us which markets you work.",
-    body: "Bring your appointment list. We will show you which carriers the desk reaches by API, which by portal, which by email, and what that means for the capacity of your placement team.",
+    body: "Bring your appointment list. We’ll map how Placement Desk would reach them.",
   },
 };
 

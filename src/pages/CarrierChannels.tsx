@@ -17,7 +17,7 @@ export function CarrierChannels() {
           <div className="grid grid--3">
             {page.channels.items.map((item, i) => (
               <article className="tier" data-reveal style={delayStyle(i)} key={item.title}>
-                <p className="tier__kicker">{item.kicker}</p>
+                {item.kicker ? <p className="tier__kicker">{item.kicker}</p> : null}
                 <h3 className="tier__title">{item.title}</h3>
                 <p className="tier__body">{item.body}</p>
               </article>
