@@ -6,58 +6,45 @@ import {
   Routes,
 } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import { Alpine } from "./pages/Alpine";
-import { AppliedEpic } from "./pages/AppliedEpic";
-import { Careers } from "./pages/Careers";
-import { CarrierChannels } from "./pages/CarrierChannels";
-import { Integrations } from "./pages/Integrations";
-import { Company } from "./pages/Company";
-import { Home } from "./pages/Home";
-import { PlacementDesk } from "./pages/PlacementDesk";
+import { NotFound } from "./pages/NotFound";
 import { Post } from "./pages/Post";
-import { Resources } from "./pages/Resources";
-import { Security } from "./pages/Security";
+import { pages } from "./routes";
 
-// Served normally, routes are real paths under the configured base (root on
-// Vercel, /third-plane-site/ on the GitHub Pages mirror). When the bundle
+// Served normally, routes are real paths and every page in routes.tsx is prerendered
+// to its own HTML file at build time (scripts/prerender.mjs). When the bundle
 // runs as a single hosted page (window.__ARTIFACT__, set by scripts/package.mjs)
 // there is no server to answer a second path, so routes move into the hash.
 //
-// Adding a page: add the route here and to ROUTES in vite.config.ts, so
-// static hosts get an index.html for it.
+// Adding a page: add it to `pages` in routes.tsx. Posts are prerendered from
+// src/data/posts.ts.
 declare global {
   interface Window {
     __ARTIFACT__?: boolean;
   }
 }
 
-const isBundle = typeof window !== "undefined" && Boolean(window.__ARTIFACT__);
-
-export default function App() {
-  const routes = (
+// On Vercel these are permanent redirects in vercel.json; the routes here
+// cover the dev server and the single-page bundle.
+export function AppRoutes() {
+  return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="placement-desk" element={<PlacementDesk />} />
-        <Route path="underwriting-desk" element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />} />
-        <Route path="platform" element={<Alpine />} />
-        <Route path="alpine" element={<Navigate to="/platform" replace />} />
-        <Route path="security" element={<Security />} />
-        <Route path="carrier-channels" element={<CarrierChannels />} />
-        <Route path="integrations" element={<Integrations />} />
-        <Route path="applied-epic" element={<AppliedEpic />} />
-        <Route path="company" element={<Company />} />
-        <Route path="careers" element={<Careers />} />
-        <Route path="resources" element={<Resources />} />
+        {pages.map((page) => (
+          <Route key={page.path} path={page.path} element={page.element} />
+        ))}
         <Route path="resources/:slug" element={<Post />} />
+        <Route path="underwriting-desk" element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />} />
+        <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
+}
 
-  if (isBundle) return <HashRouter>{routes}</HashRouter>;
-  return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>{routes}</BrowserRouter>
-  );
+const isBundle = typeof window !== "undefined" && Boolean(window.__ARTIFACT__);
+
+export default function App() {
+  if (isBundle) return <HashRouter><AppRoutes /></HashRouter>;
+  return <BrowserRouter><AppRoutes /></BrowserRouter>;
 }

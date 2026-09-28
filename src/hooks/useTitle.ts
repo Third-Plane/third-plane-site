@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { site } from "../data/content";
-
-const ORIGIN = "https://www.thirdplane.com";
-const DEFAULT_DESCRIPTION =
-  "Third Plane builds AI workforces for insurance. Placement Desk takes on defined placement work across the systems and carrier channels your brokerage already uses.";
+import {
+  DEFAULT_DESCRIPTION,
+  HeadContext,
+  ORIGIN,
+  canonicalUrl,
+  fullTitle,
+} from "../lib/head";
 
 function setMeta(selector: string, attr: string, value: string) {
   let el = document.head.querySelector<HTMLMetaElement | HTMLLinkElement>(selector);
@@ -22,13 +24,20 @@ function setMeta(selector: string, attr: string, value: string) {
 }
 
 // Per-page document title, description, Open Graph tags and canonical URL.
-// "Company | Third Plane"; the homepage keeps the site-wide title.
+// At build time these are written into each page's HTML (scripts/prerender.mjs);
+// in the browser they are kept current as the reader navigates.
 export function useTitle(title?: string, description = DEFAULT_DESCRIPTION) {
   const { pathname } = useLocation();
+  const head = useContext(HeadContext);
+  const full = fullTitle(title);
+
+  if (head) {
+    head.title = full;
+    head.description = description;
+  }
 
   useEffect(() => {
-    const full = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
-    const canonical = `${ORIGIN}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
+    const canonical = canonicalUrl(pathname);
     document.title = full;
     setMeta('meta[name="description"]', "content", description);
     setMeta('meta[property="og:title"]', "content", full);
@@ -36,5 +45,5 @@ export function useTitle(title?: string, description = DEFAULT_DESCRIPTION) {
     setMeta('meta[property="og:url"]', "content", canonical);
     setMeta('meta[property="og:image"]', "content", `${ORIGIN}/og.png`);
     setMeta('link[rel="canonical"]', "href", canonical);
-  }, [title, description, pathname]);
+  }, [full, description, pathname]);
 }

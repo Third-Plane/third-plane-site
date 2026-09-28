@@ -29,8 +29,10 @@ export function PageHero({
 
   const heading = stacked ? (
     <h1 className="display-1" data-reveal style={delayStyle(leadFirst ? 2 : 1)}>
-      {title.map((line) => (
-        <span key={line}>{line}</span>
+      {title.map((line, i) => (
+        // The space keeps the lines as separate words for crawlers and
+        // screen readers; the spans are blocks, so it never shows.
+        <span key={line}>{i > 0 ? ` ${line}` : line}</span>
       ))}
     </h1>
   ) : (
