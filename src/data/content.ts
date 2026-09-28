@@ -194,12 +194,12 @@ export const placementDesk = {
   crumb: "Placement Desk",
   title: ["A placement function", "you can send work to."],
   problem:
-    "Your producers should not have to log into five carrier portals to find out which markets will quote an account. The desk does that work and returns the answer.",
-  does: "The Third Plane Placement Desk takes defined placement work from request to returned market results, across the systems and carrier channels your brokerage already uses.",
+    "Placement Desk works the markets, pursues quotes and returns the results, so your best producers can stay focused on clients and revenue.",
+  does: "It works across the systems and carrier channels your brokerage already uses, without giving producers another tool to manage.",
   real: {
     claim:
-      "We built and ran QuoteWell, a wholesale brokerage, before we built Third Plane.",
-    body: "We used AI inside that brokerage before we offered it to anyone else.",
+      "Built and tested inside QuoteWell, a wholesale brokerage placing live business with real carrier appointments.",
+    body: "",
   },
   entry: {
     eyebrow: "How work enters",
@@ -225,35 +225,35 @@ export const placementDesk = {
     steps: [
       {
         title: "Gather and structure",
-        body: "Account information pulled from the submission, the AMS, and whatever arrives later by email.",
+        body: "Pull account information from the submission, AMS and incoming email.",
       },
       {
-        title: "Identify what is missing",
-        body: "Gaps flagged early and requested from the producer or the client before they hold up a market.",
+        title: "Identify what’s missing",
+        body: "Flag gaps early and request what’s needed before they delay the market.",
       },
       {
         title: "Assess appetite",
-        body: "Every appointed market considered against the account, using your appetite knowledge and the carriers’ own guidelines.",
+        body: "Check appointed markets against the account, your appetite knowledge and carrier guidelines.",
       },
       {
         title: "Determine markets",
-        body: "A market plan built to your standards: incumbent, alternatives, and the ones not worth approaching.",
+        body: "Build a market plan around incumbents, alternatives and markets worth pursuing.",
       },
       {
         title: "Submit",
-        body: "Carrier portals filled, carrier APIs used where available, underwriters emailed. Whichever way that market works.",
+        body: "Work portals, APIs and underwriter email based on how each market operates.",
       },
       {
         title: "Follow up",
-        body: "Questions answered, stale threads chased, supplemental forms completed.",
+        body: "Answer questions, chase open threads and complete supplemental forms.",
       },
       {
         title: "Collect",
-        body: "Quotes, indications and declinations gathered and compared as they come in.",
+        body: "Gather quotes, indications and declinations as markets respond.",
       },
       {
         title: "Return",
-        body: "Results and a record of the work, delivered to the producer in the inbox they already use.",
+        body: "Send the results and work record back to the producer’s inbox.",
       },
     ],
   },
@@ -279,15 +279,15 @@ export const placementDesk = {
     items: [
       {
         title: "Carrier portals",
-        body: "The desk fills the forms, answers the qualifying questions and retrieves the quote.",
+        body: "Fills forms, answers qualifying questions and retrieves quotes.",
       },
       {
         title: "Carrier APIs",
-        body: "Direct, where a carrier offers one.",
+        body: "Connects directly where a carrier offers an API.",
       },
       {
         title: "Email",
-        body: "Where a market runs on underwriter relationships, the desk works the thread.",
+        body: "Manages the underwriter thread and returns the response.",
       },
     ],
     note: "Channel coverage is configured per deployment, market by market.",
@@ -295,7 +295,7 @@ export const placementDesk = {
   },
   systems: {
     title: "Your systems as they are.",
-    body: "No new system of record, no second login for producers, no migration. Integration is part of deploying a desk, not a project you run first.",
+    body: "No new system of record. No second login for producers. No migration. Placement Desk connects to the systems your team already uses.",
     link: { label: "More on system integrations", href: "/integrations" },
   },
   human: {
@@ -304,8 +304,8 @@ export const placementDesk = {
     items: [
       "Advice and recommendations",
       "Client relationships",
-      "Negotiation with markets",
-      "Regulated decisions and binding",
+      "Market negotiation",
+      "Validation and regulated decisions",
     ],
   },
   cta: {

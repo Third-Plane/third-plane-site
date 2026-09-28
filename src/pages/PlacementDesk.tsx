@@ -94,7 +94,7 @@ export function PlacementDesk() {
             ))}
           </div>
           <p className="proof" data-reveal>
-            {placementDesk.real.claim} {placementDesk.real.body}
+            {placementDesk.real.claim}
           </p>
         </div>
       </section>

@@ -1990,7 +1990,11 @@ ol {
   margin-top: 0.25rem;
 }
 #work .flow__kicker {
-  margin-bottom: 0.85rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.15rem;
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.15;
 }
 #work .flow__list {
   gap: 0;
@@ -2015,7 +2019,7 @@ ol {
   letter-spacing: -0.02em;
   color: var(--on-dark);
   margin: 0;
-  font-size: var(--type-md);
+  font-size: var(--type-sm);
   font-weight: 500;
 }
 #work .flow__item-body {
