@@ -457,34 +457,34 @@ export const companyPage = {
 export const securityPage = {
   crumb: "Security and governance",
   title: ["Built for regulated", "environments."],
-  lead: `${aiWorkforceDefinition} Every action is scoped, recorded and attributable to a named person.`,
+  lead: "Every desk works within defined authority, with human accountability and a record of what it did, so you can put AI to work without losing control.",
   body: "Governance is not a layer added after the desk works. It is how the desk is allowed to work at all.",
   authority: {
     eyebrow: "Authority",
     sides: [
       {
-        title: "An AI worker can execute.",
+        title: "AI only acts within defined limits.",
         items: [
           {
             title: "Scoped authority",
-            body: "Every action a desk takes runs under a defined scope of authority that names what it may do, on which accounts and channels, and for how long.",
+            body: "Set what it can do, where it can act and which work it can take on.",
           },
           {
-            title: "Time-bounded and revocable",
-            body: "That authority expires and can be withdrawn at any time. Access can be narrowed without stopping the work that remains in scope.",
+            title: "Access stays under your control",
+            body: "Narrow or remove access at any time without disrupting work that remains in scope.",
           },
         ],
       },
       {
-        title: "It is never the principal.",
+        title: "Your people remain accountable.",
         items: [
           {
-            title: "A named person, always",
-            body: "Accountability attaches to a human supervisor for every desk. The same rules apply to people and AI workers alike.",
+            title: "Named supervision",
+            body: "Every desk has a named supervisor who owns the outcome and the calls AI shouldn’t make.",
           },
           {
-            title: "Review points you set",
-            body: "Where a decision should stay human, the desk stops and returns the work. Those points are configured to your controls, not ours.",
+            title: "You decide where people step in",
+            body: "Set the points where the desk stops, returns the work and waits for a decision.",
           },
         ],
       },
@@ -492,19 +492,19 @@ export const securityPage = {
   },
   record: {
     eyebrow: "Record",
-    title: "Any decision can be reconstructed exactly as it happened.",
+    title: "Every action leaves a record.",
     items: [
       {
-        title: "Full audit logging",
-        body: "Every consequential action is written to an append-only record with attribution: what was done, through which channel, under whose authority.",
+        title: "Full audit trail",
+        body: "See what was done, through which channel and under whose authority.",
       },
       {
-        title: "The full course of the work",
-        body: "The inputs a worker received and the full course of its work are retained, so a carrier, a regulator or your own E&O review can see how a result was reached.",
+        title: "Context stays intact",
+        body: "Keep the inputs, actions and outcomes together so any placement can be reviewed later.",
       },
       {
-        title: "Managed by output",
-        body: "Because the record is complete, a desk can be managed the way any function is: by what it produces, against the standard you set.",
+        title: "Review performance",
+        body: "Track outcomes, exceptions and patterns against the standards you set.",
       },
     ],
   },
@@ -513,20 +513,20 @@ export const securityPage = {
     title: "Your data stays yours, and stays separate.",
     items: [
       {
-        title: "Isolated at the database layer",
-        body: "Each customer’s data is isolated with row-level security enforced on every table. Nothing commingles across customers.",
+        title: "Isolated by customer",
+        body: "Each customer’s data is kept separate from every other customer’s.",
       },
       {
-        title: "Your identity provider",
-        body: "Access is controlled through your own single sign-on, with role-based permissions for the people who supervise and review.",
+        title: "Access stays under your control",
+        body: "Use your own single sign-on and role-based permissions.",
       },
       {
-        title: "No third-party telemetry",
-        body: "Prompts, documents and completions are never sent to outside analytics or telemetry vendors. Content stays in our own systems.",
+        title: "Your content stays private",
+        body: "Prompts, documents and completions stay inside approved systems.",
       },
       {
-        title: "Model-agnostic by design",
-        body: "We route work to the model best suited to it, including open-source models, under the same controls. No single provider is load-bearing, and your data never depends on one.",
+        title: "No model lock-in",
+        body: "Change models when needed without changing your controls or tying your data to one provider.",
       },
     ],
   },
@@ -542,7 +542,7 @@ export const securityPage = {
   },
   cta: {
     title: "Bring your compliance and IT teams to the first conversation.",
-    body: "We would rather answer the hard questions early. We can walk through authority, records, data isolation and access with the people who will own them.",
+    body: "We’ll tackle the hard questions early and walk through access, controls, records and data separation with your compliance and IT teams.",
   },
 };
 
