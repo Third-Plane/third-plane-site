@@ -1,7 +1,7 @@
 import { showcase } from "../data/content";
 import { Eyebrow } from "./Ui";
 
-// Video showcase. Renders nothing until a source is set in content.ts, so the
+// Video showcase. Renders nothing until a video is set (home.json, showcase), so the
 // section appears the moment the production file is ready.
 export function Showcase() {
   if (!showcase.src) return null;

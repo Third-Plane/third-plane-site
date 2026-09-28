@@ -1,4 +1,4 @@
-import { companyPage as page, desk } from "../data/content";
+import { companyPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { SectionHead } from "../components/Ui";
@@ -69,9 +69,9 @@ export function Company() {
       <section className="section" id="next">
         <div className="container">
           <div className="desk-next desk-next--page" data-reveal>
-            <p className="status-pill">{desk.next.status}</p>
-            <h2 className="display-2">{desk.next.title}</h2>
-            <p className="lead">{desk.next.body}</p>
+            <p className="status-pill">{page.next.status}</p>
+            <h2 className="display-2">{page.next.title}</h2>
+            <p className="lead">{page.next.body}</p>
           </div>
         </div>
       </section>

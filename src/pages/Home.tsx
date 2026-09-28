@@ -29,7 +29,7 @@ export function Home() {
               data-reveal
               style={delayStyle(1)}
             >
-              {homeHero.title[0]}
+              {homeHero.title}
             </h1>
             <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
               {homeHero.lead}

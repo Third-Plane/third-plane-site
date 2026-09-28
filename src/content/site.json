@@ -1,0 +1,22 @@
+{
+  "name": "Third Plane",
+  "tagline": "AI workforces for insurance",
+  "description": "Third Plane builds AI workforces for insurance. Placement Desk takes on defined placement work across the systems and carrier channels your brokerage already uses.",
+  "email": "sales@thirdplane.com",
+  "linkedin": "https://www.linkedin.com/company/third-plane/",
+  "ctaLabel": "Start a conversation",
+  "ctaHref": "https://form.jotform.com/262674737838070",
+  "year": 2026,
+  "footer": {
+    "tagline": "AI workforces for insurance.",
+    "location": "Austin, Texas"
+  },
+  "contact": {
+    "title": "See where Placement Desk fits.",
+    "body": "We’ll show you what it can take on, where your people stay involved and what comes back to the team.",
+    "meta": [
+      "Built for brokerage operations",
+      "Deployed with your systems and carrier channels"
+    ]
+  }
+}

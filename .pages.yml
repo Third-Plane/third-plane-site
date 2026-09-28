@@ -1,0 +1,955 @@
+# Pages CMS configuration (https://pagescms.org/docs/configuration/).
+#
+# Every page's copy lives in src/content/*.json and each form below edits one
+# of those files. Pages CMS rewrites a file from this form when it saves, so a
+# field that is in the JSON but missing here is dropped on the next save. Keep
+# the forms, the JSON and src/data/content-types.ts in step.
+
+media:
+  input: public/media
+  output: /media
+
+settings:
+  commit:
+    identity: user
+
+components:
+  lines:
+    type: string
+    label: Heading
+    description: One entry per line. The second line is shown in purple.
+    required: true
+    list:
+      min: 1
+      collapsible: false
+  cards:
+    type: object
+    list:
+      min: 1
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: body
+        type: text
+        required: true
+  link:
+    type: object
+    fields:
+      - name: label
+        type: string
+        required: true
+      - name: href
+        label: Link
+        type: string
+        required: true
+        description: A page on this site such as /security, or a full https:// address.
+  strings:
+    type: string
+    required: true
+    list:
+      min: 1
+      collapsible: false
+  cta:
+    type: object
+    label: Call to action (bottom of page)
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: body
+        type: text
+        required: true
+
+content:
+  - name: site
+    label: Site settings
+    type: file
+    path: src/content/site.json
+    format: json
+    fields:
+      - name: name
+        label: Company name
+        type: string
+        required: true
+        description: Used in every page title, as in “Careers | Third Plane”.
+      - name: tagline
+        type: string
+        required: true
+        description: Completes the homepage title, as in “Third Plane | AI workforces for insurance”.
+      - name: description
+        label: Search and link-preview description
+        type: text
+        required: true
+        description: Shown under the homepage in search results and link previews, and used for pages that don’t set their own.
+      - name: email
+        type: string
+        required: true
+      - name: linkedin
+        label: LinkedIn URL
+        type: string
+        required: true
+      - name: ctaLabel
+        label: Main button label
+        type: string
+        required: true
+      - name: ctaHref
+        label: Main button link
+        type: string
+        required: true
+        description: Where “Start a conversation” buttons go.
+      - name: year
+        label: Copyright year
+        type: number
+        required: true
+      - name: footer
+        type: object
+        fields:
+          - name: tagline
+            type: string
+            required: true
+          - name: location
+            type: string
+            required: true
+      - name: contact
+        label: Default call to action
+        description: The closing section on pages that don’t set their own.
+        type: object
+        fields:
+          - name: title
+            type: string
+            required: true
+          - name: body
+            type: text
+            required: true
+          - name: meta
+            label: Notes under the button
+            type: string
+            list: true
+
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: home
+        label: Home
+        type: file
+        path: src/content/home.json
+        format: json
+        fields:
+          - name: hero
+            type: object
+            fields:
+              - name: title
+                label: Heading
+                type: string
+                required: true
+              - name: lead
+                type: text
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: secondary
+                label: Second button
+                component: link
+          - name: ledger
+            label: Activity panel
+            description: The live-looking activity list beside the homepage heading. It is also shown on the Placement Desk page.
+            type: object
+            fields:
+              - name: label
+                type: string
+                required: true
+              - name: sublabel
+                type: string
+                required: true
+              - name: legend
+                type: object
+                list:
+                  min: 1
+                  collapsible: false
+                fields:
+                  - name: status
+                    type: select
+                    required: true
+                    options:
+                      values:
+                        - name: done
+                          label: Completed by the desk
+                        - name: review
+                          label: Returned to a person
+                  - name: label
+                    type: string
+                    required: true
+              - name: tasks
+                description: Shown five at a time, cycling through the list.
+                type: object
+                list:
+                  min: 5
+                  collapsible:
+                    collapsed: true
+                    summary: "{task}"
+                fields:
+                  - name: task
+                    type: string
+                    required: true
+                  - name: status
+                    type: select
+                    required: true
+                    options:
+                      values:
+                        - name: done
+                          label: Completed by the desk
+                        - name: review
+                          label: Returned to a person
+          - name: problem
+            label: The capacity problem
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: points
+                component: cards
+              - name: closing
+                type: text
+                required: true
+          - name: approach
+            label: Where AI sits
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: models
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    collapsed: true
+                    summary: "{kicker}"
+                fields:
+                  - name: kicker
+                    type: string
+                    required: true
+                  - name: chain
+                    label: Steps
+                    component: strings
+                  - name: note
+                    type: text
+                    required: true
+                  - name: accent
+                    label: Highlight
+                    type: boolean
+              - name: definition
+                type: object
+                fields:
+                  - name: headline
+                    type: text
+                    required: true
+          - name: desk
+            label: The Placement Desk
+            type: object
+            fields:
+              - name: name
+                type: string
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: columns
+                description: The column names are also used on the Placement Desk page.
+                type: object
+                list:
+                  min: 3
+                  max: 3
+                  collapsible: false
+                fields:
+                  - name: kicker
+                    type: string
+                    required: true
+                  - name: line
+                    type: text
+                    required: true
+                  - name: accent
+                    label: Highlight
+                    type: boolean
+              - name: closing
+                type: text
+                required: true
+              - name: cta
+                label: Link
+                component: link
+          - name: showcase
+            label: Video
+            description: The video section stays hidden until a video is set.
+            type: object
+            fields:
+              - name: eyebrow
+                type: string
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: src
+                label: Video file
+                type: file
+                options:
+                  extensions: [mp4, webm]
+              - name: poster
+                label: Poster image
+                type: image
+              - name: caption
+                type: string
+
+      - name: placement-desk
+        label: Placement Desk
+        type: file
+        path: src/content/placement-desk.json
+        format: json
+        fields:
+          - name: crumb
+            label: Eyebrow
+            type: string
+            required: true
+          - name: title
+            component: lines
+          - name: problem
+            label: Lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: does
+            label: Body
+            type: text
+            required: true
+          - name: real
+            label: Proof
+            type: object
+            fields:
+              - name: claim
+                type: text
+                required: true
+          - name: work
+            label: What the desk does
+            description: The first two steps sit under the first column name on the homepage, the next four under the second, and the rest under the third.
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: steps
+                component: cards
+          - name: channels
+            label: Carrier channels
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+                list:
+                  min: 3
+                  max: 3
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+              - name: note
+                type: string
+                required: true
+              - name: link
+                component: link
+          - name: systems
+            label: Your systems
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: link
+                component: link
+          - name: human
+            label: What stays with your people
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: strings
+          - name: cta
+            label: Call to action (bottom of page)
+            description: The label is used on the heading button and the closing button.
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: label
+                label: Button label
+                type: string
+                required: true
+
+      - name: platform
+        label: Platform
+        type: file
+        path: src/content/platform.json
+        format: json
+        fields:
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: real
+            label: How it is delivered
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: facts
+                component: cards
+          - name: cta
+            label: Call to action (bottom of page)
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: meta
+                label: Notes under the button
+                type: string
+                list: true
+
+      - name: security
+        label: Security
+        type: file
+        path: src/content/security.json
+        format: json
+        fields:
+          - name: crumb
+            label: Eyebrow
+            type: string
+            required: true
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: authority
+            type: object
+            fields:
+              - name: sides
+                type: object
+                list:
+                  min: 2
+                  max: 2
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: items
+                    component: cards
+          - name: record
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: data
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: cta
+            component: cta
+
+      - name: carrier-channels
+        label: Carrier channels
+        type: file
+        path: src/content/carrier-channels.json
+        format: json
+        fields:
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: channels
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: kicker
+                    type: string
+                    description: Optional small label above the title.
+                  - name: title
+                    type: string
+                    required: true
+                  - name: body
+                    type: text
+                    required: true
+          - name: coverage
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+          - name: cta
+            component: cta
+
+      - name: integrations
+        label: System integrations
+        type: file
+        path: src/content/integrations.json
+        format: json
+        fields:
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: body
+            type: text
+            required: true
+          - name: systems
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: body
+                    type: text
+                    required: true
+                  - name: names
+                    label: Examples
+                    type: string
+                    description: Optional, e.g. “AMS360, Sagitta”.
+                  - name: link
+                    description: Optional.
+                    type: object
+                    fields:
+                      - name: label
+                        type: string
+                      - name: href
+                        label: Link
+                        type: string
+          - name: how
+            label: How integration works
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: steps
+                component: cards
+          - name: note
+            type: string
+            required: true
+          - name: cta
+            component: cta
+
+      - name: applied-epic
+        label: Applied Epic
+        type: file
+        path: src/content/applied-epic.json
+        format: json
+        fields:
+          - name: certified
+            type: boolean
+            description: When off, the page uses the pending heading and hides the certification details.
+          - name: status
+            type: string
+            required: true
+            description: Shown above the heading while certified.
+          - name: date
+            type: string
+            description: Optional, shown after the status.
+          - name: title
+            label: Heading (certified)
+            component: lines
+          - name: titlePending
+            label: Heading (not yet certified)
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: who
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: items
+                type: object
+                list:
+                  min: 1
+                  collapsible: false
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+          - name: work
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: meaning
+            label: What certification means
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: quote
+            description: Optional. The section appears once the quote has text.
+            type: object
+            fields:
+              - name: text
+                type: text
+              - name: attribution
+                type: string
+          - name: cta
+            component: cta
+
+      - name: company
+        label: About
+        type: file
+        path: src/content/company.json
+        format: json
+        fields:
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: origin
+            label: Where we come from
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                label: Paragraphs
+                type: text
+                required: true
+                list:
+                  min: 1
+                  collapsible: false
+              - name: facts
+                component: cards
+          - name: principles
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: team
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+              - name: photo
+                type: object
+                fields:
+                  - name: src
+                    label: Team photo
+                    type: image
+                  - name: alt
+                    label: Photo description
+                    type: string
+                    required: true
+                    description: Read aloud by screen readers.
+              - name: photoNote
+                label: Placeholder text
+                type: string
+                required: true
+                description: Shown until a photo is set.
+          - name: next
+            label: What’s next
+            type: object
+            fields:
+              - name: status
+                type: string
+                required: true
+              - name: title
+                type: string
+                required: true
+              - name: body
+                type: text
+                required: true
+          - name: cta
+            component: cta
+
+      - name: careers
+        label: Careers
+        type: file
+        path: src/content/careers.json
+        format: json
+        fields:
+          - name: crumb
+            label: Eyebrow
+            type: string
+            required: true
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: why
+            label: Why Third Plane
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: how
+            label: How we work
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: strings
+          - name: roles
+            label: Open roles
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: empty
+                label: Message when there are no roles
+                type: text
+                required: true
+              - name: items
+                label: Roles
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: team
+                    type: string
+                    required: true
+                  - name: location
+                    type: string
+                    required: true
+                  - name: href
+                    label: Job posting link
+                    type: string
+                    required: true
+          - name: cta
+            component: cta
+
+      - name: resources
+        label: Resources
+        type: file
+        path: src/content/resources.json
+        format: json
+        fields:
+          - name: title
+            component: lines
+          - name: lead
+            type: text
+            required: true
+            description: Also the page’s search and link-preview description.
+          - name: types
+            label: Post type names
+            type: object
+            fields:
+              - name: technical
+                type: string
+                required: true
+              - name: perspective
+                type: string
+                required: true
+              - name: press
+                type: string
+                required: true
+
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/posts
+    format: json
+    filename:
+      template: "{fields.slug}.json"
+      field: false
+    view:
+      fields: [title, type, date, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: slug
+        type: string
+        required: true
+        description: The post’s address, as in /resources/your-slug. Lowercase letters, numbers and dashes. Changing it after publishing breaks existing links.
+        pattern:
+          regex: "^[a-z0-9]+(-[a-z0-9]+)*$"
+          message: Use lowercase letters, numbers and dashes only.
+      - name: type
+        type: select
+        required: true
+        options:
+          values:
+            - name: perspective
+              label: Perspective
+            - name: technical
+              label: Technical
+            - name: press
+              label: Press
+      - name: standfirst
+        label: Summary
+        type: text
+        required: true
+        description: Shown under the title and in search results and link previews.
+      - name: date
+        type: string
+        required: true
+        description: YYYY-MM-DD, or YYYY-MM to show the month only.
+        pattern:
+          regex: "^\\d{4}-\\d{2}(-\\d{2})?$"
+          message: Use YYYY-MM-DD or YYYY-MM.
+      - name: author
+        type: string
+        required: true
+        default: Third Plane
+      - name: draft
+        type: boolean
+        default: true
+        description: Drafts are not published. Turn this off to put the post live.
+      - name: body
+        type: block
+        blockKey: type
+        list: true
+        blocks:
+          - name: paragraph
+            label: Paragraph
+            fields:
+              - name: text
+                type: text
+                required: true
+          - name: heading
+            label: Heading
+            fields:
+              - name: text
+                type: string
+                required: true
+          - name: bullets
+            label: Bulleted list
+            fields:
+              - name: items
+                type: string
+                required: true
+                list:
+                  min: 1
+                  collapsible: false
+          - name: numbered
+            label: Numbered list
+            fields:
+              - name: items
+                type: string
+                required: true
+                list:
+                  min: 1
+                  collapsible: false
+          - name: quote
+            label: Quote
+            fields:
+              - name: text
+                type: text
+                required: true

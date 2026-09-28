@@ -1,0 +1,70 @@
+{
+  "title": [
+    "Your systems",
+    "as they are."
+  ],
+  "lead": "Placement Desk connects to the systems your brokerage already uses, so the work moves without another system for your team to manage.",
+  "body": "Placement Desk reads from your AMS, documents and inboxes and writes results back where your team expects them, without adding another system to manage.",
+  "systems": {
+    "title": "Work goes in. Results come back.",
+    "items": [
+      {
+        "title": "Agency management systems",
+        "body": "Reads client and policy data for the submission and writes activities, documents and results back. Connections are configured per deployment.",
+        "names": "AMS360, Sagitta",
+        "link": {
+          "label": "Applied Epic",
+          "href": "/applied-epic"
+        }
+      },
+      {
+        "title": "Document repositories",
+        "body": "Pulls applications, loss runs, schedules and correspondence from where they already live.",
+        "names": "ImageRight, SharePoint, shared drives"
+      },
+      {
+        "title": "Email and collaboration",
+        "body": "Takes work from Outlook and Teams and returns results there, alongside the desk’s own inbox on your domain.",
+        "names": "Outlook, Teams"
+      },
+      {
+        "title": "Data and reporting",
+        "body": "Every action and outcome is available to your data lake or reporting tools, so desk performance can be measured alongside the rest of the business."
+      },
+      {
+        "title": "Carrier channels",
+        "body": "Portals, APIs and underwriter email, worked by the desk directly. Covered in detail on the carrier channels page."
+      },
+      {
+        "title": "Rating and policy systems",
+        "body": "For the Underwriting Desk: submissions from your intake systems, rating in your engine or by your rules, quotes back to your workbench."
+      }
+    ]
+  },
+  "how": {
+    "title": "Read where you allow. Write where you expect.",
+    "steps": [
+      {
+        "title": "Map",
+        "body": "See what connects and where results should land."
+      },
+      {
+        "title": "Connect",
+        "body": "Use scoped credentials for the systems the desk needs."
+      },
+      {
+        "title": "Configure",
+        "body": "Set what it can read and write back."
+      },
+      {
+        "title": "Record",
+        "body": "Log every read and write."
+      }
+    ]
+  },
+  "note": "Integration targets are confirmed during discovery.",
+  "cta": {
+    "title": "Tell us what you run.",
+    "body": "Show us your AMS, inboxes and document systems. We’ll map how Placement Desk would connect."
+  }
+}

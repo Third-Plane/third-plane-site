@@ -1,0 +1,93 @@
+{
+  "crumb": "Placement Desk",
+  "title": [
+    "A placement function",
+    "you can send work to."
+  ],
+  "problem": "Placement Desk works the markets, pursues quotes and returns the results, so your best producers can stay focused on clients and revenue.",
+  "does": "It works across the systems and carrier channels your brokerage already uses, without giving producers another tool to manage.",
+  "real": {
+    "claim": "Built and tested inside QuoteWell, a wholesale brokerage placing live business with real carrier appointments."
+  },
+  "work": {
+    "title": "From request to returned results.",
+    "steps": [
+      {
+        "title": "Gather and structure",
+        "body": "Pull account information from the submission, AMS and incoming email."
+      },
+      {
+        "title": "Identify what’s missing",
+        "body": "Flag gaps early and request what’s needed before they delay the market."
+      },
+      {
+        "title": "Assess appetite",
+        "body": "Check appointed markets against the account, your appetite knowledge and carrier guidelines."
+      },
+      {
+        "title": "Determine markets",
+        "body": "Build a market plan around incumbents, alternatives and markets worth pursuing."
+      },
+      {
+        "title": "Submit",
+        "body": "Work portals, APIs and underwriter email based on how each market operates."
+      },
+      {
+        "title": "Follow up",
+        "body": "Answer questions, chase open threads and complete supplemental forms."
+      },
+      {
+        "title": "Collect",
+        "body": "Gather quotes, indications and declinations as markets respond."
+      },
+      {
+        "title": "Return",
+        "body": "Send the results and work record back to the producer’s inbox."
+      }
+    ]
+  },
+  "channels": {
+    "title": "Three ways to a market.",
+    "items": [
+      {
+        "title": "Carrier portals",
+        "body": "Fills forms, answers qualifying questions and retrieves quotes."
+      },
+      {
+        "title": "Carrier APIs",
+        "body": "Connects directly where a carrier offers an API."
+      },
+      {
+        "title": "Email",
+        "body": "Manages the underwriter thread and returns the response."
+      }
+    ],
+    "note": "Channel coverage is configured per deployment, market by market.",
+    "link": {
+      "label": "More on carrier channels",
+      "href": "/carrier-channels"
+    }
+  },
+  "systems": {
+    "title": "Your systems as they are.",
+    "body": "No new system of record. No second login for producers. No migration. Placement Desk connects to the systems your team already uses.",
+    "link": {
+      "label": "More on system integrations",
+      "href": "/integrations"
+    }
+  },
+  "human": {
+    "title": "The desk returns finished work. Your people make the call.",
+    "items": [
+      "Advice and recommendations",
+      "Client relationships",
+      "Market negotiation",
+      "Validation and regulated decisions"
+    ]
+  },
+  "cta": {
+    "title": "Tell us how placement runs today.",
+    "body": "The first conversation covers your current placement workflow, carrier mix and systems.",
+    "label": "Talk to us about placement capacity"
+  }
+}
