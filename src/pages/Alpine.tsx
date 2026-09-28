@@ -33,7 +33,7 @@ export function Alpine() {
         </div>
       </section>
 
-      <Cta />
+      <Cta title={page.cta.title} body={page.cta.body} meta={page.cta.meta} />
     </>
   );
 }

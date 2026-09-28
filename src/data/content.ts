@@ -726,7 +726,7 @@ export const resourcesPage = {
 export const alpinePage = {
   crumb: "Platform",
   title: ["The work is governed,", "bounded and auditable."],
-  lead: "A desk runs with scoped authority, a named person accountable, and a complete record of what it did. You receive that with the desk.",
+  lead: "Every desk runs with scoped authority, named accountability and a complete record of the work, so you stay in control.",
   body: "You do not assemble those controls yourself. You receive a desk that is already allowed to work this way, so it can be deployed into a brokerage rather than demonstrated to one.",
   layers: {
     eyebrow: "What you get",
@@ -768,17 +768,21 @@ export const alpinePage = {
   },
   real: {
     eyebrow: "How it is delivered",
-    title: "Configured for you, not self-serve.",
-    body: "Third Plane engineers capture your context and configure the desk. Model choice is ours, per task, under the same controls and the same record.",
+    title: "Built for your operation.",
+    body: "Third Plane configures the desk around your work, systems and rules, so it arrives ready to operate inside your business.",
     facts: [
-      { title: "You are not handed a builder", body: "The desk arrives with the work, the rules and the record already in place." },
+      { title: "You are not handed a builder", body: "Your desk comes with the right access, controls and reporting already configured." },
       { title: "Every action recorded", body: "Authority and record are how the desk runs, not an add-on, so governance holds on day one." },
-      { title: "Model-agnostic", body: "No single lab’s model is load-bearing. We choose per task and can change as models change." },
+      { title: "Model-agnostic", body: "Changes models by task when needed without changing the desk’s rules, controls or record." },
     ],
   },
   cta: {
-    title: "See a desk do the work.",
-    body: "The fastest way to see that the work is governed, bounded and auditable is to watch a desk do it. We can show you one against a sample of your own submissions.",
+    title: "See where a desk fits in your brokerage.",
+    body: "We’ll show you what it can take on, where people stay involved and what comes back to the team.",
+    meta: [
+      "Built for brokerage operations",
+      "Works with your systems and carrier channels",
+    ],
   },
 };
 
