@@ -6,25 +6,32 @@ import { AppLink, Arrow } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 
 function BlockView({ block }: { block: Block }) {
-  if ("h" in block) return <h2>{block.h}</h2>;
-  if ("ul" in block)
-    return (
-      <ul>
-        {block.ul.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    );
-  if ("ol" in block)
-    return (
-      <ol>
-        {block.ol.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ol>
-    );
-  if ("quote" in block) return <blockquote>{block.quote}</blockquote>;
-  return <p>{block.p}</p>;
+  switch (block.type) {
+    case "heading":
+      return <h2>{block.text}</h2>;
+    case "bullets":
+      return (
+        <ul>
+          {block.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      );
+    case "numbered":
+      return (
+        <ol>
+          {block.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      );
+    case "quote":
+      return <blockquote>{block.text}</blockquote>;
+    case "paragraph":
+      return <p>{block.text}</p>;
+    default:
+      return null;
+  }
 }
 
 export function Post() {

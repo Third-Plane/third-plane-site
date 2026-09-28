@@ -1,0 +1,32 @@
+{
+  "title": [
+    "Three ways",
+    "to a market."
+  ],
+  "lead": "Placement Desk works each carrier through its portal, API or underwriter email, so your team can reach more of the markets you already have.",
+  "channels": {
+    "title": "One placement process, regardless of channel.",
+    "items": [
+      {
+        "title": "Carrier portals",
+        "body": "Works the portal from submission through quote."
+      },
+      {
+        "title": "Carrier APIs",
+        "body": "Connects directly where the carrier supports it."
+      },
+      {
+        "title": "Underwriter email",
+        "body": "Manages the thread from submission through response."
+      }
+    ]
+  },
+  "coverage": {
+    "title": "Configured market by market.",
+    "body": "Placement Desk is configured around your carrier appointments and how each market works, so more of your panel gets worked without adding manual placement effort."
+  },
+  "cta": {
+    "title": "Tell us which markets you work.",
+    "body": "Bring your appointment list. We’ll map how Placement Desk would reach them."
+  }
+}

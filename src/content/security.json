@@ -1,0 +1,80 @@
+{
+  "crumb": "Security and governance",
+  "title": [
+    "Built for regulated",
+    "environments."
+  ],
+  "lead": "Every desk works within defined authority, with human accountability and a record of what it did, so you can put AI to work without losing control.",
+  "authority": {
+    "sides": [
+      {
+        "title": "AI only acts within defined limits.",
+        "items": [
+          {
+            "title": "Scoped authority",
+            "body": "Set what it can do, where it can act and which work it can take on."
+          },
+          {
+            "title": "Access stays under your control",
+            "body": "Narrow or remove access at any time without disrupting work that remains in scope."
+          }
+        ]
+      },
+      {
+        "title": "Your people remain accountable.",
+        "items": [
+          {
+            "title": "Named supervision",
+            "body": "Every desk has a named supervisor who owns the outcome and the calls AI shouldn’t make."
+          },
+          {
+            "title": "You decide where people step in",
+            "body": "Set the points where the desk stops, returns the work and waits for a decision."
+          }
+        ]
+      }
+    ]
+  },
+  "record": {
+    "title": "Every action leaves a record.",
+    "items": [
+      {
+        "title": "Full audit trail",
+        "body": "See what was done, through which channel and under whose authority."
+      },
+      {
+        "title": "Context stays intact",
+        "body": "Keep the inputs, actions and outcomes together so any placement can be reviewed later."
+      },
+      {
+        "title": "Review performance",
+        "body": "Track outcomes, exceptions and patterns against the standards you set."
+      }
+    ]
+  },
+  "data": {
+    "title": "Your data stays yours, and stays separate.",
+    "items": [
+      {
+        "title": "Isolated by customer",
+        "body": "Each customer’s data is kept separate from every other customer’s."
+      },
+      {
+        "title": "Access stays under your control",
+        "body": "Use your own single sign-on and role-based permissions."
+      },
+      {
+        "title": "Your content stays private",
+        "body": "Prompts, documents and completions stay inside approved systems."
+      },
+      {
+        "title": "No model lock-in",
+        "body": "Change models when needed without changing your controls or tying your data to one provider."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bring your compliance and IT teams to the first conversation.",
+    "body": "We’ll tackle the hard questions early and walk through access, controls, records and data separation with your compliance and IT teams."
+  }
+}

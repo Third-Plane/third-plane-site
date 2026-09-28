@@ -1,0 +1,287 @@
+{
+  "about": "Copy from src/data/content.ts that no page renders, kept when the site copy moved to src/content/*.json for Pages CMS (September 2026). Keys are the file and field it came from. Nothing reads this file; move copy back into a page file and its .pages.yml form if a page starts using it, or delete this file.",
+  "home": {
+    "ledger": {
+      "label": "Placement Desk",
+      "sublabel": "Activity",
+      "legend": [
+        {
+          "status": "done",
+          "label": "Completed by the desk"
+        },
+        {
+          "status": "review",
+          "label": "Returned to a person"
+        }
+      ]
+    }
+  },
+  "home.problem": {
+    "eyebrow": "The capacity problem"
+  },
+  "home.approach": {
+    "eyebrow": "Where AI sits"
+  },
+  "home.desk": {
+    "eyebrow": "The Placement Desk",
+    "more": [
+      {
+        "label": "Security",
+        "href": "/security"
+      },
+      {
+        "label": "About",
+        "href": "/company"
+      }
+    ],
+    "next": {
+      "eyebrow": "Where this goes next",
+      "status": "In development",
+      "title": "The Underwriting Desk is next.",
+      "body": "The Underwriting Desk is in development and follows the same governance model as the Placement Desk: scoped authority, a complete record of every action, and a named person accountable for its work."
+    }
+  },
+  "placement-desk": {
+    "real.body": "",
+    "entry": {
+      "eyebrow": "How work enters",
+      "title": "The desk meets the work where it already is.",
+      "items": [
+        {
+          "title": "Forwarded by a producer",
+          "body": "A submission or a renewal request forwarded to the desk, the way you would hand it to a colleague."
+        },
+        {
+          "title": "The desk’s own inbox",
+          "body": "Renewals, carrier correspondence and client documents arriving at an address on your domain."
+        },
+        {
+          "title": "From your systems",
+          "body": "An AMS event, a renewal date, or another trigger you define."
+        }
+      ]
+    },
+    "work.eyebrow": "What the desk does",
+    "scope": {
+      "eyebrow": "How much the desk takes on",
+      "title": "The level of responsibility follows the business.",
+      "tiers": [
+        {
+          "kicker": "Personal and small commercial lines",
+          "title": "Toward near-zero-touch placement",
+          "body": "Where the business is programmatic, the desk can increasingly carry placement through to returned quotes, with human review at the points your controls set."
+        },
+        {
+          "kicker": "Mid-market and complex business",
+          "title": "The work around the decision",
+          "body": "The desk gathers and validates information, prepares submissions, identifies markets, coordinates carrier interaction and advances the quoting process. Your professionals stay on strategy, negotiation and judgment."
+        }
+      ]
+    },
+    "channels.eyebrow": "Carrier channels",
+    "human.eyebrow": "What stays with your people"
+  },
+  "company": {
+    "crumb": "Company",
+    "body": "We started with placement because it is where skilled work, execution burden and growth meet. The model extends from there.",
+    "origin.eyebrow": "Where we come from",
+    "principles.eyebrow": "Principles",
+    "team.eyebrow": "The team"
+  },
+  "company.next": {
+    "eyebrow": "Where this goes next"
+  },
+  "security": {
+    "body": "Governance is not a layer added after the desk works. It is how the desk is allowed to work at all.",
+    "authority.eyebrow": "Authority",
+    "record.eyebrow": "Record",
+    "data.eyebrow": "Data",
+    "human": {
+      "eyebrow": "What stays with your people",
+      "title": "The line between execution and judgment is drawn on purpose.",
+      "items": [
+        "Advice and recommendations to clients",
+        "Binding and other regulated decisions",
+        "Negotiation with markets",
+        "Approval at every review point you define"
+      ]
+    }
+  },
+  "careers": {
+    "body": "We hire people who know insurance deeply, people who build AI systems that do real work, and people who can do both.",
+    "why.eyebrow": "Why Third Plane",
+    "how.eyebrow": "How we work",
+    "roles.eyebrow": "Open roles"
+  },
+  "resources": {
+    "crumb": "Resources"
+  },
+  "platform": {
+    "crumb": "Platform",
+    "body": "You do not assemble those controls yourself. You receive a desk that is already allowed to work this way, so it can be deployed into a brokerage rather than demonstrated to one.",
+    "layers": {
+      "eyebrow": "What you get",
+      "title": "What comes with the desk.",
+      "items": [
+        {
+          "title": "Governed",
+          "body": "Every action runs under a defined scope of authority that names what the desk may do, on which accounts and channels, and for how long. That authority expires and can be withdrawn. Accountability attaches to a named person."
+        },
+        {
+          "title": "Bounded",
+          "body": "The desk follows playbooks that capture how your business does the work: the steps, the standards, the exceptions, and where a person must be asked. You are not handed an agent builder."
+        },
+        {
+          "title": "Auditable",
+          "body": "Every consequential action is written to an append-only record with attribution, so a result can be reconstructed exactly as it happened."
+        }
+      ]
+    },
+    "architecture": {
+      "eyebrow": "How the work moves",
+      "title": "Between the request and the system of record.",
+      "columns": [
+        {
+          "kicker": "Work in",
+          "items": [
+            "Email and attachments",
+            "AMS events",
+            "Documents and forms",
+            "Your team, directly"
+          ]
+        },
+        {
+          "kicker": "The desk",
+          "accent": true,
+          "items": [
+            "Playbooks and standards",
+            "Scoped, revocable authority",
+            "A complete record"
+          ]
+        },
+        {
+          "kicker": "Systems reached",
+          "items": [
+            "Carrier portals and APIs",
+            "Underwriter email",
+            "Agency management systems",
+            "Document repositories and inboxes"
+          ]
+        }
+      ],
+      "note": "Integrations are configured per deployment. Common targets include Applied Epic, AMS360, Sagitta, ImageRight, SharePoint, Outlook and Teams."
+    },
+    "real.eyebrow": "How it is delivered"
+  },
+  "carrier-channels": {
+    "crumb": "Carrier channels",
+    "body": "Your producers should not have to know which carrier answers by which channel. The desk knows, and works all three in parallel.",
+    "channels.eyebrow": "The channels",
+    "coverage.eyebrow": "Coverage"
+  },
+  "integrations": {
+    "crumb": "System integrations",
+    "systems.eyebrow": "What a desk connects to",
+    "how.eyebrow": "How integration works"
+  },
+  "applied-epic": {
+    "crumb": "Applied Epic",
+    "badge": {
+      "src": "",
+      "alt": "Certified Applied Vendor"
+    }
+  },
+  "horizon": {
+    "title": "Placement is the first desk.",
+    "body": "The same model extends to other defined insurance work as AI becomes capable of owning more of it. Our ambition is to help insurance businesses organize work around what people and AI are each best equipped to do."
+  },
+  "underwritingDesk": {
+    "crumb": "Underwriting Desk",
+    "status": "In development",
+    "title": [
+      "Submissions in.",
+      "Quotes out, ready for review."
+    ],
+    "lead": "The Underwriting Desk is the Placement Desk seen from the other side of the submission. Risks come in from brokers, the workforce is designed to carry each one through intake, appetite, rating and quoting, and a finished quote comes back to your underwriters for final review.",
+    "body": "Underwriters spend much of their day on work that happens before the decision. The desk is built to take on that work, through to a quote, and hand the decision back.",
+    "entry": {
+      "eyebrow": "How submissions arrive",
+      "title": "The desk meets the submission where it lands.",
+      "items": [
+        {
+          "title": "Broker email",
+          "body": "Submissions and supplementals arriving at an underwriting inbox, in whatever shape the broker sends them."
+        },
+        {
+          "title": "Portal and API intake",
+          "body": "Applications submitted through your portal or received through an API or comparative rater."
+        },
+        {
+          "title": "Your systems",
+          "body": "A new submission in your policy administration or workbench system, or another trigger you define."
+        }
+      ]
+    },
+    "work": {
+      "eyebrow": "What the desk does",
+      "title": "From submission to quote.",
+      "steps": [
+        {
+          "title": "Intake and structure",
+          "body": "The submission read as it arrives, with the application, schedules and loss runs structured into your data model."
+        },
+        {
+          "title": "Appetite and guidelines",
+          "body": "Every risk checked against your appetite and underwriting guidelines, with out-of-appetite submissions declined or referred by your rules."
+        },
+        {
+          "title": "Complete the file",
+          "body": "Missing information identified and requested from the broker, the thread worked until the file is complete, and third-party data pulled in where you use it."
+        },
+        {
+          "title": "Rate",
+          "body": "The risk rated in your rating engine or by your rating rules, with the inputs and the derivation recorded."
+        },
+        {
+          "title": "Quote",
+          "body": "Terms, conditions and pricing assembled into a quote to your standards, ready for the underwriter to review rather than to build."
+        },
+        {
+          "title": "Return for review",
+          "body": "The quote, the file behind it and the record of how it was produced, returned to the underwriter for the final decision and release to the broker."
+        }
+      ]
+    },
+    "scope": {
+      "eyebrow": "How much the desk takes on",
+      "title": "The same model as placement, tuned to your book.",
+      "tiers": [
+        {
+          "kicker": "Programmatic business",
+          "title": "Quote-ready with a light review",
+          "body": "Where risks fit clean guidelines, the desk is designed to carry a submission through to a quote, with the underwriter’s review at the points your controls define."
+        },
+        {
+          "kicker": "Referrals and complex risks",
+          "title": "The file prepared, the judgment yours",
+          "body": "Where a risk needs an underwriter’s judgment, the desk completes and structures the file, applies your guidelines, and presents the questions that remain. Your underwriters price and decide."
+        }
+      ]
+    },
+    "human": {
+      "eyebrow": "What stays with your underwriters",
+      "title": "The desk quotes. Your underwriters decide.",
+      "items": [
+        "Final review and release of every quote",
+        "Referrals, exceptions and declinations",
+        "Pricing judgment on complex risks",
+        "Broker relationships"
+      ]
+    },
+    "status_note": "The Underwriting Desk is in development and follows the same governance model as the Placement Desk: scoped authority, a complete record of every action, and a named person accountable for its work.",
+    "cta": {
+      "title": "Talk to us about underwriting capacity.",
+      "body": "Tell us how submissions reach your underwriters today, how they are rated and quoted, and where the queue builds up. We will show you what the desk would take on."
+    }
+  }
+}

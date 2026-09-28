@@ -2,39 +2,62 @@
 
 Marketing site for [thirdplane.com](https://www.thirdplane.com).
 
-| Route | Page | Copy lives in |
+| Route | Page | Copy lives in `src/content/` |
 | --- | --- | --- |
-| `/` | Home | `homeHero`, `problem`, `approach`, `desk`, `deployment`, `company`, `horizon`, `contact` |
-| `/placement-desk` | Placement Desk | `placementDesk` |
-| `/platform` | Platform | `alpinePage` |
-| `/security` | Security and governance | `securityPage` |
-| `/carrier-channels` | Carrier channels | `carrierChannelsPage` |
-| `/integrations` | System integrations | `integrationsPage` |
-| `/company` | Company: Austin, origin, principles, team | `companyPage` |
-| `/careers` | Careers, with an open-roles list | `careersPage` |
-| `/resources` | Resources index: technical, perspective, press | `resourcesPage` |
-| `/resources/:slug` | One post | `src/data/posts.ts` |
+| `/` | Home | `home.json` |
+| `/placement-desk` | Placement Desk | `placement-desk.json` |
+| `/platform` | Platform | `platform.json` |
+| `/security` | Security and governance | `security.json` |
+| `/carrier-channels` | Carrier channels | `carrier-channels.json` |
+| `/integrations` | System integrations | `integrations.json` |
+| `/applied-epic` | Applied Epic | `applied-epic.json` |
+| `/company` | Company: Austin, origin, principles, team | `company.json` |
+| `/careers` | Careers, with an open-roles list | `careers.json` |
+| `/resources` | Resources index: technical, perspective, press | `resources.json` |
+| `/resources/:slug` | One post | `posts/<slug>.json` |
 
-All of the above are exports of `src/data/content.ts` unless noted. The primary nav (`primaryNav`)
-is three menus: Products, Capabilities and Company; the footer is `siteFooter`.
-`/underwriting-desk` redirects to `/company#next` (the Underwriting Desk is no longer a standalone page).
-Unknown paths get the Not found page with a 404 status.
+`site.json` holds the company name, contact details, the default meta description, the footer
+tagline and the default closing call to action. The primary nav (`primaryNav`) and footer links
+(`siteFooter`) stay in [`src/data/content.ts`](src/data/content.ts), because their links have to
+match the routes. `/underwriting-desk` redirects to `/company#next` (the Underwriting Desk is no
+longer a standalone page). Unknown paths get the Not found page with a 404 status.
+
+## Editing content
+
+Content is edited in [Pages CMS](https://pagescms.org), which gives each file in `src/content/` a
+form and commits the change to GitHub; Vercel then deploys it. Editors are invited by email and do
+not need a GitHub account. The forms are defined in [`.pages.yml`](.pages.yml).
+
+- **Posts:** add one under Posts. New posts start as drafts, which render in the dev server only;
+  turn Draft off to publish, and the build emits `resources/<slug>.html`.
+- **Video:** set the video (and optionally a poster) under Home → Video. The section appears as
+  soon as a video is set.
+- **Team photo:** set it under About → Team. Until then the Company page shows a marked
+  placeholder.
+- **Open roles:** add them under Careers → Open roles. With none, the page shows an invitation to
+  write in.
+
+Uploaded images and video go to `public/media/`.
+
+### Changing the shape of the content
+
+Pages CMS rewrites a file from its form when an editor saves, so **a field that is in the JSON but
+not in `.pages.yml` is dropped on the next save**. It also drops empty strings, empty lists and
+empty objects. When a page starts using a new field:
+
+1. Add it to the JSON file and to that file's form in `.pages.yml`.
+2. Add it to the file's type in [`src/data/content-types.ts`](src/data/content-types.ts). Anything
+   an editor can leave blank must be optional there and handled where it renders.
+
+`npm run build` runs [`scripts/check-content.mjs`](scripts/check-content.mjs) first, which fails if
+any JSON value has no matching form field, has the wrong kind, or a required field is missing; `tsc`
+then checks the JSON against the types. Copy that no page renders is kept in
+[`src/data/unused-copy.json`](src/data/unused-copy.json) and is not in the CMS.
 
 **Adding a page:** add it to `pages` in `src/routes.tsx` (that routes it, prerenders it and lists it
-in the sitemap) and link it from `primaryNav` or `siteFooter`. Call `useTitle` with the page's title
-and description; they become its `<title>`, meta description and Open Graph tags.
-
-**Adding a post:** append to `posts` in `src/data/posts.ts`. Posts marked `draft: true` render in
-the dev server only. Remove the flag to publish; the build emits `resources/<slug>.html`.
-
-**Video:** set `showcase.src` (and optionally `poster`) in `content.ts`. The section on the home
-page appears as soon as a source is present.
-
-**Team photo:** set `companyPage.team.photo.src`. Until then the Company page shows a marked
-placeholder.
-
-**Open roles:** add entries to `careersPage.roles.items`. With none, the page shows an invitation
-to write in.
+in the sitemap), give it a JSON file and a form, and link it from `primaryNav` or `siteFooter`. Call
+`useTitle` with the page's title and description; they become its `<title>`, meta description and
+Open Graph tags.
 
 ## Tech stack
 
@@ -44,7 +67,7 @@ to write in.
 - React Router
 - Plain CSS in `src/index.css`
 
-Copy lives in [`src/data/content.ts`](src/data/content.ts). Components handle layout only.
+Copy lives in [`src/content/`](src/content) as JSON. Components handle layout only.
 
 ## Local development
 

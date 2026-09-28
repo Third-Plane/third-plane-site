@@ -1,0 +1,177 @@
+{
+  "hero": {
+    "title": "Third Plane builds AI workforces for insurance.",
+    "lead": "Placement Desk takes on defined placement work across the systems and carrier channels your brokerage already uses.",
+    "body": "Send Placement Desk a submission or renewal. It works the markets and returns the quotes with a record of what it did.",
+    "secondary": {
+      "label": "See Placement Desk",
+      "href": "/placement-desk"
+    }
+  },
+  "ledger": {
+    "label": "Placement Desk",
+    "sublabel": "Activity",
+    "legend": [
+      {
+        "status": "done",
+        "label": "Completed by the desk"
+      },
+      {
+        "status": "review",
+        "label": "Returned to a person"
+      }
+    ],
+    "tasks": [
+      {
+        "task": "Submission received by email: Sample Bakery LLC, BOP",
+        "status": "done"
+      },
+      {
+        "task": "Account information structured from the ACORD and loss runs",
+        "status": "done"
+      },
+      {
+        "task": "Missing information flagged: prior carrier, current payroll",
+        "status": "review"
+      },
+      {
+        "task": "Producer reply filed: payroll confirmed",
+        "status": "done"
+      },
+      {
+        "task": "Appetite assessed across 12 appointed markets",
+        "status": "done"
+      },
+      {
+        "task": "Markets selected: 5 to approach",
+        "status": "done"
+      },
+      {
+        "task": "Portal submission complete: Demo Mutual",
+        "status": "done"
+      },
+      {
+        "task": "Submitted by email to underwriter: Example Specialty",
+        "status": "done"
+      },
+      {
+        "task": "Quote returned through carrier API: Sample Carrier Co.",
+        "status": "done"
+      },
+      {
+        "task": "Follow-up sent: Example Specialty, day two",
+        "status": "done"
+      },
+      {
+        "task": "Quote received: Demo Mutual",
+        "status": "done"
+      },
+      {
+        "task": "Results returned to producer: 3 quotes, 1 declination, record attached",
+        "status": "review"
+      },
+      {
+        "task": "Renewal detected in AMS: Placeholder Mfg, 90 days out",
+        "status": "done"
+      },
+      {
+        "task": "Renewal information gathered from policy file and prior submission",
+        "status": "done"
+      },
+      {
+        "task": "Appetite assessed: incumbent plus 8 alternatives",
+        "status": "done"
+      },
+      {
+        "task": "Portal submission complete: Sample Carrier Co., supplemental forms",
+        "status": "done"
+      },
+      {
+        "task": "Underwriter question answered: prior loss detail",
+        "status": "done"
+      },
+      {
+        "task": "No market fit: routed to account manager with the record",
+        "status": "review"
+      }
+    ]
+  },
+  "problem": {
+    "title": "You can’t hire your way out of the bottleneck.",
+    "body": "Accounts that were remarketed every few years are now worked every year, across more markets. More submissions. More follow-up. More work to place the same business.",
+    "points": [
+      {
+        "title": "Skilled capacity is finite",
+        "body": "More submissions compete for the same limited producer and account manager time."
+      },
+      {
+        "title": "Another tool is not more capacity",
+        "body": "New systems still need someone to learn them, manage them and use them."
+      },
+      {
+        "title": "Hiring preserves the constraint",
+        "body": "Hiring adds capacity one person at a time while placement demand keeps growing."
+      }
+    ],
+    "closing": "The cost shows up as markets that never get shopped, quotes that arrive late, renewals that slip, and business your team never had the capacity to pursue."
+  },
+  "approach": {
+    "title": "Most AI gives your people another tool. Third Plane builds it into your organization.",
+    "body": "Give someone an AI tool and they still own the work. Third Plane assigns defined work to an AI workforce and returns the finished outcome to your people for review.",
+    "models": [
+      {
+        "kicker": "The tool model",
+        "chain": [
+          "Employee",
+          "AI tool",
+          "Task"
+        ],
+        "note": "The employee runs the tool, reviews the output and still owns the work.",
+        "accent": false
+      },
+      {
+        "kicker": "The Third Plane model",
+        "chain": [
+          "Organization",
+          "Defined work",
+          "AI workforce",
+          "Completed outcome"
+        ],
+        "note": "The business assigns the work. The AI workforce executes it across your systems. Your people review the outcome and make the decisions.",
+        "accent": true
+      }
+    ],
+    "definition": {
+      "headline": "An AI workforce takes responsibility for defined work across the systems and carrier channels you already use."
+    }
+  },
+  "desk": {
+    "name": "Placement Desk",
+    "title": "Send the work to the Placement Desk. Your team gets the quotes back.",
+    "body": "A dedicated placement function that takes new business and renewals from submission through returned quotes.",
+    "columns": [
+      {
+        "kicker": "Work goes in",
+        "line": "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event."
+      },
+      {
+        "kicker": "The desk works it",
+        "line": "Gathers the account, checks appetite and works the markets through portals, APIs and email.",
+        "accent": true
+      },
+      {
+        "kicker": "Results come back",
+        "line": "Quotes, market results and a record of the work come back for review."
+      }
+    ],
+    "closing": "Placement Desk works carriers on its own credentials and handles multiple accounts in parallel using the same placement process.",
+    "cta": {
+      "label": "See Placement Desk",
+      "href": "/placement-desk"
+    }
+  },
+  "showcase": {
+    "eyebrow": "See the Placement Desk work",
+    "title": "Two minutes on what changes when the work moves to a desk."
+  }
+}

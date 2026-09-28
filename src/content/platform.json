@@ -1,0 +1,33 @@
+{
+  "title": [
+    "The work is governed,",
+    "bounded and auditable."
+  ],
+  "lead": "Every desk runs with scoped authority, named accountability and a complete record of the work, so you stay in control.",
+  "real": {
+    "title": "Built for your operation.",
+    "body": "Third Plane configures the desk around your work, systems and rules, so it arrives ready to operate inside your business.",
+    "facts": [
+      {
+        "title": "You are not handed a builder",
+        "body": "Your desk comes with the right access, controls and reporting already configured."
+      },
+      {
+        "title": "Every action recorded",
+        "body": "Authority and record are how the desk runs, not an add-on, so governance holds on day one."
+      },
+      {
+        "title": "Model-agnostic",
+        "body": "Changes models by task when needed without changing the desk’s rules, controls or record."
+      }
+    ]
+  },
+  "cta": {
+    "title": "See where a desk fits in your brokerage.",
+    "body": "We’ll show you what it can take on, where people stay involved and what comes back to the team.",
+    "meta": [
+      "Built for brokerage operations",
+      "Works with your systems and carrier channels"
+    ]
+  }
+}

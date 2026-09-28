@@ -71,7 +71,7 @@ export function AppliedEpic() {
         </section>
       ) : null}
 
-      {page.quote.text ? (
+      {page.quote?.text ? (
         <section className="section section--blend" id="quote">
           <div className="container">
             <blockquote className="applied-quote" data-reveal>

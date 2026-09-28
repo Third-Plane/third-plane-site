@@ -3,8 +3,7 @@ import { site } from "../data/content";
 
 export const ORIGIN = "https://www.thirdplane.com";
 
-export const DEFAULT_DESCRIPTION =
-  "Third Plane builds AI workforces for insurance. Placement Desk takes on defined placement work across the systems and carrier channels your brokerage already uses.";
+export const DEFAULT_DESCRIPTION = site.description;
 
 // "Company | Third Plane"; the homepage keeps the site-wide title.
 export const fullTitle = (title?: string) =>
