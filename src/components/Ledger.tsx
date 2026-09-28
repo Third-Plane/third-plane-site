@@ -8,6 +8,15 @@ const formatTime = (value: number) =>
 type LedgerTask = (typeof ledgerTasks)[number];
 type Row = LedgerTask & { key: number; time: string };
 
+const firstRows = (tasks: LedgerTask[]): Row[] => {
+  const now = Date.now();
+  return tasks.slice(0, VISIBLE).map((task, i) => ({
+    ...task,
+    key: i,
+    time: formatTime(now - (VISIBLE - 1 - i) * 47_000),
+  }));
+};
+
 type Props = {
   label?: string;
   sublabel?: string;
@@ -22,16 +31,13 @@ export function Ledger({
   tasks = ledgerTasks,
 }: Props) {
   const index = useRef(VISIBLE);
-  const [rows, setRows] = useState<Row[]>(() => {
-    const now = Date.now();
-    return tasks.slice(0, VISIBLE).map((task, i) => ({
-      ...task,
-      key: i,
-      time: formatTime(now - (VISIBLE - 1 - i) * 47_000),
-    }));
-  });
+  const [rows, setRows] = useState<Row[]>(() => firstRows(tasks));
 
   useEffect(() => {
+    // The page is prerendered at build time, so restamp the opening rows with
+    // the reader's clock once it hydrates.
+    setRows(firstRows(tasks));
+    index.current = VISIBLE;
     let timeout: number;
     const tick = () => {
       const next: Row = {
@@ -65,7 +71,9 @@ export function Ledger({
       <ol className="ledger__rows">
         {rows.map((row) => (
           <li className="ledger__row" data-status={row.status} key={row.key}>
-            <span className="ledger__time">{row.time}</span>
+            <span className="ledger__time" suppressHydrationWarning>
+              {row.time}
+            </span>
             <span className="ledger__task">{row.task}</span>
             <i className="ledger__dot" aria-hidden="true" />
           </li>

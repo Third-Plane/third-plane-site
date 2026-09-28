@@ -18,12 +18,14 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 All of the above are exports of `src/data/content.ts` unless noted. The primary nav (`primaryNav`)
 is three menus: Products, Capabilities and Company; the footer is `siteFooter`.
 `/underwriting-desk` redirects to `/company#next` (the Underwriting Desk is no longer a standalone page).
+Unknown paths get the Not found page with a 404 status.
 
-**Adding a page:** add the route in `src/App.tsx`, add its path to `ROUTES` in `vite.config.ts`
-(so static hosts get an `index.html` for it), and link it from `primaryNav` or `siteFooter`.
+**Adding a page:** add it to `pages` in `src/routes.tsx` (that routes it, prerenders it and lists it
+in the sitemap) and link it from `primaryNav` or `siteFooter`. Call `useTitle` with the page's title
+and description; they become its `<title>`, meta description and Open Graph tags.
 
 **Adding a post:** append to `posts` in `src/data/posts.ts`. Posts marked `draft: true` render in
-the dev server only. Remove the flag to publish; the build emits `resources/<slug>/index.html`.
+the dev server only. Remove the flag to publish; the build emits `resources/<slug>.html`.
 
 **Video:** set `showcase.src` (and optionally `poster`) in `content.ts`. The section on the home
 page appears as soon as a source is present.
@@ -56,17 +58,22 @@ npm run lint
 
 ## Publishing
 
-Production is **https://www.thirdplane.com/**, hosted on Vercel and built from `main`. The apex `thirdplane.com` redirects to `www`. Because that site is served from the root, `vite.config.ts` defaults `base` to `/`.
+Production is **https://www.thirdplane.com/**, hosted on Vercel and built from `main`. The apex `thirdplane.com` redirects to `www`.
 
-The domain is managed in Vercel, not in GitHub Pages, so there is deliberately no `public/CNAME`.
+### How pages are built
 
-### The GitHub Pages mirror
+`npm run build` builds the browser bundle, then renders every page to static HTML
+([`scripts/prerender.mjs`](scripts/prerender.mjs) with [`src/entry-server.tsx`](src/entry-server.tsx)).
+Each page arrives with its content, title, description, canonical URL and Open Graph tags already in
+the HTML, so search engines, AI crawlers and link previews (LinkedIn, Slack) read it without running
+JavaScript. The browser then hydrates the same markup. The build also writes `404.html`, `sitemap.xml`
+and structured data (Organization on the homepage, BlogPosting on posts).
 
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) also builds every push to `main` and publishes `dist/` to `https://third-plane.github.io/third-plane-site/`. Pages project sites are served from a subpath, so that build sets:
+Anything that depends on the browser (the clock in the activity ledger, scroll state, canvas
+animation) has to run in an effect, not during render, or the prerendered HTML will not match.
 
-```bash
-BASE_PATH=/third-plane-site/ npm run build
-```
+[`vercel.json`](vercel.json) serves `/placement-desk` from `placement-desk.html` (`cleanUrls`), drops
+trailing slashes, and holds the permanent redirects for retired paths.
 
 ## Brand assets
 

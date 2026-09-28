@@ -1,4 +1,10 @@
 {
   "framework": "vite",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/underwriting-desk", "destination": "/company#next", "permanent": true },
+    { "source": "/alpine", "destination": "/platform", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true }
+  ]
 }
