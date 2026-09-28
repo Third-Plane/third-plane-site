@@ -152,7 +152,8 @@
     "columns": [
       {
         "kicker": "Work goes in",
-        "line": "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event."
+        "line": "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event.",
+        "accent": false
       },
       {
         "kicker": "The desk works it",
@@ -161,10 +162,11 @@
       },
       {
         "kicker": "Results come back",
-        "line": "Quotes, market results and a record of the work come back for review."
+        "line": "Quotes, market results and a record of the work come back for review.",
+        "accent": false
       }
     ],
-    "closing": "Placement Desk works carriers on its own credentials and handles multiple accounts in parallel using the same placement process.",
+    "closing": "Placement Desk handles multiple accounts in parallel using the same placement process.",
     "cta": {
       "label": "See Placement Desk",
       "href": "/placement-desk"
