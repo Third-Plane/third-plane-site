@@ -830,31 +830,31 @@ export const carrierChannelsPage = {
 export const integrationsPage = {
   crumb: "System integrations",
   title: ["Your systems", "as they are."],
-  lead: "A desk works inside the systems your business already runs. It reads from your agency management system, document repository and inboxes, and writes results back where your team expects to find them.",
-  body: "No new system of record, no second login for producers, no migration. Integration is part of deploying a desk, not a project you run first.",
+  lead: "Placement Desk connects to the systems your brokerage already uses, so the work moves without another system for your team to manage.",
+  body: "Placement Desk reads from your AMS, documents and inboxes and writes results back where your team expects them, without adding another system to manage.",
   systems: {
     eyebrow: "What a desk connects to",
-    title: "Sources in, results back.",
+    title: "Work goes in. Results come back.",
     items: [
       {
         title: "Agency management systems",
-        body: "Client and policy data read for the submission; activities, documents and results written back. Applied Epic, AMS360, Sagitta and others are configured per deployment.",
+        body: "Reads client and policy data for the submission and writes activities, documents and results back. Connections are configured per deployment.",
         names: "AMS360, Sagitta",
         link: { label: "Applied Epic", href: "/applied-epic" },
       },
       {
         title: "Document repositories",
-        body: "Applications, loss runs, schedules and correspondence pulled from where they live today: ImageRight, SharePoint, shared drives.",
+        body: "Pulls applications, loss runs, schedules and correspondence from where they already live.",
         names: "ImageRight, SharePoint, shared drives",
       },
       {
         title: "Email and collaboration",
-        body: "Outlook and Teams as both a source of work and the place results land, alongside the desk’s own inbox on your domain.",
+        body: "Takes work from Outlook and Teams and returns results there, alongside the desk’s own inbox on your domain.",
         names: "Outlook, Teams",
       },
       {
         title: "Data and reporting",
-        body: "Every action and outcome available to your data lake or reporting tools, so desk performance sits next to the rest of the business.",
+        body: "Every action and outcome is available to your data lake or reporting tools, so desk performance can be measured alongside the rest of the business.",
       },
       {
         title: "Carrier channels",
@@ -870,16 +870,16 @@ export const integrationsPage = {
     eyebrow: "How integration works",
     title: "Read where you allow. Write where you expect.",
     steps: [
-      { title: "Map", body: "In discovery we map which systems hold what, who owns them, and where the desk’s results should land." },
-      { title: "Connect", body: "Connections are established and scoped to the data and actions the work requires." },
-      { title: "Configure", body: "What is read, what is written back, and in what shape, is set to your standards and your controls." },
-      { title: "Record", body: "Every read and write is logged against the desk’s record, so integration activity is as auditable as the work itself." },
+      { title: "Map", body: "See what connects and where results should land." },
+      { title: "Connect", body: "Use scoped credentials for the systems the desk needs." },
+      { title: "Configure", body: "Set what it can read and write back." },
+      { title: "Record", body: "Log every read and write." },
     ],
   },
-  note: "Integration targets are confirmed per deployment during discovery. If your systems are not named here, ask; a desk connects through APIs, email and browsers, so the list is not the limit.",
+  note: "Integration targets are confirmed during discovery.",
   cta: {
     title: "Tell us what you run.",
-    body: "Your AMS, your document system, your inboxes and your carriers. We will come back with how a desk would connect to each and what your team would see change.",
+    body: "Show us your AMS, inboxes and document systems. We’ll map how Placement Desk would connect.",
   },
 };
 

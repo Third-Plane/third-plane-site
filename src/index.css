@@ -255,6 +255,17 @@ ol {
   margin: 0;
   font-size: var(--type-xs);
 }
+#systems .fit__inline-names {
+  color: var(--ink);
+  font-weight: 600;
+}
+#systems .fit__inline-names a {
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+#systems .fit__inline-names a:hover {
+  color: var(--purple);
+}
 @media (width<=760px) {
   .fit__row {
     grid-template-columns: 1fr;

@@ -9,7 +9,7 @@ export function Integrations() {
   useTitle("System integrations", page.lead);
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} />
+      <PageHero title={page.title} lead={page.lead} body={page.body} />
 
       <section className="section section--white" id="systems">
         <div className="container">
@@ -24,16 +24,23 @@ export function Integrations() {
               >
                 <div className="fit__sys">
                   <h3 className="fit__label">{item.title}</h3>
-                  {item.link ? (
-                    <p className="fit__names">
-                      <AppLink href={item.link.href}>{item.link.label}</AppLink>{item.names ? `, ${item.names}` : null}
-                    </p>
-                  ) : "names" in item && item.names ? (
-                    <p className="fit__names">{item.names}</p>
-                  ) : null}
                 </div>
                 <div className="fit__copy">
-                  <p className="fit__body">{item.body}</p>
+                  <p className="fit__body">
+                    {item.link || item.names ? (
+                      <>
+                        <strong className="fit__inline-names">
+                          {item.link ? (
+                            <AppLink href={item.link.href}>{item.link.label}</AppLink>
+                          ) : null}
+                          {item.link && item.names ? ", " : null}
+                          {item.names ?? null}
+                        </strong>
+                        {". "}
+                      </>
+                    ) : null}
+                    {item.body}
+                  </p>
                 </div>
               </article>
             ))}
