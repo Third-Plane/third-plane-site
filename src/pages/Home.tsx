@@ -5,7 +5,6 @@ import { Showcase } from "../components/Showcase";
 import {
   Arrow,
   Button,
-  Eyebrow,
   SectionHead,
   Slash,
   TextLink,
@@ -24,15 +23,13 @@ export function Home() {
           <div className="hero__copy">
             <div data-reveal>
               <Slash className="hero__slash" />
-              <Eyebrow>{homeHero.eyebrow}</Eyebrow>
             </div>
             <h1
               className="display-1 display-1--inline"
               data-reveal
               style={delayStyle(1)}
             >
-              <span className="display-1__plain">{homeHero.title[0]}</span>{" "}
-              <span>{homeHero.title[1]}</span>
+              {homeHero.title[0]}
             </h1>
             <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
               {homeHero.lead}
@@ -107,8 +104,7 @@ export function Home() {
             ))}
           </div>
           <div className="definition" data-reveal>
-            <p className="definition__kicker">{approach.definition.kicker}</p>
-            <p className="definition__body">{approach.definition.body}</p>
+            <h2 className="display-2">{approach.definition.headline}</h2>
           </div>
         </div>
       </section>

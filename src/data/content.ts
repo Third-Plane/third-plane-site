@@ -13,10 +13,9 @@ export const aiWorkforceDefinition =
   "An AI workforce is dedicated operating capacity that takes responsibility for defined work across the systems and carrier channels you already use.";
 
 export const homeHero = {
-  eyebrow: "AI workforces for insurance",
-  title: ["Assign the work to AI.", "Keep the judgment with your people."],
-  lead: aiWorkforceDefinition,
-  body: "It starts with placement. Send the Placement Desk a submission or a renewal. Your team gets the markets, the quotes and a record of the work back.",
+  title: ["Third Plane builds AI workforces for insurance."],
+  lead: "Placement Desk takes on defined placement work across the systems and carrier channels your brokerage already uses.",
+  body: "Send Placement Desk a submission or renewal. It works the markets and returns the quotes with a record of what it did.",
   secondary: { label: "See Placement Desk", href: "/placement-desk" },
   ledger: {
     label: "Placement Desk",
@@ -93,20 +92,20 @@ export const ledgerTasks = [
 
 export const problem = {
   eyebrow: "The capacity problem",
-  title: "It takes more work to place the same business.",
-  body: "Accounts that were remarketed every few years are now worked every year, across more markets. More submissions, more portal entry, more carrier follow-up, more quote comparison. The outcome is the same placed policy. The effort behind it keeps growing.",
+  title: "You can’t hire your way out of the bottleneck.",
+  body: "Accounts that were remarketed every few years are now worked every year, across more markets. More submissions. More follow-up. More work to place the same business.",
   points: [
     {
       title: "Skilled capacity is finite",
-      body: "Producers and account managers spend their days gathering information, rekeying it into portals, chasing responses and comparing quotes. Their capacity decides how many markets get approached and how proactively renewals get handled.",
+      body: "More submissions compete for the same limited producer and account manager time.",
     },
     {
       title: "Another tool is not more capacity",
-      body: "Every new system adds an interface, a workflow and an adoption burden. Someone still has to operate it, supervise it and fit it into their day.",
+      body: "New systems still need someone to learn them, manage them and use them.",
     },
     {
       title: "Hiring preserves the constraint",
-      body: "Another hire adds capacity on the same cost curve. The market knowledge still lives in individual inboxes and habits, and leaves when they do.",
+      body: "Hiring adds capacity one person at a time while placement demand keeps growing.",
     },
   ],
   closing:
@@ -115,13 +114,13 @@ export const problem = {
 
 export const approach = {
   eyebrow: "Where AI sits",
-  title: "Most AI is another tool for your people. We put it somewhere else.",
-  body: "Give an employee a tool and the employee still owns the work. Third Plane assigns defined work to AI as part of how the organization operates, so the work moves to the workforce and the outcome moves back to your people.",
+  title: "Most AI gives your people another tool. Third Plane builds it into your organization.",
+  body: "Give someone an AI tool and they still own the work. Third Plane assigns defined work to an AI workforce and returns the finished outcome to your people for review.",
   models: [
     {
       kicker: "The tool model",
       chain: ["Employee", "AI tool", "Task"],
-      note: "The person operates the technology, supervises the output and owns the execution. Gains are capped by the people you employ.",
+      note: "The employee runs the tool, reviews the output and still owns the work.",
       accent: false,
     },
     {
@@ -132,35 +131,13 @@ export const approach = {
         "AI workforce",
         "Completed outcome",
       ],
-      note: "The business decides what work AI owns. The workforce does it across your systems, in parallel. People review the result and keep the decisions that should stay human.",
+      note: "The business assigns the work. The AI workforce executes it across your systems. Your people review the outcome and make the decisions.",
       accent: true,
     },
   ],
   definition: {
-    kicker: "What we mean by an AI workforce",
-    body: aiWorkforceDefinition,
-    items: [
-      {
-        title: "Defined responsibilities",
-        body: "It owns specific work, and nothing else.",
-      },
-      {
-        title: "Bounded authority",
-        body: "What it may do on its own is written down and scoped.",
-      },
-      {
-        title: "Works in your systems",
-        body: "AMS, carrier portals, APIs and email. No new interface to adopt.",
-      },
-      {
-        title: "Human supervision",
-        body: "A person is accountable for its work and reviews what comes back.",
-      },
-      {
-        title: "Measurable outcomes",
-        body: "Managed by what it produces, like any other function.",
-      },
-    ],
+    headline:
+      "An AI workforce takes responsibility for defined work across the systems and carrier channels you already use.",
   },
 };
 
@@ -168,7 +145,7 @@ export const desk = {
   name: "Placement Desk",
   eyebrow: "The Placement Desk",
   title: "Send the work to the Placement Desk. Your team gets the quotes back.",
-  body: "A dedicated placement function staffed by AI workers. It takes defined placement work from request to returned market results, new business and renewals alike.",
+  body: "A dedicated placement function that takes new business and renewals from submission through returned quotes.",
   columns: [
     {
       kicker: "Work goes in",
@@ -177,15 +154,15 @@ export const desk = {
     {
       kicker: "The desk works it",
       accent: true,
-      line: "Gathers and structures the account, assesses appetite, and submits through carrier portals, APIs and email.",
+      line: "Gathers the account, checks appetite and works the markets through portals, APIs and email.",
     },
     {
       kicker: "Results come back",
-      line: "Market results and quotes, compared, with a record — ready for your team’s judgment.",
+      line: "Quotes, market results and a record of the work come back for review.",
     },
   ],
   closing:
-    "The desk handles accounts in parallel and applies the same standard whether the account sits with a new hire or your best producer.",
+    "Placement Desk works carriers on its own credentials and handles multiple accounts in parallel using the same placement process.",
   cta: { label: "See Placement Desk", href: "/placement-desk" },
   more: [
     { label: "Security", href: "/security" },
@@ -205,10 +182,10 @@ export const horizon = {
 };
 
 export const contact = {
-  title: "We will show you where a desk fits.",
-  body: "What it would take on, and what your team would get back.",
+  title: "See where Placement Desk fits.",
+  body: "We’ll show you what it can take on, where your people stay involved and what comes back to the team.",
   meta: [
-    "Built for brokerage leadership",
+    "Built for brokerage operations",
     "Deployed with your systems and carrier channels",
   ],
 };

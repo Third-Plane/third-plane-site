@@ -119,11 +119,6 @@ ol {
 .display-1--inline .display-1__plain {
   color: inherit;
 }
-@media (width > 640px) {
-  .display-1--inline .display-1__plain {
-    white-space: nowrap;
-  }
-}
 .display-2 {
   letter-spacing: -0.03em;
   font-size: clamp(1.9rem, 3.4vw, 2.85rem);
@@ -1043,19 +1038,9 @@ ol {
   margin-top: clamp(3rem, 5vw, 4.5rem);
   padding-top: 2.5rem;
 }
-.definition__kicker {
-  font-family: var(--font-head);
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 1.1rem;
-  font-size: var(--type-md);
-  font-weight: 500;
-  line-height: 1.2;
-}
-.definition__body {
-  color: var(--ink-body);
+.definition .display-2 {
+  max-width: 24ch;
   text-wrap: pretty;
-  max-width: 62ch;
   margin: 0;
 }
 .definition__list {
