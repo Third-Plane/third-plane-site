@@ -3,7 +3,7 @@ import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
 import { Showcase } from "../components/Showcase";
-import { Arrow, Button, SectionHead, Slash } from "../components/Ui";
+import { Arrow, Button, SectionHead } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -22,10 +22,7 @@ export function Home() {
             <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
               {homeHero.lead}
             </p>
-            <p className="hero__body" data-reveal style={delayStyle(3)}>
-              {homeHero.body}
-            </p>
-            <div className="hero__actions" data-reveal style={delayStyle(4)}>
+            <div className="hero__actions" data-reveal style={delayStyle(3)}>
               <Button variant="dark" />
               <Button variant="ghost" href={homeHero.secondary.href}>
                 {homeHero.secondary.label}

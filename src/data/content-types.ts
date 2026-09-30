@@ -25,7 +25,7 @@ export type SiteFile = {
 };
 
 export type HomeFile = {
-  hero: { title: string; lead: string; body: string; secondary: Link };
+  hero: { title: string; lead: string; secondary: Link };
   ledger: {
     label: string;
     sublabel: string;

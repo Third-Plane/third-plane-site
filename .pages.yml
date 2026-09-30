@@ -146,9 +146,6 @@ content:
               - name: lead
                 type: text
                 required: true
-              - name: body
-                type: text
-                required: true
               - name: secondary
                 label: Second button
                 component: link
