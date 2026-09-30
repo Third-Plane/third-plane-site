@@ -5,8 +5,21 @@ import { Logo } from "./Logo";
 
 function Chevron() {
   return (
-    <svg className="nav__chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-      <path d="M2 3.5 5 6.5 8 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      className="nav__chevron"
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 3.5 5 6.5 8 3.5"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -86,7 +99,9 @@ export function Header() {
                 data-open={isOpen}
                 key={group.label}
                 onMouseEnter={() => setMenu(group.label)}
-                onMouseLeave={() => setMenu((current) => (current === group.label ? null : current))}
+                onMouseLeave={() =>
+                  setMenu((current) => (current === group.label ? null : current))
+                }
               >
                 <button
                   className="nav__link nav__menu-btn"
@@ -99,7 +114,12 @@ export function Header() {
                 </button>
                 <div className="nav__panel" role="menu">
                   {(group.items as Item[]).map((item) => (
-                    <AppLink className="nav__panel-item" href={item.href} key={item.href} onClick={close}>
+                    <AppLink
+                      className="nav__panel-item"
+                      href={item.href}
+                      key={item.href}
+                      onClick={close}
+                    >
                       <span>{item.label}</span>
                       <Note item={item} />
                     </AppLink>
@@ -123,9 +143,19 @@ export function Header() {
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             {open ? (
-              <path d="M5 5l12 12M17 5L5 17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path
+                d="M5 5l12 12M17 5L5 17"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
             ) : (
-              <path d="M3 7h16M3 15h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path
+                d="M3 7h16M3 15h16"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
             )}
           </svg>
         </button>
@@ -137,7 +167,12 @@ export function Header() {
             <div key={group.label}>
               <p className="nav__drawer-group">{group.label}</p>
               {(group.items as Item[]).map((item) => (
-                <AppLink className="nav__drawer-link" href={item.href} key={item.href} onClick={close}>
+                <AppLink
+                  className="nav__drawer-link"
+                  href={item.href}
+                  key={item.href}
+                  onClick={close}
+                >
                   {item.label}
                   {item.live !== undefined ? <Note item={item} /> : null}
                 </AppLink>

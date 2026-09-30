@@ -102,9 +102,7 @@ export function ParticleField({
         }
         const depth = Math.min(1, Math.max(0, p.y / h));
         const flicker = 0.85 + 0.15 * Math.sin(t * 0.0012 + p.phase);
-        const level = Math.round(
-          Math.min(1, depth * 1.6 + 0.12) * p.base * flicker * LEVELS,
-        );
+        const level = Math.round(Math.min(1, depth * 1.6 + 0.12) * p.base * flicker * LEVELS);
         if (level <= 0) continue;
         if (level !== current) {
           current = level;
@@ -144,10 +142,7 @@ export function ParticleField({
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(
-        MAX_POINTS,
-        Math.round(((w * h) / AREA_PER_POINT) * density),
-      );
+      const count = Math.min(MAX_POINTS, Math.round(((w * h) / AREA_PER_POINT) * density));
       points = Array.from({ length: count }, () =>
         spawn({ x: 0, y: 0, z: 0, size: 1, vy: 0, drift: 0, phase: 0, base: 0 }, true),
       );
@@ -192,11 +187,5 @@ export function ParticleField({
     };
   }, [tone, alpha, density, speed]);
 
-  return (
-    <canvas
-      ref={ref}
-      className={`particles ${className}`.trim()}
-      aria-hidden="true"
-    />
-  );
+  return <canvas ref={ref} className={`particles ${className}`.trim()} aria-hidden="true" />;
 }

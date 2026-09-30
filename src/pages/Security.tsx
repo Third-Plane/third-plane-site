@@ -15,12 +15,7 @@ export function Security() {
         <div className="container">
           <div className="split">
             {page.authority.sides.map((side, i) => (
-              <div
-                className="split__col"
-                data-reveal
-                style={delayStyle(i)}
-                key={side.title}
-              >
+              <div className="split__col" data-reveal style={delayStyle(i)} key={side.title}>
                 <h2 className="display-2">{side.title}</h2>
                 <ul className="company__facts">
                   {side.items.map((item) => (
@@ -55,12 +50,7 @@ export function Security() {
           <SectionHead title={page.data.title} />
           <div className="grid grid--2">
             {page.data.items.map((item, i) => (
-              <article
-                className="card"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
+              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
                 <h3 className="card__title">{item.title}</h3>
                 <p className="card__body">{item.body}</p>
               </article>

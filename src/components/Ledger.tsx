@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { homeHero, ledgerTasks } from "../data/content";
 
 const VISIBLE = 5;
-const formatTime = (value: number) =>
-  new Date(value).toTimeString().slice(0, 5);
+const formatTime = (value: number) => new Date(value).toTimeString().slice(0, 5);
 
 type LedgerTask = (typeof ledgerTasks)[number];
 type Row = LedgerTask & { key: number; time: string };

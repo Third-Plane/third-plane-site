@@ -36,7 +36,9 @@ const KINDS = {
 function checkValue(raw, value, path) {
   const field = resolve(raw);
   if (Boolean(field.list) !== Array.isArray(value)) {
-    problems.push(`${path}: the form ${field.list ? "is" : "is not"} a list but the JSON ${Array.isArray(value) ? "is" : "is not"}`);
+    problems.push(
+      `${path}: the form ${field.list ? "is" : "is not"} a list but the JSON ${Array.isArray(value) ? "is" : "is not"}`,
+    );
     return;
   }
   if (field.list) value.forEach((item, i) => checkItem(field, item, `${path}[${i}]`));
@@ -57,11 +59,13 @@ function checkItem(field, value, path) {
   }
   if (field.type === "select") {
     const names = field.options.values.map((v) => (typeof v === "string" ? v : v.name));
-    if (!names.includes(value)) problems.push(`${path}: "${value}" is not one of ${names.join(", ")}`);
+    if (!names.includes(value))
+      problems.push(`${path}: "${value}" is not one of ${names.join(", ")}`);
   }
   if (field.pattern) {
     const regex = typeof field.pattern === "string" ? field.pattern : field.pattern.regex;
-    if (!new RegExp(regex).test(value)) problems.push(`${path}: "${value}" does not match ${regex}`);
+    if (!new RegExp(regex).test(value))
+      problems.push(`${path}: "${value}" does not match ${regex}`);
   }
 }
 

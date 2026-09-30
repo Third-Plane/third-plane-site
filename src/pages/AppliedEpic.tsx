@@ -14,12 +14,7 @@ function PointGrid({
   return (
     <div className={`grid grid--${columns}`}>
       {items.map((item, i) => (
-        <article
-          className="point"
-          data-reveal
-          style={delayStyle(i)}
-          key={item.title}
-        >
+        <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
           <h3 className="point__title">{item.title}</h3>
           {item.body ? <p className="point__body">{item.body}</p> : null}
         </article>
@@ -35,11 +30,7 @@ export function AppliedEpic() {
 
   return (
     <>
-      <PageHero
-        title={title}
-        lead={page.lead}
-        status={page.certified ? status : undefined}
-      />
+      <PageHero title={title} lead={page.lead} status={page.certified ? status : undefined} />
 
       <section className="section section--white" id="who">
         <div className="container">
@@ -76,9 +67,7 @@ export function AppliedEpic() {
           <div className="container">
             <blockquote className="applied-quote" data-reveal>
               <p>{page.quote.text}</p>
-              {page.quote.attribution ? (
-                <footer>{page.quote.attribution}</footer>
-              ) : null}
+              {page.quote.attribution ? <footer>{page.quote.attribution}</footer> : null}
             </blockquote>
           </div>
         </section>

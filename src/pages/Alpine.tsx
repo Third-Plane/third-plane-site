@@ -5,9 +5,7 @@ import { TextLink } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 import { delayStyle } from "../lib/style";
 
-const delivery = page.real.facts.filter(
-  (fact) => fact.title !== "Every action recorded",
-);
+const delivery = page.real.facts.filter((fact) => fact.title !== "Every action recorded");
 
 export function Alpine() {
   useTitle("Platform", page.lead);

@@ -21,7 +21,9 @@ export function Showcase() {
             playsInline
             preload="metadata"
           />
-          {showcase.caption ? <figcaption className="footnote">{showcase.caption}</figcaption> : null}
+          {showcase.caption ? (
+            <figcaption className="footnote">{showcase.caption}</figcaption>
+          ) : null}
         </figure>
       </div>
     </section>

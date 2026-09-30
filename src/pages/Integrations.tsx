@@ -16,12 +16,7 @@ export function Integrations() {
           <SectionHead title={page.systems.title} />
           <div className="fit">
             {page.systems.items.slice(0, 4).map((item, i) => (
-              <article
-                className="fit__row"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
+              <article className="fit__row" data-reveal style={delayStyle(i)} key={item.title}>
                 <div className="fit__sys">
                   <h3 className="fit__label">{item.title}</h3>
                 </div>
@@ -54,9 +49,7 @@ export function Integrations() {
           <ol className="steps">
             {page.how.steps.map((step, i) => (
               <li className="step" data-reveal style={delayStyle(i)} key={step.title}>
-                <span className="step__index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <span className="step__index">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="step__title">{step.title}</h3>
                 <p className="step__body">{step.body}</p>
               </li>

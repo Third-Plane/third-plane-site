@@ -1,14 +1,7 @@
 import { desk, placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
-import {
-  Arrow,
-  Button,
-  CardMark,
-  Eyebrow,
-  SectionHead,
-  TextLink,
-} from "../components/Ui";
+import { Arrow, Button, CardMark, Eyebrow, SectionHead, TextLink } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -66,20 +59,13 @@ export function PlacementDesk() {
       </section>
 
       <section className="section section--deep" id="work">
-        <ParticleField
-          className="section__particles"
-          tone="cream"
-          alpha={0.75}
-          density={0.8}
-        />
+        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
           <SectionHead dark title={placementDesk.work.title} />
           <div className="flow flow--dark" data-reveal>
             {workflow.map((stage, i) => (
               <div
-                className={
-                  stage.accent ? "flow__col flow__col--accent" : "flow__col"
-                }
+                className={stage.accent ? "flow__col flow__col--accent" : "flow__col"}
                 key={stage.kicker}
               >
                 {i > 0 ? <Arrow className="flow__arrow" /> : null}
@@ -106,12 +92,7 @@ export function PlacementDesk() {
           <SectionHead title={placementDesk.channels.title} />
           <div className="grid grid--3">
             {placementDesk.channels.items.map((item, i) => (
-              <article
-                className="card"
-                data-reveal
-                style={delayStyle(i)}
-                key={item.title}
-              >
+              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
                 <CardMark name={channelMarks[i]} variant="wide" />
                 <h3 className="card__title">{item.title}</h3>
                 <p className="card__body">{item.body}</p>

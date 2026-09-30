@@ -53,7 +53,9 @@ export function Post() {
               Resources
             </AppLink>
             <div className="post-card__meta">
-              <span className={`type-pill type-pill--${post.type}`}>{resourcesPage.types[post.type]}</span>
+              <span className={`type-pill type-pill--${post.type}`}>
+                {resourcesPage.types[post.type]}
+              </span>
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               {post.draft ? <span className="type-pill type-pill--draft">Draft</span> : null}
             </div>

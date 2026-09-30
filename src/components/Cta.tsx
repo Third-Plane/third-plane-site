@@ -17,8 +17,7 @@ export function Cta({
   meta?: string[];
 }) {
   const mailto = `mailto:${email}`;
-  const items =
-    meta ?? (title === contact.title && body === contact.body ? contact.meta : []);
+  const items = meta ?? (title === contact.title && body === contact.body ? contact.meta : []);
   return (
     <section className="section" id="contact">
       <div className="container">

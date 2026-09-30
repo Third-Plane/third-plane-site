@@ -79,8 +79,16 @@ export const primaryNav = {
       items: [
         { label: "Platform", href: "/platform", note: "Governed, bounded and auditable" },
         { label: "Security", href: "/security", note: "Authority, record and data isolation" },
-        { label: "Carrier channels", href: "/carrier-channels", note: "Portals, APIs and underwriter email" },
-        { label: "System integrations", href: "/integrations", note: "AMS, documents, inboxes and data" },
+        {
+          label: "Carrier channels",
+          href: "/carrier-channels",
+          note: "Portals, APIs and underwriter email",
+        },
+        {
+          label: "System integrations",
+          href: "/integrations",
+          note: "AMS, documents, inboxes and data",
+        },
       ],
     },
     {
@@ -99,9 +107,7 @@ export const siteFooter = {
   columns: [
     {
       label: "Products",
-      links: [
-        { label: "Placement Desk", href: "/placement-desk" },
-      ],
+      links: [{ label: "Placement Desk", href: "/placement-desk" }],
     },
     {
       label: "Capabilities",
