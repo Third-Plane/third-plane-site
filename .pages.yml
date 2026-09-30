@@ -284,17 +284,6 @@ content:
             type: text
             required: true
             description: Also the page’s search and link-preview description.
-          - name: does
-            label: Body
-            type: text
-            required: true
-          - name: real
-            label: Proof
-            type: object
-            fields:
-              - name: claim
-                type: text
-                required: true
           - name: work
             label: What the desk does
             description: The stages are also shown on the homepage, under its Placement Desk heading.

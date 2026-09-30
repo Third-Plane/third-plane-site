@@ -45,8 +45,6 @@ export type HomeFile = {
 export type PlacementDeskFile = {
   title: Lines;
   problem: string;
-  does: string;
-  real: { claim: string };
   work: {
     title: string;
     stages: { kicker: string; accent?: boolean; steps: Card[] }[];

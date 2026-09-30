@@ -27,10 +27,7 @@ export function PlacementDesk() {
             <p className="hero__lead" data-reveal style={delayStyle(2)}>
               {placementDesk.problem}
             </p>
-            <p className="hero__body" data-reveal style={delayStyle(3)}>
-              {placementDesk.does}
-            </p>
-            <div className="hero__actions" data-reveal style={delayStyle(4)}>
+            <div className="hero__actions" data-reveal style={delayStyle(3)}>
               <Button variant="dark">{placementDesk.cta.label}</Button>
             </div>
           </div>
@@ -45,9 +42,6 @@ export function PlacementDesk() {
         <div className="container">
           <SectionHead title={placementDesk.work.title} />
           <PlacementWorkflow />
-          <p className="proof" data-reveal>
-            {placementDesk.real.claim}
-          </p>
         </div>
       </section>
 

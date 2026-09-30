@@ -1347,19 +1347,6 @@ ol {
     grid-template-columns: 1fr;
   }
 }
-.proof {
-  border-left: 2px solid var(--purple);
-  max-width: 58ch;
-  color: var(--ink);
-  text-wrap: pretty;
-  margin-top: 1.75rem;
-  padding: 0.1rem 0 0.1rem 1.1rem;
-  font-weight: 500;
-}
-.section--deep .proof {
-  border-color: var(--pink);
-  color: var(--on-dark);
-}
 .process {
   list-style: none;
   margin: 0;
