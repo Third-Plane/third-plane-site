@@ -25,28 +25,20 @@ export type SiteFile = {
 };
 
 export type HomeFile = {
-  hero: { title: string; lead: string; body: string; secondary: Link };
+  hero: { title: string; lead: string; secondary: Link };
   ledger: {
     label: string;
     sublabel: string;
     legend: { status: string; label: string }[];
     tasks: { task: string; status: string }[];
   };
-  problem: { title: string; body: string; points: Card[]; closing: string };
+  problem: { title: string; body: string; points: Card[] };
   approach: {
     title: string;
     body: string;
     models: { kicker: string; chain: string[]; note: string; accent?: boolean }[];
-    definition: { headline: string };
   };
-  desk: {
-    name: string;
-    title: string;
-    body: string;
-    columns: { kicker: string; line: string; accent?: boolean }[];
-    closing: string;
-    cta: Link;
-  };
+  desk: { title: string; body: string };
   showcase: { eyebrow: string; title: string; src?: string; poster?: string; caption?: string };
 };
 
@@ -56,7 +48,10 @@ export type PlacementDeskFile = {
   problem: string;
   does: string;
   real: { claim: string };
-  work: { title: string; steps: Card[] };
+  work: {
+    title: string;
+    stages: { kicker: string; accent?: boolean; steps: Card[] }[];
+  };
   channels: { title: string; items: Card[]; note: string; link: Link };
   systems: { title: string; body: string; link: Link };
   human: { title: string; items: string[] };

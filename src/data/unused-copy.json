@@ -276,5 +276,26 @@
       "title": "Talk to us about underwriting capacity.",
       "body": "Tell us how submissions reach your underwriters today, how they are rated and quoted, and where the queue builds up. We will show you what the desk would take on."
     }
+  },
+  "home.desk (homepage Placement Desk section, replaced by the shared workflow)": {
+    "name": "Placement Desk",
+    "columns": [
+      {
+        "kicker": "Work goes in",
+        "line": "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event."
+      },
+      {
+        "kicker": "The desk works it",
+        "line": "Gathers the account, checks appetite and works the markets through portals, APIs and email."
+      },
+      {
+        "kicker": "Results come back",
+        "line": "Quotes, market results and a record of the work come back for review. The Desk handles multiple accounts in parallel using the same placement process."
+      }
+    ],
+    "cta": {
+      "label": "See Placement Desk",
+      "href": "/placement-desk"
+    }
   }
 }

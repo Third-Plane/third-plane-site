@@ -1,8 +1,9 @@
 import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
+import { PlacementWorkflow } from "../components/PlacementWorkflow";
 import { Showcase } from "../components/Showcase";
-import { Arrow, Button, SectionHead, Slash, TextLink } from "../components/Ui";
+import { Arrow, Button, SectionHead } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -15,19 +16,13 @@ export function Home() {
         <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
         <div className="container hero__grid">
           <div className="hero__copy">
-            <div data-reveal>
-              <Slash className="hero__slash" />
-            </div>
             <h1 className="display-1 display-1--inline" data-reveal style={delayStyle(1)}>
               {homeHero.title}
             </h1>
             <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
               {homeHero.lead}
             </p>
-            <p className="hero__body" data-reveal style={delayStyle(3)}>
-              {homeHero.body}
-            </p>
-            <div className="hero__actions" data-reveal style={delayStyle(4)}>
+            <div className="hero__actions" data-reveal style={delayStyle(3)}>
               <Button variant="dark" />
               <Button variant="ghost" href={homeHero.secondary.href}>
                 {homeHero.secondary.label}
@@ -45,7 +40,7 @@ export function Home() {
       <section className="section section--white" id="problem">
         <div className="container">
           <SectionHead title={problem.title} body={problem.body} />
-          <div className="grid grid--3">
+          <div className="grid grid--2">
             {problem.points.map((point, i) => (
               <article className="card" data-reveal style={delayStyle(i)} key={point.title}>
                 <h3 className="card__title">{point.title}</h3>
@@ -53,9 +48,6 @@ export function Home() {
               </article>
             ))}
           </div>
-          <p className="closing closing--left" data-reveal>
-            {problem.closing}
-          </p>
         </div>
       </section>
 
@@ -83,40 +75,14 @@ export function Home() {
               </div>
             ))}
           </div>
-          <div className="definition" data-reveal>
-            <h2 className="display-2">{approach.definition.headline}</h2>
-          </div>
         </div>
       </section>
 
-      <section className="section section--deep desk-stage" id="desk">
+      <section className="section section--deep" id="desk">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
-          <h2 className="desk-stage__name" data-reveal>
-            {desk.name}
-          </h2>
-          <div className="desk-stage__board">
-            <div className="desk-stage__head" data-reveal>
-              <p className="display-2">{desk.title}</p>
-              <p className="lead">{desk.body}</p>
-            </div>
-            <div className="flow flow--dark" data-reveal>
-              {desk.columns.map((column, i) => (
-                <div
-                  className={column.accent ? "flow__col flow__col--accent" : "flow__col"}
-                  key={column.kicker}
-                >
-                  {i > 0 ? <Arrow className="flow__arrow" /> : null}
-                  <p className="flow__kicker">{column.kicker}</p>
-                  <p className="flow__line">{column.line}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="desk-stage__foot" data-reveal>
-            <p className="closing closing--left desk-stage__closing">{desk.closing}</p>
-            <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
-          </div>
+          <SectionHead dark title={desk.title} body={desk.body} />
+          <PlacementWorkflow />
         </div>
       </section>
 

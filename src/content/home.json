@@ -2,7 +2,6 @@
   "hero": {
     "title": "Third Plane builds AI workforces for insurance.",
     "lead": "Placement Desk takes on defined placement work across the systems and carrier channels your brokerage already uses.",
-    "body": "Send Placement Desk a submission or renewal. It works the markets and returns the quotes with a record of what it did.",
     "secondary": {
       "label": "See Placement Desk",
       "href": "/placement-desk"
@@ -111,9 +110,12 @@
       {
         "title": "Hiring preserves the constraint",
         "body": "Hiring adds capacity one person at a time while placement demand keeps growing."
+      },
+      {
+        "title": "The Real Cost",
+        "body": "Markets never get shopped, quotes arrive late, renewals slip, and your team lacks the capacity to pursue new business."
       }
-    ],
-    "closing": "The cost shows up as markets that never get shopped, quotes that arrive late, renewals that slip, and business your team never had the capacity to pursue."
+    ]
   },
   "approach": {
     "title": "Most AI gives your people another tool. Third Plane builds it into your organization.",
@@ -140,37 +142,11 @@
         "note": "The business assigns the work. The AI workforce executes it across your systems. Your people review the outcome and make the decisions.",
         "accent": true
       }
-    ],
-    "definition": {
-      "headline": "An AI workforce takes responsibility for defined work across the systems and carrier channels you already use."
-    }
+    ]
   },
   "desk": {
-    "name": "Placement Desk",
     "title": "Send the work to the Placement Desk. Your team gets the quotes back.",
-    "body": "A dedicated placement function that takes new business and renewals from submission through returned quotes.",
-    "columns": [
-      {
-        "kicker": "Work goes in",
-        "line": "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event.",
-        "accent": false
-      },
-      {
-        "kicker": "The desk works it",
-        "line": "Gathers the account, checks appetite and works the markets through portals, APIs and email.",
-        "accent": true
-      },
-      {
-        "kicker": "Results come back",
-        "line": "Quotes, market results and a record of the work come back for review.",
-        "accent": false
-      }
-    ],
-    "closing": "Placement Desk handles multiple accounts in parallel using the same placement process.",
-    "cta": {
-      "label": "See Placement Desk",
-      "href": "/placement-desk"
-    }
+    "body": "A dedicated placement function that takes new business and renewals from submission through returned quotes."
   },
   "showcase": {
     "eyebrow": "See the Placement Desk work",
