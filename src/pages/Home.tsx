@@ -45,7 +45,7 @@ export function Home() {
       <section className="section section--white" id="problem">
         <div className="container">
           <SectionHead title={problem.title} body={problem.body} />
-          <div className="grid grid--3">
+          <div className="grid grid--2">
             {problem.points.map((point, i) => (
               <article className="card" data-reveal style={delayStyle(i)} key={point.title}>
                 <h3 className="card__title">{point.title}</h3>
@@ -53,9 +53,6 @@ export function Home() {
               </article>
             ))}
           </div>
-          <p className="closing closing--left" data-reveal>
-            {problem.closing}
-          </p>
         </div>
       </section>
 
@@ -111,7 +108,6 @@ export function Home() {
             </div>
           </div>
           <div className="desk-stage__foot" data-reveal>
-            <p className="closing closing--left desk-stage__closing">{desk.closing}</p>
             <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
           </div>
         </div>

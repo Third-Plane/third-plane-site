@@ -111,9 +111,12 @@
       {
         "title": "Hiring preserves the constraint",
         "body": "Hiring adds capacity one person at a time while placement demand keeps growing."
+      },
+      {
+        "title": "The Real Cost",
+        "body": "Markets never get shopped, quotes arrive late, renewals slip, and your team lacks the capacity to pursue new business."
       }
-    ],
-    "closing": "The cost shows up as markets that never get shopped, quotes that arrive late, renewals that slip, and business your team never had the capacity to pursue."
+    ]
   },
   "approach": {
     "title": "Most AI gives your people another tool. Third Plane builds it into your organization.",
@@ -159,11 +162,10 @@
       },
       {
         "kicker": "Results come back",
-        "line": "Quotes, market results and a record of the work come back for review.",
+        "line": "Quotes, market results and a record of the work come back for review. The Desk handles multiple accounts in parallel using the same placement process.",
         "accent": false
       }
     ],
-    "closing": "Placement Desk handles multiple accounts in parallel using the same placement process.",
     "cta": {
       "label": "See Placement Desk",
       "href": "/placement-desk"

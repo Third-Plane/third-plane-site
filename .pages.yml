@@ -214,9 +214,6 @@ content:
                 required: true
               - name: points
                 component: cards
-              - name: closing
-                type: text
-                required: true
           - name: approach
             label: Where AI sits
             type: object
@@ -277,9 +274,6 @@ content:
                   - name: accent
                     label: Highlight
                     type: boolean
-              - name: closing
-                type: text
-                required: true
               - name: cta
                 label: Link
                 component: link

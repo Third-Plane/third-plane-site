@@ -32,7 +32,7 @@ export type HomeFile = {
     legend: { status: string; label: string }[];
     tasks: { task: string; status: string }[];
   };
-  problem: { title: string; body: string; points: Card[]; closing: string };
+  problem: { title: string; body: string; points: Card[] };
   approach: {
     title: string;
     body: string;
@@ -43,7 +43,6 @@ export type HomeFile = {
     title: string;
     body: string;
     columns: { kicker: string; line: string; accent?: boolean }[];
-    closing: string;
     cta: Link;
   };
   showcase: { eyebrow: string; title: string; src?: string; poster?: string; caption?: string };
