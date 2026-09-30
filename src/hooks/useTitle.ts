@@ -1,17 +1,13 @@
 import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  DEFAULT_DESCRIPTION,
-  HeadContext,
-  ORIGIN,
-  canonicalUrl,
-  fullTitle,
-} from "../lib/head";
+import { DEFAULT_DESCRIPTION, HeadContext, ORIGIN, canonicalUrl, fullTitle } from "../lib/head";
 
 function setMeta(selector: string, attr: string, value: string) {
   let el = document.head.querySelector<HTMLMetaElement | HTMLLinkElement>(selector);
   if (!el) {
-    const [tag, match] = selector.startsWith("link") ? ["link", /rel="([^"]+)"/] : ["meta", /\[(name|property)="([^"]+)"\]/];
+    const [tag, match] = selector.startsWith("link")
+      ? ["link", /rel="([^"]+)"/]
+      : ["meta", /\[(name|property)="([^"]+)"\]/];
     el = document.createElement(tag) as HTMLMetaElement | HTMLLinkElement;
     const m = selector.match(match);
     if (m) {

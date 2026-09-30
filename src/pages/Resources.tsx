@@ -24,9 +24,13 @@ export function Resources() {
                 <li key={post.slug} data-reveal style={delayStyle(i % 3)}>
                   <AppLink className="post-card" href={`/resources/${post.slug}`}>
                     <div className="post-card__meta">
-                      <span className={`type-pill type-pill--${post.type}`}>{page.types[post.type]}</span>
+                      <span className={`type-pill type-pill--${post.type}`}>
+                        {page.types[post.type]}
+                      </span>
                       <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-                      {post.draft ? <span className="type-pill type-pill--draft">Draft</span> : null}
+                      {post.draft ? (
+                        <span className="type-pill type-pill--draft">Draft</span>
+                      ) : null}
                     </div>
                     <h2 className="post-card__title">{post.title}</h2>
                     <p className="post-card__standfirst">{post.standfirst}</p>

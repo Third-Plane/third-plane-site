@@ -46,23 +46,14 @@ export function PageHero({
   );
 
   const leadEl = (
-    <p
-      className="lead hero__lead"
-      data-reveal
-      style={delayStyle(leadFirst ? 1 : 2)}
-    >
+    <p className="lead hero__lead" data-reveal style={delayStyle(leadFirst ? 1 : 2)}>
       {lead}
     </p>
   );
 
   return (
     <section
-      className={[
-        "hero",
-        "hero--page",
-        `hero--${family}`,
-        leadFirst ? "hero--lead-first" : "",
-      ]
+      className={["hero", "hero--page", `hero--${family}`, leadFirst ? "hero--lead-first" : ""]
         .filter(Boolean)
         .join(" ")}
       id="top"

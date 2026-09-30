@@ -153,11 +153,7 @@
         {
           "kicker": "The desk",
           "accent": true,
-          "items": [
-            "Playbooks and standards",
-            "Scoped, revocable authority",
-            "A complete record"
-          ]
+          "items": ["Playbooks and standards", "Scoped, revocable authority", "A complete record"]
         },
         {
           "kicker": "Systems reached",
@@ -198,10 +194,7 @@
   "underwritingDesk": {
     "crumb": "Underwriting Desk",
     "status": "In development",
-    "title": [
-      "Submissions in.",
-      "Quotes out, ready for review."
-    ],
+    "title": ["Submissions in.", "Quotes out, ready for review."],
     "lead": "The Underwriting Desk is the Placement Desk seen from the other side of the submission. Risks come in from brokers, the workforce is designed to carry each one through intake, appetite, rating and quoting, and a finished quote comes back to your underwriters for final review.",
     "body": "Underwriters spend much of their day on work that happens before the decision. The desk is built to take on that work, through to a quote, and hand the decision back.",
     "entry": {

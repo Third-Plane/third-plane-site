@@ -11,16 +11,8 @@ function toRoute(href: string) {
   };
 }
 
-export function Eyebrow({
-  children,
-  dark = false,
-}: {
-  children: ReactNode;
-  dark?: boolean;
-}) {
-  return (
-    <p className={dark ? "eyebrow eyebrow--dark" : "eyebrow"}>{children}</p>
-  );
+export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+  return <p className={dark ? "eyebrow eyebrow--dark" : "eyebrow"}>{children}</p>;
 }
 
 type ButtonVariant = "primary" | "dark" | "light" | "ghost";
@@ -38,9 +30,7 @@ export function Button({
   variant = "primary",
   small = false,
 }: ButtonProps) {
-  const className = ["btn", `btn--${variant}`, small ? "btn--sm" : ""]
-    .filter(Boolean)
-    .join(" ");
+  const className = ["btn", `btn--${variant}`, small ? "btn--sm" : ""].filter(Boolean).join(" ");
 
   if (href.startsWith("mailto:")) {
     return (
@@ -65,13 +55,7 @@ export function Button({
   );
 }
 
-export function TextLink({
-  children,
-  href,
-}: {
-  children: ReactNode;
-  href: string;
-}) {
+export function TextLink({ children, href }: { children: ReactNode; href: string }) {
   return (
     <Link className="textlink" to={toRoute(href)}>
       {children}
@@ -168,18 +152,8 @@ export function Arrow({ className }: { className?: string }) {
 
 export function Slash({ className = "" }: { className?: string }) {
   return (
-    <svg
-      className={`slash ${className}`.trim()}
-      viewBox="0 0 64 40"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M1 1l62 38"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-      />
+    <svg className={`slash ${className}`.trim()} viewBox="0 0 64 40" fill="none" aria-hidden="true">
+      <path d="M1 1l62 38" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
     </svg>
   );
 }
@@ -187,10 +161,7 @@ export function Slash({ className = "" }: { className?: string }) {
 const COS30 = Math.cos(Math.PI / 6);
 const SCALE = 30;
 const project = (x: number, y: number, z: number) =>
-  [
-    ((x - y) * COS30 * SCALE).toFixed(1),
-    ((x + y) * 0.5 * SCALE - z * SCALE).toFixed(1),
-  ] as const;
+  [((x - y) * COS30 * SCALE).toFixed(1), ((x + y) * 0.5 * SCALE - z * SCALE).toFixed(1)] as const;
 
 const CUBE_EDGES: Array<[number, number]> = [
   [0, 1],
@@ -230,9 +201,7 @@ function projectBox({ x, y, z, w, d, h }: Box) {
   ].map(([px, py, pz]) => project(px, py, pz));
 
   return {
-    edges: CUBE_EDGES.map(
-      ([a, b]) => `M${points[a].join(" ")}L${points[b].join(" ")}`,
-    ).join(""),
+    edges: CUBE_EDGES.map(([a, b]) => `M${points[a].join(" ")}L${points[b].join(" ")}`).join(""),
     points,
   };
 }
@@ -275,10 +244,7 @@ const AXES: Array<[[number, number, number], [number, number, number]]> = [
   ],
 ];
 
-function polygonPoints(
-  points: Array<readonly [string, string]>,
-  indexes: number[],
-) {
+function polygonPoints(points: Array<readonly [string, string]>, indexes: number[]) {
   return indexes.map((index) => points[index].join(",")).join(" ");
 }
 
@@ -288,11 +254,7 @@ const FACES = [
   { name: "top" as const, indexes: [4, 5, 6, 7] },
 ];
 
-function BoxGraphic({
-  box,
-}: {
-  box: Box & ReturnType<typeof projectBox>;
-}) {
+function BoxGraphic({ box }: { box: Box & ReturnType<typeof projectBox> }) {
   const xs = box.points.map((point) => Number(point[0]));
   const ys = box.points.map((point) => Number(point[1]));
   const x = Math.min(...xs);
@@ -335,9 +297,9 @@ export function Network({
   tint?: string;
 }) {
   const boxes = BOXES.map((box) => ({ ...box, ...projectBox(box) }));
-  const axes = AXES.map(
-    ([a, b]) => `M${project(...a).join(" ")}L${project(...b).join(" ")}`,
-  ).join("");
+  const axes = AXES.map(([a, b]) => `M${project(...a).join(" ")}L${project(...b).join(" ")}`).join(
+    "",
+  );
 
   return (
     <svg
@@ -346,12 +308,7 @@ export function Network({
       fill="none"
       aria-hidden="true"
     >
-      <g
-        stroke={tint}
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      >
+      <g stroke={tint} strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round">
         <path d={axes} opacity="0.55" />
         {boxes.map((box, i) => (
           <BoxGraphic key={i} box={box} />
@@ -449,44 +406,43 @@ function boxesViewBox(boxes: Box[], pad = 24) {
   return `${minX} ${minY} ${Math.max(...xs) - minX + pad} ${Math.max(...ys) - minY + pad}`;
 }
 
-const CHANNEL_LINES: Partial<
-  Record<keyof typeof MARKS, { viewBox: string; drawing: ReactNode }>
-> = {
-  portal: {
-    viewBox: "0 0 88 52",
-    drawing: (
-      <>
-        <rect x="10" y="8" width="68" height="36" rx="4" />
-        <path d="M10 18h68" />
-        <circle cx="18" cy="13" r="1.5" fill="currentColor" />
-        <circle cx="24" cy="13" r="1.5" fill="currentColor" />
-        <circle cx="30" cy="13" r="1.5" fill="currentColor" />
-        <rect x="18" y="24" width="38" height="5" rx="1" />
-        <rect x="18" y="33" width="26" height="5" rx="1" />
-      </>
-    ),
-  },
-  api: {
-    viewBox: "0 0 88 52",
-    drawing: (
-      <>
-        <rect x="8" y="14" width="22" height="24" rx="4" />
-        <rect x="58" y="14" width="22" height="24" rx="4" />
-        <path d="M34 26h16" />
-        <path d="M46 21.5 52.5 26 46 30.5" />
-      </>
-    ),
-  },
-  mail: {
-    viewBox: "0 0 88 52",
-    drawing: (
-      <>
-        <rect x="16" y="13" width="56" height="28" rx="3" />
-        <path d="M16 16.5 44 32 72 16.5" />
-      </>
-    ),
-  },
-};
+const CHANNEL_LINES: Partial<Record<keyof typeof MARKS, { viewBox: string; drawing: ReactNode }>> =
+  {
+    portal: {
+      viewBox: "0 0 88 52",
+      drawing: (
+        <>
+          <rect x="10" y="8" width="68" height="36" rx="4" />
+          <path d="M10 18h68" />
+          <circle cx="18" cy="13" r="1.5" fill="currentColor" />
+          <circle cx="24" cy="13" r="1.5" fill="currentColor" />
+          <circle cx="30" cy="13" r="1.5" fill="currentColor" />
+          <rect x="18" y="24" width="38" height="5" rx="1" />
+          <rect x="18" y="33" width="26" height="5" rx="1" />
+        </>
+      ),
+    },
+    api: {
+      viewBox: "0 0 88 52",
+      drawing: (
+        <>
+          <rect x="8" y="14" width="22" height="24" rx="4" />
+          <rect x="58" y="14" width="22" height="24" rx="4" />
+          <path d="M34 26h16" />
+          <path d="M46 21.5 52.5 26 46 30.5" />
+        </>
+      ),
+    },
+    mail: {
+      viewBox: "0 0 88 52",
+      drawing: (
+        <>
+          <rect x="16" y="13" width="56" height="28" rx="3" />
+          <path d="M16 16.5 44 32 72 16.5" />
+        </>
+      ),
+    },
+  };
 
 export function CardMark({
   name,
@@ -499,18 +455,8 @@ export function CardMark({
   if (line) {
     return (
       <div className={`card__media card__media--${variant}`}>
-        <svg
-          className="card__mark"
-          viewBox={line.viewBox}
-          fill="none"
-          aria-hidden="true"
-        >
-          <g
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-          >
+        <svg className="card__mark" viewBox={line.viewBox} fill="none" aria-hidden="true">
+          <g stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round">
             {line.drawing}
           </g>
         </svg>
@@ -529,12 +475,7 @@ export function CardMark({
         fill="none"
         aria-hidden="true"
       >
-        <g
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        >
+        <g stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round">
           {boxes.map((box, i) => (
             <BoxGraphic key={i} box={box} />
           ))}

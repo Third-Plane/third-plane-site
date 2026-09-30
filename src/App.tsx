@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  HashRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { NotFound } from "./pages/NotFound";
 import { Post } from "./pages/Post";
@@ -33,7 +27,10 @@ export function AppRoutes() {
           <Route key={page.path} path={page.path} element={page.element} />
         ))}
         <Route path="resources/:slug" element={<Post />} />
-        <Route path="underwriting-desk" element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />} />
+        <Route
+          path="underwriting-desk"
+          element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />}
+        />
         <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFound />} />
@@ -45,6 +42,15 @@ export function AppRoutes() {
 const isBundle = typeof window !== "undefined" && Boolean(window.__ARTIFACT__);
 
 export default function App() {
-  if (isBundle) return <HashRouter><AppRoutes /></HashRouter>;
-  return <BrowserRouter><AppRoutes /></BrowserRouter>;
+  if (isBundle)
+    return (
+      <HashRouter>
+        <AppRoutes />
+      </HashRouter>
+    );
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
