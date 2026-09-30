@@ -2,7 +2,7 @@ import { placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
-import { Button, CardMark, Eyebrow, SectionHead, TextLink } from "../components/Ui";
+import { Button, CardMark, SectionHead, TextLink } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -17,9 +17,6 @@ export function PlacementDesk() {
         <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
         <div className="container hero__grid">
           <div className="hero__copy">
-            <div data-reveal>
-              <Eyebrow>{placementDesk.crumb}</Eyebrow>
-            </div>
             <h1 className="display-1" data-reveal style={delayStyle(1)}>
               {placementDesk.title.map((line, i) => (
                 // The space keeps the lines as separate words for crawlers and
@@ -46,7 +43,7 @@ export function PlacementDesk() {
       <section className="section section--deep" id="work">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
-          <SectionHead dark title={placementDesk.work.title} />
+          <SectionHead title={placementDesk.work.title} />
           <PlacementWorkflow />
           <p className="proof" data-reveal>
             {placementDesk.real.claim}

@@ -33,7 +33,7 @@ export function Security() {
 
       <section className="section section--deep" id="record">
         <div className="container">
-          <SectionHead dark title={page.record.title} />
+          <SectionHead title={page.record.title} />
           <ol className="steps steps--3">
             {page.record.items.map((item, i) => (
               <li className="step" data-reveal style={delayStyle(i)} key={item.title}>

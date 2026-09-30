@@ -11,10 +11,6 @@ function toRoute(href: string) {
   };
 }
 
-export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return <p className={dark ? "eyebrow eyebrow--dark" : "eyebrow"}>{children}</p>;
-}
-
 type ButtonVariant = "primary" | "dark" | "light" | "ghost";
 
 type ButtonProps = {
@@ -108,21 +104,16 @@ export function AppLink({
 }
 
 export function SectionHead({
-  eyebrow,
   title,
   body,
-  dark = false,
   align = "left",
 }: {
-  eyebrow?: string;
   title: string;
   body?: string;
-  dark?: boolean;
   align?: "left" | "center";
 }) {
   return (
     <header className={`section-head section-head--${align}`} data-reveal>
-      {eyebrow ? <Eyebrow dark={dark}>{eyebrow}</Eyebrow> : null}
       <h2 className="display-2">{title}</h2>
       {body ? <p className="lead">{body}</p> : null}
     </header>
@@ -146,14 +137,6 @@ export function Arrow({ className }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
-  );
-}
-
-export function Slash({ className = "" }: { className?: string }) {
-  return (
-    <svg className={`slash ${className}`.trim()} viewBox="0 0 64 40" fill="none" aria-hidden="true">
-      <path d="M1 1l62 38" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
     </svg>
   );
 }

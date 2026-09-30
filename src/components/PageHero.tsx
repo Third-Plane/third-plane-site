@@ -1,11 +1,9 @@
 import type { ReactNode } from "react";
-import { Eyebrow, Slash } from "./Ui";
 import { delayStyle } from "../lib/style";
 
 export type HeroFamily = "evidence" | "editorial" | "careers";
 
 export function PageHero({
-  crumb,
   status,
   title,
   lead,
@@ -13,7 +11,6 @@ export function PageHero({
   children,
   family = "evidence",
 }: {
-  crumb?: string;
   status?: string;
   title: string[];
   lead: string;
@@ -21,10 +18,7 @@ export function PageHero({
   children?: ReactNode;
   family?: HeroFamily;
 }) {
-  const slash = family === "careers";
-  const showCrumb = family === "careers" && Boolean(crumb);
   const stacked = family === "careers";
-  const chrome = slash || showCrumb || status;
 
   const heading = stacked ? (
     <h1 className="display-1" data-reveal style={delayStyle(1)}>
@@ -43,11 +37,9 @@ export function PageHero({
   return (
     <section className={`hero hero--page hero--${family}`} id="top">
       <div className="container hero__page-copy">
-        {chrome ? (
-          <div data-reveal className="hero__crumbs">
-            {slash ? <Slash className="hero__slash" /> : null}
-            {showCrumb ? <Eyebrow>{crumb}</Eyebrow> : null}
-            {status ? <span className="status-pill">{status}</span> : null}
+        {status ? (
+          <div data-reveal className="hero__status">
+            <span className="status-pill">{status}</span>
           </div>
         ) : null}
         {heading}

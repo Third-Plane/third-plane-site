@@ -81,7 +81,7 @@ export function Home() {
       <section className="section section--deep" id="desk">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
-          <SectionHead dark title={desk.title} body={desk.body} />
+          <SectionHead title={desk.title} body={desk.body} />
           <PlacementWorkflow />
         </div>
       </section>
