@@ -8,6 +8,7 @@ type ButtonProps = {
   href?: string;
   variant?: ButtonVariant;
   small?: boolean;
+  className?: string;
 };
 
 export function Button({
@@ -15,8 +16,11 @@ export function Button({
   href = site.ctaHref,
   variant = "primary",
   small = false,
+  className: extra,
 }: ButtonProps) {
-  const className = ["btn", `btn--${variant}`, small ? "btn--sm" : ""].filter(Boolean).join(" ");
+  const className = ["btn", `btn--${variant}`, small ? "btn--sm" : "", extra]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <a className={className} href={href}>

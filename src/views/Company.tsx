@@ -10,21 +10,42 @@ export function Company() {
     <>
       <PageHero title={page.title} lead={page.lead} />
 
-      <Section tone="white" id="origin" containerClassName="company">
-        <div className="company__copy" data-reveal>
+      <Section
+        tone="white"
+        id="origin"
+        containerClassName="grid grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-[clamp(2.5rem,5vw,4rem)] max-[860px]:grid-cols-1"
+      >
+        <div data-reveal>
           <h2 className="display-2">{page.origin.title}</h2>
-          {page.origin.body.map((paragraph) => (
-            <p className="company__para" key={paragraph.slice(0, 20)}>
+          {page.origin.body.map((paragraph, i) => (
+            <p
+              className={`max-w-[58ch] text-pretty ${
+                i === 0 ? "mt-6 text-copy font-medium text-ink" : "mt-5 text-ink-body"
+              }`}
+              key={paragraph.slice(0, 20)}
+            >
               {paragraph}
             </p>
           ))}
         </div>
-        <figure className="team" {...reveal(1)}>
+        <figure
+          className="relative m-0 aspect-4/3 overflow-hidden rounded-card bg-cream"
+          {...reveal(1)}
+        >
           {page.team.photo.src ? (
-            <img src={page.team.photo.src} alt={page.team.photo.alt} />
+            <img
+              className="size-full object-cover"
+              src={page.team.photo.src}
+              alt={page.team.photo.alt}
+            />
           ) : (
-            <div className="team__placeholder" aria-label={page.team.photoNote}>
-              <span>{page.team.photoNote}</span>
+            <div
+              className="absolute inset-0 grid place-items-center rounded-card border-[1.5px] border-dashed border-line text-[0.9rem] text-ink-muted"
+              aria-label={page.team.photoNote}
+            >
+              <span className="relative z-2 rounded-pill bg-cream px-[0.8rem] py-[0.4rem]">
+                {page.team.photoNote}
+              </span>
             </div>
           )}
         </figure>

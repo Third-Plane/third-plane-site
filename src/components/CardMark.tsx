@@ -43,8 +43,8 @@ const MARKS: Record<MarkName, { viewBox: string; drawing: ReactNode }> = {
 export function CardMark({ name }: { name: MarkName }) {
   const { viewBox, drawing } = MARKS[name];
   return (
-    <div className="card__media card__media--wide">
-      <svg className="card__mark" viewBox={viewBox} fill="none" aria-hidden="true">
+    <div className="mb-[1.15rem] flex aspect-[1.7/1] items-center justify-center overflow-hidden rounded-2xl bg-lavender text-purple">
+      <svg className="h-[86%] w-auto" viewBox={viewBox} fill="none" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round">
           {drawing}
         </g>

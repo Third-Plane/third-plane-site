@@ -3,6 +3,7 @@ import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
+import { StepList } from "../components/StepList";
 import { AppLink } from "../components/Ui";
 import { reveal } from "../lib/style";
 
@@ -12,19 +13,30 @@ export function Integrations() {
       <PageHero title={page.title} lead={page.lead} />
 
       <Section tone="white" id="systems" title={page.systems.title}>
-        <div className="fit">
+        <div className="border-t-[1.5px] border-t-line">
           {page.systems.items.slice(0, 4).map((item, i) => (
-            <article className="fit__row" {...reveal(i)} key={item.title}>
-              <div className="fit__sys">
-                <h3 className="fit__label">{item.title}</h3>
+            <article
+              className="grid grid-cols-[minmax(11rem,0.32fr)_minmax(0,1fr)] items-start gap-[clamp(1.25rem,4vw,4rem)] border-b border-b-line-soft py-[clamp(1.75rem,3vw,2.5rem)] max-[760px]:grid-cols-1 max-[760px]:gap-3"
+              {...reveal(i)}
+              key={item.title}
+            >
+              <div className="grid content-start gap-[0.45rem]">
+                <h3 className="font-heading text-[clamp(1.25rem,1.6vw,1.55rem)] leading-[1.2] font-medium tracking-head-tight text-balance text-ink">
+                  {item.title}
+                </h3>
               </div>
-              <div className="fit__copy">
-                <p className="fit__body">
+              <div className="grid max-w-[62ch] justify-items-start gap-4">
+                <p className="text-copy text-pretty text-ink-body">
                   {item.link || item.names ? (
                     <>
-                      <strong className="fit__inline-names">
+                      <strong className="font-semibold text-ink">
                         {item.link ? (
-                          <AppLink href={item.link.href}>{item.link.label}</AppLink>
+                          <AppLink
+                            className="underline-offset-[0.15em] hover:text-purple"
+                            href={item.link.href}
+                          >
+                            {item.link.label}
+                          </AppLink>
                         ) : null}
                         {item.link && item.names ? ", " : null}
                         {item.names ?? null}
@@ -43,15 +55,7 @@ export function Integrations() {
       <CarrierChannels />
 
       <Section tone="deep" id="how" title={page.how.title}>
-        <ol className="steps">
-          {page.how.steps.map((step, i) => (
-            <li className="step" {...reveal(i)} key={step.title}>
-              <span className="step__index">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="step__title">{step.title}</h3>
-              <p className="step__body">{step.body}</p>
-            </li>
-          ))}
-        </ol>
+        <StepList columns={4} numbered steps={page.how.steps} />
       </Section>
 
       <Cta {...page.cta} />

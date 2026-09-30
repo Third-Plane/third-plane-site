@@ -31,8 +31,10 @@ export function PageHero({
     <section className={`hero hero--page hero--${family}`} id="top">
       <div className="hero__page-copy wrap">
         {status ? (
-          <div data-reveal className="hero__status">
-            <span className="status-pill">{status}</span>
+          <div data-reveal className="mb-5 flex flex-col items-start gap-3">
+            <span className="inline-block w-fit rounded-pill bg-pink px-[0.7rem] py-[0.3rem] text-label font-medium text-deep">
+              {status}
+            </span>
           </div>
         ) : null}
         {heading}
