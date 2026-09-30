@@ -16,7 +16,7 @@ export function ItemGrid({
   media?: (index: number) => ReactNode;
 }) {
   return (
-    <div className={`grid grid--${columns}`}>
+    <div className={`tiles tiles--${columns}`}>
       {items.map((item, i) => (
         <article className={variant} {...reveal(i)} key={item.title}>
           {media?.(i)}

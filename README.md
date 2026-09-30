@@ -89,9 +89,16 @@ design tokens to utilities (`bg-purple`, `text-ink`, `font-heading`, `rounded-ca
   are defined in `tailwind.css` for both to share.
 - **Do not name a class in `index.css` after a Tailwind utility.** Tailwind generates any utility
   whose name appears in the source, and it would override the site's rule. The site's page-width
-  class is `.wrap` for this reason (not `.container`). `.grid` is the one remaining overlap; both
-  definitions are `display: grid`, so they agree. To re-check, list the `index.css` classes that
-  Tailwind also defines with `__unstable__loadDesignSystem` from `tailwindcss`.
+  class is `.wrap` (not `.container`) and its card grid is `.tiles` (not `.grid`) for this reason.
+  To re-check, list the `index.css` classes that Tailwind also defines with
+  `__unstable__loadDesignSystem` from `tailwindcss`; the answer should be none.
+- **Spacing utilities only exist for multiples of 0.25.** `mt-4`, `gap-1.5` and `h-8.5` work;
+  `mt-1.4` generates nothing and fails silently. Write other values as `mt-[0.35rem]`.
+- **Porting a component.** Put utilities on its markup, delete its rules from `index.css`, and
+  keep behaviour the same: use `max-[900px]:` (not `lg:`) where the old CSS had a 900px media
+  query, `transition-[color] duration-200` for a 0.2s colour fade, and `text-copy`, `text-label`
+  and `text-title` for the site's three type sizes. Build a class from a lookup of whole class
+  names, not `` `bg-${x}` ``, which Tailwind cannot see.
 - **Formatting.** `oxfmt` sorts utility classes (`sortTailwindcss` in `.oxfmtrc.json`), which also
   puts site classes first. The recommended Tailwind CSS IntelliSense extension is pointed at
   `src/tailwind.css` in `.vscode/settings.json`.

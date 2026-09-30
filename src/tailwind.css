@@ -9,6 +9,10 @@
    them as utilities (bg-purple, text-ink, font-heading, ...) without copying
    their values, so there is one place to change a colour.
 
+   Spacing utilities (p-*, mt-*, gap-*, h-*, ...) exist only for multiples of
+   0.25, so mt-1.4 generates nothing and fails silently. Write other values as
+   mt-[0.35rem].
+
    Tailwind generates a utility for any class name it finds in the source. A
    class in index.css that shares a name with a utility would be overridden by
    it, which is why the page-width class is .wrap and not .container. */
@@ -59,4 +63,18 @@
 
   --radius-card: var(--radius);
   --radius-pill: var(--pill);
+
+  /* Type sizes of the site, named for what they set. (text-xs, text-sm and the
+     rest keep Tailwind's own sizes, which differ.) */
+  --text-label: var(--type-xs);
+  --text-copy: var(--type-sm);
+  --text-title: var(--type-md);
+}
+
+@theme {
+  /* The CSS default, so transitions match index.css, which never set a curve. */
+  --default-transition-timing-function: ease;
+
+  --tracking-eyebrow: 0.08em;
+  --tracking-pill: 0.04em;
 }

@@ -373,32 +373,32 @@ ol {
   -webkit-mask-image: linear-gradient(180deg, #0000 0%, #000 45%);
   mask-image: linear-gradient(180deg, #0000 0%, #000 45%);
 }
-.grid {
+.tiles {
   gap: var(--gap);
   display: grid;
 }
-.grid--2 {
+.tiles--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.grid--3 {
+.tiles--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.grid--4 {
+.tiles--4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 @media (width <= 1020px) {
-  .grid--4 {
+  .tiles--4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (width <= 900px) {
-  .grid--3 {
+  .tiles--3 {
     grid-template-columns: 1fr;
   }
 }
 @media (width <= 760px) {
-  .grid--2,
-  .grid--4 {
+  .tiles--2,
+  .tiles--4 {
     grid-template-columns: 1fr;
   }
 }
@@ -680,7 +680,7 @@ ol {
 #why .section-head {
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
-#why .grid--4 {
+#why .tiles--4 {
   column-gap: clamp(1.5rem, 3vw, 2.5rem);
   row-gap: 2rem;
   align-items: start;
@@ -692,37 +692,37 @@ ol {
   /* Card and point grids: each item is a subgrid spanning one set of tracks,
      so titles and bodies line up across a row. Rows are created per row of
      items, and every body row shares one height. */
-  .grid--3:has(> .point > .point__body) {
+  .tiles--3:has(> .point > .point__body) {
     grid-auto-rows: auto 1fr;
     align-items: start;
   }
-  .grid--3 > .point:has(> .point__body) {
+  .tiles--3 > .point:has(> .point__body) {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 2;
   }
-  .grid--4:has(> .card) {
+  .tiles--4:has(> .card) {
     grid-auto-rows: auto 1fr;
     align-items: start;
   }
-  .grid--4 > .card {
+  .tiles--4 > .card {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 2;
   }
-  .grid--2:has(> .card) {
+  .tiles--2:has(> .card) {
     grid-auto-rows: auto 1fr;
     align-items: start;
   }
-  .grid--2 > .card {
+  .tiles--2 > .card {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 2;
   }
-  .grid--3:has(> .card) {
+  .tiles--3:has(> .card) {
     grid-auto-rows: auto auto 1fr;
   }
-  .grid--3 > .card {
+  .tiles--3 > .card {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
@@ -1120,86 +1120,7 @@ ol {
     grid-template-columns: 1fr;
   }
 }
-.cta {
-  border-radius: calc(var(--radius) + 8px);
-  background: var(--deep);
-  color: var(--on-dark);
-  padding: clamp(2rem, 5vw, 4.5rem);
-  position: relative;
-  overflow: hidden;
-}
-.cta__inner {
-  max-width: 640px;
-  position: relative;
-}
-.cta .display-2 {
-  color: var(--on-dark);
-}
-.cta__body {
-  color: var(--on-dark-muted);
-  text-wrap: pretty;
-  margin-top: 1.25rem;
-  font-size: var(--type-sm);
-}
-.cta__actions {
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.25rem;
-  margin-top: 2rem;
-  display: flex;
-}
-.cta .btn--dark {
-  background: var(--white);
-  color: var(--deep);
-}
-.cta .btn--dark:hover {
-  background: var(--cream);
-  box-shadow: none;
-}
-.cta__email {
-  color: var(--pink);
-  border-bottom: 1.5px solid #0000;
-  font-weight: 500;
-  transition: border-color 0.2s;
-}
-.cta__email:hover {
-  border-color: var(--pink);
-}
-.footer {
-  background: var(--deep);
-  color: var(--on-dark-muted);
-  padding-block: clamp(3rem, 5vw, 4.5rem) 2rem;
-}
-.footer__inner {
-  border-bottom: 1px solid var(--line-dark);
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  padding-bottom: 2.5rem;
-  display: flex;
-}
-.footer__logo {
-  width: auto;
-  height: 34px;
-}
-.footer__tagline {
-  color: var(--on-dark-muted);
-  margin-top: 1rem;
-  font-size: var(--type-sm);
-}
-.footer__legal {
-  color: var(--on-dark-faint);
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  font-size: var(--type-sm);
-  display: flex;
-}
-@media (width <= 640px) {
-  .footer__legal {
-    flex-direction: column;
-  }
-}
+
 @media (prefers-reduced-motion: no-preference) {
   .reveal-ready [data-reveal] {
     opacity: 0;
@@ -1508,39 +1429,7 @@ ol {
   transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
-.post-card__meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  font-size: var(--type-xs);
-  color: var(--ink-muted);
-}
-.type-pill {
-  border-radius: var(--pill);
-  padding: 0.25rem 0.65rem;
-  font-size: var(--type-xs);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--blue);
-  color: var(--deep);
-}
-.type-pill--technical {
-  background: var(--blue);
-}
-.type-pill--perspective {
-  background: var(--pink);
-}
-.type-pill--press {
-  background: var(--deep);
-  color: var(--on-dark);
-}
-.type-pill--draft {
-  background: transparent;
-  box-shadow: inset 0 0 0 1.5px var(--line);
-  color: var(--ink-muted);
-}
+
 .post-card__title {
   font-family: var(--font-head);
   font-weight: 500;
@@ -1684,73 +1573,6 @@ ol {
 }
 
 /* Footer columns */
-.footer__columns {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, auto));
-  gap: clamp(2rem, 5vw, 5rem);
-}
-.footer__column {
-  display: grid;
-  gap: 0.6rem;
-  align-content: start;
-  font-size: var(--type-sm);
-  color: var(--on-dark);
-}
-.footer__column a {
-  transition: color 0.2s;
-}
-.footer__column a:hover {
-  color: var(--pink);
-}
-.footer__disabled {
-  color: var(--on-dark-faint);
-}
-.footer__label {
-  font-size: var(--type-xs);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--on-dark-faint);
-  margin-bottom: 0.25rem;
-}
-.footer__location {
-  margin-top: 0.35rem;
-  font-size: 0.9rem;
-  color: var(--on-dark-faint);
-}
-.footer__contact {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.85rem;
-}
-.footer__social,
-.footer__email {
-  display: inline-flex;
-  color: var(--on-dark-faint);
-  transition: color 0.2s;
-}
-.footer__email {
-  font-size: 0.9rem;
-}
-.footer__social:hover,
-.footer__email:hover {
-  color: var(--pink);
-}
-.footer__social svg {
-  width: 18px;
-  height: 18px;
-}
-@media (width <= 900px) {
-  .footer__inner {
-    flex-direction: column;
-  }
-}
-@media (width <= 760px) {
-  .footer__columns {
-    grid-template-columns: 1fr 1fr;
-  }
-}
 
 .applied-quote {
   max-width: 58ch;
