@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { site } from "../data/content";
 
@@ -72,6 +72,8 @@ export function AppLink({
   children: ReactNode;
   onClick?: () => void;
   "aria-label"?: string;
+  "data-reveal"?: boolean;
+  style?: CSSProperties;
 }) {
   if (href.startsWith("http")) {
     return (

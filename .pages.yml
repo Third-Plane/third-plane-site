@@ -337,8 +337,26 @@ content:
               - name: body
                 type: text
                 required: true
-              - name: link
-                component: link
+              - name: links
+                description: Shown as cards that link to other pages.
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: body
+                    type: text
+                    required: true
+                  - name: href
+                    label: Link
+                    type: string
+                    required: true
+                    description: A page on this site such as /integrations, or a full https:// address.
           - name: human
             label: What stays with your people
             type: object

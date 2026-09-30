@@ -50,7 +50,7 @@ export type PlacementDeskFile = {
     stages: { kicker: string; accent?: boolean; steps: Card[] }[];
   };
   channels: { title: string; body: string; items: Card[] };
-  systems: { title: string; body: string; link: Link };
+  systems: { title: string; body: string; links: { title: string; body: string; href: string }[] };
   human: { title: string; items: string[] };
   cta: Cta & { label: string };
 };

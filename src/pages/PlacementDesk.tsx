@@ -2,7 +2,7 @@ import { placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
-import { Button, CardMark, SectionHead, TextLink } from "../components/Ui";
+import { AppLink, Arrow, Button, CardMark, SectionHead } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -61,18 +61,24 @@ export function PlacementDesk() {
       </section>
 
       <section className="section section--white" id="systems">
-        <div className="container coverage">
-          <h2 className="display-2" data-reveal>
-            {placementDesk.systems.title}
-          </h2>
-          <div data-reveal style={delayStyle(1)}>
-            <p className="lead">{placementDesk.systems.body}</p>
-            <div className="coverage__links">
-              <TextLink href={placementDesk.systems.link.href}>
-                {placementDesk.systems.link.label}
-              </TextLink>
-              <TextLink href="/applied-epic">Applied Epic</TextLink>
-            </div>
+        <div className="container">
+          <SectionHead title={placementDesk.systems.title} body={placementDesk.systems.body} />
+          <div className="grid grid--2">
+            {placementDesk.systems.links.map((link, i) => (
+              <AppLink
+                className="card card--link"
+                href={link.href}
+                key={link.href}
+                data-reveal
+                style={delayStyle(i)}
+              >
+                <h3 className="card__title">
+                  {link.title}
+                  <Arrow className="card__arrow" />
+                </h3>
+                <p className="card__body">{link.body}</p>
+              </AppLink>
+            ))}
           </div>
         </div>
       </section>

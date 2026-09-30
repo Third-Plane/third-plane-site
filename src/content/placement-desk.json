@@ -78,12 +78,20 @@
     ]
   },
   "systems": {
-    "title": "Your systems as they are.",
+    "title": "Integrated with your existing systems.",
     "body": "No new system of record. No second login for producers. No migration. Placement Desk connects to the systems your team already uses.",
-    "link": {
-      "label": "More on system integrations",
-      "href": "/integrations"
-    }
+    "links": [
+      {
+        "title": "Applied Epic",
+        "body": "The Placement Desk works with Applied Epic to execute placement work and return activities, documents and results where your team already lives.",
+        "href": "/applied-epic"
+      },
+      {
+        "title": "Additional Systems Integrations",
+        "body": "The Placement Desk reads from your AMS, documents and inboxes and writes results back where your team expects them, without adding another system to manage.",
+        "href": "/integrations"
+      }
+    ]
   },
   "human": {
     "title": "The desk returns finished work. Your people make the call.",

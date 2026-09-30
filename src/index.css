@@ -163,14 +163,6 @@ ol {
   box-shadow: none;
   transform: none;
 }
-@media (width > 900px) {
-  #problem .grid--2:has(> .card) {
-    grid-template-rows: auto 1fr;
-  }
-  #problem .grid--2 > .card {
-    grid-row: span 2;
-  }
-}
 #data .card {
   border: 1px solid var(--line);
   box-shadow: none;
@@ -791,7 +783,9 @@ ol {
     grid-row: span 2;
   }
   .grid--2:has(> .card) {
-    grid-template-rows: auto 1fr auto 1fr;
+    /* Rows are created per row of cards (title, body), and every body row
+       shares one height, so a 2x2 grid has four equal cards. */
+    grid-auto-rows: auto 1fr;
     align-items: start;
   }
   .grid--2 > .card {
@@ -865,6 +859,18 @@ ol {
 .card__media--wide .card__mark {
   width: auto;
   height: 86%;
+}
+.card__arrow {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 0.4rem;
+  vertical-align: -0.1em;
+  color: var(--purple);
+  transition: transform 0.2s;
+}
+.card--link:hover .card__arrow {
+  transform: translateX(3px);
 }
 .card__title {
   font-family: var(--font-head);
@@ -1463,19 +1469,6 @@ ol {
   gap: clamp(2.5rem, 6vw, 6rem);
   display: grid;
 }
-.coverage {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: start;
-  gap: clamp(2rem, 5vw, 5rem);
-  display: grid;
-}
-.coverage .lead {
-  margin: 0.35rem 0 0;
-  max-width: none;
-}
-.coverage .textlink {
-  margin-top: 1.25rem;
-}
 .human__list {
   border-top: 1.5px solid var(--line);
   display: grid;
@@ -1490,8 +1483,7 @@ ol {
   font-weight: 500;
 }
 @media (width <= 860px) {
-  .human,
-  .coverage {
+  .human {
     grid-template-columns: 1fr;
   }
 }
@@ -2182,15 +2174,6 @@ ol {
 }
 #systems .fit__names a:hover {
   color: var(--purple);
-}
-.coverage__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
-  margin-top: 1.25rem;
-}
-.coverage__links .textlink {
-  margin-top: 0;
 }
 .applied-hero {
   display: grid;
