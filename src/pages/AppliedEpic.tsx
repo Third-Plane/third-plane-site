@@ -1,27 +1,9 @@
 import { appliedEpicPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
+import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
-import { delayStyle } from "../lib/style";
+import { Section } from "../components/Section";
 import { useTitle } from "../hooks/useTitle";
-
-function PointGrid({
-  items,
-  columns = 3,
-}: {
-  items: Array<{ title: string; body?: string }>;
-  columns?: 2 | 3 | 4;
-}) {
-  return (
-    <div className={`grid grid--${columns}`}>
-      {items.map((item, i) => (
-        <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-          <h3 className="point__title">{item.title}</h3>
-          {item.body ? <p className="point__body">{item.body}</p> : null}
-        </article>
-      ))}
-    </div>
-  );
-}
 
 export function AppliedEpic() {
   const title = page.certified ? page.title : page.titlePending;
@@ -32,48 +14,30 @@ export function AppliedEpic() {
     <>
       <PageHero title={title} lead={page.lead} status={page.certified ? status : undefined} />
 
-      <section className="section section--white" id="who">
-        <div className="container">
-          <div className="section-head" data-reveal>
-            <h2 className="display-2">{page.who.title}</h2>
-            <p className="lead">{page.who.body}</p>
-          </div>
-          <PointGrid items={page.who.items} />
-        </div>
-      </section>
+      <Section tone="white" id="who" title={page.who.title} body={page.who.body}>
+        <ItemGrid variant="point" columns={3} items={page.who.items} />
+      </Section>
 
-      <section className="section section--blend" id="work">
-        <div className="container">
-          <div className="section-head" data-reveal>
-            <h2 className="display-2">{page.work.title}</h2>
-          </div>
-          <PointGrid items={page.work.items} />
-        </div>
-      </section>
+      <Section tone="blend" id="work" title={page.work.title}>
+        <ItemGrid variant="point" columns={3} items={page.work.items} />
+      </Section>
 
       {page.certified ? (
-        <section className="section section--white" id="meaning">
-          <div className="container">
-            <div className="section-head" data-reveal>
-              <h2 className="display-2">{page.meaning.title}</h2>
-            </div>
-            <PointGrid items={page.meaning.items} columns={2} />
-          </div>
-        </section>
+        <Section tone="white" id="meaning" title={page.meaning.title}>
+          <ItemGrid variant="point" columns={2} items={page.meaning.items} />
+        </Section>
       ) : null}
 
       {page.quote?.text ? (
-        <section className="section section--blend" id="quote">
-          <div className="container">
-            <blockquote className="applied-quote" data-reveal>
-              <p>{page.quote.text}</p>
-              {page.quote.attribution ? <footer>{page.quote.attribution}</footer> : null}
-            </blockquote>
-          </div>
-        </section>
+        <Section tone="blend" id="quote">
+          <blockquote className="applied-quote" data-reveal>
+            <p>{page.quote.text}</p>
+            {page.quote.attribution ? <footer>{page.quote.attribution}</footer> : null}
+          </blockquote>
+        </Section>
       ) : null}
 
-      <Cta title={page.cta.title} body={page.cta.body} />
+      <Cta {...page.cta} />
     </>
   );
 }

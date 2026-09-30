@@ -1,7 +1,8 @@
 import { Navigate, useParams } from "react-router-dom";
-import { companyPage, resourcesPage } from "../data/content";
-import { findPost, formatPostDate, type Block } from "../data/posts";
+import { companyPage } from "../data/content";
+import { findPost, type Block } from "../data/posts";
 import { Cta } from "../components/Cta";
+import { PostMeta } from "../components/PostMeta";
 import { AppLink, Arrow } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
 
@@ -52,13 +53,7 @@ export function Post() {
               <Arrow className="post__back-arrow" />
               Resources
             </AppLink>
-            <div className="post-card__meta">
-              <span className={`type-pill type-pill--${post.type}`}>
-                {resourcesPage.types[post.type]}
-              </span>
-              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-              {post.draft ? <span className="type-pill type-pill--draft">Draft</span> : null}
-            </div>
+            <PostMeta post={post} />
             <h1 className="display-1 post__title">{post.title}</h1>
             <p className="lead post__standfirst">{post.standfirst}</p>
             <p className="post__byline">{post.author}</p>
@@ -72,7 +67,7 @@ export function Post() {
           </div>
         </div>
       </article>
-      <Cta title={companyPage.cta.title} body={companyPage.cta.body} />
+      <Cta {...companyPage.cta} />
     </>
   );
 }

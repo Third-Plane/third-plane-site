@@ -1,6 +1,7 @@
 import { placementDesk } from "../data/content";
-import { delayStyle } from "../lib/style";
-import { CardMark, SectionHead } from "./Ui";
+import { ItemGrid } from "./ItemGrid";
+import { Section } from "./Section";
+import { CardMark } from "./CardMark";
 
 const channelMarks = ["portal", "api", "mail"] as const;
 
@@ -10,19 +11,13 @@ const channelMarks = ["portal", "api", "mail"] as const;
 export function CarrierChannels() {
   const { channels } = placementDesk;
   return (
-    <section className="section section--blend" id="channels">
-      <div className="container">
-        <SectionHead title={channels.title} body={channels.body} />
-        <div className="grid grid--3">
-          {channels.items.map((item, i) => (
-            <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-              <CardMark name={channelMarks[i]} variant="wide" />
-              <h3 className="card__title">{item.title}</h3>
-              <p className="card__body">{item.body}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section tone="blend" id="channels" title={channels.title} body={channels.body}>
+      <ItemGrid
+        variant="card"
+        columns={3}
+        items={channels.items}
+        media={(i) => <CardMark name={channelMarks[i]} />}
+      />
+    </Section>
   );
 }

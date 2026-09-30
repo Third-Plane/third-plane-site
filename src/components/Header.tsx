@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { primaryNav, site } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
+import { NavEntry } from "./NavEntry";
 
 function Chevron() {
   return (
@@ -31,6 +32,10 @@ function Note({ item }: { item: Item }) {
   if (!item.note) return null;
   return <span className={item.live ? "nav__note nav__note--live" : "nav__note"}>{item.note}</span>;
 }
+
+// The drawer is compact: it shows status notes (live, or no page yet) but
+// leaves the descriptive ones to the dropdown.
+const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -114,28 +119,19 @@ export function Header() {
                   <Chevron />
                 </button>
                 <div className="nav__panel" role="menu">
-                  {(group.items as Item[]).map((item) =>
-                    item.disabled || !item.href ? (
-                      <span
-                        className="nav__panel-item nav__panel-item--disabled"
-                        aria-disabled="true"
-                        key={item.label}
-                      >
-                        <span>{item.label}</span>
-                        <Note item={item} />
-                      </span>
-                    ) : (
-                      <AppLink
-                        className="nav__panel-item"
-                        href={item.href}
-                        key={item.href}
-                        onClick={close}
-                      >
-                        <span>{item.label}</span>
-                        <Note item={item} />
-                      </AppLink>
-                    ),
-                  )}
+                  {(group.items as Item[]).map((item) => (
+                    <NavEntry
+                      className="nav__panel-item"
+                      disabledClassName="nav__panel-item nav__panel-item--disabled"
+                      href={item.href}
+                      disabled={item.disabled}
+                      onClick={close}
+                      key={item.label}
+                    >
+                      <span>{item.label}</span>
+                      <Note item={item} />
+                    </NavEntry>
+                  ))}
                 </div>
               </div>
             );
@@ -178,28 +174,19 @@ export function Header() {
           {primaryNav.menus.map((group) => (
             <div key={group.label}>
               <p className="nav__drawer-group">{group.label}</p>
-              {(group.items as Item[]).map((item) =>
-                item.disabled || !item.href ? (
-                  <span
-                    className="nav__drawer-link nav__drawer-link--disabled"
-                    aria-disabled="true"
-                    key={item.label}
-                  >
-                    {item.label}
-                    <Note item={item} />
-                  </span>
-                ) : (
-                  <AppLink
-                    className="nav__drawer-link"
-                    href={item.href}
-                    key={item.href}
-                    onClick={close}
-                  >
-                    {item.label}
-                    {item.live !== undefined ? <Note item={item} /> : null}
-                  </AppLink>
-                ),
-              )}
+              {(group.items as Item[]).map((item) => (
+                <NavEntry
+                  className="nav__drawer-link"
+                  disabledClassName="nav__drawer-link nav__drawer-link--disabled"
+                  href={item.href}
+                  disabled={item.disabled}
+                  onClick={close}
+                  key={item.label}
+                >
+                  {item.label}
+                  {showDrawerNote(item) ? <Note item={item} /> : null}
+                </NavEntry>
+              ))}
             </div>
           ))}
           <Button variant="dark" />

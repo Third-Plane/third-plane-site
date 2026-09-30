@@ -284,25 +284,10 @@ ol {
   box-shadow: inset 0 0 0 1.5px var(--purple);
   color: var(--purple);
 }
-.textlink {
-  color: var(--purple);
-  border-bottom: 1.5px solid #0000;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  transition: border-color 0.2s;
-  display: inline-flex;
-}
-.textlink:hover {
-  border-color: var(--purple);
-}
 .textlink__arrow {
   width: 16px;
   height: 16px;
   transition: transform 0.2s;
-}
-.textlink:hover .textlink__arrow {
-  transform: translate(3px);
 }
 .nav {
   z-index: 50;
@@ -441,33 +426,6 @@ ol {
     linear-gradient(180deg, #0000 0%, #000 55%);
   mask-composite: intersect;
 }
-.network__hit {
-  fill: transparent;
-  stroke: none;
-  pointer-events: all;
-}
-.network__face {
-  fill: currentColor;
-  fill-opacity: 0;
-  transition:
-    fill 0.22s ease,
-    fill-opacity 0.22s ease;
-}
-.network__face.is-filled.network__face--top {
-  fill-opacity: 0.42;
-}
-.network__face.is-filled:not(.network__face--top) {
-  fill-opacity: 0.18;
-}
-.network__box path {
-  transition:
-    stroke 0.22s ease,
-    stroke-width 0.22s ease;
-}
-.network {
-  width: 100%;
-  height: auto;
-}
 .hero__grid {
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
@@ -546,10 +504,6 @@ ol {
 .hero--product .display-1 span + span,
 .hero--product .display-1--inline span {
   color: var(--ink);
-}
-.hero--product .hero__lead {
-  color: var(--ink-body);
-  font-weight: 400;
 }
 @media (width <= 980px) {
   .hero__grid {
