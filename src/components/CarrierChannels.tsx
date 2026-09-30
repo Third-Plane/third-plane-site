@@ -1,7 +1,7 @@
 import { placementDesk } from "../data/content";
 import { ItemGrid } from "./ItemGrid";
 import { Section } from "./Section";
-import { CardMark } from "./Iso";
+import { CardMark } from "./CardMark";
 
 const channelMarks = ["portal", "api", "mail"] as const;
 
@@ -16,7 +16,7 @@ export function CarrierChannels() {
         variant="card"
         columns={3}
         items={channels.items}
-        media={(i) => <CardMark name={channelMarks[i]} variant="wide" />}
+        media={(i) => <CardMark name={channelMarks[i]} />}
       />
     </Section>
   );

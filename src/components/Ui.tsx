@@ -43,15 +43,6 @@ export function Button({
   );
 }
 
-export function TextLink({ children, href }: { children: ReactNode; href: string }) {
-  return (
-    <Link className="textlink" to={toRoute(href)}>
-      {children}
-      <Arrow className="textlink__arrow" />
-    </Link>
-  );
-}
-
 export function AppLink({
   href,
   className,
