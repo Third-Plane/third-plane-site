@@ -21,7 +21,7 @@ export type SiteFile = {
   ctaHref: string;
   year: number;
   footer: { tagline: string; location: string };
-  contact: Cta & { meta?: string[] };
+  contact: Cta;
 };
 
 export type HomeFile = {
@@ -112,7 +112,7 @@ export type PlatformFile = {
   title: Lines;
   lead: string;
   real: { title: string; body: string; facts: Card[] };
-  cta: Cta & { meta?: string[] };
+  cta: Cta;
 };
 
 export type CarrierChannelsFile = {

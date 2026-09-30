@@ -39,7 +39,7 @@ export const site = {
   mailto: `mailto:${siteFile.email}`,
 };
 
-export const contact = { ...contactFile, meta: contactFile.meta ?? [] };
+export const contact = contactFile;
 
 export const homeHero = { ...home.hero, ledger: home.ledger };
 export const ledgerTasks = home.ledger.tasks;
@@ -57,7 +57,7 @@ export const careersPage = {
   roles: { ...careers.roles, items: careers.roles.items ?? [] },
 };
 export const resourcesPage: ResourcesFile = resourcesJson;
-export const alpinePage: PlatformFile = platformJson;
+export const platformPage: PlatformFile = platformJson;
 export const carrierChannelsPage: CarrierChannelsFile = carrierChannelsJson;
 export const integrationsPage: IntegrationsFile = integrationsJson;
 export const appliedEpicPage: AppliedEpicFile = appliedEpicJson;

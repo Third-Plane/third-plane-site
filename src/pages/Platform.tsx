@@ -1,4 +1,4 @@
-import { alpinePage as page, securityPage } from "../data/content";
+import { platformPage as page, securityPage } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { TextLink } from "../components/Ui";
@@ -7,11 +7,11 @@ import { delayStyle } from "../lib/style";
 
 const delivery = page.real.facts.filter((fact) => fact.title !== "Every action recorded");
 
-export function Alpine() {
+export function Platform() {
   useTitle("Platform", page.lead);
   return (
     <>
-      <PageHero family="platform" title={page.title} lead={page.lead} />
+      <PageHero title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="proven">
         <div className="container company">
@@ -31,7 +31,7 @@ export function Alpine() {
         </div>
       </section>
 
-      <Cta title={page.cta.title} body={page.cta.body} meta={page.cta.meta} />
+      <Cta title={page.cta.title} body={page.cta.body} />
     </>
   );
 }

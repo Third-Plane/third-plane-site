@@ -7,17 +7,14 @@ export function Cta({
   label = site.ctaLabel,
   href = site.ctaHref,
   email = site.email,
-  meta,
 }: {
   title?: string;
   body?: string;
   label?: string;
   href?: string;
   email?: string;
-  meta?: string[];
 }) {
   const mailto = `mailto:${email}`;
-  const items = meta ?? (title === contact.title && body === contact.body ? contact.meta : []);
   return (
     <section className="section" id="contact">
       <div className="container">
@@ -33,13 +30,6 @@ export function Cta({
                 {email}
               </a>
             </div>
-            {items.length ? (
-              <ul className="cta__meta">
-                {items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            ) : null}
           </div>
         </div>
       </div>
