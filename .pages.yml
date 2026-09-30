@@ -284,17 +284,6 @@ content:
             type: text
             required: true
             description: Also the page’s search and link-preview description.
-          - name: does
-            label: Body
-            type: text
-            required: true
-          - name: real
-            label: Proof
-            type: object
-            fields:
-              - name: claim
-                type: text
-                required: true
           - name: work
             label: What the desk does
             description: The stages are also shown on the homepage, under its Placement Desk heading.
@@ -327,6 +316,9 @@ content:
               - name: title
                 type: string
                 required: true
+              - name: body
+                type: text
+                required: true
               - name: items
                 component: cards
                 list:
@@ -335,11 +327,6 @@ content:
                   collapsible:
                     collapsed: true
                     summary: "{title}"
-              - name: note
-                type: string
-                required: true
-              - name: link
-                component: link
           - name: systems
             label: Your systems
             type: object
@@ -350,8 +337,26 @@ content:
               - name: body
                 type: text
                 required: true
-              - name: link
-                component: link
+              - name: links
+                description: Shown as cards that link to other pages.
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: body
+                    type: text
+                    required: true
+                  - name: href
+                    label: Link
+                    type: string
+                    required: true
+                    description: A page on this site such as /integrations, or a full https:// address.
           - name: human
             label: What stays with your people
             type: object
@@ -359,8 +364,12 @@ content:
               - name: title
                 type: string
                 required: true
+              - name: body
+                type: text
+                required: true
               - name: items
-                component: strings
+                description: Shown as a grid of cards, two per row.
+                component: cards
           - name: cta
             label: Call to action (bottom of page)
             description: The label is used on the heading button and the closing button.

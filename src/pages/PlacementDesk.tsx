@@ -2,7 +2,7 @@ import { placementDesk } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
-import { Button, CardMark, SectionHead, TextLink } from "../components/Ui";
+import { AppLink, Arrow, Button, CardMark, SectionHead } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -27,10 +27,7 @@ export function PlacementDesk() {
             <p className="hero__lead" data-reveal style={delayStyle(2)}>
               {placementDesk.problem}
             </p>
-            <p className="hero__body" data-reveal style={delayStyle(3)}>
-              {placementDesk.does}
-            </p>
-            <div className="hero__actions" data-reveal style={delayStyle(4)}>
+            <div className="hero__actions" data-reveal style={delayStyle(3)}>
               <Button variant="dark">{placementDesk.cta.label}</Button>
             </div>
           </div>
@@ -45,15 +42,12 @@ export function PlacementDesk() {
         <div className="container">
           <SectionHead title={placementDesk.work.title} />
           <PlacementWorkflow />
-          <p className="proof" data-reveal>
-            {placementDesk.real.claim}
-          </p>
         </div>
       </section>
 
       <section className="section section--blend" id="channels">
         <div className="container">
-          <SectionHead title={placementDesk.channels.title} />
+          <SectionHead title={placementDesk.channels.title} body={placementDesk.channels.body} />
           <div className="grid grid--3">
             {placementDesk.channels.items.map((item, i) => (
               <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
@@ -63,42 +57,43 @@ export function PlacementDesk() {
               </article>
             ))}
           </div>
-          <div className="flow__foot" data-reveal>
-            <p className="footnote">{placementDesk.channels.note}</p>
-            <TextLink href={placementDesk.channels.link.href}>
-              {placementDesk.channels.link.label}
-            </TextLink>
-          </div>
         </div>
       </section>
 
       <section className="section section--white" id="systems">
-        <div className="container coverage">
-          <h2 className="display-2" data-reveal>
-            {placementDesk.systems.title}
-          </h2>
-          <div data-reveal style={delayStyle(1)}>
-            <p className="lead">{placementDesk.systems.body}</p>
-            <div className="coverage__links">
-              <TextLink href={placementDesk.systems.link.href}>
-                {placementDesk.systems.link.label}
-              </TextLink>
-              <TextLink href="/applied-epic">Applied Epic</TextLink>
-            </div>
+        <div className="container">
+          <SectionHead title={placementDesk.systems.title} body={placementDesk.systems.body} />
+          <div className="grid grid--2">
+            {placementDesk.systems.links.map((link, i) => (
+              <AppLink
+                className="card card--link"
+                href={link.href}
+                key={link.href}
+                data-reveal
+                style={delayStyle(i)}
+              >
+                <h3 className="card__title">
+                  {link.title}
+                  <Arrow className="card__arrow" />
+                </h3>
+                <p className="card__body">{link.body}</p>
+              </AppLink>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section" id="human">
-        <div className="container human">
-          <div data-reveal>
-            <h2 className="display-2">{placementDesk.human.title}</h2>
-          </div>
-          <ul className="human__list" data-reveal style={delayStyle(1)}>
-            {placementDesk.human.items.map((item) => (
-              <li key={item}>{item}</li>
+      <section className="section section--blend" id="human">
+        <div className="container">
+          <SectionHead title={placementDesk.human.title} body={placementDesk.human.body} />
+          <div className="grid grid--2">
+            {placementDesk.human.items.map((item, i) => (
+              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
+                <h3 className="card__title">{item.title}</h3>
+                <p className="card__body">{item.body}</p>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
