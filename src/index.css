@@ -1085,18 +1085,6 @@ ol {
   margin: 0.3rem 0 0;
   font-size: var(--type-sm);
 }
-.flow__foot {
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 2rem;
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-  display: grid;
-}
-.flow__links {
-  display: grid;
-  gap: 0.85rem;
-  justify-items: start;
-}
 .desk-next {
   border-top: 1.5px solid var(--line);
   margin-top: clamp(2.5rem, 4vw, 3.5rem);
@@ -1120,10 +1108,6 @@ ol {
     left: var(--pad);
     top: calc(-1 * var(--gap) / 2 - 11px);
     transform: rotate(90deg);
-  }
-  .flow__foot {
-    grid-template-columns: 1fr;
-    align-items: start;
   }
 }
 .split {
@@ -2191,9 +2175,6 @@ ol {
 .human__list--dark li {
   border-bottom-color: var(--line-dark);
   color: var(--on-dark);
-}
-.flow__foot .footnote {
-  margin-top: 0;
 }
 #systems .fit__names a {
   color: inherit;

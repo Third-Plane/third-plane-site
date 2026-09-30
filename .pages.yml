@@ -316,6 +316,9 @@ content:
               - name: title
                 type: string
                 required: true
+              - name: body
+                type: text
+                required: true
               - name: items
                 component: cards
                 list:
@@ -324,11 +327,6 @@ content:
                   collapsible:
                     collapsed: true
                     summary: "{title}"
-              - name: note
-                type: string
-                required: true
-              - name: link
-                component: link
           - name: systems
             label: Your systems
             type: object

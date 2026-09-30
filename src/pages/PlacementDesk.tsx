@@ -47,7 +47,7 @@ export function PlacementDesk() {
 
       <section className="section section--blend" id="channels">
         <div className="container">
-          <SectionHead title={placementDesk.channels.title} />
+          <SectionHead title={placementDesk.channels.title} body={placementDesk.channels.body} />
           <div className="grid grid--3">
             {placementDesk.channels.items.map((item, i) => (
               <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
@@ -56,12 +56,6 @@ export function PlacementDesk() {
                 <p className="card__body">{item.body}</p>
               </article>
             ))}
-          </div>
-          <div className="flow__foot" data-reveal>
-            <p className="footnote">{placementDesk.channels.note}</p>
-            <TextLink href={placementDesk.channels.link.href}>
-              {placementDesk.channels.link.label}
-            </TextLink>
           </div>
         </div>
       </section>

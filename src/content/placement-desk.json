@@ -60,7 +60,8 @@
     ]
   },
   "channels": {
-    "title": "Three ways to a market.",
+    "title": "One placement process, regardless of channel.",
+    "body": "Placement Desk works each carrier through its portal, API or underwriter email, so your team can reach more of the markets you already have.",
     "items": [
       {
         "title": "Carrier portals",
@@ -74,12 +75,7 @@
         "title": "Email",
         "body": "Manages the underwriter thread and returns the response."
       }
-    ],
-    "note": "Channel coverage is configured per deployment, market by market.",
-    "link": {
-      "label": "More on carrier channels",
-      "href": "/carrier-channels"
-    }
+    ]
   },
   "systems": {
     "title": "Your systems as they are.",
