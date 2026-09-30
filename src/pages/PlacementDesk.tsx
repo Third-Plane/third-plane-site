@@ -6,7 +6,7 @@ import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
 import { AppLink, Arrow, Button } from "../components/Ui";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
 export function PlacementDesk() {
@@ -32,13 +32,7 @@ export function PlacementDesk() {
       >
         <div className="grid grid--2">
           {placementDesk.systems.links.map((link, i) => (
-            <AppLink
-              className="card card--link"
-              href={link.href}
-              key={link.href}
-              data-reveal
-              style={delayStyle(i)}
-            >
+            <AppLink className="card card--link" href={link.href} key={link.href} {...reveal(i)}>
               <h3 className="card__title">
                 {link.title}
                 <Arrow className="card__arrow" />
@@ -58,11 +52,7 @@ export function PlacementDesk() {
         <ItemGrid variant="card" columns={2} items={placementDesk.human.items} />
       </Section>
 
-      <Cta
-        title={placementDesk.cta.title}
-        body={placementDesk.cta.body}
-        label={placementDesk.cta.label}
-      />
+      <Cta {...placementDesk.cta} />
     </>
   );
 }

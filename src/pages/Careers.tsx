@@ -38,7 +38,7 @@ export function Careers() {
         <ItemGrid variant="point" columns={4} items={page.why.items} />
       </Section>
 
-      <Cta title={page.cta.title} body={page.cta.body} href={site.mailto} />
+      <Cta {...page.cta} href={site.mailto} />
     </>
   );
 }

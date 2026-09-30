@@ -4,7 +4,7 @@ import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { useTitle } from "../hooks/useTitle";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 
 export function Company() {
   useTitle("Company", page.lead);
@@ -21,7 +21,7 @@ export function Company() {
             </p>
           ))}
         </div>
-        <figure className="team" data-reveal style={delayStyle(1)}>
+        <figure className="team" {...reveal(1)}>
           {page.team.photo.src ? (
             <img src={page.team.photo.src} alt={page.team.photo.alt} />
           ) : (
@@ -36,7 +36,7 @@ export function Company() {
         <ItemGrid variant="point" columns={2} items={page.principles.items} />
       </Section>
 
-      <Cta title={page.cta.title} body={page.cta.body} />
+      <Cta {...page.cta} />
     </>
   );
 }

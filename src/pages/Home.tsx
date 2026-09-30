@@ -6,7 +6,7 @@ import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
 export function Home() {
@@ -37,8 +37,7 @@ export function Home() {
           {approach.models.map((model, i) => (
             <div
               className={model.accent ? "model model--accent" : "model"}
-              data-reveal
-              style={delayStyle(i)}
+              {...reveal(i)}
               key={model.kicker}
             >
               <p className="model__kicker">{model.kicker}</p>

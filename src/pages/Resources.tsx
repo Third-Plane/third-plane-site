@@ -6,7 +6,7 @@ import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 
 // Drafts show in the dev server only, so a post can be reviewed at its real
 // URL before it is published.
@@ -22,7 +22,7 @@ export function Resources() {
         {publishedPosts.length ? (
           <ul className="posts">
             {publishedPosts.map((post, i) => (
-              <li key={post.slug} data-reveal style={delayStyle(i % 3)}>
+              <li key={post.slug} {...reveal(i % 3)}>
                 <AppLink className="post-card" href={`/resources/${post.slug}`}>
                   <PostMeta post={post} />
                   <h2 className="post-card__title">{post.title}</h2>
@@ -40,7 +40,7 @@ export function Resources() {
         )}
       </Section>
 
-      <Cta title={companyPage.cta.title} body={companyPage.cta.body} />
+      <Cta {...companyPage.cta} />
     </>
   );
 }

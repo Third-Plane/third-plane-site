@@ -1,7 +1,7 @@
 import { placementDesk } from "../data/content";
 import { ItemGrid } from "./ItemGrid";
 import { Section } from "./Section";
-import { CardMark } from "./Ui";
+import { CardMark } from "./Iso";
 
 const channelMarks = ["portal", "api", "mail"] as const;
 

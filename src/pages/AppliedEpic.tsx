@@ -37,7 +37,7 @@ export function AppliedEpic() {
         </Section>
       ) : null}
 
-      <Cta title={page.cta.title} body={page.cta.body} />
+      <Cta {...page.cta} />
     </>
   );
 }

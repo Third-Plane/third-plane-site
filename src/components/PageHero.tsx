@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
+import { StackedTitle } from "./StackedTitle";
 
 export type HeroFamily = "evidence" | "editorial" | "careers";
 
@@ -19,15 +20,9 @@ export function PageHero({
   const stacked = family === "careers";
 
   const heading = stacked ? (
-    <h1 className="display-1" data-reveal style={delayStyle(1)}>
-      {title.map((line, i) => (
-        // The space keeps the lines as separate words for crawlers and
-        // screen readers; the spans are blocks, so it never shows.
-        <span key={line}>{i > 0 ? ` ${line}` : line}</span>
-      ))}
-    </h1>
+    <StackedTitle lines={title} />
   ) : (
-    <h1 className="display-1 display-1--inline display-1--plain" data-reveal style={delayStyle(1)}>
+    <h1 className="display-1 display-1--inline display-1--plain" {...reveal(1)}>
       {title.join(" ")}
     </h1>
   );
@@ -41,11 +36,11 @@ export function PageHero({
           </div>
         ) : null}
         {heading}
-        <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
+        <p className="lead hero__lead" {...reveal(2)}>
           {lead}
         </p>
         {children ? (
-          <div className="hero__actions" data-reveal style={delayStyle(3)}>
+          <div className="hero__actions" {...reveal(3)}>
             {children}
           </div>
         ) : null}

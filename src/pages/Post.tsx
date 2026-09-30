@@ -67,7 +67,7 @@ export function Post() {
           </div>
         </div>
       </article>
-      <Cta title={companyPage.cta.title} body={companyPage.cta.body} />
+      <Cta {...companyPage.cta} />
     </>
   );
 }

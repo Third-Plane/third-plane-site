@@ -5,7 +5,7 @@ import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { AppLink } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 
 export function Integrations() {
   useTitle("System integrations", page.lead);
@@ -16,7 +16,7 @@ export function Integrations() {
       <Section tone="white" id="systems" title={page.systems.title}>
         <div className="fit">
           {page.systems.items.slice(0, 4).map((item, i) => (
-            <article className="fit__row" data-reveal style={delayStyle(i)} key={item.title}>
+            <article className="fit__row" {...reveal(i)} key={item.title}>
               <div className="fit__sys">
                 <h3 className="fit__label">{item.title}</h3>
               </div>
@@ -47,7 +47,7 @@ export function Integrations() {
       <Section tone="deep" id="how" title={page.how.title}>
         <ol className="steps">
           {page.how.steps.map((step, i) => (
-            <li className="step" data-reveal style={delayStyle(i)} key={step.title}>
+            <li className="step" {...reveal(i)} key={step.title}>
               <span className="step__index">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="step__title">{step.title}</h3>
               <p className="step__body">{step.body}</p>
@@ -56,7 +56,7 @@ export function Integrations() {
         </ol>
       </Section>
 
-      <Cta title={page.cta.title} body={page.cta.body} />
+      <Cta {...page.cta} />
     </>
   );
 }

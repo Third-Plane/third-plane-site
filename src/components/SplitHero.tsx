@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 import { Ledger } from "./Ledger";
 import { ParticleField } from "./ParticleField";
+import { StackedTitle } from "./StackedTitle";
 
 // The hero with copy on the left and the activity ledger on the right. A
 // `title` array stacks its lines; a string flows as one.
@@ -17,15 +18,9 @@ export function SplitHero({
   className?: string;
 }) {
   const heading = Array.isArray(title) ? (
-    <h1 className="display-1" data-reveal style={delayStyle(1)}>
-      {title.map((line, i) => (
-        // The space keeps the lines as separate words for crawlers and
-        // screen readers; the spans are blocks, so it never shows.
-        <span key={line}>{i > 0 ? ` ${line}` : line}</span>
-      ))}
-    </h1>
+    <StackedTitle lines={title} />
   ) : (
-    <h1 className="display-1 display-1--inline" data-reveal style={delayStyle(1)}>
+    <h1 className="display-1 display-1--inline" {...reveal(1)}>
       {title}
     </h1>
   );
@@ -36,14 +31,14 @@ export function SplitHero({
       <div className="container hero__grid">
         <div className="hero__copy">
           {heading}
-          <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
+          <p className="lead hero__lead" {...reveal(2)}>
             {lead}
           </p>
-          <div className="hero__actions" data-reveal style={delayStyle(3)}>
+          <div className="hero__actions" {...reveal(3)}>
             {actions}
           </div>
         </div>
-        <div className="hero__figure" data-reveal style={delayStyle(3)}>
+        <div className="hero__figure" {...reveal(3)}>
           <Ledger />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { delayStyle } from "../lib/style";
+import { reveal } from "../lib/style";
 
 // A grid of titled items that reveal in turn. `card` items are raised tiles;
 // `point` items are ruled, open text. `media` adds something above the title,
@@ -18,7 +18,7 @@ export function ItemGrid({
   return (
     <div className={`grid grid--${columns}`}>
       {items.map((item, i) => (
-        <article className={variant} data-reveal style={delayStyle(i)} key={item.title}>
+        <article className={variant} {...reveal(i)} key={item.title}>
           {media?.(i)}
           <h3 className={`${variant}__title`}>{item.title}</h3>
           {item.body ? <p className={`${variant}__body`}>{item.body}</p> : null}
