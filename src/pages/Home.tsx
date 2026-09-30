@@ -16,9 +16,6 @@ export function Home() {
         <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
         <div className="container hero__grid">
           <div className="hero__copy">
-            <div data-reveal>
-              <Slash className="hero__slash" />
-            </div>
             <h1 className="display-1 display-1--inline" data-reveal style={delayStyle(1)}>
               {homeHero.title}
             </h1>
