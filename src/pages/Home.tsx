@@ -2,8 +2,9 @@ import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
+import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
-import { Arrow, Button, SectionHead } from "../components/Ui";
+import { Arrow, Button } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -37,54 +38,52 @@ export function Home() {
 
       <Showcase />
 
-      <section className="section section--white" id="problem">
-        <div className="container">
-          <SectionHead title={problem.title} body={problem.body} />
-          <div className="grid grid--2">
-            {problem.points.map((point, i) => (
-              <article className="card" data-reveal style={delayStyle(i)} key={point.title}>
-                <h3 className="card__title">{point.title}</h3>
-                <p className="card__body">{point.body}</p>
-              </article>
-            ))}
-          </div>
+      <Section tone="white" id="problem" title={problem.title} body={problem.body}>
+        <div className="grid grid--2">
+          {problem.points.map((point, i) => (
+            <article className="card" data-reveal style={delayStyle(i)} key={point.title}>
+              <h3 className="card__title">{point.title}</h3>
+              <p className="card__body">{point.body}</p>
+            </article>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="approach">
-        <div className="container">
-          <SectionHead title={approach.title} body={approach.body} />
-          <div className="models">
-            {approach.models.map((model, i) => (
-              <div
-                className={model.accent ? "model model--accent" : "model"}
-                data-reveal
-                style={delayStyle(i)}
-                key={model.kicker}
-              >
-                <p className="model__kicker">{model.kicker}</p>
-                <div className="model__chain" role="list">
-                  {model.chain.map((step, stepIndex) => (
-                    <span className="model__item" role="listitem" key={step}>
-                      {stepIndex > 0 ? <Arrow className="model__arrow" /> : null}
-                      <span className="model__step">{step}</span>
-                    </span>
-                  ))}
-                </div>
-                <p className="model__note">{model.note}</p>
+      <Section id="approach" title={approach.title} body={approach.body}>
+        <div className="models">
+          {approach.models.map((model, i) => (
+            <div
+              className={model.accent ? "model model--accent" : "model"}
+              data-reveal
+              style={delayStyle(i)}
+              key={model.kicker}
+            >
+              <p className="model__kicker">{model.kicker}</p>
+              <div className="model__chain" role="list">
+                {model.chain.map((step, stepIndex) => (
+                  <span className="model__item" role="listitem" key={step}>
+                    {stepIndex > 0 ? <Arrow className="model__arrow" /> : null}
+                    <span className="model__step">{step}</span>
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
+              <p className="model__note">{model.note}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="section section--deep" id="desk">
-        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-        <div className="container">
-          <SectionHead title={desk.title} body={desk.body} />
-          <PlacementWorkflow />
-        </div>
-      </section>
+      <Section
+        tone="deep"
+        id="desk"
+        title={desk.title}
+        body={desk.body}
+        backdrop={
+          <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
+        }
+      >
+        <PlacementWorkflow />
+      </Section>
 
       <Cta />
     </>

@@ -1,6 +1,7 @@
 import { appliedEpicPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
+import { Section } from "../components/Section";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
@@ -32,45 +33,27 @@ export function AppliedEpic() {
     <>
       <PageHero title={title} lead={page.lead} status={page.certified ? status : undefined} />
 
-      <section className="section section--white" id="who">
-        <div className="container">
-          <div className="section-head" data-reveal>
-            <h2 className="display-2">{page.who.title}</h2>
-            <p className="lead">{page.who.body}</p>
-          </div>
-          <PointGrid items={page.who.items} />
-        </div>
-      </section>
+      <Section tone="white" id="who" title={page.who.title} body={page.who.body}>
+        <PointGrid items={page.who.items} />
+      </Section>
 
-      <section className="section section--blend" id="work">
-        <div className="container">
-          <div className="section-head" data-reveal>
-            <h2 className="display-2">{page.work.title}</h2>
-          </div>
-          <PointGrid items={page.work.items} />
-        </div>
-      </section>
+      <Section tone="blend" id="work" title={page.work.title}>
+        <PointGrid items={page.work.items} />
+      </Section>
 
       {page.certified ? (
-        <section className="section section--white" id="meaning">
-          <div className="container">
-            <div className="section-head" data-reveal>
-              <h2 className="display-2">{page.meaning.title}</h2>
-            </div>
-            <PointGrid items={page.meaning.items} columns={2} />
-          </div>
-        </section>
+        <Section tone="white" id="meaning" title={page.meaning.title}>
+          <PointGrid items={page.meaning.items} columns={2} />
+        </Section>
       ) : null}
 
       {page.quote?.text ? (
-        <section className="section section--blend" id="quote">
-          <div className="container">
-            <blockquote className="applied-quote" data-reveal>
-              <p>{page.quote.text}</p>
-              {page.quote.attribution ? <footer>{page.quote.attribution}</footer> : null}
-            </blockquote>
-          </div>
-        </section>
+        <Section tone="blend" id="quote">
+          <blockquote className="applied-quote" data-reveal>
+            <p>{page.quote.text}</p>
+            {page.quote.attribution ? <footer>{page.quote.attribution}</footer> : null}
+          </blockquote>
+        </Section>
       ) : null}
 
       <Cta title={page.cta.title} body={page.cta.body} />

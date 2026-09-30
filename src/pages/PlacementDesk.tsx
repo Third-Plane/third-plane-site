@@ -3,7 +3,8 @@ import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
-import { AppLink, Arrow, Button, SectionHead } from "../components/Ui";
+import { Section } from "../components/Section";
+import { AppLink, Arrow, Button } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -36,52 +37,59 @@ export function PlacementDesk() {
         </div>
       </section>
 
-      <section className="section section--deep" id="work">
-        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-        <div className="container">
-          <SectionHead title={placementDesk.work.title} />
-          <PlacementWorkflow />
-        </div>
-      </section>
+      <Section
+        tone="deep"
+        id="work"
+        title={placementDesk.work.title}
+        backdrop={
+          <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
+        }
+      >
+        <PlacementWorkflow />
+      </Section>
 
       <CarrierChannels />
 
-      <section className="section section--white" id="systems">
-        <div className="container">
-          <SectionHead title={placementDesk.systems.title} body={placementDesk.systems.body} />
-          <div className="grid grid--2">
-            {placementDesk.systems.links.map((link, i) => (
-              <AppLink
-                className="card card--link"
-                href={link.href}
-                key={link.href}
-                data-reveal
-                style={delayStyle(i)}
-              >
-                <h3 className="card__title">
-                  {link.title}
-                  <Arrow className="card__arrow" />
-                </h3>
-                <p className="card__body">{link.body}</p>
-              </AppLink>
-            ))}
-          </div>
+      <Section
+        tone="white"
+        id="systems"
+        title={placementDesk.systems.title}
+        body={placementDesk.systems.body}
+      >
+        <div className="grid grid--2">
+          {placementDesk.systems.links.map((link, i) => (
+            <AppLink
+              className="card card--link"
+              href={link.href}
+              key={link.href}
+              data-reveal
+              style={delayStyle(i)}
+            >
+              <h3 className="card__title">
+                {link.title}
+                <Arrow className="card__arrow" />
+              </h3>
+              <p className="card__body">{link.body}</p>
+            </AppLink>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="section section--blend" id="human">
-        <div className="container">
-          <SectionHead title={placementDesk.human.title} body={placementDesk.human.body} />
-          <div className="grid grid--2">
-            {placementDesk.human.items.map((item, i) => (
-              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="card__title">{item.title}</h3>
-                <p className="card__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
+      <Section
+        tone="blend"
+        id="human"
+        title={placementDesk.human.title}
+        body={placementDesk.human.body}
+      >
+        <div className="grid grid--2">
+          {placementDesk.human.items.map((item, i) => (
+            <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
+              <h3 className="card__title">{item.title}</h3>
+              <p className="card__body">{item.body}</p>
+            </article>
+          ))}
         </div>
-      </section>
+      </Section>
 
       <Cta
         title={placementDesk.cta.title}

@@ -1,4 +1,5 @@
 import { contact, site } from "../data/content";
+import { Section } from "./Section";
 import { Button } from "./Ui";
 
 export function Cta({
@@ -16,23 +17,21 @@ export function Cta({
 }) {
   const mailto = `mailto:${email}`;
   return (
-    <section className="section" id="contact">
-      <div className="container">
-        <div className="cta" data-reveal>
-          <div className="cta__inner">
-            <h2 className="display-2">{title}</h2>
-            <p className="cta__body">{body}</p>
-            <div className="cta__actions">
-              <Button variant="dark" href={href}>
-                {label}
-              </Button>
-              <a className="cta__email" href={mailto}>
-                {email}
-              </a>
-            </div>
+    <Section id="contact">
+      <div className="cta" data-reveal>
+        <div className="cta__inner">
+          <h2 className="display-2">{title}</h2>
+          <p className="cta__body">{body}</p>
+          <div className="cta__actions">
+            <Button variant="dark" href={href}>
+              {label}
+            </Button>
+            <a className="cta__email" href={mailto}>
+              {email}
+            </a>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
