@@ -1919,10 +1919,6 @@ ol {
   height: 28px;
   margin-bottom: 0;
 }
-.hero--lead-first .hero__lead {
-  margin-top: 0;
-  margin-bottom: 1.15rem;
-}
 .status-pill {
   display: inline-block;
   width: fit-content;

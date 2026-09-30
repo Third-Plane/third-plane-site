@@ -11,7 +11,7 @@ export function Platform() {
   useTitle("Platform", page.lead);
   return (
     <>
-      <PageHero family="platform" title={page.title} lead={page.lead} />
+      <PageHero title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="proven">
         <div className="container company">
