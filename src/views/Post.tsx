@@ -38,7 +38,7 @@ export function Post({ post }: { post: PostData }) {
     <>
       <article className="post">
         <header className="hero hero--page hero--editorial post__hero">
-          <div className="container post__head">
+          <div className="post__head wrap">
             <AppLink className="post__back" href="/resources">
               <Arrow className="post__back-arrow" />
               Resources
@@ -50,7 +50,7 @@ export function Post({ post }: { post: PostData }) {
           </div>
         </header>
         <div className="section section--white">
-          <div className="container post__body">
+          <div className="post__body wrap">
             {post.body.map((block, i) => (
               <BlockView block={block} key={i} />
             ))}

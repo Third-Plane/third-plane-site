@@ -29,7 +29,7 @@ export function PageHero({
 
   return (
     <section className={`hero hero--page hero--${family}`} id="top">
-      <div className="container hero__page-copy">
+      <div className="hero__page-copy wrap">
         {status ? (
           <div data-reveal className="hero__status">
             <span className="status-pill">{status}</span>

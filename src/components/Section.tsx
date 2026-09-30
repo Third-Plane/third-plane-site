@@ -28,7 +28,7 @@ export function Section({
   children?: ReactNode;
 }) {
   const sectionClass = ["section", tone && `section--${tone}`, className].filter(Boolean).join(" ");
-  const containerClass = ["container", containerClassName].filter(Boolean).join(" ");
+  const containerClass = ["wrap", containerClassName].filter(Boolean).join(" ");
 
   return (
     <section className={sectionClass} id={id}>

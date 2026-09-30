@@ -28,7 +28,7 @@ export function PlacementDesk() {
         title={placementDesk.systems.title}
         body={placementDesk.systems.body}
       >
-        <div className="grid grid--2">
+        <div className="grid--2 grid">
           {placementDesk.systems.links.map((link, i) => (
             <AppLink className="card card--link" href={link.href} key={link.href} {...reveal(i)}>
               <h3 className="card__title">

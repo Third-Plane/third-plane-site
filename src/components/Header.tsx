@@ -41,7 +41,7 @@ const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled 
 export function Header() {
   return (
     <header className="nav" data-scrolled="false" data-open="false" data-nav>
-      <div className="container nav__inner">
+      <div className="nav__inner wrap">
         <AppLink className="nav__brand" href="/" aria-label={`${site.name} home`}>
           <Logo className="nav__logo" />
         </AppLink>
@@ -107,7 +107,7 @@ export function Header() {
       </div>
 
       <div className="nav__drawer" data-open="false">
-        <div className="container">
+        <div className="wrap">
           {primaryNav.menus.map((group) => (
             <div key={group.label}>
               <p className="nav__drawer-group">{group.label}</p>

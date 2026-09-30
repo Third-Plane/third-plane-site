@@ -66,9 +66,35 @@ and a form, and link the page from `primaryNav` or `siteFooter`.
 - React 19, used as a template language: components render to plain HTML at build time and ship no
   JavaScript
 - TypeScript
-- Plain CSS in `src/index.css`
+- Tailwind CSS 4, alongside the hand-written stylesheet in `src/index.css` (see below)
 
 Copy lives in [`src/content/`](src/content) as JSON. Components handle layout only.
+
+### Styling: Tailwind and `index.css`
+
+New markup can use Tailwind utilities; the existing pages still run on `src/index.css`, and it can be
+ported over a component at a time. [`src/tailwind.css`](src/tailwind.css) is the stylesheet the
+layout loads. It imports Tailwind's theme and utilities, pulls in `index.css`, and maps the site's
+design tokens to utilities (`bg-purple`, `text-ink`, `font-heading`, `rounded-card`, and so on).
+
+- **Utilities beat `index.css`.** `index.css` is loaded as the `components` layer, below
+  `utilities`, so `class="card p-0"` removes the card's padding whatever the selector's
+  specificity.
+- **No Tailwind reset.** Preflight is left out because `index.css` has its own; adding it would
+  restyle every page. Expect bare elements (headings, buttons, lists) to keep the site's styles, not
+  Tailwind's.
+- **Tokens stay in `index.css`.** Add or change a colour there (`--purple`), then expose it in the
+  `@theme inline` block in `tailwind.css` if utilities should reach it. `--radius-sm` and
+  `--shadow-lg` are the exception: Tailwind's `rounded-sm` and `shadow-lg` use those names, so they
+  are defined in `tailwind.css` for both to share.
+- **Do not name a class in `index.css` after a Tailwind utility.** Tailwind generates any utility
+  whose name appears in the source, and it would override the site's rule. The site's page-width
+  class is `.wrap` for this reason (not `.container`). `.grid` is the one remaining overlap; both
+  definitions are `display: grid`, so they agree. To re-check, list the `index.css` classes that
+  Tailwind also defines with `__unstable__loadDesignSystem` from `tailwindcss`.
+- **Formatting.** `oxfmt` sorts utility classes (`sortTailwindcss` in `.oxfmtrc.json`), which also
+  puts site classes first. The recommended Tailwind CSS IntelliSense extension is pointed at
+  `src/tailwind.css` in `.vscode/settings.json`.
 
 The only JavaScript a visitor downloads is the few-KB script bundle from
 [`src/scripts/`](src/scripts): the header menus, scroll reveals, the activity ledger and the

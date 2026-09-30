@@ -1,4 +1,6 @@
 ﻿:root {
+  /* --radius-sm and --shadow-lg live in tailwind.css, where Tailwind's rounded-sm
+     and shadow-lg read them too. */
   --cream: #f6f3f0;
   --white: #fff;
   --purple: #6338e3;
@@ -27,10 +29,8 @@
   --gap: clamp(1rem, 1.6vw, 1.5rem);
   --pad: clamp(1.5rem, 2.4vw, 2.25rem);
   --radius: 20px;
-  --radius-sm: 12px;
   --pill: 999px;
   --shadow: 0 10px 30px #2d1f5714;
-  --shadow-lg: 0 30px 80px #2d1f5724;
   --type-xs: 0.875rem;
   --type-sm: 1rem;
   --type-md: 1.25rem;
@@ -85,7 +85,7 @@ ol {
   background: var(--pink);
   color: var(--deep);
 }
-.container {
+.wrap {
   width: min(var(--container), 100% - 2 * var(--gutter));
   z-index: 2;
   margin-inline: auto;
@@ -360,7 +360,7 @@ ol {
   overflow: hidden;
 }
 /* Particle field. The canvas fills its positioned parent and sits above the
-   background but below .container (z 2), so points never cross copy. */
+   background but below .wrap (z 2), so points never cross copy. */
 .particles {
   pointer-events: none;
   z-index: 1;
@@ -450,11 +450,11 @@ ol {
   z-index: 3;
   pointer-events: none;
 }
-.hero > .container {
+.hero > .wrap {
   pointer-events: none;
 }
-.hero > .container.hero__page-copy,
-.hero > .container.post__head {
+.hero > .wrap.hero__page-copy,
+.hero > .wrap.post__head {
   pointer-events: auto;
 }
 .hero__copy,
@@ -1330,7 +1330,7 @@ ol {
     max-height: calc(100vh - 76px);
     overflow-y: auto;
   }
-  .nav__drawer .container {
+  .nav__drawer .wrap {
     gap: 0.25rem;
     display: grid;
   }

@@ -17,7 +17,7 @@ function LinkedInMark() {
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer__inner">
+      <div className="footer__inner wrap">
         <div className="footer__brand">
           <Logo tone="white" className="footer__logo" />
           <p className="footer__tagline">{siteFooter.tagline}</p>
@@ -53,7 +53,7 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="container footer__legal">
+      <div className="footer__legal wrap">
         <p>
           © {site.year} {site.name}
         </p>

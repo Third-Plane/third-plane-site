@@ -1,0 +1,62 @@
+/* Tailwind next to the hand-written stylesheet (index.css).
+
+   The layers are ordered theme, then index.css (as "components"), then
+   utilities, so a utility class always beats a rule in index.css, whatever the
+   selector's specificity. Tailwind's reset (preflight) is left out on purpose:
+   index.css has its own, and adding a second would restyle every page.
+
+   index.css keeps defining the design tokens. The @theme block below exposes
+   them as utilities (bg-purple, text-ink, font-heading, ...) without copying
+   their values, so there is one place to change a colour.
+
+   Tailwind generates a utility for any class name it finds in the source. A
+   class in index.css that shares a name with a utility would be overridden by
+   it, which is why the page-width class is .wrap and not .container. */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "./index.css" layer(components);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+
+/* Only markup and components are scanned for class names, not index.css, the
+   README or scripts, where a stray word like "block" or "hidden" would
+   otherwise generate a utility nobody uses. */
+@source "./**/*.{astro,tsx,ts}";
+
+/* Tailwind's rounded-sm and shadow-lg are named after these two tokens, so they
+   are defined here, once, for the stylesheet and the utilities to share.
+   (static keeps them emitted even when no utility uses them.) */
+@theme static {
+  --radius-sm: 12px;
+  --shadow-lg: 0 30px 80px #2d1f5724;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-purple: var(--purple);
+  --color-purple-hover: var(--purple-hover);
+  --color-deep: var(--deep);
+  --color-deep-2: var(--deep-2);
+  --color-pink: var(--pink);
+  --color-blue: var(--blue);
+  --color-lavender: var(--lavender);
+  --color-ink: var(--ink);
+  --color-ink-body: var(--ink-body);
+  --color-ink-muted: var(--ink-muted);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-muted: var(--on-dark-muted);
+  --color-on-dark-faint: var(--on-dark-faint);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-line-dark: var(--line-dark);
+  --color-line-purple: var(--line-purple);
+
+  /* font-sans is the body face, so text with no font class matches the rest of
+     the site. */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-head);
+
+  --radius-card: var(--radius);
+  --radius-pill: var(--pill);
+}

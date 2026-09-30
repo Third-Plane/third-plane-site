@@ -28,7 +28,7 @@ export function SplitHero({
   return (
     <section className={["hero", className].filter(Boolean).join(" ")} id="top">
       <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
-      <div className="container hero__grid">
+      <div className="hero__grid wrap">
         <div className="hero__copy">
           {heading}
           <p className="lead hero__lead" {...reveal(2)}>
