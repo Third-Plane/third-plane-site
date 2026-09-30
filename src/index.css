@@ -1771,6 +1771,9 @@ ol {
 .footer__column a:hover {
   color: var(--pink);
 }
+.footer__disabled {
+  color: var(--on-dark-faint);
+}
 .footer__label {
   font-size: var(--type-xs);
   font-weight: 500;

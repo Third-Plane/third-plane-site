@@ -97,7 +97,11 @@ export const siteFooter = {
   columns: [
     {
       label: "Products",
-      links: [{ label: "Placement Desk", href: "/placement-desk" }],
+      links: [
+        { label: "Placement Desk", href: "/placement-desk" },
+        { label: "Underwriting Desk", disabled: true },
+        { label: "Service Desk", disabled: true },
+      ],
     },
     {
       label: "Capabilities",
