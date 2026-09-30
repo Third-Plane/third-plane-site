@@ -4,7 +4,6 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/underwriting-desk", "destination": "/company#next", "permanent": true },
-    { "source": "/alpine", "destination": "/platform", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true }
   ]
 }

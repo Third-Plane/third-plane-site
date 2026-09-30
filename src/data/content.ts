@@ -57,7 +57,7 @@ export const careersPage = {
   roles: { ...careers.roles, items: careers.roles.items ?? [] },
 };
 export const resourcesPage: ResourcesFile = resourcesJson;
-export const alpinePage: PlatformFile = platformJson;
+export const platformPage: PlatformFile = platformJson;
 export const carrierChannelsPage: CarrierChannelsFile = carrierChannelsJson;
 export const integrationsPage: IntegrationsFile = integrationsJson;
 export const appliedEpicPage: AppliedEpicFile = appliedEpicJson;

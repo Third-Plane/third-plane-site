@@ -1,4 +1,4 @@
-import { alpinePage as page, securityPage } from "../data/content";
+import { platformPage as page, securityPage } from "../data/content";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { TextLink } from "../components/Ui";
@@ -7,7 +7,7 @@ import { delayStyle } from "../lib/style";
 
 const delivery = page.real.facts.filter((fact) => fact.title !== "Every action recorded");
 
-export function Alpine() {
+export function Platform() {
   useTitle("Platform", page.lead);
   return (
     <>

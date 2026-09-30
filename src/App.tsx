@@ -31,7 +31,6 @@ export function AppRoutes() {
           path="underwriting-desk"
           element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />}
         />
-        <Route path="alpine" element={<Navigate to="/platform" replace />} />
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFound />} />
       </Route>
