@@ -27,10 +27,7 @@ export function AppRoutes() {
           <Route key={page.path} path={page.path} element={page.element} />
         ))}
         <Route path="resources/:slug" element={<Post />} />
-        <Route
-          path="underwriting-desk"
-          element={<Navigate to={{ pathname: "/company", hash: "next" }} replace />}
-        />
+        <Route path="underwriting-desk" element={<Navigate to="/company" replace />} />
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="*" element={<NotFound />} />
       </Route>

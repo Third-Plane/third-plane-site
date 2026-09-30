@@ -20,14 +20,6 @@ export function Company() {
                 {paragraph}
               </p>
             ))}
-            <ul className="company__facts company__facts--inline">
-              {page.origin.facts.map((fact) => (
-                <li key={fact.title}>
-                  <h3>{fact.title}</h3>
-                  <p>{fact.body}</p>
-                </li>
-              ))}
-            </ul>
           </div>
           <figure className="team" data-reveal style={delayStyle(1)}>
             {page.team.photo.src ? (
@@ -51,22 +43,6 @@ export function Company() {
                 <p className="point__body">{item.body}</p>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--blend" id="team">
-        <div className="container">
-          <SectionHead title={page.team.title} body={page.team.body} />
-        </div>
-      </section>
-
-      <section className="section" id="next">
-        <div className="container">
-          <div className="desk-next desk-next--page" data-reveal>
-            <p className="status-pill">{page.next.status}</p>
-            <h2 className="display-2">{page.next.title}</h2>
-            <p className="lead">{page.next.body}</p>
           </div>
         </div>
       </section>

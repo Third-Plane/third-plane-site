@@ -9,20 +9,6 @@
     "body": [
       "Third Plane was spun out of QuoteWell, a technology-driven wholesale brokerage we built and ran. Placing complex insurance for retail agents taught us where skilled work, execution burden and growth collide, and how much of a broker’s day goes to work that is not brokering.",
       "We used AI inside that brokerage before we offered it to anyone else. That is where we learned how to capture what a good broker knows, connect AI to the systems and carrier channels a brokerage already uses, and define the authority and controls it needs to do insurance work responsibly. Third Plane is that model, made available to other insurance businesses."
-    ],
-    "facts": [
-      {
-        "title": "Brokerage operators",
-        "body": "We built and ran QuoteWell, a wholesale brokerage, before we built Third Plane."
-      },
-      {
-        "title": "Spun out, not started from scratch",
-        "body": "The playbooks, the operating model and how a desk is governed came with us."
-      },
-      {
-        "title": "Based in Austin, Texas",
-        "body": "A small team of insurance operators and engineers in one room."
-      }
     ]
   },
   "principles": {
@@ -47,17 +33,10 @@
     ]
   },
   "team": {
-    "title": "People who have run placement, alongside people who build AI systems.",
-    "body": "Insurance operations, carrier relationships and agency workflows on one side of the table. AI systems that do real work, integrations and deployment on the other. The two have to sit together for this to work.",
     "photo": {
       "alt": "The Third Plane team in Austin."
     },
     "photoNote": "Team photo to come."
-  },
-  "next": {
-    "status": "In development",
-    "title": "The Underwriting Desk is next.",
-    "body": "The Underwriting Desk is in development and follows the same governance model as the Placement Desk: scoped authority, a complete record of every action, and a named person accountable for its work."
   },
   "cta": {
     "title": "Talk to us.",

@@ -590,8 +590,6 @@ content:
                 list:
                   min: 1
                   collapsible: false
-              - name: facts
-                component: cards
           - name: principles
             type: object
             fields:
@@ -601,14 +599,10 @@ content:
               - name: items
                 component: cards
           - name: team
+            label: Team photo
+            description: Shown beside “We ran a wholesale brokerage first.”
             type: object
             fields:
-              - name: title
-                type: string
-                required: true
-              - name: body
-                type: text
-                required: true
               - name: photo
                 type: object
                 fields:
@@ -625,19 +619,6 @@ content:
                 type: string
                 required: true
                 description: Shown until a photo is set.
-          - name: next
-            label: What’s next
-            type: object
-            fields:
-              - name: status
-                type: string
-                required: true
-              - name: title
-                type: string
-                required: true
-              - name: body
-                type: text
-                required: true
           - name: cta
             component: cta
 
