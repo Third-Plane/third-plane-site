@@ -45,11 +45,14 @@ empty objects. When a page starts using a new field:
 
 1. Add it to the JSON file and to that file's form in `.pages.yml`.
 2. Add it to the file's type in [`src/data/content-types.ts`](src/data/content-types.ts). Anything
-   an editor can leave blank must be optional there and handled where it renders.
+   an editor can leave blank must be optional there and handled where it renders. For a post, the
+   place is the `posts` schema in [`src/content.config.ts`](src/content.config.ts) instead, where a
+   blank-able field takes a `.default()` or `.optional()`.
 
 `npm run build` runs [`scripts/check-content.mjs`](scripts/check-content.mjs) first, which fails if
-any JSON value has no matching form field, has the wrong kind, or a required field is missing; `tsc`
-then checks the JSON against the types. Copy that no page renders is kept in
+any JSON value has no matching form field, has the wrong kind, or a required field is missing; the
+type-check then checks the page JSON against the types, and Astro checks each post against the
+`posts` schema, failing with the file and field named. Copy that no page renders is kept in
 [`src/data/unused-copy.json`](src/data/unused-copy.json) and is not in the CMS.
 
 **Adding a page:** create `src/pages/<name>.astro` (it routes, builds and lists itself in the

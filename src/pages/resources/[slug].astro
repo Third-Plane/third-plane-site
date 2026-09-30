@@ -1,16 +1,13 @@
 ---
 import { site } from "../../data/content";
-import { posts } from "../../data/posts";
+import { getPosts } from "../../data/get-posts";
 import Base from "../../layouts/Base.astro";
 import { ORIGIN, canonicalUrl } from "../../lib/head";
 import { Post } from "../../views/Post";
 
-// Drafts are built in the dev server only, so a post can be reviewed at its
-// real URL before it is published.
-export function getStaticPaths() {
-  return posts
-    .filter((post) => !post.draft || import.meta.env.DEV)
-    .map((post) => ({ params: { slug: post.slug }, props: { post } }));
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;

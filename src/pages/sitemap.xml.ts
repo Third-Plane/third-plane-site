@@ -1,17 +1,19 @@
 import type { APIRoute } from "astro";
-import { posts } from "../data/posts";
+import { getPosts } from "../data/get-posts";
 import { canonicalUrl } from "../lib/head";
 
 // Every top-level page file is listed, so adding src/pages/<name>.astro puts it
-// in the sitemap. Posts come from src/data/posts.ts.
+// in the sitemap. Posts come from the `posts` collection.
 const pageFiles = import.meta.glob("./*.astro");
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
   const pages = Object.keys(pageFiles)
     .map((file) => file.slice(2, -".astro".length))
     .filter((name) => name !== "404")
     .map((name) => (name === "index" ? "/" : `/${name}`));
-  const published = posts.filter((post) => !post.draft).map((post) => `/resources/${post.slug}`);
+  const published = (await getPosts())
+    .filter((post) => !post.draft)
+    .map((post) => `/resources/${post.slug}`);
 
   const urls = [...pages, ...published].map(
     (path) => `  <url><loc>${canonicalUrl(path)}</loc></url>`,
