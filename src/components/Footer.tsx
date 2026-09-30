@@ -21,13 +21,18 @@ export function Footer() {
           <Logo tone="white" className="footer__logo" />
           <p className="footer__tagline">{siteFooter.tagline}</p>
           <p className="footer__location">{siteFooter.location}</p>
-          <AppLink
-            className="footer__social"
-            href={site.linkedin}
-            aria-label="Third Plane on LinkedIn"
-          >
-            <LinkedInMark />
-          </AppLink>
+          <div className="footer__contact">
+            <AppLink
+              className="footer__social"
+              href={site.linkedin}
+              aria-label="Third Plane on LinkedIn"
+            >
+              <LinkedInMark />
+            </AppLink>
+            <AppLink className="footer__email" href={site.mailto}>
+              {site.email}
+            </AppLink>
+          </div>
         </div>
         <div className="footer__columns">
           {siteFooter.columns.map((column) => (

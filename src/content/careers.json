@@ -25,17 +25,8 @@
       }
     ]
   },
-  "how": {
-    "title": "Calm, specific, accountable.",
-    "items": [
-      "We say what works today and what we believe will work next, and we keep the two separate.",
-      "We write things down: authority, decisions, and the reasons behind them.",
-      "We prefer a finished outcome over a demo, and a plain sentence over a slogan.",
-      "We are in Austin and we like being in the same room."
-    ]
-  },
   "roles": {
-    "title": "Roles we are hiring for.",
+    "title": "Open Roles",
     "empty": "No open roles are listed right now. If you know insurance operations or build AI systems that do real work and want to work on this, write to us anyway.",
     "items": [
       {

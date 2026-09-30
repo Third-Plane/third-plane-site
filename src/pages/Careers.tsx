@@ -11,34 +11,7 @@ export function Careers() {
     <>
       <PageHero family="careers" title={page.title} lead={page.lead} />
 
-      <section className="section section--white" id="why">
-        <div className="container">
-          <SectionHead title={page.why.title} />
-          <div className="grid grid--4">
-            {page.why.items.map((item, i) => (
-              <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-                <h3 className="point__title">{item.title}</h3>
-                <p className="point__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="how">
-        <div className="container human">
-          <div data-reveal>
-            <h2 className="display-2">{page.how.title}</h2>
-          </div>
-          <ul className="human__list human__list--prose" data-reveal style={delayStyle(1)}>
-            {page.how.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section section--blend" id="roles">
+      <section className="section" id="roles">
         <div className="container">
           <SectionHead title={page.roles.title} />
           {page.roles.items.length ? (
@@ -60,6 +33,20 @@ export function Careers() {
               {page.roles.empty}
             </p>
           )}
+        </div>
+      </section>
+
+      <section className="section section--white" id="why">
+        <div className="container">
+          <SectionHead title={page.why.title} />
+          <div className="grid grid--4">
+            {page.why.items.map((item, i) => (
+              <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
+                <h3 className="point__title">{item.title}</h3>
+                <p className="point__body">{item.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

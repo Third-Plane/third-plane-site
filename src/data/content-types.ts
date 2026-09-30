@@ -80,7 +80,6 @@ export type CareersFile = {
   title: Lines;
   lead: string;
   why: { title: string; items: Card[] };
-  how: { title: string; items: string[] };
   roles: {
     title: string;
     empty: string;

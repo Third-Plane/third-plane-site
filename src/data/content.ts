@@ -117,8 +117,6 @@ export const siteFooter = {
         { label: "About", href: "/company" },
         { label: "Careers", href: "/careers" },
         { label: "Resources", href: "/resources" },
-        { label: "LinkedIn", href: site.linkedin },
-        { label: site.email, href: site.mailto },
       ],
     },
   ],

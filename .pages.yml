@@ -643,15 +643,6 @@ content:
                 required: true
               - name: items
                 component: cards
-          - name: how
-            label: How we work
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: items
-                component: strings
           - name: roles
             label: Open roles
             type: object
