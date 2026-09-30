@@ -14,7 +14,7 @@ export function Resources({ posts }: { posts: Post[] }) {
 
       <Section tone="white" id="posts">
         {posts.length ? (
-          <ul className="grid grid-cols-3 gap-(--gap) has-[>:only-child]:grid-cols-[minmax(0,28rem)] max-[1020px]:grid-cols-2 max-[640px]:grid-cols-1">
+          <ul className="grid grid-cols-3 gap-(--gap) has-[>:only-child]:grid-cols-[minmax(0,28rem)] max-lg:grid-cols-2 max-sm:grid-cols-1">
             {posts.map((post, i) => (
               <li key={post.slug} {...reveal(i % 3)}>
                 <AppLink

@@ -9,31 +9,29 @@ type Item = { title: string; body?: string; href?: string };
 type Variant = "card" | "outline" | "point";
 
 const COLUMNS = {
-  2: "grid-cols-2 max-[760px]:grid-cols-1",
-  3: "grid-cols-3 max-[900px]:grid-cols-1",
-  4: "grid-cols-4 max-[1020px]:grid-cols-2 max-[760px]:grid-cols-1",
+  2: "grid-cols-2 max-md:grid-cols-1",
+  3: "grid-cols-3 max-lg:grid-cols-1",
+  4: "grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1",
 } as const;
 
-// Wide screens only: each item is a subgrid spanning one set of rows (media,
-// title, body), so titles and bodies line up across a row and every body row
-// shares one height. Points only do this when they have a body.
+// Each item is a subgrid spanning one set of rows (media, title, body), so
+// titles and bodies line up across a row and every body row shares one height.
+// It switches on exactly when the columns show: from md for two columns, from
+// lg for three. Points only do this when they have a body.
 function gridRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
   if (variant === "point") {
-    return columns === 3 && hasBody
-      ? "min-[901px]:auto-rows-[auto_1fr] min-[901px]:items-start"
-      : "";
+    return columns === 3 && hasBody ? "lg:auto-rows-[auto_1fr] lg:items-start" : "";
   }
-  return columns === 3
-    ? "min-[901px]:auto-rows-[auto_auto_1fr]"
-    : "min-[901px]:auto-rows-[auto_1fr] min-[901px]:items-start";
+  return columns === 3 ? "lg:auto-rows-[auto_auto_1fr]" : "md:auto-rows-[auto_1fr] md:items-start";
 }
 
 function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
-  const subgrid = "min-[901px]:grid min-[901px]:grid-rows-subgrid";
   if (variant === "point") {
-    return columns === 3 && hasBody ? `${subgrid} min-[901px]:row-span-2` : "";
+    return columns === 3 && hasBody ? "lg:row-span-2 lg:grid lg:grid-rows-subgrid" : "";
   }
-  return columns === 3 ? `${subgrid} min-[901px]:row-span-3` : `${subgrid} min-[901px]:row-span-2`;
+  return columns === 3
+    ? "lg:row-span-3 lg:grid lg:grid-rows-subgrid"
+    : "md:row-span-2 md:grid md:grid-rows-subgrid";
 }
 
 const BOX = {

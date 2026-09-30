@@ -5,7 +5,7 @@ export type ParticleTone = "purple" | "deep" | "cream" | "white";
 // foot of the hero (top to bottom only on narrow screens). section fades in
 // from the top.
 const MASK = {
-  hero: "[mask-image:linear-gradient(90deg,#0000_0%,#00000059_40%,#000_62%),linear-gradient(180deg,#0000_0%,#000_55%)] [mask-composite:intersect] max-[980px]:[mask-image:linear-gradient(180deg,#0000_0%,#00000080_45%,#000_100%)] max-[980px]:[mask-composite:add]",
+  hero: "[mask-image:linear-gradient(90deg,#0000_0%,#00000059_40%,#000_62%),linear-gradient(180deg,#0000_0%,#000_55%)] [mask-composite:intersect] max-lg:[mask-image:linear-gradient(180deg,#0000_0%,#00000080_45%,#000_100%)] max-lg:[mask-composite:add]",
   section: "[mask-image:linear-gradient(180deg,#0000_0%,#000_45%)]",
 } as const;
 

@@ -9,12 +9,12 @@ import { Arrow } from "./Ui";
 function PlacementWorkflow() {
   return (
     <div
-      className="mt-1 grid auto-rows-[auto_1fr] grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] items-stretch gap-x-(--gap) gap-y-0 max-[900px]:auto-rows-auto max-[900px]:grid-cols-1 max-[900px]:gap-y-(--gap)"
+      className="mt-1 grid auto-rows-[auto_1fr] grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] items-stretch gap-x-(--gap) gap-y-0 max-lg:auto-rows-auto max-lg:grid-cols-1 max-lg:gap-y-(--gap)"
       data-reveal
     >
       {placementDesk.work.stages.map((stage, i) => (
         <div
-          className={`relative row-span-2 grid grid-rows-subgrid rounded-card border p-(--pad) max-[900px]:row-auto max-[900px]:block ${
+          className={`relative row-span-2 grid grid-rows-subgrid rounded-card border p-(--pad) max-lg:row-auto max-lg:block ${
             stage.accent
               ? "border-transparent bg-purple text-on-dark"
               : "border-line-dark bg-[#f6f3f00a]"
@@ -22,7 +22,7 @@ function PlacementWorkflow() {
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2_-_11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-[900px]:top-[calc(-1*var(--gap)/2_-_11px)] max-[900px]:left-(--pad) max-[900px]:translate-y-0 max-[900px]:rotate-90" />
+            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2_-_11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2_-_11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
           ) : null}
           <p className="mb-[1.15rem] font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-[1.15] font-medium tracking-head-tight text-on-dark">
             {stage.kicker}

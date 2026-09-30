@@ -19,7 +19,7 @@ const iconLink = "inline-flex text-on-dark-faint transition-[color] duration-200
 export function Footer() {
   return (
     <footer className="bg-deep pt-[clamp(3rem,5vw,4.5rem)] pb-8 text-on-dark-muted">
-      <div className="wrap flex items-start justify-between gap-8 border-b border-b-line-dark pb-10 max-[900px]:flex-col">
+      <div className="wrap flex items-start justify-between gap-8 border-b border-b-line-dark pb-10 max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
           <p className="mt-4 text-copy text-on-dark-muted">{siteFooter.tagline}</p>
@@ -33,7 +33,7 @@ export function Footer() {
             </AppLink>
           </div>
         </div>
-        <div className="grid grid-cols-[repeat(3,minmax(0,auto))] gap-[clamp(2rem,5vw,5rem)] max-[760px]:grid-cols-[1fr_1fr]">
+        <div className="grid grid-cols-[repeat(3,minmax(0,auto))] gap-[clamp(2rem,5vw,5rem)] max-md:grid-cols-[1fr_1fr]">
           {siteFooter.columns.map((column) => (
             <nav
               className="grid content-start gap-[0.6rem] text-copy text-on-dark"
@@ -58,7 +58,7 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="wrap flex justify-between gap-4 pt-6 text-copy text-on-dark-faint max-[640px]:flex-col">
+      <div className="wrap flex justify-between gap-4 pt-6 text-copy text-on-dark-faint max-sm:flex-col">
         <p>
           © {site.year} {site.name}
         </p>

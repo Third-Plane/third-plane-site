@@ -58,7 +58,7 @@ export function Header() {
           <Logo className="h-8.5 w-auto" />
         </AppLink>
 
-        <nav className="ml-auto flex gap-8 max-[1020px]:hidden" aria-label="Main" data-nav-links>
+        <nav className="ml-auto flex gap-8 max-lg:hidden" aria-label="Main" data-nav-links>
           {primaryNav.menus.map((group) => (
             <div className="group/menu relative" data-open="false" data-menu key={group.label}>
               <button
@@ -92,12 +92,12 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="max-[1020px]:hidden">
+        <div className="max-lg:hidden">
           <Button small variant="dark" />
         </div>
 
         <button
-          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-ink [border:0] max-[1020px]:inline-flex"
+          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-ink [border:0] max-lg:inline-flex"
           type="button"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -123,7 +123,7 @@ export function Header() {
       </div>
 
       <div
-        className="hidden max-[1020px]:data-[open=true]:block max-[1020px]:data-[open=true]:max-h-[calc(100vh_-_76px)] max-[1020px]:data-[open=true]:overflow-y-auto max-[1020px]:data-[open=true]:border-t max-[1020px]:data-[open=true]:border-t-line-soft max-[1020px]:data-[open=true]:pt-2 max-[1020px]:data-[open=true]:pb-7"
+        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh_-_76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-line-soft max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
         data-nav-drawer
       >

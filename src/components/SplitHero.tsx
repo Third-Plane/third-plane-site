@@ -34,7 +34,7 @@ export function SplitHero({
       id="top"
     >
       <ParticleField mask="hero" tone="purple" alpha={0.9} />
-      <div className="pointer-events-none wrap grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-center gap-[clamp(2rem,5vw,5rem)] max-[980px]:grid-cols-1">
+      <div className="pointer-events-none wrap grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-center gap-[clamp(2rem,5vw,5rem)] max-lg:grid-cols-1">
         <div className="pointer-events-auto relative z-3 max-w-[600px]">
           {heading}
           <Lead className="mt-7 max-w-[46ch]" {...reveal(2)}>

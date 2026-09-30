@@ -13,12 +13,12 @@ export function Security() {
       <PageHero title={page.title} lead={page.lead} />
 
       <Section tone="white" id="authority">
-        <div className="grid grid-cols-2 gap-x-[clamp(1.5rem,4vw,3.5rem)] border-t-[1.5px] border-t-line max-[760px]:grid-cols-1 min-[901px]:auto-rows-[auto_1fr] min-[901px]:items-start">
+        <div className="grid grid-cols-2 gap-x-[clamp(1.5rem,4vw,3.5rem)] border-t-[1.5px] border-t-line max-md:grid-cols-1 md:auto-rows-[auto_1fr] md:items-start">
           {page.authority.sides.map((side, i) => (
             <div
-              className={`pt-6 min-[901px]:row-span-2 min-[901px]:grid min-[901px]:grid-rows-subgrid ${
+              className={`pt-6 md:row-span-2 md:grid md:grid-rows-subgrid ${
                 i > 0
-                  ? "border-l border-l-line-soft pl-[clamp(1.5rem,4vw,3.5rem)] max-[760px]:mt-6 max-[760px]:border-t max-[760px]:border-l-0 max-[760px]:border-t-line-soft max-[760px]:pt-6 max-[760px]:pl-0"
+                  ? "border-l border-l-line-soft pl-[clamp(1.5rem,4vw,3.5rem)] max-md:mt-6 max-md:border-t max-md:border-l-0 max-md:border-t-line-soft max-md:pt-6 max-md:pl-0"
                   : ""
               }`}
               {...reveal(i)}

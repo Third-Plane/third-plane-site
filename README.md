@@ -97,8 +97,17 @@ the site's design tokens to utilities (`bg-purple`, `text-ink`, `font-heading`, 
 - **Shared pieces in `tailwind.css`.** `wrap` (the page-width column) and `bg-hero` (the hero wash)
   are custom utilities; the scroll-reveal rules for `[data-reveal]` are there too, in the
   `utilities` layer so their transition wins over a component's own.
-- **Breakpoints are the site's own.** Use `max-[900px]:` and `min-[901px]:`, not `lg:`; the
-  layouts switch at 640, 760, 900, 980 and 1020px. The scale is unchanged if you add a new one.
+- **Breakpoints are Tailwind's defaults, and only three are used**: `sm` (640px), `md` (768px) and
+  `lg` (1024px). Write the narrow layout as `max-md:` and the wide one as `md:`; the two are exact
+  complements (`width < 48rem` and `width >= 48rem`), so no width falls between them. Do not write
+  pixel breakpoints such as `max-[900px]:`, which invite off-by-one pairs like `max-[900px]` with
+  `min-[901px]`. Nothing in JavaScript repeats a breakpoint: `scripts/nav.ts` asks the stylesheet
+  whether the drawer toggle is shown.
+- **What changes where.** `sm`: the footer's legal row, four-column steps and the post grid go to one
+  column. `md`: two-column tiles, the footer link columns, the systems list, the Security split and
+  the Company page stack. `lg`: the nav becomes the drawer, the hero and the workflow stack, and
+  three- and four-column tiles, steps and posts reflow. Row alignment across tiles switches on with
+  the columns (`md:` for two, `lg:` for three).
 - **Type sizes.** `text-copy` (1rem), `text-label` (0.875rem) and `text-title` (1.25rem) are the
   site's three sizes; `text-sm` and friends are Tailwind's, which differ.
 - **Spacing utilities only exist for multiples of 0.25.** `mt-4`, `gap-1.5` and `h-8.5` work;

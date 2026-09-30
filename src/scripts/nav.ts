@@ -74,7 +74,10 @@ if (nav) {
   });
 
   window.addEventListener("resize", () => {
-    if (drawerOpen && window.matchMedia("(min-width: 1021px)").matches) {
+    // The toggle is only displayed where the drawer is (see Header.tsx), so once
+    // it is gone there is no drawer to leave open. Asking the stylesheet keeps
+    // the breakpoint in one place.
+    if (drawerOpen && getComputedStyle(toggle).display === "none") {
       drawerOpen = false;
       render();
     }

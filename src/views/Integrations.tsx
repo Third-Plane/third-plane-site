@@ -16,7 +16,7 @@ export function Integrations() {
         <div className="border-t-[1.5px] border-t-line">
           {page.systems.items.slice(0, 4).map((item, i) => (
             <article
-              className="grid grid-cols-[minmax(11rem,0.32fr)_minmax(0,1fr)] items-start gap-[clamp(1.25rem,4vw,4rem)] border-b border-b-line-soft py-[clamp(1.75rem,3vw,2.5rem)] max-[760px]:grid-cols-1 max-[760px]:gap-3"
+              className="grid grid-cols-[minmax(11rem,0.32fr)_minmax(0,1fr)] items-start gap-[clamp(1.25rem,4vw,4rem)] border-b border-b-line-soft py-[clamp(1.75rem,3vw,2.5rem)] max-md:grid-cols-1 max-md:gap-3"
               {...reveal(i)}
               key={item.title}
             >
