@@ -51,7 +51,7 @@ export type PlacementDeskFile = {
   };
   channels: { title: string; body: string; items: Card[] };
   systems: { title: string; body: string; links: { title: string; body: string; href: string }[] };
-  human: { title: string; items: string[] };
+  human: { title: string; body: string; items: Card[] };
   cta: Cta & { label: string };
 };
 

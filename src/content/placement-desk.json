@@ -94,12 +94,25 @@
     ]
   },
   "human": {
-    "title": "The desk returns finished work. Your people make the call.",
+    "title": "The desk does the legwork. Your brokers do the brokering.",
+    "body": "Placement Desk takes on the repetitive work of placement, from gathering account details to filling in portals and chasing underwriters. Your team’s time goes to clients, markets and the decisions only a broker should make.",
     "items": [
-      "Advice and recommendations",
-      "Client relationships",
-      "Market negotiation",
-      "Validation and regulated decisions"
+      {
+        "title": "Advice and recommendations",
+        "body": "The desk returns the quotes and the record behind them. Your brokers weigh the options and advise clients on the right coverage."
+      },
+      {
+        "title": "Client relationships",
+        "body": "Hours that went to data entry and follow-up go back to the conversations that keep clients and win new business."
+      },
+      {
+        "title": "Market negotiation",
+        "body": "The desk gets submissions out and quotes back. Your brokers use their underwriter relationships to push on terms and price."
+      },
+      {
+        "title": "Validation and regulated decisions",
+        "body": "Binding, coverage decisions and anything that needs a licensed professional stay with your people, at the review points you set."
+      }
     ]
   },
   "cta": {

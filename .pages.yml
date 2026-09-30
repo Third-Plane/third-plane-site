@@ -364,8 +364,12 @@ content:
               - name: title
                 type: string
                 required: true
+              - name: body
+                type: text
+                required: true
               - name: items
-                component: strings
+                description: Shown as a grid of cards, two per row.
+                component: cards
           - name: cta
             label: Call to action (bottom of page)
             description: The label is used on the heading button and the closing button.

@@ -83,16 +83,17 @@ export function PlacementDesk() {
         </div>
       </section>
 
-      <section className="section" id="human">
-        <div className="container human">
-          <div data-reveal>
-            <h2 className="display-2">{placementDesk.human.title}</h2>
-          </div>
-          <ul className="human__list" data-reveal style={delayStyle(1)}>
-            {placementDesk.human.items.map((item) => (
-              <li key={item}>{item}</li>
+      <section className="section section--blend" id="human">
+        <div className="container">
+          <SectionHead title={placementDesk.human.title} body={placementDesk.human.body} />
+          <div className="grid grid--2">
+            {placementDesk.human.items.map((item, i) => (
+              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
+                <h3 className="card__title">{item.title}</h3>
+                <p className="card__body">{item.body}</p>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 

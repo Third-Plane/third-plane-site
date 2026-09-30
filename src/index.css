@@ -877,7 +877,6 @@ ol {
   letter-spacing: -0.02em;
   color: var(--ink);
   text-wrap: balance;
-  margin-bottom: 0.75rem;
   font-size: var(--type-md);
   font-weight: 500;
   line-height: 1.2;
