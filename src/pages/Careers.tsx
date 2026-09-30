@@ -1,10 +1,10 @@
 import { careersPage as page, site } from "../data/content";
 import { Cta } from "../components/Cta";
+import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 import { useTitle } from "../hooks/useTitle";
-import { delayStyle } from "../lib/style";
 
 export function Careers() {
   useTitle("Careers", page.lead);
@@ -35,14 +35,7 @@ export function Careers() {
       </Section>
 
       <Section tone="white" id="why" title={page.why.title}>
-        <div className="grid grid--4">
-          {page.why.items.map((item, i) => (
-            <article className="point" data-reveal style={delayStyle(i)} key={item.title}>
-              <h3 className="point__title">{item.title}</h3>
-              <p className="point__body">{item.body}</p>
-            </article>
-          ))}
-        </div>
+        <ItemGrid variant="point" columns={4} items={page.why.items} />
       </Section>
 
       <Cta title={page.cta.title} body={page.cta.body} href={site.mailto} />

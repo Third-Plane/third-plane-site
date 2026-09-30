@@ -1,5 +1,6 @@
 import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
+import { ItemGrid } from "../components/ItemGrid";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
@@ -39,14 +40,7 @@ export function Home() {
       <Showcase />
 
       <Section tone="white" id="problem" title={problem.title} body={problem.body}>
-        <div className="grid grid--2">
-          {problem.points.map((point, i) => (
-            <article className="card" data-reveal style={delayStyle(i)} key={point.title}>
-              <h3 className="card__title">{point.title}</h3>
-              <p className="card__body">{point.body}</p>
-            </article>
-          ))}
-        </div>
+        <ItemGrid variant="card" columns={2} items={problem.points} />
       </Section>
 
       <Section id="approach" title={approach.title} body={approach.body}>

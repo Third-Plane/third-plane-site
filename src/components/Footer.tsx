@@ -1,5 +1,6 @@
 import { site, siteFooter } from "../data/content";
 import { Logo } from "./Logo";
+import { NavEntry } from "./NavEntry";
 import { AppLink } from "./Ui";
 
 function LinkedInMark() {
@@ -38,18 +39,16 @@ export function Footer() {
           {siteFooter.columns.map((column) => (
             <nav className="footer__column" aria-label={column.label} key={column.label}>
               <p className="footer__label">{column.label}</p>
-              {column.links.map((link) =>
-                link.disabled || !link.href ? (
-                  // No page yet: shown, but not as a link.
-                  <span className="footer__disabled" aria-disabled="true" key={link.label}>
-                    {link.label}
-                  </span>
-                ) : (
-                  <AppLink href={link.href} key={link.label}>
-                    {link.label}
-                  </AppLink>
-                ),
-              )}
+              {column.links.map((link) => (
+                <NavEntry
+                  disabledClassName="footer__disabled"
+                  href={link.href}
+                  disabled={link.disabled}
+                  key={link.label}
+                >
+                  {link.label}
+                </NavEntry>
+              ))}
             </nav>
           ))}
         </div>

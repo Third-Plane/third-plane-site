@@ -1,5 +1,5 @@
 import { placementDesk } from "../data/content";
-import { delayStyle } from "../lib/style";
+import { ItemGrid } from "./ItemGrid";
 import { Section } from "./Section";
 import { CardMark } from "./Ui";
 
@@ -12,15 +12,12 @@ export function CarrierChannels() {
   const { channels } = placementDesk;
   return (
     <Section tone="blend" id="channels" title={channels.title} body={channels.body}>
-      <div className="grid grid--3">
-        {channels.items.map((item, i) => (
-          <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-            <CardMark name={channelMarks[i]} variant="wide" />
-            <h3 className="card__title">{item.title}</h3>
-            <p className="card__body">{item.body}</p>
-          </article>
-        ))}
-      </div>
+      <ItemGrid
+        variant="card"
+        columns={3}
+        items={channels.items}
+        media={(i) => <CardMark name={channelMarks[i]} variant="wide" />}
+      />
     </Section>
   );
 }

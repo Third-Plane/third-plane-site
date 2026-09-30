@@ -1,5 +1,6 @@
 import { securityPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
+import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { useTitle } from "../hooks/useTitle";
@@ -41,14 +42,7 @@ export function Security() {
       </Section>
 
       <Section tone="blend" id="data" title={page.data.title}>
-        <div className="grid grid--2">
-          {page.data.items.map((item, i) => (
-            <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-              <h3 className="card__title">{item.title}</h3>
-              <p className="card__body">{item.body}</p>
-            </article>
-          ))}
-        </div>
+        <ItemGrid variant="card" columns={2} items={page.data.items} />
       </Section>
 
       <Cta title={page.cta.title} body={page.cta.body} />

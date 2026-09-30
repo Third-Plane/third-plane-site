@@ -1,6 +1,7 @@
 import { placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
+import { ItemGrid } from "../components/ItemGrid";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
@@ -81,14 +82,7 @@ export function PlacementDesk() {
         title={placementDesk.human.title}
         body={placementDesk.human.body}
       >
-        <div className="grid grid--2">
-          {placementDesk.human.items.map((item, i) => (
-            <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-              <h3 className="card__title">{item.title}</h3>
-              <p className="card__body">{item.body}</p>
-            </article>
-          ))}
-        </div>
+        <ItemGrid variant="card" columns={2} items={placementDesk.human.items} />
       </Section>
 
       <Cta
