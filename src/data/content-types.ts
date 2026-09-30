@@ -98,21 +98,11 @@ export type ResourcesFile = {
   types: { technical: string; perspective: string; press: string };
 };
 
-export type CarrierChannelsFile = {
-  title: Lines;
-  lead: string;
-  channels: { title: string; items: (Card & { kicker?: string })[] };
-  coverage: { title: string; body: string };
-  cta: Cta;
-};
-
 export type IntegrationsFile = {
   title: Lines;
   lead: string;
-  body: string;
   systems: { title: string; items: (Card & { names?: string; link?: Link })[] };
   how: { title: string; steps: Card[] };
-  note: string;
   cta: Cta;
 };
 

@@ -4,7 +4,6 @@
     "as they are."
   ],
   "lead": "Placement Desk connects to the systems your brokerage already uses, so the work moves without another system for your team to manage.",
-  "body": "Placement Desk reads from your AMS, documents and inboxes and writes results back where your team expects them, without adding another system to manage.",
   "systems": {
     "title": "Work goes in. Results come back.",
     "items": [
@@ -62,7 +61,6 @@
       }
     ]
   },
-  "note": "Integration targets are confirmed during discovery.",
   "cta": {
     "title": "Tell us what you run.",
     "body": "Show us your AMS, inboxes and document systems. We’ll map how Placement Desk would connect."

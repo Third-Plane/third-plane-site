@@ -7,14 +7,12 @@ export function PageHero({
   status,
   title,
   lead,
-  body,
   children,
   family = "evidence",
 }: {
   status?: string;
   title: string[];
   lead: string;
-  body?: string;
   children?: ReactNode;
   family?: HeroFamily;
 }) {
@@ -46,13 +44,8 @@ export function PageHero({
         <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
           {lead}
         </p>
-        {body ? (
-          <p className="hero__body" data-reveal style={delayStyle(3)}>
-            {body}
-          </p>
-        ) : null}
         {children ? (
-          <div className="hero__actions" data-reveal style={delayStyle(4)}>
+          <div className="hero__actions" data-reveal style={delayStyle(3)}>
             {children}
           </div>
         ) : null}

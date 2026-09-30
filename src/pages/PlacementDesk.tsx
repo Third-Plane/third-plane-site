@@ -1,13 +1,12 @@
 import { placementDesk } from "../data/content";
+import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
 import { PlacementWorkflow } from "../components/PlacementWorkflow";
-import { AppLink, Arrow, Button, CardMark, SectionHead } from "../components/Ui";
+import { AppLink, Arrow, Button, SectionHead } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
-
-const channelMarks = ["portal", "api", "mail"] as const;
 
 export function PlacementDesk() {
   useTitle("Placement Desk", placementDesk.problem);
@@ -45,20 +44,7 @@ export function PlacementDesk() {
         </div>
       </section>
 
-      <section className="section section--blend" id="channels">
-        <div className="container">
-          <SectionHead title={placementDesk.channels.title} body={placementDesk.channels.body} />
-          <div className="grid grid--3">
-            {placementDesk.channels.items.map((item, i) => (
-              <article className="card" data-reveal style={delayStyle(i)} key={item.title}>
-                <CardMark name={channelMarks[i]} variant="wide" />
-                <h3 className="card__title">{item.title}</h3>
-                <p className="card__body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CarrierChannels />
 
       <section className="section section--white" id="systems">
         <div className="container">
