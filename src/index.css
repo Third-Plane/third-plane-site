@@ -1009,15 +1009,6 @@ ol {
   margin: 0.3rem 0 0;
   font-size: var(--type-sm);
 }
-.desk-next {
-  border-top: 1.5px solid var(--line);
-  margin-top: clamp(2.5rem, 4vw, 3.5rem);
-  padding-top: clamp(2.5rem, 4vw, 3.5rem);
-  max-width: 62ch;
-}
-.desk-next .status-pill {
-  margin: 0 0 1.1rem;
-}
 @media (width <= 900px) {
   .flow {
     grid-template-columns: 1fr;
@@ -1083,9 +1074,6 @@ ol {
   margin-top: 1.5rem;
   font-size: var(--type-sm);
   font-weight: 500;
-}
-.company__copy .textlink {
-  margin-top: 1.5rem;
 }
 .company__facts {
   border-top: 1.5px solid var(--line);
@@ -1432,11 +1420,6 @@ ol {
   font-size: var(--type-xs);
   font-weight: 500;
   padding: 0.3rem 0.7rem;
-}
-.desk-next--page {
-  border-top: 0;
-  margin-top: 0;
-  padding-top: 0;
 }
 
 .steps--3 {
@@ -1813,14 +1796,6 @@ ol {
   .footer__columns {
     grid-template-columns: 1fr 1fr;
   }
-}
-
-.company__facts--inline {
-  margin-top: 2rem;
-  border-top: 1.5px solid var(--line);
-}
-.company__facts--inline li {
-  padding: 1rem 0;
 }
 
 .applied-quote {

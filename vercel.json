@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/underwriting-desk", "destination": "/company#next", "permanent": true },
+    { "source": "/underwriting-desk", "destination": "/company", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true }
   ]
 }

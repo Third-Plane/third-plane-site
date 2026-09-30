@@ -58,15 +58,12 @@ export type PlacementDeskFile = {
 export type CompanyFile = {
   title: Lines;
   lead: string;
-  origin: { title: string; body: string[]; facts: Card[] };
+  origin: { title: string; body: string[] };
   principles: { title: string; items: Card[] };
   team: {
-    title: string;
-    body: string;
     photo: { src?: string; alt: string };
     photoNote: string;
   };
-  next: { status: string; title: string; body: string };
   cta: Cta;
 };
 
