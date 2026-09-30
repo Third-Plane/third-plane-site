@@ -311,6 +311,7 @@ content:
                     component: cards
           - name: channels
             label: Carrier channels
+            description: Also shown on the System integrations page.
             type: object
             fields:
               - name: title
@@ -434,53 +435,6 @@ content:
           - name: cta
             component: cta
 
-      - name: carrier-channels
-        label: Carrier channels
-        type: file
-        path: src/content/carrier-channels.json
-        format: json
-        fields:
-          - name: title
-            component: lines
-          - name: lead
-            type: text
-            required: true
-            description: Also the page’s search and link-preview description.
-          - name: channels
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: items
-                type: object
-                list:
-                  min: 1
-                  collapsible:
-                    collapsed: true
-                    summary: "{title}"
-                fields:
-                  - name: kicker
-                    type: string
-                    description: Optional small label above the title.
-                  - name: title
-                    type: string
-                    required: true
-                  - name: body
-                    type: text
-                    required: true
-          - name: coverage
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: body
-                type: text
-                required: true
-          - name: cta
-            component: cta
-
       - name: integrations
         label: System integrations
         type: file
@@ -493,9 +447,6 @@ content:
             type: text
             required: true
             description: Also the page’s search and link-preview description.
-          - name: body
-            type: text
-            required: true
           - name: systems
             type: object
             fields:
@@ -538,9 +489,6 @@ content:
                 required: true
               - name: steps
                 component: cards
-          - name: note
-            type: string
-            required: true
           - name: cta
             component: cta
 

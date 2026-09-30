@@ -481,12 +481,6 @@ ol {
   max-width: 46ch;
   margin-top: 1.75rem;
 }
-.hero__body {
-  max-width: 52ch;
-  color: var(--ink-body);
-  text-wrap: pretty;
-  margin-top: 1.25rem;
-}
 .hero__actions {
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -774,14 +768,6 @@ ol {
     grid-template-rows: auto auto 1fr;
   }
   .grid--3 > .card {
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 3;
-  }
-  .grid--2:has(> .tier) {
-    grid-template-rows: auto auto 1fr;
-  }
-  .grid--2 > .tier {
     display: grid;
     grid-template-rows: subgrid;
     grid-row: span 3;
@@ -1161,7 +1147,9 @@ ol {
 }
 @media (width > 1020px) {
   .steps {
-    grid-template-rows: auto auto 1fr auto auto 1fr;
+    /* One set of tracks (number, title, body) per row of steps; every body
+       row shares one height. */
+    grid-auto-rows: auto auto 1fr;
   }
   .step {
     display: grid;
@@ -1176,7 +1164,7 @@ ol {
 }
 @media (width > 640px) and (width <= 1020px) {
   .steps {
-    grid-template-rows: repeat(4, auto auto 1fr);
+    grid-auto-rows: auto auto 1fr;
   }
   .step {
     display: grid;
@@ -1209,40 +1197,6 @@ ol {
 #how .process {
   grid-template-rows: repeat(2, auto);
   grid-auto-flow: row;
-}
-.tier {
-  padding: var(--pad);
-  border-radius: var(--radius);
-  background: var(--cream);
-}
-.tier__kicker {
-  font-family: var(--font-head);
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 0.45rem;
-  font-size: var(--type-md);
-  font-weight: 500;
-  line-height: 1.2;
-}
-.tier__kicker + .tier__title {
-  font-family: var(--font-body);
-  letter-spacing: 0;
-  font-size: var(--type-sm);
-  font-weight: 500;
-  line-height: 1.35;
-  margin-bottom: 0.5rem;
-}
-.tier__title {
-  font-family: var(--font-head);
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 0.75rem;
-  font-size: var(--type-md);
-  font-weight: 500;
-}
-.tier__body {
-  color: var(--ink-body);
-  text-wrap: pretty;
 }
 .human {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -1536,9 +1490,6 @@ ol {
 .flow--dark .flow__arrow {
   background: var(--deep);
   color: var(--pink);
-}
-.footnote--dark {
-  color: var(--on-dark-faint);
 }
 
 /* Team photo, or its placeholder until one is supplied */

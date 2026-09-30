@@ -2,18 +2,17 @@
 
 Marketing site for [thirdplane.com](https://www.thirdplane.com).
 
-| Route               | Page                                           | Copy lives in `src/content/` |
-| ------------------- | ---------------------------------------------- | ---------------------------- |
-| `/`                 | Home                                           | `home.json`                  |
-| `/placement-desk`   | Placement Desk                                 | `placement-desk.json`        |
-| `/security`         | Security and governance                        | `security.json`              |
-| `/carrier-channels` | Carrier channels                               | `carrier-channels.json`      |
-| `/integrations`     | System integrations                            | `integrations.json`          |
-| `/applied-epic`     | Applied Epic                                   | `applied-epic.json`          |
-| `/company`          | Company: Austin, origin, principles, team      | `company.json`               |
-| `/careers`          | Careers, with an open-roles list               | `careers.json`               |
-| `/resources`        | Resources index: technical, perspective, press | `resources.json`             |
-| `/resources/:slug`  | One post                                       | `posts/<slug>.json`          |
+| Route              | Page                                           | Copy lives in `src/content/` |
+| ------------------ | ---------------------------------------------- | ---------------------------- |
+| `/`                | Home                                           | `home.json`                  |
+| `/placement-desk`  | Placement Desk                                 | `placement-desk.json`        |
+| `/security`        | Security and governance                        | `security.json`              |
+| `/integrations`    | System integrations                            | `integrations.json`          |
+| `/applied-epic`    | Applied Epic                                   | `applied-epic.json`          |
+| `/company`         | Company: Austin, origin, principles, team      | `company.json`               |
+| `/careers`         | Careers, with an open-roles list               | `careers.json`               |
+| `/resources`       | Resources index: technical, perspective, press | `resources.json`             |
+| `/resources/:slug` | One post                                       | `posts/<slug>.json`          |
 
 `site.json` holds the company name, contact details, the default meta description, the footer
 tagline and the default closing call to action. The primary nav (`primaryNav`) and footer links

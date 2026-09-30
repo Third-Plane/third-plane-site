@@ -1,4 +1,5 @@
 import { integrationsPage as page } from "../data/content";
+import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { AppLink, SectionHead } from "../components/Ui";
@@ -9,7 +10,7 @@ export function Integrations() {
   useTitle("System integrations", page.lead);
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} body={page.body} />
+      <PageHero title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="systems">
         <div className="container">
@@ -43,6 +44,8 @@ export function Integrations() {
         </div>
       </section>
 
+      <CarrierChannels />
+
       <section className="section section--deep" id="how">
         <div className="container">
           <SectionHead title={page.how.title} />
@@ -55,9 +58,6 @@ export function Integrations() {
               </li>
             ))}
           </ol>
-          <p className="footnote footnote--dark" data-reveal>
-            {page.note}
-          </p>
         </div>
       </section>
 
