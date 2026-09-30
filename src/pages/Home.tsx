@@ -83,9 +83,6 @@ export function Home() {
               </div>
             ))}
           </div>
-          <div className="definition" data-reveal>
-            <h2 className="display-2">{approach.definition.headline}</h2>
-          </div>
         </div>
       </section>
 

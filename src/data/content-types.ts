@@ -37,7 +37,6 @@ export type HomeFile = {
     title: string;
     body: string;
     models: { kicker: string; chain: string[]; note: string; accent?: boolean }[];
-    definition: { headline: string };
   };
   desk: {
     name: string;

@@ -247,12 +247,6 @@ content:
                   - name: accent
                     label: Highlight
                     type: boolean
-              - name: definition
-                type: object
-                fields:
-                  - name: headline
-                    type: text
-                    required: true
           - name: desk
             label: The Placement Desk
             type: object
