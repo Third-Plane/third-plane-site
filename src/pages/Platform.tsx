@@ -31,7 +31,7 @@ export function Platform() {
         </div>
       </section>
 
-      <Cta title={page.cta.title} body={page.cta.body} meta={page.cta.meta} />
+      <Cta title={page.cta.title} body={page.cta.body} />
     </>
   );
 }

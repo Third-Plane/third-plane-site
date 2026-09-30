@@ -1730,28 +1730,6 @@ ol {
 .cta__email:hover {
   border-color: var(--pink);
 }
-.cta__meta {
-  color: var(--on-dark-faint);
-  flex-wrap: wrap;
-  gap: 0.5rem 1.75rem;
-  margin-top: 2.25rem;
-  font-size: var(--type-sm);
-  display: flex;
-}
-.cta__meta li {
-  padding-left: 0.9rem;
-  position: relative;
-}
-.cta__meta li:before {
-  content: "";
-  background: var(--pink);
-  border-radius: 50%;
-  width: 5px;
-  height: 5px;
-  position: absolute;
-  top: 0.6em;
-  left: 0;
-}
 .footer {
   background: var(--deep);
   color: var(--on-dark-muted);

@@ -125,10 +125,6 @@ content:
           - name: body
             type: text
             required: true
-          - name: meta
-            label: Notes under the button
-            type: string
-            list: true
 
   - name: pages
     label: Pages
@@ -444,10 +440,6 @@ content:
               - name: body
                 type: text
                 required: true
-              - name: meta
-                label: Notes under the button
-                type: string
-                list: true
 
       - name: security
         label: Security
