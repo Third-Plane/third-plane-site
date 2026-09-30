@@ -66,6 +66,8 @@ export const primaryNav = {
       label: "Products",
       items: [
         { label: "Placement Desk", href: "/placement-desk", note: "Available now", live: true },
+        { label: "Underwriting Desk", note: "Coming Soon", disabled: true },
+        { label: "Service Desk", note: "Coming Soon", disabled: true },
       ],
     },
     {
@@ -95,7 +97,11 @@ export const siteFooter = {
   columns: [
     {
       label: "Products",
-      links: [{ label: "Placement Desk", href: "/placement-desk" }],
+      links: [
+        { label: "Placement Desk", href: "/placement-desk" },
+        { label: "Underwriting Desk", disabled: true },
+        { label: "Service Desk", disabled: true },
+      ],
     },
     {
       label: "Capabilities",
