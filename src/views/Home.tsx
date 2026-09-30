@@ -7,10 +7,8 @@ import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
 import { reveal } from "../lib/style";
-import { useTitle } from "../hooks/useTitle";
 
 export function Home() {
-  useTitle();
   return (
     <>
       <SplitHero

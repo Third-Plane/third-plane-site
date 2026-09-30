@@ -1,0 +1,36 @@
+---
+import { site } from "../../data/content";
+import { posts } from "../../data/posts";
+import Base from "../../layouts/Base.astro";
+import { ORIGIN, canonicalUrl } from "../../lib/head";
+import { Post } from "../../views/Post";
+
+// Drafts are built in the dev server only, so a post can be reviewed at its
+// real URL before it is published.
+export function getStaticPaths() {
+  return posts
+    .filter((post) => !post.draft || import.meta.env.DEV)
+    .map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const path = `/resources/${post.slug}`;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.standfirst,
+    datePublished: post.date,
+    author: { "@type": "Organization", name: post.author },
+    publisher: { "@type": "Organization", name: site.name, logo: `${ORIGIN}/brand/mark-purple.png` },
+    mainEntityOfPage: canonicalUrl(path),
+    image: `${ORIGIN}/og.png`,
+  },
+];
+---
+
+<Base path={path} title={post.title} description={post.standfirst} type="article" jsonLd={jsonLd}>
+  <Post post={post} />
+</Base>

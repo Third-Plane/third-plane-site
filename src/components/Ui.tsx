@@ -1,15 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { site } from "../data/content";
-
-function toRoute(href: string) {
-  if (!href.includes("#")) return href;
-  const [pathname, hash] = href.split("#");
-  return {
-    pathname: pathname || "/",
-    hash: `#${hash}`,
-  };
-}
 
 type ButtonVariant = "primary" | "dark" | "light" | "ghost";
 
@@ -28,18 +18,10 @@ export function Button({
 }: ButtonProps) {
   const className = ["btn", `btn--${variant}`, small ? "btn--sm" : ""].filter(Boolean).join(" ");
 
-  if (href.startsWith("mailto:") || href.startsWith("http")) {
-    return (
-      <a className={className} href={href}>
-        {children}
-      </a>
-    );
-  }
-
   return (
-    <Link className={className} to={toRoute(href)}>
+    <a className={className} href={href}>
       {children}
-    </Link>
+    </a>
   );
 }
 
@@ -47,44 +29,26 @@ export function AppLink({
   href,
   className,
   children,
-  onClick,
   ...rest
 }: {
   href: string;
   className?: string;
   children: ReactNode;
-  onClick?: () => void;
   "aria-label"?: string;
   "data-reveal"?: boolean;
   style?: CSSProperties;
 }) {
-  if (href.startsWith("http")) {
-    return (
-      <a
-        className={className}
-        href={href}
-        onClick={onClick}
-        target="_blank"
-        rel="noreferrer"
-        {...rest}
-      >
-        {children}
-      </a>
-    );
-  }
-
-  if (href.startsWith("mailto:")) {
-    return (
-      <a className={className} href={href} onClick={onClick} {...rest}>
-        {children}
-      </a>
-    );
-  }
+  const external = href.startsWith("http");
 
   return (
-    <Link className={className} to={toRoute(href)} onClick={onClick} {...rest}>
+    <a
+      className={className}
+      href={href}
+      {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+      {...rest}
+    >
       {children}
-    </Link>
+    </a>
   );
 }
 

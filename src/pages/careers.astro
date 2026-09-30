@@ -1,0 +1,9 @@
+---
+import { careersPage as page } from "../data/content";
+import Base from "../layouts/Base.astro";
+import { Careers } from "../views/Careers";
+---
+
+<Base path="/careers" title="Careers" description={page.lead}>
+  <Careers />
+</Base>

@@ -3,11 +3,9 @@ import { Cta } from "../components/Cta";
 import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
-import { useTitle } from "../hooks/useTitle";
 import { reveal } from "../lib/style";
 
 export function Security() {
-  useTitle("Security and governance", page.lead);
   return (
     <>
       <PageHero title={page.title} lead={page.lead} />

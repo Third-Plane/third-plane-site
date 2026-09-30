@@ -1,10 +1,8 @@
-import { Navigate, useParams } from "react-router-dom";
 import { companyPage } from "../data/content";
-import { findPost, type Block } from "../data/posts";
+import type { Block, Post as PostData } from "../data/posts";
 import { Cta } from "../components/Cta";
 import { PostMeta } from "../components/PostMeta";
 import { AppLink, Arrow } from "../components/Ui";
-import { useTitle } from "../hooks/useTitle";
 
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
@@ -35,15 +33,7 @@ function BlockView({ block }: { block: Block }) {
   }
 }
 
-export function Post() {
-  const { slug = "" } = useParams();
-  const post = findPost(slug);
-  useTitle(post?.title, post?.standfirst);
-
-  if (!post || (post.draft && !import.meta.env.DEV)) {
-    return <Navigate to="/resources" replace />;
-  }
-
+export function Post({ post }: { post: PostData }) {
   return (
     <>
       <article className="post">

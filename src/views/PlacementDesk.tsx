@@ -7,10 +7,8 @@ import { Section } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
 import { AppLink, Arrow, Button } from "../components/Ui";
 import { reveal } from "../lib/style";
-import { useTitle } from "../hooks/useTitle";
 
 export function PlacementDesk() {
-  useTitle("Placement Desk", placementDesk.problem);
   return (
     <>
       <SplitHero

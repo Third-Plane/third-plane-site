@@ -35,8 +35,6 @@ export const posts: Post[] = Object.values(files).map((post) => ({
 
 export const sortedPosts = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
 
-export const findPost = (slug: string) => posts.find((post) => post.slug === slug);
-
 export function formatPostDate(iso: string) {
   const monthOnly = /^\d{4}-\d{2}$/.test(iso);
   const value = monthOnly ? `${iso}-01` : iso;

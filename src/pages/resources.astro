@@ -1,0 +1,9 @@
+---
+import { resourcesPage as page } from "../data/content";
+import Base from "../layouts/Base.astro";
+import { Resources } from "../views/Resources";
+---
+
+<Base path="/resources" title="Resources" description={page.lead}>
+  <Resources />
+</Base>

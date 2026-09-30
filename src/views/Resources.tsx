@@ -5,7 +5,6 @@ import { PageHero } from "../components/PageHero";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
-import { useTitle } from "../hooks/useTitle";
 import { reveal } from "../lib/style";
 
 // Drafts show in the dev server only, so a post can be reviewed at its real
@@ -13,7 +12,6 @@ import { reveal } from "../lib/style";
 const publishedPosts = sortedPosts.filter((post) => !post.draft || import.meta.env.DEV);
 
 export function Resources() {
-  useTitle("Resources", page.lead);
   return (
     <>
       <PageHero family="editorial" title={page.title} lead={page.lead} />
