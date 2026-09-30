@@ -1,8 +1,9 @@
 import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Ledger } from "../components/Ledger";
+import { PlacementWorkflow } from "../components/PlacementWorkflow";
 import { Showcase } from "../components/Showcase";
-import { Arrow, Button, SectionHead, Slash, TextLink } from "../components/Ui";
+import { Arrow, Button, SectionHead, Slash } from "../components/Ui";
 import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
@@ -83,33 +84,11 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section section--deep desk-stage" id="desk">
+      <section className="section section--deep" id="desk">
         <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
         <div className="container">
-          <h2 className="desk-stage__name" data-reveal>
-            {desk.name}
-          </h2>
-          <div className="desk-stage__board">
-            <div className="desk-stage__head" data-reveal>
-              <p className="display-2">{desk.title}</p>
-              <p className="lead">{desk.body}</p>
-            </div>
-            <div className="flow flow--dark" data-reveal>
-              {desk.columns.map((column, i) => (
-                <div
-                  className={column.accent ? "flow__col flow__col--accent" : "flow__col"}
-                  key={column.kicker}
-                >
-                  {i > 0 ? <Arrow className="flow__arrow" /> : null}
-                  <p className="flow__kicker">{column.kicker}</p>
-                  <p className="flow__line">{column.line}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="desk-stage__foot" data-reveal>
-            <TextLink href={desk.cta.href}>{desk.cta.label}</TextLink>
-          </div>
+          <SectionHead dark title={desk.title} body={desk.body} />
+          <PlacementWorkflow />
         </div>
       </section>
 

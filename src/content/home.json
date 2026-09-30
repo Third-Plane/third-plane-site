@@ -146,30 +146,8 @@
     ]
   },
   "desk": {
-    "name": "Placement Desk",
     "title": "Send the work to the Placement Desk. Your team gets the quotes back.",
-    "body": "A dedicated placement function that takes new business and renewals from submission through returned quotes.",
-    "columns": [
-      {
-        "kicker": "Work goes in",
-        "line": "A producer forwards a submission, a renewal lands in the desk’s own inbox, or an AMS event.",
-        "accent": false
-      },
-      {
-        "kicker": "The desk works it",
-        "line": "Gathers the account, checks appetite and works the markets through portals, APIs and email.",
-        "accent": true
-      },
-      {
-        "kicker": "Results come back",
-        "line": "Quotes, market results and a record of the work come back for review. The Desk handles multiple accounts in parallel using the same placement process.",
-        "accent": false
-      }
-    ],
-    "cta": {
-      "label": "See Placement Desk",
-      "href": "/placement-desk"
-    }
+    "body": "A dedicated placement function that takes new business and renewals from submission through returned quotes."
   },
   "showcase": {
     "eyebrow": "See the Placement Desk work",

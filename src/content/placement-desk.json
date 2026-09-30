@@ -11,38 +11,56 @@
   },
   "work": {
     "title": "From request to returned results.",
-    "steps": [
+    "stages": [
       {
-        "title": "Gather and structure",
-        "body": "Pull account information from the submission, AMS and incoming email."
+        "kicker": "Work goes in",
+        "accent": false,
+        "steps": [
+          {
+            "title": "Gather and structure",
+            "body": "Pull account information from the submission, AMS and incoming email."
+          },
+          {
+            "title": "Identify what’s missing",
+            "body": "Flag gaps early and request what’s needed before they delay the market."
+          }
+        ]
       },
       {
-        "title": "Identify what’s missing",
-        "body": "Flag gaps early and request what’s needed before they delay the market."
+        "kicker": "The desk works it",
+        "accent": true,
+        "steps": [
+          {
+            "title": "Assess appetite",
+            "body": "Check appointed markets against the account, your appetite knowledge and carrier guidelines."
+          },
+          {
+            "title": "Determine markets",
+            "body": "Build a market plan around incumbents, alternatives and markets worth pursuing."
+          },
+          {
+            "title": "Submit",
+            "body": "Work portals, APIs and underwriter email based on how each market operates."
+          },
+          {
+            "title": "Follow up",
+            "body": "Answer questions, chase open threads and complete supplemental forms."
+          }
+        ]
       },
       {
-        "title": "Assess appetite",
-        "body": "Check appointed markets against the account, your appetite knowledge and carrier guidelines."
-      },
-      {
-        "title": "Determine markets",
-        "body": "Build a market plan around incumbents, alternatives and markets worth pursuing."
-      },
-      {
-        "title": "Submit",
-        "body": "Work portals, APIs and underwriter email based on how each market operates."
-      },
-      {
-        "title": "Follow up",
-        "body": "Answer questions, chase open threads and complete supplemental forms."
-      },
-      {
-        "title": "Collect",
-        "body": "Gather quotes, indications and declinations as markets respond."
-      },
-      {
-        "title": "Return",
-        "body": "Send the results and work record back to the producer’s inbox."
+        "kicker": "Results come back",
+        "accent": false,
+        "steps": [
+          {
+            "title": "Collect",
+            "body": "Gather quotes, indications and declinations as markets respond."
+          },
+          {
+            "title": "Return",
+            "body": "Send the results and work record back to the producer’s inbox."
+          }
+        ]
       }
     ]
   },

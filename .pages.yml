@@ -246,37 +246,15 @@ content:
                     type: boolean
           - name: desk
             label: The Placement Desk
+            description: The stages and steps below the heading are edited under Placement Desk → What the desk does.
             type: object
             fields:
-              - name: name
-                type: string
-                required: true
               - name: title
                 type: string
                 required: true
               - name: body
                 type: text
                 required: true
-              - name: columns
-                description: The column names are also used on the Placement Desk page.
-                type: object
-                list:
-                  min: 3
-                  max: 3
-                  collapsible: false
-                fields:
-                  - name: kicker
-                    type: string
-                    required: true
-                  - name: line
-                    type: text
-                    required: true
-                  - name: accent
-                    label: Highlight
-                    type: boolean
-              - name: cta
-                label: Link
-                component: link
           - name: showcase
             label: Video
             description: The video section stays hidden until a video is set.
@@ -329,14 +307,29 @@ content:
                 required: true
           - name: work
             label: What the desk does
-            description: The first two steps sit under the first column name on the homepage, the next four under the second, and the rest under the third.
+            description: The stages are also shown on the homepage, under its Placement Desk heading.
             type: object
             fields:
               - name: title
                 type: string
                 required: true
-              - name: steps
-                component: cards
+              - name: stages
+                type: object
+                list:
+                  min: 1
+                  collapsible:
+                    collapsed: true
+                    summary: "{kicker}"
+                fields:
+                  - name: kicker
+                    label: Stage name
+                    type: string
+                    required: true
+                  - name: accent
+                    label: Highlight
+                    type: boolean
+                  - name: steps
+                    component: cards
           - name: channels
             label: Carrier channels
             type: object
