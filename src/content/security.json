@@ -1,5 +1,4 @@
 {
-  "crumb": "Security and governance",
   "title": [
     "Built for regulated",
     "environments."
@@ -17,6 +16,10 @@
           {
             "title": "Access stays under your control",
             "body": "Narrow or remove access at any time without disrupting work that remains in scope."
+          },
+          {
+            "title": "Model-agnostic",
+            "body": "Changes models by task when needed without changing the desk’s rules, controls or record."
           }
         ]
       },
@@ -30,6 +33,10 @@
           {
             "title": "You decide where people step in",
             "body": "Set the points where the desk stops, returns the work and waits for a decision."
+          },
+          {
+            "title": "You are not handed a builder",
+            "body": "Your desk comes with the right access, controls and reporting already configured."
           }
         ]
       }

@@ -6,7 +6,6 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 | ------------------- | ---------------------------------------------- | ---------------------------- |
 | `/`                 | Home                                           | `home.json`                  |
 | `/placement-desk`   | Placement Desk                                 | `placement-desk.json`        |
-| `/platform`         | Platform                                       | `platform.json`              |
 | `/security`         | Security and governance                        | `security.json`              |
 | `/carrier-channels` | Carrier channels                               | `carrier-channels.json`      |
 | `/integrations`     | System integrations                            | `integrations.json`          |

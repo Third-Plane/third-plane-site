@@ -11,7 +11,6 @@ import type {
   HomeFile,
   IntegrationsFile,
   PlacementDeskFile,
-  PlatformFile,
   ResourcesFile,
   SecurityFile,
   SiteFile,
@@ -23,7 +22,6 @@ import companyJson from "../content/company.json";
 import securityJson from "../content/security.json";
 import careersJson from "../content/careers.json";
 import resourcesJson from "../content/resources.json";
-import platformJson from "../content/platform.json";
 import carrierChannelsJson from "../content/carrier-channels.json";
 import integrationsJson from "../content/integrations.json";
 import appliedEpicJson from "../content/applied-epic.json";
@@ -57,7 +55,6 @@ export const careersPage = {
   roles: { ...careers.roles, items: careers.roles.items ?? [] },
 };
 export const resourcesPage: ResourcesFile = resourcesJson;
-export const platformPage: PlatformFile = platformJson;
 export const carrierChannelsPage: CarrierChannelsFile = carrierChannelsJson;
 export const integrationsPage: IntegrationsFile = integrationsJson;
 export const appliedEpicPage: AppliedEpicFile = appliedEpicJson;
@@ -77,7 +74,6 @@ export const primaryNav = {
     {
       label: "Capabilities",
       items: [
-        { label: "Platform", href: "/platform", note: "Governed, bounded and auditable" },
         { label: "Security", href: "/security", note: "Authority, record and data isolation" },
         {
           label: "Carrier channels",
@@ -112,7 +108,6 @@ export const siteFooter = {
     {
       label: "Capabilities",
       links: [
-        { label: "Platform", href: "/platform" },
         { label: "Security", href: "/security" },
         { label: "Carrier channels", href: "/carrier-channels" },
         { label: "System integrations", href: "/integrations" },

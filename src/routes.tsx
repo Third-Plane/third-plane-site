@@ -6,7 +6,6 @@ import { Company } from "./pages/Company";
 import { Home } from "./pages/Home";
 import { Integrations } from "./pages/Integrations";
 import { PlacementDesk } from "./pages/PlacementDesk";
-import { Platform } from "./pages/Platform";
 import { Resources } from "./pages/Resources";
 import { Security } from "./pages/Security";
 
@@ -15,7 +14,6 @@ import { Security } from "./pages/Security";
 export const pages: { path: string; element: ReactNode }[] = [
   { path: "/", element: <Home /> },
   { path: "/placement-desk", element: <PlacementDesk /> },
-  { path: "/platform", element: <Platform /> },
   { path: "/security", element: <Security /> },
   { path: "/carrier-channels", element: <CarrierChannels /> },
   { path: "/integrations", element: <Integrations /> },
