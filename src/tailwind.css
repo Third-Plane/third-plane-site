@@ -1,7 +1,7 @@
-/* Tailwind next to the hand-written stylesheet (index.css).
+/* Tailwind, plus index.css: the design tokens and the base element resets.
 
    The layers are ordered theme, then index.css (as "components"), then
-   utilities, so a utility class always beats a rule in index.css, whatever the
+   utilities, so a utility always beats a base rule in index.css, whatever the
    selector's specificity. Tailwind's reset (preflight) is left out on purpose:
    index.css has its own, and adding a second would restyle every page.
 
@@ -14,8 +14,8 @@
    mt-[0.35rem].
 
    Tailwind generates a utility for any class name it finds in the source. A
-   class in index.css that shares a name with a utility would be overridden by
-   it, which is why the page-width class is .wrap and not .container. */
+   class in index.css that shared a name with a utility would be overridden by
+   it, which is why the page-width class is wrap and not container. */
 
 @layer theme, base, components, utilities;
 
@@ -58,6 +58,25 @@
       transform: none;
     }
   }
+}
+
+/* The page-width column: the site's max width with a gutter each side. */
+@utility wrap {
+  position: relative;
+  z-index: 2;
+  width: min(var(--container), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+/* The hero wash: a soft purple glow over lavender. */
+@utility bg-hero {
+  background:
+    radial-gradient(
+      80% 90% at 78% 0%,
+      color-mix(in srgb, var(--purple) 16%, transparent),
+      transparent 62%
+    ),
+    var(--lavender);
 }
 
 @theme inline {

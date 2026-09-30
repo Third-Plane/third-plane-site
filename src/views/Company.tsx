@@ -1,6 +1,7 @@
 import { companyPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { ItemGrid } from "../components/ItemGrid";
+import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { reveal } from "../lib/style";
@@ -16,7 +17,7 @@ export function Company() {
         containerClassName="grid grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-[clamp(2.5rem,5vw,4rem)] max-[860px]:grid-cols-1"
       >
         <div data-reveal>
-          <h2 className="display-2">{page.origin.title}</h2>
+          <Display2>{page.origin.title}</Display2>
           {page.origin.body.map((paragraph, i) => (
             <p
               className={`max-w-[58ch] text-pretty ${

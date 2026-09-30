@@ -61,9 +61,7 @@ export function PlacementWorkflowSection({
       id={id}
       title={title}
       body={body}
-      backdrop={
-        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-      }
+      backdrop={<ParticleField mask="section" tone="cream" alpha={0.75} density={0.8} />}
     >
       <PlacementWorkflow />
     </Section>

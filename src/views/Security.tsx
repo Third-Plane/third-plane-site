@@ -1,6 +1,7 @@
 import { securityPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { ItemGrid } from "../components/ItemGrid";
+import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { StepList } from "../components/StepList";
@@ -23,7 +24,7 @@ export function Security() {
               {...reveal(i)}
               key={side.title}
             >
-              <h2 className="display-2 mb-5">{side.title}</h2>
+              <Display2 className="mb-5">{side.title}</Display2>
               <ul className="grid">
                 {side.items.map((item) => (
                   <li className="border-b border-b-line-soft py-6" key={item.title}>

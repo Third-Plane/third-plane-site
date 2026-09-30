@@ -11,7 +11,7 @@ export function PlacementDesk() {
   return (
     <>
       <SplitHero
-        className="hero--product"
+        secondLine="ink"
         title={placementDesk.title}
         lead={placementDesk.problem}
         actions={<Button variant="dark">{placementDesk.cta.label}</Button>}

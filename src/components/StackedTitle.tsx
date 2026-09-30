@@ -1,14 +1,25 @@
 import { reveal } from "../lib/style";
+import { Display1 } from "./Headings";
 
-// A hero heading set on stacked lines.
-export function StackedTitle({ lines }: { lines: string[] }) {
+// A hero heading set on stacked lines. The lines after the first are purple,
+// or ink where the page wants them quieter.
+export function StackedTitle({
+  lines,
+  secondLine = "purple",
+}: {
+  lines: string[];
+  secondLine?: "purple" | "ink";
+}) {
+  const tone = secondLine === "purple" ? "text-purple" : "text-ink";
   return (
-    <h1 className="display-1" {...reveal(1)}>
+    <Display1 {...reveal(1)}>
       {lines.map((line, i) => (
         // The space keeps the lines as separate words for crawlers and
         // screen readers; the spans are blocks, so it never shows.
-        <span key={line}>{i > 0 ? ` ${line}` : line}</span>
+        <span className={i > 0 ? `block ${tone}` : "block"} key={line}>
+          {i > 0 ? ` ${line}` : line}
+        </span>
       ))}
-    </h1>
+    </Display1>
   );
 }

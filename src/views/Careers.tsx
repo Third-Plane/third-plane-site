@@ -37,7 +37,7 @@ export function Careers() {
         )}
       </Section>
 
-      <Section tone="white" id="why" title={page.why.title}>
+      <Section tone="white" id="why" title={page.why.title} compactHead>
         <ItemGrid variant="point" spaced columns={4} items={page.why.items} />
       </Section>
 
