@@ -547,10 +547,6 @@ ol {
 .hero--product .display-1--inline span {
   color: var(--ink);
 }
-.hero--product .hero__lead {
-  color: var(--ink-body);
-  font-weight: 400;
-}
 @media (width <= 980px) {
   .hero__grid {
     grid-template-columns: 1fr;

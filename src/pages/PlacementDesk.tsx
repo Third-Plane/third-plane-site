@@ -2,11 +2,10 @@ import { placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { ItemGrid } from "../components/ItemGrid";
-import { Ledger } from "../components/Ledger";
-import { PlacementWorkflow } from "../components/PlacementWorkflow";
+import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
+import { SplitHero } from "../components/SplitHero";
 import { AppLink, Arrow, Button } from "../components/Ui";
-import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
@@ -14,40 +13,14 @@ export function PlacementDesk() {
   useTitle("Placement Desk", placementDesk.problem);
   return (
     <>
-      <section className="hero hero--product" id="top">
-        <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
-        <div className="container hero__grid">
-          <div className="hero__copy">
-            <h1 className="display-1" data-reveal style={delayStyle(1)}>
-              {placementDesk.title.map((line, i) => (
-                // The space keeps the lines as separate words for crawlers and
-                // screen readers; the spans are blocks, so it never shows.
-                <span key={line}>{i > 0 ? ` ${line}` : line}</span>
-              ))}
-            </h1>
-            <p className="hero__lead" data-reveal style={delayStyle(2)}>
-              {placementDesk.problem}
-            </p>
-            <div className="hero__actions" data-reveal style={delayStyle(3)}>
-              <Button variant="dark">{placementDesk.cta.label}</Button>
-            </div>
-          </div>
-          <div className="hero__figure" data-reveal style={delayStyle(3)}>
-            <Ledger />
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        className="hero--product"
+        title={placementDesk.title}
+        lead={placementDesk.problem}
+        actions={<Button variant="dark">{placementDesk.cta.label}</Button>}
+      />
 
-      <Section
-        tone="deep"
-        id="work"
-        title={placementDesk.work.title}
-        backdrop={
-          <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-        }
-      >
-        <PlacementWorkflow />
-      </Section>
+      <PlacementWorkflowSection id="work" title={placementDesk.work.title} />
 
       <CarrierChannels />
 

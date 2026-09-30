@@ -1,10 +1,12 @@
 import { placementDesk } from "../data/content";
+import { ParticleField } from "./ParticleField";
+import { Section } from "./Section";
 import { Arrow } from "./Ui";
 
 // The Placement Desk's three stages, from work going in to results coming
 // back, with the steps under each. Shown on the homepage and on
-// /placement-desk; each page supplies its own heading.
-export function PlacementWorkflow() {
+// /placement-desk; each page supplies its own id and heading.
+function PlacementWorkflow() {
   return (
     <div className="flow flow--dark" data-reveal>
       {placementDesk.work.stages.map((stage, i) => (
@@ -25,5 +27,29 @@ export function PlacementWorkflow() {
         </div>
       ))}
     </div>
+  );
+}
+
+export function PlacementWorkflowSection({
+  id,
+  title,
+  body,
+}: {
+  id: string;
+  title: string;
+  body?: string;
+}) {
+  return (
+    <Section
+      tone="deep"
+      id={id}
+      title={title}
+      body={body}
+      backdrop={
+        <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
+      }
+    >
+      <PlacementWorkflow />
+    </Section>
   );
 }

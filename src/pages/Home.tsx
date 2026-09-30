@@ -1,12 +1,11 @@
 import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
 import { ItemGrid } from "../components/ItemGrid";
-import { Ledger } from "../components/Ledger";
-import { PlacementWorkflow } from "../components/PlacementWorkflow";
+import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
+import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
-import { ParticleField } from "../components/ParticleField";
 import { delayStyle } from "../lib/style";
 import { useTitle } from "../hooks/useTitle";
 
@@ -14,28 +13,18 @@ export function Home() {
   useTitle();
   return (
     <>
-      <section className="hero" id="top">
-        <ParticleField className="hero__particles" tone="purple" alpha={0.9} />
-        <div className="container hero__grid">
-          <div className="hero__copy">
-            <h1 className="display-1 display-1--inline" data-reveal style={delayStyle(1)}>
-              {homeHero.title}
-            </h1>
-            <p className="lead hero__lead" data-reveal style={delayStyle(2)}>
-              {homeHero.lead}
-            </p>
-            <div className="hero__actions" data-reveal style={delayStyle(3)}>
-              <Button variant="dark" />
-              <Button variant="ghost" href={homeHero.secondary.href}>
-                {homeHero.secondary.label}
-              </Button>
-            </div>
-          </div>
-          <div className="hero__figure" data-reveal style={delayStyle(3)}>
-            <Ledger />
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        title={homeHero.title}
+        lead={homeHero.lead}
+        actions={
+          <>
+            <Button variant="dark" />
+            <Button variant="ghost" href={homeHero.secondary.href}>
+              {homeHero.secondary.label}
+            </Button>
+          </>
+        }
+      />
 
       <Showcase />
 
@@ -67,17 +56,7 @@ export function Home() {
         </div>
       </Section>
 
-      <Section
-        tone="deep"
-        id="desk"
-        title={desk.title}
-        body={desk.body}
-        backdrop={
-          <ParticleField className="section__particles" tone="cream" alpha={0.75} density={0.8} />
-        }
-      >
-        <PlacementWorkflow />
-      </Section>
+      <PlacementWorkflowSection id="desk" title={desk.title} body={desk.body} />
 
       <Cta />
     </>
