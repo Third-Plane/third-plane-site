@@ -45,7 +45,7 @@ export function Integrations() {
 
       <section className="section section--deep" id="how">
         <div className="container">
-          <SectionHead dark title={page.how.title} />
+          <SectionHead title={page.how.title} />
           <ol className="steps">
             {page.how.steps.map((step, i) => (
               <li className="step" data-reveal style={delayStyle(i)} key={step.title}>

@@ -9,7 +9,7 @@ export function Careers() {
   useTitle("Careers", page.lead);
   return (
     <>
-      <PageHero family="careers" crumb={page.crumb} title={page.title} lead={page.lead} />
+      <PageHero family="careers" title={page.title} lead={page.lead} />
 
       <section className="section section--white" id="why">
         <div className="container">

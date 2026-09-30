@@ -257,9 +257,6 @@ content:
             description: The video section stays hidden until a video is set.
             type: object
             fields:
-              - name: eyebrow
-                type: string
-                required: true
               - name: title
                 type: string
                 required: true
@@ -280,10 +277,6 @@ content:
         path: src/content/placement-desk.json
         format: json
         fields:
-          - name: crumb
-            label: Eyebrow
-            type: string
-            required: true
           - name: title
             component: lines
           - name: problem
@@ -426,9 +419,10 @@ content:
         format: json
         fields:
           - name: crumb
-            label: Eyebrow
+            label: Short name
             type: string
             required: true
+            description: The link text used for this page on the Platform page.
           - name: title
             component: lines
           - name: lead
@@ -736,10 +730,6 @@ content:
         path: src/content/careers.json
         format: json
         fields:
-          - name: crumb
-            label: Eyebrow
-            type: string
-            required: true
           - name: title
             component: lines
           - name: lead

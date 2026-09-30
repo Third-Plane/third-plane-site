@@ -39,11 +39,10 @@ export type HomeFile = {
     models: { kicker: string; chain: string[]; note: string; accent?: boolean }[];
   };
   desk: { title: string; body: string };
-  showcase: { eyebrow: string; title: string; src?: string; poster?: string; caption?: string };
+  showcase: { title: string; src?: string; poster?: string; caption?: string };
 };
 
 export type PlacementDeskFile = {
-  crumb: string;
   title: Lines;
   problem: string;
   does: string;
@@ -74,7 +73,7 @@ export type CompanyFile = {
 };
 
 export type SecurityFile = {
-  crumb: string;
+  crumb: string; // link text for this page on the Platform page
   title: Lines;
   lead: string;
   authority: { sides: { title: string; items: Card[] }[] };
@@ -84,7 +83,6 @@ export type SecurityFile = {
 };
 
 export type CareersFile = {
-  crumb: string;
   title: Lines;
   lead: string;
   why: { title: string; items: Card[] };
