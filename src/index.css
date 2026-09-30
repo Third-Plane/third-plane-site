@@ -1755,13 +1755,23 @@ ol {
   font-size: 0.9rem;
   color: var(--on-dark-faint);
 }
-.footer__social {
-  display: inline-flex;
+.footer__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin-top: 0.85rem;
+}
+.footer__social,
+.footer__email {
+  display: inline-flex;
   color: var(--on-dark-faint);
   transition: color 0.2s;
 }
-.footer__social:hover {
+.footer__email {
+  font-size: 0.9rem;
+}
+.footer__social:hover,
+.footer__email:hover {
   color: var(--pink);
 }
 .footer__social svg {
