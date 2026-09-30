@@ -1,4 +1,4 @@
-# Third Plane site (Vite + React)
+# Third Plane site (Astro + React)
 
 Marketing site for [thirdplane.com](https://www.thirdplane.com).
 
@@ -45,35 +45,46 @@ empty objects. When a page starts using a new field:
 
 1. Add it to the JSON file and to that file's form in `.pages.yml`.
 2. Add it to the file's type in [`src/data/content-types.ts`](src/data/content-types.ts). Anything
-   an editor can leave blank must be optional there and handled where it renders.
+   an editor can leave blank must be optional there and handled where it renders. For a post, the
+   place is the `posts` schema in [`src/content.config.ts`](src/content.config.ts) instead, where a
+   blank-able field takes a `.default()` or `.optional()`.
 
 `npm run build` runs [`scripts/check-content.mjs`](scripts/check-content.mjs) first, which fails if
-any JSON value has no matching form field, has the wrong kind, or a required field is missing; `tsc`
-then checks the JSON against the types. Copy that no page renders is kept in
+any JSON value has no matching form field, has the wrong kind, or a required field is missing; the
+type-check then checks the page JSON against the types, and Astro checks each post against the
+`posts` schema, failing with the file and field named. Copy that no page renders is kept in
 [`src/data/unused-copy.json`](src/data/unused-copy.json) and is not in the CMS.
 
-**Adding a page:** add it to `pages` in `src/routes.tsx` (that routes it, prerenders it and lists it
-in the sitemap), give it a JSON file and a form, and link it from `primaryNav` or `siteFooter`. Call
-`useTitle` with the page's title and description; they become its `<title>`, meta description and
-Open Graph tags.
+**Adding a page:** create `src/pages/<name>.astro` (it routes, builds and lists itself in the
+sitemap). Wrap a component from `src/views/` in `<Base path title description>`; those props become
+the page's `<title>`, meta description, canonical URL and Open Graph tags. Give the copy a JSON file
+and a form, and link the page from `primaryNav` or `siteFooter`.
 
 ## Tech stack
 
-- Vite
-- React 19
+- Astro (static output)
+- React 19, used as a template language: components render to plain HTML at build time and ship no
+  JavaScript
 - TypeScript
-- React Router
 - Plain CSS in `src/index.css`
 
 Copy lives in [`src/content/`](src/content) as JSON. Components handle layout only.
+
+The only JavaScript a visitor downloads is the few-KB script bundle from
+[`src/scripts/`](src/scripts): the header menus, scroll reveals, the activity ledger and the
+particle canvas. Each one finds its markup by a `data-*` attribute that the component renders, so a
+component that needs behaviour stays plain JSX and gets a script alongside it. Do not add hooks,
+state or `client:*` directives to a component: there is no React in the browser, and one island
+would bring the React runtime (about 45 KB gzipped) back.
 
 ## Local development
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173/
-npm run build
-npm run preview
+npm run dev      # http://localhost:4321/
+npm run build    # content check, type-check (astro check), then astro build
+npm run preview  # serves dist/
+npm run check    # type-check only
 npm run lint          # oxlint, configured in .oxlintrc.json
 npm run format        # oxfmt, configured in .oxfmtrc.json
 npm run format:check
@@ -89,18 +100,17 @@ Production is **https://www.thirdplane.com/**, hosted on Vercel and built from `
 
 ### How pages are built
 
-`npm run build` builds the browser bundle, then renders every page to static HTML
-([`scripts/prerender.mjs`](scripts/prerender.mjs) with [`src/entry-server.tsx`](src/entry-server.tsx)).
-Each page arrives with its content, title, description, canonical URL and Open Graph tags already in
-the HTML, so search engines, AI crawlers and link previews (LinkedIn, Slack) read it without running
-JavaScript. The browser then hydrates the same markup. The build also writes `404.html`, `sitemap.xml`
-and structured data (Organization on the homepage, BlogPosting on posts).
-
-Anything that depends on the browser (the clock in the activity ledger, scroll state, canvas
-animation) has to run in an effect, not during render, or the prerendered HTML will not match.
+`npm run build` checks the content, type-checks, then renders every page in `src/pages/` to static
+HTML in `dist/`. Each page arrives with its content, title, description, canonical URL and Open
+Graph tags already in the HTML, so search engines, AI crawlers and link previews (LinkedIn, Slack)
+read it without running JavaScript. The build also writes `404.html`, `sitemap.xml`
+([`src/pages/sitemap.xml.ts`](src/pages/sitemap.xml.ts)) and structured data (Organization on the
+homepage, BlogPosting on posts). Pages are separate HTML files, so navigating between them is an
+ordinary page load.
 
 [`vercel.json`](vercel.json) serves `/placement-desk` from `placement-desk.html` (`cleanUrls`), drops
-trailing slashes, and holds the permanent redirects for retired paths.
+trailing slashes, caches the hashed files in `/_astro/` as immutable, and holds the permanent
+redirects for retired paths.
 
 ## Brand assets
 
@@ -108,16 +118,6 @@ The logo is the three-bar isometric mark from the sales deck. `public/brand/` ho
 lockups and marks extracted from it (purple for light surfaces, white for dark), and the
 favicons are cut from the same mark. Replace them with vector files when those exist.
 
-The Intelligence Field texture is painted in code by `src/components/ParticleField.tsx`; the
-isometric Plane Network in `src/components/Ui.tsx` is used only as a faint layer on the
-horizon band and for the channel card marks.
-
-## Sharing a build
-
-```bash
-npm run package
-```
-
-Bundles the site into `package/index.html` (JS and CSS inlined, routes in the hash) with the
-brand images beside it, and zips the folder to `package.zip`. Open it from disk or host the
-folder anywhere. Both outputs are ignored by git.
+The Intelligence Field texture is painted in code by `src/scripts/particles.ts`, on the canvas
+that `src/components/ParticleField.tsx` renders. The channel card marks are the line drawings in
+`src/components/CardMark.tsx`.

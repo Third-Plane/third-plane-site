@@ -1,7 +1,8 @@
 // Site copy. The words live in src/content/*.json, one file per page, and are
 // edited through Pages CMS (.pages.yml); this module hands them to the pages
-// under the names the components use. Navigation stays in code because its
-// links have to match the routes in src/routes.tsx.
+// under the names the components use. Posts are a content collection instead
+// (src/content.config.ts). Navigation stays in code because its links have to
+// match the pages in src/pages.
 
 import type {
   AppliedEpicFile,

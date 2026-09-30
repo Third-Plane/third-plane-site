@@ -3,12 +3,10 @@ import { Cta } from "../components/Cta";
 import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
-import { useTitle } from "../hooks/useTitle";
 
 export function AppliedEpic() {
   const title = page.certified ? page.title : page.titlePending;
   const status = [page.status, page.date].filter(Boolean).join(" · ");
-  useTitle("Applied Epic", page.lead);
 
   return (
     <>

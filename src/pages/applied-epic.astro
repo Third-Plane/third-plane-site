@@ -1,0 +1,9 @@
+---
+import { appliedEpicPage as page } from "../data/content";
+import Base from "../layouts/Base.astro";
+import { AppliedEpic } from "../views/AppliedEpic";
+---
+
+<Base path="/applied-epic" title="Applied Epic" description={page.lead}>
+  <AppliedEpic />
+</Base>

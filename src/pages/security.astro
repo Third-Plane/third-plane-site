@@ -1,0 +1,9 @@
+---
+import { securityPage as page } from "../data/content";
+import Base from "../layouts/Base.astro";
+import { Security } from "../views/Security";
+---
+
+<Base path="/security" title="Security and governance" description={page.lead}>
+  <Security />
+</Base>

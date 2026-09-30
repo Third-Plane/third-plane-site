@@ -1,0 +1,13 @@
+---
+import Base from "../layouts/Base.astro";
+import { NotFound } from "../views/NotFound";
+---
+
+<Base
+  path="/404"
+  title="Page not found"
+  description="The page you were looking for has moved or no longer exists."
+  noindex
+>
+  <NotFound />
+</Base>

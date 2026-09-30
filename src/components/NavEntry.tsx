@@ -8,14 +8,12 @@ export function NavEntry({
   disabled,
   className,
   disabledClassName,
-  onClick,
   children,
 }: {
   href?: string;
   disabled?: boolean;
   className?: string;
   disabledClassName: string;
-  onClick?: () => void;
   children: ReactNode;
 }) {
   if (disabled || !href) {
@@ -27,7 +25,7 @@ export function NavEntry({
   }
 
   return (
-    <AppLink className={className} href={href} onClick={onClick}>
+    <AppLink className={className} href={href}>
       {children}
     </AppLink>
   );

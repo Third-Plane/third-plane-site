@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { primaryNav, site } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
@@ -37,105 +36,44 @@ function Note({ item }: { item: Item }) {
 // leaves the descriptive ones to the dropdown.
 const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
+// Static markup. scripts/nav.ts opens and closes the menus by setting
+// `data-open` on the elements below, which the stylesheet keys off.
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<string | null>(null);
-  const navRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  useEffect(() => {
-    const onResize = () => {
-      if (window.matchMedia("(min-width: 1021px)").matches) setOpen(false);
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => {
-    if (!open && !menu) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
-        setMenu(null);
-      }
-    };
-    const onPointer = (event: PointerEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) setMenu(null);
-    };
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("pointerdown", onPointer);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("pointerdown", onPointer);
-    };
-  }, [open, menu]);
-
-  const close = () => {
-    setOpen(false);
-    setMenu(null);
-  };
-
   return (
-    <header className="nav" data-scrolled={scrolled} data-open={open}>
+    <header className="nav" data-scrolled="false" data-open="false" data-nav>
       <div className="container nav__inner">
         <AppLink className="nav__brand" href="/" aria-label={`${site.name} home`}>
           <Logo className="nav__logo" />
         </AppLink>
 
-        <nav className="nav__links" aria-label="Main" ref={navRef}>
-          {primaryNav.menus.map((group) => {
-            const isOpen = menu === group.label;
-            return (
-              <div
-                className="nav__menu"
-                data-open={isOpen}
-                key={group.label}
-                onMouseEnter={() => setMenu(group.label)}
-                onMouseLeave={() =>
-                  setMenu((current) => (current === group.label ? null : current))
-                }
+        <nav className="nav__links" aria-label="Main">
+          {primaryNav.menus.map((group) => (
+            <div className="nav__menu" data-open="false" data-menu key={group.label}>
+              <button
+                className="nav__link nav__menu-btn"
+                type="button"
+                aria-expanded="false"
+                data-menu-btn
               >
-                <button
-                  className="nav__link nav__menu-btn"
-                  type="button"
-                  aria-expanded={isOpen}
-                  onClick={() => setMenu(isOpen ? null : group.label)}
-                >
-                  {group.label}
-                  <Chevron />
-                </button>
-                <div className="nav__panel" role="menu">
-                  {(group.items as Item[]).map((item) => (
-                    <NavEntry
-                      className="nav__panel-item"
-                      disabledClassName="nav__panel-item nav__panel-item--disabled"
-                      href={item.href}
-                      disabled={item.disabled}
-                      onClick={close}
-                      key={item.label}
-                    >
-                      <span>{item.label}</span>
-                      <Note item={item} />
-                    </NavEntry>
-                  ))}
-                </div>
+                {group.label}
+                <Chevron />
+              </button>
+              <div className="nav__panel" role="menu">
+                {(group.items as Item[]).map((item) => (
+                  <NavEntry
+                    className="nav__panel-item"
+                    disabledClassName="nav__panel-item nav__panel-item--disabled"
+                    href={item.href}
+                    disabled={item.disabled}
+                    key={item.label}
+                  >
+                    <span>{item.label}</span>
+                    <Note item={item} />
+                  </NavEntry>
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </nav>
 
         <div className="nav__cta">
@@ -145,31 +83,30 @@ export function Header() {
         <button
           className="nav__toggle"
           type="button"
-          aria-expanded={open}
+          aria-expanded="false"
           aria-label="Toggle navigation"
-          onClick={() => setOpen((value) => !value)}
+          data-nav-toggle
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-            {open ? (
-              <path
-                d="M5 5l12 12M17 5L5 17"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            ) : (
-              <path
-                d="M3 7h16M3 15h16"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            )}
+            <path
+              className="nav__icon-open"
+              d="M5 5l12 12M17 5L5 17"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+            <path
+              className="nav__icon-closed"
+              d="M3 7h16M3 15h16"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
           </svg>
         </button>
       </div>
 
-      <div className="nav__drawer" data-open={open}>
+      <div className="nav__drawer" data-open="false">
         <div className="container">
           {primaryNav.menus.map((group) => (
             <div key={group.label}>
@@ -180,7 +117,6 @@ export function Header() {
                   disabledClassName="nav__drawer-link nav__drawer-link--disabled"
                   href={item.href}
                   disabled={item.disabled}
-                  onClick={close}
                   key={item.label}
                 >
                   {item.label}

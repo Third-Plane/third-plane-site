@@ -1,20 +1,10 @@
-import { useEffect, useRef, useState } from "react";
 import { homeHero, ledgerTasks } from "../data/content";
 
-const VISIBLE = 5;
+export const LEDGER_VISIBLE = 5;
+
 const formatTime = (value: number) => new Date(value).toTimeString().slice(0, 5);
 
 type LedgerTask = (typeof ledgerTasks)[number];
-type Row = LedgerTask & { key: number; time: string };
-
-const firstRows = (tasks: LedgerTask[]): Row[] => {
-  const now = Date.now();
-  return tasks.slice(0, VISIBLE).map((task, i) => ({
-    ...task,
-    key: i,
-    time: formatTime(now - (VISIBLE - 1 - i) * 47_000),
-  }));
-};
 
 type Props = {
   label?: string;
@@ -23,38 +13,26 @@ type Props = {
   tasks?: LedgerTask[];
 };
 
+// Static markup with the first rows filled in. scripts/ledger.ts restamps
+// them with the reader's clock and then keeps the list moving, using the
+// tasks carried in `data-tasks`.
 export function Ledger({
   label = homeHero.ledger.label,
   sublabel = homeHero.ledger.sublabel,
   legend = homeHero.ledger.legend,
   tasks = ledgerTasks,
 }: Props) {
-  const index = useRef(VISIBLE);
-  const [rows, setRows] = useState<Row[]>(() => firstRows(tasks));
-
-  useEffect(() => {
-    // The page is prerendered at build time, so restamp the opening rows with
-    // the reader's clock once it hydrates.
-    setRows(firstRows(tasks));
-    index.current = VISIBLE;
-    let timeout: number;
-    const tick = () => {
-      const next: Row = {
-        ...tasks[index.current % tasks.length],
-        key: index.current,
-        time: formatTime(Date.now()),
-      };
-      index.current += 1;
-      setRows((current) => [...current.slice(1), next]);
-      timeout = window.setTimeout(tick, 3800 + Math.random() * 2400);
-    };
-    timeout = window.setTimeout(tick, 3000);
-    return () => window.clearTimeout(timeout);
-  }, [tasks]);
+  const now = Date.now();
+  const rows = tasks.slice(0, LEDGER_VISIBLE).map((task, i) => ({
+    ...task,
+    time: formatTime(now - (LEDGER_VISIBLE - 1 - i) * 47_000),
+  }));
 
   return (
     <figure
       className="ledger"
+      data-ledger
+      data-tasks={JSON.stringify(tasks)}
       aria-label="Placement Desk activity: work received, worked across carrier channels, and returned to a person"
     >
       <div className="ledger__head">
@@ -69,10 +47,8 @@ export function Ledger({
       </div>
       <ol className="ledger__rows">
         {rows.map((row) => (
-          <li className="ledger__row" data-status={row.status} key={row.key}>
-            <span className="ledger__time" suppressHydrationWarning>
-              {row.time}
-            </span>
+          <li className="ledger__row" data-status={row.status} key={row.task}>
+            <span className="ledger__time">{row.time}</span>
             <span className="ledger__task">{row.task}</span>
             <i className="ledger__dot" aria-hidden="true" />
           </li>

@@ -1,4 +1,3 @@
-import { createContext } from "react";
 import { site } from "../data/content";
 
 export const ORIGIN = "https://www.thirdplane.com";
@@ -11,9 +10,3 @@ export const fullTitle = (title?: string) =>
 
 export const canonicalUrl = (pathname: string) =>
   `${ORIGIN}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
-
-// Filled in by useTitle while a page renders at build time, so the prerender
-// script can write that page's title and description into its HTML. In the
-// browser there is no provider and useTitle updates the document instead.
-export type Head = { title: string; description: string };
-export const HeadContext = createContext<Head | null>(null);

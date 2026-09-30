@@ -4,10 +4,8 @@ import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
-import { useTitle } from "../hooks/useTitle";
 
 export function Careers() {
-  useTitle("Careers", page.lead);
   return (
     <>
       <PageHero family="careers" title={page.title} lead={page.lead} />

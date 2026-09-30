@@ -1,0 +1,82 @@
+// The header: a border once the page scrolls, hover/click dropdowns on
+// desktop and a drawer on narrow screens. The markup is static (Header.tsx);
+// this sets `data-open` and `aria-expanded` on it.
+
+const nav = document.querySelector<HTMLElement>("[data-nav]");
+
+if (nav) {
+  const toggle = nav.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
+  const drawer = nav.querySelector<HTMLElement>(".nav__drawer")!;
+  const menus = [...nav.querySelectorAll<HTMLElement>("[data-menu]")];
+  const links = nav.querySelector<HTMLElement>(".nav__links")!;
+
+  let drawerOpen = false;
+  let openMenu: HTMLElement | null = null;
+
+  const render = () => {
+    nav.dataset.open = String(drawerOpen);
+    drawer.dataset.open = String(drawerOpen);
+    toggle.setAttribute("aria-expanded", String(drawerOpen));
+    document.body.style.overflow = drawerOpen ? "hidden" : "";
+    for (const menu of menus) {
+      const isOpen = menu === openMenu;
+      menu.dataset.open = String(isOpen);
+      menu.querySelector("[data-menu-btn]")!.setAttribute("aria-expanded", String(isOpen));
+    }
+  };
+
+  const closeAll = () => {
+    drawerOpen = false;
+    openMenu = null;
+    render();
+  };
+
+  const onScroll = () => {
+    nav.dataset.scrolled = String(window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  toggle.addEventListener("click", () => {
+    drawerOpen = !drawerOpen;
+    render();
+  });
+
+  for (const menu of menus) {
+    menu.addEventListener("mouseenter", () => {
+      openMenu = menu;
+      render();
+    });
+    menu.addEventListener("mouseleave", () => {
+      if (openMenu === menu) openMenu = null;
+      render();
+    });
+    menu.querySelector("[data-menu-btn]")!.addEventListener("click", () => {
+      openMenu = openMenu === menu ? null : menu;
+      render();
+    });
+  }
+
+  // Following a link closes whatever it was in.
+  nav.addEventListener("click", (event) => {
+    if ((event.target as Element).closest(".nav__panel a, .nav__drawer a")) closeAll();
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeAll();
+  });
+
+  window.addEventListener("pointerdown", (event) => {
+    if (openMenu && !links.contains(event.target as Node)) {
+      openMenu = null;
+      render();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (drawerOpen && window.matchMedia("(min-width: 1021px)").matches) {
+      drawerOpen = false;
+      render();
+    }
+  });
+}

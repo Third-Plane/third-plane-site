@@ -1239,6 +1239,15 @@ ol {
 .nav__chevron {
   transition: transform 0.2s;
 }
+.nav__icon-open {
+  display: none;
+}
+.nav[data-open="true"] .nav__icon-open {
+  display: inline;
+}
+.nav[data-open="true"] .nav__icon-closed {
+  display: none;
+}
 .nav__menu[data-open="true"] .nav__chevron {
   transform: rotate(180deg);
 }
