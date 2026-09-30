@@ -71,7 +71,6 @@ export type CompanyFile = {
 };
 
 export type SecurityFile = {
-  crumb: string; // link text for this page on the Platform page
   title: Lines;
   lead: string;
   authority: { sides: { title: string; items: Card[] }[] };
@@ -97,13 +96,6 @@ export type ResourcesFile = {
   title: Lines;
   lead: string;
   types: { technical: string; perspective: string; press: string };
-};
-
-export type PlatformFile = {
-  title: Lines;
-  lead: string;
-  real: { title: string; body: string; facts: Card[] };
-  cta: Cta;
 };
 
 export type CarrierChannelsFile = {

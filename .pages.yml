@@ -386,52 +386,12 @@ content:
                 type: string
                 required: true
 
-      - name: platform
-        label: Platform
-        type: file
-        path: src/content/platform.json
-        format: json
-        fields:
-          - name: title
-            component: lines
-          - name: lead
-            type: text
-            required: true
-            description: Also the page’s search and link-preview description.
-          - name: real
-            label: How it is delivered
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: body
-                type: text
-                required: true
-              - name: facts
-                component: cards
-          - name: cta
-            label: Call to action (bottom of page)
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: body
-                type: text
-                required: true
-
       - name: security
         label: Security
         type: file
         path: src/content/security.json
         format: json
         fields:
-          - name: crumb
-            label: Short name
-            type: string
-            required: true
-            description: The link text used for this page on the Platform page.
           - name: title
             component: lines
           - name: lead
