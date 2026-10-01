@@ -5,14 +5,13 @@ import { ItemGrid } from "../components/ItemGrid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
-import { AppLink, Arrow, Button } from "../components/Ui";
-import { reveal } from "../lib/style";
+import { Button } from "../components/Ui";
 
 export function PlacementDesk() {
   return (
     <>
       <SplitHero
-        className="hero--product"
+        secondLine="ink"
         title={placementDesk.title}
         lead={placementDesk.problem}
         actions={<Button variant="dark">{placementDesk.cta.label}</Button>}
@@ -28,17 +27,7 @@ export function PlacementDesk() {
         title={placementDesk.systems.title}
         body={placementDesk.systems.body}
       >
-        <div className="grid grid--2">
-          {placementDesk.systems.links.map((link, i) => (
-            <AppLink className="card card--link" href={link.href} key={link.href} {...reveal(i)}>
-              <h3 className="card__title">
-                {link.title}
-                <Arrow className="card__arrow" />
-              </h3>
-              <p className="card__body">{link.body}</p>
-            </AppLink>
-          ))}
-        </div>
+        <ItemGrid variant="card" columns={2} items={placementDesk.systems.links} />
       </Section>
 
       <Section

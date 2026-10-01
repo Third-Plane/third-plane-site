@@ -1,13 +1,29 @@
 import { resourcesPage } from "../data/content";
-import { formatPostDate, type Post } from "../data/posts";
+import { formatPostDate, type Post, type PostType } from "../data/posts";
+
+const pill = "rounded-pill px-[0.65rem] py-1 text-label font-medium tracking-pill uppercase";
+
+// Each variant sets its own background and text colour, so none depends on
+// which of two competing utilities the stylesheet happens to emit last.
+const typeStyle: Record<PostType, string> = {
+  technical: "bg-blue text-deep",
+  perspective: "bg-pink text-deep",
+  press: "bg-deep text-on-dark",
+};
 
 // The type pill, date and draft flag shown on post cards and post headers.
 export function PostMeta({ post }: { post: Pick<Post, "type" | "date" | "draft"> }) {
   return (
-    <div className="post-card__meta">
-      <span className={`type-pill type-pill--${post.type}`}>{resourcesPage.types[post.type]}</span>
+    <div className="flex flex-wrap items-center gap-[0.6rem] text-label text-ink-muted">
+      <span className={`${pill} ${typeStyle[post.type]}`}>{resourcesPage.types[post.type]}</span>
       <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-      {post.draft ? <span className="type-pill type-pill--draft">Draft</span> : null}
+      {post.draft ? (
+        <span
+          className={`${pill} bg-transparent text-ink-muted inset-ring-[1.5px] inset-ring-line`}
+        >
+          Draft
+        </span>
+      ) : null}
     </div>
   );
 }

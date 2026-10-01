@@ -19,5 +19,8 @@
   "[css]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
   "[html]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
   "[markdown]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
-  "[yaml]": { "editor.defaultFormatter": "oxc.oxc-vscode" }
+  "[yaml]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+
+  // Tailwind IntelliSense: the stylesheet that imports Tailwind's layers.
+  "tailwindCSS.experimental.configFile": "src/tailwind.css"
 }

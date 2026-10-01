@@ -30,34 +30,55 @@ export function Ledger({
 
   return (
     <figure
-      className="ledger"
+      className="pointer-events-auto m-0 rounded-card border border-line-soft bg-white px-6 pt-6 pb-5 shadow-lg"
       data-ledger
       data-tasks={JSON.stringify(tasks)}
       aria-label="Placement Desk activity: work received, worked across carrier channels, and returned to a person"
     >
-      <div className="ledger__head">
+      <div className="flex items-start justify-between gap-4 border-b border-b-line-soft pb-4">
         <div>
-          <p className="ledger__label">{label}</p>
-          <p className="ledger__sublabel">{sublabel}</p>
+          <p className="font-heading text-[1.1rem] font-medium tracking-head text-ink">{label}</p>
+          <p className="mt-[0.1rem] text-label text-ink-muted">{sublabel}</p>
         </div>
-        <span className="ledger__live">
-          <i aria-hidden="true" />
+        <span className="inline-flex items-center gap-2 rounded-pill bg-blue px-3 py-[0.35rem] text-label font-medium text-deep">
+          <i
+            className="relative size-[7px] rounded-[50%] bg-purple motion-safe:after:absolute motion-safe:after:-inset-1 motion-safe:after:animate-ledger-pulse motion-safe:after:rounded-[50%] motion-safe:after:border motion-safe:after:border-purple motion-safe:after:content-['']"
+            aria-hidden="true"
+          />
           Working
         </span>
       </div>
-      <ol className="ledger__rows">
+      <ol className="grid py-2" data-rows>
         {rows.map((row) => (
-          <li className="ledger__row" data-status={row.status} key={row.task}>
-            <span className="ledger__time">{row.time}</span>
-            <span className="ledger__task">{row.task}</span>
-            <i className="ledger__dot" aria-hidden="true" />
+          <li
+            className="group grid grid-cols-[3.1rem_minmax(0,1fr)_auto] items-start gap-[0.85rem] border-b border-b-line-soft py-[0.7rem] text-[0.925rem] leading-[1.4] last:border-b-0 motion-safe:animate-row-in"
+            data-status={row.status}
+            key={row.task}
+          >
+            <span className="pt-[0.05rem] text-label text-ink-muted tabular-nums" data-time>
+              {row.time}
+            </span>
+            <span className="text-ink" data-task>
+              {row.task}
+            </span>
+            <i
+              className="mt-[0.4rem] size-[9px] rounded-[50%] bg-purple group-data-[status=review]:bg-pink group-data-[status=review]:inset-ring-[1.5px] group-data-[status=review]:inset-ring-purple"
+              aria-hidden="true"
+            />
           </li>
         ))}
       </ol>
-      <ul className="ledger__legend">
+      <ul className="flex flex-wrap gap-5 border-t border-t-line-soft pt-[0.9rem] text-copy text-ink-muted">
         {legend.map((item) => (
-          <li data-status={item.status} key={item.status}>
-            <i aria-hidden="true" />
+          <li
+            className="group inline-flex items-center gap-2"
+            data-status={item.status}
+            key={item.status}
+          >
+            <i
+              className="size-[9px] rounded-[50%] bg-purple group-data-[status=review]:bg-pink group-data-[status=review]:inset-ring-[1.5px] group-data-[status=review]:inset-ring-purple"
+              aria-hidden="true"
+            />
             {item.label}
           </li>
         ))}

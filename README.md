@@ -66,9 +66,60 @@ and a form, and link the page from `primaryNav` or `siteFooter`.
 - React 19, used as a template language: components render to plain HTML at build time and ship no
   JavaScript
 - TypeScript
-- Plain CSS in `src/index.css`
+- Tailwind CSS 4 (see below), with design tokens and base resets in `src/index.css`
 
 Copy lives in [`src/content/`](src/content) as JSON. Components handle layout only.
+
+### Styling: Tailwind
+
+Components style themselves with Tailwind utilities in their `className`; there are no
+hand-written component classes. [`src/tailwind.css`](src/tailwind.css) is the stylesheet the layout
+loads. It imports Tailwind's theme and utilities, pulls in [`src/index.css`](src/index.css), and maps
+the site's design tokens to utilities (`bg-purple`, `text-ink`, `font-heading`, `rounded-card`,
+`text-copy`, and so on).
+
+`index.css` is only the design tokens (`:root` custom properties) and the base element resets
+(`body`, `a`, headings, lists, focus and selection styles). It has no class selectors.
+
+- **Tokens stay in `index.css`.** Add or change a colour there (`--purple`), then expose it in the
+  `@theme inline` block in `tailwind.css` if utilities should reach it. `--radius-sm` and
+  `--shadow-lg` are the exception: Tailwind's `rounded-sm` and `shadow-lg` use those names, so they
+  are defined in `tailwind.css` for both to share.
+- **Utilities beat `index.css`.** It is loaded as the `components` layer, below `utilities`, so a
+  utility always wins over a base rule.
+- **No Tailwind reset.** Preflight is left out because `index.css` has its own; adding it would
+  restyle every page. Bare elements (headings, buttons, lists) keep the site's base styles.
+- **Type, sections and buttons are components, with props.** `Display1`, `Display2` and `Lead`
+  (`components/Headings.tsx`), `Section` and `SectionHead`, `Button`, `ItemGrid`, `StepList`,
+  `PageHero` and `SplitHero` take the choices that vary (`tone`, `size`, `family`, `variant`) as
+  props and pick whole class strings, so two competing utilities never land on one element.
+  Prefer adding a prop over passing extra classes that override a default.
+- **Shared pieces in `tailwind.css`.** `wrap` (the page-width column) and `bg-hero` (the hero wash)
+  are custom utilities; the scroll-reveal rules for `[data-reveal]` are there too, in the
+  `utilities` layer so their transition wins over a component's own.
+- **Breakpoints are Tailwind's defaults, and only three are used**: `sm` (640px), `md` (768px) and
+  `lg` (1024px). Write the narrow layout as `max-md:` and the wide one as `md:`; the two are exact
+  complements (`width < 48rem` and `width >= 48rem`), so no width falls between them. Do not write
+  pixel breakpoints such as `max-[900px]:`, which invite off-by-one pairs like `max-[900px]` with
+  `min-[901px]`. Nothing in JavaScript repeats a breakpoint: `scripts/nav.ts` asks the stylesheet
+  whether the drawer toggle is shown.
+- **What changes where.** `sm`: the footer's legal row, four-column steps and the post grid go to one
+  column. `md`: two-column tiles, the footer link columns, the systems list, the Security split and
+  the Company page stack. `lg`: the nav becomes the drawer, the hero and the workflow stack, and
+  three- and four-column tiles, steps and posts reflow. Row alignment across tiles switches on with
+  the columns (`md:` for two, `lg:` for three).
+- **Type sizes.** `text-copy` (1rem), `text-label` (0.875rem) and `text-title` (1.25rem) are the
+  site's three sizes; `text-sm` and friends are Tailwind's, which differ.
+- **Spacing utilities only exist for multiples of 0.25.** `mt-4`, `gap-1.5` and `h-8.5` work;
+  `mt-1.4` generates nothing and fails silently. Write other values as `mt-[0.35rem]`.
+- **Build a class from whole class names.** Tailwind finds classes by scanning the source, so
+  `` `bg-${x}` `` is invisible to it. Use a lookup object of complete class strings.
+- **Only `.astro`, `.tsx` and `.ts` files are scanned**, so a class must appear in one of them.
+  Tailwind also generates any utility whose name appears in those files, even in a comment, which
+  is harmless unless an element has that class.
+- **Formatting.** `oxfmt` sorts utility classes (`sortTailwindcss` in `.oxfmtrc.json`). The
+  recommended Tailwind CSS IntelliSense extension is pointed at `src/tailwind.css` in
+  `.vscode/settings.json`.
 
 The only JavaScript a visitor downloads is the few-KB script bundle from
 [`src/scripts/`](src/scripts): the header menus, scroll reveals, the activity ledger and the

@@ -1,4 +1,5 @@
 import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 // Static output, one HTML file per page (placement-desk.html, served at
@@ -7,6 +8,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://www.thirdplane.com",
   integrations: [react()],
+  vite: { plugins: [tailwindcss()] },
   trailingSlash: "never",
   build: { format: "file" },
 });

@@ -6,9 +6,9 @@ const nav = document.querySelector<HTMLElement>("[data-nav]");
 
 if (nav) {
   const toggle = nav.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
-  const drawer = nav.querySelector<HTMLElement>(".nav__drawer")!;
+  const drawer = nav.querySelector<HTMLElement>("[data-nav-drawer]")!;
   const menus = [...nav.querySelectorAll<HTMLElement>("[data-menu]")];
-  const links = nav.querySelector<HTMLElement>(".nav__links")!;
+  const links = nav.querySelector<HTMLElement>("[data-nav-links]")!;
 
   let drawerOpen = false;
   let openMenu: HTMLElement | null = null;
@@ -59,7 +59,7 @@ if (nav) {
 
   // Following a link closes whatever it was in.
   nav.addEventListener("click", (event) => {
-    if ((event.target as Element).closest(".nav__panel a, .nav__drawer a")) closeAll();
+    if ((event.target as Element).closest("[data-nav-panel] a, [data-nav-drawer] a")) closeAll();
   });
 
   window.addEventListener("keydown", (event) => {
@@ -74,7 +74,10 @@ if (nav) {
   });
 
   window.addEventListener("resize", () => {
-    if (drawerOpen && window.matchMedia("(min-width: 1021px)").matches) {
+    // The toggle is only displayed where the drawer is (see Header.tsx), so once
+    // it is gone there is no drawer to leave open. Asking the stylesheet keeps
+    // the breakpoint in one place.
+    if (drawerOpen && getComputedStyle(toggle).display === "none") {
       drawerOpen = false;
       render();
     }

@@ -6,17 +6,19 @@ import { Section } from "./Section";
 export function Showcase() {
   if (!showcase.src) return null;
   return (
-    <Section tone="white" className="showcase" id="video" title={showcase.title} align="center">
-      <figure className="showcase__frame" data-reveal>
+    <Section tone="white" id="video" title={showcase.title} align="center">
+      <figure className="m-0 grid justify-items-center gap-4" data-reveal>
         <video
-          className="showcase__video"
+          className="aspect-video w-full max-w-[1040px] rounded-card bg-deep shadow-lg"
           src={showcase.src}
           poster={showcase.poster || undefined}
           controls
           playsInline
           preload="metadata"
         />
-        {showcase.caption ? <figcaption className="footnote">{showcase.caption}</figcaption> : null}
+        {showcase.caption ? (
+          <figcaption className="mt-8 text-copy text-ink-muted">{showcase.caption}</figcaption>
+        ) : null}
       </figure>
     </Section>
   );
