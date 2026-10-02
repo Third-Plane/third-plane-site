@@ -17,26 +17,24 @@ export function Integrations() {
   return (
     <>
       <Section tone="white" id="systems" title={page.systems.title}>
-        <div className="border-t-[1.5px] border-t-line">
+        <div className="border-t border-t-border">
           {page.systems.items.slice(0, 4).map((item, i) => (
             <article
-              className="grid grid-cols-[minmax(11rem,0.32fr)_minmax(0,1fr)] items-start gap-[clamp(1.25rem,4vw,4rem)] border-b border-b-line-soft py-[clamp(1.75rem,3vw,2.5rem)] max-md:grid-cols-1 max-md:gap-3"
+              className="grid items-start gap-3 border-b border-b-border/50 py-8 md:grid-cols-4 md:gap-10"
               {...reveal(i)}
               key={item.title}
             >
-              <div className="grid content-start gap-[0.45rem]">
-                <h3 className="font-heading text-[clamp(1.25rem,1.6vw,1.55rem)] leading-[1.2] font-medium tracking-head-tight text-balance text-ink">
-                  {item.title}
-                </h3>
-              </div>
-              <div className="grid max-w-[62ch] justify-items-start gap-4">
-                <p className="text-copy text-pretty text-ink-body">
+              <h3 className="font-heading text-2xl leading-tight font-medium tracking-tight text-balance text-foreground">
+                {item.title}
+              </h3>
+              <div className="grid max-w-[62ch] justify-items-start gap-4 md:col-span-3">
+                <p className="text-base text-pretty text-muted-foreground">
                   {item.link || item.names ? (
                     <>
-                      <strong className="font-semibold text-ink">
+                      <strong className="font-semibold text-foreground">
                         {item.link ? (
                           <AppLink
-                            className="underline-offset-[0.15em] hover:text-purple"
+                            className="underline-offset-[0.15em] hover:text-accent"
                             href={item.link.href}
                           >
                             {item.link.label}

@@ -10,9 +10,7 @@ export function NotFoundHero() {
       title={["Page not found."]}
       lead="The page you were looking for has moved or no longer exists."
     >
-      <Button href="/" variant="dark">
-        Back to the homepage
-      </Button>
+      <Button href="/">Back to the homepage</Button>
     </PageHero>
   );
 }

@@ -9,7 +9,7 @@ export function Showcase() {
     <Section tone="white" id="video" title={showcase.title} align="center">
       <figure className="m-0 grid justify-items-center gap-4" data-reveal>
         <video
-          className="aspect-video w-full max-w-[1040px] rounded-card bg-deep shadow-lg"
+          className="aspect-video w-full max-w-260 rounded-2xl bg-deep shadow-2xl"
           src={showcase.src}
           poster={showcase.poster || undefined}
           controls
@@ -17,7 +17,9 @@ export function Showcase() {
           preload="metadata"
         />
         {showcase.caption ? (
-          <figcaption className="mt-8 text-copy text-ink-muted">{showcase.caption}</figcaption>
+          <figcaption className="mt-8 text-base text-subtle-foreground">
+            {showcase.caption}
+          </figcaption>
         ) : null}
       </figure>
     </Section>

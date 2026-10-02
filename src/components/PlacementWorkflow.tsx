@@ -2,6 +2,7 @@ import { placementDesk } from "../data/content";
 import { ParticleField } from "./ParticleField";
 import { Section } from "./Section";
 import { Arrow } from "./Ui";
+import { cn } from "../lib/style";
 
 // The Placement Desk's three stages, from work going in to results coming
 // back, with the steps under each. Shown on the homepage and on
@@ -9,34 +10,33 @@ import { Arrow } from "./Ui";
 function PlacementWorkflow() {
   return (
     <div
-      className="mt-1 grid auto-rows-[auto_1fr] grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] items-stretch gap-x-(--gap) gap-y-0 max-lg:auto-rows-auto max-lg:grid-cols-1 max-lg:gap-y-(--gap)"
+      className="mt-1 grid gap-5 lg:auto-rows-[auto_1fr] lg:grid-cols-[3fr_4fr_3fr] lg:gap-y-0"
       data-reveal
     >
       {placementDesk.work.stages.map((stage, i) => (
         <div
-          className={`relative row-span-2 grid grid-rows-subgrid rounded-card border p-(--pad) max-lg:row-auto max-lg:block ${
-            stage.accent
-              ? "border-transparent bg-purple text-on-dark"
-              : "border-line-dark bg-[#f6f3f00a]"
-          }`}
+          className={cn(
+            "relative rounded-2xl border p-7 lg:row-span-2 lg:grid lg:grid-rows-subgrid",
+            stage.accent ? "surface-accent border-transparent" : "border-border bg-card",
+          )}
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2-11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2-11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
+            <Arrow className="absolute -top-5.25 left-7 z-1 size-5.5 rotate-90 rounded-full bg-background p-0.5 text-accent lg:top-1/2 lg:-left-5.25 lg:-translate-y-1/2 lg:rotate-0" />
           ) : null}
-          <p className="mb-[1.15rem] font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-[1.15] font-medium tracking-head-tight text-on-dark">
+          <p className="mb-5 font-heading text-2xl leading-tight font-medium tracking-tight text-foreground">
             {stage.kicker}
           </p>
           <ul className="grid content-start">
             {stage.steps.map((step) => (
               <li
-                className="border-b border-b-line-dark py-[0.85rem] first:pt-0 last:border-b-0 last:pb-0"
+                className="border-b border-b-border py-3.5 first:pt-0 last:border-b-0 last:pb-0"
                 key={step.title}
               >
-                <p className="font-heading text-copy font-medium tracking-head text-on-dark">
+                <p className="font-heading text-base font-medium tracking-tight text-foreground">
                   {step.title}
                 </p>
-                <p className="mt-[0.3rem] text-copy text-pretty text-on-dark-muted">{step.body}</p>
+                <p className="mt-1 text-base text-pretty text-muted-foreground">{step.body}</p>
               </li>
             ))}
           </ul>

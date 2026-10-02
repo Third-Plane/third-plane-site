@@ -16,28 +16,20 @@ export function Cta({
   href?: string;
   email?: string;
 }) {
-  const mailto = `mailto:${email}`;
   return (
-    <Section id="contact">
-      <div
-        className="relative overflow-hidden rounded-[calc(var(--radius)+8px)] bg-deep p-[clamp(2rem,5vw,4.5rem)] text-on-dark"
-        data-reveal
-      >
-        <div className="relative max-w-160">
-          <Display2 tone="dark">{title}</Display2>
-          <p className="mt-5 text-copy text-pretty text-on-dark-muted">{body}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-5">
-            <Button variant="light" href={href}>
-              {label}
-            </Button>
-            <a
-              className="border-b-[1.5px] border-b-transparent font-medium text-pink transition-[border-color] duration-200 hover:border-b-pink"
-              href={mailto}
-            >
-              {email}
-            </a>
-          </div>
-        </div>
+    <Section tone="white">
+      <Display2>{title}</Display2>
+      <p className="mt-5 max-w-[80ch] text-base text-muted-foreground">{body}</p>
+      <div className="mt-8 flex flex-wrap items-center gap-5">
+        <Button href={href}>{label}</Button>
+        {email && (
+          <a
+            className="border-b border-b-transparent font-medium text-accent transition-colors duration-200 hover:border-b-accent"
+            href={`mailto:${email}`}
+          >
+            {email}
+          </a>
+        )}
       </div>
     </Section>
   );

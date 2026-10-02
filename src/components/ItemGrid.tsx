@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 import { AppLink, Arrow } from "./Ui";
 
 type Item = { title: string; body?: string; href?: string };
@@ -8,44 +8,40 @@ type Item = { title: string; body?: string; href?: string };
 // An item with an `href` is a link, with an arrow after its title.
 type Variant = "card" | "outline" | "point";
 
+// The columns show from md for two (and four, as two at first), from lg for
+// three.
 const COLUMNS = {
-  2: "grid-cols-2 max-md:grid-cols-1",
-  3: "grid-cols-3 max-lg:grid-cols-1",
-  4: "grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1",
+  2: "md:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "md:grid-cols-2 lg:grid-cols-4",
 } as const;
 
-// Each item is a subgrid spanning one set of rows (media, title, body), so
-// titles and bodies line up across a row and every body row shares one height.
-// It switches on exactly when the columns show: from md for two columns, from
-// lg for three. Points only do this when they have a body.
-function gridRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
-  if (variant === "point") {
-    return columns === 3 && hasBody ? "lg:auto-rows-[auto_1fr] lg:items-start" : "";
-  }
-  return columns === 3 ? "lg:auto-rows-[auto_auto_1fr]" : "md:auto-rows-[auto_1fr] md:items-start";
-}
+// Once the columns show, each item is a subgrid spanning its rows (media,
+// title, body), so titles and bodies line up across a row and every body row
+// shares one height. By breakpoint, then by how many rows an item has.
+const SUBGRID = {
+  md: {
+    2: { grid: "md:auto-rows-[auto_1fr]", item: "md:row-span-2 md:grid-rows-subgrid" },
+    3: { grid: "md:auto-rows-[auto_auto_1fr]", item: "md:row-span-3 md:grid-rows-subgrid" },
+  },
+  lg: {
+    2: { grid: "lg:auto-rows-[auto_1fr]", item: "lg:row-span-2 lg:grid-rows-subgrid" },
+    3: { grid: "lg:auto-rows-[auto_auto_1fr]", item: "lg:row-span-3 lg:grid-rows-subgrid" },
+  },
+} as const;
 
-function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
-  if (variant === "point") {
-    return columns === 3 && hasBody ? "lg:row-span-2 lg:grid lg:grid-rows-subgrid" : "";
-  }
-  return columns === 3
-    ? "lg:row-span-3 lg:grid lg:grid-rows-subgrid"
-    : "md:row-span-2 md:grid md:grid-rows-subgrid";
-}
-
+// Each item is a grid with its own row gap, which also holds in the subgrid
+// (instead of the gap between items).
 const BOX = {
-  card: "rounded-card bg-white p-(--pad) shadow-card transition-[translate,box-shadow] duration-250 hover:-translate-y-0.5 hover:shadow-lg",
-  outline: "rounded-card border border-line bg-white p-(--pad) shadow-none",
-  outlineDense: "rounded-card border border-line bg-white px-6 py-[1.35rem] shadow-none",
+  card: "grid gap-y-5 rounded-2xl bg-card p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+  outline: "grid gap-y-5 rounded-2xl border border-border bg-card p-7 shadow-none",
   point:
-    "border-t-[1.5px] border-t-line pt-6 transition-[border-color] duration-200 hover:border-t-purple",
+    "grid gap-y-3 border-t border-t-border pt-6 transition-colors duration-200 hover:border-t-accent",
 } as const;
 
 const TITLE = {
-  tile: "font-heading text-title leading-[1.2] font-medium tracking-head text-balance text-ink",
-  point: "mb-3 font-heading text-title font-medium tracking-head text-ink",
-  pointTight: "mb-[0.55rem] font-heading text-title font-medium tracking-head text-ink",
+  tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-foreground",
+  point: "font-heading text-xl font-medium tracking-tight text-foreground",
 } as const;
 
 // A grid of titled items that reveal in turn. `media` adds something above the
@@ -66,31 +62,40 @@ export function ItemGrid({
   dense?: boolean;
   spaced?: boolean;
 }) {
-  const gap = spaced ? "gap-8 items-start" : "gap-(--gap)";
-  const hasBody = items.some((item) => item.body);
-  const box = variant === "outline" && dense ? BOX.outlineDense : BOX[variant];
-  const title = variant === "point" ? (spaced ? TITLE.pointTight : TITLE.point) : TITLE.tile;
+  const rows = (media ? 1 : 0) + 1 + (items.some((item) => item.body) ? 1 : 0);
+  const subgrid = rows > 1 ? SUBGRID[columns === 3 ? "lg" : "md"][rows as 2 | 3] : undefined;
+  const className = cn(
+    BOX[variant],
+    variant === "outline" && dense && "px-6 py-5",
+    variant === "point" && spaced && "gap-y-2",
+    subgrid?.item,
+  );
+  const title = variant === "point" ? TITLE.point : TITLE.tile;
 
   return (
-    <div
-      className={`grid ${COLUMNS[columns]} ${gap} ${gridRows(variant, columns, hasBody)}`.trim()}
-    >
+    <div className={cn("grid", COLUMNS[columns], spaced ? "gap-8" : "gap-5", subgrid?.grid)}>
       {items.map((item, i) => {
-        const className = `${box} ${itemRows(variant, columns, !!item.body)}`.trim();
         const content = (
           <>
             {media?.(i)}
             <h3 className={title}>
               {item.title}
               {item.href ? (
-                <Arrow className="ml-[0.4rem] inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-0.75" />
+                <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover:translate-x-0.75" />
               ) : null}
             </h3>
-            {item.body ? <p className="text-copy text-pretty text-ink-body">{item.body}</p> : null}
+            {item.body ? (
+              <p className="text-base text-pretty text-muted-foreground">{item.body}</p>
+            ) : null}
           </>
         );
         return item.href ? (
-          <AppLink className={`group ${className}`} href={item.href} key={item.href} {...reveal(i)}>
+          <AppLink
+            className={cn("group", className)}
+            href={item.href}
+            key={item.href}
+            {...reveal(i)}
+          >
             {content}
           </AppLink>
         ) : (

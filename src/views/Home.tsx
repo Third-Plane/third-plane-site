@@ -6,36 +6,15 @@ import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 
-// The two operating models, one plain and one accented. Each part's colours are
-// listed whole so Tailwind can see them; the accented model's last step is
-// filled.
-const MODEL = {
-  plain: {
-    box: "border-line bg-white hover:border-[color-mix(in_srgb,var(--purple)_35%,var(--line))]",
-    kicker: "text-ink",
-    step: "border-line bg-cream text-ink",
-    lastStep: "border-line bg-cream text-ink",
-    arrow: "text-ink-muted",
-    note: "text-ink-body",
-  },
-  accent: {
-    box: "border-transparent bg-purple hover:border-transparent hover:bg-[color-mix(in_srgb,var(--purple)_88%,var(--white))]",
-    kicker: "text-on-dark",
-    step: "border-[#ffffff59] bg-transparent text-on-dark",
-    lastStep: "border-white bg-white text-purple",
-    arrow: "text-[#ffffffb3]",
-    note: "text-[#ffffffe0]",
-  },
-} as const;
+// The two operating models, one a plain card and one accented (its own surface,
+// see index.css). The accented model's last step is filled.
 
 // The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function HomeHero() {
-  return (
-    <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button variant="dark" />} />
-  );
+  return <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button />} />;
 }
 
 export function Home() {
@@ -49,45 +28,49 @@ export function Home() {
         <ItemGrid variant="outline" columns={2} items={problem.points} />
       </Section>
 
-      <Section id="approach" title={approach.title} body={approach.body}>
-        <div className="grid gap-(--gap)">
+      <Section id="approach" tone="blend" title={approach.title} body={approach.body}>
+        <div className="grid gap-5">
           {approach.models.map((model, i) => {
-            const tone = model.accent ? MODEL.accent : MODEL.plain;
             return (
               <div
-                className={`rounded-card border p-(--pad) transition-[border-color,background] duration-200 ${tone.box}`}
+                className={cn(
+                  "rounded-2xl border p-7 transition-colors duration-200 hover:border-accent/45",
+                  model.accent ? "surface-accent border-transparent" : "border-border bg-card",
+                )}
                 {...reveal(i)}
                 key={model.kicker}
               >
                 <p
-                  className={`mb-5 font-heading text-title leading-[1.2] font-medium tracking-head ${tone.kicker}`}
+                  className={cn(
+                    "mb-5 font-heading text-xl leading-tight font-medium tracking-tight text-foreground",
+                  )}
                 >
                   {model.kicker}
                 </p>
-                <div
-                  className="flex flex-wrap items-center gap-x-[0.35rem] gap-y-[0.65rem]"
-                  role="list"
-                >
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-2.5" role="list">
                   {model.chain.map((step, stepIndex) => (
                     <span
-                      className="inline-flex items-center gap-x-3 gap-y-[0.6rem]"
+                      className="inline-flex items-center gap-x-3 gap-y-2.5"
                       role="listitem"
                       key={step}
                     >
                       {stepIndex > 0 ? (
-                        <Arrow className={`size-4.5 flex-none ${tone.arrow}`} />
+                        <Arrow className="size-4.5 flex-none text-subtle-foreground" />
                       ) : null}
                       <span
-                        className={`inline-flex items-center rounded-pill border-[1.5px] px-[1.1rem] py-[0.7rem] font-heading text-copy font-medium tracking-head whitespace-nowrap ${
-                          stepIndex === model.chain.length - 1 ? tone.lastStep : tone.step
-                        }`}
+                        className={cn(
+                          "inline-flex items-center rounded-full border px-4 py-3 font-heading text-base font-medium tracking-tight whitespace-nowrap",
+                          model.accent && stepIndex === model.chain.length - 1
+                            ? "border-primary bg-primary text-primary-foreground"
+                            : "border-border bg-muted text-foreground",
+                        )}
                       >
                         {step}
                       </span>
                     </span>
                   ))}
                 </div>
-                <p className={`mt-5 max-w-[64ch] text-copy ${tone.note}`}>{model.note}</p>
+                <p className="mt-5 max-w-[64ch] text-base text-muted-foreground">{model.note}</p>
               </div>
             );
           })}

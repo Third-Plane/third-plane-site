@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 import { Display1, Lead } from "./Headings";
 import { Hero, Leave } from "./Hero";
 import { StackedTitle } from "./StackedTitle";
@@ -11,17 +11,17 @@ export type HeroFamily = "evidence" | "editorial" | "careers";
 // tighter, with a smaller title and a looser lead.
 const FAMILY = {
   evidence: {
-    padding: "pt-[clamp(3rem,6vw,5.5rem)] pb-[clamp(3.5rem,7vw,6rem)]",
+    padding: "pt-17 pb-19",
     lead: "mt-7 max-w-[46ch]",
     size: "hero",
   },
   careers: {
-    padding: "pt-[clamp(3rem,6vw,5.5rem)] pb-[clamp(3.5rem,7vw,6rem)]",
+    padding: "pt-17 pb-19",
     lead: "mt-7 max-w-[46ch]",
     size: "hero",
   },
   editorial: {
-    padding: "pt-[clamp(2rem,4vw,3.25rem)] pb-[clamp(2.25rem,4.5vw,3.75rem)]",
+    padding: "pt-10 pb-12",
     lead: "mt-4 max-w-[60ch]",
     size: "editorial",
   },
@@ -44,7 +44,7 @@ export function PageHero({
 
   const heading =
     family === "careers" ? (
-      <StackedTitle lines={title} secondLine="ink" />
+      <StackedTitle lines={title} secondLine="foreground" />
     ) : (
       <Display1 size={size} wrap="pretty" {...reveal(1)}>
         {title.join(" ")}
@@ -53,12 +53,12 @@ export function PageHero({
 
   return (
     <Hero id="top">
-      <div className={`px-(--gutter) ${padding}`}>
-        <div className="pointer-events-auto relative z-3 max-w-[720px]">
+      <div className={cn("px-(--gutter)", padding)}>
+        <div className="pointer-events-auto relative z-3 max-w-180">
           <Leave tier="heading">
             {status ? (
               <div data-reveal className="mb-5 flex flex-col items-start gap-3">
-                <span className="inline-block w-fit rounded-pill bg-pink px-[0.7rem] py-[0.3rem] text-label font-medium text-deep">
+                <span className="inline-block w-fit rounded-full bg-pink px-3 py-1 text-sm font-medium text-deep">
                   {status}
                 </span>
               </div>
@@ -66,7 +66,7 @@ export function PageHero({
             {heading}
           </Leave>
           <Leave tier="lead">
-            <Lead tone="body" className={leadClass} {...reveal(2)}>
+            <Lead tone="muted" className={leadClass} {...reveal(2)}>
               {lead}
             </Lead>
           </Leave>

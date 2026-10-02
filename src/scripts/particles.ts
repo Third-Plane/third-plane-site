@@ -11,9 +11,7 @@
 
 const TONES: Record<string, string> = {
   purple: "99,56,227",
-  deep: "45,31,87",
   cream: "246,243,240",
-  white: "255,255,255",
 };
 
 type Point = {

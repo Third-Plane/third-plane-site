@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 import { SectionHead } from "./Ui";
+import { cn } from "../lib/style";
 
 export type SectionTone = "white" | "blend" | "deep";
 
-const TONE: Record<SectionTone | "cream", string> = {
-  cream: "bg-cream",
-  white: "bg-white",
-  blend: "bg-(image:--blend)",
-  deep: "bg-deep text-on-dark-muted",
+// Each tone is a surface (see index.css), which sets the colours of the band
+// and everything in it.
+const SURFACE: Record<SectionTone, string> = {
+  white: "surface-white",
+  blend: "surface-blend",
+  deep: "surface-deep",
 };
 
 // A page section: the band (a rounded card; <main> in Base.astro spaces them),
@@ -26,7 +28,7 @@ export function Section({
   children,
 }: {
   id?: string;
-  tone?: SectionTone;
+  tone: SectionTone;
   className?: string;
   containerClassName?: string;
   title?: string;
@@ -36,27 +38,15 @@ export function Section({
   backdrop?: ReactNode;
   children?: ReactNode;
 }) {
-  const sectionClass = [
-    "relative overflow-hidden rounded-xl py-(--section-y)",
-    TONE[tone ?? "cream"],
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
-  const containerClass = ["wrap", containerClassName].filter(Boolean).join(" ");
-
   return (
-    <section className={sectionClass} id={id}>
+    <section
+      className={cn("relative overflow-hidden rounded-xl py-20", SURFACE[tone], className)}
+      id={id}
+    >
       {backdrop}
-      <div className={containerClass}>
+      <div className={cn("wrap", containerClassName)}>
         {title ? (
-          <SectionHead
-            title={title}
-            body={body}
-            align={align}
-            dark={tone === "deep"}
-            compact={compactHead}
-          />
+          <SectionHead title={title} body={body} align={align} compact={compactHead} />
         ) : null}
         {children}
       </div>

@@ -18,28 +18,28 @@ export function Resources({ posts }: { posts: Post[] }) {
     <>
       <Section tone="white" id="posts">
         {posts.length ? (
-          <ul className="grid grid-cols-3 gap-(--gap) has-[>:only-child]:grid-cols-[minmax(0,28rem)] max-lg:grid-cols-2 max-sm:grid-cols-1">
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
               <li key={post.slug} {...reveal(i % 3)}>
                 <AppLink
-                  className="grid h-full content-start gap-[0.9rem] rounded-card bg-cream p-(--pad) text-ink transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-card"
+                  className="grid h-full content-start gap-3.5 rounded-2xl bg-muted p-7 text-foreground transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   href={`/resources/${post.slug}`}
                 >
                   <PostMeta post={post} />
-                  <h2 className="font-heading text-title leading-[1.15] font-medium tracking-head text-balance">
+                  <h2 className="font-heading text-xl leading-tight font-medium tracking-tight text-balance">
                     {post.title}
                   </h2>
-                  <p className="text-copy text-ink-body">{post.standfirst}</p>
-                  <span className="mt-auto inline-flex items-center gap-[0.4rem] font-medium text-purple">
+                  <p className="text-base text-muted-foreground">{post.standfirst}</p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 font-medium text-accent">
                     Read
-                    <Arrow className="size-4 transition-[transform] duration-200" />
+                    <Arrow className="size-4 transition-transform duration-200" />
                   </span>
                 </AppLink>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="max-w-[60ch] text-copy text-ink">Nothing published yet.</p>
+          <p className="max-w-[60ch] text-base text-foreground">Nothing published yet.</p>
         )}
       </Section>
 

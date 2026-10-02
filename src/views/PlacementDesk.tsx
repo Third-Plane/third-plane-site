@@ -12,10 +12,10 @@ import { Button } from "../components/Ui";
 export function PlacementDeskHero() {
   return (
     <SplitHero
-      secondLine="ink"
+      secondLine="foreground"
       title={placementDesk.title}
       lead={placementDesk.problem}
-      actions={<Button variant="dark">{placementDesk.cta.label}</Button>}
+      actions={<Button>{placementDesk.cta.label}</Button>}
     />
   );
 }

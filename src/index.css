@@ -1,43 +1,91 @@
-﻿:root {
-  /* --radius-sm and --shadow-lg live in tailwind.css, where Tailwind's rounded-sm
-     and shadow-lg read them too. */
+﻿/* The palette. Components use the semantic colours below instead (and the
+   palette only for a few fixed brand marks); the surfaces map one to the other. */
+:root {
   --cream: #f6f3f0;
-  --white: #fff;
   --purple: #6338e3;
-  --purple-hover: #5530c9;
   --deep: #2d1f57;
-  --deep-2: #362765;
   --pink: #f2d8ff;
   --blue: #e9f2f7;
   --blend: linear-gradient(180deg, var(--blue) 0%, var(--pink) 100%);
   --lavender: color-mix(in srgb, var(--pink) 32%, var(--cream));
-  --ink: #2d1f57;
   --ink-body: #4a4166;
   --ink-muted: #7a7291;
-  --on-dark: #f6f3f0;
-  --on-dark-muted: #f6f3f0b8;
-  --on-dark-faint: #f6f3f080;
-  --line: #2d1f571f;
-  --line-soft: #2d1f5712;
-  --line-dark: #f6f3f029;
-  --line-purple: #6338e347;
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
   /* The header: its 76px bar plus the 1px border under it (Header.tsx). */
   --nav-h: 77px;
-  /* The hero's bottom corners (see hero-collapse in tailwind.css). */
-  --hero-radius: 16px;
-  --section-y: clamp(5rem, 9vw, 8.5rem);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --container: 1200px;
-  --gap: clamp(1rem, 1.6vw, 1.5rem);
-  --pad: clamp(1.5rem, 2.4vw, 2.25rem);
-  --radius: 20px;
-  --pill: 999px;
-  --shadow: 0 10px 30px #2d1f5714;
-  --type-xs: 0.875rem;
-  --type-sm: 1rem;
-  --type-md: 1.25rem;
+}
+
+/* Surfaces. Each sets the semantic colours (text-foreground, bg-card,
+   border-border, ...; see @theme in tailwind.css) for everything inside it,
+   with its own background and default text colour, so a component reads
+   correctly on whichever surface it sits. The page itself (:root) is cream.
+
+   foreground is headings and emphasis, muted-foreground body copy and
+   subtle-foreground meta. card is a tile on the surface; muted a quieter fill.
+   primary is the button. */
+:root,
+.surface-white,
+.surface-blend,
+.surface-hero {
+  --background: var(--cream);
+  --foreground: var(--deep);
+  --muted-foreground: var(--ink-body);
+  --subtle-foreground: var(--ink-muted);
+  --accent: var(--purple);
+  --border: color-mix(in oklab, var(--deep) 10%, transparent);
+  --card: #fff;
+  --muted: var(--cream);
+  --primary: var(--deep);
+  --primary-foreground: #fff;
+}
+.surface-white {
+  --background: #fff;
+}
+/* The hero's band paints its own wash (bg-hero), since only the band closes as
+   the page scrolls; the surface sets just its colours. */
+.surface-hero {
+  --background: var(--lavender);
+}
+.surface-deep,
+.surface-accent {
+  --foreground: var(--cream);
+  --muted-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
+  --subtle-foreground: color-mix(in oklab, var(--cream) 50%, transparent);
+  --accent: var(--pink);
+  --border: color-mix(in oklab, var(--cream) 15%, transparent);
+  --card: color-mix(in oklab, var(--cream) 5%, transparent);
+  --muted: var(--card);
+  --primary: #fff;
+  --primary-foreground: var(--deep);
+}
+.surface-deep {
+  --background: var(--deep);
+}
+/* A purple tile on a band. It keeps the band's --background, so something
+   inside it that sits over the band (an arrow in a gap) still matches it. */
+.surface-accent {
+  --muted-foreground: color-mix(in oklab, var(--cream) 90%, transparent);
+  --subtle-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
+  --border: color-mix(in oklab, var(--cream) 35%, transparent);
+  --muted: transparent;
+  --primary-foreground: var(--purple);
+  background-color: var(--purple);
+}
+.surface-white,
+.surface-deep {
+  background-color: var(--background);
+}
+.surface-blend {
+  background-image: var(--blend);
+}
+.surface-white,
+.surface-blend,
+.surface-deep,
+.surface-accent {
+  color: var(--muted-foreground);
 }
 *,
 :before,
@@ -50,12 +98,12 @@ html {
 }
 body {
   font-family: var(--font-body);
-  color: var(--ink-body);
-  background: var(--cream);
+  color: var(--muted-foreground);
+  background: var(--background);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
   margin: 0;
-  font-size: var(--type-sm);
+  font-size: 1rem;
   line-height: 1.6;
 }
 img,
@@ -81,7 +129,7 @@ ol {
   list-style: none;
 }
 :focus-visible {
-  outline: 2px solid var(--purple);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
