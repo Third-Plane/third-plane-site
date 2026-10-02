@@ -22,7 +22,7 @@ function PlacementWorkflow() {
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2_-_11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2_-_11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
+            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2-11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2-11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
           ) : null}
           <p className="mb-[1.15rem] font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-[1.15] font-medium tracking-head-tight text-on-dark">
             {stage.kicker}

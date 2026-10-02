@@ -42,7 +42,7 @@ export function Header() {
           {primaryNav.menus.map((group) => (
             <div className="group/menu relative" data-open="false" data-menu key={group.label}>
               <button
-                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-xl! font-bold! text-ink transition-[color] duration-200 [border:0] [font:inherit] hover:text-purple"
+                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-ink transition-[color] duration-200 [border:0] [font:inherit] hover:text-purple"
                 type="button"
                 aria-expanded="false"
                 data-menu-btn
@@ -50,7 +50,7 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%_+_0.9rem)] -left-3 hidden w-[320px] gap-[0.15rem] rounded-card border border-line-soft bg-white p-[0.6rem] shadow-lg group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-[320px] gap-[0.15rem] rounded-card border border-line-soft bg-white p-[0.6rem] shadow-lg group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-nav-panel
               >
@@ -102,7 +102,7 @@ export function Header() {
       </div>
 
       <div
-        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh_-_76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-line-soft max-lg:data-[open=true]:bg-lavender max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
+        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh-76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-line-soft max-lg:data-[open=true]:bg-lavender max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
         data-nav-drawer
       >
