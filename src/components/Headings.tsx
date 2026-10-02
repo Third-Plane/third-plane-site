@@ -18,7 +18,7 @@ export function Display1({
   return (
     <h1
       className={cn(
-        "font-heading font-medium tracking-tighter text-ink",
+        "font-heading font-medium tracking-tighter text-deep",
         DISPLAY_1_SIZE[size],
         wrap === "balance" ? "text-balance" : "text-pretty",
         className,
@@ -28,7 +28,7 @@ export function Display1({
   );
 }
 
-const DISPLAY_2_TONE = { light: "text-ink", dark: "text-on-dark" } as const;
+const DISPLAY_2_TONE = { light: "text-deep", dark: "text-cream" } as const;
 
 export function Display2({
   tone = "light",
@@ -51,7 +51,7 @@ export function Display2({
 // hero. The caller sets the measure (max-w-*) and any top margin.
 const LEAD_TONE = {
   purple: "text-purple font-medium",
-  dark: "text-on-dark-muted font-medium",
+  dark: "text-cream/70 font-medium",
   body: "text-ink-body font-normal",
 } as const;
 

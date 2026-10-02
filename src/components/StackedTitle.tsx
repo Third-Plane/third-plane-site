@@ -10,7 +10,7 @@ export function StackedTitle({
   lines: string[];
   secondLine?: "purple" | "ink";
 }) {
-  const tone = secondLine === "purple" ? "text-purple" : "text-ink";
+  const tone = secondLine === "purple" ? "text-purple" : "text-deep";
   return (
     <Display1 {...reveal(1)}>
       {lines.map((line, i) => (

@@ -15,7 +15,7 @@ function LinkedInMark() {
   );
 }
 
-const iconLink = "inline-flex text-on-dark-faint transition-colors duration-200 hover:text-pink";
+const iconLink = "inline-flex text-cream/50 transition-colors duration-200 hover:text-pink";
 
 // From lg up, where scroll-driven animation is available (see the scroll-linked
 // variant in tailwind.css), the footer is the inverse of the hero: pinned to the
@@ -28,28 +28,28 @@ const PINNED =
 export function Footer() {
   return (
     <footer
-      className={cn("mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-on-dark-muted", PINNED)}
+      className={cn("mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-cream/70", PINNED)}
       data-footer-reveal
     >
       <div className="flex justify-between gap-16 py-16 max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
-          <p className="mt-4 text-base text-on-dark-muted">{siteFooter.tagline}</p>
+          <p className="mt-4 text-base text-cream/70">{siteFooter.tagline}</p>
         </div>
         <div className="grid max-w-2xl flex-1 gap-12 sm:grid-cols-3">
           {siteFooter.columns.map((column) => (
             <nav
-              className="grid content-start gap-2.5 text-base text-on-dark"
+              className="grid content-start gap-2.5 text-base text-cream"
               aria-label={column.label}
               key={column.label}
             >
-              <p className="mb-1 text-sm font-medium tracking-widest text-on-dark-faint uppercase">
+              <p className="mb-1 text-sm font-medium tracking-widest text-cream/50 uppercase">
                 {column.label}
               </p>
               {column.links.map((link) => (
                 <NavEntry
                   className="transition-colors duration-200 hover:text-pink"
-                  disabledClassName="text-on-dark-faint"
+                  disabledClassName="text-cream/50"
                   href={link.href}
                   disabled={link.disabled}
                   key={link.label}
@@ -61,7 +61,7 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="flex h-19 items-center justify-between gap-4 text-sm text-on-dark-faint max-sm:flex-col">
+      <div className="flex h-19 items-center justify-between gap-4 text-sm text-cream/50 max-sm:flex-col">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <p>{siteFooter.location}</p>
           <AppLink className={iconLink} href={site.linkedin} aria-label="Third Plane on LinkedIn">

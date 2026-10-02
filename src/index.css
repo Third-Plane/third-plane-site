@@ -1,24 +1,13 @@
 ﻿:root {
   --cream: #f6f3f0;
-  --white: #fff;
   --purple: #6338e3;
-  --purple-hover: #5530c9;
   --deep: #2d1f57;
-  --deep-2: #362765;
   --pink: #f2d8ff;
   --blue: #e9f2f7;
   --blend: linear-gradient(180deg, var(--blue) 0%, var(--pink) 100%);
   --lavender: color-mix(in srgb, var(--pink) 32%, var(--cream));
-  --ink: #2d1f57;
   --ink-body: #4a4166;
   --ink-muted: #7a7291;
-  --on-dark: #f6f3f0;
-  --on-dark-muted: #f6f3f0b8;
-  --on-dark-faint: #f6f3f080;
-  --line: #2d1f571f;
-  --line-soft: #2d1f5712;
-  --line-dark: #f6f3f029;
-  --line-purple: #6338e347;
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
   /* The header: its 76px bar plus the 1px border under it (Header.tsx). */

@@ -28,7 +28,7 @@ export function StepList({
       {steps.map((step, i) => (
         <li
           className={cn(
-            "rounded-2xl border border-line-dark bg-cream/5 p-7 sm:grid sm:grid-rows-subgrid",
+            "rounded-2xl border border-cream/15 bg-cream/5 p-7 sm:grid sm:grid-rows-subgrid",
             numbered ? "sm:row-span-3" : "sm:row-span-2",
           )}
           {...reveal(i)}
@@ -39,10 +39,10 @@ export function StepList({
               {String(i + 1).padStart(2, "0")}
             </span>
           ) : null}
-          <h3 className="mb-2.5 font-heading text-xl font-medium tracking-tight text-on-dark">
+          <h3 className="mb-2.5 font-heading text-xl font-medium tracking-tight text-cream">
             {step.title}
           </h3>
-          <p className="text-base text-pretty text-on-dark-muted">{step.body}</p>
+          <p className="text-base text-pretty text-cream/70">{step.body}</p>
         </li>
       ))}
     </ol>

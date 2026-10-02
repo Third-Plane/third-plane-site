@@ -20,12 +20,12 @@ export function Cta({
   return (
     <Section id="contact">
       <div
-        className="relative overflow-hidden rounded-3xl bg-deep p-8 text-on-dark md:p-13"
+        className="relative overflow-hidden rounded-3xl bg-deep p-8 text-cream md:p-13"
         data-reveal
       >
         <div className="relative max-w-160">
           <Display2 tone="dark">{title}</Display2>
-          <p className="mt-5 text-base text-pretty text-on-dark-muted">{body}</p>
+          <p className="mt-5 text-base text-pretty text-cream/70">{body}</p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Button variant="light" href={href}>
               {label}

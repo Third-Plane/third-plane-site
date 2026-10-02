@@ -13,17 +13,17 @@ import { cn, reveal } from "../lib/style";
 // filled.
 const MODEL = {
   plain: {
-    box: "border-line bg-white hover:border-purple/45",
-    kicker: "text-ink",
-    step: "border-line bg-cream text-ink",
-    lastStep: "border-line bg-cream text-ink",
+    box: "border-deep/10 bg-white hover:border-purple/45",
+    kicker: "text-deep",
+    step: "border-deep/10 bg-cream text-deep",
+    lastStep: "border-deep/10 bg-cream text-deep",
     arrow: "text-ink-muted",
     note: "text-ink-body",
   },
   accent: {
     box: "border-transparent bg-purple hover:border-transparent hover:bg-purple/90",
-    kicker: "text-on-dark",
-    step: "border-white/35 bg-transparent text-on-dark",
+    kicker: "text-cream",
+    step: "border-white/35 bg-transparent text-cream",
     lastStep: "border-white bg-white text-purple",
     arrow: "text-white/70",
     note: "text-white/90",
@@ -33,9 +33,7 @@ const MODEL = {
 // The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function HomeHero() {
-  return (
-    <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button variant="dark" />} />
-  );
+  return <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button />} />;
 }
 
 export function Home() {

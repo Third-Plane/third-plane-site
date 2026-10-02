@@ -17,13 +17,13 @@ export function Security() {
   return (
     <>
       <Section tone="white" id="authority">
-        <div className="grid gap-x-10 border-t border-t-line md:auto-rows-[auto_1fr] md:grid-cols-2 md:items-start">
+        <div className="grid gap-x-10 border-t border-t-deep/10 md:auto-rows-[auto_1fr] md:grid-cols-2 md:items-start">
           {page.authority.sides.map((side, i) => (
             <div
               className={cn(
                 "pt-6 md:row-span-2 md:grid md:grid-rows-subgrid",
                 i > 0 &&
-                  "mt-6 border-t border-t-line-soft md:mt-0 md:border-t-0 md:border-l md:border-l-line-soft md:pl-10",
+                  "mt-6 border-t border-t-deep/5 md:mt-0 md:border-t-0 md:border-l md:border-l-deep/5 md:pl-10",
               )}
               {...reveal(i)}
               key={side.title}
@@ -31,8 +31,8 @@ export function Security() {
               <Display2 className="mb-5">{side.title}</Display2>
               <ul className="grid">
                 {side.items.map((item) => (
-                  <li className="border-b border-b-line-soft py-6" key={item.title}>
-                    <h3 className="mb-1.5 font-heading text-xl font-medium tracking-tight text-ink">
+                  <li className="border-b border-b-deep/5 py-6" key={item.title}>
+                    <h3 className="mb-1.5 font-heading text-xl font-medium tracking-tight text-deep">
                       {item.title}
                     </h3>
                     <p className="text-base text-ink-body">{item.body}</p>

@@ -9,7 +9,7 @@ const pill = "rounded-full px-2.5 py-1 text-sm font-medium tracking-wider upperc
 const typeStyle: Record<PostType, string> = {
   technical: "bg-blue text-deep",
   perspective: "bg-pink text-deep",
-  press: "bg-deep text-on-dark",
+  press: "bg-deep text-cream",
 };
 
 // The type pill, date and draft flag shown on post cards and post headers.
@@ -19,7 +19,7 @@ export function PostMeta({ post }: { post: Pick<Post, "type" | "date" | "draft">
       <span className={cn(pill, typeStyle[post.type])}>{resourcesPage.types[post.type]}</span>
       <time dateTime={post.date}>{formatPostDate(post.date)}</time>
       {post.draft ? (
-        <span className={cn(pill, "bg-transparent text-ink-muted inset-ring inset-ring-line")}>
+        <span className={cn(pill, "bg-transparent text-ink-muted inset-ring inset-ring-deep/10")}>
           Draft
         </span>
       ) : null}

@@ -8,7 +8,7 @@ const TONE: Record<SectionTone | "cream", string> = {
   cream: "bg-cream",
   white: "bg-white",
   blend: "bg-(image:--blend)",
-  deep: "bg-deep text-on-dark-muted",
+  deep: "bg-deep text-cream/70",
 };
 
 // A page section: the band (a rounded card; <main> in Base.astro spaces them),

@@ -34,14 +34,14 @@ const SUBGRID = {
 // (instead of the gap between items).
 const BOX = {
   card: "grid gap-y-5 rounded-2xl bg-white p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
-  outline: "grid gap-y-5 rounded-2xl border border-line bg-white p-7 shadow-none",
+  outline: "grid gap-y-5 rounded-2xl border border-deep/10 bg-white p-7 shadow-none",
   point:
-    "grid gap-y-3 border-t border-t-line pt-6 transition-colors duration-200 hover:border-t-purple",
+    "grid gap-y-3 border-t border-t-deep/10 pt-6 transition-colors duration-200 hover:border-t-purple",
 } as const;
 
 const TITLE = {
-  tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-ink",
-  point: "font-heading text-xl font-medium tracking-tight text-ink",
+  tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-deep",
+  point: "font-heading text-xl font-medium tracking-tight text-deep",
 } as const;
 
 // A grid of titled items that reveal in turn. `media` adds something above the

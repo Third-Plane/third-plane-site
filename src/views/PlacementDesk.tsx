@@ -15,7 +15,7 @@ export function PlacementDeskHero() {
       secondLine="ink"
       title={placementDesk.title}
       lead={placementDesk.problem}
-      actions={<Button variant="dark">{placementDesk.cta.label}</Button>}
+      actions={<Button>{placementDesk.cta.label}</Button>}
     />
   );
 }

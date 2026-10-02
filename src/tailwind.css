@@ -6,7 +6,7 @@
    index.css has its own, and adding a second would restyle every page.
 
    index.css keeps defining the design tokens. The @theme block below exposes
-   them as utilities (bg-purple, text-ink, font-heading, ...) without copying
+   them as utilities (bg-purple, text-deep, font-heading, ...) without copying
    their values, so there is one place to change a colour.
 
    Spacing utilities (p-*, mt-*, gap-*, h-*, ...) exist only for multiples of
@@ -188,22 +188,12 @@
 @theme inline {
   --color-cream: var(--cream);
   --color-purple: var(--purple);
-  --color-purple-hover: var(--purple-hover);
   --color-deep: var(--deep);
-  --color-deep-2: var(--deep-2);
   --color-pink: var(--pink);
   --color-blue: var(--blue);
   --color-lavender: var(--lavender);
-  --color-ink: var(--ink);
   --color-ink-body: var(--ink-body);
   --color-ink-muted: var(--ink-muted);
-  --color-on-dark: var(--on-dark);
-  --color-on-dark-muted: var(--on-dark-muted);
-  --color-on-dark-faint: var(--on-dark-faint);
-  --color-line: var(--line);
-  --color-line-soft: var(--line-soft);
-  --color-line-dark: var(--line-dark);
-  --color-line-purple: var(--line-purple);
 
   /* font-sans is the body face, so text with no font class matches the rest of
      the site. */

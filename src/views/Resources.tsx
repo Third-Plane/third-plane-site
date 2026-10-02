@@ -22,7 +22,7 @@ export function Resources({ posts }: { posts: Post[] }) {
             {posts.map((post, i) => (
               <li key={post.slug} {...reveal(i % 3)}>
                 <AppLink
-                  className="grid h-full content-start gap-3.5 rounded-2xl bg-cream p-7 text-ink transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                  className="grid h-full content-start gap-3.5 rounded-2xl bg-cream p-7 text-deep transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   href={`/resources/${post.slug}`}
                 >
                   <PostMeta post={post} />
@@ -39,7 +39,7 @@ export function Resources({ posts }: { posts: Post[] }) {
             ))}
           </ul>
         ) : (
-          <p className="max-w-[60ch] text-base text-ink">Nothing published yet.</p>
+          <p className="max-w-[60ch] text-base text-deep">Nothing published yet.</p>
         )}
       </Section>
 

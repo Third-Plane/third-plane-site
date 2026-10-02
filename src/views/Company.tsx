@@ -26,7 +26,7 @@ export function Company() {
             <p
               className={cn(
                 "max-w-[58ch] text-pretty",
-                i === 0 ? "mt-6 text-base font-medium text-ink" : "mt-5 text-ink-body",
+                i === 0 ? "mt-6 text-base font-medium text-deep" : "mt-5 text-ink-body",
               )}
               key={paragraph.slice(0, 20)}
             >
@@ -46,7 +46,7 @@ export function Company() {
             />
           ) : (
             <div
-              className="absolute inset-0 grid place-items-center rounded-2xl border border-dashed border-line text-sm text-ink-muted"
+              className="absolute inset-0 grid place-items-center rounded-2xl border border-dashed border-deep/10 text-sm text-ink-muted"
               aria-label={page.team.photoNote}
             >
               <span className="relative z-2 rounded-full bg-cream px-3 py-1.5">

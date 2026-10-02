@@ -10,7 +10,7 @@ function BlockView({ block }: { block: Block }) {
   switch (block.type) {
     case "heading":
       return (
-        <h2 className="mt-5 font-heading text-3xl font-medium tracking-tight text-balance text-ink">
+        <h2 className="mt-5 font-heading text-3xl font-medium tracking-tight text-balance text-deep">
           {block.text}
         </h2>
       );
@@ -39,7 +39,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "quote":
       return (
-        <blockquote className="mx-0 my-2 rounded-r-xl border-l-3 border-l-purple bg-cream px-6 py-5 font-heading text-xl leading-snug font-medium tracking-tight text-ink">
+        <blockquote className="mx-0 my-2 rounded-r-xl border-l-3 border-l-purple bg-cream px-6 py-5 font-heading text-xl leading-snug font-medium tracking-tight text-deep">
           {block.text}
         </blockquote>
       );

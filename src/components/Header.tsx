@@ -21,7 +21,7 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
 
 const panelItem = "grid gap-0.5 rounded-xl px-3 py-3 text-base font-medium";
 const drawerLink =
-  "block border-b border-b-line-soft py-3.5 font-heading text-xl font-medium tracking-tight";
+  "block border-b border-b-deep/5 py-3.5 font-heading text-xl font-medium tracking-tight";
 
 // The drawer is compact: it shows status notes (live, or no page yet) but
 // leaves the descriptive ones to the dropdown.
@@ -35,7 +35,7 @@ const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled 
 export function Header() {
   return (
     <header
-      className="group/nav relative z-50 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-line-soft"
+      className="group/nav relative z-50 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-deep/5"
       data-open="false"
       data-nav
     >
@@ -48,7 +48,7 @@ export function Header() {
           {primaryNav.menus.map((group) => (
             <div className="group/menu relative" data-open="false" data-menu key={group.label}>
               <button
-                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-ink transition-colors duration-200 [border:0] [font:inherit] hover:text-purple"
+                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-deep transition-colors duration-200 [border:0] [font:inherit] hover:text-purple"
                 type="button"
                 aria-expanded="false"
                 data-menu-btn
@@ -56,7 +56,7 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-line-soft bg-white p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-deep/5 bg-white p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-nav-panel
               >
@@ -64,7 +64,7 @@ export function Header() {
                   <NavEntry
                     className={cn(
                       panelItem,
-                      "text-ink transition-colors duration-150 hover:bg-cream",
+                      "text-deep transition-colors duration-150 hover:bg-cream",
                     )}
                     disabledClassName={cn(panelItem, "cursor-default text-ink-muted")}
                     href={item.href}
@@ -81,11 +81,11 @@ export function Header() {
         </nav>
 
         <div className="max-lg:hidden">
-          <Button small variant="dark" />
+          <Button small />
         </div>
 
         <button
-          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-ink [border:0] max-lg:inline-flex"
+          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-deep [border:0] max-lg:inline-flex"
           type="button"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -111,7 +111,7 @@ export function Header() {
       </div>
 
       <div
-        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh-76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-line-soft max-lg:data-[open=true]:bg-lavender max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
+        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh-76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-deep/5 max-lg:data-[open=true]:bg-lavender max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
         data-nav-drawer
       >
@@ -123,7 +123,7 @@ export function Header() {
               </p>
               {(group.items as Item[]).map((item) => (
                 <NavEntry
-                  className={cn(drawerLink, "text-ink")}
+                  className={cn(drawerLink, "text-deep")}
                   disabledClassName={cn(drawerLink, "text-ink-muted")}
                   href={item.href}
                   disabled={item.disabled}
@@ -135,7 +135,7 @@ export function Header() {
               ))}
             </div>
           ))}
-          <Button variant="dark" className="mt-4 justify-self-start" />
+          <Button className="mt-4 justify-self-start" />
         </div>
       </div>
     </header>

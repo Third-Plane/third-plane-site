@@ -3,7 +3,7 @@ import { site } from "../data/content";
 import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
-type ButtonVariant = "primary" | "dark" | "light" | "ghost";
+type ButtonVariant = "dark" | "light";
 
 type ButtonProps = {
   children?: ReactNode;
@@ -22,17 +22,14 @@ const BUTTON_SIZE = {
 } as const;
 
 const BUTTON_VARIANT: Record<ButtonVariant, string> = {
-  primary: "bg-purple text-white hover:bg-purple-hover",
-  dark: "bg-deep text-white hover:bg-deep-2 hover:shadow-lg hover:shadow-deep/20",
+  dark: "bg-deep text-white hover:bg-deep/95 hover:shadow-lg hover:shadow-deep/20",
   light: "bg-white text-deep hover:bg-cream",
-  ghost:
-    "bg-transparent text-deep inset-ring inset-ring-line hover:text-purple hover:inset-ring-purple",
 };
 
 export function Button({
   children = site.ctaLabel,
   href = site.ctaHref,
-  variant = "primary",
+  variant = "dark",
   small = false,
   className,
 }: ButtonProps) {
