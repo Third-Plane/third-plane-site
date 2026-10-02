@@ -6,8 +6,7 @@ export type SectionTone = "white" | "blend" | "deep";
 
 // Each tone is a surface (see index.css), which sets the colours of the band
 // and everything in it.
-const SURFACE: Record<SectionTone | "cream", string> = {
-  cream: "surface-cream",
+const SURFACE: Record<SectionTone, string> = {
   white: "surface-white",
   blend: "surface-blend",
   deep: "surface-deep",
@@ -29,7 +28,7 @@ export function Section({
   children,
 }: {
   id?: string;
-  tone?: SectionTone;
+  tone: SectionTone;
   className?: string;
   containerClassName?: string;
   title?: string;
@@ -41,11 +40,7 @@ export function Section({
 }) {
   return (
     <section
-      className={cn(
-        "relative overflow-hidden rounded-xl py-27",
-        SURFACE[tone ?? "cream"],
-        className,
-      )}
+      className={cn("relative overflow-hidden rounded-xl py-20", SURFACE[tone], className)}
       id={id}
     >
       {backdrop}

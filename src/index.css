@@ -21,13 +21,12 @@
 /* Surfaces. Each sets the semantic colours (text-foreground, bg-card,
    border-border, ...; see @theme in tailwind.css) for everything inside it,
    with its own background and default text colour, so a component reads
-   correctly on whichever surface it sits. The page is a cream surface.
+   correctly on whichever surface it sits. The page itself (:root) is cream.
 
    foreground is headings and emphasis, muted-foreground body copy and
    subtle-foreground meta. card is a tile on the surface; muted a quieter fill.
    primary is the button. */
 :root,
-.surface-cream,
 .surface-white,
 .surface-blend,
 .surface-hero {
@@ -75,7 +74,6 @@
   --primary-foreground: var(--purple);
   background-color: var(--purple);
 }
-.surface-cream,
 .surface-white,
 .surface-deep {
   background-color: var(--background);
@@ -83,7 +81,6 @@
 .surface-blend {
   background-image: var(--blend);
 }
-.surface-cream,
 .surface-white,
 .surface-blend,
 .surface-deep,

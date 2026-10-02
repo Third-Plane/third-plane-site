@@ -59,7 +59,7 @@ export function Company() {
         </figure>
       </Section>
 
-      <Section id="principles" title={page.principles.title}>
+      <Section id="principles" tone="blend" title={page.principles.title}>
         <ItemGrid variant="point" columns={2} items={page.principles.items} />
       </Section>
 

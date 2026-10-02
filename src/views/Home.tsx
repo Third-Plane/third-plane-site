@@ -28,7 +28,7 @@ export function Home() {
         <ItemGrid variant="outline" columns={2} items={problem.points} />
       </Section>
 
-      <Section id="approach" title={approach.title} body={approach.body}>
+      <Section id="approach" tone="blend" title={approach.title} body={approach.body}>
         <div className="grid gap-5">
           {approach.models.map((model, i) => {
             return (

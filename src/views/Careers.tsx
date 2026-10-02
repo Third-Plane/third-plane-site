@@ -14,7 +14,7 @@ export function CareersHero() {
 export function Careers() {
   return (
     <>
-      <Section id="roles" title={page.roles.title}>
+      <Section id="roles" tone="white" title={page.roles.title}>
         {page.roles.items.length ? (
           <ul className="grid gap-3" data-reveal>
             {page.roles.items.map((role) => (
@@ -41,7 +41,7 @@ export function Careers() {
         )}
       </Section>
 
-      <Section tone="white" id="why" title={page.why.title} compactHead>
+      <Section tone="blend" id="why" title={page.why.title} compactHead>
         <ItemGrid variant="point" spaced columns={4} items={page.why.items} />
       </Section>
 
