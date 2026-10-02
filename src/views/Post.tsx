@@ -55,7 +55,7 @@ function BlockView({ block }: { block: Block }) {
 export function PostHero({ post }: { post: PostData }) {
   return (
     <Hero id="top">
-      <div className="px-(--gutter) pt-[clamp(2.5rem,5vw,4.5rem)] pb-[clamp(3rem,6vw,5rem)]">
+      <div className="px-(--gutter) pt-14 pb-16">
         <div className="pointer-events-auto relative z-3 grid max-w-190 gap-5">
           <Leave tier="heading">
             <div className="grid gap-5">
@@ -88,7 +88,7 @@ export function Post({ post }: { post: PostData }) {
   return (
     <>
       <article>
-        <div className="relative rounded-xl bg-white py-(--section-y)">
+        <div className="relative rounded-xl bg-white py-27">
           <div className="wrap grid max-w-[68ch] gap-5 text-lg leading-relaxed text-ink-body">
             {post.body.map((block, i) => (
               <BlockView block={block} key={i} />

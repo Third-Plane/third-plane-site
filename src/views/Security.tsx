@@ -17,13 +17,13 @@ export function Security() {
   return (
     <>
       <Section tone="white" id="authority">
-        <div className="grid grid-cols-2 gap-x-[clamp(1.5rem,4vw,3.5rem)] border-t border-t-line max-md:grid-cols-1 md:auto-rows-[auto_1fr] md:items-start">
+        <div className="grid grid-cols-2 gap-x-10 border-t border-t-line max-md:grid-cols-1 md:auto-rows-[auto_1fr] md:items-start">
           {page.authority.sides.map((side, i) => (
             <div
               className={cn(
                 "pt-6 md:row-span-2 md:grid md:grid-rows-subgrid",
                 i > 0 &&
-                  "border-l border-l-line-soft pl-[clamp(1.5rem,4vw,3.5rem)] max-md:mt-6 max-md:border-t max-md:border-l-0 max-md:border-t-line-soft max-md:pt-6 max-md:pl-0",
+                  "border-l border-l-line-soft pl-10 max-md:mt-6 max-md:border-t max-md:border-l-0 max-md:border-t-line-soft max-md:pt-6 max-md:pl-0",
               )}
               {...reveal(i)}
               key={side.title}

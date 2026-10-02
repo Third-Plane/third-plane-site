@@ -10,13 +10,13 @@ import { cn } from "../lib/style";
 function PlacementWorkflow() {
   return (
     <div
-      className="mt-1 grid auto-rows-[auto_1fr] grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] items-stretch gap-x-(--gap) gap-y-0 max-lg:auto-rows-auto max-lg:grid-cols-1 max-lg:gap-y-(--gap)"
+      className="mt-1 grid auto-rows-[auto_1fr] grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] items-stretch gap-x-5 gap-y-0 max-lg:auto-rows-auto max-lg:grid-cols-1 max-lg:gap-y-5"
       data-reveal
     >
       {placementDesk.work.stages.map((stage, i) => (
         <div
           className={cn(
-            "relative row-span-2 grid grid-rows-subgrid rounded-2xl border p-(--pad) max-lg:row-auto max-lg:block",
+            "relative row-span-2 grid grid-rows-subgrid rounded-2xl border p-7 max-lg:row-auto max-lg:block",
             stage.accent
               ? "border-transparent bg-purple text-on-dark"
               : "border-line-dark bg-cream/5",
@@ -24,9 +24,9 @@ function PlacementWorkflow() {
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2-11px)] z-1 size-5.5 -translate-y-1/2 rounded-full bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2-11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
+            <Arrow className="absolute top-1/2 -left-5.25 z-1 size-5.5 -translate-y-1/2 rounded-full bg-deep p-0.5 text-pink max-lg:-top-5.25 max-lg:left-7 max-lg:translate-y-0 max-lg:rotate-90" />
           ) : null}
-          <p className="mb-5 font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-tight font-medium tracking-tight text-on-dark">
+          <p className="mb-5 font-heading text-2xl leading-tight font-medium tracking-tight text-on-dark">
             {stage.kicker}
           </p>
           <ul className="grid content-start">

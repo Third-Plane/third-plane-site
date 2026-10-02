@@ -11,17 +11,17 @@ export type HeroFamily = "evidence" | "editorial" | "careers";
 // tighter, with a smaller title and a looser lead.
 const FAMILY = {
   evidence: {
-    padding: "pt-[clamp(3rem,6vw,5.5rem)] pb-[clamp(3.5rem,7vw,6rem)]",
+    padding: "pt-17 pb-19",
     lead: "mt-7 max-w-[46ch]",
     size: "hero",
   },
   careers: {
-    padding: "pt-[clamp(3rem,6vw,5.5rem)] pb-[clamp(3.5rem,7vw,6rem)]",
+    padding: "pt-17 pb-19",
     lead: "mt-7 max-w-[46ch]",
     size: "hero",
   },
   editorial: {
-    padding: "pt-[clamp(2rem,4vw,3.25rem)] pb-[clamp(2.25rem,4.5vw,3.75rem)]",
+    padding: "pt-10 pb-12",
     lead: "mt-4 max-w-[60ch]",
     size: "editorial",
   },

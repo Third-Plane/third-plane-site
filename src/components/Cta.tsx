@@ -19,10 +19,7 @@ export function Cta({
   const mailto = `mailto:${email}`;
   return (
     <Section id="contact">
-      <div
-        className="relative overflow-hidden rounded-3xl bg-deep p-[clamp(2rem,5vw,4.5rem)] text-on-dark"
-        data-reveal
-      >
+      <div className="relative overflow-hidden rounded-3xl bg-deep p-8 md:p-13 text-on-dark" data-reveal>
         <div className="relative max-w-160">
           <Display2 tone="dark">{title}</Display2>
           <p className="mt-5 text-base text-pretty text-on-dark-muted">{body}</p>

@@ -50,15 +50,12 @@ export function Home() {
       </Section>
 
       <Section id="approach" title={approach.title} body={approach.body}>
-        <div className="grid gap-(--gap)">
+        <div className="grid gap-5">
           {approach.models.map((model, i) => {
             const tone = model.accent ? MODEL.accent : MODEL.plain;
             return (
               <div
-                className={cn(
-                  "rounded-2xl border p-(--pad) transition-colors duration-200",
-                  tone.box,
-                )}
+                className={cn("rounded-2xl border p-7 transition-colors duration-200", tone.box)}
                 {...reveal(i)}
                 key={model.kicker}
               >

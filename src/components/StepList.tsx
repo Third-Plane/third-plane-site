@@ -17,10 +17,10 @@ export function StepList({
   numbered?: boolean;
 }) {
   return (
-    <ol className={cn("grid gap-(--gap) sm:auto-rows-[auto_auto_1fr]", COLUMNS[columns])}>
+    <ol className={cn("grid gap-5 sm:auto-rows-[auto_auto_1fr]", COLUMNS[columns])}>
       {steps.map((step, i) => (
         <li
-          className="rounded-2xl border border-line-dark bg-cream/5 p-(--pad) sm:row-span-3 sm:grid sm:grid-rows-subgrid"
+          className="rounded-2xl border border-line-dark bg-cream/5 p-7 sm:row-span-3 sm:grid sm:grid-rows-subgrid"
           {...reveal(i)}
           key={step.title}
         >

@@ -6,7 +6,7 @@ import { cn } from "../lib/style";
 
 const DISPLAY_1_SIZE = {
   hero: "text-[clamp(2.5rem,5vw,4.15rem)]/none",
-  editorial: "text-[clamp(2rem,3.4vw,2.85rem)]/none",
+  editorial: "text-4xl/none",
 } as const;
 
 export function Display1({
@@ -38,7 +38,7 @@ export function Display2({
   return (
     <h2
       className={cn(
-        "font-heading text-[clamp(1.9rem,3.4vw,2.85rem)] leading-none font-medium tracking-tight text-balance",
+        "font-heading text-4xl leading-none font-medium tracking-tight text-balance",
         DISPLAY_2_TONE[tone],
         className,
       )}
@@ -62,11 +62,7 @@ export function Lead({
 }: ComponentProps<"p"> & { tone?: keyof typeof LEAD_TONE }) {
   return (
     <p
-      className={cn(
-        "font-sans text-[clamp(1.125rem,1.45vw,1.35rem)] leading-normal text-pretty",
-        LEAD_TONE[tone],
-        className,
-      )}
+      className={cn("font-sans text-xl leading-normal text-pretty", LEAD_TONE[tone], className)}
       {...props}
     />
   );

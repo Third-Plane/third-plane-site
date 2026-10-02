@@ -18,11 +18,11 @@ export function Resources({ posts }: { posts: Post[] }) {
     <>
       <Section tone="white" id="posts">
         {posts.length ? (
-          <ul className="grid grid-cols-3 gap-(--gap) has-[>:only-child]:grid-cols-[minmax(0,28rem)] max-lg:grid-cols-2 max-sm:grid-cols-1">
+          <ul className="grid grid-cols-3 gap-5 has-[>:only-child]:grid-cols-[minmax(0,28rem)] max-lg:grid-cols-2 max-sm:grid-cols-1">
             {posts.map((post, i) => (
               <li key={post.slug} {...reveal(i % 3)}>
                 <AppLink
-                  className="grid h-full content-start gap-3.5 rounded-2xl bg-cream p-(--pad) text-ink transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                  className="grid h-full content-start gap-3.5 rounded-2xl bg-cream p-7 text-ink transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   href={`/resources/${post.slug}`}
                 >
                   <PostMeta post={post} />

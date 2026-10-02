@@ -39,11 +39,7 @@ export function Section({
 }) {
   return (
     <section
-      className={cn(
-        "relative overflow-hidden rounded-xl py-(--section-y)",
-        TONE[tone ?? "cream"],
-        className,
-      )}
+      className={cn("relative overflow-hidden rounded-xl py-27", TONE[tone ?? "cream"], className)}
       id={id}
     >
       {backdrop}

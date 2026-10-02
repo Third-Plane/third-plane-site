@@ -35,7 +35,7 @@ export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: 
 }
 
 // The space around a hero's content, below the nav.
-export const HERO_PADDING = "pt-[clamp(3.5rem,7vw,6.5rem)] pb-[clamp(4rem,8vw,7rem)]";
+export const HERO_PADDING = "pt-20 pb-22";
 
 // A hero band: the lavender wash with the particle field behind its content.
 //

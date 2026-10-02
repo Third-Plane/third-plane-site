@@ -35,8 +35,8 @@ function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
 }
 
 const BOX = {
-  card: "rounded-2xl bg-white p-(--pad) shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
-  outline: "rounded-2xl border border-line bg-white p-(--pad) shadow-none",
+  card: "rounded-2xl bg-white p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+  outline: "rounded-2xl border border-line bg-white p-7 shadow-none",
   point: "border-t border-t-line pt-6 transition-colors duration-200 hover:border-t-purple",
 } as const;
 
@@ -63,7 +63,7 @@ export function ItemGrid({
   dense?: boolean;
   spaced?: boolean;
 }) {
-  const gap = spaced ? "gap-8 items-start" : "gap-(--gap)";
+  const gap = spaced ? "gap-8 items-start" : "gap-5";
   const hasBody = items.some((item) => item.body);
   const box = cn(BOX[variant], variant === "outline" && dense && "px-6 py-5");
   const title = variant === "point" ? cn(TITLE.point, spaced && "mb-2") : TITLE.tile;

@@ -92,7 +92,7 @@ export function SectionHead({
   compact?: boolean;
 }) {
   const center = align === "center";
-  const margin = compact ? "mb-[clamp(1.75rem,3vw,2.5rem)]" : "mb-[clamp(2.5rem,5vw,4rem)]";
+  const margin = compact ? "mb-8" : "mb-13";
   return (
     <header className={cn("max-w-190", margin, center && "mx-auto text-center")} data-reveal>
       <Display2 tone={dark ? "dark" : "light"}>{title}</Display2>

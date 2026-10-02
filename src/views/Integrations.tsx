@@ -20,12 +20,12 @@ export function Integrations() {
         <div className="border-t border-t-line">
           {page.systems.items.slice(0, 4).map((item, i) => (
             <article
-              className="grid grid-cols-[minmax(11rem,0.32fr)_minmax(0,1fr)] items-start gap-[clamp(1.25rem,4vw,4rem)] border-b border-b-line-soft py-[clamp(1.75rem,3vw,2.5rem)] max-md:grid-cols-1 max-md:gap-3"
+              className="grid grid-cols-[minmax(11rem,0.32fr)_minmax(0,1fr)] items-start gap-10 border-b border-b-line-soft py-8 max-md:grid-cols-1 max-md:gap-3"
               {...reveal(i)}
               key={item.title}
             >
               <div className="grid content-start gap-2">
-                <h3 className="font-heading text-[clamp(1.25rem,1.6vw,1.55rem)] leading-tight font-medium tracking-tight text-balance text-ink">
+                <h3 className="font-heading text-2xl leading-tight font-medium tracking-tight text-balance text-ink">
                   {item.title}
                 </h3>
               </div>
