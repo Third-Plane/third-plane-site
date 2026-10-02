@@ -109,6 +109,34 @@
   animation-range: 0 var(--hero-d, 100svh);
 }
 
+/* A footer that is the inverse of the hero: pinned to the bottom of the window
+   with only its bottom bar showing (the bar is h-19, 4.75rem), and the rest
+   revealed over the last stretch of the page's scroll. The clip's top edge
+   rises with the page, so the card above keeps its 12px gap throughout. The box
+   keeps its full height, so nothing reflows. --footer-d is the scroll distance
+   that takes the footer from the bar to the whole footer (its height less the
+   bar); scripts/footer-reveal.ts keeps it exact. The range is measured back
+   from the end of the page (100%), which is where the footer comes into view.
+
+   The whole footer is the base style and the bar is where the animation starts,
+   so on a page too short to scroll, where the timeline is inactive, the footer
+   simply shows in full. */
+@keyframes footer-reveal {
+  from {
+    clip-path: inset(calc(100% - 4.75rem) 0 0 0 round 0.75rem 0.75rem 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0.75rem 0.75rem 0 0);
+  }
+}
+
+@utility footer-reveal {
+  clip-path: inset(0 0 0 0 round 0.75rem 0.75rem 0 0);
+  animation: footer-reveal linear both;
+  animation-timeline: scroll(root);
+  animation-range: calc(100% - var(--footer-d, 0px)) 100%;
+}
+
 /* Hero content leaving as the hero closes: it fades and drops, on the same
    scroll timeline as hero-collapse. Each piece sets its own slice of the
    collapse distance, as fractions of --hero-d: --leave-from and --leave-to

@@ -16,9 +16,20 @@ function LinkedInMark() {
 
 const iconLink = "inline-flex text-on-dark-faint transition-[color] duration-200 hover:text-pink";
 
+// From lg up, where scroll-driven animation is available (see the scroll-linked
+// variant in tailwind.css), the footer is the inverse of the hero: pinned to the
+// bottom of the window, square along its bottom edge and flush with it, showing
+// only its bottom bar until the page is scrolled to the end, which reveals the
+// rest. Anywhere else it is an ordinary rounded card at the end of the page.
+const PINNED =
+  "lg:scroll-linked:sticky lg:scroll-linked:bottom-0 lg:scroll-linked:z-40 lg:scroll-linked:mb-0 lg:scroll-linked:rounded-b-none lg:scroll-linked:footer-reveal";
+
 export function Footer() {
   return (
-    <footer className="z-0 mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-on-dark-muted">
+    <footer
+      className={`mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-on-dark-muted ${PINNED}`}
+      data-footer-reveal
+    >
       <div className="flex justify-between gap-16 py-16 max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
