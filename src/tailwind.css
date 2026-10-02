@@ -109,6 +109,30 @@
   animation-range: 0 var(--hero-d, 100svh);
 }
 
+/* The hero's shadow follows the visible band. It is its own element, a box with
+   the band's width and radius, because the band's clip-path would cut off a
+   shadow of its own. Its height closes from the hero's full height to the nav
+   strip on the same timeline and range as hero-collapse, so it always matches
+   what is showing. It also fades in over that range: the hero's edge sits above
+   the next card until the hero is fully closed, so the shadow only has
+   something to fall on once the strip is pinned over the page, and it reaches
+   full strength then. Where the hero doesn't collapse, it is just on. */
+@keyframes hero-shadow {
+  from {
+    opacity: 0;
+  }
+  to {
+    height: var(--nav-h);
+    opacity: 1;
+  }
+}
+
+@utility hero-shadow {
+  animation: hero-shadow linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0 var(--hero-d, 100svh);
+}
+
 /* A footer that is the inverse of the hero: pinned to the bottom of the window
    with only its bottom bar showing (the bar is h-19, 4.75rem), and the rest
    revealed over the last stretch of the page's scroll. The clip's top edge

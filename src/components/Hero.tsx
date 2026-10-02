@@ -10,6 +10,7 @@ import { ParticleField } from "./ParticleField";
 // flush with the top of the window and is pinned from the first pixel.
 const PINNED = "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:z-40";
 const COLLAPSING = "lg:scroll-linked:hero-collapse";
+const SHADOW = "lg:scroll-linked:hero-shadow";
 // A pinned hero can't be taller than the window, less its 12px margin (m-3; a
 // safe bound, top and bottom): where the page ends, the browser pushes up a
 // sticky box that doesn't fit. So the band stops at that height, and anything
@@ -61,10 +62,13 @@ export function Hero({
 }) {
   return (
     <section
-      className={`pointer-events-none relative z-2 m-3 mt-0 overflow-hidden ${PINNED} ${className}`.trim()}
+      className={`pointer-events-none relative z-2 m-3 mt-0 ${PINNED} ${className}`.trim()}
       id={id}
       data-hero-collapse
     >
+      <div
+        className={`absolute inset-x-0 top-0 h-full rounded-b-(--hero-radius) shadow-xl shadow-deep/10 ${SHADOW}`}
+      />
       <div className="pointer-events-auto absolute inset-x-0 top-0 z-10">
         <Header />
       </div>
