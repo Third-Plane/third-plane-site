@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { NotFound } from "../views/NotFound";
+import { NotFoundHero } from "../views/NotFound";
 ---
 
 <Base
@@ -9,5 +9,5 @@ import { NotFound } from "../views/NotFound";
   description="The page you were looking for has moved or no longer exists."
   noindex
 >
-  <NotFound />
+  <NotFoundHero slot="hero" />
 </Base>

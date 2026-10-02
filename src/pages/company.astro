@@ -1,9 +1,10 @@
 ---
 import { companyPage as page } from "../data/content";
 import Base from "../layouts/Base.astro";
-import { Company } from "../views/Company";
+import { Company, CompanyHero } from "../views/Company";
 ---
 
 <Base path="/company" title="Company" description={page.lead}>
+  <CompanyHero slot="hero" />
   <Company />
 </Base>

@@ -1,9 +1,10 @@
 ---
 import { integrationsPage as page } from "../data/content";
 import Base from "../layouts/Base.astro";
-import { Integrations } from "../views/Integrations";
+import { Integrations, IntegrationsHero } from "../views/Integrations";
 ---
 
 <Base path="/integrations" title="System integrations" description={page.lead}>
+  <IntegrationsHero slot="hero" />
   <Integrations />
 </Base>

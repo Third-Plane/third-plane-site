@@ -3,7 +3,7 @@ import { site } from "../../data/content";
 import { getPosts } from "../../data/get-posts";
 import Base from "../../layouts/Base.astro";
 import { ORIGIN, canonicalUrl } from "../../lib/head";
-import { Post } from "../../views/Post";
+import { Post, PostHero } from "../../views/Post";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -29,5 +29,6 @@ const jsonLd = [
 ---
 
 <Base path={path} title={post.title} description={post.standfirst} type="article" jsonLd={jsonLd}>
+  <PostHero slot="hero" post={post} />
   <Post post={post} />
 </Base>

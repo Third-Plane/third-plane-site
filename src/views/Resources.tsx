@@ -7,11 +7,15 @@ import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
 import { reveal } from "../lib/style";
 
+// The hero is its own export: pages/resources.astro puts it in Base's `hero` slot,
+// outside <main>.
+export function ResourcesHero() {
+  return <PageHero family="editorial" title={page.title} lead={page.lead} />;
+}
+
 export function Resources({ posts }: { posts: Post[] }) {
   return (
     <>
-      <PageHero family="editorial" title={page.title} lead={page.lead} />
-
       <Section tone="white" id="posts">
         {posts.length ? (
           <ul className="grid grid-cols-3 gap-(--gap) has-[>:only-child]:grid-cols-[minmax(0,28rem)] max-lg:grid-cols-2 max-sm:grid-cols-1">

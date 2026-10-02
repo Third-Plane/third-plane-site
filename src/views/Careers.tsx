@@ -5,11 +5,15 @@ import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 
+// The hero is its own export: pages/careers.astro puts it in Base's `hero` slot,
+// outside <main>.
+export function CareersHero() {
+  return <PageHero family="careers" title={page.title} lead={page.lead} />;
+}
+
 export function Careers() {
   return (
     <>
-      <PageHero family="careers" title={page.title} lead={page.lead} />
-
       <Section id="roles" title={page.roles.title}>
         {page.roles.items.length ? (
           <ul className="grid gap-3" data-reveal>

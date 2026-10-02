@@ -1,9 +1,9 @@
-// The header: a border once the page scrolls, hover/click dropdowns on
-// desktop and a drawer on narrow screens. The markup is static (Header.tsx);
-// this sets `data-open` and `aria-expanded` on it. A page can hold more than
-// one header (the hero carries its own), so each is set up on its own.
+// The header: hover/click dropdowns on desktop and a drawer on narrow screens. The markup is static (Header.tsx);
+// this sets `data-open` and `aria-expanded` on it.
 
-function initNav(nav: HTMLElement) {
+const nav = document.querySelector<HTMLElement>("[data-nav]");
+
+if (nav) {
   const toggle = nav.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
   const drawer = nav.querySelector<HTMLElement>("[data-nav-drawer]")!;
   const menus = [...nav.querySelectorAll<HTMLElement>("[data-menu]")];
@@ -29,12 +29,6 @@ function initNav(nav: HTMLElement) {
     openMenu = null;
     render();
   };
-
-  const onScroll = () => {
-    nav.dataset.scrolled = String(window.scrollY > 8);
-  };
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
 
   toggle.addEventListener("click", () => {
     drawerOpen = !drawerOpen;
@@ -82,5 +76,3 @@ function initNav(nav: HTMLElement) {
     }
   });
 }
-
-for (const nav of document.querySelectorAll<HTMLElement>("[data-nav]")) initNav(nav);

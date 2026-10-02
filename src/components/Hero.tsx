@@ -18,6 +18,25 @@ const COLLAPSING = "lg:scroll-linked:hero-collapse";
 // below it is cut off.
 const CAPPED = "lg:scroll-linked:max-h-[calc(100svh-1.5rem)]";
 
+// The hero's content leaves in tiers as it closes, the lowest first (see
+// hero-leave in tailwind.css). Each tier's slice of the collapse distance, as
+// fractions of it: they overlap, and all finish before the rising edge of the
+// hero reaches the tier above. A tier's shift is how far it drops as it fades.
+const LEAVE = {
+  actions: "lg:scroll-linked:hero-leave [--leave-from:0] [--leave-to:0.3] [--leave-shift:2.5rem]",
+  lead: "lg:scroll-linked:hero-leave [--leave-from:0.15] [--leave-to:0.45] [--leave-shift:2.5rem]",
+  heading: "lg:scroll-linked:hero-leave [--leave-from:0.3] [--leave-to:0.6] [--leave-shift:2.5rem]",
+} as const;
+
+// A wrapper that carries a tier's animation. It sits around, not on, the
+// content: the scroll-into-view reveal owns the content's own opacity.
+export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: ReactNode }) {
+  return <div className={LEAVE[tier]}>{children}</div>;
+}
+
+// The space around a hero's content, below the nav.
+export const HERO_PADDING = "pt-[clamp(3.5rem,7vw,6.5rem)] pb-[clamp(4rem,8vw,7rem)]";
+
 // A hero band: the lavender wash with the particle field behind its content.
 //
 // The hero carries its own nav, on top. Unlike a Section there is no page-width
@@ -49,7 +68,7 @@ export function Hero({
       data-hero-collapse
     >
       <div className="pointer-events-auto absolute inset-x-0 top-0 z-10">
-        <Header tone="hero" />
+        <Header />
       </div>
       <div
         className={`relative overflow-hidden rounded-b-(--hero-radius) bg-hero ${CAPPED} ${COLLAPSING}`}

@@ -7,11 +7,15 @@ import { StepList } from "../components/StepList";
 import { AppLink } from "../components/Ui";
 import { reveal } from "../lib/style";
 
+// The hero is its own export: pages/integrations.astro puts it in Base's `hero` slot,
+// outside <main>.
+export function IntegrationsHero() {
+  return <PageHero title={page.title} lead={page.lead} />;
+}
+
 export function Integrations() {
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} />
-
       <Section tone="white" id="systems" title={page.systems.title}>
         <div className="border-t-[1.5px] border-t-line">
           {page.systems.items.slice(0, 4).map((item, i) => (
