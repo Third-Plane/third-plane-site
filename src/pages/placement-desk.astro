@@ -1,9 +1,14 @@
 ---
 import { placementDesk } from "../data/content";
 import Base from "../layouts/Base.astro";
-import { PlacementDesk } from "../views/PlacementDesk";
+import { PlacementDesk, PlacementDeskHero } from "../views/PlacementDesk";
 ---
 
-<Base path="/placement-desk" title="Placement Desk" description={placementDesk.problem}>
+<Base
+  path="/placement-desk"
+  title="Placement Desk"
+  description={placementDesk.problem}
+>
+  <PlacementDeskHero slot="hero" />
   <PlacementDesk />
 </Base>

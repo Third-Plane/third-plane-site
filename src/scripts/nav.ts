@@ -1,5 +1,4 @@
-// The header: a border once the page scrolls, hover/click dropdowns on
-// desktop and a drawer on narrow screens. The markup is static (Header.tsx);
+// The header: hover/click dropdowns on desktop and a drawer on narrow screens. The markup is static (Header.tsx);
 // this sets `data-open` and `aria-expanded` on it.
 
 const nav = document.querySelector<HTMLElement>("[data-nav]");
@@ -30,12 +29,6 @@ if (nav) {
     openMenu = null;
     render();
   };
-
-  const onScroll = () => {
-    nav.dataset.scrolled = String(window.scrollY > 8);
-  };
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
 
   toggle.addEventListener("click", () => {
     drawerOpen = !drawerOpen;

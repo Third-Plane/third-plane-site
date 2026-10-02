@@ -1,7 +1,6 @@
 ---
 import "../tailwind.css";
 import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { site } from "../data/content";
 import { DEFAULT_DESCRIPTION, ORIGIN, canonicalUrl, fullTitle } from "../lib/head";
 
@@ -66,8 +65,13 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     />
   </head>
   <body>
-    <Header />
-    <main><slot /></main>
+    {/* A sticky hero lives here, not in <main>: it is held inside its container, so
+         in <main> it would be pushed up where <main> ends. Under <body> it sticks
+         to the end of the page. */}
+    <slot name="hero" />
+    <main class="mx-3 mb-3 relative space-y-3 z-1">
+      <slot />
+    </main>
     <Footer />
 
     <script>
@@ -75,6 +79,8 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       import "../scripts/reveal";
       import "../scripts/ledger";
       import "../scripts/particles";
+      import "../scripts/hero-collapse";
+      import "../scripts/footer-reveal";
     </script>
   </body>
 </html>

@@ -23,6 +23,10 @@
   --line-purple: #6338e347;
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
+  /* The header: its 76px bar plus the 1px border under it (Header.tsx). */
+  --nav-h: 77px;
+  /* The hero's bottom corners (see hero-collapse in tailwind.css). */
+  --hero-radius: 16px;
   --section-y: clamp(5rem, 9vw, 8.5rem);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --container: 1200px;

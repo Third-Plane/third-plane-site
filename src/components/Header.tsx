@@ -3,27 +3,6 @@ import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
 
-function Chevron() {
-  return (
-    <svg
-      className="transition-[rotate] duration-200 group-data-[open=true]/menu:rotate-180"
-      width="10"
-      height="10"
-      viewBox="0 0 10 10"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M2 3.5 5 6.5 8 3.5"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 // A disabled item has no page yet: it is shown, but not as a link.
 type Item = { label: string; href?: string; note?: string; live?: boolean; disabled?: boolean };
 
@@ -42,18 +21,19 @@ const drawerLink =
 // leaves the descriptive ones to the dropdown.
 const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
-// Static markup. scripts/nav.ts opens and closes the menus by setting
-// `data-open` on the elements below; the `group-data-[open=true]` and
-// `data-[open=true]` classes react to it.
+// The nav of the hero (see Hero): transparent and in the flow of the hero, the
+// full width with the same gutter as the hero's content. Static markup.
+// scripts/nav.ts opens and closes the menus by setting `data-open` on the
+// elements below; the `group-data-[open=true]` and `data-[open=true]` classes
+// react to it.
 export function Header() {
   return (
     <header
-      className="group/nav sticky top-0 z-50 border-b border-b-transparent bg-[color-mix(in_srgb,var(--lavender)_82%,transparent)] backdrop-blur-[14px] transition-[border-color] duration-250 data-[open=true]:border-b-line-soft data-[scrolled=true]:border-b-line-soft"
-      data-scrolled="false"
+      className="group/nav relative z-50 border-b border-b-transparent transition-[border-color] duration-250 data-[open=true]:border-b-line-soft"
       data-open="false"
       data-nav
     >
-      <div className="wrap flex h-[76px] items-center justify-between gap-8">
+      <div className="flex h-19 items-center justify-between gap-8 px-(--gutter)">
         <AppLink className="inline-flex items-center" href="/" aria-label={`${site.name} home`}>
           <Logo className="h-8.5 w-auto" />
         </AppLink>
@@ -62,13 +42,12 @@ export function Header() {
           {primaryNav.menus.map((group) => (
             <div className="group/menu relative" data-open="false" data-menu key={group.label}>
               <button
-                className="inline-flex cursor-pointer items-center gap-[0.35rem] bg-transparent p-0 text-ink transition-[color] duration-200 [border:0] [font:inherit] hover:text-purple"
+                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-xl! font-bold! text-ink transition-[color] duration-200 [border:0] [font:inherit] hover:text-purple"
                 type="button"
                 aria-expanded="false"
                 data-menu-btn
               >
                 {group.label}
-                <Chevron />
               </button>
               <div
                 className="absolute top-[calc(100%_+_0.9rem)] -left-3 hidden w-[320px] gap-[0.15rem] rounded-card border border-line-soft bg-white p-[0.6rem] shadow-lg group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
@@ -123,11 +102,11 @@ export function Header() {
       </div>
 
       <div
-        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh_-_76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-line-soft max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
+        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh_-_76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-line-soft max-lg:data-[open=true]:bg-lavender max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
         data-nav-drawer
       >
-        <div className="wrap grid gap-1">
+        <div className="grid gap-1 px-(--gutter)">
           {primaryNav.menus.map((group) => (
             <div key={group.label}>
               <p className="pt-5 pb-1 text-label font-medium tracking-eyebrow text-ink-muted uppercase">

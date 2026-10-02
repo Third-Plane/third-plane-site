@@ -7,11 +7,15 @@ import { Section } from "../components/Section";
 import { StepList } from "../components/StepList";
 import { reveal } from "../lib/style";
 
+// The hero is its own export: pages/security.astro puts it in Base's `hero` slot,
+// outside <main>.
+export function SecurityHero() {
+  return <PageHero title={page.title} lead={page.lead} />;
+}
+
 export function Security() {
   return (
     <>
-      <PageHero title={page.title} lead={page.lead} />
-
       <Section tone="white" id="authority">
         <div className="grid grid-cols-2 gap-x-[clamp(1.5rem,4vw,3.5rem)] border-t-[1.5px] border-t-line max-md:grid-cols-1 md:auto-rows-[auto_1fr] md:items-start">
           {page.authority.sides.map((side, i) => (

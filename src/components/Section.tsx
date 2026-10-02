@@ -7,11 +7,11 @@ const TONE: Record<SectionTone | "cream", string> = {
   cream: "bg-cream",
   white: "bg-white",
   blend: "bg-(image:--blend)",
-  deep: "overflow-hidden bg-deep text-on-dark-muted",
+  deep: "bg-deep text-on-dark-muted",
 };
 
-// A page section: the band, the container and, when `title` is given, the
-// heading. `backdrop` renders inside the band but outside the container, for
+// A page section: the band (a rounded card; <main> in Base.astro spaces them),
+// the container and, when `title` is given, the heading. `backdrop` renders inside the band but outside the container, for
 // decoration such as a ParticleField.
 export function Section({
   id,
@@ -36,7 +36,11 @@ export function Section({
   backdrop?: ReactNode;
   children?: ReactNode;
 }) {
-  const sectionClass = ["relative py-(--section-y)", TONE[tone ?? "cream"], className]
+  const sectionClass = [
+    "relative overflow-hidden rounded-xl py-(--section-y)",
+    TONE[tone ?? "cream"],
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
   const containerClass = ["wrap", containerClassName].filter(Boolean).join(" ");

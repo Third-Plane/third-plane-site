@@ -4,14 +4,18 @@ import { ItemGrid } from "../components/ItemGrid";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 
-export function AppliedEpic() {
+// The hero is its own export: pages/applied-epic.astro puts it in Base's `hero`
+// slot, outside <main>.
+export function AppliedEpicHero() {
   const title = page.certified ? page.title : page.titlePending;
   const status = [page.status, page.date].filter(Boolean).join(" · ");
 
+  return <PageHero title={title} lead={page.lead} status={page.certified ? status : undefined} />;
+}
+
+export function AppliedEpic() {
   return (
     <>
-      <PageHero title={title} lead={page.lead} status={page.certified ? status : undefined} />
-
       <Section tone="white" id="who" title={page.who.title} body={page.who.body}>
         <ItemGrid variant="point" columns={3} items={page.who.items} />
       </Section>

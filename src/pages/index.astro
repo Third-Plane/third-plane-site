@@ -1,8 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
-import { Home } from "../views/Home";
+import { Home, HomeHero } from "../views/Home";
 ---
 
 <Base path="/">
+  <HomeHero slot="hero" />
   <Home />
 </Base>
