@@ -15,7 +15,7 @@ function LinkedInMark() {
   );
 }
 
-const iconLink = "inline-flex text-on-dark-faint transition-[color] duration-200 hover:text-pink";
+const iconLink = "inline-flex text-on-dark-faint transition-colors duration-200 hover:text-pink";
 
 // From lg up, where scroll-driven animation is available (see the scroll-linked
 // variant in tailwind.css), the footer is the inverse of the hero: pinned to the
@@ -48,7 +48,7 @@ export function Footer() {
               </p>
               {column.links.map((link) => (
                 <NavEntry
-                  className="transition-[color] duration-200 hover:text-pink"
+                  className="transition-colors duration-200 hover:text-pink"
                   disabledClassName="text-on-dark-faint"
                   href={link.href}
                   disabled={link.disabled}

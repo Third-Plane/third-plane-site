@@ -19,7 +19,7 @@ function PlacementWorkflow() {
             "relative row-span-2 grid grid-rows-subgrid rounded-2xl border p-(--pad) max-lg:row-auto max-lg:block",
             stage.accent
               ? "border-transparent bg-purple text-on-dark"
-              : "border-line-dark bg-[#f6f3f00a]",
+              : "border-line-dark bg-cream/5",
           )}
           key={stage.kicker}
         >

@@ -13,7 +13,7 @@ import { cn, reveal } from "../lib/style";
 // filled.
 const MODEL = {
   plain: {
-    box: "border-line bg-white hover:border-[color-mix(in_srgb,var(--purple)_35%,var(--line))]",
+    box: "border-line bg-white hover:border-purple/45",
     kicker: "text-ink",
     step: "border-line bg-cream text-ink",
     lastStep: "border-line bg-cream text-ink",
@@ -21,12 +21,12 @@ const MODEL = {
     note: "text-ink-body",
   },
   accent: {
-    box: "border-transparent bg-purple hover:border-transparent hover:bg-[color-mix(in_srgb,var(--purple)_88%,var(--white))]",
+    box: "border-transparent bg-purple hover:border-transparent hover:bg-purple/90",
     kicker: "text-on-dark",
-    step: "border-[#ffffff59] bg-transparent text-on-dark",
+    step: "border-white/35 bg-transparent text-on-dark",
     lastStep: "border-white bg-white text-purple",
-    arrow: "text-[#ffffffb3]",
-    note: "text-[#ffffffe0]",
+    arrow: "text-white/70",
+    note: "text-white/90",
   },
 } as const;
 
@@ -56,7 +56,7 @@ export function Home() {
             return (
               <div
                 className={cn(
-                  "rounded-2xl border p-(--pad) transition-[border-color,background] duration-200",
+                  "rounded-2xl border p-(--pad) transition-colors duration-200",
                   tone.box,
                 )}
                 {...reveal(i)}

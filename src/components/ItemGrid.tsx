@@ -35,9 +35,9 @@ function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
 }
 
 const BOX = {
-  card: "rounded-2xl bg-white p-(--pad) shadow-lg transition-[translate,box-shadow] duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+  card: "rounded-2xl bg-white p-(--pad) shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
   outline: "rounded-2xl border border-line bg-white p-(--pad) shadow-none",
-  point: "border-t border-t-line pt-6 transition-[border-color] duration-200 hover:border-t-purple",
+  point: "border-t border-t-line pt-6 transition-colors duration-200 hover:border-t-purple",
 } as const;
 
 const TITLE = {
@@ -78,7 +78,7 @@ export function ItemGrid({
             <h3 className={title}>
               {item.title}
               {item.href ? (
-                <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-0.75" />
+                <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-purple transition-transform duration-200 group-hover:translate-x-0.75" />
               ) : null}
             </h3>
             {item.body ? <p className="text-base text-pretty text-ink-body">{item.body}</p> : null}

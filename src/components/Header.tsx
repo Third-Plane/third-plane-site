@@ -35,7 +35,7 @@ const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled 
 export function Header() {
   return (
     <header
-      className="group/nav relative z-50 border-b border-b-transparent transition-[border-color] duration-250 data-[open=true]:border-b-line-soft"
+      className="group/nav relative z-50 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-line-soft"
       data-open="false"
       data-nav
     >
@@ -48,7 +48,7 @@ export function Header() {
           {primaryNav.menus.map((group) => (
             <div className="group/menu relative" data-open="false" data-menu key={group.label}>
               <button
-                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-ink transition-[color] duration-200 [border:0] [font:inherit] hover:text-purple"
+                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-ink transition-colors duration-200 [border:0] [font:inherit] hover:text-purple"
                 type="button"
                 aria-expanded="false"
                 data-menu-btn
@@ -64,7 +64,7 @@ export function Header() {
                   <NavEntry
                     className={cn(
                       panelItem,
-                      "text-ink transition-[background] duration-150 hover:bg-cream",
+                      "text-ink transition-colors duration-150 hover:bg-cream",
                     )}
                     disabledClassName={cn(panelItem, "cursor-default text-ink-muted")}
                     href={item.href}

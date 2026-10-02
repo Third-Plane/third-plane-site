@@ -14,7 +14,7 @@ type ButtonProps = {
 };
 
 const BUTTON_BASE =
-  "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium whitespace-nowrap transition-[background,color,translate,box-shadow] duration-200 hover:-translate-y-px";
+  "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium whitespace-nowrap transition duration-200 hover:-translate-y-px";
 
 const BUTTON_SIZE = {
   regular: "px-6 py-4 text-base/none",
@@ -23,7 +23,7 @@ const BUTTON_SIZE = {
 
 const BUTTON_VARIANT: Record<ButtonVariant, string> = {
   primary: "bg-purple text-white hover:bg-purple-hover",
-  dark: "bg-deep text-white hover:bg-deep-2 hover:shadow-[0_10px_24px_#2d1f5738]",
+  dark: "bg-deep text-white hover:bg-deep-2 hover:shadow-lg hover:shadow-deep/20",
   light: "bg-white text-deep hover:bg-cream",
   ghost:
     "bg-transparent text-deep inset-ring inset-ring-line hover:text-purple hover:inset-ring-purple",
