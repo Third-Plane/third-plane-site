@@ -8,41 +8,40 @@ type Item = { title: string; body?: string; href?: string };
 // An item with an `href` is a link, with an arrow after its title.
 type Variant = "card" | "outline" | "point";
 
+// The columns show from md for two (and four, as two at first), from lg for
+// three.
 const COLUMNS = {
-  2: "grid-cols-2 max-md:grid-cols-1",
-  3: "grid-cols-3 max-lg:grid-cols-1",
-  4: "grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1",
+  2: "md:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "md:grid-cols-2 lg:grid-cols-4",
 } as const;
 
-// Each item is a subgrid spanning one set of rows (media, title, body), so
-// titles and bodies line up across a row and every body row shares one height.
-// It switches on exactly when the columns show: from md for two columns, from
-// lg for three. Points only do this when they have a body.
-function gridRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
-  if (variant === "point") {
-    return columns === 3 && hasBody ? "lg:auto-rows-[auto_1fr] lg:items-start" : "";
-  }
-  return columns === 3 ? "lg:auto-rows-[auto_auto_1fr]" : "md:auto-rows-[auto_1fr] md:items-start";
-}
+// Once the columns show, each item is a subgrid spanning its rows (media,
+// title, body), so titles and bodies line up across a row and every body row
+// shares one height. By breakpoint, then by how many rows an item has.
+const SUBGRID = {
+  md: {
+    2: { grid: "md:auto-rows-[auto_1fr]", item: "md:row-span-2 md:grid-rows-subgrid" },
+    3: { grid: "md:auto-rows-[auto_auto_1fr]", item: "md:row-span-3 md:grid-rows-subgrid" },
+  },
+  lg: {
+    2: { grid: "lg:auto-rows-[auto_1fr]", item: "lg:row-span-2 lg:grid-rows-subgrid" },
+    3: { grid: "lg:auto-rows-[auto_auto_1fr]", item: "lg:row-span-3 lg:grid-rows-subgrid" },
+  },
+} as const;
 
-function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
-  if (variant === "point") {
-    return columns === 3 && hasBody ? "lg:row-span-2 lg:grid lg:grid-rows-subgrid" : "";
-  }
-  return columns === 3
-    ? "lg:row-span-3 lg:grid lg:grid-rows-subgrid"
-    : "md:row-span-2 md:grid md:grid-rows-subgrid";
-}
-
+// Each item is a grid with its own row gap, which also holds in the subgrid
+// (instead of the gap between items).
 const BOX = {
-  card: "rounded-2xl bg-white p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
-  outline: "rounded-2xl border border-line bg-white p-7 shadow-none",
-  point: "border-t border-t-line pt-6 transition-colors duration-200 hover:border-t-purple",
+  card: "grid gap-y-5 rounded-2xl bg-white p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+  outline: "grid gap-y-5 rounded-2xl border border-line bg-white p-7 shadow-none",
+  point:
+    "grid gap-y-3 border-t border-t-line pt-6 transition-colors duration-200 hover:border-t-purple",
 } as const;
 
 const TITLE = {
   tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-ink",
-  point: "mb-3 font-heading text-xl font-medium tracking-tight text-ink",
+  point: "font-heading text-xl font-medium tracking-tight text-ink",
 } as const;
 
 // A grid of titled items that reveal in turn. `media` adds something above the
@@ -63,15 +62,19 @@ export function ItemGrid({
   dense?: boolean;
   spaced?: boolean;
 }) {
-  const gap = spaced ? "gap-8 items-start" : "gap-5";
-  const hasBody = items.some((item) => item.body);
-  const box = cn(BOX[variant], variant === "outline" && dense && "px-6 py-5");
-  const title = variant === "point" ? cn(TITLE.point, spaced && "mb-2") : TITLE.tile;
+  const rows = (media ? 1 : 0) + 1 + (items.some((item) => item.body) ? 1 : 0);
+  const subgrid = rows > 1 ? SUBGRID[columns === 3 ? "lg" : "md"][rows as 2 | 3] : undefined;
+  const className = cn(
+    BOX[variant],
+    variant === "outline" && dense && "px-6 py-5",
+    variant === "point" && spaced && "gap-y-2",
+    subgrid?.item,
+  );
+  const title = variant === "point" ? TITLE.point : TITLE.tile;
 
   return (
-    <div className={cn("grid", COLUMNS[columns], gap, gridRows(variant, columns, hasBody))}>
+    <div className={cn("grid", COLUMNS[columns], spaced ? "gap-8" : "gap-5", subgrid?.grid)}>
       {items.map((item, i) => {
-        const className = cn(box, itemRows(variant, columns, !!item.body));
         const content = (
           <>
             {media?.(i)}

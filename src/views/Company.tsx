@@ -18,7 +18,7 @@ export function Company() {
       <Section
         tone="white"
         id="origin"
-        containerClassName="grid grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start gap-x-17 gap-y-13 max-md:grid-cols-1"
+        containerClassName="grid items-start gap-x-17 gap-y-13 md:grid-cols-2"
       >
         <div data-reveal>
           <Display2>{page.origin.title}</Display2>

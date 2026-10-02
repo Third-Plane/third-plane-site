@@ -10,13 +10,13 @@ import { cn } from "../lib/style";
 function PlacementWorkflow() {
   return (
     <div
-      className="mt-1 grid auto-rows-[auto_1fr] grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] items-stretch gap-x-5 gap-y-0 max-lg:auto-rows-auto max-lg:grid-cols-1 max-lg:gap-y-5"
+      className="mt-1 grid gap-5 lg:auto-rows-[auto_1fr] lg:grid-cols-[3fr_4fr_3fr] lg:gap-y-0"
       data-reveal
     >
       {placementDesk.work.stages.map((stage, i) => (
         <div
           className={cn(
-            "relative row-span-2 grid grid-rows-subgrid rounded-2xl border p-7 max-lg:row-auto max-lg:block",
+            "relative rounded-2xl border p-7 lg:row-span-2 lg:grid lg:grid-rows-subgrid",
             stage.accent
               ? "border-transparent bg-purple text-on-dark"
               : "border-line-dark bg-cream/5",
@@ -24,7 +24,7 @@ function PlacementWorkflow() {
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute top-1/2 -left-5.25 z-1 size-5.5 -translate-y-1/2 rounded-full bg-deep p-0.5 text-pink max-lg:-top-5.25 max-lg:left-7 max-lg:translate-y-0 max-lg:rotate-90" />
+            <Arrow className="absolute -top-5.25 left-7 z-1 size-5.5 rotate-90 rounded-full bg-deep p-0.5 text-pink lg:top-1/2 lg:-left-5.25 lg:-translate-y-1/2 lg:rotate-0" />
           ) : null}
           <p className="mb-5 font-heading text-2xl leading-tight font-medium tracking-tight text-on-dark">
             {stage.kicker}

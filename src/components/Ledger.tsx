@@ -51,7 +51,7 @@ export function Ledger({
       <ol className="grid py-2" data-rows>
         {rows.map((row) => (
           <li
-            className="group grid grid-cols-[3.1rem_minmax(0,1fr)_auto] items-start gap-3.5 border-b border-b-line-soft py-3 text-sm leading-snug last:border-b-0 motion-safe:animate-row-in"
+            className="group grid grid-cols-[auto_1fr_auto] items-start gap-3.5 border-b border-b-line-soft py-3 text-sm leading-snug last:border-b-0 motion-safe:animate-row-in"
             data-status={row.status}
             key={row.task}
           >

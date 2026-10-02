@@ -20,7 +20,7 @@ export function Careers() {
             {page.roles.items.map((role) => (
               <li key={role.href}>
                 <AppLink
-                  className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-6 rounded-2xl bg-white px-7 py-5 text-ink shadow-lg transition duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
+                  className="grid grid-cols-[1fr_auto_auto] items-center gap-6 rounded-2xl bg-white px-7 py-5 text-ink shadow-lg transition duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
                   href={role.href}
                 >
                   <span className="font-heading text-xl font-medium tracking-tight">
