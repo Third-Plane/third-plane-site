@@ -1,6 +1,6 @@
 import { companyPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
-import { ItemGrid } from "../components/ItemGrid";
+import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
@@ -60,7 +60,14 @@ export function Company() {
       </Section>
 
       <Section id="principles" tone="blend" title={page.principles.title}>
-        <ItemGrid variant="point" columns={2} items={page.principles.items} />
+        <Grid>
+          {page.principles.items.map((item, i) => (
+            <Point key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ItemBody>{item.body}</ItemBody>
+            </Point>
+          ))}
+        </Grid>
       </Section>
 
       <Cta {...page.cta} />

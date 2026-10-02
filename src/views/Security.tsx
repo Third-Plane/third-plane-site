@@ -1,6 +1,6 @@
 import { securityPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
-import { ItemGrid } from "../components/ItemGrid";
+import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
@@ -49,7 +49,14 @@ export function Security() {
       </Section>
 
       <Section tone="blend" id="data" title={page.data.title}>
-        <ItemGrid variant="outline" dense columns={2} items={page.data.items} />
+        <Grid>
+          {page.data.items.map((item, i) => (
+            <OutlineCard className="px-6 py-5" key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ItemBody>{item.body}</ItemBody>
+            </OutlineCard>
+          ))}
+        </Grid>
       </Section>
 
       <Cta {...page.cta} />

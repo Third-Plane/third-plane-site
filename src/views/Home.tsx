@@ -1,6 +1,6 @@
 import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
-import { ItemGrid } from "../components/ItemGrid";
+import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
@@ -25,7 +25,14 @@ export function Home() {
       <Showcase />
 
       <Section tone="white" id="problem" title={problem.title} body={problem.body}>
-        <ItemGrid variant="outline" columns={2} items={problem.points} />
+        <Grid>
+          {problem.points.map((point, i) => (
+            <OutlineCard key={point.title} {...reveal(i)}>
+              <ItemTitle>{point.title}</ItemTitle>
+              <ItemBody>{point.body}</ItemBody>
+            </OutlineCard>
+          ))}
+        </Grid>
       </Section>
 
       <Section id="approach" tone="blend" title={approach.title} body={approach.body}>
