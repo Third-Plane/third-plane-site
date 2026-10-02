@@ -37,12 +37,12 @@ export function Ledger({
     >
       <div className="flex items-start justify-between gap-4 border-b border-b-line-soft pb-4">
         <div>
-          <p className="font-heading text-[1.1rem] font-medium tracking-tight text-ink">{label}</p>
-          <p className="mt-[0.1rem] text-sm text-ink-muted">{sublabel}</p>
+          <p className="font-heading text-lg font-medium tracking-tight text-ink">{label}</p>
+          <p className="mt-0.5 text-sm text-ink-muted">{sublabel}</p>
         </div>
-        <span className="inline-flex items-center gap-2 rounded-full bg-blue px-3 py-[0.35rem] text-sm font-medium text-deep">
+        <span className="inline-flex items-center gap-2 rounded-full bg-blue px-3 py-1.5 text-sm font-medium text-deep">
           <i
-            className="relative size-[7px] rounded-[50%] bg-purple motion-safe:after:absolute motion-safe:after:-inset-1 motion-safe:after:animate-ledger-pulse motion-safe:after:rounded-[50%] motion-safe:after:border motion-safe:after:border-purple motion-safe:after:content-['']"
+            className="relative size-1.5 rounded-full bg-purple motion-safe:after:absolute motion-safe:after:-inset-1 motion-safe:after:animate-ledger-pulse motion-safe:after:rounded-full motion-safe:after:border motion-safe:after:border-purple motion-safe:after:content-['']"
             aria-hidden="true"
           />
           Working
@@ -51,24 +51,24 @@ export function Ledger({
       <ol className="grid py-2" data-rows>
         {rows.map((row) => (
           <li
-            className="group grid grid-cols-[3.1rem_minmax(0,1fr)_auto] items-start gap-[0.85rem] border-b border-b-line-soft py-[0.7rem] text-[0.925rem] leading-[1.4] last:border-b-0 motion-safe:animate-row-in"
+            className="group grid grid-cols-[3.1rem_minmax(0,1fr)_auto] items-start gap-3.5 border-b border-b-line-soft py-3 text-sm leading-snug last:border-b-0 motion-safe:animate-row-in"
             data-status={row.status}
             key={row.task}
           >
-            <span className="pt-[0.05rem] text-sm text-ink-muted tabular-nums" data-time>
+            <span className="text-sm text-ink-muted tabular-nums" data-time>
               {row.time}
             </span>
             <span className="text-ink" data-task>
               {row.task}
             </span>
             <i
-              className="mt-[0.4rem] size-[9px] rounded-[50%] bg-purple group-data-[status=review]:bg-pink group-data-[status=review]:inset-ring-[1.5px] group-data-[status=review]:inset-ring-purple"
+              className="mt-1.5 size-2 rounded-full bg-purple group-data-[status=review]:bg-pink group-data-[status=review]:inset-ring group-data-[status=review]:inset-ring-purple"
               aria-hidden="true"
             />
           </li>
         ))}
       </ol>
-      <ul className="flex flex-wrap gap-5 border-t border-t-line-soft pt-[0.9rem] text-base text-ink-muted">
+      <ul className="flex flex-wrap gap-5 border-t border-t-line-soft pt-3.5 text-base text-ink-muted">
         {legend.map((item) => (
           <li
             className="group inline-flex items-center gap-2"
@@ -76,7 +76,7 @@ export function Ledger({
             key={item.status}
           >
             <i
-              className="size-[9px] rounded-[50%] bg-purple group-data-[status=review]:bg-pink group-data-[status=review]:inset-ring-[1.5px] group-data-[status=review]:inset-ring-purple"
+              className="size-2 rounded-full bg-purple group-data-[status=review]:bg-pink group-data-[status=review]:inset-ring group-data-[status=review]:inset-ring-purple"
               aria-hidden="true"
             />
             {item.label}

@@ -9,7 +9,7 @@ export function Showcase() {
     <Section tone="white" id="video" title={showcase.title} align="center">
       <figure className="m-0 grid justify-items-center gap-4" data-reveal>
         <video
-          className="aspect-video w-full max-w-[1040px] rounded-2xl bg-deep shadow-2xl"
+          className="aspect-video w-full max-w-260 rounded-2xl bg-deep shadow-2xl"
           src={showcase.src}
           poster={showcase.poster || undefined}
           controls

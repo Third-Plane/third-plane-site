@@ -10,16 +10,16 @@ function BlockView({ block }: { block: Block }) {
   switch (block.type) {
     case "heading":
       return (
-        <h2 className="mt-5 font-heading text-[1.75rem] font-medium tracking-tight text-balance text-ink">
+        <h2 className="mt-5 font-heading text-3xl font-medium tracking-tight text-balance text-ink">
           {block.text}
         </h2>
       );
     case "bullets":
       return (
-        <ul className="grid gap-[0.6rem] pl-[1.35rem]">
+        <ul className="grid gap-2.5 pl-5">
           {block.items.map((item) => (
             <li
-              className="relative before:absolute before:top-[0.65em] before:-left-[1.35rem] before:size-2 before:rounded-[50%] before:bg-purple before:content-['']"
+              className="relative before:absolute before:top-[0.65em] before:-left-5 before:size-2 before:rounded-full before:bg-purple before:content-['']"
               key={item}
             >
               {item}
@@ -29,7 +29,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "numbered":
       return (
-        <ol className="grid list-decimal gap-[0.6rem] pl-[1.35rem]">
+        <ol className="grid list-decimal gap-2.5 pl-5">
           {block.items.map((item) => (
             <li className="relative" key={item}>
               {item}
@@ -39,7 +39,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "quote":
       return (
-        <blockquote className="mx-0 my-2 rounded-r-xl border-l-[3px] border-l-purple bg-cream px-6 py-5 font-heading text-[1.3rem] leading-[1.35] font-medium tracking-tight text-ink">
+        <blockquote className="mx-0 my-2 rounded-r-xl border-l-3 border-l-purple bg-cream px-6 py-5 font-heading text-xl leading-snug font-medium tracking-tight text-ink">
           {block.text}
         </blockquote>
       );
@@ -56,11 +56,11 @@ export function PostHero({ post }: { post: PostData }) {
   return (
     <Hero id="top">
       <div className="px-(--gutter) pt-[clamp(2.5rem,5vw,4.5rem)] pb-[clamp(3rem,6vw,5rem)]">
-        <div className="pointer-events-auto relative z-3 grid max-w-[760px] gap-5">
+        <div className="pointer-events-auto relative z-3 grid max-w-190 gap-5">
           <Leave tier="heading">
             <div className="grid gap-5">
               <AppLink
-                className="inline-flex items-center gap-[0.4rem] justify-self-start text-[0.9rem] font-medium text-purple"
+                className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-purple"
                 href="/resources"
               >
                 <Arrow className="size-3.5 shrink-0 rotate-180" />
@@ -76,7 +76,7 @@ export function PostHero({ post }: { post: PostData }) {
             </Lead>
           </Leave>
           <Leave tier="actions">
-            <p className="text-[0.9rem] text-ink-muted">{post.author}</p>
+            <p className="text-sm text-ink-muted">{post.author}</p>
           </Leave>
         </div>
       </div>
@@ -89,7 +89,7 @@ export function Post({ post }: { post: PostData }) {
     <>
       <article>
         <div className="relative rounded-xl bg-white py-(--section-y)">
-          <div className="wrap grid max-w-[68ch] gap-5 text-[1.125rem] leading-[1.7] text-ink-body">
+          <div className="wrap grid max-w-[68ch] gap-5 text-lg leading-relaxed text-ink-body">
             {post.body.map((block, i) => (
               <BlockView block={block} key={i} />
             ))}

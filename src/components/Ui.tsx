@@ -17,8 +17,8 @@ const BUTTON_BASE =
   "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium whitespace-nowrap transition-[background,color,translate,box-shadow] duration-200 hover:-translate-y-px";
 
 const BUTTON_SIZE = {
-  regular: "px-[1.6rem] py-[0.95rem] text-[0.975rem]/none",
-  small: "px-[1.2rem] py-[0.7rem] text-[0.9rem]/none",
+  regular: "px-6 py-4 text-base/none",
+  small: "px-5 py-3 text-sm/none",
 } as const;
 
 const BUTTON_VARIANT: Record<ButtonVariant, string> = {
@@ -26,7 +26,7 @@ const BUTTON_VARIANT: Record<ButtonVariant, string> = {
   dark: "bg-deep text-white hover:bg-deep-2 hover:shadow-[0_10px_24px_#2d1f5738]",
   light: "bg-white text-deep hover:bg-cream",
   ghost:
-    "bg-transparent text-deep inset-ring-[1.5px] inset-ring-line hover:text-purple hover:inset-ring-purple",
+    "bg-transparent text-deep inset-ring inset-ring-line hover:text-purple hover:inset-ring-purple",
 };
 
 export function Button({

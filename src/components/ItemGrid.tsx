@@ -37,12 +37,11 @@ function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
 const BOX = {
   card: "rounded-2xl bg-white p-(--pad) shadow-lg transition-[translate,box-shadow] duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
   outline: "rounded-2xl border border-line bg-white p-(--pad) shadow-none",
-  point:
-    "border-t-[1.5px] border-t-line pt-6 transition-[border-color] duration-200 hover:border-t-purple",
+  point: "border-t border-t-line pt-6 transition-[border-color] duration-200 hover:border-t-purple",
 } as const;
 
 const TITLE = {
-  tile: "font-heading text-xl leading-[1.2] font-medium tracking-tight text-balance text-ink",
+  tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-ink",
   point: "mb-3 font-heading text-xl font-medium tracking-tight text-ink",
 } as const;
 
@@ -66,8 +65,8 @@ export function ItemGrid({
 }) {
   const gap = spaced ? "gap-8 items-start" : "gap-(--gap)";
   const hasBody = items.some((item) => item.body);
-  const box = cn(BOX[variant], variant === "outline" && dense && "px-6 py-[1.35rem]");
-  const title = variant === "point" ? cn(TITLE.point, spaced && "mb-[0.55rem]") : TITLE.tile;
+  const box = cn(BOX[variant], variant === "outline" && dense && "px-6 py-5");
+  const title = variant === "point" ? cn(TITLE.point, spaced && "mb-2") : TITLE.tile;
 
   return (
     <div className={cn("grid", COLUMNS[columns], gap, gridRows(variant, columns, hasBody))}>
@@ -79,7 +78,7 @@ export function ItemGrid({
             <h3 className={title}>
               {item.title}
               {item.href ? (
-                <Arrow className="ml-[0.4rem] inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-0.75" />
+                <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-0.75" />
               ) : null}
             </h3>
             {item.body ? <p className="text-base text-pretty text-ink-body">{item.body}</p> : null}

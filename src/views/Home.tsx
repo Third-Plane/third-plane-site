@@ -64,19 +64,16 @@ export function Home() {
               >
                 <p
                   className={cn(
-                    "mb-5 font-heading text-xl leading-[1.2] font-medium tracking-tight",
+                    "mb-5 font-heading text-xl leading-tight font-medium tracking-tight",
                     tone.kicker,
                   )}
                 >
                   {model.kicker}
                 </p>
-                <div
-                  className="flex flex-wrap items-center gap-x-[0.35rem] gap-y-[0.65rem]"
-                  role="list"
-                >
+                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-2.5" role="list">
                   {model.chain.map((step, stepIndex) => (
                     <span
-                      className="inline-flex items-center gap-x-3 gap-y-[0.6rem]"
+                      className="inline-flex items-center gap-x-3 gap-y-2.5"
                       role="listitem"
                       key={step}
                     >
@@ -85,7 +82,7 @@ export function Home() {
                       ) : null}
                       <span
                         className={cn(
-                          "inline-flex items-center rounded-full border-[1.5px] px-[1.1rem] py-[0.7rem] font-heading text-base font-medium tracking-tight whitespace-nowrap",
+                          "inline-flex items-center rounded-full border px-4 py-3 font-heading text-base font-medium tracking-tight whitespace-nowrap",
                           stepIndex === model.chain.length - 1 ? tone.lastStep : tone.step,
                         )}
                       >

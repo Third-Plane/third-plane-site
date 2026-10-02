@@ -26,7 +26,7 @@ export function Careers() {
                   <span className="font-heading text-xl font-medium tracking-tight">
                     {role.title}
                   </span>
-                  <span className="text-[0.9rem] text-ink-muted">
+                  <span className="text-sm text-ink-muted">
                     {role.team} · {role.location}
                   </span>
                   <Arrow className="size-4.5 text-purple" />

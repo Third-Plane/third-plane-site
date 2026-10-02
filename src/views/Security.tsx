@@ -17,7 +17,7 @@ export function Security() {
   return (
     <>
       <Section tone="white" id="authority">
-        <div className="grid grid-cols-2 gap-x-[clamp(1.5rem,4vw,3.5rem)] border-t-[1.5px] border-t-line max-md:grid-cols-1 md:auto-rows-[auto_1fr] md:items-start">
+        <div className="grid grid-cols-2 gap-x-[clamp(1.5rem,4vw,3.5rem)] border-t border-t-line max-md:grid-cols-1 md:auto-rows-[auto_1fr] md:items-start">
           {page.authority.sides.map((side, i) => (
             <div
               className={cn(
@@ -32,7 +32,7 @@ export function Security() {
               <ul className="grid">
                 {side.items.map((item) => (
                   <li className="border-b border-b-line-soft py-6" key={item.title}>
-                    <h3 className="mb-[0.35rem] font-heading text-xl font-medium tracking-tight text-ink">
+                    <h3 className="mb-1.5 font-heading text-xl font-medium tracking-tight text-ink">
                       {item.title}
                     </h3>
                     <p className="text-base text-ink-body">{item.body}</p>

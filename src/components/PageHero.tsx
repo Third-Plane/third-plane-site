@@ -54,11 +54,11 @@ export function PageHero({
   return (
     <Hero id="top">
       <div className={cn("px-(--gutter)", padding)}>
-        <div className="pointer-events-auto relative z-3 max-w-[720px]">
+        <div className="pointer-events-auto relative z-3 max-w-180">
           <Leave tier="heading">
             {status ? (
               <div data-reveal className="mb-5 flex flex-col items-start gap-3">
-                <span className="inline-block w-fit rounded-full bg-pink px-[0.7rem] py-[0.3rem] text-sm font-medium text-deep">
+                <span className="inline-block w-fit rounded-full bg-pink px-3 py-1 text-sm font-medium text-deep">
                   {status}
                 </span>
               </div>

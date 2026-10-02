@@ -25,11 +25,11 @@ export function StepList({
           key={step.title}
         >
           {numbered ? (
-            <span className="mb-6 block font-heading text-[0.9rem] font-medium text-pink">
+            <span className="mb-6 block font-heading text-sm font-medium text-pink">
               {String(i + 1).padStart(2, "0")}
             </span>
           ) : null}
-          <h3 className="mb-[0.6rem] font-heading text-xl font-medium tracking-tight text-on-dark">
+          <h3 className="mb-2.5 font-heading text-xl font-medium tracking-tight text-on-dark">
             {step.title}
           </h3>
           <p className="text-base text-pretty text-on-dark-muted">{step.body}</p>

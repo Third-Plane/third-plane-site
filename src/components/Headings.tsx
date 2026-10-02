@@ -5,8 +5,8 @@ import { cn } from "../lib/style";
 // props, so no two competing utilities land on one element.
 
 const DISPLAY_1_SIZE = {
-  hero: "text-[clamp(2.5rem,5vw,4.15rem)]/[1.04]",
-  editorial: "text-[clamp(2rem,3.4vw,2.85rem)]/[1.04]",
+  hero: "text-[clamp(2.5rem,5vw,4.15rem)]/none",
+  editorial: "text-[clamp(2rem,3.4vw,2.85rem)]/none",
 } as const;
 
 export function Display1({
@@ -38,7 +38,7 @@ export function Display2({
   return (
     <h2
       className={cn(
-        "font-heading text-[clamp(1.9rem,3.4vw,2.85rem)] leading-[1.1] font-medium tracking-tight text-balance",
+        "font-heading text-[clamp(1.9rem,3.4vw,2.85rem)] leading-none font-medium tracking-tight text-balance",
         DISPLAY_2_TONE[tone],
         className,
       )}
@@ -63,7 +63,7 @@ export function Lead({
   return (
     <p
       className={cn(
-        "font-sans text-[clamp(1.125rem,1.45vw,1.35rem)] leading-[1.45] text-pretty",
+        "font-sans text-[clamp(1.125rem,1.45vw,1.35rem)] leading-normal text-pretty",
         LEAD_TONE[tone],
         className,
       )}

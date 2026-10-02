@@ -10,8 +10,8 @@
    their values, so there is one place to change a colour.
 
    Spacing utilities (p-*, mt-*, gap-*, h-*, ...) exist only for multiples of
-   0.25, so mt-1.4 generates nothing and fails silently. Write other values as
-   mt-[0.35rem].
+   0.25, so mt-1.4 generates nothing and fails silently. Round to the nearest
+   step (mt-1.5) rather than writing an arbitrary mt-[0.35rem].
 
    Tailwind generates a utility for any class name it finds in the source. A
    class in index.css that shared a name with a utility would be overridden by

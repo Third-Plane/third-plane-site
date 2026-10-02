@@ -31,7 +31,7 @@ export function Cta({
               {label}
             </Button>
             <a
-              className="border-b-[1.5px] border-b-transparent font-medium text-pink transition-[border-color] duration-200 hover:border-b-pink"
+              className="border-b border-b-transparent font-medium text-pink transition-[border-color] duration-200 hover:border-b-pink"
               href={mailto}
             >
               {email}

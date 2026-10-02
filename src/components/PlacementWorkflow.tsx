@@ -24,21 +24,21 @@ function PlacementWorkflow() {
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2-11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2-11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
+            <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2-11px)] z-1 size-5.5 -translate-y-1/2 rounded-full bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2-11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
           ) : null}
-          <p className="mb-[1.15rem] font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-[1.15] font-medium tracking-tight text-on-dark">
+          <p className="mb-5 font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-tight font-medium tracking-tight text-on-dark">
             {stage.kicker}
           </p>
           <ul className="grid content-start">
             {stage.steps.map((step) => (
               <li
-                className="border-b border-b-line-dark py-[0.85rem] first:pt-0 last:border-b-0 last:pb-0"
+                className="border-b border-b-line-dark py-3.5 first:pt-0 last:border-b-0 last:pb-0"
                 key={step.title}
               >
                 <p className="font-heading text-base font-medium tracking-tight text-on-dark">
                   {step.title}
                 </p>
-                <p className="mt-[0.3rem] text-base text-pretty text-on-dark-muted">{step.body}</p>
+                <p className="mt-1 text-base text-pretty text-on-dark-muted">{step.body}</p>
               </li>
             ))}
           </ul>

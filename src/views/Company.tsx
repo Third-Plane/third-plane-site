@@ -46,10 +46,10 @@ export function Company() {
             />
           ) : (
             <div
-              className="absolute inset-0 grid place-items-center rounded-2xl border-[1.5px] border-dashed border-line text-[0.9rem] text-ink-muted"
+              className="absolute inset-0 grid place-items-center rounded-2xl border border-dashed border-line text-sm text-ink-muted"
               aria-label={page.team.photoNote}
             >
-              <span className="relative z-2 rounded-full bg-cream px-[0.8rem] py-[0.4rem]">
+              <span className="relative z-2 rounded-full bg-cream px-3 py-1.5">
                 {page.team.photoNote}
               </span>
             </div>

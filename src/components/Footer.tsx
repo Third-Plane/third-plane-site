@@ -39,7 +39,7 @@ export function Footer() {
         <div className="grid max-w-2xl flex-1 gap-12 sm:grid-cols-3">
           {siteFooter.columns.map((column) => (
             <nav
-              className="grid content-start gap-[0.6rem] text-base text-on-dark"
+              className="grid content-start gap-2.5 text-base text-on-dark"
               aria-label={column.label}
               key={column.label}
             >

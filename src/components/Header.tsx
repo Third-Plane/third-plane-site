@@ -12,20 +12,16 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   const tone = item.live ? "text-purple" : "text-ink-muted";
   return (
     <span
-      className={cn(
-        "text-base font-normal",
-        tone,
-        inDrawer && "ml-[0.6rem] font-sans tracking-normal",
-      )}
+      className={cn("text-base font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
     >
       {item.note}
     </span>
   );
 }
 
-const panelItem = "grid gap-[0.15rem] rounded-xl px-3 py-[0.7rem] text-[0.95rem] font-medium";
+const panelItem = "grid gap-0.5 rounded-xl px-3 py-3 text-base font-medium";
 const drawerLink =
-  "block border-b border-b-line-soft py-[0.85rem] font-heading text-[1.35rem] font-medium tracking-tight";
+  "block border-b border-b-line-soft py-3.5 font-heading text-xl font-medium tracking-tight";
 
 // The drawer is compact: it shows status notes (live, or no page yet) but
 // leaves the descriptive ones to the dropdown.
@@ -60,7 +56,7 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-[320px] gap-[0.15rem] rounded-2xl border border-line-soft bg-white p-[0.6rem] shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-line-soft bg-white p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-nav-panel
               >

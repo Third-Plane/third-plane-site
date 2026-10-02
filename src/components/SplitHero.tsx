@@ -34,7 +34,7 @@ export function SplitHero({
   return (
     <Hero id="top">
       <div className={cn("px-(--gutter)", HERO_PADDING, GRID)}>
-        <div className="pointer-events-auto relative z-3 max-w-[600px]">
+        <div className="pointer-events-auto relative z-3 max-w-150">
           <Leave tier="heading">{heading}</Leave>
           <Leave tier="lead">
             <Lead className="mt-7 max-w-[46ch]" {...reveal(2)}>
