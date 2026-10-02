@@ -95,7 +95,7 @@ export function SectionHead({
   const margin = compact ? "mb-[clamp(1.75rem,3vw,2.5rem)]" : "mb-[clamp(2.5rem,5vw,4rem)]";
   return (
     <header
-      className={`max-w-[760px] ${margin} ${center ? "mx-auto text-center" : ""}`.trim()}
+      className={`max-w-190 ${margin} ${center ? "mx-auto text-center" : ""}`.trim()}
       data-reveal
     >
       <Display2 tone={dark ? "dark" : "light"}>{title}</Display2>

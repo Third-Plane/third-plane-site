@@ -66,7 +66,7 @@ export function ItemGrid({
   dense?: boolean;
   spaced?: boolean;
 }) {
-  const gap = spaced ? "gap-x-[clamp(1.5rem,3vw,2.5rem)] gap-y-8 items-start" : "gap-(--gap)";
+  const gap = spaced ? "gap-8 items-start" : "gap-(--gap)";
   const hasBody = items.some((item) => item.body);
   const box = variant === "outline" && dense ? BOX.outlineDense : BOX[variant];
   const title = variant === "point" ? (spaced ? TITLE.pointTight : TITLE.point) : TITLE.tile;
@@ -83,7 +83,7 @@ export function ItemGrid({
             <h3 className={title}>
               {item.title}
               {item.href ? (
-                <Arrow className="ml-[0.4rem] inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-[3px]" />
+                <Arrow className="ml-[0.4rem] inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-0.75" />
               ) : null}
             </h3>
             {item.body ? <p className="text-copy text-pretty text-ink-body">{item.body}</p> : null}

@@ -34,24 +34,15 @@ const MODEL = {
 // outside <main>.
 export function HomeHero() {
   return (
-    <SplitHero
-      title={homeHero.title}
-      lead={homeHero.lead}
-      actions={
-        <>
-          <Button variant="dark" />
-          <Button variant="ghost" href={homeHero.secondary.href}>
-            {homeHero.secondary.label}
-          </Button>
-        </>
-      }
-    />
+    <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button variant="dark" />} />
   );
 }
 
 export function Home() {
   return (
     <>
+      <PlacementWorkflowSection id="desk" title={desk.title} body={desk.body} />
+
       <Showcase />
 
       <Section tone="white" id="problem" title={problem.title} body={problem.body}>
@@ -103,9 +94,7 @@ export function Home() {
         </div>
       </Section>
 
-      <PlacementWorkflowSection id="desk" title={desk.title} body={desk.body} />
-
-      <Cta />
+      <Cta label="Discuss your placement operation" />
     </>
   );
 }

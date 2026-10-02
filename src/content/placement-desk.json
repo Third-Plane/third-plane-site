@@ -1,7 +1,6 @@
 {
   "title": [
-    "A placement function",
-    "you can send work to."
+    "Placement that works for you."
   ],
   "problem": "Placement Desk works the markets, pursues quotes and returns the results, so your best producers can stay focused on clients and revenue.",
   "work": {
@@ -61,11 +60,11 @@
   },
   "channels": {
     "title": "One placement process, regardless of channel.",
-    "body": "Placement Desk works each carrier through its portal, API or underwriter email, so your team can reach more of the markets you already have.",
+    "body": "Placement Desk works each market through the channel that carrier uses, whether that’s a portal, API or underwriter email.",
     "items": [
       {
         "title": "Carrier portals",
-        "body": "Fills forms, answers qualifying questions and retrieves quotes."
+        "body": "Completes forms, answers qualifying questions and retrieves quotes."
       },
       {
         "title": "Carrier APIs",
@@ -73,45 +72,45 @@
       },
       {
         "title": "Email",
-        "body": "Manages the underwriter thread and returns the response."
+        "body": "Manages the thread, follows up and returns the response."
       }
     ]
   },
   "systems": {
-    "title": "Integrated with your existing systems.",
-    "body": "No new system of record. No second login for producers. No migration. Placement Desk connects to the systems your team already uses.",
+    "title": "Works with the systems your team already uses.",
+    "body": "No new system of record. No second workflow for producers. Placement Desk connects to the systems where account information already lives and returns results back into the way your team works today.",
     "links": [
       {
         "title": "Applied Epic",
-        "body": "The Placement Desk works with Applied Epic to execute placement work and return activities, documents and results where your team already lives.",
+        "body": "Placement Desk can read account information from Epic, work the placement across carrier channels, and return activity, documents and results back into Epic.",
         "href": "/applied-epic"
       },
       {
         "title": "Additional Systems Integrations",
-        "body": "The Placement Desk reads from your AMS, documents and inboxes and writes results back where your team expects them, without adding another system to manage.",
+        "body": "Placement Desk can connect to the AMS, document repositories, inboxes and other systems involved in your placement workflow. Integration points are scoped as part of deployment.",
         "href": "/integrations"
       }
     ]
   },
   "human": {
     "title": "The desk does the legwork. Your brokers do the brokering.",
-    "body": "Placement Desk takes on the repetitive work of placement, from gathering account details to filling in portals and chasing underwriters. Your team’s time goes to clients, markets and the decisions only a broker should make.",
+    "body": "Placement Desk takes on the repeatable work of placement, from gathering account details through submissions, follow-up and returned quotes. Your team stays responsible for client advice, market strategy, negotiation and decisions that require licensed judgment.",
     "items": [
       {
         "title": "Advice and recommendations",
-        "body": "The desk returns the quotes and the record behind them. Your brokers weigh the options and advise clients on the right coverage."
+        "body": "The Desk returns the quotes, market responses and record behind them. Your brokers evaluate the options and advise the client."
       },
       {
         "title": "Client relationships",
-        "body": "Hours that went to data entry and follow-up go back to the conversations that keep clients and win new business."
+        "body": "Your team spends less time on submission work and follow-up and more time with clients and prospects."
       },
       {
         "title": "Market negotiation",
-        "body": "The desk gets submissions out and quotes back. Your brokers use their underwriter relationships to push on terms and price."
+        "body": "Placement Desk can work submissions and routine carrier follow-up. Your brokers step in where relationships, terms, coverage strategy or negotiation require their judgment."
       },
       {
         "title": "Validation and regulated decisions",
-        "body": "Binding, coverage decisions and anything that needs a licensed professional stay with your people, at the review points you set."
+        "body": "Binding, coverage decisions and anything requiring a licensed professional remain with your team at the review points you define."
       }
     ]
   },
