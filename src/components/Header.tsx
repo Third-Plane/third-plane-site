@@ -33,7 +33,7 @@ export function Header() {
       data-open="false"
       data-nav
     >
-      <div className="flex h-[76px] items-center justify-between gap-8 px-(--gutter)">
+      <div className="flex h-19 items-center justify-between gap-8 px-(--gutter)">
         <AppLink className="inline-flex items-center" href="/" aria-label={`${site.name} home`}>
           <Logo className="h-8.5 w-auto" />
         </AppLink>

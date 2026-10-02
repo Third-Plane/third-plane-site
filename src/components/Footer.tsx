@@ -18,22 +18,13 @@ const iconLink = "inline-flex text-on-dark-faint transition-[color] duration-200
 
 export function Footer() {
   return (
-    <footer className="z-0 mx-3 mb-3 rounded-xl bg-deep pt-[clamp(3rem,5vw,4.5rem)] pb-8 text-on-dark-muted">
-      <div className="flex items-start justify-between gap-8 border-b border-b-line-dark px-(--gutter) pb-10 max-lg:flex-col">
+    <footer className="z-0 mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-on-dark-muted">
+      <div className="flex justify-between gap-16 py-16 max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
           <p className="mt-4 text-copy text-on-dark-muted">{siteFooter.tagline}</p>
-          <p className="mt-[0.35rem] text-[0.9rem] text-on-dark-faint">{siteFooter.location}</p>
-          <div className="mt-[0.85rem] flex items-center gap-3">
-            <AppLink className={iconLink} href={site.linkedin} aria-label="Third Plane on LinkedIn">
-              <LinkedInMark />
-            </AppLink>
-            <AppLink className={`${iconLink} text-[0.9rem]`} href={site.mailto}>
-              {site.email}
-            </AppLink>
-          </div>
         </div>
-        <div className="grid grid-cols-[repeat(3,minmax(0,auto))] gap-[clamp(2rem,5vw,5rem)] max-md:grid-cols-[1fr_1fr]">
+        <div className="grid max-w-2xl flex-1 gap-12 sm:grid-cols-3">
           {siteFooter.columns.map((column) => (
             <nav
               className="grid content-start gap-[0.6rem] text-copy text-on-dark"
@@ -58,11 +49,19 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="flex justify-between gap-4 px-(--gutter) pt-6 text-copy text-on-dark-faint max-sm:flex-col">
+      <div className="flex h-19 items-center justify-between gap-4 text-sm text-on-dark-faint max-sm:flex-col">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <p>{siteFooter.location}</p>
+          <AppLink className={iconLink} href={site.linkedin} aria-label="Third Plane on LinkedIn">
+            <LinkedInMark />
+          </AppLink>
+          <AppLink className={iconLink} href={site.mailto}>
+            {site.email}
+          </AppLink>
+        </div>
         <p>
           © {site.year} {site.name}
         </p>
-        <p>thirdplane.com</p>
       </div>
     </footer>
   );

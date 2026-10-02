@@ -6,11 +6,9 @@ import { ParticleField } from "./ParticleField";
 // scroll-linked variant in tailwind.css): the hero stays pinned and its band
 // closes down to the nav as the page scrolls. A sticky element is held inside
 // its container, so this hero has to sit directly under <body> (Base's `hero`
-// slot), not in <main>, or it would be pushed off where <main> ends.
-// It pins flush with the top of the window; its top corners square off as it
-// does (hero-pin, over the m-3 margin it starts inset by).
-const PINNED =
-  "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:z-40 lg:scroll-linked:hero-pin";
+// slot), not in <main>, or it would be pushed off where <main> ends. It sits
+// flush with the top of the window and is pinned from the first pixel.
+const PINNED = "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:z-40";
 const COLLAPSING = "lg:scroll-linked:hero-collapse";
 // A pinned hero can't be taller than the window, less its 12px margin (m-3; a
 // safe bound, top and bottom): where the page ends, the browser pushes up a
