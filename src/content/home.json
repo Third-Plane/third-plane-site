@@ -128,18 +128,17 @@
           "AI tool",
           "Task"
         ],
-        "note": "The employee runs the tool, reviews the output and still owns the work.",
+        "note": "The employee operates the AI, reviews the output and still owns the work.",
         "accent": false
       },
       {
         "kicker": "The Third Plane model",
         "chain": [
-          "Organization",
           "Defined work",
-          "AI workforce",
-          "Completed outcome"
+          "Placement Desk",
+          "Completed result"
         ],
-        "note": "The business assigns the work. The AI workforce executes it across your systems. Your people review the outcome and make the decisions.",
+        "note": "The business assigns the work to Placement Desk. The Desk executes it across your systems and carrier channels, then returns the result to your team.",
         "accent": true
       }
     ]
