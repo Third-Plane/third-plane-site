@@ -18,7 +18,7 @@ export function Display1({
   return (
     <h1
       className={cn(
-        "font-heading font-medium tracking-tighter text-deep",
+        "font-heading font-medium tracking-tighter text-foreground",
         DISPLAY_1_SIZE[size],
         wrap === "balance" ? "text-balance" : "text-pretty",
         className,
@@ -28,18 +28,11 @@ export function Display1({
   );
 }
 
-const DISPLAY_2_TONE = { light: "text-deep", dark: "text-cream" } as const;
-
-export function Display2({
-  tone = "light",
-  className,
-  ...props
-}: ComponentProps<"h2"> & { tone?: keyof typeof DISPLAY_2_TONE }) {
+export function Display2({ className, ...props }: ComponentProps<"h2">) {
   return (
     <h2
       className={cn(
-        "font-heading text-4xl leading-none font-medium tracking-tight text-balance",
-        DISPLAY_2_TONE[tone],
+        "font-heading text-4xl leading-none font-medium tracking-tight text-balance text-foreground",
         className,
       )}
       {...props}
@@ -47,16 +40,15 @@ export function Display2({
   );
 }
 
-// purple: the default. dark: on a dark band. body: quieter, in an inner-page
-// hero. The caller sets the measure (max-w-*) and any top margin.
+// accent: the default. muted: quieter, in an inner-page hero. The caller sets
+// the measure (max-w-*) and any top margin.
 const LEAD_TONE = {
-  purple: "text-purple font-medium",
-  dark: "text-cream/70 font-medium",
-  body: "text-ink-body font-normal",
+  accent: "text-accent font-medium",
+  muted: "text-muted-foreground font-normal",
 } as const;
 
 export function Lead({
-  tone = "purple",
+  tone = "accent",
   className,
   ...props
 }: ComponentProps<"p"> & { tone?: keyof typeof LEAD_TONE }) {

@@ -9,7 +9,7 @@ type Item = { label: string; href?: string; note?: string; live?: boolean; disab
 
 function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   if (!item.note) return null;
-  const tone = item.live ? "text-purple" : "text-ink-muted";
+  const tone = item.live ? "text-accent" : "text-subtle-foreground";
   return (
     <span
       className={cn("text-base font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
@@ -21,7 +21,7 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
 
 const panelItem = "grid gap-0.5 rounded-xl px-3 py-3 text-base font-medium";
 const drawerLink =
-  "block border-b border-b-deep/5 py-3.5 font-heading text-xl font-medium tracking-tight";
+  "block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight";
 
 // The drawer is compact: it shows status notes (live, or no page yet) but
 // leaves the descriptive ones to the dropdown.
@@ -35,7 +35,7 @@ const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled 
 export function Header() {
   return (
     <header
-      className="group/nav relative z-50 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-deep/5"
+      className="group/nav relative z-50 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-border/50"
       data-open="false"
       data-nav
     >
@@ -48,7 +48,7 @@ export function Header() {
           {primaryNav.menus.map((group) => (
             <div className="group/menu relative" data-open="false" data-menu key={group.label}>
               <button
-                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-deep transition-colors duration-200 [border:0] [font:inherit] hover:text-purple"
+                className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-foreground transition-colors duration-200 [border:0] [font:inherit] hover:text-accent"
                 type="button"
                 aria-expanded="false"
                 data-menu-btn
@@ -56,7 +56,7 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-deep/5 bg-white p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-border/50 bg-card p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-nav-panel
               >
@@ -64,9 +64,9 @@ export function Header() {
                   <NavEntry
                     className={cn(
                       panelItem,
-                      "text-deep transition-colors duration-150 hover:bg-cream",
+                      "text-foreground transition-colors duration-150 hover:bg-muted",
                     )}
-                    disabledClassName={cn(panelItem, "cursor-default text-ink-muted")}
+                    disabledClassName={cn(panelItem, "cursor-default text-subtle-foreground")}
                     href={item.href}
                     disabled={item.disabled}
                     key={item.label}
@@ -85,7 +85,7 @@ export function Header() {
         </div>
 
         <button
-          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-deep [border:0] max-lg:inline-flex"
+          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-foreground [border:0] max-lg:inline-flex"
           type="button"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -111,20 +111,20 @@ export function Header() {
       </div>
 
       <div
-        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh-76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-deep/5 max-lg:data-[open=true]:bg-lavender max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
+        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh-76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-border/50 max-lg:data-[open=true]:bg-background max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
         data-nav-drawer
       >
         <div className="grid gap-1 px-(--gutter)">
           {primaryNav.menus.map((group) => (
             <div key={group.label}>
-              <p className="pt-5 pb-1 text-sm font-medium tracking-widest text-ink-muted uppercase">
+              <p className="pt-5 pb-1 text-sm font-medium tracking-widest text-subtle-foreground uppercase">
                 {group.label}
               </p>
               {(group.items as Item[]).map((item) => (
                 <NavEntry
-                  className={cn(drawerLink, "text-deep")}
-                  disabledClassName={cn(drawerLink, "text-ink-muted")}
+                  className={cn(drawerLink, "text-foreground")}
+                  disabledClassName={cn(drawerLink, "text-subtle-foreground")}
                   href={item.href}
                   disabled={item.disabled}
                   key={item.label}

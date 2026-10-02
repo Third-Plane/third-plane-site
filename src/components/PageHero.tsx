@@ -44,7 +44,7 @@ export function PageHero({
 
   const heading =
     family === "careers" ? (
-      <StackedTitle lines={title} secondLine="ink" />
+      <StackedTitle lines={title} secondLine="foreground" />
     ) : (
       <Display1 size={size} wrap="pretty" {...reveal(1)}>
         {title.join(" ")}
@@ -66,7 +66,7 @@ export function PageHero({
             {heading}
           </Leave>
           <Leave tier="lead">
-            <Lead tone="body" className={leadClass} {...reveal(2)}>
+            <Lead tone="muted" className={leadClass} {...reveal(2)}>
               {lead}
             </Lead>
           </Leave>

@@ -17,26 +17,26 @@ function PlacementWorkflow() {
         <div
           className={cn(
             "relative rounded-2xl border p-7 lg:row-span-2 lg:grid lg:grid-rows-subgrid",
-            stage.accent ? "border-transparent bg-purple text-cream" : "border-cream/15 bg-cream/5",
+            stage.accent ? "surface-accent border-transparent" : "border-border bg-card",
           )}
           key={stage.kicker}
         >
           {i > 0 ? (
-            <Arrow className="absolute -top-5.25 left-7 z-1 size-5.5 rotate-90 rounded-full bg-deep p-0.5 text-pink lg:top-1/2 lg:-left-5.25 lg:-translate-y-1/2 lg:rotate-0" />
+            <Arrow className="absolute -top-5.25 left-7 z-1 size-5.5 rotate-90 rounded-full bg-background p-0.5 text-accent lg:top-1/2 lg:-left-5.25 lg:-translate-y-1/2 lg:rotate-0" />
           ) : null}
-          <p className="mb-5 font-heading text-2xl leading-tight font-medium tracking-tight text-cream">
+          <p className="mb-5 font-heading text-2xl leading-tight font-medium tracking-tight text-foreground">
             {stage.kicker}
           </p>
           <ul className="grid content-start">
             {stage.steps.map((step) => (
               <li
-                className="border-b border-b-cream/15 py-3.5 first:pt-0 last:border-b-0 last:pb-0"
+                className="border-b border-b-border py-3.5 first:pt-0 last:border-b-0 last:pb-0"
                 key={step.title}
               >
-                <p className="font-heading text-base font-medium tracking-tight text-cream">
+                <p className="font-heading text-base font-medium tracking-tight text-foreground">
                   {step.title}
                 </p>
-                <p className="mt-1 text-base text-pretty text-cream/70">{step.body}</p>
+                <p className="mt-1 text-base text-pretty text-muted-foreground">{step.body}</p>
               </li>
             ))}
           </ul>

@@ -17,7 +17,9 @@ export function Showcase() {
           preload="metadata"
         />
         {showcase.caption ? (
-          <figcaption className="mt-8 text-base text-ink-muted">{showcase.caption}</figcaption>
+          <figcaption className="mt-8 text-base text-subtle-foreground">
+            {showcase.caption}
+          </figcaption>
         ) : null}
       </figure>
     </Section>

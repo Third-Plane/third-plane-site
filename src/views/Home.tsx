@@ -8,27 +8,8 @@ import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
 import { cn, reveal } from "../lib/style";
 
-// The two operating models, one plain and one accented. Each part's colours are
-// listed whole so Tailwind can see them; the accented model's last step is
-// filled.
-const MODEL = {
-  plain: {
-    box: "border-deep/10 bg-white hover:border-purple/45",
-    kicker: "text-deep",
-    step: "border-deep/10 bg-cream text-deep",
-    lastStep: "border-deep/10 bg-cream text-deep",
-    arrow: "text-ink-muted",
-    note: "text-ink-body",
-  },
-  accent: {
-    box: "border-transparent bg-purple hover:border-transparent hover:bg-purple/90",
-    kicker: "text-cream",
-    step: "border-white/35 bg-transparent text-cream",
-    lastStep: "border-white bg-white text-purple",
-    arrow: "text-white/70",
-    note: "text-white/90",
-  },
-} as const;
+// The two operating models, one a plain card and one accented (its own surface,
+// see index.css). The accented model's last step is filled.
 
 // The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
 // outside <main>.
@@ -50,17 +31,18 @@ export function Home() {
       <Section id="approach" title={approach.title} body={approach.body}>
         <div className="grid gap-5">
           {approach.models.map((model, i) => {
-            const tone = model.accent ? MODEL.accent : MODEL.plain;
             return (
               <div
-                className={cn("rounded-2xl border p-7 transition-colors duration-200", tone.box)}
+                className={cn(
+                  "rounded-2xl border p-7 transition-colors duration-200 hover:border-accent/45",
+                  model.accent ? "surface-accent border-transparent" : "border-border bg-card",
+                )}
                 {...reveal(i)}
                 key={model.kicker}
               >
                 <p
                   className={cn(
-                    "mb-5 font-heading text-xl leading-tight font-medium tracking-tight",
-                    tone.kicker,
+                    "mb-5 font-heading text-xl leading-tight font-medium tracking-tight text-foreground",
                   )}
                 >
                   {model.kicker}
@@ -73,12 +55,14 @@ export function Home() {
                       key={step}
                     >
                       {stepIndex > 0 ? (
-                        <Arrow className={cn("size-4.5 flex-none", tone.arrow)} />
+                        <Arrow className="size-4.5 flex-none text-subtle-foreground" />
                       ) : null}
                       <span
                         className={cn(
                           "inline-flex items-center rounded-full border px-4 py-3 font-heading text-base font-medium tracking-tight whitespace-nowrap",
-                          stepIndex === model.chain.length - 1 ? tone.lastStep : tone.step,
+                          model.accent && stepIndex === model.chain.length - 1
+                            ? "border-primary bg-primary text-primary-foreground"
+                            : "border-border bg-muted text-foreground",
                         )}
                       >
                         {step}
@@ -86,7 +70,7 @@ export function Home() {
                     </span>
                   ))}
                 </div>
-                <p className={cn("mt-5 max-w-[64ch] text-base", tone.note)}>{model.note}</p>
+                <p className="mt-5 max-w-[64ch] text-base text-muted-foreground">{model.note}</p>
               </div>
             );
           })}

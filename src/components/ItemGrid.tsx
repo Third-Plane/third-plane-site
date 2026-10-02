@@ -33,15 +33,15 @@ const SUBGRID = {
 // Each item is a grid with its own row gap, which also holds in the subgrid
 // (instead of the gap between items).
 const BOX = {
-  card: "grid gap-y-5 rounded-2xl bg-white p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
-  outline: "grid gap-y-5 rounded-2xl border border-deep/10 bg-white p-7 shadow-none",
+  card: "grid gap-y-5 rounded-2xl bg-card p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+  outline: "grid gap-y-5 rounded-2xl border border-border bg-card p-7 shadow-none",
   point:
-    "grid gap-y-3 border-t border-t-deep/10 pt-6 transition-colors duration-200 hover:border-t-purple",
+    "grid gap-y-3 border-t border-t-border pt-6 transition-colors duration-200 hover:border-t-accent",
 } as const;
 
 const TITLE = {
-  tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-deep",
-  point: "font-heading text-xl font-medium tracking-tight text-deep",
+  tile: "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-foreground",
+  point: "font-heading text-xl font-medium tracking-tight text-foreground",
 } as const;
 
 // A grid of titled items that reveal in turn. `media` adds something above the
@@ -81,10 +81,12 @@ export function ItemGrid({
             <h3 className={title}>
               {item.title}
               {item.href ? (
-                <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-purple transition-transform duration-200 group-hover:translate-x-0.75" />
+                <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover:translate-x-0.75" />
               ) : null}
             </h3>
-            {item.body ? <p className="text-base text-pretty text-ink-body">{item.body}</p> : null}
+            {item.body ? (
+              <p className="text-base text-pretty text-muted-foreground">{item.body}</p>
+            ) : null}
           </>
         );
         return item.href ? (

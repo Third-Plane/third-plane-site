@@ -19,19 +19,14 @@ export function Cta({
   const mailto = `mailto:${email}`;
   return (
     <Section id="contact">
-      <div
-        className="relative overflow-hidden rounded-3xl bg-deep p-8 text-cream md:p-13"
-        data-reveal
-      >
+      <div className="surface-deep relative overflow-hidden rounded-3xl p-8 md:p-13" data-reveal>
         <div className="relative max-w-160">
-          <Display2 tone="dark">{title}</Display2>
-          <p className="mt-5 text-base text-pretty text-cream/70">{body}</p>
+          <Display2>{title}</Display2>
+          <p className="mt-5 text-base text-pretty text-muted-foreground">{body}</p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
-            <Button variant="light" href={href}>
-              {label}
-            </Button>
+            <Button href={href}>{label}</Button>
             <a
-              className="border-b border-b-transparent font-medium text-pink transition-colors duration-200 hover:border-b-pink"
+              className="border-b border-b-transparent font-medium text-accent transition-colors duration-200 hover:border-b-accent"
               href={mailto}
             >
               {email}

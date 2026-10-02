@@ -17,24 +17,24 @@ export function Integrations() {
   return (
     <>
       <Section tone="white" id="systems" title={page.systems.title}>
-        <div className="border-t border-t-deep/10">
+        <div className="border-t border-t-border">
           {page.systems.items.slice(0, 4).map((item, i) => (
             <article
-              className="grid items-start gap-3 border-b border-b-deep/5 py-8 md:grid-cols-4 md:gap-10"
+              className="grid items-start gap-3 border-b border-b-border/50 py-8 md:grid-cols-4 md:gap-10"
               {...reveal(i)}
               key={item.title}
             >
-              <h3 className="font-heading text-2xl leading-tight font-medium tracking-tight text-balance text-deep">
+              <h3 className="font-heading text-2xl leading-tight font-medium tracking-tight text-balance text-foreground">
                 {item.title}
               </h3>
               <div className="grid max-w-[62ch] justify-items-start gap-4 md:col-span-3">
-                <p className="text-base text-pretty text-ink-body">
+                <p className="text-base text-pretty text-muted-foreground">
                   {item.link || item.names ? (
                     <>
-                      <strong className="font-semibold text-deep">
+                      <strong className="font-semibold text-foreground">
                         {item.link ? (
                           <AppLink
-                            className="underline-offset-[0.15em] hover:text-purple"
+                            className="underline-offset-[0.15em] hover:text-accent"
                             href={item.link.href}
                           >
                             {item.link.label}

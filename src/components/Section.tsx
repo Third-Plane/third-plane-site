@@ -4,11 +4,13 @@ import { cn } from "../lib/style";
 
 export type SectionTone = "white" | "blend" | "deep";
 
-const TONE: Record<SectionTone | "cream", string> = {
-  cream: "bg-cream",
-  white: "bg-white",
-  blend: "bg-(image:--blend)",
-  deep: "bg-deep text-cream/70",
+// Each tone is a surface (see index.css), which sets the colours of the band
+// and everything in it.
+const SURFACE: Record<SectionTone | "cream", string> = {
+  cream: "surface-cream",
+  white: "surface-white",
+  blend: "surface-blend",
+  deep: "surface-deep",
 };
 
 // A page section: the band (a rounded card; <main> in Base.astro spaces them),
@@ -39,19 +41,17 @@ export function Section({
 }) {
   return (
     <section
-      className={cn("relative overflow-hidden rounded-xl py-27", TONE[tone ?? "cream"], className)}
+      className={cn(
+        "relative overflow-hidden rounded-xl py-27",
+        SURFACE[tone ?? "cream"],
+        className,
+      )}
       id={id}
     >
       {backdrop}
       <div className={cn("wrap", containerClassName)}>
         {title ? (
-          <SectionHead
-            title={title}
-            body={body}
-            align={align}
-            dark={tone === "deep"}
-            compact={compactHead}
-          />
+          <SectionHead title={title} body={body} align={align} compact={compactHead} />
         ) : null}
         {children}
       </div>

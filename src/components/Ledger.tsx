@@ -30,15 +30,15 @@ export function Ledger({
 
   return (
     <figure
-      className="pointer-events-auto m-0 rounded-2xl border border-deep/5 bg-white px-6 pt-6 pb-5 shadow-2xl"
+      className="pointer-events-auto m-0 rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-5 shadow-2xl"
       data-ledger
       data-tasks={JSON.stringify(tasks)}
       aria-label="Placement Desk activity: work received, worked across carrier channels, and returned to a person"
     >
-      <div className="flex items-start justify-between gap-4 border-b border-b-deep/5 pb-4">
+      <div className="flex items-start justify-between gap-4 border-b border-b-border/50 pb-4">
         <div>
-          <p className="font-heading text-lg font-medium tracking-tight text-deep">{label}</p>
-          <p className="mt-0.5 text-sm text-ink-muted">{sublabel}</p>
+          <p className="font-heading text-lg font-medium tracking-tight text-foreground">{label}</p>
+          <p className="mt-0.5 text-sm text-subtle-foreground">{sublabel}</p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full bg-blue px-3 py-1.5 text-sm font-medium text-deep">
           <i
@@ -51,14 +51,14 @@ export function Ledger({
       <ol className="grid py-2" data-rows>
         {rows.map((row) => (
           <li
-            className="group grid grid-cols-[auto_1fr_auto] items-start gap-3.5 border-b border-b-deep/5 py-3 text-sm leading-snug last:border-b-0 motion-safe:animate-row-in"
+            className="group grid grid-cols-[auto_1fr_auto] items-start gap-3.5 border-b border-b-border/50 py-3 text-sm leading-snug last:border-b-0 motion-safe:animate-row-in"
             data-status={row.status}
             key={row.task}
           >
-            <span className="text-sm text-ink-muted tabular-nums" data-time>
+            <span className="text-sm text-subtle-foreground tabular-nums" data-time>
               {row.time}
             </span>
-            <span className="text-deep" data-task>
+            <span className="text-foreground" data-task>
               {row.task}
             </span>
             <i
@@ -68,7 +68,7 @@ export function Ledger({
           </li>
         ))}
       </ol>
-      <ul className="flex flex-wrap gap-5 border-t border-t-deep/5 pt-3.5 text-base text-ink-muted">
+      <ul className="flex flex-wrap gap-5 border-t border-t-border/50 pt-3.5 text-base text-subtle-foreground">
         {legend.map((item) => (
           <li
             className="group inline-flex items-center gap-2"

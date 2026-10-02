@@ -26,7 +26,9 @@ export function Company() {
             <p
               className={cn(
                 "max-w-[58ch] text-pretty",
-                i === 0 ? "mt-6 text-base font-medium text-deep" : "mt-5 text-ink-body",
+                i === 0
+                  ? "mt-6 text-base font-medium text-foreground"
+                  : "mt-5 text-muted-foreground",
               )}
               key={paragraph.slice(0, 20)}
             >
@@ -35,7 +37,7 @@ export function Company() {
           ))}
         </div>
         <figure
-          className="relative m-0 aspect-4/3 overflow-hidden rounded-2xl bg-cream"
+          className="relative m-0 aspect-4/3 overflow-hidden rounded-2xl bg-muted"
           {...reveal(1)}
         >
           {page.team.photo.src ? (
@@ -46,10 +48,10 @@ export function Company() {
             />
           ) : (
             <div
-              className="absolute inset-0 grid place-items-center rounded-2xl border border-dashed border-deep/10 text-sm text-ink-muted"
+              className="absolute inset-0 grid place-items-center rounded-2xl border border-dashed border-border text-sm text-subtle-foreground"
               aria-label={page.team.photoNote}
             >
-              <span className="relative z-2 rounded-full bg-cream px-3 py-1.5">
+              <span className="relative z-2 rounded-full bg-muted px-3 py-1.5">
                 {page.team.photoNote}
               </span>
             </div>

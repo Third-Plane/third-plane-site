@@ -6,7 +6,7 @@
    index.css has its own, and adding a second would restyle every page.
 
    index.css keeps defining the design tokens. The @theme block below exposes
-   them as utilities (bg-purple, text-deep, font-heading, ...) without copying
+   them as utilities (text-foreground, bg-card, font-heading, ...) without copying
    their values, so there is one place to change a colour.
 
    Spacing utilities (p-*, mt-*, gap-*, h-*, ...) exist only for multiples of
@@ -186,14 +186,26 @@
 }
 
 @theme inline {
+  /* The semantic colours, which each surface sets (see index.css). */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* The palette, for the few fixed brand marks (post-type pills, the ledger's
+     status, the channel marks) and shadows. */
   --color-cream: var(--cream);
   --color-purple: var(--purple);
   --color-deep: var(--deep);
   --color-pink: var(--pink);
   --color-blue: var(--blue);
   --color-lavender: var(--lavender);
-  --color-ink-body: var(--ink-body);
-  --color-ink-muted: var(--ink-muted);
 
   /* font-sans is the body face, so text with no font class matches the rest of
      the site. */

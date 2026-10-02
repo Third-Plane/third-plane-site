@@ -20,7 +20,7 @@ export function SplitHero({
   title: string | string[];
   lead: string;
   actions: ReactNode;
-  secondLine?: "purple" | "ink";
+  secondLine?: "accent" | "foreground";
 }) {
   const heading = Array.isArray(title) ? (
     <StackedTitle lines={title} secondLine={secondLine} />

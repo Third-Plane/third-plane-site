@@ -37,7 +37,8 @@ export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: 
 // The space around a hero's content, below the nav.
 export const HERO_PADDING = "pt-20 pb-22";
 
-// A hero band: the lavender wash with the particle field behind its content.
+// A hero band: the lavender wash with the particle field behind its content. The
+// section is the hero's surface (see index.css), so the nav takes its colours.
 //
 // The hero carries its own nav, on top. Unlike a Section there is no page-width
 // column: `children` run the full width of the band, above the particles and
@@ -63,7 +64,7 @@ export function Hero({
 }) {
   return (
     <section
-      className={cn("pointer-events-none relative z-2 m-3 mt-0", PINNED, className)}
+      className={cn("surface-hero pointer-events-none relative z-2 m-3 mt-0", PINNED, className)}
       id={id}
       data-hero-collapse
     >

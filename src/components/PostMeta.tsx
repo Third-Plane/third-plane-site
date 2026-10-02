@@ -15,11 +15,11 @@ const typeStyle: Record<PostType, string> = {
 // The type pill, date and draft flag shown on post cards and post headers.
 export function PostMeta({ post }: { post: Pick<Post, "type" | "date" | "draft"> }) {
   return (
-    <div className="flex flex-wrap items-center gap-2.5 text-sm text-ink-muted">
+    <div className="flex flex-wrap items-center gap-2.5 text-sm text-subtle-foreground">
       <span className={cn(pill, typeStyle[post.type])}>{resourcesPage.types[post.type]}</span>
       <time dateTime={post.date}>{formatPostDate(post.date)}</time>
       {post.draft ? (
-        <span className={cn(pill, "bg-transparent text-ink-muted inset-ring inset-ring-deep/10")}>
+        <span className={cn(pill, "text-subtle-foreground inset-ring inset-ring-border")}>
           Draft
         </span>
       ) : null}
