@@ -1,5 +1,6 @@
 import { placementDesk } from "../data/content";
-import { ItemGrid } from "./ItemGrid";
+import { Card, Grid, ItemBody, ItemTitle } from "./Grid";
+import { reveal } from "../lib/style";
 import { Section } from "./Section";
 import { CardMark } from "./CardMark";
 
@@ -12,12 +13,15 @@ export function CarrierChannels() {
   const { channels } = placementDesk;
   return (
     <Section tone="blend" id="channels" title={channels.title} body={channels.body}>
-      <ItemGrid
-        variant="card"
-        columns={3}
-        items={channels.items}
-        media={(i) => <CardMark name={channelMarks[i]} />}
-      />
+      <Grid columns={3}>
+        {channels.items.map((item, i) => (
+          <Card key={item.title} {...reveal(i)}>
+            <CardMark name={channelMarks[i]} />
+            <ItemTitle>{item.title}</ItemTitle>
+            <ItemBody>{item.body}</ItemBody>
+          </Card>
+        ))}
+      </Grid>
     </Section>
   );
 }

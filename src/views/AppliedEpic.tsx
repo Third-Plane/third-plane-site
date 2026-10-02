@@ -1,6 +1,7 @@
 import { appliedEpicPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
-import { ItemGrid } from "../components/ItemGrid";
+import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 
@@ -17,16 +18,36 @@ export function AppliedEpic() {
   return (
     <>
       <Section tone="white" id="who" title={page.who.title} body={page.who.body}>
-        <ItemGrid variant="point" columns={3} items={page.who.items} />
+        <Grid columns={3}>
+          {page.who.items.map((item, i) => (
+            <Point key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+            </Point>
+          ))}
+        </Grid>
       </Section>
 
       <Section tone="blend" id="work" title={page.work.title}>
-        <ItemGrid variant="point" columns={3} items={page.work.items} />
+        <Grid columns={3}>
+          {page.work.items.map((item, i) => (
+            <Point key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ItemBody>{item.body}</ItemBody>
+            </Point>
+          ))}
+        </Grid>
       </Section>
 
       {page.certified ? (
         <Section tone="white" id="meaning" title={page.meaning.title}>
-          <ItemGrid variant="point" columns={2} items={page.meaning.items} />
+          <Grid>
+            {page.meaning.items.map((item, i) => (
+              <Point key={item.title} {...reveal(i)}>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemBody>{item.body}</ItemBody>
+              </Point>
+            ))}
+          </Grid>
         </Section>
       ) : null}
 

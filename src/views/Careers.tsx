@@ -1,6 +1,7 @@
 import { careersPage as page, site } from "../data/content";
 import { Cta } from "../components/Cta";
-import { ItemGrid } from "../components/ItemGrid";
+import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
@@ -42,7 +43,14 @@ export function Careers() {
       </Section>
 
       <Section tone="blend" id="why" title={page.why.title} compactHead>
-        <ItemGrid variant="point" spaced columns={4} items={page.why.items} />
+        <Grid columns={4} className="gap-8">
+          {page.why.items.map((item, i) => (
+            <Point className="gap-y-2" key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ItemBody>{item.body}</ItemBody>
+            </Point>
+          ))}
+        </Grid>
       </Section>
 
       <Cta {...page.cta} href={site.mailto} />

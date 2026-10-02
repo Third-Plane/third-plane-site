@@ -1,7 +1,8 @@
 import { placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
-import { ItemGrid } from "../components/ItemGrid";
+import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
+import { reveal } from "../lib/style";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
@@ -33,7 +34,14 @@ export function PlacementDesk() {
         title={placementDesk.systems.title}
         body={placementDesk.systems.body}
       >
-        <ItemGrid variant="card" columns={2} items={placementDesk.systems.links} />
+        <Grid>
+          {placementDesk.systems.links.map((link, i) => (
+            <Card href={link.href} key={link.href} {...reveal(i)}>
+              <ItemTitle arrow>{link.title}</ItemTitle>
+              <ItemBody>{link.body}</ItemBody>
+            </Card>
+          ))}
+        </Grid>
       </Section>
 
       <Section
@@ -42,7 +50,14 @@ export function PlacementDesk() {
         title={placementDesk.human.title}
         body={placementDesk.human.body}
       >
-        <ItemGrid variant="card" columns={2} items={placementDesk.human.items} />
+        <Grid>
+          {placementDesk.human.items.map((item, i) => (
+            <Card key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ItemBody>{item.body}</ItemBody>
+            </Card>
+          ))}
+        </Grid>
       </Section>
 
       <Cta {...placementDesk.cta} />
