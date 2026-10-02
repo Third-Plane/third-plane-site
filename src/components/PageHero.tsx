@@ -50,7 +50,7 @@ export function PageHero({
     );
 
   return (
-    <section className={`relative overflow-hidden ${band}`} id="top">
+    <section className={`relative overflow-hidden rounded-xl ${band}`} id="top">
       <div className="pointer-events-auto wrap relative z-3 max-w-[720px]">
         {status ? (
           <div data-reveal className="mb-5 flex flex-col items-start gap-3">

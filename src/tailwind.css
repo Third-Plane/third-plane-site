@@ -68,6 +68,86 @@
   margin-inline: auto;
 }
 
+/* Where a hero may collapse as the page scrolls: only in browsers with
+   scroll-driven animations, only for people who haven't asked for less motion,
+   and only in a window tall enough to hold a pinned hero (see Hero).
+   Without them the hero is an ordinary, scrolling band. */
+@custom-variant scroll-linked {
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) and (min-height: 40rem) {
+      @slot;
+    }
+  }
+}
+
+/* A hero closing down to its nav strip, tied to scroll position: the clip
+   shrinks from the foot of the hero in step with the page. The box keeps its
+   full height, so nothing reflows. --hero-d is the scroll distance that takes
+   the hero from open to just the nav (the hero's height less --nav-h);
+   scripts/hero-collapse.ts keeps it exact, and until then it is a viewport
+   height. A hero that is sticky for this must be shorter than the viewport, or
+   its foot could never be scrolled to, so use it from lg up. It starts (and so
+   ends) 0.75rem into the scroll, the distance the hero travels before it pins
+   (see hero-pin), so the card below keeps its 12px gap throughout. The radius must be
+   the same in both keyframes and the base clip, or it snaps instead of easing. */
+@keyframes hero-collapse {
+  from {
+    clip-path: inset(0 0 0 0 round 0 0 var(--hero-radius) var(--hero-radius));
+  }
+  to {
+    clip-path: inset(
+      0 0 calc(100% - var(--nav-h)) 0 round 0 0 var(--hero-radius) var(--hero-radius)
+    );
+  }
+}
+
+@utility hero-collapse {
+  clip-path: inset(0 0 0 0 round 0 0 var(--hero-radius) var(--hero-radius));
+  animation: hero-collapse linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0.75rem calc(var(--hero-d, 100svh) + 0.75rem);
+}
+
+/* A hero that starts as a card, inset from the top by its margin (m-3, 0.75rem),
+   and pins flush with the top of the window once the page has scrolled that
+   far. Its top corners square off over the same distance, so the pinned strip
+   meets the edge of the window cleanly. */
+@keyframes hero-pin {
+  to {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+@utility hero-pin {
+  animation: hero-pin linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0 0.75rem;
+}
+
+/* Hero content leaving as the hero closes: it fades and drops, on the same
+   scroll timeline as hero-collapse. Each piece sets its own slice of the
+   collapse distance, as fractions of --hero-d: --leave-from and --leave-to
+   (0 is the top of the page, 1 is a fully closed hero), so the pieces can be
+   staggered. It sets opacity and translate, not transform, on a wrapper of its
+   own: the scroll-into-view reveal owns opacity and transform on the content
+   itself. */
+@keyframes hero-leave {
+  to {
+    opacity: 0;
+    translate: 0 var(--leave-shift, 2rem);
+    /* Switches at the halfway point, so a faded piece stops taking clicks. */
+    pointer-events: none;
+  }
+}
+
+@utility hero-leave {
+  animation: hero-leave linear both;
+  animation-timeline: scroll(root);
+  animation-range: calc(var(--hero-d, 100svh) * var(--leave-from, 0))
+    calc(var(--hero-d, 100svh) * var(--leave-to, 0.5));
+}
+
 /* The hero wash: a soft purple glow over lavender. */
 @utility bg-hero {
   background:

@@ -1,10 +1,9 @@
 // The header: a border once the page scrolls, hover/click dropdowns on
 // desktop and a drawer on narrow screens. The markup is static (Header.tsx);
-// this sets `data-open` and `aria-expanded` on it.
+// this sets `data-open` and `aria-expanded` on it. A page can hold more than
+// one header (the hero carries its own), so each is set up on its own.
 
-const nav = document.querySelector<HTMLElement>("[data-nav]");
-
-if (nav) {
+function initNav(nav: HTMLElement) {
   const toggle = nav.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
   const drawer = nav.querySelector<HTMLElement>("[data-nav-drawer]")!;
   const menus = [...nav.querySelectorAll<HTMLElement>("[data-menu]")];
@@ -83,3 +82,5 @@ if (nav) {
     }
   });
 }
+
+for (const nav of document.querySelectorAll<HTMLElement>("[data-nav]")) initNav(nav);

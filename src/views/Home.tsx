@@ -30,22 +30,28 @@ const MODEL = {
   },
 } as const;
 
+// The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
+// outside <main>.
+export function HomeHero() {
+  return (
+    <SplitHero
+      title={homeHero.title}
+      lead={homeHero.lead}
+      actions={
+        <>
+          <Button variant="dark" />
+          <Button variant="ghost" href={homeHero.secondary.href}>
+            {homeHero.secondary.label}
+          </Button>
+        </>
+      }
+    />
+  );
+}
+
 export function Home() {
   return (
     <>
-      <SplitHero
-        title={homeHero.title}
-        lead={homeHero.lead}
-        actions={
-          <>
-            <Button variant="dark" />
-            <Button variant="ghost" href={homeHero.secondary.href}>
-              {homeHero.secondary.label}
-            </Button>
-          </>
-        }
-      />
-
       <Showcase />
 
       <Section tone="white" id="problem" title={problem.title} body={problem.body}>

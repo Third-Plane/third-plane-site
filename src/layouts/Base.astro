@@ -12,9 +12,11 @@ interface Props {
   type?: "website" | "article";
   noindex?: boolean;
   jsonLd?: object[];
+  // False where the page brings its own nav (the home hero).
+  header?: boolean;
 }
 
-const { title, description = DEFAULT_DESCRIPTION, path, type = "website", noindex = false } = Astro.props;
+const { title, description = DEFAULT_DESCRIPTION, path, type = "website", noindex = false, header = true } = Astro.props;
 const full = fullTitle(title);
 const canonical = canonicalUrl(path);
 
@@ -66,8 +68,14 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     />
   </head>
   <body>
-    <Header />
-    <main><slot /></main>
+    {header && <Header />}
+    {/* A sticky hero lives here, not in <main>: it is held inside its container, so
+         in <main> it would be pushed up where <main> ends. Under <body> it sticks
+         to the end of the page. */}
+    <slot name="hero" />
+    <main class={header ? "mx-3 mt-3 mb-3 relative space-y-3 z-1" : "mx-3 mb-3 relative space-y-3 z-1"}>
+      <slot />
+    </main>
     <Footer />
 
     <script>
@@ -75,6 +83,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       import "../scripts/reveal";
       import "../scripts/ledger";
       import "../scripts/particles";
+      import "../scripts/hero-collapse";
     </script>
   </body>
 </html>

@@ -7,16 +7,22 @@ import { Section } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
 import { Button } from "../components/Ui";
 
+// The hero is its own export: pages/placement-desk.astro puts it in Base's `hero`
+// slot, outside <main>.
+export function PlacementDeskHero() {
+  return (
+    <SplitHero
+      secondLine="ink"
+      title={placementDesk.title}
+      lead={placementDesk.problem}
+      actions={<Button variant="dark">{placementDesk.cta.label}</Button>}
+    />
+  );
+}
+
 export function PlacementDesk() {
   return (
     <>
-      <SplitHero
-        secondLine="ink"
-        title={placementDesk.title}
-        lead={placementDesk.problem}
-        actions={<Button variant="dark">{placementDesk.cta.label}</Button>}
-      />
-
       <PlacementWorkflowSection id="work" title={placementDesk.work.title} />
 
       <CarrierChannels />

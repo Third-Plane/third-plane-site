@@ -18,8 +18,8 @@ const iconLink = "inline-flex text-on-dark-faint transition-[color] duration-200
 
 export function Footer() {
   return (
-    <footer className="bg-deep pt-[clamp(3rem,5vw,4.5rem)] pb-8 text-on-dark-muted">
-      <div className="wrap flex items-start justify-between gap-8 border-b border-b-line-dark pb-10 max-lg:flex-col">
+    <footer className="z-0 mx-3 mb-3 rounded-xl bg-deep pt-[clamp(3rem,5vw,4.5rem)] pb-8 text-on-dark-muted">
+      <div className="flex items-start justify-between gap-8 border-b border-b-line-dark px-(--gutter) pb-10 max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
           <p className="mt-4 text-copy text-on-dark-muted">{siteFooter.tagline}</p>
@@ -58,7 +58,7 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="wrap flex justify-between gap-4 pt-6 text-copy text-on-dark-faint max-sm:flex-col">
+      <div className="flex justify-between gap-4 px-(--gutter) pt-6 text-copy text-on-dark-faint max-sm:flex-col">
         <p>
           © {site.year} {site.name}
         </p>

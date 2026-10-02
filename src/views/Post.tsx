@@ -52,8 +52,8 @@ function BlockView({ block }: { block: Block }) {
 export function Post({ post }: { post: PostData }) {
   return (
     <>
-      <article>
-        <header className="relative overflow-hidden bg-cream pt-[clamp(2.5rem,5vw,4.5rem)] pb-[clamp(3rem,6vw,5rem)]">
+      <article className="space-y-3">
+        <header className="relative overflow-hidden rounded-xl bg-cream pt-[clamp(2.5rem,5vw,4.5rem)] pb-[clamp(3rem,6vw,5rem)]">
           <div className="pointer-events-auto wrap relative z-3 grid max-w-[760px] gap-5">
             <AppLink
               className="pointer-events-auto inline-flex items-center gap-[0.4rem] justify-self-start text-[0.9rem] font-medium text-purple"
@@ -70,7 +70,7 @@ export function Post({ post }: { post: PostData }) {
             <p className="text-[0.9rem] text-ink-muted">{post.author}</p>
           </div>
         </header>
-        <div className="relative bg-white py-(--section-y)">
+        <div className="relative rounded-xl bg-white py-(--section-y)">
           <div className="wrap grid max-w-[68ch] gap-5 text-[1.125rem] leading-[1.7] text-ink-body">
             {post.body.map((block, i) => (
               <BlockView block={block} key={i} />
