@@ -20,10 +20,10 @@ export function Careers() {
             {page.roles.items.map((role) => (
               <li key={role.href}>
                 <AppLink
-                  className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-6 rounded-card bg-white px-(--pad) py-5 text-ink shadow-card transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                  className="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-6 rounded-2xl bg-white px-(--pad) py-5 text-ink shadow-lg transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-2xl"
                   href={role.href}
                 >
-                  <span className="font-heading text-title font-medium tracking-head">
+                  <span className="font-heading text-xl font-medium tracking-tight">
                     {role.title}
                   </span>
                   <span className="text-[0.9rem] text-ink-muted">
@@ -35,7 +35,7 @@ export function Careers() {
             ))}
           </ul>
         ) : (
-          <p className="max-w-[60ch] text-copy text-ink" data-reveal>
+          <p className="max-w-[60ch] text-base text-ink" data-reveal>
             {page.roles.empty}
           </p>
         )}

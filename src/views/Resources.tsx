@@ -22,14 +22,14 @@ export function Resources({ posts }: { posts: Post[] }) {
             {posts.map((post, i) => (
               <li key={post.slug} {...reveal(i % 3)}>
                 <AppLink
-                  className="grid h-full content-start gap-[0.9rem] rounded-card bg-cream p-(--pad) text-ink transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-card"
+                  className="grid h-full content-start gap-[0.9rem] rounded-2xl bg-cream p-(--pad) text-ink transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   href={`/resources/${post.slug}`}
                 >
                   <PostMeta post={post} />
-                  <h2 className="font-heading text-title leading-[1.15] font-medium tracking-head text-balance">
+                  <h2 className="font-heading text-xl leading-[1.15] font-medium tracking-tight text-balance">
                     {post.title}
                   </h2>
-                  <p className="text-copy text-ink-body">{post.standfirst}</p>
+                  <p className="text-base text-ink-body">{post.standfirst}</p>
                   <span className="mt-auto inline-flex items-center gap-[0.4rem] font-medium text-purple">
                     Read
                     <Arrow className="size-4 transition-[transform] duration-200" />
@@ -39,7 +39,7 @@ export function Resources({ posts }: { posts: Post[] }) {
             ))}
           </ul>
         ) : (
-          <p className="max-w-[60ch] text-copy text-ink">Nothing published yet.</p>
+          <p className="max-w-[60ch] text-base text-ink">Nothing published yet.</p>
         )}
       </Section>
 

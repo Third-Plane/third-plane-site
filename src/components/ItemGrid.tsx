@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 import { AppLink, Arrow } from "./Ui";
 
 type Item = { title: string; body?: string; href?: string };
@@ -35,17 +35,15 @@ function itemRows(variant: Variant, columns: 2 | 3 | 4, hasBody: boolean) {
 }
 
 const BOX = {
-  card: "rounded-card bg-white p-(--pad) shadow-card transition-[translate,box-shadow] duration-250 hover:-translate-y-0.5 hover:shadow-lg",
-  outline: "rounded-card border border-line bg-white p-(--pad) shadow-none",
-  outlineDense: "rounded-card border border-line bg-white px-6 py-[1.35rem] shadow-none",
+  card: "rounded-2xl bg-white p-(--pad) shadow-lg transition-[translate,box-shadow] duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+  outline: "rounded-2xl border border-line bg-white p-(--pad) shadow-none",
   point:
     "border-t-[1.5px] border-t-line pt-6 transition-[border-color] duration-200 hover:border-t-purple",
 } as const;
 
 const TITLE = {
-  tile: "font-heading text-title leading-[1.2] font-medium tracking-head text-balance text-ink",
-  point: "mb-3 font-heading text-title font-medium tracking-head text-ink",
-  pointTight: "mb-[0.55rem] font-heading text-title font-medium tracking-head text-ink",
+  tile: "font-heading text-xl leading-[1.2] font-medium tracking-tight text-balance text-ink",
+  point: "mb-3 font-heading text-xl font-medium tracking-tight text-ink",
 } as const;
 
 // A grid of titled items that reveal in turn. `media` adds something above the
@@ -68,15 +66,13 @@ export function ItemGrid({
 }) {
   const gap = spaced ? "gap-8 items-start" : "gap-(--gap)";
   const hasBody = items.some((item) => item.body);
-  const box = variant === "outline" && dense ? BOX.outlineDense : BOX[variant];
-  const title = variant === "point" ? (spaced ? TITLE.pointTight : TITLE.point) : TITLE.tile;
+  const box = cn(BOX[variant], variant === "outline" && dense && "px-6 py-[1.35rem]");
+  const title = variant === "point" ? cn(TITLE.point, spaced && "mb-[0.55rem]") : TITLE.tile;
 
   return (
-    <div
-      className={`grid ${COLUMNS[columns]} ${gap} ${gridRows(variant, columns, hasBody)}`.trim()}
-    >
+    <div className={cn("grid", COLUMNS[columns], gap, gridRows(variant, columns, hasBody))}>
       {items.map((item, i) => {
-        const className = `${box} ${itemRows(variant, columns, !!item.body)}`.trim();
+        const className = cn(box, itemRows(variant, columns, !!item.body));
         const content = (
           <>
             {media?.(i)}
@@ -86,11 +82,16 @@ export function ItemGrid({
                 <Arrow className="ml-[0.4rem] inline-block size-4 align-[-0.1em] text-purple transition-[translate] duration-200 group-hover:translate-x-0.75" />
               ) : null}
             </h3>
-            {item.body ? <p className="text-copy text-pretty text-ink-body">{item.body}</p> : null}
+            {item.body ? <p className="text-base text-pretty text-ink-body">{item.body}</p> : null}
           </>
         );
         return item.href ? (
-          <AppLink className={`group ${className}`} href={item.href} key={item.href} {...reveal(i)}>
+          <AppLink
+            className={cn("group", className)}
+            href={item.href}
+            key={item.href}
+            {...reveal(i)}
+          >
             {content}
           </AppLink>
         ) : (

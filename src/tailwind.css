@@ -28,14 +28,6 @@
    otherwise generate a utility nobody uses. */
 @source "./**/*.{astro,tsx,ts}";
 
-/* Tailwind's rounded-sm and shadow-lg are named after these two tokens, so they
-   are defined here, once, for the stylesheet and the utilities to share.
-   (static keeps them emitted even when no utility uses them.) */
-@theme static {
-  --radius-sm: 12px;
-  --shadow-lg: 0 30px 80px #2d1f5724;
-}
-
 /* Scroll reveal: elements with data-reveal start faded and lowered; scripts/reveal.ts
    sets data-revealed as they enter the viewport, and the --i style (see
    lib/style.ts) staggers siblings. This is in the utilities layer so its
@@ -93,17 +85,15 @@
    instead of easing. */
 @keyframes hero-collapse {
   from {
-    clip-path: inset(0 0 0 0 round 0 0 var(--hero-radius) var(--hero-radius));
+    clip-path: inset(0 0 0 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
   }
   to {
-    clip-path: inset(
-      0 0 calc(100% - var(--nav-h)) 0 round 0 0 var(--hero-radius) var(--hero-radius)
-    );
+    clip-path: inset(0 0 calc(100% - var(--nav-h)) 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
   }
 }
 
 @utility hero-collapse {
-  clip-path: inset(0 0 0 0 round 0 0 var(--hero-radius) var(--hero-radius));
+  clip-path: inset(0 0 0 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
   animation: hero-collapse linear both;
   animation-timeline: scroll(root);
   animation-range: 0 var(--hero-d, 100svh);
@@ -219,28 +209,11 @@
      the site. */
   --font-sans: var(--font-body);
   --font-heading: var(--font-head);
-
-  --radius-card: var(--radius);
-  --radius-pill: var(--pill);
-
-  --shadow-card: var(--shadow);
-
-  /* Type sizes of the site, named for what they set. (text-xs, text-sm and the
-     rest keep Tailwind's own sizes, which differ.) */
-  --text-label: var(--type-xs);
-  --text-copy: var(--type-sm);
-  --text-title: var(--type-md);
 }
 
 @theme {
   /* The CSS default, so transitions match index.css, which never set a curve. */
   --default-transition-timing-function: ease;
-
-  --tracking-eyebrow: 0.08em;
-  --tracking-pill: 0.04em;
-  --tracking-head: -0.02em;
-  --tracking-head-tight: -0.03em;
-  --tracking-display: -0.04em;
 
   --animate-ledger-pulse: ledger-pulse 2s ease-out infinite;
   --animate-row-in: row-in 0.5s;

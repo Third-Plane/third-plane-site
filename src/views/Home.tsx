@@ -6,7 +6,7 @@ import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 
 // The two operating models, one plain and one accented. Each part's colours are
 // listed whole so Tailwind can see them; the accented model's last step is
@@ -55,12 +55,18 @@ export function Home() {
             const tone = model.accent ? MODEL.accent : MODEL.plain;
             return (
               <div
-                className={`rounded-card border p-(--pad) transition-[border-color,background] duration-200 ${tone.box}`}
+                className={cn(
+                  "rounded-2xl border p-(--pad) transition-[border-color,background] duration-200",
+                  tone.box,
+                )}
                 {...reveal(i)}
                 key={model.kicker}
               >
                 <p
-                  className={`mb-5 font-heading text-title leading-[1.2] font-medium tracking-head ${tone.kicker}`}
+                  className={cn(
+                    "mb-5 font-heading text-xl leading-[1.2] font-medium tracking-tight",
+                    tone.kicker,
+                  )}
                 >
                   {model.kicker}
                 </p>
@@ -75,19 +81,20 @@ export function Home() {
                       key={step}
                     >
                       {stepIndex > 0 ? (
-                        <Arrow className={`size-4.5 flex-none ${tone.arrow}`} />
+                        <Arrow className={cn("size-4.5 flex-none", tone.arrow)} />
                       ) : null}
                       <span
-                        className={`inline-flex items-center rounded-pill border-[1.5px] px-[1.1rem] py-[0.7rem] font-heading text-copy font-medium tracking-head whitespace-nowrap ${
-                          stepIndex === model.chain.length - 1 ? tone.lastStep : tone.step
-                        }`}
+                        className={cn(
+                          "inline-flex items-center rounded-full border-[1.5px] px-[1.1rem] py-[0.7rem] font-heading text-base font-medium tracking-tight whitespace-nowrap",
+                          stepIndex === model.chain.length - 1 ? tone.lastStep : tone.step,
+                        )}
                       >
                         {step}
                       </span>
                     </span>
                   ))}
                 </div>
-                <p className={`mt-5 max-w-[64ch] text-copy ${tone.note}`}>{model.note}</p>
+                <p className={cn("mt-5 max-w-[64ch] text-base", tone.note)}>{model.note}</p>
               </div>
             );
           })}

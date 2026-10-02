@@ -39,7 +39,7 @@ function BlockView({ block }: { block: Block }) {
       );
     case "quote":
       return (
-        <blockquote className="mx-0 my-2 rounded-r-sm border-l-[3px] border-l-purple bg-cream px-6 py-5 font-heading text-[1.3rem] leading-[1.35] font-medium tracking-head text-ink">
+        <blockquote className="mx-0 my-2 rounded-r-xl border-l-[3px] border-l-purple bg-cream px-6 py-5 font-heading text-[1.3rem] leading-[1.35] font-medium tracking-tight text-ink">
           {block.text}
         </blockquote>
       );

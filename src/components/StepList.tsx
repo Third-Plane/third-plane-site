@@ -1,4 +1,4 @@
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 
 const COLUMNS = {
   3: "grid-cols-3 max-lg:grid-cols-1",
@@ -17,10 +17,10 @@ export function StepList({
   numbered?: boolean;
 }) {
   return (
-    <ol className={`grid gap-(--gap) sm:auto-rows-[auto_auto_1fr] ${COLUMNS[columns]}`}>
+    <ol className={cn("grid gap-(--gap) sm:auto-rows-[auto_auto_1fr]", COLUMNS[columns])}>
       {steps.map((step, i) => (
         <li
-          className="rounded-card border border-line-dark bg-[#f6f3f00a] p-(--pad) sm:row-span-3 sm:grid sm:grid-rows-subgrid"
+          className="rounded-2xl border border-line-dark bg-[#f6f3f00a] p-(--pad) sm:row-span-3 sm:grid sm:grid-rows-subgrid"
           {...reveal(i)}
           key={step.title}
         >
@@ -29,10 +29,10 @@ export function StepList({
               {String(i + 1).padStart(2, "0")}
             </span>
           ) : null}
-          <h3 className="mb-[0.6rem] font-heading text-title font-medium tracking-head text-on-dark">
+          <h3 className="mb-[0.6rem] font-heading text-xl font-medium tracking-tight text-on-dark">
             {step.title}
           </h3>
-          <p className="text-copy text-pretty text-on-dark-muted">{step.body}</p>
+          <p className="text-base text-pretty text-on-dark-muted">{step.body}</p>
         </li>
       ))}
     </ol>

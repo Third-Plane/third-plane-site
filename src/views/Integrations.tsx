@@ -25,12 +25,12 @@ export function Integrations() {
               key={item.title}
             >
               <div className="grid content-start gap-[0.45rem]">
-                <h3 className="font-heading text-[clamp(1.25rem,1.6vw,1.55rem)] leading-[1.2] font-medium tracking-head-tight text-balance text-ink">
+                <h3 className="font-heading text-[clamp(1.25rem,1.6vw,1.55rem)] leading-[1.2] font-medium tracking-tight text-balance text-ink">
                   {item.title}
                 </h3>
               </div>
               <div className="grid max-w-[62ch] justify-items-start gap-4">
-                <p className="text-copy text-pretty text-ink-body">
+                <p className="text-base text-pretty text-ink-body">
                   {item.link || item.names ? (
                     <>
                       <strong className="font-semibold text-ink">

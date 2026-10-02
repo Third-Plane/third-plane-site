@@ -4,7 +4,7 @@ import { ItemGrid } from "../components/ItemGrid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 
 // The hero is its own export: pages/company.astro puts it in Base's `hero` slot,
 // outside <main>.
@@ -24,9 +24,10 @@ export function Company() {
           <Display2>{page.origin.title}</Display2>
           {page.origin.body.map((paragraph, i) => (
             <p
-              className={`max-w-[58ch] text-pretty ${
-                i === 0 ? "mt-6 text-copy font-medium text-ink" : "mt-5 text-ink-body"
-              }`}
+              className={cn(
+                "max-w-[58ch] text-pretty",
+                i === 0 ? "mt-6 text-base font-medium text-ink" : "mt-5 text-ink-body",
+              )}
               key={paragraph.slice(0, 20)}
             >
               {paragraph}
@@ -34,7 +35,7 @@ export function Company() {
           ))}
         </div>
         <figure
-          className="relative m-0 aspect-4/3 overflow-hidden rounded-card bg-cream"
+          className="relative m-0 aspect-4/3 overflow-hidden rounded-2xl bg-cream"
           {...reveal(1)}
         >
           {page.team.photo.src ? (
@@ -45,10 +46,10 @@ export function Company() {
             />
           ) : (
             <div
-              className="absolute inset-0 grid place-items-center rounded-card border-[1.5px] border-dashed border-line text-[0.9rem] text-ink-muted"
+              className="absolute inset-0 grid place-items-center rounded-2xl border-[1.5px] border-dashed border-line text-[0.9rem] text-ink-muted"
               aria-label={page.team.photoNote}
             >
-              <span className="relative z-2 rounded-pill bg-cream px-[0.8rem] py-[0.4rem]">
+              <span className="relative z-2 rounded-full bg-cream px-[0.8rem] py-[0.4rem]">
                 {page.team.photoNote}
               </span>
             </div>

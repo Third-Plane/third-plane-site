@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { ParticleField } from "./ParticleField";
+import { cn } from "../lib/style";
 
 // Sticky from lg up, where scroll-driven animation is available (see the
 // scroll-linked variant in tailwind.css): the hero stays pinned and its band
@@ -53,7 +54,7 @@ export const HERO_PADDING = "pt-[clamp(3.5rem,7vw,6.5rem)] pb-[clamp(4rem,8vw,7r
 // wants the pointer take it back.
 export function Hero({
   id,
-  className = "",
+  className,
   children,
 }: {
   id?: string;
@@ -62,19 +63,20 @@ export function Hero({
 }) {
   return (
     <section
-      className={`pointer-events-none relative z-2 m-3 mt-0 ${PINNED} ${className}`.trim()}
+      className={cn("pointer-events-none relative z-2 m-3 mt-0", PINNED, className)}
       id={id}
       data-hero-collapse
     >
       <div
-        className={`absolute inset-x-0 top-0 h-full rounded-b-(--hero-radius) shadow-xl shadow-deep/10 ${SHADOW}`}
+        className={cn(
+          "absolute inset-x-0 top-0 h-full rounded-b-2xl shadow-xl shadow-deep/10",
+          SHADOW,
+        )}
       />
       <div className="pointer-events-auto absolute inset-x-0 top-0 z-10">
         <Header />
       </div>
-      <div
-        className={`relative overflow-hidden rounded-b-(--hero-radius) bg-hero ${CAPPED} ${COLLAPSING}`}
-      >
+      <div className={cn("relative overflow-hidden rounded-b-2xl bg-hero", CAPPED, COLLAPSING)}>
         <ParticleField mask="hero" tone="purple" alpha={0.9} />
         <div className="relative z-2 pt-(--nav-h)">{children}</div>
       </div>

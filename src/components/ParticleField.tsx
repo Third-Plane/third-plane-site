@@ -1,3 +1,5 @@
+import { cn } from "../lib/style";
+
 export type ParticleTone = "purple" | "deep" | "cream" | "white";
 
 // Where the points fade out. hero keeps the field out from under the headline:
@@ -27,7 +29,7 @@ export function ParticleField({
 }) {
   return (
     <canvas
-      className={`pointer-events-none absolute inset-0 z-1 size-full ${MASK[mask]}`}
+      className={cn("pointer-events-none absolute inset-0 z-1 size-full", MASK[mask])}
       aria-hidden="true"
       data-particles
       data-tone={tone}

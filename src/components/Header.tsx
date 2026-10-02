@@ -2,6 +2,7 @@ import { primaryNav, site } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
+import { cn } from "../lib/style";
 
 // A disabled item has no page yet: it is shown, but not as a link.
 type Item = { label: string; href?: string; note?: string; live?: boolean; disabled?: boolean };
@@ -9,13 +10,22 @@ type Item = { label: string; href?: string; note?: string; live?: boolean; disab
 function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   if (!item.note) return null;
   const tone = item.live ? "text-purple" : "text-ink-muted";
-  const size = inDrawer ? "ml-[0.6rem] font-sans tracking-normal" : "";
-  return <span className={`text-copy font-normal ${tone} ${size}`.trim()}>{item.note}</span>;
+  return (
+    <span
+      className={cn(
+        "text-base font-normal",
+        tone,
+        inDrawer && "ml-[0.6rem] font-sans tracking-normal",
+      )}
+    >
+      {item.note}
+    </span>
+  );
 }
 
-const panelItem = "grid gap-[0.15rem] rounded-sm px-3 py-[0.7rem] text-[0.95rem] font-medium";
+const panelItem = "grid gap-[0.15rem] rounded-xl px-3 py-[0.7rem] text-[0.95rem] font-medium";
 const drawerLink =
-  "block border-b border-b-line-soft py-[0.85rem] font-heading text-[1.35rem] font-medium tracking-head";
+  "block border-b border-b-line-soft py-[0.85rem] font-heading text-[1.35rem] font-medium tracking-tight";
 
 // The drawer is compact: it shows status notes (live, or no page yet) but
 // leaves the descriptive ones to the dropdown.
@@ -50,14 +60,17 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-[320px] gap-[0.15rem] rounded-card border border-line-soft bg-white p-[0.6rem] shadow-lg group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-[320px] gap-[0.15rem] rounded-2xl border border-line-soft bg-white p-[0.6rem] shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-nav-panel
               >
                 {(group.items as Item[]).map((item) => (
                   <NavEntry
-                    className={`${panelItem} text-ink transition-[background] duration-150 hover:bg-cream`}
-                    disabledClassName={`${panelItem} cursor-default text-ink-muted`}
+                    className={cn(
+                      panelItem,
+                      "text-ink transition-[background] duration-150 hover:bg-cream",
+                    )}
+                    disabledClassName={cn(panelItem, "cursor-default text-ink-muted")}
                     href={item.href}
                     disabled={item.disabled}
                     key={item.label}
@@ -109,13 +122,13 @@ export function Header() {
         <div className="grid gap-1 px-(--gutter)">
           {primaryNav.menus.map((group) => (
             <div key={group.label}>
-              <p className="pt-5 pb-1 text-label font-medium tracking-eyebrow text-ink-muted uppercase">
+              <p className="pt-5 pb-1 text-sm font-medium tracking-widest text-ink-muted uppercase">
                 {group.label}
               </p>
               {(group.items as Item[]).map((item) => (
                 <NavEntry
-                  className={`${drawerLink} text-ink`}
-                  disabledClassName={`${drawerLink} text-ink-muted`}
+                  className={cn(drawerLink, "text-ink")}
+                  disabledClassName={cn(drawerLink, "text-ink-muted")}
                   href={item.href}
                   disabled={item.disabled}
                   key={item.label}

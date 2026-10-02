@@ -30,17 +30,17 @@ export function Ledger({
 
   return (
     <figure
-      className="pointer-events-auto m-0 rounded-card border border-line-soft bg-white px-6 pt-6 pb-5 shadow-lg"
+      className="pointer-events-auto m-0 rounded-2xl border border-line-soft bg-white px-6 pt-6 pb-5 shadow-2xl"
       data-ledger
       data-tasks={JSON.stringify(tasks)}
       aria-label="Placement Desk activity: work received, worked across carrier channels, and returned to a person"
     >
       <div className="flex items-start justify-between gap-4 border-b border-b-line-soft pb-4">
         <div>
-          <p className="font-heading text-[1.1rem] font-medium tracking-head text-ink">{label}</p>
-          <p className="mt-[0.1rem] text-label text-ink-muted">{sublabel}</p>
+          <p className="font-heading text-[1.1rem] font-medium tracking-tight text-ink">{label}</p>
+          <p className="mt-[0.1rem] text-sm text-ink-muted">{sublabel}</p>
         </div>
-        <span className="inline-flex items-center gap-2 rounded-pill bg-blue px-3 py-[0.35rem] text-label font-medium text-deep">
+        <span className="inline-flex items-center gap-2 rounded-full bg-blue px-3 py-[0.35rem] text-sm font-medium text-deep">
           <i
             className="relative size-[7px] rounded-[50%] bg-purple motion-safe:after:absolute motion-safe:after:-inset-1 motion-safe:after:animate-ledger-pulse motion-safe:after:rounded-[50%] motion-safe:after:border motion-safe:after:border-purple motion-safe:after:content-['']"
             aria-hidden="true"
@@ -55,7 +55,7 @@ export function Ledger({
             data-status={row.status}
             key={row.task}
           >
-            <span className="pt-[0.05rem] text-label text-ink-muted tabular-nums" data-time>
+            <span className="pt-[0.05rem] text-sm text-ink-muted tabular-nums" data-time>
               {row.time}
             </span>
             <span className="text-ink" data-task>
@@ -68,7 +68,7 @@ export function Ledger({
           </li>
         ))}
       </ol>
-      <ul className="flex flex-wrap gap-5 border-t border-t-line-soft pt-[0.9rem] text-copy text-ink-muted">
+      <ul className="flex flex-wrap gap-5 border-t border-t-line-soft pt-[0.9rem] text-base text-ink-muted">
         {legend.map((item) => (
           <li
             className="group inline-flex items-center gap-2"

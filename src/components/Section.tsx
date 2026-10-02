@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { SectionHead } from "./Ui";
+import { cn } from "../lib/style";
 
 export type SectionTone = "white" | "blend" | "deep";
 
@@ -36,19 +37,17 @@ export function Section({
   backdrop?: ReactNode;
   children?: ReactNode;
 }) {
-  const sectionClass = [
-    "relative overflow-hidden rounded-xl py-(--section-y)",
-    TONE[tone ?? "cream"],
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
-  const containerClass = ["wrap", containerClassName].filter(Boolean).join(" ");
-
   return (
-    <section className={sectionClass} id={id}>
+    <section
+      className={cn(
+        "relative overflow-hidden rounded-xl py-(--section-y)",
+        TONE[tone ?? "cream"],
+        className,
+      )}
+      id={id}
+    >
       {backdrop}
-      <div className={containerClass}>
+      <div className={cn("wrap", containerClassName)}>
         {title ? (
           <SectionHead
             title={title}

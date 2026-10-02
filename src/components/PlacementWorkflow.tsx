@@ -2,6 +2,7 @@ import { placementDesk } from "../data/content";
 import { ParticleField } from "./ParticleField";
 import { Section } from "./Section";
 import { Arrow } from "./Ui";
+import { cn } from "../lib/style";
 
 // The Placement Desk's three stages, from work going in to results coming
 // back, with the steps under each. Shown on the homepage and on
@@ -14,17 +15,18 @@ function PlacementWorkflow() {
     >
       {placementDesk.work.stages.map((stage, i) => (
         <div
-          className={`relative row-span-2 grid grid-rows-subgrid rounded-card border p-(--pad) max-lg:row-auto max-lg:block ${
+          className={cn(
+            "relative row-span-2 grid grid-rows-subgrid rounded-2xl border p-(--pad) max-lg:row-auto max-lg:block",
             stage.accent
               ? "border-transparent bg-purple text-on-dark"
-              : "border-line-dark bg-[#f6f3f00a]"
-          }`}
+              : "border-line-dark bg-[#f6f3f00a]",
+          )}
           key={stage.kicker}
         >
           {i > 0 ? (
             <Arrow className="absolute top-1/2 left-[calc(-1*var(--gap)/2-11px)] z-1 size-5.5 -translate-y-1/2 rounded-[50%] bg-deep p-0.5 text-pink max-lg:top-[calc(-1*var(--gap)/2-11px)] max-lg:left-(--pad) max-lg:translate-y-0 max-lg:rotate-90" />
           ) : null}
-          <p className="mb-[1.15rem] font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-[1.15] font-medium tracking-head-tight text-on-dark">
+          <p className="mb-[1.15rem] font-heading text-[clamp(1.45rem,2.2vw,1.85rem)] leading-[1.15] font-medium tracking-tight text-on-dark">
             {stage.kicker}
           </p>
           <ul className="grid content-start">
@@ -33,10 +35,10 @@ function PlacementWorkflow() {
                 className="border-b border-b-line-dark py-[0.85rem] first:pt-0 last:border-b-0 last:pb-0"
                 key={step.title}
               >
-                <p className="font-heading text-copy font-medium tracking-head text-on-dark">
+                <p className="font-heading text-base font-medium tracking-tight text-on-dark">
                   {step.title}
                 </p>
-                <p className="mt-[0.3rem] text-copy text-pretty text-on-dark-muted">{step.body}</p>
+                <p className="mt-[0.3rem] text-base text-pretty text-on-dark-muted">{step.body}</p>
               </li>
             ))}
           </ul>

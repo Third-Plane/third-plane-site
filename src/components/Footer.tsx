@@ -2,6 +2,7 @@ import { site, siteFooter } from "../data/content";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
 import { AppLink } from "./Ui";
+import { cn } from "../lib/style";
 
 function LinkedInMark() {
   return (
@@ -27,22 +28,22 @@ const PINNED =
 export function Footer() {
   return (
     <footer
-      className={`mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-on-dark-muted ${PINNED}`}
+      className={cn("mx-3 mb-3 rounded-xl bg-deep px-(--gutter) text-on-dark-muted", PINNED)}
       data-footer-reveal
     >
       <div className="flex justify-between gap-16 py-16 max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
-          <p className="mt-4 text-copy text-on-dark-muted">{siteFooter.tagline}</p>
+          <p className="mt-4 text-base text-on-dark-muted">{siteFooter.tagline}</p>
         </div>
         <div className="grid max-w-2xl flex-1 gap-12 sm:grid-cols-3">
           {siteFooter.columns.map((column) => (
             <nav
-              className="grid content-start gap-[0.6rem] text-copy text-on-dark"
+              className="grid content-start gap-[0.6rem] text-base text-on-dark"
               aria-label={column.label}
               key={column.label}
             >
-              <p className="mb-1 text-label font-medium tracking-eyebrow text-on-dark-faint uppercase">
+              <p className="mb-1 text-sm font-medium tracking-widest text-on-dark-faint uppercase">
                 {column.label}
               </p>
               {column.links.map((link) => (

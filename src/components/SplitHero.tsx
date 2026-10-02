@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 import { Display1, Lead } from "./Headings";
 import { Ledger } from "./Ledger";
 import { HERO_PADDING, Hero, Leave } from "./Hero";
@@ -33,7 +33,7 @@ export function SplitHero({
 
   return (
     <Hero id="top">
-      <div className={`px-(--gutter) ${HERO_PADDING} ${GRID}`}>
+      <div className={cn("px-(--gutter)", HERO_PADDING, GRID)}>
         <div className="pointer-events-auto relative z-3 max-w-[600px]">
           <Leave tier="heading">{heading}</Leave>
           <Leave tier="lead">

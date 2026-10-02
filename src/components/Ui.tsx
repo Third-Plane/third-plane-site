@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { site } from "../data/content";
 import { Display2, Lead } from "./Headings";
+import { cn } from "../lib/style";
 
 type ButtonVariant = "primary" | "dark" | "light" | "ghost";
 
@@ -13,11 +14,11 @@ type ButtonProps = {
 };
 
 const BUTTON_BASE =
-  "inline-flex items-center justify-center gap-2 rounded-pill font-sans leading-none font-medium whitespace-nowrap transition-[background,color,translate,box-shadow] duration-200 hover:-translate-y-px";
+  "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium whitespace-nowrap transition-[background,color,translate,box-shadow] duration-200 hover:-translate-y-px";
 
 const BUTTON_SIZE = {
-  regular: "px-[1.6rem] py-[0.95rem] text-[0.975rem]",
-  small: "px-[1.2rem] py-[0.7rem] text-[0.9rem]",
+  regular: "px-[1.6rem] py-[0.95rem] text-[0.975rem]/none",
+  small: "px-[1.2rem] py-[0.7rem] text-[0.9rem]/none",
 } as const;
 
 const BUTTON_VARIANT: Record<ButtonVariant, string> = {
@@ -33,19 +34,18 @@ export function Button({
   href = site.ctaHref,
   variant = "primary",
   small = false,
-  className: extra,
+  className,
 }: ButtonProps) {
-  const className = [
-    BUTTON_BASE,
-    BUTTON_SIZE[small ? "small" : "regular"],
-    BUTTON_VARIANT[variant],
-    extra,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return (
-    <a className={className} href={href}>
+    <a
+      className={cn(
+        BUTTON_BASE,
+        BUTTON_SIZE[small ? "small" : "regular"],
+        BUTTON_VARIANT[variant],
+        className,
+      )}
+      href={href}
+    >
       {children}
     </a>
   );
@@ -94,15 +94,12 @@ export function SectionHead({
   const center = align === "center";
   const margin = compact ? "mb-[clamp(1.75rem,3vw,2.5rem)]" : "mb-[clamp(2.5rem,5vw,4rem)]";
   return (
-    <header
-      className={`max-w-190 ${margin} ${center ? "mx-auto text-center" : ""}`.trim()}
-      data-reveal
-    >
+    <header className={cn("max-w-190", margin, center && "mx-auto text-center")} data-reveal>
       <Display2 tone={dark ? "dark" : "light"}>{title}</Display2>
       {body ? (
         <Lead
           tone={dark ? "dark" : "purple"}
-          className={`mt-5 max-w-[62ch] ${center ? "mx-auto" : ""}`.trim()}
+          className={cn("mt-5 max-w-[62ch]", center && "mx-auto")}
         >
           {body}
         </Lead>

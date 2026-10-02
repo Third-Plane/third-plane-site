@@ -1,4 +1,4 @@
-import { reveal } from "../lib/style";
+import { cn, reveal } from "../lib/style";
 import { Display1 } from "./Headings";
 
 // A hero heading set on stacked lines. The lines after the first are purple,
@@ -16,7 +16,7 @@ export function StackedTitle({
       {lines.map((line, i) => (
         // The space keeps the lines as separate words for crawlers and
         // screen readers; the spans are blocks, so it never shows.
-        <span className={i > 0 ? `block ${tone}` : "block"} key={line}>
+        <span className={cn("block", i > 0 && tone)} key={line}>
           {i > 0 ? ` ${line}` : line}
         </span>
       ))}

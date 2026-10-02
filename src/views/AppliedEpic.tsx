@@ -33,11 +33,11 @@ export function AppliedEpic() {
       {page.quote?.text ? (
         <Section tone="blend" id="quote">
           <blockquote className="m-0 max-w-[58ch]" data-reveal>
-            <p className="font-heading text-title font-medium tracking-head text-pretty text-ink">
+            <p className="font-heading text-xl font-medium tracking-tight text-pretty text-ink">
               {page.quote.text}
             </p>
             {page.quote.attribution ? (
-              <footer className="mt-4 text-label text-ink-muted">{page.quote.attribution}</footer>
+              <footer className="mt-4 text-sm text-ink-muted">{page.quote.attribution}</footer>
             ) : null}
           </blockquote>
         </Section>
