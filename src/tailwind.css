@@ -64,6 +64,10 @@
    scroll-driven animations, only for people who haven't asked for less motion,
    and only in a window tall enough to hold a pinned hero (see Hero).
    Without them the hero is an ordinary, scrolling band. */
+/* The scroll-driven animations below are written as longhands, never the
+   animation shorthand: the build's minifier (lightningcss) folds a following
+   animation-timeline into the shorthand, which browsers reject whole, so the
+   animation silently never runs in production (the dev server doesn't minify). */
 @custom-variant scroll-linked {
   @supports (animation-timeline: scroll()) {
     @media (prefers-reduced-motion: no-preference) and (min-height: 40rem) {
@@ -94,7 +98,9 @@
 
 @utility hero-collapse {
   clip-path: inset(0 0 0 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
-  animation: hero-collapse linear both;
+  animation-name: hero-collapse;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: 0 var(--hero-d, 100svh);
 }
@@ -118,7 +124,9 @@
 }
 
 @utility hero-shadow {
-  animation: hero-shadow linear both;
+  animation-name: hero-shadow;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: 0 var(--hero-d, 100svh);
 }
@@ -146,7 +154,9 @@
 
 @utility footer-reveal {
   clip-path: inset(0 0 0 0 round 0.75rem 0.75rem 0 0);
-  animation: footer-reveal linear both;
+  animation-name: footer-reveal;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: calc(100% - var(--footer-d, 0px)) 100%;
 }
@@ -168,7 +178,9 @@
 }
 
 @utility hero-leave {
-  animation: hero-leave linear both;
+  animation-name: hero-leave;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: calc(var(--hero-d, 100svh) * var(--leave-from, 0))
     calc(var(--hero-d, 100svh) * var(--leave-to, 0.5));
