@@ -4,9 +4,9 @@ import { AppLink, Arrow } from "./Ui";
 
 // Columns from md for two (four shows two at md), from lg for three.
 const COLUMNS = {
-  2: "md:grid-cols-2",
-  3: "lg:grid-cols-3",
-  4: "md:grid-cols-2 lg:grid-cols-4",
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
 } as const;
 
 // A grid of items (Card, OutlineCard, Point).
@@ -49,7 +49,7 @@ export function Card({ className, ...props }: ItemProps) {
   return (
     <Item
       className={cn(
-        "gap-y-5 rounded-2xl bg-card p-7 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
+        "gap-2 rounded-2xl bg-card p-6 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
         className,
       )}
       {...props}
@@ -61,7 +61,7 @@ export function Card({ className, ...props }: ItemProps) {
 export function OutlineCard({ className, ...props }: ItemProps) {
   return (
     <Item
-      className={cn("gap-y-5 rounded-2xl border border-border bg-card p-7", className)}
+      className={cn("gap-2 rounded-2xl border border-border bg-card p-6", className)}
       {...props}
     />
   );
@@ -72,7 +72,7 @@ export function Point({ className, ...props }: ItemProps) {
   return (
     <Item
       className={cn(
-        "gap-y-3 border-t border-border pt-6 transition-colors duration-200 hover:border-accent",
+        "gap-2 border-t border-border pt-6 transition-colors duration-200 hover:border-accent",
         className,
       )}
       {...props}
