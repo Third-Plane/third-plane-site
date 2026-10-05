@@ -61,7 +61,9 @@ void main() {
   float white = clamp((r - d) * u_unit + 0.5, 0.0, 1.0);
   if (u_shine) {
     float glow = 1.0 - distance(gl_FragCoord.xy, u_light.xy) / u_radius;
-    gl_FragColor = vec4(1.0, 1.0, 1.0, white * clamp(glow, 0.0, 1.0) * u_light.z);
+    // White, premultiplied: the canvas's colour is scaled by its alpha.
+    float alpha = white * clamp(glow, 0.0, 1.0) * u_light.z;
+    gl_FragColor = vec4(vec3(alpha), alpha);
   } else {
     gl_FragColor = vec4(vec3(white), 1.0);
   }
@@ -80,7 +82,7 @@ function halftone(canvas: HTMLCanvasElement) {
   const fixed = "fixed" in canvas.dataset;
   const shine = "shine" in canvas.dataset;
   const parent = canvas.parentElement;
-  const gl = canvas.getContext("webgl", { antialias: false, premultipliedAlpha: false });
+  const gl = canvas.getContext("webgl", { antialias: false });
   const scratch = document.createElement("canvas").getContext("2d");
   if (!src || !parent || !gl || !scratch) return;
 
