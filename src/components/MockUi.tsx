@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 import { cn } from "../lib/style";
 
 // The pieces of the mock app screens drawn into cards (ProblemScreens,
-// WorkflowScreens). They're illustrations, so they are hidden from assistive
-// tech, and their rows live in code rather than in the CMS. The window is a
-// container, so a Table's columns can drop out as the card narrows; its first
-// column always stays and takes what room is left.
+// WorkflowScreens, SystemScreens). They're illustrations, so they are hidden
+// from assistive tech, and their rows live in code rather than in the CMS. The
+// window is a container, so a Table's columns can drop out as the card
+// narrows; its first column always stays and takes what room is left.
 
 // A window on a ground, running off the bottom edge like a crop of a larger
 // screen. The ground is lavender and 16:9 unless `className` says otherwise.

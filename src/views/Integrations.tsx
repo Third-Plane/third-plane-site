@@ -1,11 +1,17 @@
 import { integrationsPage as page } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
+import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
+import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { AppLink } from "../components/Ui";
 import { reveal } from "../lib/style";
+
+// A mock screen for each system, in the order of systems.items. The fifth item,
+// carrier channels, isn't shown here: CarrierChannels below covers it.
+const systemScreens: SystemName[] = ["ams", "documents", "inbox", "data"];
 
 // The hero is its own export: pages/integrations.astro puts it in Base's `hero` slot,
 // outside <main>.
@@ -18,18 +24,13 @@ export function Integrations() {
     <>
       <Section tone="white" id="systems">
         <SectionHeader title={page.systems.title} />
-        <div className="wrap border-t border-t-border">
+        <Grid className="wrap">
           {page.systems.items.slice(0, 4).map((item, i) => (
-            <article
-              className="grid items-start gap-3 border-b border-b-border/50 py-8 md:grid-cols-4 md:gap-10"
-              {...reveal(i)}
-              key={item.title}
-            >
-              <h3 className="font-heading text-2xl leading-tight font-medium tracking-tight text-balance text-foreground">
-                {item.title}
-              </h3>
-              <div className="grid max-w-[62ch] justify-items-start gap-4 md:col-span-3">
-                <p className="text-base text-pretty text-muted-foreground">
+            <Card key={item.title} {...reveal(i)} className="gap-0 p-0">
+              <SystemScreen name={systemScreens[i]} />
+              <div className="space-y-2 px-6 py-5">
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemBody>
                   {item.link || item.names ? (
                     <>
                       <strong className="font-semibold text-foreground">
@@ -48,11 +49,11 @@ export function Integrations() {
                     </>
                   ) : null}
                   {item.body}
-                </p>
+                </ItemBody>
               </div>
-            </article>
+            </Card>
           ))}
-        </div>
+        </Grid>
       </Section>
 
       <CarrierChannels />

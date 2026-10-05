@@ -6,7 +6,12 @@ import { reveal } from "../lib/style";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section, SectionHeader } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
+import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { Button } from "../components/Ui";
+
+// A mock screen for each systems link, in the order of systems.links: the AMS
+// for Applied Epic, the inbox for the other integrations.
+const systemScreens: SystemName[] = ["ams", "inbox"];
 
 // The hero is its own export: pages/placement-desk.astro puts it in Base's `hero`
 // slot, outside <main>.
@@ -31,9 +36,12 @@ export function PlacementDesk() {
         <SectionHeader title={placementDesk.systems.title} body={placementDesk.systems.body} />
         <Grid className="wrap">
           {placementDesk.systems.links.map((link, i) => (
-            <Card href={link.href} key={link.href} {...reveal(i)}>
-              <ItemTitle arrow>{link.title}</ItemTitle>
-              <ItemBody>{link.body}</ItemBody>
+            <Card href={link.href} key={link.href} {...reveal(i)} className="gap-0 p-0">
+              <SystemScreen name={systemScreens[i]} />
+              <div className="space-y-2 px-6 py-5">
+                <ItemTitle arrow>{link.title}</ItemTitle>
+                <ItemBody>{link.body}</ItemBody>
+              </div>
             </Card>
           ))}
         </Grid>
