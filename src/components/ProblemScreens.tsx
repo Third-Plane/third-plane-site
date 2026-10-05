@@ -1,82 +1,11 @@
 import type { ReactNode } from "react";
 import { cn } from "../lib/style";
+import { Frame, Pill, Table, Toolbar, type Column } from "./MockUi";
 
 export type ScreenName = "renewed" | "overdue" | "unassigned" | "revenue";
 
-// Mock AMS screens for the homepage's problem cards, one per point. They are
-// illustrations, so the rows live here rather than in home.json, and they are
-// hidden from assistive tech: the card's title and body say the same thing.
-// The window is a container, so columns drop out as the card narrows; the
-// account column always stays and takes what room is left.
-
-// A window on a lavender ground, running off the bottom edge like a crop of a
-// larger screen.
-function Frame({ children }: { children: ReactNode }) {
-  return (
-    <div
-      className="relative aspect-video overflow-hidden rounded-t-2xl border-b border-border/10 bg-lavender"
-      aria-hidden="true"
-    >
-      <div className="@container absolute inset-x-[6%] top-[8%] -bottom-6 flex flex-col overflow-hidden rounded-xl border border-deep/10 bg-white text-xs text-deep shadow-xl shadow-deep/10">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function Toolbar({ title, view, chip }: { title: string; view: string; chip: ReactNode }) {
-  return (
-    <div className="flex items-center justify-between gap-3 border-b border-deep/10 px-4 py-3">
-      <p className="min-w-0 truncate">
-        <span className="font-heading text-sm font-medium tracking-tight">{title}</span>
-        <span className="hidden text-deep/50 @xs:inline"> · {view}</span>
-      </p>
-      {chip}
-    </div>
-  );
-}
-
-function Pill({ alert = false, children }: { alert?: boolean; children: ReactNode }) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-full px-2 py-0.5 font-medium whitespace-nowrap",
-        alert ? "bg-pink text-purple" : "bg-blue text-deep/70",
-      )}
-    >
-      {children}
-    </span>
-  );
-}
-
-// A column renders its own cell from a row. `className` sets its width and
-// the container size it appears from; the first column takes the rest.
-type Column<Row> = { label: string; className?: string; cell: (row: Row) => ReactNode };
-
-function Table<Row>({ columns, rows }: { columns: Column<Row>[]; rows: readonly Row[] }) {
-  const cell = (i: number) =>
-    cn("flex shrink-0 items-center", i === 0 && "min-w-0 flex-1", columns[i].className);
-  return (
-    <div>
-      <div className="flex gap-3 border-b border-deep/10 bg-cream/60 px-4 py-1.5 text-deep/50">
-        {columns.map((column, i) => (
-          <span className={cell(i)} key={column.label}>
-            {column.label}
-          </span>
-        ))}
-      </div>
-      {rows.map((row, r) => (
-        <div className="flex gap-3 border-b border-deep/5 px-4 py-2" key={r}>
-          {columns.map((column, i) => (
-            <span className={cell(i)} key={column.label}>
-              {column.cell(row)}
-            </span>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
+// Mock AMS screens for the homepage's problem cards, one per point. The card's
+// title and body say the same thing in words; see MockUi for the pieces.
 
 type Policy = { name: string; line: string };
 
