@@ -10,6 +10,11 @@
 // Dotraster reads it per pixel of the image it is given, so the image's grain
 // roughens the dot edges the same way at any scale. The screen is static: it
 // repaints only when the canvas changes size.
+//
+// With data-shine the canvas is a light on the screen instead: transparent but
+// for its white dots under a circle round the mouse, data-radius CSS pixels in
+// radius, opaque at the centre and clear at the edge. It trails the mouse over
+// the canvas's parent and fades in and out with it.
 
 const DPI = 72;
 
@@ -28,6 +33,9 @@ uniform vec2 u_texOrigin;  // units from the screen's corner to the texture's
 uniform vec2 u_texSize;    // units
 uniform float u_pitch;     // units between dots in a row
 uniform float u_row;       // units between rows
+uniform bool u_shine;
+uniform vec3 u_light;      // the light's centre and strength, device pixels
+uniform float u_radius;    // device pixels
 
 // The nearest dot centre in row j, which is offset by half a dot when even.
 vec2 nearest(vec2 p, float j) {
@@ -50,7 +58,12 @@ void main() {
   // A dot covering lum of its cell, edged over one device pixel.
   float r = sqrt(lum * u_pitch * u_row / 3.14159265);
   float white = clamp((r - d) * u_unit + 0.5, 0.0, 1.0);
-  gl_FragColor = vec4(vec3(white), 1.0);
+  if (u_shine) {
+    float glow = 1.0 - distance(gl_FragCoord.xy, u_light.xy) / u_radius;
+    gl_FragColor = vec4(1.0, 1.0, 1.0, white * clamp(glow, 0.0, 1.0) * u_light.z);
+  } else {
+    gl_FragColor = vec4(vec3(white), 1.0);
+  }
 }
 `;
 
@@ -62,11 +75,13 @@ function compile(gl: WebGLRenderingContext, type: number, source: string) {
 }
 
 function halftone(canvas: HTMLCanvasElement) {
-  const { src, lpi = "6" } = canvas.dataset;
+  const { src, lpi = "6", radius = "240" } = canvas.dataset;
   const fixed = "fixed" in canvas.dataset;
+  const shine = "shine" in canvas.dataset;
+  const parent = canvas.parentElement;
   const gl = canvas.getContext("webgl", { antialias: false, premultipliedAlpha: false });
   const scratch = document.createElement("canvas").getContext("2d");
-  if (!src || !gl || !scratch) return;
+  if (!src || !parent || !gl || !scratch) return;
 
   const program = gl.createProgram()!;
   gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, VERTEX));
@@ -93,12 +108,27 @@ function halftone(canvas: HTMLCanvasElement) {
   const pitch = DPI / Number(lpi);
   gl.uniform1f(uniform("u_pitch"), pitch);
   gl.uniform1f(uniform("u_row"), Math.round((pitch * Math.sqrt(3)) / 2));
+  gl.uniform1i(uniform("u_shine"), shine ? 1 : 0);
 
   const image = new Image();
+  let ready = false;
+  let dpr = 1;
 
-  const draw = () => {
+  // The light, in device pixels from the canvas's top-left corner, eased
+  // toward the mouse: where it is and how bright, where it's heading.
+  const light = { x: 0, y: 0, a: 0 };
+  const target = { x: 0, y: 0, a: 0 };
+  let raf = 0;
+
+  const render = () => {
+    if (!ready) return;
+    gl.uniform3f(uniform("u_light"), light.x, canvas.height - light.y, light.a);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
+
+  const resize = () => {
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    dpr = Math.min(2, window.devicePixelRatio || 1);
     canvas.width = Math.max(1, Math.round(rect.width * dpr));
     canvas.height = Math.max(1, Math.round(rect.height * dpr));
     if (!image.complete || !image.naturalWidth) return;
@@ -137,13 +167,49 @@ function halftone(canvas: HTMLCanvasElement) {
     gl.uniform2f(uniform("u_origin"), originX, originY);
     gl.uniform2f(uniform("u_texOrigin"), texX, texY);
     gl.uniform2f(uniform("u_texSize"), texW, texH);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.uniform1f(uniform("u_radius"), Number(radius) * dpr);
+    ready = true;
+    render();
   };
 
-  image.onload = draw;
+  image.onload = resize;
   image.src = src;
 
-  new ResizeObserver(draw).observe(canvas);
+  new ResizeObserver(resize).observe(canvas);
+
+  if (!shine) return;
+
+  const step = () => {
+    raf = 0;
+    const ease = 0.18;
+    light.x += (target.x - light.x) * ease;
+    light.y += (target.y - light.y) * ease;
+    light.a += (target.a - light.a) * ease;
+    const settled =
+      Math.abs(target.x - light.x) < 0.5 &&
+      Math.abs(target.y - light.y) < 0.5 &&
+      Math.abs(target.a - light.a) < 0.005;
+    if (settled) Object.assign(light, target);
+    render();
+    if (!settled) raf = requestAnimationFrame(step);
+  };
+
+  const follow = (event: PointerEvent, a: number) => {
+    if (event.pointerType !== "mouse") return;
+    const rect = canvas.getBoundingClientRect();
+    target.x = (event.clientX - rect.left) * dpr;
+    target.y = (event.clientY - rect.top) * dpr;
+    target.a = a;
+    // Light up where the mouse comes in rather than sliding over from where it left.
+    if (light.a < 0.01) {
+      light.x = target.x;
+      light.y = target.y;
+    }
+    if (!raf) raf = requestAnimationFrame(step);
+  };
+
+  parent.addEventListener("pointermove", (event) => follow(event, 1));
+  parent.addEventListener("pointerleave", (event) => follow(event, 0));
 }
 
 document.querySelectorAll<HTMLCanvasElement>("canvas[data-halftone]").forEach(halftone);

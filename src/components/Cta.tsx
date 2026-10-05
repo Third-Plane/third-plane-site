@@ -21,9 +21,10 @@ export function Cta({
         src="/media/oosterink_20.jpg"
         className="absolute inset-0 z-0 h-full w-full object-cover object-center"
       />
-      <Halftone src="/media/oosterink_20.jpg" fixed className="z-1 opacity-10 mix-blend-overlay" />
-      <div className="absolute inset-0 backdrop-blur-[6px]" />
-      <div className="wrap max-w-2xl rounded-xl p-12 shadow-2xl inset-ring-1 shadow-black/50 inset-ring-white/25 backdrop-blur-xl backdrop-brightness-110">
+      <div className="absolute inset-0 z-1 backdrop-blur-[6px]" />
+      <Halftone src="/media/oosterink_20.jpg" fixed className="z-2 opacity-5 mix-blend-overlay" />
+      <Halftone src="/media/oosterink_20.jpg" fixed shine className="z-3 opacity-30" />
+      <div className="wrap z-4 max-w-2xl rounded-xl p-12 shadow-2xl inset-ring-1 shadow-black/50 inset-ring-white/25 backdrop-blur-xl backdrop-brightness-110">
         <Display2 className="text-white">{title}</Display2>
         <p className="mt-5 max-w-[80ch] text-base text-white/75">{body}</p>
         <div className="mt-8 flex flex-wrap items-center gap-5">
