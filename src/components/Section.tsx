@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { SectionHead } from "./Ui";
+import type { PropsWithChildren } from "react";
+import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
 export type SectionTone = "white" | "blend" | "deep";
@@ -12,44 +12,30 @@ const SURFACE: Record<SectionTone, string> = {
   deep: "surface-deep",
 };
 
-// A page section: the band (a rounded card; <main> in Base.astro spaces them),
-// the container and, when `title` is given, the heading. `backdrop` renders inside the band but outside the container, for
-// decoration such as a ParticleField.
 export function Section({
   id,
   tone,
-  className,
-  containerClassName,
-  title,
-  body,
-  align,
-  compactHead,
-  backdrop,
   children,
-}: {
+}: PropsWithChildren & {
   id?: string;
   tone: SectionTone;
-  className?: string;
-  containerClassName?: string;
-  title?: string;
-  body?: string;
-  align?: "left" | "center";
-  compactHead?: boolean;
-  backdrop?: ReactNode;
-  children?: ReactNode;
 }) {
   return (
     <section
-      className={cn("relative overflow-hidden rounded-xl py-20", SURFACE[tone], className)}
+      className={cn("relative overflow-hidden px-(--gutter) rounded-xl py-20", SURFACE[tone])}
       id={id}
     >
-      {backdrop}
-      <div className={cn("wrap", containerClassName)}>
-        {title ? (
-          <SectionHead title={title} body={body} align={align} compact={compactHead} />
-        ) : null}
-        {children}
-      </div>
+      {children}
     </section>
+  );
+}
+
+// A section's heading and optional lead, above its content in the column.
+export function SectionHeader({ title, body }: { title: string; body?: string }) {
+  return (
+    <header className="wrap mb-13" data-reveal>
+      <Display2>{title}</Display2>
+      {body ? <Lead className="mt-5 max-w-[62ch]">{body}</Lead> : null}
+    </header>
   );
 }

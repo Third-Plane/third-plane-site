@@ -1,13 +1,11 @@
 import type { CSSProperties, ReactNode } from "react";
 import { site } from "../data/content";
-import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
 type ButtonProps = {
   children?: ReactNode;
   href?: string;
   small?: boolean;
-  className?: string;
 };
 
 // primary is dark on a light surface and light on a dark one.
@@ -23,10 +21,9 @@ export function Button({
   children = site.ctaLabel,
   href = site.ctaHref,
   small = false,
-  className,
 }: ButtonProps) {
   return (
-    <a className={cn(BUTTON_BASE, BUTTON_SIZE[small ? "small" : "regular"], className)} href={href}>
+    <a className={cn(BUTTON_BASE, BUTTON_SIZE[small ? "small" : "regular"])} href={href}>
       {children}
     </a>
   );
@@ -56,27 +53,6 @@ export function AppLink({
     >
       {children}
     </a>
-  );
-}
-
-export function SectionHead({
-  title,
-  body,
-  align = "left",
-  compact = false,
-}: {
-  title: string;
-  body?: string;
-  align?: "left" | "center";
-  compact?: boolean;
-}) {
-  const center = align === "center";
-  const margin = compact ? "mb-8" : "mb-13";
-  return (
-    <header className={cn("max-w-190", margin, center && "mx-auto text-center")} data-reveal>
-      <Display2>{title}</Display2>
-      {body ? <Lead className={cn("mt-5 max-w-[62ch]", center && "mx-auto")}>{body}</Lead> : null}
-    </header>
   );
 }
 

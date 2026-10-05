@@ -1,46 +1,21 @@
-import { cn, reveal } from "../lib/style";
+import { reveal } from "../lib/style";
 
-const COLUMNS = {
-  3: "lg:grid-cols-3",
-  4: "sm:grid-cols-2 lg:grid-cols-4",
-} as const;
-
-// Numbered (or plain) steps as tiles. From sm up each step is a subgrid
-// spanning its rows (number, if any, then title and body), so titles and
-// bodies line up.
-export function StepList({
-  steps,
-  columns,
-  numbered = false,
-}: {
-  steps: ReadonlyArray<{ title: string; body: string }>;
-  columns: 3 | 4;
-  numbered?: boolean;
-}) {
+// Numbered steps as tiles. From sm up each step is a subgrid spanning its
+// rows (number, title and body), so titles and bodies line up.
+export function StepList({ steps }: { steps: ReadonlyArray<{ title: string; body: string }> }) {
   return (
-    <ol
-      className={cn(
-        "grid gap-5",
-        numbered ? "sm:auto-rows-[auto_auto_1fr]" : "sm:auto-rows-[auto_1fr]",
-        COLUMNS[columns],
-      )}
-    >
+    <ol className="wrap grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {steps.map((step, i) => (
         <li
-          className={cn(
-            "rounded-2xl border border-border bg-card p-7 sm:grid sm:grid-rows-subgrid",
-            numbered ? "sm:row-span-3" : "sm:row-span-2",
-          )}
+          className="space-y-3 rounded-2xl border border-border bg-card p-6"
           {...reveal(i)}
           key={step.title}
         >
-          {numbered ? (
-            <span className="mb-6 block font-heading text-sm font-medium text-accent">
+          <h3 className="flex font-heading text-xl font-medium tracking-tight text-foreground">
+            {step.title}
+            <span className="ml-auto block font-bold text-accent/25">
               {String(i + 1).padStart(2, "0")}
             </span>
-          ) : null}
-          <h3 className="mb-2.5 font-heading text-xl font-medium tracking-tight text-foreground">
-            {step.title}
           </h3>
           <p className="text-base text-pretty text-muted-foreground">{step.body}</p>
         </li>

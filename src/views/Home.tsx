@@ -3,7 +3,7 @@ import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
-import { Section } from "../components/Section";
+import { Section, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
@@ -28,8 +28,9 @@ export function Home() {
 
       <Showcase />
 
-      <Section tone="white" id="problem" title={problem.title} body={problem.body}>
-        <Grid>
+      <Section tone="white" id="problem">
+        <SectionHeader title={problem.title} body={problem.body} />
+        <Grid className="wrap">
           {problem.points.map((point, i) => (
             <Card key={point.title} {...reveal(i)} className="gap-0 p-0">
               <ProblemScreen name={problemScreens[i]} />
@@ -42,8 +43,9 @@ export function Home() {
         </Grid>
       </Section>
 
-      <Section id="approach" tone="blend" title={approach.title} body={approach.body}>
-        <div className="grid gap-5">
+      <Section id="approach" tone="blend">
+        <SectionHeader title={approach.title} body={approach.body} />
+        <div className="wrap grid gap-5">
           {approach.models.map((model, i) => {
             return (
               <div

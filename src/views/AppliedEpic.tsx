@@ -3,7 +3,7 @@ import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
-import { Section } from "../components/Section";
+import { Section, SectionHeader } from "../components/Section";
 
 // The hero is its own export: pages/applied-epic.astro puts it in Base's `hero`
 // slot, outside <main>.
@@ -14,8 +14,9 @@ export function AppliedEpicHero() {
 export function AppliedEpic() {
   return (
     <>
-      <Section tone="white" id="who" title={page.who.title} body={page.who.body}>
-        <Grid columns={3}>
+      <Section tone="white" id="who">
+        <SectionHeader title={page.who.title} body={page.who.body} />
+        <Grid columns={3} className="wrap">
           {page.who.items.map((item, i) => (
             <Point key={item.title} {...reveal(i)}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -24,8 +25,9 @@ export function AppliedEpic() {
         </Grid>
       </Section>
 
-      <Section tone="blend" id="work" title={page.work.title}>
-        <Grid columns={3}>
+      <Section tone="blend" id="work">
+        <SectionHeader title={page.work.title} />
+        <Grid columns={3} className="wrap">
           {page.work.items.map((item, i) => (
             <Point key={item.title} {...reveal(i)}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -36,8 +38,9 @@ export function AppliedEpic() {
       </Section>
 
       {page.certified ? (
-        <Section tone="white" id="meaning" title={page.meaning.title}>
-          <Grid>
+        <Section tone="white" id="meaning">
+          <SectionHeader title={page.meaning.title} />
+          <Grid className="wrap">
             {page.meaning.items.map((item, i) => (
               <Point key={item.title} {...reveal(i)}>
                 <ItemTitle>{item.title}</ItemTitle>

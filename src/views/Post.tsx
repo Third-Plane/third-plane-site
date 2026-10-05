@@ -54,7 +54,7 @@ function BlockView({ block }: { block: Block }) {
 // `hero` slot, outside <main>.
 export function PostHero({ post }: { post: PostData }) {
   return (
-    <Hero id="top">
+    <Hero>
       <div className="px-(--gutter) pt-14 pb-16">
         <div className="pointer-events-auto relative z-3 grid max-w-190 gap-5">
           <Leave tier="heading">

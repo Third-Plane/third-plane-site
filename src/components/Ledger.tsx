@@ -4,24 +4,12 @@ export const LEDGER_VISIBLE = 5;
 
 const formatTime = (value: number) => new Date(value).toTimeString().slice(0, 5);
 
-type LedgerTask = (typeof ledgerTasks)[number];
-
-type Props = {
-  label?: string;
-  sublabel?: string;
-  legend?: (typeof homeHero.ledger.legend)[number][];
-  tasks?: LedgerTask[];
-};
-
 // Static markup with the first rows filled in. scripts/ledger.ts restamps
 // them with the reader's clock and then keeps the list moving, using the
 // tasks carried in `data-tasks`.
-export function Ledger({
-  label = homeHero.ledger.label,
-  sublabel = homeHero.ledger.sublabel,
-  legend = homeHero.ledger.legend,
-  tasks = ledgerTasks,
-}: Props) {
+export function Ledger() {
+  const { label, sublabel, legend } = homeHero.ledger;
+  const tasks = ledgerTasks;
   const now = Date.now();
   const rows = tasks.slice(0, LEDGER_VISIBLE).map((task, i) => ({
     ...task,

@@ -13,11 +13,11 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <Hero id="top">
+    <Hero>
       <div className="px-(--gutter) py-16">
         <div className="pointer-events-auto relative z-3">
           <Leave tier="heading">
-            <Display1 size="hero" wrap="pretty" {...reveal(1)}>
+            <Display1 wrap="pretty" {...reveal(1)}>
               {title.join(" ")}
             </Display1>
           </Leave>

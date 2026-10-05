@@ -19,13 +19,11 @@ export function ParticleField({
   tone = "purple",
   alpha = 1,
   density = 1,
-  speed = 1,
 }: {
   mask: keyof typeof MASK;
   tone?: ParticleTone;
   alpha?: number;
   density?: number;
-  speed?: number;
 }) {
   return (
     <canvas
@@ -35,7 +33,6 @@ export function ParticleField({
       data-tone={tone}
       data-alpha={alpha}
       data-density={density}
-      data-speed={speed}
     />
   );
 }
