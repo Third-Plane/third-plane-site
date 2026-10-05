@@ -14,7 +14,8 @@
 // With data-shine the canvas is a light on the screen instead: transparent but
 // for its white dots under a circle round the mouse, data-radius CSS pixels in
 // radius, opaque at the centre and clear at the edge. It trails the mouse over
-// the canvas's parent and fades in and out with it.
+// the canvas's parent and fades in and out with it; on touch screens tilt or
+// scroll moves it instead.
 
 const DPI = 72;
 
@@ -194,22 +195,70 @@ function halftone(canvas: HTMLCanvasElement) {
     if (!settled) raf = requestAnimationFrame(step);
   };
 
-  const follow = (event: PointerEvent, a: number) => {
-    if (event.pointerType !== "mouse") return;
-    const rect = canvas.getBoundingClientRect();
-    target.x = (event.clientX - rect.left) * dpr;
-    target.y = (event.clientY - rect.top) * dpr;
+  // Ease the light toward (x, y) in device pixels at strength a. It lights up
+  // where it's aimed rather than sliding over from where it last went out.
+  const aim = (x: number, y: number, a: number) => {
+    target.x = x;
+    target.y = y;
     target.a = a;
-    // Light up where the mouse comes in rather than sliding over from where it left.
     if (light.a < 0.01) {
-      light.x = target.x;
-      light.y = target.y;
+      light.x = x;
+      light.y = y;
     }
     if (!raf) raf = requestAnimationFrame(step);
   };
 
+  const follow = (event: PointerEvent, a: number) => {
+    if (event.pointerType !== "mouse") return;
+    const rect = canvas.getBoundingClientRect();
+    aim((event.clientX - rect.left) * dpr, (event.clientY - rect.top) * dpr, a);
+  };
+
   parent.addEventListener("pointermove", (event) => follow(event, 1));
   parent.addEventListener("pointerleave", (event) => follow(event, 0));
+
+  // Without a mouse, tilting the device steers the light, measured from how
+  // it's held. iOS only reports tilt after asking permission, which a sheen
+  // isn't worth, so until tilt arrives scrolling the section through the
+  // viewport sweeps the light across it instead.
+  if (!window.matchMedia("(hover: none)").matches) return;
+
+  const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+  let rest: { beta: number; gamma: number } | null = null;
+
+  const scroll = () => {
+    if (rest) return;
+    const rect = canvas.getBoundingClientRect();
+    const p = clamp((window.innerHeight - rect.top) / (window.innerHeight + rect.height), 0, 1);
+    aim((0.2 + 0.6 * p) * canvas.width, (0.1 + 0.8 * p) * canvas.height, 1);
+  };
+
+  const tilt = ({ beta, gamma }: DeviceOrientationEvent) => {
+    if (beta === null || gamma === null) return;
+    // Rest drifts toward the current grip, so a new one recentres the light.
+    rest ??= { beta, gamma };
+    rest.beta += (beta - rest.beta) * 0.005;
+    rest.gamma += (gamma - rest.gamma) * 0.005;
+    // 20 degrees either way from rest reaches the edge, turned to match the screen.
+    const dx = (gamma - rest.gamma) / 40;
+    const dy = (beta - rest.beta) / 40;
+    const turn = ((screen.orientation?.angle ?? 0) * Math.PI) / 180;
+    const x = dx * Math.cos(turn) + dy * Math.sin(turn);
+    const y = dy * Math.cos(turn) - dx * Math.sin(turn);
+    aim((0.5 + clamp(x, -0.5, 0.5)) * canvas.width, (0.5 + clamp(y, -0.5, 0.5)) * canvas.height, 1);
+  };
+
+  // Only while the section is on screen.
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      window.addEventListener("scroll", scroll, { passive: true });
+      window.addEventListener("deviceorientation", tilt);
+      scroll();
+    } else {
+      window.removeEventListener("scroll", scroll);
+      window.removeEventListener("deviceorientation", tilt);
+    }
+  }).observe(canvas);
 }
 
 document.querySelectorAll<HTMLCanvasElement>("canvas[data-halftone]").forEach(halftone);
