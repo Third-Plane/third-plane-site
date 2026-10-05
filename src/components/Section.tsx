@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SectionHead } from "./Ui";
+import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
 export type SectionTone = "white" | "blend" | "deep";
@@ -18,7 +18,6 @@ const SURFACE: Record<SectionTone, string> = {
 export function Section({
   id,
   tone,
-  containerClassName,
   title,
   body,
   backdrop,
@@ -26,7 +25,6 @@ export function Section({
 }: {
   id?: string;
   tone: SectionTone;
-  containerClassName?: string;
   title?: string;
   body?: string;
   backdrop?: ReactNode;
@@ -35,8 +33,13 @@ export function Section({
   return (
     <section className={cn("relative overflow-hidden rounded-xl py-20", SURFACE[tone])} id={id}>
       {backdrop}
-      <div className={cn("wrap", containerClassName)}>
-        {title ? <SectionHead title={title} body={body} /> : null}
+      <div className="wrap">
+        {title ? (
+          <header className="mb-13 max-w-190" data-reveal>
+            <Display2>{title}</Display2>
+            {body ? <Lead className="mt-5 max-w-[62ch]">{body}</Lead> : null}
+          </header>
+        ) : null}
         {children}
       </div>
     </section>

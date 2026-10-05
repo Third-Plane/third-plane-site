@@ -3,7 +3,6 @@ import { cn, reveal } from "../lib/style";
 import { Display1, Lead } from "./Headings";
 import { Ledger } from "./Ledger";
 import { HERO_PADDING, Hero, Leave } from "./Hero";
-import { StackedTitle } from "./StackedTitle";
 
 // The full-width column ignores the pointer so the particle canvas behind stays out of
 // the way; the copy and actions take it back, and the ledger sits on top.
@@ -21,7 +20,15 @@ export function SplitHero({
   actions: ReactNode;
 }) {
   const heading = Array.isArray(title) ? (
-    <StackedTitle lines={title} />
+    <Display1 {...reveal(1)}>
+      {title.map((line, i) => (
+        // The space keeps the lines as separate words for crawlers and
+        // screen readers; the spans are blocks, so it never shows.
+        <span className="block" key={line}>
+          {i > 0 ? ` ${line}` : line}
+        </span>
+      ))}
+    </Display1>
   ) : (
     <Display1 wrap="pretty" {...reveal(1)}>
       {title}

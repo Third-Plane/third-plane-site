@@ -135,7 +135,9 @@ export function Header() {
               ))}
             </div>
           ))}
-          <Button className="mt-4 justify-self-start" />
+          <div className="mt-4 flex">
+            <Button />
+          </div>
         </div>
       </div>
     </header>

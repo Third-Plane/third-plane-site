@@ -7,7 +7,7 @@ export function StepList({ steps }: { steps: ReadonlyArray<{ title: string; body
     <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {steps.map((step, i) => (
         <li
-          className="space-y-3 rounded-2xl border border-border bg-card p-6 sm:row-span-3"
+          className="space-y-3 rounded-2xl border border-border bg-card p-6"
           {...reveal(i)}
           key={step.title}
         >
