@@ -107,7 +107,6 @@ export type AppliedEpicFile = {
   status: string;
   date?: string;
   title: Lines;
-  titlePending: Lines;
   lead: string;
   who: { title: string; body: string; items: { title: string }[] };
   work: { title: string; items: Card[] };

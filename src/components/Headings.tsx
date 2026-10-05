@@ -54,7 +54,11 @@ export function Lead({
 }: ComponentProps<"p"> & { tone?: keyof typeof LEAD_TONE }) {
   return (
     <p
-      className={cn("font-sans text-xl leading-normal text-pretty", LEAD_TONE[tone], className)}
+      className={cn(
+        "font-sans mt-6 max-w-[60ch] text-xl leading-normal text-pretty",
+        LEAD_TONE[tone],
+        className,
+      )}
       {...props}
     />
   );
