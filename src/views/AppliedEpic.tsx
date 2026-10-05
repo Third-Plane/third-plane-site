@@ -8,10 +8,7 @@ import { Section } from "../components/Section";
 // The hero is its own export: pages/applied-epic.astro puts it in Base's `hero`
 // slot, outside <main>.
 export function AppliedEpicHero() {
-  const title = page.certified ? page.title : page.titlePending;
-  const status = [page.status, page.date].filter(Boolean).join(" · ");
-
-  return <PageHero title={title} lead={page.lead} status={page.certified ? status : undefined} />;
+  return <PageHero title={page.title} lead={page.lead} />;
 }
 
 export function AppliedEpic() {

@@ -9,7 +9,7 @@ import { Arrow, AppLink } from "../components/Ui";
 // The hero is its own export: pages/careers.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function CareersHero() {
-  return <PageHero family="careers" title={page.title} lead={page.lead} />;
+  return <PageHero title={page.title} lead={page.lead} />;
 }
 
 export function Careers() {

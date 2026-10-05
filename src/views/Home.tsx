@@ -1,12 +1,16 @@
 import { approach, desk, homeHero, problem } from "../data/content";
 import { Cta } from "../components/Cta";
-import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
+import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
+import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
 import { Section } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
 import { cn, reveal } from "../lib/style";
+
+// A mock AMS screen for each problem point, in the order of problem.points.
+const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "revenue"];
 
 // The two operating models, one a plain card and one accented (its own surface,
 // see index.css). The accented model's last step is filled.
@@ -27,10 +31,13 @@ export function Home() {
       <Section tone="white" id="problem" title={problem.title} body={problem.body}>
         <Grid>
           {problem.points.map((point, i) => (
-            <OutlineCard key={point.title} {...reveal(i)}>
-              <ItemTitle>{point.title}</ItemTitle>
-              <ItemBody>{point.body}</ItemBody>
-            </OutlineCard>
+            <Card key={point.title} {...reveal(i)} className="gap-0 p-0">
+              <ProblemScreen name={problemScreens[i]} />
+              <div className="space-y-2 px-6 py-5">
+                <ItemTitle>{point.title}</ItemTitle>
+                <ItemBody>{point.body}</ItemBody>
+              </div>
+            </Card>
           ))}
         </Grid>
       </Section>

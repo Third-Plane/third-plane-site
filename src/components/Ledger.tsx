@@ -58,7 +58,7 @@ export function Ledger({
             <span className="text-sm text-subtle-foreground tabular-nums" data-time>
               {row.time}
             </span>
-            <span className="text-foreground" data-task>
+            <span className="line-clamp-1 text-foreground" data-task>
               {row.task}
             </span>
             <i

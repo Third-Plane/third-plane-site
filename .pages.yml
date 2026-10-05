@@ -511,9 +511,6 @@ content:
           - name: title
             label: Heading (certified)
             component: lines
-          - name: titlePending
-            label: Heading (not yet certified)
-            component: lines
           - name: lead
             type: text
             required: true
