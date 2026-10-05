@@ -1,4 +1,5 @@
 import { contact, site } from "../data/content";
+import { Halftone } from "./Halftone";
 import { Display2 } from "./Headings";
 import { Section } from "./Section";
 import { Button } from "./Ui";
@@ -20,10 +21,7 @@ export function Cta({
         src="/media/oosterink_20.jpg"
         className="absolute inset-0 z-0 h-full w-full object-cover object-center"
       />
-      <img
-        src="/media/oosterink_20.png"
-        className="absolute inset-0 z-1 h-full w-full object-cover object-center opacity-10 mix-blend-overlay"
-      />
+      <Halftone src="/media/oosterink_20.jpg" className="z-1 opacity-10 mix-blend-overlay" />
       <div className="absolute inset-0 backdrop-blur-[6px]" />
       <div className="wrap max-w-2xl rounded-xl p-12 shadow-2xl inset-ring-1 shadow-black/50 inset-ring-white/25 backdrop-blur-xl backdrop-brightness-110">
         <Display2 className="text-white">{title}</Display2>
