@@ -12,6 +12,7 @@
   --ink-muted: #7a7291;
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, monospace;
   /* The header: its 76px bar plus the 1px border under it (Header.tsx). */
   --nav-h: 77px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
@@ -95,6 +96,12 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+@media (any-pointer: coarse) {
+  html {
+    overscroll-behavior-y: auto;
+  }
 }
 body {
   font-family: var(--font-body);

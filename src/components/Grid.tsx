@@ -30,7 +30,7 @@ type ItemProps = {
   style?: CSSProperties;
 };
 
-// An item of a Grid. It spans one grid row per part it renders (a CardMark, a
+// An item of a Grid. It spans one grid row per part it renders (an illustration, a
 // title, a body) as a subgrid, so the same part lines up across a row of items
 // even when one title wraps. Its gap-y is its own, between its parts. With an
 // `href` it is a link (give its ItemTitle the `arrow`).

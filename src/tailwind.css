@@ -223,11 +223,15 @@
      the site. */
   --font-sans: var(--font-body);
   --font-heading: var(--font-head);
+  --font-mono: var(--font-code);
 }
 
 @theme {
   /* The CSS default, so transitions match index.css, which never set a curve. */
   --default-transition-timing-function: ease;
+
+  /* A soft pink halo, for light type on a dark panel (ChannelSnippet). */
+  --text-shadow-glow: 0 0 0.6em color-mix(in oklab, var(--pink) 55%, transparent);
 
   --animate-ledger-pulse: ledger-pulse 2s ease-out infinite;
   --animate-row-in: row-in 0.5s;
