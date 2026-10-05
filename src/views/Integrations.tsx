@@ -2,7 +2,7 @@ import { integrationsPage as page } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
-import { Section } from "../components/Section";
+import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
 import { AppLink } from "../components/Ui";
 import { reveal } from "../lib/style";
@@ -16,8 +16,9 @@ export function IntegrationsHero() {
 export function Integrations() {
   return (
     <>
-      <Section tone="white" id="systems" title={page.systems.title}>
-        <div className="border-t border-t-border">
+      <Section tone="white" id="systems">
+        <SectionHeader title={page.systems.title} />
+        <div className="wrap border-t border-t-border">
           {page.systems.items.slice(0, 4).map((item, i) => (
             <article
               className="grid items-start gap-3 border-b border-b-border/50 py-8 md:grid-cols-4 md:gap-10"
@@ -56,7 +57,8 @@ export function Integrations() {
 
       <CarrierChannels />
 
-      <Section tone="deep" id="how" title={page.how.title}>
+      <Section tone="deep" id="how">
+        <SectionHeader title={page.how.title} />
         <StepList steps={page.how.steps} />
       </Section>
 

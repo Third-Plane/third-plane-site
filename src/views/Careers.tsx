@@ -3,7 +3,7 @@ import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
-import { Section } from "../components/Section";
+import { Section, SectionHeader } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 
 // The hero is its own export: pages/careers.astro puts it in Base's `hero` slot,
@@ -15,9 +15,10 @@ export function CareersHero() {
 export function Careers() {
   return (
     <>
-      <Section id="roles" tone="white" title={page.roles.title}>
+      <Section id="roles" tone="white">
+        <SectionHeader title={page.roles.title} />
         {page.roles.items.length ? (
-          <ul className="grid gap-3" data-reveal>
+          <ul className="wrap grid gap-3" data-reveal>
             {page.roles.items.map((role) => (
               <li key={role.href}>
                 <AppLink
@@ -42,8 +43,9 @@ export function Careers() {
         )}
       </Section>
 
-      <Section tone="blend" id="why" title={page.why.title}>
-        <Grid columns={4} className="gap-8">
+      <Section tone="blend" id="why">
+        <SectionHeader title={page.why.title} />
+        <Grid columns={4} className="wrap">
           {page.why.items.map((item, i) => (
             <Point key={item.title} {...reveal(i)}>
               <ItemTitle>{item.title}</ItemTitle>

@@ -3,8 +3,8 @@ import { Display2 } from "./Headings";
 import { Section } from "./Section";
 
 // Video showcase. Renders nothing until a video is set (home.json, showcase), so the
-// section appears the moment the production file is ready. The only section
-// with a centred heading, so it sets its own rather than taking Section's.
+// section appears the moment the production file is ready. The only centred
+// section heading, so it sets its own rather than using SectionHeader.
 export function Showcase() {
   if (!showcase.src) return null;
   return (

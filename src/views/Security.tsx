@@ -3,7 +3,7 @@ import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
-import { Section } from "../components/Section";
+import { Section, SectionHeader } from "../components/Section";
 import { cn, reveal } from "../lib/style";
 
 // The hero is its own export: pages/security.astro puts it in Base's `hero` slot,
@@ -43,8 +43,9 @@ export function Security() {
         </div>
       </Section>
 
-      <Section tone="deep" id="record" title={page.record.title}>
-        <Grid columns={3}>
+      <Section tone="deep" id="record">
+        <SectionHeader title={page.record.title} />
+        <Grid columns={3} className="wrap">
           {page.record.items.map((item, i) => (
             <OutlineCard key={item.title} {...reveal(i)}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -54,8 +55,9 @@ export function Security() {
         </Grid>
       </Section>
 
-      <Section tone="blend" id="data" title={page.data.title}>
-        <Grid>
+      <Section tone="blend" id="data">
+        <SectionHeader title={page.data.title} />
+        <Grid className="wrap">
           {page.data.items.map((item, i) => (
             <OutlineCard className="px-6 py-5" key={item.title} {...reveal(i)}>
               <ItemTitle>{item.title}</ItemTitle>
