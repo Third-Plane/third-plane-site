@@ -15,15 +15,13 @@ export function SplitHero({
   title,
   lead,
   actions,
-  secondLine,
 }: {
   title: string | string[];
   lead: string;
   actions: ReactNode;
-  secondLine?: "accent" | "foreground";
 }) {
   const heading = Array.isArray(title) ? (
-    <StackedTitle lines={title} secondLine={secondLine} />
+    <StackedTitle lines={title} />
   ) : (
     <Display1 wrap="pretty" {...reveal(1)}>
       {title}
@@ -31,7 +29,7 @@ export function SplitHero({
   );
 
   return (
-    <Hero id="top">
+    <Hero>
       <div className={cn("px-(--gutter)", HERO_PADDING, GRID)}>
         <div className="pointer-events-auto relative z-3 max-w-150">
           <Leave tier="heading">{heading}</Leave>

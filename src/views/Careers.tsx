@@ -42,10 +42,10 @@ export function Careers() {
         )}
       </Section>
 
-      <Section tone="blend" id="why" title={page.why.title} compactHead>
+      <Section tone="blend" id="why" title={page.why.title}>
         <Grid columns={4} className="gap-8">
           {page.why.items.map((item, i) => (
-            <Point className="gap-y-2" key={item.title} {...reveal(i)}>
+            <Point key={item.title} {...reveal(i)}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
             </Point>

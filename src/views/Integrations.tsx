@@ -57,7 +57,7 @@ export function Integrations() {
       <CarrierChannels />
 
       <Section tone="deep" id="how" title={page.how.title}>
-        <StepList columns={4} numbered steps={page.how.steps} />
+        <StepList steps={page.how.steps} />
       </Section>
 
       <Cta {...page.cta} />

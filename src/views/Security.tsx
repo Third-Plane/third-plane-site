@@ -4,7 +4,6 @@ import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section } from "../components/Section";
-import { StepList } from "../components/StepList";
 import { cn, reveal } from "../lib/style";
 
 // The hero is its own export: pages/security.astro puts it in Base's `hero` slot,
@@ -45,7 +44,14 @@ export function Security() {
       </Section>
 
       <Section tone="deep" id="record" title={page.record.title}>
-        <StepList columns={3} steps={page.record.items} />
+        <Grid columns={3}>
+          {page.record.items.map((item, i) => (
+            <OutlineCard key={item.title} {...reveal(i)}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ItemBody>{item.body}</ItemBody>
+            </OutlineCard>
+          ))}
+        </Grid>
       </Section>
 
       <Section tone="blend" id="data" title={page.data.title}>

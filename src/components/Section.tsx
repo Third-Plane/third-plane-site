@@ -18,36 +18,25 @@ const SURFACE: Record<SectionTone, string> = {
 export function Section({
   id,
   tone,
-  className,
   containerClassName,
   title,
   body,
-  align,
-  compactHead,
   backdrop,
   children,
 }: {
   id?: string;
   tone: SectionTone;
-  className?: string;
   containerClassName?: string;
   title?: string;
   body?: string;
-  align?: "left" | "center";
-  compactHead?: boolean;
   backdrop?: ReactNode;
   children?: ReactNode;
 }) {
   return (
-    <section
-      className={cn("relative overflow-hidden rounded-xl py-20", SURFACE[tone], className)}
-      id={id}
-    >
+    <section className={cn("relative overflow-hidden rounded-xl py-20", SURFACE[tone])} id={id}>
       {backdrop}
       <div className={cn("wrap", containerClassName)}>
-        {title ? (
-          <SectionHead title={title} body={body} align={align} compact={compactHead} />
-        ) : null}
+        {title ? <SectionHead title={title} body={body} /> : null}
         {children}
       </div>
     </section>

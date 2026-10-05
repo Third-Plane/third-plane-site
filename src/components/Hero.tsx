@@ -53,19 +53,11 @@ export const HERO_PADDING = "pt-20 pb-22";
 // clipped), so the section itself ignores the pointer: left alone it would sit
 // over the page below and swallow its clicks. The nav and the content that
 // wants the pointer take it back.
-export function Hero({
-  id,
-  className,
-  children,
-}: {
-  id?: string;
-  className?: string;
-  children?: ReactNode;
-}) {
+export function Hero({ children }: { children?: ReactNode }) {
   return (
     <section
-      className={cn("surface-hero pointer-events-none relative z-2 m-3 mt-0", PINNED, className)}
-      id={id}
+      className={cn("surface-hero pointer-events-none relative z-2 m-3 mt-0", PINNED)}
+      id="top"
       data-hero-collapse
     >
       <div

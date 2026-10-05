@@ -59,23 +59,11 @@ export function AppLink({
   );
 }
 
-export function SectionHead({
-  title,
-  body,
-  align = "left",
-  compact = false,
-}: {
-  title: string;
-  body?: string;
-  align?: "left" | "center";
-  compact?: boolean;
-}) {
-  const center = align === "center";
-  const margin = compact ? "mb-8" : "mb-13";
+export function SectionHead({ title, body }: { title: string; body?: string }) {
   return (
-    <header className={cn("max-w-190", margin, center && "mx-auto text-center")} data-reveal>
+    <header className="mb-13 max-w-190" data-reveal>
       <Display2>{title}</Display2>
-      {body ? <Lead className={cn("mt-5 max-w-[62ch]", center && "mx-auto")}>{body}</Lead> : null}
+      {body ? <Lead className="mt-5 max-w-[62ch]">{body}</Lead> : null}
     </header>
   );
 }
