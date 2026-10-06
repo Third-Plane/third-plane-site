@@ -2,14 +2,14 @@ import { securityPage as page } from "../data/content";
 import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { Display2 } from "../components/Headings";
-import { PageHero } from "../components/PageHero";
+import { SplitHero } from "../components/SplitHero";
 import { Section, SectionHeader } from "../components/Section";
 import { cn, reveal } from "../lib/style";
 
 // The hero is its own export: pages/security.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function SecurityHero() {
-  return <PageHero title={page.title} lead={page.lead} chart="security" />;
+  return <SplitHero title={page.title} lead={page.lead} chart="security" ledger={page.ledger} />;
 }
 
 export function Security() {

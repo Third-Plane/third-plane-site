@@ -10,6 +10,7 @@
   "ledger": {
     "label": "Placement Desk",
     "sublabel": "Activity",
+    "description": "Placement Desk activity: work received, worked across carrier channels, and returned to a person",
     "legend": [
       {
         "status": "done",
@@ -49,45 +50,7 @@
         "task": "Results returned to producer: {count} quotes, record attached",
         "status": "review"
       }
-    },
-    "accounts": [
-      {
-        "name": "Sample Bakery LLC",
-        "line": "BOP"
-      },
-      {
-        "name": "Placeholder Mfg",
-        "line": "package"
-      },
-      {
-        "name": "Example Logistics",
-        "line": "commercial auto"
-      },
-      {
-        "name": "Demo Dental Group",
-        "line": "professional liability"
-      },
-      {
-        "name": "Sample Builders Inc.",
-        "line": "general liability"
-      },
-      {
-        "name": "Placeholder Café",
-        "line": "BOP"
-      },
-      {
-        "name": "Example Clinic",
-        "line": "workers’ comp"
-      }
-    ],
-    "carriers": [
-      "Demo Mutual",
-      "Sample Carrier Co.",
-      "Example Specialty",
-      "Placeholder Insurance",
-      "Demo Casualty",
-      "Sample Indemnity"
-    ]
+    }
   },
   "problem": {
     "title": "You can’t hire your way out of the bottleneck.",

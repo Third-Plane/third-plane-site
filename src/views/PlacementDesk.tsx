@@ -1,4 +1,4 @@
-import { placementDesk } from "../data/content";
+import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
@@ -21,6 +21,7 @@ export function PlacementDeskHero() {
       title={placementDesk.title}
       lead={placementDesk.problem}
       actions={<Button>{placementDesk.cta.label}</Button>}
+      ledger={homeHero.ledger}
     />
   );
 }

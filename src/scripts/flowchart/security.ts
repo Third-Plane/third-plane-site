@@ -64,14 +64,33 @@ const routes = {
 type NodeId = keyof typeof nodes;
 type RouteId = keyof typeof routes;
 
+// Each system, the route out to it and the kind of note acting on it posts.
 const SYSTEMS = {
-  ams: "toAms",
-  portal: "toPortal",
-  api: "toApi",
-  email: "toEmail",
-} as const satisfies Partial<Record<NodeId, RouteId>>;
+  ams: { route: "toAms", kind: "read" },
+  portal: { route: "toPortal", kind: "submitted" },
+  api: { route: "toApi", kind: "requested" },
+  email: { route: "toEmail", kind: "emailed" },
+} as const satisfies Partial<Record<NodeId, { route: RouteId; kind: string }>>;
 
 const SPACING = 8;
+const JOBS = 3;
+
+// The moments posted to the activity panel (see feed.ts and the ledger events
+// in security.json), as job:kind: seven a loop, chosen to fall two and a half
+// to five seconds apart, which a five-row panel can keep up with. "cleared"
+// posts as authority passes the work, "read" as the desk reads the AMS,
+// "escalated" as the desk stops for a person, "approved" as the supervisor
+// decides, "emailed" as the decision goes to an underwriter, "blocked" as
+// authority stops work out of scope and "recorded" as that lands in the trail.
+const POSTS = new Set([
+  "0:cleared",
+  "0:read",
+  "1:escalated",
+  "1:approved",
+  "1:emailed",
+  "2:blocked",
+  "2:recorded",
+]);
 
 export const security: ChartSpec<NodeId, RouteId> = {
   cols: 172,
@@ -85,16 +104,26 @@ export const security: ChartSpec<NodeId, RouteId> = {
     { x: 84, y: 10, text: "DECISION" },
     { x: 132, y: 18, text: "YOUR SYSTEMS", strong: true },
   ],
-  period: SPACING * 3,
-  script: ({ go, work, log }) => {
+  period: SPACING * JOBS,
+  script: ({ go, work, log, note }) => {
+    const post = (job: number, t: number, kind: string, slot = 0) => {
+      if (POSTS.has(`${job}:${kind}`)) note(t, kind, { job, jobs: JOBS, slot });
+    };
     // Act on some of the systems, each action recorded as it goes out.
-    const act = (t: number, actions: [keyof typeof SYSTEMS, string, string, string][]) => {
+    const act = (
+      job: number,
+      t: number,
+      actions: [keyof typeof SYSTEMS, string, string, string][],
+    ) => {
       t = go("act", t);
       t = work("access", t, 0.7);
       actions.forEach(([system, verb, target, detail], i) => {
         const at = t + i * 0.5;
         log("audit", go("record", at), entry(verb, target, detail));
-        work(system, go(SYSTEMS[system], at), 0.9);
+        const { route, kind } = SYSTEMS[system];
+        const reached = go(route, at);
+        post(job, reached, kind, i);
+        work(system, reached, 0.9);
       });
     };
     // New work arrives, its sender's roles checked alongside, and authority
@@ -106,11 +135,12 @@ export const security: ChartSpec<NodeId, RouteId> = {
 
     // In scope: the desk works it, with a model, and acts.
     let t = arrive(0, 1.0);
+    post(0, t, "cleared");
     t = go("authorize", t);
     t = work("desk", t, 1.2);
     t = go("think", t);
     t = work("model", t, 0.8);
-    act(t, [
+    act(0, t, [
       ["ams", "READ", "AMS", "ACCOUNT · LOSS RUNS"],
       ["portal", "SUBMIT", "CARRIER PORTAL", "APPLICATION · MARKET A"],
     ]);
@@ -118,22 +148,29 @@ export const security: ChartSpec<NodeId, RouteId> = {
     // A call for a person: the desk stops, the supervisor decides, and the
     // desk carries on with the decision.
     t = arrive(SPACING, 0.9);
+    post(1, t, "cleared");
     t = go("authorize", t);
     t = work("desk", t, 1.0);
+    post(1, t, "escalated");
     t = go("escalate", t);
     t = work("supervisor", t, 2.0);
+    post(1, t, "approved");
     log("audit", go("supervised", t), entry("DECIDE", "SUPERVISOR", "APPROVED · MARKET LIST"));
     t = go("decide", t);
     t = work("desk", t, 0.8);
-    act(t, [
+    act(1, t, [
       ["email", "SEND", "UNDERWRITER", "SUBMISSION · 3 MARKETS"],
       ["api", "REQUEST", "CARRIER API", "QUOTE · MARKET B"],
     ]);
 
-    // Out of scope: authority stops it and returns it to the supervisor.
-    t = arrive(SPACING * 2, 1.4);
+    // Out of scope: authority stops it and returns it to the supervisor, a
+    // second later than the spacing so the loop's last moments spread out.
+    t = arrive(SPACING * 2 + 1, 1.4);
+    post(2, t, "blocked");
     t = go("blocked", t);
     t = work("supervisor", t, 1.2);
-    log("audit", go("supervised", t), entry("BLOCK", "AUTHORITY", "OUT OF SCOPE · RETURNED"));
+    t = go("supervised", t);
+    log("audit", t, entry("BLOCK", "AUTHORITY", "OUT OF SCOPE · RETURNED"));
+    post(2, t, "recorded");
   },
 };

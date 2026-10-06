@@ -53,35 +53,73 @@ const routes = {
 type NodeId = keyof typeof nodes;
 type RouteId = keyof typeof routes;
 
-// Each source, the route it is read along and its log line.
+// Each source, the route it is read along, its log line and the kind of note
+// reading it posts.
 const SOURCES = {
-  ams: { route: "readAms", line: entry("READ", "AMS", "ACCOUNT · POLICY DATA") },
-  docs: { route: "readDocs", line: entry("READ", "IMAGERIGHT", "LOSS RUNS · SCHEDULES") },
-  mail: { route: "readMail", line: entry("READ", "OUTLOOK", "SUBMISSION · ACORD 125") },
-} as const satisfies Partial<Record<NodeId, { route: RouteId; line: string }>>;
+  ams: { route: "readAms", line: entry("READ", "AMS", "ACCOUNT · POLICY DATA"), kind: "readAms" },
+  docs: {
+    route: "readDocs",
+    line: entry("READ", "IMAGERIGHT", "LOSS RUNS · SCHEDULES"),
+    kind: "readDocs",
+  },
+  mail: {
+    route: "readMail",
+    line: entry("READ", "OUTLOOK", "SUBMISSION · ACORD 125"),
+    kind: "readMail",
+  },
+} as const satisfies Partial<Record<NodeId, { route: RouteId; line: string; kind: string }>>;
 
-// Each place a result lands, the route there and its log line.
+// Each place a result lands, the route there, its log line and the kind of
+// note writing to it posts.
 const TARGETS = {
-  amsOut: { route: "toAms", line: entry("WRITE", "AMS", "ACTIVITY · DOCUMENTS") },
-  inbox: { route: "toInbox", line: entry("SEND", "PRODUCER INBOX", "RESULTS · WORK RECORD") },
-  data: { route: "toData", line: entry("EXPORT", "DATA LAKE", "ACTIONS · OUTCOMES") },
+  amsOut: { route: "toAms", line: entry("WRITE", "AMS", "ACTIVITY · DOCUMENTS"), kind: "wrote" },
+  inbox: {
+    route: "toInbox",
+    line: entry("SEND", "PRODUCER INBOX", "RESULTS · WORK RECORD"),
+    kind: "sent",
+  },
+  data: {
+    route: "toData",
+    line: entry("EXPORT", "DATA LAKE", "ACTIONS · OUTCOMES"),
+    kind: "exported",
+  },
   carriers: {
     route: "toCarriers",
     line: entry("SUBMIT", "CARRIER PORTAL", "APPLICATION · 3 MKTS"),
+    kind: "submitted",
   },
-} as const satisfies Partial<Record<NodeId, { route: RouteId; line: string }>>;
+} as const satisfies Partial<Record<NodeId, { route: RouteId; line: string; kind: string }>>;
 
 type Source = keyof typeof SOURCES;
 type Target = keyof typeof TARGETS;
 
 // Four placements, a quarter of the loop apart, each read from its own
 // sources and written to its own places. One goes to market and comes back
-// with quotes, which are written on to the producer and the AMS.
-const JOBS: { reads: Source[]; writes: Target[]; then?: Target[] }[] = [
-  { reads: ["ams", "docs"], writes: ["amsOut", "data"] },
-  { reads: ["mail"], writes: ["carriers"], then: ["inbox", "amsOut"] },
-  { reads: ["ams", "mail"], writes: ["inbox", "data"] },
-  { reads: ["docs"], writes: ["amsOut"] },
+// with quotes ("quoted"), which are written on to the producer and the AMS.
+//
+// Each posts some of its moments to the activity panel (`notes`, by kind; see
+// feed.ts and the ledger events in integrations.json): reads as they reach
+// scoped read, writes as they land. Eight a loop, chosen to fall two to five
+// and a half seconds apart, which a five-row panel can keep up with; the
+// second job's four tell one placement from end to end.
+const JOBS: { reads: Source[]; writes: Target[]; then?: Target[]; notes: string[] }[] = [
+  {
+    reads: ["ams", "docs"],
+    writes: ["amsOut", "data"],
+    notes: ["readAms", "wrote"],
+  },
+  {
+    reads: ["mail"],
+    writes: ["carriers"],
+    then: ["inbox", "amsOut"],
+    notes: ["readMail", "submitted", "quoted", "sent"],
+  },
+  {
+    reads: ["ams", "mail"],
+    writes: ["inbox", "data"],
+    notes: ["readMail"],
+  },
+  { reads: ["docs"], writes: ["amsOut"], notes: ["wrote"] },
 ];
 
 const SPACING = 6.5;
@@ -97,7 +135,8 @@ export const integrations: ChartSpec<NodeId, RouteId> = {
     { x: 132, y: 23, text: "RESULTS WHERE YOU EXPECT", strong: true },
   ],
   period: SPACING * JOBS.length,
-  script: ({ go, work, log }) => {
+  script: ({ go, work, log, note }) => {
+    let post = (_t: number, _kind: string) => {};
     // Write out to some places, each write logged as it goes.
     const write = (t: number, targets: Target[]) => {
       t = go("toWrite", t);
@@ -106,17 +145,25 @@ export const integrations: ChartSpec<NodeId, RouteId> = {
       targets.forEach((target, i) => {
         const at = t + i * 0.4;
         log("log", go("writeLog", at), TARGETS[target].line);
-        end = Math.max(end, work(target, go(TARGETS[target].route, at), 0.8));
+        const landed = go(TARGETS[target].route, at);
+        post(landed, TARGETS[target].kind);
+        end = Math.max(end, work(target, landed, 0.8));
       });
       return end;
     };
 
     JOBS.forEach((job, k) => {
+      // Post a moment, if it is one of this job's.
+      post = (t, kind) => {
+        if (job.notes.includes(kind)) note(t, kind, { job: k, jobs: JOBS.length });
+      };
       let t = k * SPACING;
       let ready = t;
       job.reads.forEach((source, i) => {
         const read = work(source, t + i * 0.3, 0.5);
-        ready = Math.max(ready, go(SOURCES[source].route, read));
+        const arrived = go(SOURCES[source].route, read);
+        post(arrived, SOURCES[source].kind);
+        ready = Math.max(ready, arrived);
       });
       t = work("read", ready, 0.9);
       job.reads.forEach((source, i) => {
@@ -128,6 +175,7 @@ export const integrations: ChartSpec<NodeId, RouteId> = {
       if (job.then) {
         t = work("carriers", t, 1.2);
         t = go("quotes", t);
+        post(t, "quoted");
         t = work("desk", t, 0.8);
         write(t, job.then);
       }

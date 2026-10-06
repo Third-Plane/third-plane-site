@@ -18,7 +18,14 @@ const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "reven
 // The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function HomeHero() {
-  return <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button />} />;
+  return (
+    <SplitHero
+      title={homeHero.title}
+      lead={homeHero.lead}
+      actions={<Button />}
+      ledger={homeHero.ledger}
+    />
+  );
 }
 
 export function Home() {

@@ -4,6 +4,47 @@
     "as they are."
   ],
   "lead": "Placement Desk connects to the systems your brokerage already uses, so the work moves without another system for your team to manage.",
+  "ledger": {
+    "label": "Placement Desk",
+    "sublabel": "Systems activity",
+    "description": "Placement Desk activity: what it read from your systems and what it wrote back",
+    "legend": [
+      {
+        "status": "done",
+        "label": "Read or written by the desk"
+      },
+      {
+        "status": "review",
+        "label": "Sent to a person"
+      }
+    ],
+    "events": {
+      "readAms": {
+        "task": "Read from the AMS: {account} account and policy data",
+        "status": "done"
+      },
+      "readMail": {
+        "task": "Read from Outlook: {account} submission and ACORD 125",
+        "status": "done"
+      },
+      "submitted": {
+        "task": "Submitted through the carrier portal: {carrier}",
+        "status": "done"
+      },
+      "quoted": {
+        "task": "Quote received from {carrier}",
+        "status": "done"
+      },
+      "sent": {
+        "task": "Sent to the producer’s inbox: {account} results and work record",
+        "status": "review"
+      },
+      "wrote": {
+        "task": "Written to the AMS: activity and documents for {account}",
+        "status": "done"
+      }
+    }
+  },
   "systems": {
     "title": "Work goes in. Results come back.",
     "items": [

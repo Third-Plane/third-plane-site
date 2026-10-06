@@ -11,6 +11,16 @@ type Card = { title: string; body: string };
 type Link = { label: string; href: string };
 type Cta = { title: string; body: string };
 
+// An activity panel beside a hero heading (Ledger.tsx): its heading, legend
+// and the line for each moment its flowchart posts.
+export type LedgerPanel = {
+  label: string;
+  sublabel: string;
+  description: string;
+  legend: { status: string; label: string }[];
+  events: Record<string, { task: string; status: string }>;
+};
+
 export type SiteFile = {
   name: string;
   tagline: string;
@@ -22,18 +32,12 @@ export type SiteFile = {
   year: number;
   footer: { tagline: string; location: string };
   contact: Cta;
+  samples: { accounts: { name: string; line: string }[]; carriers: string[] };
 };
 
 export type HomeFile = {
   hero: { title: string; lead: string; secondary: Link };
-  ledger: {
-    label: string;
-    sublabel: string;
-    legend: { status: string; label: string }[];
-    events: Record<string, { task: string; status: string }>;
-    accounts: { name: string; line: string }[];
-    carriers: string[];
-  };
+  ledger: LedgerPanel;
   problem: { title: string; body: string; points: Card[] };
   approach: {
     title: string;
@@ -72,6 +76,7 @@ export type CompanyFile = {
 export type SecurityFile = {
   title: Lines;
   lead: string;
+  ledger: LedgerPanel;
   authority: { sides: { title: string; items: Card[] }[] };
   record: { title: string; items: Card[] };
   data: { title: string; items: Card[] };
@@ -99,6 +104,7 @@ export type ResourcesFile = {
 export type IntegrationsFile = {
   title: Lines;
   lead: string;
+  ledger: LedgerPanel;
   systems: { title: string; items: (Card & { names?: string; link?: Link })[] };
   how: { title: string; steps: Card[] };
   cta: Cta;

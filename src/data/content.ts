@@ -29,7 +29,7 @@ const siteFile: SiteFile = siteJson;
 const home: HomeFile = homeJson;
 const careers: CareersFile = careersJson;
 
-const { footer, contact: contactFile, ...siteFields } = siteFile;
+const { footer, contact: contactFile, samples, ...siteFields } = siteFile;
 
 export const site = {
   ...siteFields,
@@ -38,12 +38,10 @@ export const site = {
 
 export const contact = contactFile;
 
+// The made-up accounts and carriers every activity panel is about.
+export const ledgerSamples = samples;
+
 export const homeHero = { ...home.hero, ledger: home.ledger };
-export const ledgerCopy = {
-  events: home.ledger.events,
-  accounts: home.ledger.accounts,
-  carriers: home.ledger.carriers,
-};
 export const problem = home.problem;
 export const approach = home.approach;
 export const desk = home.desk;

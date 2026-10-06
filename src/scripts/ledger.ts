@@ -1,7 +1,7 @@
-// The Placement Desk activity list. It follows the placement flowchart behind
-// it: the chart tells the page each moment it passes (a "flowchart:note"
-// event; see scripts/flowchart/feed.ts), and the list adds a row for it and
-// drops the oldest. The opening rows are restamped with the reader's clock
+// The activity list beside a hero heading. It follows the flowchart behind it:
+// the chart tells its hero each moment it passes (a "flowchart:note" event;
+// see scripts/flowchart/feed.ts), and the list adds a row for it and drops
+// the oldest. The opening rows are restamped with the reader's clock
 // first (the page was rendered at build time). New rows are copies of the
 // first one, so they carry its styling; the markup is hooked up by data
 // attributes, and the wording comes from the copy in `data-copy`.
@@ -25,7 +25,9 @@ for (const ledger of document.querySelectorAll<HTMLElement>("[data-ledger]")) {
     el.textContent = formatTime(now - (VISIBLE - 1 - i) * 47_000);
   });
 
-  document.addEventListener("flowchart:note", (event) => {
+  // Only its own hero's chart: the event bubbles up from the canvas.
+  const hero = ledger.closest("[data-hero-collapse]") ?? document;
+  hero.addEventListener("flowchart:note", (event) => {
     const row = phrase((event as CustomEvent<Note>).detail, copy);
     if (!row) return;
     const item = template.cloneNode(true) as HTMLElement;

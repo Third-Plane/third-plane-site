@@ -43,16 +43,20 @@ export type LedgerCopy = {
 
 export type LedgerRow = { task: string; status: string };
 
+// An index into a list of `n`, for any whole number (loops before the first
+// are negative).
+const wrap = (i: number, n: number) => ((i % n) + n) % n;
+
 // A note's line. The job's running number across loops picks the account, so
-// the same job is a new account each time round; data.slot picks among the
-// job's carriers, and data.count fills {count}.
+// the same job is a new account each time round. The carrier steps on one
+// place a loop (and three a job, plus data.slot among a job's own), so every
+// carrier comes round whatever the number of jobs. data.count fills {count}.
 export function phrase(note: Note, copy: LedgerCopy): LedgerRow | undefined {
   const event = copy.events[note.kind];
   if (!event) return undefined;
   const { job = 0, jobs = 1, slot = 0, count = 0 } = note.data;
-  const serial = Math.abs(note.loop * jobs + job);
-  const account = copy.accounts[serial % copy.accounts.length];
-  const carrier = copy.carriers[(serial * 2 + slot) % copy.carriers.length];
+  const account = copy.accounts[wrap(note.loop * jobs + job, copy.accounts.length)];
+  const carrier = copy.carriers[wrap(note.loop * 7 + job * 3 + slot, copy.carriers.length)];
   const task = event.task
     .replaceAll("{account}", account?.name ?? "")
     .replaceAll("{line}", account?.line ?? "")
