@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
-import { ParticleField } from "./ParticleField";
+import { Flowchart, type ChartName } from "./Flowchart";
 import { cn } from "../lib/style";
 
 // Sticky from lg up, where scroll-driven animation is available (see the
@@ -17,6 +17,14 @@ const SHADOW = "lg:scroll-linked:hero-shadow";
 // sticky box that doesn't fit. So the band stops at that height, and anything
 // below it is cut off.
 const CAPPED = "lg:scroll-linked:max-h-[calc(100svh-1.5rem)]";
+// From lg up the band is at least 16:7, so its chart is framed the same way at
+// every width (the chart scales with it), and taller where its content needs
+// it. The floor is a min-height from the hero's width (the section is a size
+// container), not an aspect-ratio: the band clips its overflow, which turns
+// off aspect-ratio's growing to fit, so content would be cut off instead. It
+// never asks for more than the window allows a pinned hero (see CAPPED): a
+// min-height would win over that cap.
+const SHAPED = "lg:min-h-[min(calc(100cqw*7/16),calc(100svh-1.5rem))]";
 
 // The hero's content leaves in tiers as it closes, the lowest first (see
 // hero-leave in tailwind.css). Each tier's slice of the collapse distance, as
@@ -37,26 +45,26 @@ export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: 
 // The space around a hero's content, below the nav.
 export const HERO_PADDING = "pt-20 pb-22";
 
-// A hero band: the lavender wash with the particle field behind its content. The
+// A hero band: the lavender wash with the flowchart behind its content. The
 // section is the hero's surface (see index.css), so the nav takes its colours.
 //
 // The hero carries its own nav, on top. Unlike a Section there is no page-width
-// column: `children` run the full width of the band, above the particles and
+// column: `children` run the full width of the band, above the flowchart and
 // below the nav (which they leave room for). Padding is the caller's, so
-// content can sit where it likes.
+// content can sit where it likes. `chart` picks the flowchart behind it.
 //
 // The nav sits outside the band that collapses, so its menus and the mobile
-// drawer are never clipped; the band (particles and children) is what closes
+// drawer are never clipped; the band (flowchart and children) is what closes
 // down to a strip as wide as the nav.
 //
 // The section keeps its full height while the band closes (only the band is
 // clipped), so the section itself ignores the pointer: left alone it would sit
 // over the page below and swallow its clicks. The nav and the content that
 // wants the pointer take it back.
-export function Hero({ children }: { children?: ReactNode }) {
+export function Hero({ chart, children }: { chart?: ChartName; children?: ReactNode }) {
   return (
     <section
-      className={cn("surface-hero pointer-events-none relative z-2 m-3 mt-0", PINNED)}
+      className={cn("surface-hero pointer-events-none @container relative z-2 m-3 mt-0", PINNED)}
       id="top"
       data-hero-collapse
     >
@@ -69,8 +77,10 @@ export function Hero({ children }: { children?: ReactNode }) {
       <div className="pointer-events-auto absolute inset-x-0 top-0 z-10">
         <Header />
       </div>
-      <div className={cn("relative overflow-hidden rounded-b-2xl bg-hero", CAPPED, COLLAPSING)}>
-        <ParticleField mask="hero" tone="purple" alpha={0.9} />
+      <div
+        className={cn("relative overflow-hidden rounded-b-2xl bg-hero", SHAPED, CAPPED, COLLAPSING)}
+      >
+        <Flowchart chart={chart} />
         <div className="relative z-2 pt-(--nav-h)">{children}</div>
       </div>
     </section>

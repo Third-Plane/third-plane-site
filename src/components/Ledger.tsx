@@ -1,27 +1,46 @@
-import { homeHero, ledgerTasks } from "../data/content";
+import { ledgerSamples } from "../data/content";
+import type { LedgerPanel } from "../data/content-types";
+import { buildFlow, startOf, type Flow } from "../scripts/flowchart/chart";
+import { CHARTS, type ChartName } from "../scripts/flowchart/charts";
+import { latest, phrase, type LedgerCopy, type LedgerRow } from "../scripts/flowchart/feed";
 
 export const LEDGER_VISIBLE = 5;
 
 const formatTime = (value: number) => new Date(value).toTimeString().slice(0, 5);
 
-// Static markup with the first rows filled in. scripts/ledger.ts restamps
-// them with the reader's clock and then keeps the list moving, using the
-// tasks carried in `data-tasks`.
-export function Ledger() {
-  const { label, sublabel, legend } = homeHero.ledger;
-  const tasks = ledgerTasks;
+const flows: Partial<Record<ChartName, Flow>> = {};
+
+// The panel follows the flowchart behind it (`chart`, the same one its hero
+// shows): each row is a moment the chart has just passed (see
+// scripts/flowchart/feed.ts), worded from `panel`. The opening rows are the
+// moments before the chart's starting point, worked out here from the same
+// chart, so the first paint already agrees with it.
+function openingRows(chart: ChartName, copy: LedgerCopy) {
+  const flow = (flows[chart] ??= buildFlow<string, string>(CHARTS[chart]));
+  return latest(flow, startOf(flow), LEDGER_VISIBLE)
+    .map((note) => phrase(note, copy))
+    .filter((row): row is LedgerRow => row !== undefined);
+}
+
+// Static markup with the opening rows filled in. scripts/ledger.ts restamps
+// them with the reader's clock, then adds a row each time the chart passes
+// another moment, worded from the copy carried in `data-copy`.
+export function Ledger({ chart, panel }: { chart: ChartName; panel: LedgerPanel }) {
+  const { label, sublabel, description, legend } = panel;
+  const copy: LedgerCopy = { ...ledgerSamples, events: panel.events };
+  const opening = openingRows(chart, copy);
   const now = Date.now();
-  const rows = tasks.slice(0, LEDGER_VISIBLE).map((task, i) => ({
-    ...task,
-    time: formatTime(now - (LEDGER_VISIBLE - 1 - i) * 47_000),
+  const rows = opening.map((row, i) => ({
+    ...row,
+    time: formatTime(now - (opening.length - 1 - i) * 47_000),
   }));
 
   return (
     <figure
       className="pointer-events-auto m-0 rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-5 shadow-2xl"
       data-ledger
-      data-tasks={JSON.stringify(tasks)}
-      aria-label="Placement Desk activity: work received, worked across carrier channels, and returned to a person"
+      data-copy={JSON.stringify(copy)}
+      aria-label={description}
     >
       <div className="flex items-start justify-between gap-4 border-b border-b-border/50 pb-4">
         <div>
@@ -37,11 +56,11 @@ export function Ledger() {
         </span>
       </div>
       <ol className="grid py-2" data-rows>
-        {rows.map((row) => (
+        {rows.map((row, i) => (
           <li
             className="group grid grid-cols-[auto_1fr_auto] items-start gap-3.5 border-b border-b-border/50 py-3 text-sm leading-snug last:border-b-0 motion-safe:animate-row-in"
             data-status={row.status}
-            key={row.task}
+            key={i}
           >
             <span className="text-sm text-subtle-foreground tabular-nums" data-time>
               {row.time}

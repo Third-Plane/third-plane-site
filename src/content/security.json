@@ -4,6 +4,51 @@
     "environments."
   ],
   "lead": "Every desk works within defined authority, with human accountability and a record of what it did, so you can put AI to work without losing control.",
+  "ledger": {
+    "label": "Placement Desk",
+    "sublabel": "Authority and record",
+    "description": "Placement Desk activity: work checked against its authority, decisions returned to a supervisor, and every action recorded",
+    "legend": [
+      {
+        "status": "done",
+        "label": "Within authority"
+      },
+      {
+        "status": "review",
+        "label": "Returned to a person"
+      }
+    ],
+    "events": {
+      "cleared": {
+        "task": "Checked against authority: {account}, {line}, in scope",
+        "status": "done"
+      },
+      "read": {
+        "task": "Read under scoped access: {account} loss runs from the AMS",
+        "status": "done"
+      },
+      "escalated": {
+        "task": "Stopped for a decision: market list for {account} sent to the supervisor",
+        "status": "review"
+      },
+      "approved": {
+        "task": "Supervisor approved the market list for {account}",
+        "status": "review"
+      },
+      "emailed": {
+        "task": "Submitted by email on the approved list: {carrier}",
+        "status": "done"
+      },
+      "blocked": {
+        "task": "Outside defined authority: {account} request returned to the supervisor",
+        "status": "review"
+      },
+      "recorded": {
+        "task": "Recorded in the audit trail: {account}, inputs, decision and outcome",
+        "status": "done"
+      }
+    }
+  },
   "authority": {
     "sides": [
       {

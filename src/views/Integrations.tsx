@@ -2,7 +2,7 @@ import { integrationsPage as page } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
-import { PageHero } from "../components/PageHero";
+import { SplitHero } from "../components/SplitHero";
 import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
@@ -16,7 +16,9 @@ const systemScreens: SystemName[] = ["ams", "documents", "inbox", "data"];
 // The hero is its own export: pages/integrations.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function IntegrationsHero() {
-  return <PageHero title={page.title} lead={page.lead} />;
+  return (
+    <SplitHero title={page.title} lead={page.lead} chart="integrations" ledger={page.ledger} />
+  );
 }
 
 export function Integrations() {

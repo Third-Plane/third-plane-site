@@ -53,6 +53,40 @@ components:
     list:
       min: 1
       collapsible: false
+  legend:
+    type: object
+    list:
+      min: 1
+      collapsible: false
+    fields:
+      - name: status
+        type: select
+        required: true
+        options:
+          values:
+            - name: done
+              label: Completed by the desk
+            - name: review
+              label: Returned to a person
+      - name: label
+        type: string
+        required: true
+  activity:
+    type: object
+    fields:
+      - name: task
+        label: Line
+        type: string
+        required: true
+      - name: status
+        type: select
+        required: true
+        options:
+          values:
+            - name: done
+              label: Completed by the desk
+            - name: review
+              label: Returned to a person
   cta:
     type: object
     label: Call to action (bottom of page)
@@ -114,6 +148,28 @@ content:
           - name: location
             type: string
             required: true
+      - name: samples
+        label: Sample accounts and carriers
+        description: The made-up accounts and carriers the activity panels beside the page headings are about, taken in turn.
+        type: object
+        fields:
+          - name: accounts
+            type: object
+            list:
+              min: 1
+              collapsible:
+                collapsed: true
+                summary: "{name}"
+            fields:
+              - name: name
+                type: string
+                required: true
+              - name: line
+                label: Line of business
+                type: string
+                required: true
+          - name: carriers
+            component: strings
       - name: contact
         label: Default call to action
         description: The closing section on pages that don’t set their own.
@@ -151,7 +207,7 @@ content:
                 component: link
           - name: ledger
             label: Activity panel
-            description: The live-looking activity list beside the homepage heading. It is also shown on the Placement Desk page.
+            description: The live activity list beside the homepage heading, which follows the flowchart behind it. It is also shown on the Placement Desk page.
             type: object
             fields:
               - name: label
@@ -160,45 +216,41 @@ content:
               - name: sublabel
                 type: string
                 required: true
+              - name: description
+                label: Screen reader description
+                type: string
+                required: true
+                description: Read out in place of the moving list, which changes too often to be read row by row.
               - name: legend
+                component: legend
+              - name: events
+                label: Activity lines
+                description: >-
+                  The line the panel shows for each moment in the hero flowchart that posts to it, as the chart reaches
+                  that moment. {account} and {line} (an account and its line of business) and {carrier} are filled in from the sample accounts and carriers in Site settings, a new account each pass through the chart; {count} is the number of markets or quotes.
                 type: object
-                list:
-                  min: 1
-                  collapsible: false
                 fields:
-                  - name: status
-                    type: select
-                    required: true
-                    options:
-                      values:
-                        - name: done
-                          label: Completed by the desk
-                        - name: review
-                          label: Returned to a person
-                  - name: label
-                    type: string
-                    required: true
-              - name: tasks
-                description: Shown five at a time, cycling through the list.
-                type: object
-                list:
-                  min: 5
-                  collapsible:
-                    collapsed: true
-                    summary: "{task}"
-                fields:
-                  - name: task
-                    type: string
-                    required: true
-                  - name: status
-                    type: select
-                    required: true
-                    options:
-                      values:
-                        - name: done
-                          label: Completed by the desk
-                        - name: review
-                          label: Returned to a person
+                  - name: received
+                    label: Submission received
+                    component: activity
+                  - name: renewal
+                    label: Renewal detected
+                    component: activity
+                  - name: missing
+                    label: Missing information flagged
+                    component: activity
+                  - name: markets
+                    label: Markets selected ({count} is how many)
+                    component: activity
+                  - name: quote
+                    label: Quote received
+                    component: activity
+                  - name: review
+                    label: Routed to a person
+                    component: activity
+                  - name: returned
+                    label: Results returned ({count} is how many quotes)
+                    component: activity
           - name: problem
             label: The capacity problem
             type: object
@@ -399,6 +451,52 @@ content:
             type: text
             required: true
             description: Also the page’s search and link-preview description.
+          - name: ledger
+            label: Activity panel
+            description: The live activity list beside the Security heading, which follows the flowchart behind it.
+            type: object
+            fields:
+              - name: label
+                type: string
+                required: true
+              - name: sublabel
+                type: string
+                required: true
+              - name: description
+                label: Screen reader description
+                type: string
+                required: true
+                description: Read out in place of the moving list, which changes too often to be read row by row.
+              - name: legend
+                component: legend
+              - name: events
+                label: Activity lines
+                description: >-
+                  The line the panel shows for each moment in the hero flowchart that posts to it, as the chart reaches
+                  that moment. {account} and {line} (an account and its line of business) and {carrier} are filled in from the sample accounts and carriers in Site settings, a new account each pass through the chart.
+                type: object
+                fields:
+                  - name: cleared
+                    label: Checked against authority
+                    component: activity
+                  - name: read
+                    label: Read under scoped access
+                    component: activity
+                  - name: escalated
+                    label: Stopped for a decision
+                    component: activity
+                  - name: approved
+                    label: Supervisor approved
+                    component: activity
+                  - name: emailed
+                    label: Submitted by email
+                    component: activity
+                  - name: blocked
+                    label: Outside defined authority
+                    component: activity
+                  - name: recorded
+                    label: Recorded in the audit trail
+                    component: activity
           - name: authority
             type: object
             fields:
@@ -447,6 +545,49 @@ content:
             type: text
             required: true
             description: Also the page’s search and link-preview description.
+          - name: ledger
+            label: Activity panel
+            description: The live activity list beside the System integrations heading, which follows the flowchart behind it.
+            type: object
+            fields:
+              - name: label
+                type: string
+                required: true
+              - name: sublabel
+                type: string
+                required: true
+              - name: description
+                label: Screen reader description
+                type: string
+                required: true
+                description: Read out in place of the moving list, which changes too often to be read row by row.
+              - name: legend
+                component: legend
+              - name: events
+                label: Activity lines
+                description: >-
+                  The line the panel shows for each moment in the hero flowchart that posts to it, as the chart reaches
+                  that moment. {account} and {line} (an account and its line of business) and {carrier} are filled in from the sample accounts and carriers in Site settings, a new account each pass through the chart.
+                type: object
+                fields:
+                  - name: readAms
+                    label: Read from the AMS
+                    component: activity
+                  - name: readMail
+                    label: Read from email
+                    component: activity
+                  - name: submitted
+                    label: Submitted to a carrier
+                    component: activity
+                  - name: quoted
+                    label: Quote received
+                    component: activity
+                  - name: sent
+                    label: Sent to the producer
+                    component: activity
+                  - name: wrote
+                    label: Written to the AMS
+                    component: activity
           - name: systems
             type: object
             fields:

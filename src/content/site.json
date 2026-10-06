@@ -14,5 +14,45 @@
   "contact": {
     "title": "See where Placement Desk fits.",
     "body": "Tell us how placement runs today. We’ll look at your workflow, carrier mix and systems and identify where Placement Desk could take work off your team."
+  },
+  "samples": {
+    "accounts": [
+      {
+        "name": "Sample Bakery LLC",
+        "line": "BOP"
+      },
+      {
+        "name": "Placeholder Mfg",
+        "line": "package"
+      },
+      {
+        "name": "Example Logistics",
+        "line": "commercial auto"
+      },
+      {
+        "name": "Demo Dental Group",
+        "line": "professional liability"
+      },
+      {
+        "name": "Sample Builders Inc.",
+        "line": "general liability"
+      },
+      {
+        "name": "Placeholder Café",
+        "line": "BOP"
+      },
+      {
+        "name": "Example Clinic",
+        "line": "workers’ comp"
+      }
+    ],
+    "carriers": [
+      "Demo Mutual",
+      "Sample Carrier Co.",
+      "Example Specialty",
+      "Placeholder Insurance",
+      "Demo Casualty",
+      "Sample Indemnity"
+    ]
   }
 }
