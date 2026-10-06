@@ -30,7 +30,9 @@ export type HomeFile = {
     label: string;
     sublabel: string;
     legend: { status: string; label: string }[];
-    tasks: { task: string; status: string }[];
+    events: Record<string, { task: string; status: string }>;
+    accounts: { name: string; line: string }[];
+    carriers: string[];
   };
   problem: { title: string; body: string; points: Card[] };
   approach: {

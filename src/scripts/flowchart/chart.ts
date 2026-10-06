@@ -3,7 +3,8 @@
 // character cells (see grid.ts) and scripts its animation: packets that travel
 // the routes, the work each node does when one arrives, and the entries its
 // logs take. The script runs once, over one loop of PERIOD seconds, and the
-// loop repeats seamlessly.
+// loop repeats seamlessly. A script can also post notes, moments told to the
+// page as the chart passes them (feed.ts), which the activity panel follows.
 
 import { Kind, createGrid, type Head, type Point } from "./grid";
 
@@ -44,12 +45,20 @@ export type ChartSpec<N extends string, R extends string> = {
 
 // What a chart's script can do. go sends a packet down a route and work keeps
 // a node busy; both return when they finish, so steps chain. log adds an entry
-// to a log node; "{n}" in its text becomes the entry's running number.
+// to a log node; "{n}" in its text becomes the entry's running number. note
+// posts a moment to the page: what happened, and numbers that say which job
+// and what of.
 export type Script<N extends string, R extends string> = {
   go: (id: R, t: number) => number;
   work: (id: N, t: number, dur: number) => number;
   log: (id: N, t: number, text: string) => void;
+  note: (t: number, kind: string, data: NoteData) => void;
 };
+
+export type NoteData = Record<string, number>;
+// lap is how many loops into the script the note fell: a job that starts late
+// in the loop runs on into the next, and its notes there still belong to it.
+export type FlowNote = { start: number; lap: number; kind: string; data: NoteData };
 
 export type FlowNode = {
   border: number[];
@@ -73,8 +82,14 @@ export type Flow = {
   events: FlowEvent[];
   // Each log's entries for one loop, in order.
   logs: Record<string, LogEntry[]>;
+  // The notes for one loop, in order.
+  notes: FlowNote[];
   period: number;
 };
+
+// Where a chart starts: a moment with work in flight across it. It is also
+// the still frame shown under reduced motion.
+export const startOf = (flow: Flow) => flow.period * 0.4;
 
 const lines = (label: string | string[]) => (Array.isArray(label) ? label : [label]);
 
@@ -142,6 +157,7 @@ export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N,
 
   const events: FlowEvent[] = [];
   const logs: Record<string, LogEntry[]> = {};
+  const notes: FlowNote[] = [];
   spec.script({
     go: (id, t) => {
       const dur = routes[id].length / SPEED;
@@ -155,8 +171,12 @@ export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N,
     log: (id, t, text) => {
       (logs[id] ??= []).push({ start: t % spec.period, text });
     },
+    note: (t, kind, data) => {
+      notes.push({ start: t % spec.period, lap: Math.floor(t / spec.period), kind, data });
+    },
   });
   for (const entries of Object.values(logs)) entries.sort((a, b) => a.start - b.start);
+  notes.sort((a, b) => a.start - b.start);
 
   return {
     cols: spec.cols,
@@ -167,6 +187,7 @@ export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N,
     routes,
     events,
     logs,
+    notes,
     period: spec.period,
   };
 }

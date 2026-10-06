@@ -19,8 +19,9 @@
 // and data-glow how much the rolling bar strengthens the ink and lifts the
 // screen (0 for all six shows it plain).
 
-import { SPEED, buildFlow, type Flow, type LogEntry } from "./flowchart/chart";
+import { SPEED, buildFlow, startOf, type Flow, type LogEntry } from "./flowchart/chart";
 import { CHARTS, type ChartName } from "./flowchart/charts";
+import { crossed } from "./flowchart/feed";
 import { Kind } from "./flowchart/grid";
 import { createLens } from "./flowchart/lens";
 
@@ -273,6 +274,11 @@ function chart(canvas: HTMLCanvasElement) {
     if (!visible || document.hidden) return;
     const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
     last = now;
+    // Tell the page each moment the chart passes (the activity panel follows
+    // them; see flowchart/feed.ts).
+    for (const note of crossed(flow, time, time + dt)) {
+      canvas.dispatchEvent(new CustomEvent("flowchart:note", { bubbles: true, detail: note }));
+    }
     time += dt;
     if (now - drawn >= 1000 / FPS - 2) {
       drawn = now;
@@ -293,7 +299,7 @@ function chart(canvas: HTMLCanvasElement) {
   };
 
   // A moment with work in flight across the chart, for the still frame.
-  const STILL = period * 0.4;
+  const STILL = startOf(flow);
 
   const resize = () => {
     const rect = parent.getBoundingClientRect();

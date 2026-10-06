@@ -39,7 +39,11 @@ export const site = {
 export const contact = contactFile;
 
 export const homeHero = { ...home.hero, ledger: home.ledger };
-export const ledgerTasks = home.ledger.tasks;
+export const ledgerCopy = {
+  events: home.ledger.events,
+  accounts: home.ledger.accounts,
+  carriers: home.ledger.carriers,
+};
 export const problem = home.problem;
 export const approach = home.approach;
 export const desk = home.desk;

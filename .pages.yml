@@ -53,6 +53,22 @@ components:
     list:
       min: 1
       collapsible: false
+  activity:
+    type: object
+    fields:
+      - name: task
+        label: Line
+        type: string
+        required: true
+      - name: status
+        type: select
+        required: true
+        options:
+          values:
+            - name: done
+              label: Completed by the desk
+            - name: review
+              label: Returned to a person
   cta:
     type: object
     label: Call to action (bottom of page)
@@ -178,27 +194,55 @@ content:
                   - name: label
                     type: string
                     required: true
-              - name: tasks
-                description: Shown five at a time, cycling through the list.
+              - name: events
+                label: Activity lines
+                description: >-
+                  The line the panel shows for each moment in the hero flowchart that posts to it, as the chart reaches
+                  that moment. Each pass through the chart is a new account, so {account} and {line} (the account and
+                  its line of business) are filled in from Accounts below, {carrier} from Carriers, and {count} with the
+                  number of markets or quotes.
+                type: object
+                fields:
+                  - name: received
+                    label: Submission received
+                    component: activity
+                  - name: renewal
+                    label: Renewal detected
+                    component: activity
+                  - name: missing
+                    label: Missing information flagged
+                    component: activity
+                  - name: markets
+                    label: Markets selected ({count} is how many)
+                    component: activity
+                  - name: quote
+                    label: Quote received
+                    component: activity
+                  - name: review
+                    label: Routed to a person
+                    component: activity
+                  - name: returned
+                    label: Results returned ({count} is how many quotes)
+                    component: activity
+              - name: accounts
+                description: Sample accounts the activity lines are about, taken in turn.
                 type: object
                 list:
-                  min: 5
+                  min: 1
                   collapsible:
                     collapsed: true
-                    summary: "{task}"
+                    summary: "{name}"
                 fields:
-                  - name: task
+                  - name: name
                     type: string
                     required: true
-                  - name: status
-                    type: select
+                  - name: line
+                    label: Line of business
+                    type: string
                     required: true
-                    options:
-                      values:
-                        - name: done
-                          label: Completed by the desk
-                        - name: review
-                          label: Returned to a person
+              - name: carriers
+                description: Sample carriers the activity lines name, taken in turn.
+                component: strings
           - name: problem
             label: The capacity problem
             type: object

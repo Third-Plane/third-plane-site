@@ -93,16 +93,34 @@ const CHANNELS = {
 // Four placements run through the desk, a quarter of the loop apart, each from
 // its own source and out to its own set of channels. One comes back for
 // missing information first; one is returned to a person for review.
+//
+// Each posts some of its moments to the activity panel (`notes`, by kind; see
+// feed.ts and the ledger events in home.json): eight a loop, chosen to fall
+// two and a half to five seconds apart, which a five-row panel can keep up
+// with. The third job's four tell one placement from end to end. "received" posts as the work
+// reaches intake, "missing" as it is sent back, "markets" once the plan is
+// made, "quote" as the first answer reaches collect, "review" as a person
+// takes it and "returned" as the results reach the producer.
 const JOBS: {
   source: "submission" | "ams" | "inbox";
   channels: Channel[];
   missing?: boolean;
   review?: boolean;
+  notes: string[];
 }[] = [
-  { source: "submission", channels: ["portal", "api", "forms"] },
-  { source: "ams", channels: ["api", "email"], review: true },
-  { source: "inbox", channels: ["portal", "email", "forms"], missing: true },
-  { source: "submission", channels: ["portal", "api", "email", "forms"] },
+  { source: "submission", channels: ["portal", "api", "forms"], notes: ["received"] },
+  { source: "ams", channels: ["api", "email"], review: true, notes: ["renewal", "review"] },
+  {
+    source: "inbox",
+    channels: ["portal", "email", "forms"],
+    missing: true,
+    notes: ["received", "missing", "markets", "quote"],
+  },
+  {
+    source: "submission",
+    channels: ["portal", "api", "email", "forms"],
+    notes: ["returned"],
+  },
 ];
 
 const SPACING = 6.5;
@@ -118,16 +136,24 @@ export const placement: ChartSpec<NodeId, RouteId> = {
     { x: 150, y: 22, text: "MARKETS" },
   ],
   period: SPACING * JOBS.length,
-  script: ({ go, work }) => {
+  script: ({ go, work, note }) => {
     JOBS.forEach((job, k) => {
       // Small, fixed differences between jobs, so they don't march in step.
       const vary = (n: number) => 0.85 + ((k * 7 + n * 13) % 10) / 20;
+      // Post a moment, if it is one of this job's.
+      const post = (t: number, kind: string, data: Record<string, number> = {}) => {
+        if (job.notes.includes(kind)) note(t, kind, { job: k, jobs: JOBS.length, ...data });
+      };
+      const count = job.channels.length;
       let t = k * SPACING;
       t = go(job.source, t);
+      post(t, "received");
+      post(t, "renewal");
       t = work("intake", t, 1.2 * vary(1));
       t = go("intake", t);
       t = work("gaps", t, 0.9 * vary(2));
       if (job.missing) {
+        post(t, "missing");
         t = go("missing", t);
         t = work("inbox", t, 0.6);
         t = go("inbox", t);
@@ -139,8 +165,10 @@ export const placement: ChartSpec<NodeId, RouteId> = {
       t = work("appetite", t, 1.1 * vary(3));
       t = go("plan", t);
       t = work("plan", t, 1.2 * vary(4));
+      post(t, "markets", { count });
 
       let back = t;
+      let first = Infinity;
       job.channels.forEach((channel, c) => {
         const { dispatch, carrier, answer } = CHANNELS[channel];
         let u = go(dispatch, t + c * 0.25);
@@ -149,11 +177,14 @@ export const placement: ChartSpec<NodeId, RouteId> = {
         u = work(carrier, u, 1.3 * vary(9 + c));
         u = go(answer, u);
         back = Math.max(back, u);
+        first = Math.min(first, u);
       });
+      post(first, "quote", { slot: 0 });
 
       t = work("collect", back, 0.9);
       if (job.review) {
         t = go("toReview", t);
+        post(t, "review");
         t = work("review", t, 1.6);
         t = go("fromReview", t);
       } else {
@@ -161,6 +192,7 @@ export const placement: ChartSpec<NodeId, RouteId> = {
       }
       t = work("ret", t, 0.8);
       t = go("producer", t);
+      post(t, "returned", { count: count - 1 });
       work("producer", t, 0.8);
     });
   },

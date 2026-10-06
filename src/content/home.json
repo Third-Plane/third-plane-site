@@ -20,79 +20,73 @@
         "label": "Returned to a person"
       }
     ],
-    "tasks": [
-      {
-        "task": "Submission received by email: Sample Bakery LLC, BOP",
+    "events": {
+      "received": {
+        "task": "Submission received by email: {account}, {line}",
         "status": "done"
       },
-      {
-        "task": "Account information structured from the ACORD and loss runs",
+      "renewal": {
+        "task": "Renewal detected in AMS: {account}, 90 days out",
         "status": "done"
       },
-      {
-        "task": "Missing information flagged: prior carrier, current payroll",
+      "missing": {
+        "task": "Missing information flagged for {account}: prior carrier, current payroll",
         "status": "review"
       },
-      {
-        "task": "Producer reply filed: payroll confirmed",
+      "markets": {
+        "task": "Appetite assessed for {account}: {count} markets to approach",
         "status": "done"
       },
-      {
-        "task": "Appetite assessed across 12 appointed markets",
+      "quote": {
+        "task": "Quote received: {carrier}",
         "status": "done"
       },
-      {
-        "task": "Markets selected: 5 to approach",
-        "status": "done"
-      },
-      {
-        "task": "Portal submission complete: Demo Mutual",
-        "status": "done"
-      },
-      {
-        "task": "Submitted by email to underwriter: Example Specialty",
-        "status": "done"
-      },
-      {
-        "task": "Quote returned through carrier API: Sample Carrier Co.",
-        "status": "done"
-      },
-      {
-        "task": "Follow-up sent: Example Specialty, day two",
-        "status": "done"
-      },
-      {
-        "task": "Quote received: Demo Mutual",
-        "status": "done"
-      },
-      {
-        "task": "Results returned to producer: 3 quotes, 1 declination, record attached",
+      "review": {
+        "task": "No market fit for {account}: routed to account manager with the record",
         "status": "review"
       },
-      {
-        "task": "Renewal detected in AMS: Placeholder Mfg, 90 days out",
-        "status": "done"
-      },
-      {
-        "task": "Renewal information gathered from policy file and prior submission",
-        "status": "done"
-      },
-      {
-        "task": "Appetite assessed: incumbent plus 8 alternatives",
-        "status": "done"
-      },
-      {
-        "task": "Portal submission complete: Sample Carrier Co., supplemental forms",
-        "status": "done"
-      },
-      {
-        "task": "Underwriter question answered: prior loss detail",
-        "status": "done"
-      },
-      {
-        "task": "No market fit: routed to account manager with the record",
+      "returned": {
+        "task": "Results returned to producer: {count} quotes, record attached",
         "status": "review"
       }
+    },
+    "accounts": [
+      {
+        "name": "Sample Bakery LLC",
+        "line": "BOP"
+      },
+      {
+        "name": "Placeholder Mfg",
+        "line": "package"
+      },
+      {
+        "name": "Example Logistics",
+        "line": "commercial auto"
+      },
+      {
+        "name": "Demo Dental Group",
+        "line": "professional liability"
+      },
+      {
+        "name": "Sample Builders Inc.",
+        "line": "general liability"
+      },
+      {
+        "name": "Placeholder Café",
+        "line": "BOP"
+      },
+      {
+        "name": "Example Clinic",
+        "line": "workers’ comp"
+      }
+    ],
+    "carriers": [
+      "Demo Mutual",
+      "Sample Carrier Co.",
+      "Example Specialty",
+      "Placeholder Insurance",
+      "Demo Casualty",
+      "Sample Indemnity"
     ]
   },
   "problem": {
