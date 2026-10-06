@@ -4,7 +4,7 @@ import { Display1, Lead } from "./Headings";
 import { Ledger } from "./Ledger";
 import { HERO_PADDING, Hero, Leave } from "./Hero";
 
-// The full-width column ignores the pointer so the particle canvas behind stays out of
+// The full-width column ignores the pointer so the flowchart canvas behind stays out of
 // the way; the copy and actions take it back, and the ledger sits on top.
 const GRID = "pointer-events-none grid items-center gap-14 lg:grid-cols-2";
 

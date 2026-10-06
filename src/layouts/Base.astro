@@ -57,6 +57,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     <meta property="og:title" content={full} />
     <meta property="og:description" content={description} />
 
+    <link rel="preload" href="/fonts/TX-02-Data-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -79,6 +80,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       import "../scripts/reveal";
       import "../scripts/ledger";
       import "../scripts/particles";
+      import "../scripts/flowchart";
       import "../scripts/halftone";
       import "../scripts/hero-collapse";
       import "../scripts/footer-reveal";

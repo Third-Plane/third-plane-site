@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
-import { ParticleField } from "./ParticleField";
+import { Flowchart } from "./Flowchart";
 import { cn } from "../lib/style";
 
 // Sticky from lg up, where scroll-driven animation is available (see the
@@ -37,16 +37,16 @@ export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: 
 // The space around a hero's content, below the nav.
 export const HERO_PADDING = "pt-20 pb-22";
 
-// A hero band: the lavender wash with the particle field behind its content. The
+// A hero band: the lavender wash with the flowchart behind its content. The
 // section is the hero's surface (see index.css), so the nav takes its colours.
 //
 // The hero carries its own nav, on top. Unlike a Section there is no page-width
-// column: `children` run the full width of the band, above the particles and
+// column: `children` run the full width of the band, above the flowchart and
 // below the nav (which they leave room for). Padding is the caller's, so
 // content can sit where it likes.
 //
 // The nav sits outside the band that collapses, so its menus and the mobile
-// drawer are never clipped; the band (particles and children) is what closes
+// drawer are never clipped; the band (flowchart and children) is what closes
 // down to a strip as wide as the nav.
 //
 // The section keeps its full height while the band closes (only the band is
@@ -70,7 +70,7 @@ export function Hero({ children }: { children?: ReactNode }) {
         <Header />
       </div>
       <div className={cn("relative overflow-hidden rounded-b-2xl bg-hero", CAPPED, COLLAPSING)}>
-        <ParticleField mask="hero" tone="purple" alpha={0.9} />
+        <Flowchart />
         <div className="relative z-2 pt-(--nav-h)">{children}</div>
       </div>
     </section>

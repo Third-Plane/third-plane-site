@@ -1,4 +1,19 @@
-﻿/* The palette. Components use the semantic colours below instead (and the
+﻿/* Berkeley Mono (TX-02), for the hero flowchart's box drawing (see
+   scripts/flowchart.ts). The canvas loads it itself; it is never set on text. */
+@font-face {
+  font-family: "TX-02";
+  src: url("/fonts/TX-02-Data-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TX-02";
+  src: url("/fonts/TX-02-Data-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* The palette. Components use the semantic colours below instead (and the
    palette only for a few fixed brand marks); the surfaces map one to the other. */
 :root {
   --cream: #f6f3f0;
