@@ -9,7 +9,7 @@ import { cn, reveal } from "../lib/style";
 // The hero is its own export: pages/security.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function SecurityHero() {
-  return <PageHero title={page.title} lead={page.lead} />;
+  return <PageHero title={page.title} lead={page.lead} chart="security" />;
 }
 
 export function Security() {

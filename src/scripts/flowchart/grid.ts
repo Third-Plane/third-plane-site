@@ -31,6 +31,8 @@ export const Kind = {
   strong: 4,
   shade: 5,
   head: 6,
+  // A secondary line of text, quieter than a label.
+  note: 7,
 } as const;
 export type Kind = (typeof Kind)[keyof typeof Kind];
 

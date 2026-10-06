@@ -16,7 +16,7 @@ const systemScreens: SystemName[] = ["ams", "documents", "inbox", "data"];
 // The hero is its own export: pages/integrations.astro puts it in Base's `hero` slot,
 // outside <main>.
 export function IntegrationsHero() {
-  return <PageHero title={page.title} lead={page.lead} />;
+  return <PageHero title={page.title} lead={page.lead} chart="integrations" />;
 }
 
 export function Integrations() {

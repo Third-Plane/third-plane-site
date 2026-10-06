@@ -1,13 +1,15 @@
-// The hero flowchart, in motion. The diagram (flowchart/diagram.ts) is set in
-// Berkeley Mono on a character grid and painted to a canvas: the chart at
-// rest is drawn once to an offscreen layer, and each frame repaints only the
-// cells that are lit, where packets run the routes and nodes work.
+// The hero flowchart, in motion. A chart (data-chart, one of
+// flowchart/charts.ts) is set in Berkeley Mono on a character grid and
+// painted to a canvas: the chart at rest is drawn once to an offscreen layer,
+// and each frame repaints only the cells that are lit, where packets run the
+// routes, nodes work and logs take new entries.
 //
-// Each <canvas data-flowchart> fills its positioned parent, with the chart
-// centred under the nav. data-cell sets the cell width in CSS pixels (the
-// font size follows from it) and data-alpha the overall strength. It pauses
-// while off-screen or in a hidden tab, and under prefers-reduced-motion it
-// paints one frame and stops.
+// Each <canvas data-flowchart> fills its positioned parent. The chart is
+// scaled to fit the band under the nav and centred in it, but its cells are
+// never narrower than data-cell CSS pixels (the font size follows from the
+// cell): on a narrow screen it is cropped instead. data-alpha sets the overall
+// strength. It pauses while off-screen or in a hidden tab, and under
+// prefers-reduced-motion it paints one frame and stops.
 //
 // Where WebGL is available the frame is drawn offscreen and shown through
 // the lens (flowchart/lens.ts), which bends it like a CRT and splits its
@@ -17,7 +19,8 @@
 // and data-glow how much the rolling bar strengthens the ink and lifts the
 // screen (0 for all six shows it plain).
 
-import { COLS, ROWS, SPEED, buildFlow, type Flow } from "./flowchart/diagram";
+import { SPEED, buildFlow, type Flow, type LogEntry } from "./flowchart/chart";
+import { CHARTS, type ChartName } from "./flowchart/charts";
 import { Kind } from "./flowchart/grid";
 import { createLens } from "./flowchart/lens";
 
@@ -41,6 +44,7 @@ const REST: Record<Kind, number> = {
   [Kind.strong]: 0.66,
   [Kind.shade]: 0.22,
   [Kind.head]: 0.45,
+  [Kind.note]: 0.38,
 };
 
 // Cells a second a node's border light runs, and how many cells it trails.
@@ -52,8 +56,11 @@ const TRAIL = 7;
 const FADE = 0.5;
 const SPIN = ["▖", "▘", "▝", "▗"];
 const FPS = 30;
+// Seconds a new log entry takes to settle, and the number the first is given.
+const LOG_FADE = 1.2;
+const LOG_FROM = 1000;
 
-let flow: Flow | undefined;
+const flows: Partial<Record<ChartName, Flow>> = {};
 
 // One of the surface colours around an element (--background, --foreground),
 // as 0 to 1 RGB: resolved by the browser on a probe, then read back off a
@@ -76,8 +83,9 @@ function chart(canvas: HTMLCanvasElement) {
   const parent = canvas.parentElement;
   if (!parent) return;
   const {
+    chart: name = "placement",
     alpha = "1",
-    cell: cellAttr = "8",
+    cell: cellAttr = "6",
     curve = "0",
     fringe = "0",
     scan = "0",
@@ -101,16 +109,19 @@ function chart(canvas: HTMLCanvasElement) {
   const surface = lens ? document.createElement("canvas") : canvas;
   const ctx = surface.getContext("2d");
   if (!ctx) return;
-  flow ??= buildFlow();
-  const { glyphs, kinds, nodes, routes, events, period } = flow;
+  const spec = CHARTS[name as ChartName];
+  if (!spec) return;
+  const flow = (flows[name as ChartName] ??= buildFlow<string, string>(spec));
+  const { cols, rows, glyphs, kinds, nodes, routes, events, logs, period } = flow;
 
   const a = Number(alpha);
-  const cw = Number(cellAttr);
-  const ch = cw * (LINE / ADVANCE);
-  const size = cw / ADVANCE;
-  const baseline = size * ASCENT;
-  const regular = `${size}px ${FAMILY}`;
-  const bold = `700 ${size}px ${FAMILY}`;
+  const minCell = Number(cellAttr);
+  // The cell and its type, set to fit on each resize.
+  let cw = minCell;
+  let ch = cw * (LINE / ADVANCE);
+  let baseline = 0;
+  let regular = "";
+  let bold = "";
 
   const palette = Array.from(
     { length: LEVELS + 1 },
@@ -125,6 +136,7 @@ function chart(canvas: HTMLCanvasElement) {
 
   let w = 1;
   let h = 1;
+  // Where the chart's top left cell sits, in CSS pixels.
   let ox = 0;
   let oy = 0;
   let ready = false;
@@ -148,8 +160,8 @@ function chart(canvas: HTMLCanvasElement) {
   };
 
   const paint = (target: CanvasRenderingContext2D, i: number, glyph: string, level: number) => {
-    const x = ((i % COLS) + ox) * cw;
-    const y = (Math.floor(i / COLS) + oy) * ch;
+    const x = ox + (i % cols) * cw;
+    const y = oy + Math.floor(i / cols) * ch;
     target.font = kinds[i] === Kind.strong ? bold : regular;
     target.fillStyle = tone(level);
     target.fillText(glyph, x, y + baseline);
@@ -178,7 +190,7 @@ function chart(canvas: HTMLCanvasElement) {
     }
   };
 
-  const work = (id: keyof Flow["nodes"], u: number, dur: number) => {
+  const work = (id: string, u: number, dur: number) => {
     const node = nodes[id];
     const busy = u < dur;
     const env = busy ? Math.min(1, u / 0.15) : 1 - (u - dur) / FADE;
@@ -203,6 +215,31 @@ function chart(canvas: HTMLCanvasElement) {
     }
   };
 
+  // A log's rows at time t: the latest entries, the newest at the foot, reaching
+  // back into earlier loops when this one has had too few yet. Each is
+  // numbered in sequence across loops, and a new one is lit as it lands.
+  const writeLog = (id: string, entries: LogEntry[], t: number) => {
+    const lines = nodes[id].rows;
+    if (!lines || !entries.length) return;
+    let loop = Math.floor(t / period);
+    let k = entries.findLastIndex((e) => e.start <= t - loop * period);
+    for (let r = lines.length - 1; r >= 0; r--, k--) {
+      if (k < 0) {
+        loop -= 1;
+        k = entries.length - 1;
+      }
+      const e = entries[k];
+      const n = String(LOG_FROM + loop * entries.length + k).padStart(4, "0");
+      const text = e.text.replace("{n}", n);
+      const age = t - (loop * period + e.start);
+      const rest = REST[Kind.text];
+      const level = rest + (1 - rest) * Math.max(0, 1 - age / LOG_FADE);
+      lines[r].forEach((i, c) => {
+        if (c < text.length && text[c] !== " ") light(i, level, text[c]);
+      });
+    }
+  };
+
   const draw = (t: number) => {
     ctx.clearRect(0, 0, w, h);
     if (!ready) return;
@@ -211,16 +248,17 @@ function chart(canvas: HTMLCanvasElement) {
     for (const e of events) {
       const u = (((t - e.start) % period) + period) % period;
       if (e.kind === "route") {
-        if (u < e.dur + TRAIL / SPEED) route(routes[e.id as keyof Flow["routes"]], u);
+        if (u < e.dur + TRAIL / SPEED) route(routes[e.id], u);
       } else if (u < e.dur + FADE) {
-        work(e.id as keyof Flow["nodes"], u, e.dur);
+        work(e.id, u, e.dur);
       }
     }
+    for (const [id, entries] of Object.entries(logs)) writeLog(id, entries, t);
 
     for (const i of touched) {
       const glyph = swap[i] ?? glyphs[i];
-      const x = ((i % COLS) + ox) * cw;
-      const y = (Math.floor(i / COLS) + oy) * ch;
+      const x = ox + (i % cols) * cw;
+      const y = oy + Math.floor(i / cols) * ch;
       ctx.clearRect(x, y, cw, ch);
       if (glyph && glyph !== " ") paint(ctx, i, glyph, Math.max(lit[i], REST[kinds[i] as Kind]));
       lit[i] = 0;
@@ -270,12 +308,20 @@ function chart(canvas: HTMLCanvasElement) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.textBaseline = "alphabetic";
 
-    // Centred across the band, and starting on the first full row under the nav.
+    // The largest cell that fits the chart in the band under the nav, but no
+    // smaller than the floor, and whole device pixels wide so every cell edge
+    // lands on a pixel (and lines join cleanly). Centred in that band.
     const nav = parseFloat(getComputedStyle(canvas).getPropertyValue("--nav-h")) || 0;
-    ox = Math.round((Math.floor(w / cw) - COLS) / 2);
-    oy =
-      Math.ceil(nav / ch) +
-      Math.max(0, Math.floor((Math.floor(h / ch) - Math.ceil(nav / ch) - ROWS) / 2));
+    const fit = Math.min(w / cols, (h - nav) / (rows * (LINE / ADVANCE)));
+    cw = Math.max(1, Math.floor(Math.max(minCell, fit) * dpr)) / dpr;
+    ch = cw * (LINE / ADVANCE);
+    const size = cw / ADVANCE;
+    baseline = size * ASCENT;
+    regular = `${size}px ${FAMILY}`;
+    bold = `700 ${size}px ${FAMILY}`;
+    const snap = (v: number) => Math.round(v * dpr) / dpr;
+    ox = snap((w - cols * cw) / 2);
+    oy = snap(nav + Math.max(0, (h - nav - rows * ch) / 2));
 
     if (!ready) return;
     layer();
@@ -284,7 +330,10 @@ function chart(canvas: HTMLCanvasElement) {
 
   resize();
 
-  Promise.all([document.fonts.load(regular, "─AB"), document.fonts.load(bold, "AB")]).then(() => {
+  Promise.all([
+    document.fonts.load(`16px ${FAMILY}`, "─AB"),
+    document.fonts.load(`700 16px ${FAMILY}`, "AB"),
+  ]).then(() => {
     ready = true;
     time = STILL;
     resize();
