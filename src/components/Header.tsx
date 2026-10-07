@@ -43,8 +43,22 @@ export function Header() {
       data-nav
     >
       <div className="flex h-19 items-center justify-between gap-8 px-(--gutter)">
-        <AppLink className="inline-flex items-center" href="/" aria-label={`${site.name} home`}>
-          <Logo className="h-8.5 w-auto" />
+        {/* Both lockups, stacked: the white one shows over a dark band (see
+            scripts/nav-tone.ts). */}
+        <AppLink className="grid items-center" href="/" aria-label={`${site.name} home`}>
+          <Logo
+            className={cn(
+              "h-8.5 w-auto transition-opacity duration-200 [grid-area:1/1]",
+              "group-data-[tone=deep]/nav:opacity-0 group-data-[tone=invert]/nav:opacity-0",
+            )}
+          />
+          <Logo
+            tone="white"
+            className={cn(
+              "h-8.5 w-auto opacity-0 transition-opacity duration-200 [grid-area:1/1]",
+              "group-data-[tone=deep]/nav:opacity-100 group-data-[tone=invert]/nav:opacity-100",
+            )}
+          />
         </AppLink>
 
         <nav className="ml-auto flex gap-8 max-lg:hidden" aria-label="Main" data-nav-links>
@@ -59,7 +73,7 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-border/50 bg-card p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="surface-white absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-border/50 bg-card p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-nav-panel
               >

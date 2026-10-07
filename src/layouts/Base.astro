@@ -16,6 +16,9 @@ interface Props {
   chart?: ChartName;
   // The page's call to action, shown in its footer.
   cta?: CtaCopy;
+  // PROTOTYPE: the pinned nav shows the band under it (see the nav mask in
+  // tailwind.css).
+  navMask?: boolean;
 }
 
 const {
@@ -26,6 +29,7 @@ const {
   noindex = false,
   chart = "placement",
   cta,
+  navMask = false,
 } = Astro.props;
 const full = fullTitle(title);
 const canonical = canonicalUrl(path);
@@ -78,7 +82,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class:list={{ "nav-mask": navMask }}>
     {/* The page's flowchart, fixed behind everything: the hero and the bands over
          it let it show where they are see-through. It paints the hero wash under
          the chart, so the hero's colours (surface-hero) hold for it, and it is as
@@ -101,6 +105,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
 
     <script>
       import "../scripts/nav";
+      import "../scripts/nav-tone";
       import "../scripts/reveal";
       import "../scripts/ledger";
       import "../scripts/particles";

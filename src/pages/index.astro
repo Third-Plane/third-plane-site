@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 import { Home, HomeHero } from "../views/Home";
 ---
 
-<Base path="/" cta={homeCta}>
+<Base path="/" cta={homeCta} navMask>
   <HomeHero slot="hero" />
   <Home />
 </Base>

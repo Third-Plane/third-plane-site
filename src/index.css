@@ -41,7 +41,10 @@
 
    foreground is headings and emphasis, muted-foreground body copy and
    subtle-foreground meta. card is a tile on the surface; muted a quieter fill.
-   primary is the button. */
+   primary is the button.
+
+   The pinned nav takes the colours of the band under it, by its data-tone
+   (see scripts/nav-tone.ts), but none of the band's background. */
 :root,
 .surface-white,
 .surface-blend,
@@ -66,7 +69,8 @@
   --background: var(--lavender);
 }
 .surface-deep,
-.surface-accent {
+.surface-accent,
+[data-nav][data-tone="deep"] {
   --foreground: var(--cream);
   --muted-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
   --subtle-foreground: color-mix(in oklab, var(--cream) 50%, transparent);
@@ -108,7 +112,8 @@
    band must be positioned, and must not make a stacking context of its own
    (no z-index, isolation, opacity, transform...): in Chrome that cuts the
    layer off from the page behind it too, and it inverts nothing. */
-.surface-invert {
+.surface-invert,
+[data-nav][data-tone="invert"] {
   --foreground: rgba(255, 255, 255, 0.8);
   --accent: white;
   --muted-foreground: rgba(255, 255, 255, 0.6);
