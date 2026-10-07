@@ -12,8 +12,8 @@ const GRID = "pointer-events-none grid items-center gap-14 lg:grid-cols-2";
 
 // The hero with copy on the left and the activity ledger on the right, full
 // width (see Hero). A `title` array stacks its lines; a string flows as one.
-// `chart` is the flowchart behind it, and the ledger follows that chart,
-// worded from `ledger`.
+// The ledger follows `chart`, which must be the page's flowchart (the one its
+// Base shows), worded from `ledger`.
 export function SplitHero({
   title,
   lead,
@@ -44,7 +44,7 @@ export function SplitHero({
   );
 
   return (
-    <Hero chart={chart}>
+    <Hero>
       <div className={cn("px-(--gutter)", HERO_PADDING, GRID)}>
         <div className="pointer-events-auto relative z-3 max-w-150">
           <Leave tier="heading">{heading}</Leave>

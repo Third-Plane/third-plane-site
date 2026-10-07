@@ -4,8 +4,9 @@
 // and each frame repaints only the cells that are lit, where packets run the
 // routes, nodes work and logs take new entries.
 //
-// Each <canvas data-flowchart> fills its positioned parent. The chart is
-// scaled to fit the band under the nav and centred in it, but its cells are
+// Each <canvas data-flowchart> fills its positioned parent (the page's fixed
+// backdrop, so the window). The chart is scaled to fit the space under the
+// nav and set at the top of it, but its cells are
 // never narrower than data-cell CSS pixels (the font size follows from the
 // cell): on a narrow screen it is cropped instead. data-alpha sets the overall
 // strength. It pauses while off-screen or in a hidden tab, and under
@@ -314,9 +315,10 @@ function chart(canvas: HTMLCanvasElement) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.textBaseline = "alphabetic";
 
-    // The largest cell that fits the chart in the band under the nav, but no
+    // The largest cell that fits the chart in the space under the nav, but no
     // smaller than the floor, and whole device pixels wide so every cell edge
-    // lands on a pixel (and lines join cleanly). Centred in that band.
+    // lands on a pixel (and lines join cleanly). Centred across, and a row
+    // under the nav, so it sits in the hero when the page opens.
     const nav = parseFloat(getComputedStyle(canvas).getPropertyValue("--nav-h")) || 0;
     const fit = Math.min(w / cols, (h - nav) / (rows * (LINE / ADVANCE)));
     cw = Math.max(1, Math.floor(Math.max(minCell, fit) * dpr)) / dpr;
@@ -327,7 +329,7 @@ function chart(canvas: HTMLCanvasElement) {
     bold = `700 ${size}px ${FAMILY}`;
     const snap = (v: number) => Math.round(v * dpr) / dpr;
     ox = snap((w - cols * cw) / 2);
-    oy = snap(nav + Math.max(0, (h - nav - rows * ch) / 2));
+    oy = snap(nav + ch);
 
     if (!ready) return;
     layer();

@@ -1,5 +1,6 @@
 ---
 import "../tailwind.css";
+import { Flowchart, type ChartName } from "../components/Flowchart";
 import { Footer } from "../components/Footer";
 import { site } from "../data/content";
 import { DEFAULT_DESCRIPTION, ORIGIN, canonicalUrl, fullTitle } from "../lib/head";
@@ -11,9 +12,17 @@ interface Props {
   type?: "website" | "article";
   noindex?: boolean;
   jsonLd?: object[];
+  chart?: ChartName;
 }
 
-const { title, description = DEFAULT_DESCRIPTION, path, type = "website", noindex = false } = Astro.props;
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  path,
+  type = "website",
+  noindex = false,
+  chart = "placement",
+} = Astro.props;
 const full = fullTitle(title);
 const canonical = canonicalUrl(path);
 
@@ -66,6 +75,15 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     />
   </head>
   <body>
+    {/* The page's flowchart, fixed behind everything: the hero and the bands over
+         it let it show where they are see-through. It paints the hero wash under
+         the chart, so the hero's colours (surface-hero) hold for it, and it is as
+         tall as the largest window, so a phone's toolbar coming and going
+         doesn't resize it. A page with a ledger must pass the chart the ledger
+         follows (see SplitHero). */}
+    <div class="surface-hero bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh" aria-hidden="true">
+      <Flowchart chart={chart} />
+    </div>
     {/* A sticky hero lives here, not in <main>: it is held inside its container, so
          in <main> it would be pushed up where <main> ends. Under <body> it sticks
          to the end of the page. */}

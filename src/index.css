@@ -97,6 +97,24 @@
 .surface-blend {
   background-image: var(--blend);
 }
+/* The page's flowchart lies behind everything (Base.astro). A band can let it
+   show: veil leaves its surface translucent, clear drops it (see Section). */
+.surface-white.veil,
+.surface-deep.veil {
+  background-color: color-mix(in oklab, var(--background) 78%, transparent);
+}
+.surface-blend.veil {
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--blue) 78%, transparent) 0%,
+    color-mix(in oklab, var(--pink) 78%, transparent) 100%
+  );
+}
+.surface-white.clear,
+.surface-deep.clear,
+.surface-blend.clear {
+  background: none;
+}
 .surface-white,
 .surface-blend,
 .surface-deep,

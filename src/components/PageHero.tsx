@@ -1,22 +1,19 @@
 import type { ReactNode } from "react";
 import { reveal } from "../lib/style";
 import { Display1, Lead } from "./Headings";
-import type { ChartName } from "./Flowchart";
 import { Hero, Leave } from "./Hero";
 
 export function PageHero({
   title,
   lead,
-  chart,
   children,
 }: {
   title: string[];
   lead: string;
-  chart?: ChartName;
   children?: ReactNode;
 }) {
   return (
-    <Hero chart={chart}>
+    <Hero>
       <div className="px-(--gutter) py-16">
         <div className="pointer-events-auto relative z-3">
           <Leave tier="heading">

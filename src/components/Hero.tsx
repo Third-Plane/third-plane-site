@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
-import { Flowchart, type ChartName } from "./Flowchart";
 import { cn } from "../lib/style";
 
 // Sticky from lg up, where scroll-driven animation is available (see the
@@ -11,14 +10,18 @@ import { cn } from "../lib/style";
 // flush with the top of the window and is pinned from the first pixel.
 const PINNED = "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:z-40";
 const COLLAPSING = "lg:scroll-linked:hero-collapse";
-const SHADOW = "lg:scroll-linked:hero-shadow";
+// The shadow and the fill only come in as the hero closes into its strip.
+// Elsewhere the hero is see-through and casts no shadow of its own.
+const SHADOW = "hidden lg:scroll-linked:block lg:scroll-linked:hero-shadow";
+const FILL = "opacity-0 lg:scroll-linked:hero-fill";
+// The wash that keeps the copy legible over the page's flowchart.
+const VEIL = "hero-veil-stacked lg:hero-veil";
 // A pinned hero can't be taller than the window, less its 12px margin (m-3; a
 // safe bound, top and bottom): where the page ends, the browser pushes up a
 // sticky box that doesn't fit. So the band stops at that height, and anything
 // below it is cut off.
 const CAPPED = "lg:scroll-linked:max-h-[calc(100svh-1.5rem)]";
-// From lg up the band is at least 16:7, so its chart is framed the same way at
-// every width (the chart scales with it), and taller where its content needs
+// From lg up the band is at least 16:7, and taller where its content needs
 // it. The floor is a min-height from the hero's width (the section is a size
 // container), not an aspect-ratio: the band clips its overflow, which turns
 // off aspect-ratio's growing to fit, so content would be cut off instead. It
@@ -45,23 +48,24 @@ export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: 
 // The space around a hero's content, below the nav.
 export const HERO_PADDING = "pt-20 pb-22";
 
-// A hero band: the lavender wash with the flowchart behind its content. The
-// section is the hero's surface (see index.css), so the nav takes its colours.
+// A hero band: see-through, over the page's flowchart (Base.astro), with a
+// wash behind its copy. The section is the hero's surface (see index.css), so
+// the nav takes its colours.
 //
 // The hero carries its own nav, on top. Unlike a Section there is no page-width
 // column: `children` run the full width of the band, above the flowchart and
 // below the nav (which they leave room for). Padding is the caller's, so
-// content can sit where it likes. `chart` picks the flowchart behind it.
+// content can sit where it likes.
 //
 // The nav sits outside the band that collapses, so its menus and the mobile
-// drawer are never clipped; the band (flowchart and children) is what closes
+// drawer are never clipped; the band (and its children) is what closes
 // down to a strip as wide as the nav.
 //
 // The section keeps its full height while the band closes (only the band is
 // clipped), so the section itself ignores the pointer: left alone it would sit
 // over the page below and swallow its clicks. The nav and the content that
 // wants the pointer take it back.
-export function Hero({ chart, children }: { chart?: ChartName; children?: ReactNode }) {
+export function Hero({ children }: { children?: ReactNode }) {
   return (
     <section
       className={cn("surface-hero pointer-events-none @container relative z-2 m-3 mt-0", PINNED)}
@@ -78,9 +82,9 @@ export function Hero({ chart, children }: { chart?: ChartName; children?: ReactN
         <Header />
       </div>
       <div
-        className={cn("relative overflow-hidden rounded-b-2xl bg-hero", SHAPED, CAPPED, COLLAPSING)}
+        className={cn("relative overflow-hidden rounded-b-2xl", VEIL, SHAPED, CAPPED, COLLAPSING)}
       >
-        <Flowchart chart={chart} />
+        <div className={cn("absolute inset-0 bg-hero", FILL)} aria-hidden="true" />
         <div className="relative z-2 pt-(--nav-h)">{children}</div>
       </div>
     </section>

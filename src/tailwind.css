@@ -131,6 +131,47 @@
   animation-range: 0 var(--hero-d, 100svh);
 }
 
+/* The hero is see-through, over the page's flowchart (Base.astro), so its
+   pinned strip would show the page scrolling under the nav. Its fill, the
+   hero wash, fades in as it closes, on the same timeline and range as
+   hero-collapse, and is whole by the time only the strip is left. */
+@keyframes hero-fill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@utility hero-fill {
+  animation-name: hero-fill;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-timeline: scroll(root);
+  animation-range: 0 var(--hero-d, 100svh);
+}
+
+/* A wash over the flowchart behind the hero's copy, so the headline reads over
+   it: the copy column beside the ledger (hero-veil), or the top of the hero
+   where the copy stacks above it (hero-veil-stacked). */
+@utility hero-veil {
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--lavender) 70%, transparent) 30%,
+    transparent 58%
+  );
+}
+
+@utility hero-veil-stacked {
+  background-image: linear-gradient(
+    180deg,
+    var(--lavender) 0%,
+    color-mix(in oklab, var(--lavender) 60%, transparent) 30%,
+    transparent 100%
+  );
+}
+
 /* A footer that is the inverse of the hero: pinned to the bottom of the window
    with only its bottom bar showing (the bar is h-19, 4.75rem), and the rest
    revealed over the last stretch of the page's scroll. The clip's top edge
