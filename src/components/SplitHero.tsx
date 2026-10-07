@@ -6,9 +6,7 @@ import { Display1, Lead } from "./Headings";
 import { Ledger } from "./Ledger";
 import { HERO_PADDING, Hero, Leave } from "./Hero";
 
-// The full-width column ignores the pointer so the flowchart canvas behind stays out of
-// the way; the copy and actions take it back, and the ledger sits on top.
-const GRID = "pointer-events-none grid items-center gap-14 lg:grid-cols-2";
+const GRID = "grid items-center gap-14 lg:grid-cols-2";
 
 // The hero with copy on the left and the activity ledger on the right, full
 // width (see Hero). A `title` array stacks its lines; a string flows as one.
@@ -46,7 +44,7 @@ export function SplitHero({
   return (
     <Hero>
       <div className={cn("px-(--gutter)", HERO_PADDING, GRID)}>
-        <div className="pointer-events-auto relative z-3 max-w-150">
+        <div className="max-w-150">
           <Leave tier="heading">{heading}</Leave>
           <Leave tier="lead">
             <Lead className="mt-7 max-w-[46ch]" {...reveal(2)}>
@@ -61,7 +59,7 @@ export function SplitHero({
             </Leave>
           ) : null}
         </div>
-        <div className="pointer-events-none relative z-3" {...reveal(3)}>
+        <div {...reveal(3)}>
           <Leave tier="actions">
             <Ledger chart={chart} panel={ledger} />
           </Leave>

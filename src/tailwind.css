@@ -60,9 +60,9 @@
   margin-inline: auto;
 }
 
-/* Where a hero may collapse as the page scrolls: only in browsers with
-   scroll-driven animations, only for people who haven't asked for less motion,
-   and only in a window tall enough to hold a pinned hero (see Hero).
+/* Where the page may slide over a pinned hero as it scrolls: only in browsers
+   with scroll-driven animations, only for people who haven't asked for less
+   motion, and only in a window tall enough to hold a pinned hero (see Hero).
    Without them the hero is an ordinary, scrolling band. */
 /* The scroll-driven animations below are written as longhands, never the
    animation shorthand: the build's minifier (lightningcss) folds a following
@@ -76,66 +76,18 @@
   }
 }
 
-/* A hero closing down to its nav strip, tied to scroll position: the clip
-   shrinks from the foot of the hero in step with the page. The box keeps its
-   full height, so nothing reflows. --hero-d is the scroll distance that takes
-   the hero from open to just the nav (the hero's height less --nav-h);
-   scripts/hero-collapse.ts keeps it exact, and until then it is a viewport
-   height. A hero that is sticky for this must be shorter than the viewport, or
-   its foot could never be scrolled to, so use it from lg up. The hero starts
-   flush with the top and is pinned from the first pixel, so the clip rises with
-   the page from scroll 0, and the card below keeps its 12px gap throughout. The
-   radius must be the same in both keyframes and the base clip, or it snaps
-   instead of easing. */
-@keyframes hero-collapse {
-  from {
-    clip-path: inset(0 0 0 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
-  }
-  to {
-    clip-path: inset(0 0 calc(100% - var(--nav-h)) 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
-  }
-}
+/* The page slides up over a hero that stays where it is (see Hero), tied to
+   scroll position. --hero-d is the scroll distance that takes the page's top
+   edge from the foot of the hero to the foot of the nav (the hero's height
+   less --nav-h); scripts/hero-cover.ts keeps it exact, and until then it is a
+   viewport height. A hero pinned for this must be no taller than the window,
+   or its foot could never be seen, so use it from lg up.
 
-@utility hero-collapse {
-  clip-path: inset(0 0 0 0 round 0 0 var(--radius-2xl) var(--radius-2xl));
-  animation-name: hero-collapse;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: scroll(root);
-  animation-range: 0 var(--hero-d, 100svh);
-}
-
-/* The hero's shadow follows the visible band. It is its own element, a box with
-   the band's width and radius, because the band's clip-path would cut off a
-   shadow of its own. Its height closes from the hero's full height to the nav
-   strip on the same timeline and range as hero-collapse, so it always matches
-   what is showing. It also fades in over that range: the hero's edge sits above
-   the next card until the hero is fully closed, so the shadow only has
-   something to fall on once the strip is pinned over the page, and it reaches
-   full strength then. Where the hero doesn't collapse, it is just on. */
-@keyframes hero-shadow {
-  from {
-    opacity: 0;
-  }
-  to {
-    height: var(--nav-h);
-    opacity: 1;
-  }
-}
-
-@utility hero-shadow {
-  animation-name: hero-shadow;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: scroll(root);
-  animation-range: 0 var(--hero-d, 100svh);
-}
-
-/* The hero is see-through, over the page's flowchart (Base.astro), so its
-   pinned strip would show the page scrolling under the nav. Its fill, the
-   hero wash, fades in as it closes, on the same timeline and range as
-   hero-collapse, and is whole by the time only the strip is left. */
-@keyframes hero-fill {
+   The nav is pinned over everything, see-through over the hero. Its fill (the
+   hero wash, and a shadow to fall on the page) comes in over the same
+   distance, and is whole by the time the page reaches it, so the page never
+   shows through it. */
+@keyframes nav-fill {
   from {
     opacity: 0;
   }
@@ -144,8 +96,8 @@
   }
 }
 
-@utility hero-fill {
-  animation-name: hero-fill;
+@utility nav-fill {
+  animation-name: nav-fill;
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-timeline: scroll(root);
@@ -172,40 +124,10 @@
   );
 }
 
-/* A footer that is the inverse of the hero: pinned to the bottom of the window
-   with only its bottom bar showing (the bar is h-19, 4.75rem), and the rest
-   revealed over the last stretch of the page's scroll. The clip's top edge
-   rises with the page, so the card above keeps its 12px gap throughout. The box
-   keeps its full height, so nothing reflows. --footer-d is the scroll distance
-   that takes the footer from the bar to the whole footer (its height less the
-   bar); scripts/footer-reveal.ts keeps it exact. The range is measured back
-   from the end of the page (100%), which is where the footer comes into view.
-
-   The whole footer is the base style and the bar is where the animation starts,
-   so on a page too short to scroll, where the timeline is inactive, the footer
-   simply shows in full. */
-@keyframes footer-reveal {
-  from {
-    clip-path: inset(calc(100% - 4.75rem) 0 0 0 round 0.75rem 0.75rem 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0 round 0.75rem 0.75rem 0 0);
-  }
-}
-
-@utility footer-reveal {
-  clip-path: inset(0 0 0 0 round 0.75rem 0.75rem 0 0);
-  animation-name: footer-reveal;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: scroll(root);
-  animation-range: calc(100% - var(--footer-d, 0px)) 100%;
-}
-
-/* Hero content leaving as the hero closes: it fades and drops, on the same
-   scroll timeline as hero-collapse. Each piece sets its own slice of the
-   collapse distance, as fractions of --hero-d: --leave-from and --leave-to
-   (0 is the top of the page, 1 is a fully closed hero), so the pieces can be
+/* Hero content leaving as the page covers the hero: it fades and drops, on
+   the same scroll timeline as nav-fill. Each piece sets its own slice of that
+   distance, as fractions of --hero-d: --leave-from and --leave-to (0 is the
+   top of the page, 1 the hero covered up to the nav), so the pieces can be
    staggered. It sets opacity and translate, not transform, on a wrapper of its
    own: the scroll-into-view reveal owns opacity and transform on the content
    itself. */

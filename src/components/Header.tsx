@@ -19,7 +19,7 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   );
 }
 
-const panelItem = "grid gap-0.5 rounded-xl px-3 py-3 text-base font-medium";
+const panelItem = "grid gap-0.5 px-3 py-3 text-base font-medium";
 const drawerLink =
   "block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight";
 
@@ -27,8 +27,8 @@ const drawerLink =
 // leaves the descriptive ones to the dropdown.
 const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
-// The nav of the hero (see Hero): transparent and in the flow of the hero, the
-// full width with the same gutter as the hero's content. Static markup.
+// The nav of the hero (see Hero, which pins it over the page): transparent,
+// the full width with the same gutter as the hero's content. Static markup.
 // scripts/nav.ts opens and closes the menus by setting `data-open` on the
 // elements below; the `group-data-[open=true]` and `data-[open=true]` classes
 // react to it.

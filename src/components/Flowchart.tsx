@@ -8,8 +8,8 @@ export type { ChartName };
 // the settings from the data attributes and paints it. What lies over it
 // decides how much shows: the hero's wash, and each band's backdrop.
 
-// The chart scales to fill the window, but its cells are never narrower than
-// cell CSS pixels; below that, on narrow screens, it is cropped.
+// The chart shows the layout closest in shape to the window, scaled to cover
+// it and centred, cropped evenly where it doesn't fit.
 //
 // curve is how far the lens bends the chart, as on a CRT (0 for flat), and
 // fringe how far its colours part at the corners, in CSS pixels (0 for none),
@@ -20,7 +20,6 @@ export type { ChartName };
 export function Flowchart({
   chart = "placement",
   alpha = 1,
-  cell = 7,
   curve = 0.12,
   fringe = 1.5,
   scan = 0.05,
@@ -30,7 +29,6 @@ export function Flowchart({
 }: {
   chart?: ChartName;
   alpha?: number;
-  cell?: number;
   curve?: number;
   fringe?: number;
   scan?: number;
@@ -45,7 +43,6 @@ export function Flowchart({
       data-flowchart
       data-chart={chart}
       data-alpha={alpha}
-      data-cell={cell}
       data-curve={curve}
       data-fringe={fringe}
       data-scan={scan}

@@ -15,7 +15,7 @@ export function PageHero({
   return (
     <Hero>
       <div className="px-(--gutter) py-16">
-        <div className="pointer-events-auto relative z-3">
+        <div>
           <Leave tier="heading">
             <Display1 wrap="pretty" {...reveal(1)}>
               {title.join(" ")}

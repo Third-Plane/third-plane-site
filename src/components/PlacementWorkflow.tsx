@@ -63,7 +63,7 @@ export function PlacementWorkflowSection({
 }) {
   return (
     <Section tone="deep" id={id}>
-      <ParticleField mask="section" tone="cream" alpha={0.75} density={0.8} />
+      <ParticleField tone="cream" alpha={0.75} density={0.8} />
       <SectionHeader title={title} body={body} />
       <PlacementWorkflow />
     </Section>

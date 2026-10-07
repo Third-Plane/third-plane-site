@@ -7,8 +7,7 @@ import { SplitHero } from "../components/SplitHero";
 import { Section, SectionHeader } from "../components/Section";
 import { cn, reveal } from "../lib/style";
 
-// The hero is its own export: pages/security.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/security.astro puts it in Base's `hero` slot.
 // The page's flowchart: Base shows it, and the hero's ledger follows it.
 export const chart: ChartName = "security";
 

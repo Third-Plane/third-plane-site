@@ -125,14 +125,26 @@ const JOBS: { reads: Source[]; writes: Target[]; then?: Target[]; notes: string[
 const SPACING = 6.5;
 
 export const integrations: ChartSpec<NodeId, RouteId> = {
-  cols: 172,
-  rows: 32,
-  nodes,
-  routes,
-  plate: { x: 2, y: 22, w: 30, lines: ["THIRD PLANE", "INTEGRATIONS", "READ · WRITE · RECORD"] },
-  notes: [
-    { x: 2, y: 19, text: "YOUR SYSTEMS, AS THEY ARE", strong: true },
-    { x: 132, y: 23, text: "RESULTS WHERE YOU EXPECT", strong: true },
+  // The wide layout, for windows about 2.3:1, is the reference. Drawn edge to
+  // edge, it is padded above (for the nav) and below.
+  layouts: [
+    {
+      cols: 172,
+      rows: 32,
+      pad: { top: 4, bottom: 1 },
+      nodes,
+      routes,
+      plate: {
+        x: 2,
+        y: 22,
+        w: 30,
+        lines: ["THIRD PLANE", "INTEGRATIONS", "READ · WRITE · RECORD"],
+      },
+      notes: [
+        { x: 2, y: 19, text: "YOUR SYSTEMS, AS THEY ARE", strong: true },
+        { x: 132, y: 23, text: "RESULTS WHERE YOU EXPECT", strong: true },
+      ],
+    },
   ],
   period: SPACING * JOBS.length,
   script: ({ go, work, log, note }) => {

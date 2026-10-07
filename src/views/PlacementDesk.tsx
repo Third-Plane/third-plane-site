@@ -14,7 +14,7 @@ import { Button } from "../components/Ui";
 const systemScreens: SystemName[] = ["ams", "inbox"];
 
 // The hero is its own export: pages/placement-desk.astro puts it in Base's `hero`
-// slot, outside <main>.
+// slot.
 export function PlacementDeskHero() {
   return (
     <SplitHero

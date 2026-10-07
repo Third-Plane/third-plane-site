@@ -2,37 +2,37 @@ import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { cn } from "../lib/style";
 
-// Sticky from lg up, where scroll-driven animation is available (see the
-// scroll-linked variant in tailwind.css): the hero stays pinned and its band
-// closes down to the nav as the page scrolls. A sticky element is held inside
-// its container, so this hero has to sit directly under <body> (Base's `hero`
-// slot), not in <main>, or it would be pushed off where <main> ends. It sits
-// flush with the top of the window and is pinned from the first pixel.
-const PINNED = "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:z-40";
-const COLLAPSING = "lg:scroll-linked:hero-collapse";
-// The shadow and the fill only come in as the hero closes into its strip.
-// Elsewhere the hero is see-through and casts no shadow of its own.
-const SHADOW = "hidden lg:scroll-linked:block lg:scroll-linked:hero-shadow";
-const FILL = "opacity-0 lg:scroll-linked:hero-fill";
+// Pinned from lg up, where scroll-driven animation is available (see the
+// scroll-linked variant in tailwind.css): the hero stays where it is and the
+// page slides up over it as it scrolls (what follows it is positioned, so it
+// paints on top). A sticky element is held inside its container, so this hero
+// has to sit directly under <body> (Base's `hero` slot), or it would be pushed
+// off where its container ends. It sits flush with the top of the window and
+// is pinned from the first pixel.
+const PINNED = "lg:scroll-linked:sticky lg:scroll-linked:top-0";
+// The nav is pinned over everything from lg up (elsewhere it scrolls away with
+// the hero). Its fill comes in as the page slides up to it (see nav-fill).
+const NAV_PINNED = "lg:scroll-linked:fixed";
+const NAV_FILL = "opacity-0 lg:scroll-linked:nav-fill";
 // The wash that keeps the copy legible over the page's flowchart.
 const VEIL = "hero-veil-stacked lg:hero-veil";
-// A pinned hero can't be taller than the window, less its 12px margin (m-3; a
-// safe bound, top and bottom): where the page ends, the browser pushes up a
-// sticky box that doesn't fit. So the band stops at that height, and anything
-// below it is cut off.
-const CAPPED = "lg:scroll-linked:max-h-[calc(100svh-1.5rem)]";
+// A pinned hero can't be taller than the window: where the page ends, the
+// browser pushes up a sticky box that doesn't fit, and below the window its
+// foot would never be seen. So the band stops at the window's height, and
+// anything below it is cut off.
+const CAPPED = "lg:scroll-linked:max-h-svh";
 // From lg up the band is at least 16:7, and taller where its content needs
 // it. The floor is a min-height from the hero's width (the section is a size
 // container), not an aspect-ratio: the band clips its overflow, which turns
 // off aspect-ratio's growing to fit, so content would be cut off instead. It
 // never asks for more than the window allows a pinned hero (see CAPPED): a
 // min-height would win over that cap.
-const SHAPED = "lg:min-h-[min(calc(100cqw*7/16),calc(100svh-1.5rem))]";
+const SHAPED = "lg:min-h-[min(calc(100cqw*7/16),100svh)]";
 
-// The hero's content leaves in tiers as it closes, the lowest first (see
-// hero-leave in tailwind.css). Each tier's slice of the collapse distance, as
-// fractions of it: they overlap, and all finish before the rising edge of the
-// hero reaches the tier above. A tier's shift is how far it drops as it fades.
+// The hero's content leaves in tiers as the page covers it, the lowest first
+// (see hero-leave in tailwind.css). Each tier's slice of that distance, as
+// fractions of it: they overlap, and all finish before the page's rising edge
+// reaches the tier above. A tier's shift is how far it drops as it fades.
 const LEAVE = {
   actions: "lg:scroll-linked:hero-leave [--leave-from:0] [--leave-to:0.3] [--leave-shift:2.5rem]",
   lead: "lg:scroll-linked:hero-leave [--leave-from:0.15] [--leave-to:0.45] [--leave-shift:2.5rem]",
@@ -49,44 +49,28 @@ export function Leave({ tier, children }: { tier: keyof typeof LEAVE; children: 
 export const HERO_PADDING = "pt-20 pb-22";
 
 // A hero band: see-through, over the page's flowchart (Base.astro), with a
-// wash behind its copy. The section is the hero's surface (see index.css), so
-// the nav takes its colours.
+// wash behind its copy. The section is the hero's surface (see index.css).
 //
-// The hero carries its own nav, on top. Unlike a Section there is no page-width
-// column: `children` run the full width of the band, above the flowchart and
+// The hero carries its own nav, which sits outside the band, on top of the
+// page as well as the hero, and takes the hero's colours. Unlike a Section
+// there is no page-width column: `children` run the full width of the band,
 // below the nav (which they leave room for). Padding is the caller's, so
 // content can sit where it likes.
-//
-// The nav sits outside the band that collapses, so its menus and the mobile
-// drawer are never clipped; the band (and its children) is what closes
-// down to a strip as wide as the nav.
-//
-// The section keeps its full height while the band closes (only the band is
-// clipped), so the section itself ignores the pointer: left alone it would sit
-// over the page below and swallow its clicks. The nav and the content that
-// wants the pointer take it back.
 export function Hero({ children }: { children?: ReactNode }) {
   return (
-    <section
-      className={cn("surface-hero pointer-events-none @container relative z-2 m-3 mt-0", PINNED)}
-      id="top"
-      data-hero-collapse
-    >
-      <div
-        className={cn(
-          "absolute inset-x-0 top-0 h-full rounded-b-2xl shadow-xl shadow-deep/10",
-          SHADOW,
-        )}
-      />
-      <div className="pointer-events-auto absolute inset-x-0 top-0 z-10">
+    <>
+      <div className={cn("surface-hero absolute inset-x-0 top-0 z-40", NAV_PINNED)}>
+        <div
+          className={cn("absolute inset-0 bg-hero shadow-xl shadow-deep/10", NAV_FILL)}
+          aria-hidden="true"
+        />
         <Header />
       </div>
-      <div
-        className={cn("relative overflow-hidden rounded-b-2xl", VEIL, SHAPED, CAPPED, COLLAPSING)}
-      >
-        <div className={cn("absolute inset-0 bg-hero", FILL)} aria-hidden="true" />
-        <div className="relative z-2 pt-(--nav-h)">{children}</div>
-      </div>
-    </section>
+      <section className={cn("surface-hero @container relative", PINNED)} id="top" data-hero>
+        <div className={cn("relative overflow-hidden", VEIL, SHAPED, CAPPED)}>
+          <div className="pt-(--nav-h)">{children}</div>
+        </div>
+      </section>
+    </>
   );
 }

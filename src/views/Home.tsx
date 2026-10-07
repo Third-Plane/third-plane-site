@@ -15,8 +15,7 @@ const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "reven
 // The two operating models, one a plain card and one accented (its own surface,
 // see index.css). The accented model's last step is filled.
 
-// The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/index.astro puts it in Base's `hero` slot.
 export function HomeHero() {
   return (
     <SplitHero

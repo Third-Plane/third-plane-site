@@ -51,12 +51,12 @@ function BlockView({ block }: { block: Block }) {
 }
 
 // The hero is its own export: pages/resources/[slug].astro puts it in Base's
-// `hero` slot, outside <main>.
+// `hero` slot.
 export function PostHero({ post }: { post: PostData }) {
   return (
     <Hero>
       <div className="px-(--gutter) pt-14 pb-16">
-        <div className="pointer-events-auto relative z-3 grid max-w-190 gap-5">
+        <div className="grid max-w-190 gap-5">
           <Leave tier="heading">
             <div className="grid gap-5">
               <AppLink

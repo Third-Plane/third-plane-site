@@ -6,8 +6,7 @@ import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 import { cn, reveal } from "../lib/style";
 
-// The hero is its own export: pages/company.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/company.astro puts it in Base's `hero` slot.
 export function CompanyHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }

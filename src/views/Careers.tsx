@@ -6,8 +6,7 @@ import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 
-// The hero is its own export: pages/careers.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/careers.astro puts it in Base's `hero` slot.
 export function CareersHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }

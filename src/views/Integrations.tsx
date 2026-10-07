@@ -14,8 +14,7 @@ import { reveal } from "../lib/style";
 // carrier channels, isn't shown here: CarrierChannels below covers it.
 const systemScreens: SystemName[] = ["ams", "documents", "inbox", "data"];
 
-// The hero is its own export: pages/integrations.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/integrations.astro puts it in Base's `hero` slot.
 // The page's flowchart: Base shows it, and the hero's ledger follows it.
 export const chart: ChartName = "integrations";
 

@@ -5,10 +5,19 @@
 // logs take. The script runs once, over one loop of PERIOD seconds, and the
 // loop repeats seamlessly. A script can also post notes, moments told to the
 // page as the chart passes them (feed.ts), which the activity panel follows.
+//
+// A chart can be drawn several ways, one layout for each shape of window it
+// is made for (wide, landscape, portrait...), and the page shows whichever is
+// closest (scripts/flowchart.ts). The layouts share the one script: the first
+// is the reference, which places every node and route and whose route lengths
+// set how long each packet takes; in the others packets run faster or slower
+// to keep that time, so the chart keeps the same clock whichever is showing. A
+// layout after the first can leave nodes and routes out; their part of the
+// script just isn't drawn there.
 
 import { Kind, createGrid, type Head, type Point } from "./grid";
 
-// Cells a packet covers a second.
+// Cells a packet covers a second, in the reference layout.
 export const SPEED = 28;
 
 // A box with a label. The first line is its name and any more are notes under
@@ -31,14 +40,25 @@ export type RouteSpec = {
   label?: { text: string; x: number; y: number };
 };
 
-export type ChartSpec<N extends string, R extends string> = {
+// One drawing of a chart, `cols` by `rows` cells, with `pad` blank cells
+// around it (room for the nav above, say, or for the window to crop into).
+export type LayoutSpec<N extends string, R extends string> = {
   cols: number;
   rows: number;
-  nodes: Record<N, NodeSpec>;
-  routes: Record<R, RouteSpec>;
+  pad?: Partial<Pad>;
+  nodes: Partial<Record<N, NodeSpec>>;
+  routes: Partial<Record<R, RouteSpec>>;
   // The title plate, a double box as on a drawing. Its first line is bold.
-  plate: { x: number; y: number; w: number; lines: string[] };
+  plate?: { x: number; y: number; w: number; lines: string[] };
   notes?: { x: number; y: number; text: string; strong?: boolean }[];
+};
+
+export type ChartSpec<N extends string, R extends string> = {
+  // The reference layout first, with every node and route, then any others.
+  layouts: [
+    LayoutSpec<N, R> & { nodes: Record<N, NodeSpec>; routes: Record<R, RouteSpec> },
+    ...LayoutSpec<N, R>[],
+  ];
   period: number;
   script: (s: Script<N, R>) => void;
 };
@@ -72,13 +92,25 @@ export type FlowNode = {
 export type FlowEvent = { kind: "route" | "work"; id: string; start: number; dur: number };
 export type LogEntry = { start: number; text: string };
 
-export type Flow = {
+export type Pad = { top: number; right: number; bottom: number; left: number };
+
+// A layout, laid into cells. Its shape is its width over its height, padding
+// and all, as drawn (a cell is twice as tall as it is wide). `ink` is the box
+// its drawing actually covers, in its own cells, end exclusive.
+export type FlowLayout = {
   cols: number;
   rows: number;
+  pad: Pad;
+  shape: number;
+  ink: { x0: number; y0: number; x1: number; y1: number };
   glyphs: string[];
   kinds: Uint8Array;
   nodes: Record<string, FlowNode>;
   routes: Record<string, number[]>;
+};
+
+export type Flow = {
+  layouts: FlowLayout[];
   events: FlowEvent[];
   // Each log's entries for one loop, in order.
   logs: Record<string, LogEntry[]>;
@@ -96,7 +128,7 @@ const lines = (label: string | string[]) => (Array.isArray(label) ? label : [lab
 export const heightOf = (spec: NodeSpec) =>
   spec.log ? spec.log + 2 : lines(spec.label).length + (spec.worker ? 3 : 2);
 
-export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N, R>): Flow {
+function layOut<N extends string, R extends string>(spec: LayoutSpec<N, R>): FlowLayout {
   const g = createGrid(spec.cols, spec.rows);
   const nodeSpecs = Object.entries(spec.nodes) as [N, NodeSpec][];
   const routeSpecs = Object.entries(spec.routes) as [R, RouteSpec][];
@@ -143,17 +175,50 @@ export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N,
   }
 
   const { plate } = spec;
-  g.box(plate.x, plate.y, plate.w, plate.lines.length + 2, "double");
-  plate.lines.forEach((line, l) => {
-    g.text(plate.x + 3, plate.y + 1 + l, line, l === 0 ? Kind.strong : Kind.text);
-  });
+  if (plate) {
+    g.box(plate.x, plate.y, plate.w, plate.lines.length + 2, "double");
+    plate.lines.forEach((line, l) => {
+      g.text(plate.x + 3, plate.y + 1 + l, line, l === 0 ? Kind.strong : Kind.text);
+    });
+  }
 
   for (const note of spec.notes ?? []) {
     g.text(note.x, note.y, note.text, note.strong ? Kind.strong : Kind.text);
   }
 
   for (const [, n] of nodeSpecs) g.shadow(n.x, n.y, n.w, heightOf(n));
-  g.shadow(plate.x, plate.y, plate.w, plate.lines.length + 2);
+  if (plate) g.shadow(plate.x, plate.y, plate.w, plate.lines.length + 2);
+
+  const glyphs = g.resolve();
+  const ink = { x0: spec.cols, y0: spec.rows, x1: 0, y1: 0 };
+  glyphs.forEach((glyph, i) => {
+    if (!glyph || glyph === " ") return;
+    const x = i % spec.cols;
+    const y = Math.floor(i / spec.cols);
+    ink.x0 = Math.min(ink.x0, x);
+    ink.y0 = Math.min(ink.y0, y);
+    ink.x1 = Math.max(ink.x1, x + 1);
+    ink.y1 = Math.max(ink.y1, y + 1);
+  });
+  const pad = { top: 0, right: 0, bottom: 0, left: 0, ...spec.pad };
+
+  return {
+    cols: spec.cols,
+    rows: spec.rows,
+    pad,
+    shape: (spec.cols + pad.left + pad.right) / ((spec.rows + pad.top + pad.bottom) * 2),
+    ink,
+    glyphs,
+    kinds: g.kind,
+    nodes,
+    routes,
+  };
+}
+
+export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N, R>): Flow {
+  const layouts = spec.layouts.map(layOut);
+  // Packets take as long as they would in the reference layout.
+  const { routes } = layouts[0];
 
   const events: FlowEvent[] = [];
   const logs: Record<string, LogEntry[]> = {};
@@ -178,18 +243,7 @@ export function buildFlow<N extends string, R extends string>(spec: ChartSpec<N,
   for (const entries of Object.values(logs)) entries.sort((a, b) => a.start - b.start);
   notes.sort((a, b) => a.start - b.start);
 
-  return {
-    cols: spec.cols,
-    rows: spec.rows,
-    glyphs: g.resolve(),
-    kinds: g.kind,
-    nodes,
-    routes,
-    events,
-    logs,
-    notes,
-    period: spec.period,
-  };
+  return { layouts, events, logs, notes, period: spec.period };
 }
 
 // A log entry in columns: what was done, to what, and the detail.

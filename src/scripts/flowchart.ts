@@ -5,12 +5,12 @@
 // routes, nodes work and logs take new entries.
 //
 // Each <canvas data-flowchart> fills its positioned parent (the page's fixed
-// backdrop, so the window). The chart is scaled to fit the space under the
-// nav and set at the top of it, but its cells are
-// never narrower than data-cell CSS pixels (the font size follows from the
-// cell): on a narrow screen it is cropped instead. data-alpha sets the overall
-// strength. It pauses while off-screen or in a hidden tab, and under
-// prefers-reduced-motion it paints one frame and stops.
+// backdrop, so the window). Of the chart's layouts (see flowchart/chart.ts)
+// it shows the one that loses least of its drawing to the window's edges,
+// scaled to cover the window and centred, so what doesn't fit is cropped
+// evenly from both sides; the font size follows from the cell. data-alpha sets the overall strength. It pauses
+// while off-screen or in a hidden tab, and under prefers-reduced-motion it
+// paints one frame and stops.
 //
 // Where WebGL is available the frame is drawn offscreen and shown through
 // the lens (flowchart/lens.ts), which bends it like a CRT and splits its
@@ -20,7 +20,7 @@
 // and data-glow how much the rolling bar strengthens the ink and lifts the
 // screen (0 for all six shows it plain).
 
-import { SPEED, buildFlow, startOf, type Flow, type LogEntry } from "./flowchart/chart";
+import { buildFlow, startOf, type Flow, type FlowLayout, type LogEntry } from "./flowchart/chart";
 import { CHARTS, type ChartName } from "./flowchart/charts";
 import { crossed } from "./flowchart/feed";
 import { Kind } from "./flowchart/grid";
@@ -61,6 +61,34 @@ const FPS = 30;
 // Seconds a new log entry takes to settle, and the number the first is given.
 const LOG_FADE = 1.2;
 const LOG_FROM = 1000;
+// How much better another layout has to score before the chart changes to it,
+// so a window near the point where two score the same doesn't flip between
+// them as it is resized.
+const STICK = 0.02;
+// The share of the window, at each edge, that the lens's curve crops.
+const LENS_EDGE = 0.03;
+
+// How much of a layout's drawing a w by h window would cut off, covered and
+// centred: the largest share of its width or height lost, past the lens's
+// crop too. 0 when it all shows.
+function cropOf(l: FlowLayout, w: number, h: number) {
+  const cols = l.cols + l.pad.left + l.pad.right;
+  const rows = l.rows + l.pad.top + l.pad.bottom;
+  const cell = Math.max(w / cols, h / (rows * (LINE / ADVANCE)));
+  const seen = 1 - 2 * LENS_EDGE;
+  // The share of a span, from a to b, that falls outside the middle `shown`
+  // of a `size` long.
+  const lost = (a: number, b: number, size: number, shown: number) =>
+    (Math.max(0, (size - shown) / 2 - a) + Math.max(0, b - (size + shown) / 2)) / (b - a);
+  const across = lost(l.pad.left + l.ink.x0, l.pad.left + l.ink.x1, cols, (w / cell) * seen);
+  const down = lost(
+    l.pad.top + l.ink.y0,
+    l.pad.top + l.ink.y1,
+    rows,
+    (h / (cell * (LINE / ADVANCE))) * seen,
+  );
+  return Math.max(across, down);
+}
 
 const flows: Partial<Record<ChartName, Flow>> = {};
 
@@ -87,7 +115,6 @@ function chart(canvas: HTMLCanvasElement) {
   const {
     chart: name = "placement",
     alpha = "1",
-    cell: cellAttr = "6",
     curve = "0",
     fringe = "0",
     scan = "0",
@@ -114,12 +141,13 @@ function chart(canvas: HTMLCanvasElement) {
   const spec = CHARTS[name as ChartName];
   if (!spec) return;
   const flow = (flows[name as ChartName] ??= buildFlow<string, string>(spec));
-  const { cols, rows, glyphs, kinds, nodes, routes, events, logs, period } = flow;
+  const { layouts, events, logs, period } = flow;
+  // The layout showing, chosen on each resize.
+  let L: FlowLayout = layouts[0];
 
   const a = Number(alpha);
-  const minCell = Number(cellAttr);
   // The cell and its type, set to fit on each resize.
-  let cw = minCell;
+  let cw = 8;
   let ch = cw * (LINE / ADVANCE);
   let baseline = 0;
   let regular = "";
@@ -150,8 +178,9 @@ function chart(canvas: HTMLCanvasElement) {
 
   // This frame's lit cells: how bright, and a glyph standing in for the
   // chart's own (a packet on a line, a spinner, a filling bar).
-  const lit = new Float32Array(glyphs.length);
-  const swap: (string | undefined)[] = new Array(glyphs.length);
+  const cells = Math.max(...layouts.map((l) => l.glyphs.length));
+  const lit = new Float32Array(cells);
+  const swap: (string | undefined)[] = new Array(cells);
   const touched: number[] = [];
   const light = (i: number, level: number, glyph?: string) => {
     if (!lit[i] && !swap[i]) touched.push(i);
@@ -162,9 +191,9 @@ function chart(canvas: HTMLCanvasElement) {
   };
 
   const paint = (target: CanvasRenderingContext2D, i: number, glyph: string, level: number) => {
-    const x = ox + (i % cols) * cw;
-    const y = oy + Math.floor(i / cols) * ch;
-    target.font = kinds[i] === Kind.strong ? bold : regular;
+    const x = ox + (i % L.cols) * cw;
+    const y = oy + Math.floor(i / L.cols) * ch;
+    target.font = L.kinds[i] === Kind.strong ? bold : regular;
     target.fillStyle = tone(level);
     target.fillText(glyph, x, y + baseline);
   };
@@ -175,25 +204,28 @@ function chart(canvas: HTMLCanvasElement) {
     base.height = h * dpr;
     bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     bctx.clearRect(0, 0, w, h);
-    glyphs.forEach((glyph, i) => {
-      if (glyph && glyph !== " ") paint(bctx, i, glyph, REST[kinds[i] as Kind]);
+    L.glyphs.forEach((glyph, i) => {
+      if (glyph && glyph !== " ") paint(bctx, i, glyph, REST[L.kinds[i] as Kind]);
     });
   };
 
-  const route = (path: number[], u: number) => {
-    const head = Math.floor(u * SPEED);
+  // A packet `u` seconds into a route it takes `dur` to run, however long the
+  // route is in this layout.
+  const route = (path: number[], u: number, dur: number) => {
+    const head = Math.floor((u / dur) * path.length);
     for (let n = 0; n <= TRAIL; n++) {
       const step = head - n;
       if (step < 0 || step >= path.length) continue;
       const i = path[step];
-      const k = kinds[i];
+      const k = L.kinds[i];
       const level = n === 0 ? 1 : 0.85 * (1 - n / (TRAIL + 1));
       light(i, level, n === 0 && k === Kind.line ? "■" : undefined);
     }
   };
 
   const work = (id: string, u: number, dur: number) => {
-    const node = nodes[id];
+    const node = L.nodes[id];
+    if (!node) return;
     const busy = u < dur;
     const env = busy ? Math.min(1, u / 0.15) : 1 - (u - dur) / FADE;
     if (env <= 0) return;
@@ -221,7 +253,7 @@ function chart(canvas: HTMLCanvasElement) {
   // back into earlier loops when this one has had too few yet. Each is
   // numbered in sequence across loops, and a new one is lit as it lands.
   const writeLog = (id: string, entries: LogEntry[], t: number) => {
-    const lines = nodes[id].rows;
+    const lines = L.nodes[id]?.rows;
     if (!lines || !entries.length) return;
     let loop = Math.floor(t / period);
     let k = entries.findLastIndex((e) => e.start <= t - loop * period);
@@ -250,7 +282,9 @@ function chart(canvas: HTMLCanvasElement) {
     for (const e of events) {
       const u = (((t - e.start) % period) + period) % period;
       if (e.kind === "route") {
-        if (u < e.dur + TRAIL / SPEED) route(routes[e.id], u);
+        // Running, or its trail still draining off the end.
+        const path = L.routes[e.id];
+        if (path && u < e.dur * (1 + TRAIL / path.length)) route(path, u, e.dur);
       } else if (u < e.dur + FADE) {
         work(e.id, u, e.dur);
       }
@@ -258,11 +292,11 @@ function chart(canvas: HTMLCanvasElement) {
     for (const [id, entries] of Object.entries(logs)) writeLog(id, entries, t);
 
     for (const i of touched) {
-      const glyph = swap[i] ?? glyphs[i];
-      const x = ox + (i % cols) * cw;
-      const y = oy + Math.floor(i / cols) * ch;
+      const glyph = swap[i] ?? L.glyphs[i];
+      const x = ox + (i % L.cols) * cw;
+      const y = oy + Math.floor(i / L.cols) * ch;
       ctx.clearRect(x, y, cw, ch);
-      if (glyph && glyph !== " ") paint(ctx, i, glyph, Math.max(lit[i], REST[kinds[i] as Kind]));
+      if (glyph && glyph !== " ") paint(ctx, i, glyph, Math.max(lit[i], REST[L.kinds[i] as Kind]));
       lit[i] = 0;
       swap[i] = undefined;
     }
@@ -302,6 +336,15 @@ function chart(canvas: HTMLCanvasElement) {
   // A moment with work in flight across the chart, for the still frame.
   const STILL = startOf(flow);
 
+  // The layout that loses least of its drawing to the window, the closer in
+  // shape breaking a tie: the current one unless another scores better by
+  // more than STICK.
+  const choose = () => {
+    const score = (l: FlowLayout) => cropOf(l, w, h) + 0.02 * Math.abs(Math.log(w / h / l.shape));
+    const best = layouts.reduce((a, b) => (score(b) < score(a) ? b : a));
+    return score(best) < score(L) - STICK ? best : L;
+  };
+
   const resize = () => {
     const rect = parent.getBoundingClientRect();
     w = Math.max(1, Math.round(rect.width));
@@ -315,21 +358,22 @@ function chart(canvas: HTMLCanvasElement) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.textBaseline = "alphabetic";
 
-    // The largest cell that fits the chart in the space under the nav, but no
-    // smaller than the floor, and whole device pixels wide so every cell edge
-    // lands on a pixel (and lines join cleanly). Centred across, and a row
-    // under the nav, so it sits in the hero when the page opens.
-    const nav = parseFloat(getComputedStyle(canvas).getPropertyValue("--nav-h")) || 0;
-    const fit = Math.min(w / cols, (h - nav) / (rows * (LINE / ADVANCE)));
-    cw = Math.max(1, Math.floor(Math.max(minCell, fit) * dpr)) / dpr;
+    // The smallest cell at which the layout covers the window, rounded up to
+    // whole device pixels so every cell edge lands on a pixel (and lines join
+    // cleanly). Centred, so any overflow is cropped evenly.
+    L = choose();
+    const cols = L.cols + L.pad.left + L.pad.right;
+    const rows = L.rows + L.pad.top + L.pad.bottom;
+    const cover = Math.max(w / cols, h / (rows * (LINE / ADVANCE)));
+    cw = Math.ceil(cover * dpr) / dpr;
     ch = cw * (LINE / ADVANCE);
     const size = cw / ADVANCE;
     baseline = size * ASCENT;
     regular = `${size}px ${FAMILY}`;
     bold = `700 ${size}px ${FAMILY}`;
     const snap = (v: number) => Math.round(v * dpr) / dpr;
-    ox = snap((w - cols * cw) / 2);
-    oy = snap(nav + ch);
+    ox = snap((w - cols * cw) / 2 + L.pad.left * cw);
+    oy = snap((h - rows * ch) / 2 + L.pad.top * ch);
 
     if (!ready) return;
     layer();

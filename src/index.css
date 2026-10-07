@@ -60,8 +60,8 @@
 .surface-white {
   --background: #fff;
 }
-/* The hero's band paints its own wash (bg-hero), since only the band closes as
-   the page scrolls; the surface sets just its colours. */
+/* The hero's wash (bg-hero) is painted by the page's backdrop and the nav's
+   fill (see Base and Hero); the surface sets just its colours. */
 .surface-hero {
   --background: var(--lavender);
 }
@@ -96,6 +96,13 @@
 }
 .surface-blend {
   background-image: var(--blend);
+}
+.surface-invert {
+  @apply mix-blend-plus-lighter backdrop-blur-sm backdrop-invert;
+  --foreground: rgba(255, 255, 255, 0.8);
+  --accent: white;
+  --muted-foreground: rgba(255, 255, 255, 0.6);
+  --subtle-foreground: rgba(255, 255, 255, 0.4);
 }
 /* The page's flowchart lies behind everything (Base.astro). A band can let it
    show: veil leaves its surface translucent, clear drops it (see Section). */

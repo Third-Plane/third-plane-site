@@ -6,7 +6,7 @@ import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 
 // The hero is its own export: pages/applied-epic.astro puts it in Base's `hero`
-// slot, outside <main>.
+// slot.
 export function AppliedEpicHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }

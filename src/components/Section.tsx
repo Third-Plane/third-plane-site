@@ -36,7 +36,7 @@ export function Section({
   return (
     <section
       className={cn(
-        "relative overflow-hidden px-(--gutter) rounded-xl py-20",
+        "relative overflow-hidden px-(--gutter) py-20 z-1",
         SURFACE[tone],
         BACKDROP[backdrop],
       )}

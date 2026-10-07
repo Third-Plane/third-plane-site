@@ -93,16 +93,23 @@ const POSTS = new Set([
 ]);
 
 export const security: ChartSpec<NodeId, RouteId> = {
-  cols: 172,
-  rows: 32,
-  nodes,
-  routes,
-  plate: { x: 2, y: 22, w: 30, lines: ["THIRD PLANE", "SECURITY", "DEFINED AUTHORITY"] },
-  notes: [
-    { x: 2, y: 15, text: "ISOLATED BY CUSTOMER" },
-    { x: 65, y: 10, text: "ESCALATE" },
-    { x: 84, y: 10, text: "DECISION" },
-    { x: 132, y: 18, text: "YOUR SYSTEMS", strong: true },
+  // The wide layout, for windows about 2.3:1, is the reference. Drawn edge to
+  // edge, it is padded above (for the nav) and below.
+  layouts: [
+    {
+      cols: 172,
+      rows: 32,
+      pad: { top: 4, bottom: 1 },
+      nodes,
+      routes,
+      plate: { x: 2, y: 22, w: 30, lines: ["THIRD PLANE", "SECURITY", "DEFINED AUTHORITY"] },
+      notes: [
+        { x: 2, y: 15, text: "ISOLATED BY CUSTOMER" },
+        { x: 65, y: 10, text: "ESCALATE" },
+        { x: 84, y: 10, text: "DECISION" },
+        { x: 132, y: 18, text: "YOUR SYSTEMS", strong: true },
+      ],
+    },
   ],
   period: SPACING * JOBS,
   script: ({ go, work, log, note }) => {

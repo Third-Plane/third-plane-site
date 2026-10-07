@@ -7,8 +7,7 @@ import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
 import { reveal } from "../lib/style";
 
-// The hero is its own export: pages/resources.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/resources.astro puts it in Base's `hero` slot.
 export function ResourcesHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }
