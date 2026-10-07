@@ -19,7 +19,7 @@ export function Cta({
   href = site.ctaHref,
 }: CtaCopy) {
   return (
-    <div className="wrap z-4 max-w-2xl rounded-xl px-(--gutter) py-12 shadow-2xl inset-ring-1 shadow-black/15 inset-ring-white/15 backdrop-blur-xl backdrop-brightness-110">
+    <div className="wrap z-4 max-w-3xl rounded-xl px-(--gutter) py-12 shadow-2xl inset-ring-1 shadow-black/15 inset-ring-white/25 backdrop-blur-lg backdrop-invert-5">
       <Display2 className="text-white">{title}</Display2>
       <p className="mt-5 max-w-[80ch] text-base text-white/75">{body}</p>
       <div className="mt-8 flex flex-wrap items-center gap-5">

@@ -113,6 +113,8 @@
   --accent: white;
   --muted-foreground: rgba(255, 255, 255, 0.6);
   --subtle-foreground: rgba(255, 255, 255, 0.4);
+  --primary: white;
+  --primary-foreground: var(--deep);
 }
 .surface-invert::before {
   @apply backdrop-blur-sm backdrop-invert;
