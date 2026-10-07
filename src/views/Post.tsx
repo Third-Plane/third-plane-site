@@ -1,6 +1,4 @@
-import { companyPage } from "../data/content";
 import type { Block, Post as PostData } from "../data/posts";
-import { Cta } from "../components/Cta";
 import { Display1, Lead } from "../components/Headings";
 import { Hero, Leave } from "../components/Hero";
 import { PostMeta } from "../components/PostMeta";
@@ -96,7 +94,6 @@ export function Post({ post }: { post: PostData }) {
           </div>
         </div>
       </article>
-      <Cta {...companyPage.cta} />
     </>
   );
 }

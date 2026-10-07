@@ -1,5 +1,4 @@
 import { companyPage as page } from "../data/content";
-import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
@@ -67,8 +66,6 @@ export function Company() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...page.cta} />
     </>
   );
 }

@@ -1,6 +1,5 @@
-import { companyPage, resourcesPage as page } from "../data/content";
+import { resourcesPage as page } from "../data/content";
 import type { Post } from "../data/posts";
-import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
@@ -41,8 +40,6 @@ export function Resources({ posts }: { posts: Post[] }) {
           <p className="max-w-[60ch] text-base text-foreground">Nothing published yet.</p>
         )}
       </Section>
-
-      <Cta {...companyPage.cta} />
     </>
   );
 }

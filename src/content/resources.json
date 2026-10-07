@@ -8,5 +8,9 @@
     "technical": "Technical",
     "perspective": "Perspective",
     "press": "Press"
+  },
+  "cta": {
+    "title": "Talk to us.",
+    "body": "Whether you run a brokerage, sit on the carrier side, or want to work on this problem with us, the conversation starts the same way."
   }
 }

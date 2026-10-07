@@ -1,6 +1,5 @@
 import { integrationsPage as page } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
-import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import type { ChartName } from "../components/Flowchart";
 import { SplitHero } from "../components/SplitHero";
@@ -65,8 +64,6 @@ export function Integrations() {
         <SectionHeader title={page.how.title} />
         <StepList steps={page.how.steps} />
       </Section>
-
-      <Cta {...page.cta} />
     </>
   );
 }

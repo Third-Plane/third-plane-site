@@ -1,5 +1,4 @@
-import { careersPage as page, site } from "../data/content";
-import { Cta } from "../components/Cta";
+import { careersPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
@@ -53,8 +52,6 @@ export function Careers() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...page.cta} href={site.mailto} />
     </>
   );
 }

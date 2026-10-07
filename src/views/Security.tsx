@@ -1,5 +1,4 @@
 import { securityPage as page } from "../data/content";
-import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import type { ChartName } from "../components/Flowchart";
@@ -69,8 +68,6 @@ export function Security() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...page.cta} />
     </>
   );
 }

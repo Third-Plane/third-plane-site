@@ -1,6 +1,5 @@
 import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
-import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { reveal } from "../lib/style";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
@@ -59,8 +58,6 @@ export function PlacementDesk() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...placementDesk.cta} />
     </>
   );
 }

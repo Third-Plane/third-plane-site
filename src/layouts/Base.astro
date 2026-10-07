@@ -1,5 +1,6 @@
 ---
 import "../tailwind.css";
+import type { CtaCopy } from "../components/Cta";
 import { Flowchart, type ChartName } from "../components/Flowchart";
 import { Footer } from "../components/Footer";
 import { site } from "../data/content";
@@ -13,6 +14,8 @@ interface Props {
   noindex?: boolean;
   jsonLd?: object[];
   chart?: ChartName;
+  // The page's call to action, shown in its footer.
+  cta?: CtaCopy;
 }
 
 const {
@@ -22,6 +25,7 @@ const {
   type = "website",
   noindex = false,
   chart = "placement",
+  cta,
 } = Astro.props;
 const full = fullTitle(title);
 const canonical = canonicalUrl(path);
@@ -93,7 +97,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     
     <slot />
 
-    <Footer />
+    <Footer cta={cta} />
 
     <script>
       import "../scripts/nav";

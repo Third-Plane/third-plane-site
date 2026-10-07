@@ -1,5 +1,4 @@
 import { approach, desk, homeHero, problem } from "../data/content";
-import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
@@ -98,8 +97,6 @@ export function Home() {
           })}
         </div>
       </Section>
-
-      <Cta label="Discuss your placement operation" />
     </>
   );
 }

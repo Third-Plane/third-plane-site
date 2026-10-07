@@ -9,7 +9,9 @@
 type Lines = string[]; // a heading, one entry per line
 type Card = { title: string; body: string };
 type Link = { label: string; href: string };
-type Cta = { title: string; body: string };
+// A page's call to action, shown in its footer. Without a label the button
+// takes the site's main button label.
+type Cta = { title: string; body: string; label?: string };
 
 // An activity panel beside a hero heading (Ledger.tsx): its heading, legend
 // and the line for each moment its flowchart posts.
@@ -46,6 +48,7 @@ export type HomeFile = {
   };
   desk: { title: string; body: string };
   showcase: { title: string; src?: string; poster?: string; caption?: string };
+  cta: Cta;
 };
 
 export type PlacementDeskFile = {
@@ -99,6 +102,7 @@ export type ResourcesFile = {
   title: Lines;
   lead: string;
   types: { technical: string; perspective: string; press: string };
+  cta: Cta;
 };
 
 export type IntegrationsFile = {

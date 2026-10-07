@@ -4,17 +4,22 @@ import { Display2 } from "./Headings";
 import { Section } from "./Section";
 import { Button } from "./Ui";
 
+// What a page says in its call to action. Anything it leaves out comes from
+// the site's defaults: the contact copy, and the main button and its link.
+export type CtaCopy = {
+  title?: string;
+  body?: string;
+  label?: string;
+  href?: string;
+};
+
+// The call to action that opens every page's footer (see Footer).
 export function Cta({
   title = contact.title,
   body = contact.body,
   label = site.ctaLabel,
   href = site.ctaHref,
-}: {
-  title?: string;
-  body?: string;
-  label?: string;
-  href?: string;
-}) {
+}: CtaCopy) {
   return (
     <Section tone="deep">
       <img
