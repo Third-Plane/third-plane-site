@@ -84,15 +84,21 @@
    or its foot could never be seen, so use it from lg up.
 
    The nav is pinned over everything, see-through over the hero. Its fill (the
-   hero wash, and a shadow to fall on the page) comes in over the same
+   hero's lavender, and a shadow to fall on the page) comes in over the same
    distance, and is whole by the time the page reaches it, so the page never
    shows through it. */
 @keyframes nav-fill {
   from {
-    opacity: 0;
+    background-color: transparent;
+    box-shadow:
+      0 20px 25px -5px transparent,
+      0 8px 10px -6px transparent;
   }
   to {
-    opacity: 1;
+    background-color: var(--lavender);
+    box-shadow:
+      0 20px 25px -5px color-mix(in oklab, var(--deep) 10%, transparent),
+      0 8px 10px -6px color-mix(in oklab, var(--deep) 10%, transparent);
   }
 }
 
@@ -102,6 +108,27 @@
   animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: 0 var(--hero-d, 100svh);
+}
+
+/* The hero leaving as the page covers it: the whole of it, wash and all,
+   fades and drops away over the first 60% of that distance, before the page's
+   rising edge reaches the heading. Pinned behind the page, a hero left showing
+   would show through any see-through band that passes over it. */
+@keyframes hero-cover {
+  to {
+    opacity: 0;
+    translate: 0 2.5rem;
+    /* Switches at the halfway point, so a fading hero stops taking clicks. */
+    pointer-events: none;
+  }
+}
+
+@utility hero-cover {
+  animation-name: hero-cover;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-timeline: scroll(root);
+  animation-range: 0 calc(var(--hero-d, 100svh) * 0.6);
 }
 
 /* A wash over the flowchart behind the hero's copy, so the headline reads over
@@ -122,31 +149,6 @@
     color-mix(in oklab, var(--lavender) 60%, transparent) 30%,
     transparent 100%
   );
-}
-
-/* Hero content leaving as the page covers the hero: it fades and drops, on
-   the same scroll timeline as nav-fill. Each piece sets its own slice of that
-   distance, as fractions of --hero-d: --leave-from and --leave-to (0 is the
-   top of the page, 1 the hero covered up to the nav), so the pieces can be
-   staggered. It sets opacity and translate, not transform, on a wrapper of its
-   own: the scroll-into-view reveal owns opacity and transform on the content
-   itself. */
-@keyframes hero-leave {
-  to {
-    opacity: 0;
-    translate: 0 var(--leave-shift, 2rem);
-    /* Switches at the halfway point, so a faded piece stops taking clicks. */
-    pointer-events: none;
-  }
-}
-
-@utility hero-leave {
-  animation-name: hero-leave;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: scroll(root);
-  animation-range: calc(var(--hero-d, 100svh) * var(--leave-from, 0))
-    calc(var(--hero-d, 100svh) * var(--leave-to, 0.5));
 }
 
 /* The hero wash: a soft purple glow over lavender. */

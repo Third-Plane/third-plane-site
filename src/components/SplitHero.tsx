@@ -1,12 +1,10 @@
 import type { ReactNode } from "react";
 import type { LedgerPanel } from "../data/content-types";
-import { cn, reveal } from "../lib/style";
+import { reveal } from "../lib/style";
 import type { ChartName } from "./Flowchart";
 import { Display1, Lead } from "./Headings";
 import { Ledger } from "./Ledger";
-import { HERO_PADDING, Hero, Leave } from "./Hero";
-
-const GRID = "grid items-center gap-14 lg:grid-cols-2";
+import { Hero } from "./Hero";
 
 // The hero with copy on the left and the activity ledger on the right, full
 // width (see Hero). A `title` array stacks its lines; a string flows as one.
@@ -43,26 +41,20 @@ export function SplitHero({
 
   return (
     <Hero>
-      <div className={cn("px-(--gutter)", HERO_PADDING, GRID)}>
+      <div className="grid items-center gap-14 pt-20 pb-22 lg:grid-cols-2">
         <div className="max-w-150">
-          <Leave tier="heading">{heading}</Leave>
-          <Leave tier="lead">
-            <Lead className="mt-7 max-w-[46ch]" {...reveal(2)}>
-              {lead}
-            </Lead>
-          </Leave>
+          {heading}
+          <Lead className="mt-7 max-w-[46ch]" {...reveal(2)}>
+            {lead}
+          </Lead>
           {actions ? (
-            <Leave tier="actions">
-              <div className="mt-9 flex flex-wrap gap-3" {...reveal(3)}>
-                {actions}
-              </div>
-            </Leave>
+            <div className="mt-9 flex flex-wrap gap-3" {...reveal(3)}>
+              {actions}
+            </div>
           ) : null}
         </div>
         <div {...reveal(3)}>
-          <Leave tier="actions">
-            <Ledger chart={chart} panel={ledger} />
-          </Leave>
+          <Ledger chart={chart} panel={ledger} />
         </div>
       </div>
     </Hero>

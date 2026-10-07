@@ -2,7 +2,7 @@ import type { PropsWithChildren } from "react";
 import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
-export type SectionTone = "white" | "blend" | "deep";
+export type SectionTone = "white" | "blend" | "deep" | "invert";
 
 // How much of the page's flowchart (Base.astro) the band lets through: none
 // (opaque), some, under a translucent surface (veil), or all of it (clear,
@@ -21,6 +21,7 @@ const SURFACE: Record<SectionTone, string> = {
   white: "surface-white",
   blend: "surface-blend",
   deep: "surface-deep",
+  invert: "surface-invert",
 };
 
 export function Section({
