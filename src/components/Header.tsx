@@ -28,19 +28,19 @@ const drawerLink =
 const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
 // The nav of the hero (see Hero): the full width with the same gutter as the
-// hero's content, over the top of it in the hero's colours. From lg up it is
+// hero's content, over the top of it in the hero's colours. Where the page
+// can follow the scroll (the scroll-linked variant in tailwind.css) it is
 // pinned over the page too, see-through over the hero and filling in as the
-// page slides up to it (nav-fill in tailwind.css), then taking the tone of
-// the band below it (scripts/nav-tone.ts); elsewhere it scrolls away with the
-// hero. Only its border colour is a transition: its fill follows the scroll.
-// Static markup.
+// page reaches it (nav-fill), then taking the tone of the band below it
+// (scripts/nav-tone.ts); elsewhere it scrolls away with the hero. Only its
+// border colour is a transition: its fill follows the scroll. Static markup.
 // scripts/nav.ts opens and closes the menus by setting `data-open` on the
 // elements below; the `group-data-[open=true]` and `data-[open=true]` classes
 // react to it.
 export function Header() {
   return (
     <header
-      className="group/nav surface-hero absolute inset-x-0 top-0 z-40 border-b border-b-transparent transition-[border-color] duration-250 data-[open=true]:border-b-border/50 lg:scroll-linked:fixed lg:scroll-linked:nav-fill"
+      className="group/nav surface-hero absolute inset-x-0 top-0 z-40 border-b border-b-transparent transition-[border-color] duration-250 data-[open=true]:border-b-border/50 scroll-linked:fixed scroll-linked:nav-fill"
       data-open="false"
       data-nav
     >
@@ -132,8 +132,11 @@ export function Header() {
         </button>
       </div>
 
+      {/* The drawer keeps the hero's colours over whatever band the nav is
+          over, as the dropdowns keep white. It fits under the nav in the
+          window as it is, toolbars and all. */}
       <div
-        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100vh-76px)] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-border/50 max-lg:data-[open=true]:bg-background max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
+        className="surface-hero hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100dvh-var(--nav-h))] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-border/50 max-lg:data-[open=true]:bg-background max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
         data-nav-drawer
       >

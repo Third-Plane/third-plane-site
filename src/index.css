@@ -37,7 +37,7 @@
   --font-code: "JetBrains Mono", ui-monospace, monospace;
   /* The bar: the height of the nav (Header) and of the footer's last row,
      and the unit of a band's padding, twice over above its content and once
-     below (Section). 19 steps of the spacing scale. */
+     below (Section). 16 steps of the spacing scale. */
   --bar: --spacing(16);
   /* The header: its bar plus the 1px border under it (Header.tsx). */
   --nav-h: calc(var(--bar) + 1px);

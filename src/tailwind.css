@@ -86,7 +86,10 @@
    The nav is pinned over everything, see-through over the hero. Its fill (the
    hero's lavender, and a shadow to fall on the page) comes in over the same
    distance, and is whole by the time the page reaches it, so the page never
-   shows through it. What is animated is --nav-fill, which the lavender and
+   shows through it. Below lg, where the hero isn't pinned but scrolls away
+   under the nav, the fill comes in over the nav's own height instead, as the
+   hero starts to pass under it, so the hero's copy doesn't show through a
+   half-filled nav either. What is animated is --nav-fill, which the lavender and
    the shadow are mixed from, not background-color itself: Chrome may animate
    that off the main thread, repainting the nav from what it last recorded of
    it, and with the nav's tone changing inside it (below) that can flash the
@@ -110,6 +113,9 @@
   animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: 0 var(--hero-d, 100svh);
+  @variant max-lg {
+    animation-range: 0 var(--nav-h);
+  }
   background-color: color-mix(in oklab, var(--lavender) calc(var(--nav-fill) * 100%), transparent);
   box-shadow:
     0 20px 25px -5px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent),
