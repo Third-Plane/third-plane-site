@@ -13,6 +13,13 @@
   font-display: swap;
 }
 
+/* Registered, so it is read back in px (scripts/hero-cover.ts). */
+@property --nav-h {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 /* The palette. Components use the semantic colours below instead (and the
    palette only for a few fixed brand marks); the surfaces map one to the other. */
 :root {
@@ -28,8 +35,12 @@
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
   --font-code: "JetBrains Mono", ui-monospace, monospace;
-  /* The header: its 76px bar plus the 1px border under it (Header.tsx). */
-  --nav-h: 77px;
+  /* The bar: the height of the nav (Header) and of the footer's last row,
+     and the unit of a band's padding, twice over above its content and once
+     below (Section). 19 steps of the spacing scale. */
+  --bar: --spacing(16);
+  /* The header: its bar plus the 1px border under it (Header.tsx). */
+  --nav-h: calc(var(--bar) + 1px);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --container: 1200px;
 }

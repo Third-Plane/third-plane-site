@@ -77,7 +77,10 @@ export function Post({ post }: { post: PostData }) {
     <>
       <article>
         {/* A white band, for the nav's tone (see Section). */}
-        <div className="surface-white relative rounded-xl py-27" data-band="white">
+        <div
+          className="surface-white relative rounded-xl pt-[calc(var(--spacing-bar)*2)] pb-bar"
+          data-band="white"
+        >
           <div className="wrap grid max-w-[68ch] gap-5 text-lg leading-relaxed">
             {post.body.map((block, i) => (
               <BlockView block={block} key={i} />

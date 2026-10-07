@@ -220,6 +220,9 @@
 }
 
 @theme inline {
+  /* The bar (see index.css): h-bar, pb-bar, ... */
+  --spacing-bar: var(--bar);
+
   /* The semantic colours, which each surface sets (see index.css). */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
