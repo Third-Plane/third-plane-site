@@ -37,11 +37,12 @@ export function Section({
   return (
     <section
       className={cn(
-        "relative overflow-hidden px-(--gutter) py-20 z-1",
+        "relative overflow-hidden px-(--gutter) pt-[calc(var(--spacing-bar)*2)] pb-bar z-1",
         SURFACE[tone],
         BACKDROP[backdrop],
       )}
       id={id}
+      data-band={tone}
     >
       {children}
     </section>

@@ -13,6 +13,13 @@
   font-display: swap;
 }
 
+/* Registered, so it is read back in px (scripts/hero-cover.ts). */
+@property --nav-h {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 /* The palette. Components use the semantic colours below instead (and the
    palette only for a few fixed brand marks); the surfaces map one to the other. */
 :root {
@@ -28,8 +35,12 @@
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
   --font-code: "JetBrains Mono", ui-monospace, monospace;
-  /* The header: its 76px bar plus the 1px border under it (Header.tsx). */
-  --nav-h: 77px;
+  /* The bar: the height of the nav (Header) and of the footer's last row,
+     and the unit of a band's padding, twice over above its content and once
+     below (Section). 19 steps of the spacing scale. */
+  --bar: --spacing(16);
+  /* The header: its bar plus the 1px border under it (Header.tsx). */
+  --nav-h: calc(var(--bar) + 1px);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --container: 1200px;
 }
@@ -41,7 +52,10 @@
 
    foreground is headings and emphasis, muted-foreground body copy and
    subtle-foreground meta. card is a tile on the surface; muted a quieter fill.
-   primary is the button. */
+   primary is the button.
+
+   The pinned nav takes the colours of the band under it, by its data-tone
+   (see scripts/nav-tone.ts), and its background (tailwind.css). */
 :root,
 .surface-white,
 .surface-blend,
@@ -66,7 +80,8 @@
   --background: var(--lavender);
 }
 .surface-deep,
-.surface-accent {
+.surface-accent,
+[data-nav][data-tone="deep"] {
   --foreground: var(--cream);
   --muted-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
   --subtle-foreground: color-mix(in oklab, var(--cream) 50%, transparent);
@@ -108,7 +123,8 @@
    band must be positioned, and must not make a stacking context of its own
    (no z-index, isolation, opacity, transform...): in Chrome that cuts the
    layer off from the page behind it too, and it inverts nothing. */
-.surface-invert {
+.surface-invert,
+[data-nav][data-tone="invert"] {
   --foreground: rgba(255, 255, 255, 0.8);
   --accent: white;
   --muted-foreground: rgba(255, 255, 255, 0.6);

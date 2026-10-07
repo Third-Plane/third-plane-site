@@ -25,8 +25,13 @@ const iconLink =
 // out the call to action's photograph.
 export function Footer({ cta }: { cta?: CtaCopy }) {
   return (
-    <footer className="surface-invert relative space-y-24 px-(--gutter) pt-24">
-      <Cta {...cta} />
+    <footer
+      className="surface-invert relative flex min-h-dvh flex-col space-y-24 px-(--gutter) pt-[calc(var(--spacing-bar)*2)]"
+      data-band="invert"
+    >
+      <div className="grid flex-1 place-items-center">
+        <Cta {...cta} />
+      </div>
       <div className="flex justify-between gap-16 mix-blend-plus-lighter max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
@@ -57,7 +62,7 @@ export function Footer({ cta }: { cta?: CtaCopy }) {
           ))}
         </div>
       </div>
-      <div className="flex h-19 items-center justify-between gap-4 text-sm text-subtle-foreground max-sm:flex-col">
+      <div className="flex h-bar items-center justify-between gap-4 text-sm text-subtle-foreground max-sm:flex-col">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <p>{siteFooter.location}</p>
           <AppLink className={iconLink} href={site.linkedin} aria-label="Third Plane on LinkedIn">
