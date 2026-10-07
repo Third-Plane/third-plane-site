@@ -43,19 +43,22 @@ export function Header() {
       data-nav
     >
       <div className="flex h-19 items-center justify-between gap-8 px-(--gutter)">
-        {/* Both lockups, stacked: the white one shows over a dark band (see
-            scripts/nav-tone.ts). */}
+        {/* Both lockups, stacked: the white one fades in over the purple one
+            over a dark band (see scripts/nav-tone.ts). The purple one only goes
+            once the white is whole, and is back before it starts to go, so the
+            two are never both part-faded, which would wash the logo out. */}
         <AppLink className="grid items-center" href="/" aria-label={`${site.name} home`}>
           <Logo
             className={cn(
-              "h-8.5 w-auto transition-opacity duration-200 [grid-area:1/1]",
-              "group-data-[tone=deep]/nav:opacity-0 group-data-[tone=invert]/nav:opacity-0",
+              "h-8.5 w-auto transition-opacity duration-0 [grid-area:1/1]",
+              "group-data-[tone=deep]/nav:opacity-0 group-data-[tone=deep]/nav:delay-400",
+              "group-data-[tone=invert]/nav:opacity-0 group-data-[tone=invert]/nav:delay-400",
             )}
           />
           <Logo
             tone="white"
             className={cn(
-              "h-8.5 w-auto opacity-0 transition-opacity duration-200 [grid-area:1/1]",
+              "h-8.5 w-auto opacity-0 transition-opacity duration-400 [grid-area:1/1]",
               "group-data-[tone=deep]/nav:opacity-100 group-data-[tone=invert]/nav:opacity-100",
             )}
           />

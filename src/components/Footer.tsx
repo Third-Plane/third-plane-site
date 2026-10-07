@@ -2,7 +2,6 @@ import { site, siteFooter } from "../data/content";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
 import { Cta, type CtaCopy } from "./Cta";
-import { Cut } from "./Section";
 import { AppLink } from "./Ui";
 
 function LinkedInMark() {
@@ -27,60 +26,54 @@ const iconLink =
 export function Footer({ cta }: { cta?: CtaCopy }) {
   return (
     <footer
-      className="surface-invert relative min-h-dvh space-y-24 overflow-clip px-(--gutter) pt-24"
+      className="surface-invert relative min-h-dvh space-y-24 px-(--gutter) pt-24"
       data-band="invert"
     >
-      <Cut>
-        <Cta {...cta} />
-      </Cut>
-      <Cut className="mix-blend-plus-lighter">
-        <div className="flex justify-between gap-16 max-lg:flex-col">
-          <div>
-            <Logo tone="white" className="h-8.5 w-auto" />
-            <p className="mt-4 text-base text-muted-foreground">{siteFooter.tagline}</p>
-          </div>
-          <div className="grid max-w-2xl flex-1 gap-12 sm:grid-cols-3">
-            {siteFooter.columns.map((column) => (
-              <nav
-                className="grid content-start gap-2.5 text-base text-foreground"
-                aria-label={column.label}
-                key={column.label}
-              >
-                <p className="mb-1 text-sm font-medium tracking-widest text-subtle-foreground uppercase">
-                  {column.label}
-                </p>
-                {column.links.map((link) => (
-                  <NavEntry
-                    className="transition-colors duration-200 hover:text-accent"
-                    disabledClassName="text-subtle-foreground"
-                    href={link.href}
-                    disabled={link.disabled}
-                    key={link.label}
-                  >
-                    {link.label}
-                  </NavEntry>
-                ))}
-              </nav>
-            ))}
-          </div>
+      <Cta {...cta} />
+      <div className="flex justify-between gap-16 mix-blend-plus-lighter max-lg:flex-col">
+        <div>
+          <Logo tone="white" className="h-8.5 w-auto" />
+          <p className="mt-4 text-base text-muted-foreground">{siteFooter.tagline}</p>
         </div>
-      </Cut>
-      <Cut>
-        <div className="flex h-19 items-center justify-between gap-4 text-sm text-subtle-foreground max-sm:flex-col">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <p>{siteFooter.location}</p>
-            <AppLink className={iconLink} href={site.linkedin} aria-label="Third Plane on LinkedIn">
-              <LinkedInMark />
-            </AppLink>
-            <AppLink className={iconLink} href={site.mailto}>
-              {site.email}
-            </AppLink>
-          </div>
-          <p>
-            © {site.year} {site.name}
-          </p>
+        <div className="grid max-w-2xl flex-1 gap-12 sm:grid-cols-3">
+          {siteFooter.columns.map((column) => (
+            <nav
+              className="grid content-start gap-2.5 text-base text-foreground"
+              aria-label={column.label}
+              key={column.label}
+            >
+              <p className="mb-1 text-sm font-medium tracking-widest text-subtle-foreground uppercase">
+                {column.label}
+              </p>
+              {column.links.map((link) => (
+                <NavEntry
+                  className="transition-colors duration-200 hover:text-accent"
+                  disabledClassName="text-subtle-foreground"
+                  href={link.href}
+                  disabled={link.disabled}
+                  key={link.label}
+                >
+                  {link.label}
+                </NavEntry>
+              ))}
+            </nav>
+          ))}
         </div>
-      </Cut>
+      </div>
+      <div className="flex h-19 items-center justify-between gap-4 text-sm text-subtle-foreground max-sm:flex-col">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <p>{siteFooter.location}</p>
+          <AppLink className={iconLink} href={site.linkedin} aria-label="Third Plane on LinkedIn">
+            <LinkedInMark />
+          </AppLink>
+          <AppLink className={iconLink} href={site.mailto}>
+            {site.email}
+          </AppLink>
+        </div>
+        <p>
+          © {site.year} {site.name}
+        </p>
+      </div>
     </footer>
   );
 }

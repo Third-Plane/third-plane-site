@@ -1,22 +1,23 @@
-// PROTOTYPE (home page only, see the nav mask in tailwind.css): gives the pinned
-// nav the tone of the band under the middle of it, as `data-tone` (see
-// index.css). Where the nav isn't pinned it scrolls away with the hero, and
-// keeps the hero's colours.
+// PROTOTYPE (home page only): gives the pinned nav the tone of the band just
+// below it, as `data-tone`, for that band's colours (index.css) and
+// background (tailwind.css), so the nav reads as the top of the band. Where
+// the nav isn't pinned it scrolls away with the hero, and keeps the hero's
+// colours.
 
 const pinnedNav = document.querySelector<HTMLElement>("[data-nav]");
 
-if (pinnedNav && document.body.classList.contains("nav-mask")) {
+if (pinnedNav && document.body.classList.contains("nav-tone")) {
   const bands = [...document.querySelectorAll<HTMLElement>("[data-band]")];
   let pinned = false;
   let frame = 0;
 
   const update = () => {
     frame = 0;
-    const mid = pinnedNav.offsetHeight / 2;
+    const foot = pinnedNav.offsetHeight;
     const band = pinned
       ? bands.find((band) => {
           const { top, bottom } = band.getBoundingClientRect();
-          return top <= mid && bottom > mid;
+          return top < foot && bottom >= foot;
         })
       : undefined;
     if (band) pinnedNav.dataset.tone = band.dataset.band;

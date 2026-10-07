@@ -44,7 +44,7 @@
    primary is the button.
 
    The pinned nav takes the colours of the band under it, by its data-tone
-   (see scripts/nav-tone.ts), but none of the band's background. */
+   (see scripts/nav-tone.ts), and its background (tailwind.css). */
 :root,
 .surface-white,
 .surface-blend,

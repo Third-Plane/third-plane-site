@@ -1,7 +1,6 @@
-import { Children, isValidElement, type PropsWithChildren, type ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
-import { ParticleField } from "./ParticleField";
 
 export type SectionTone = "white" | "blend" | "deep" | "invert";
 
@@ -38,31 +37,15 @@ export function Section({
   return (
     <section
       className={cn(
-        "relative overflow-clip px-(--gutter) py-20 z-1",
+        "relative overflow-hidden px-(--gutter) py-20 z-1",
         SURFACE[tone],
         BACKDROP[backdrop],
       )}
       id={id}
       data-band={tone}
     >
-      {Children.map(children, (child) =>
-        isValidElement(child) && child.type === ParticleField ? child : <Cut>{child}</Cut>,
-      )}
+      {children}
     </section>
-  );
-}
-
-// PROTOTYPE: a child of a band, cut away where it passes under the pinned nav
-// (see the nav cut in tailwind.css). Plain blocks wherever that is off, which
-// leave the layout as it was: neither starts a formatting context, so the
-// child's margins still collapse through them. `className` is the outer
-// block's, for what must sit on it (a blend mode, which inside it would blend
-// with nothing).
-export function Cut({ className, children }: { className?: string; children: ReactNode }) {
-  return (
-    <div className={className} data-cut>
-      <div>{children}</div>
-    </div>
   );
 }
 
