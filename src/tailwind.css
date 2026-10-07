@@ -86,19 +86,21 @@
    The nav is pinned over everything, see-through over the hero. Its fill (the
    hero's lavender, and a shadow to fall on the page) comes in over the same
    distance, and is whole by the time the page reaches it, so the page never
-   shows through it. */
+   shows through it. What is animated is --nav-fill, which the lavender and
+   the shadow are mixed from, not background-color itself: Chrome may animate
+   that off the main thread, repainting the nav from what it last recorded of
+   it, and with the nav's tone changing inside it (below) that can flash the
+   previous band's colour at any time as the page scrolls. Custom properties
+   always animate with the page. */
+@property --nav-fill {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 @keyframes nav-fill {
-  from {
-    background-color: transparent;
-    box-shadow:
-      0 20px 25px -5px transparent,
-      0 8px 10px -6px transparent;
-  }
   to {
-    background-color: var(--lavender);
-    box-shadow:
-      0 20px 25px -5px color-mix(in oklab, var(--deep) 10%, transparent),
-      0 8px 10px -6px color-mix(in oklab, var(--deep) 10%, transparent);
+    --nav-fill: 1;
   }
 }
 
@@ -108,45 +110,31 @@
   animation-fill-mode: both;
   animation-timeline: scroll(root);
   animation-range: 0 var(--hero-d, 100svh);
+  background-color: color-mix(in oklab, var(--lavender) calc(var(--nav-fill) * 100%), transparent);
+  box-shadow:
+    0 20px 25px -5px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent),
+    0 8px 10px -6px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent);
 }
 
-/* PROTOTYPE (home page only, `nav-tone` on <body>, see Base): once a band
-   reaches the pinned nav, the nav takes that band's background, as it takes
-   its colours (index.css; scripts/nav-tone.ts sets data-tone).
+/* Over the page, the pinned nav takes the tone of the band just below it
+   (data-tone, set by scripts/nav-tone.ts): the band's colours (index.css)
+   and its background, so it reads as the top of the band.
 
-   The background is a layer of its own, over nav-fill's lavender (whole by
-   the time a band arrives, shadow and all) and under the nav's content.
-   nav-fill is a scroll-driven animation, and taking it away to put the
-   band's colour in its place would jump, as a transition doesn't run for an
-   animation ending; on its own layer, every change of tone (to and from none
-   over the hero too) is the same 400ms fade, as are the links' and button's
-   colours (their hover with them, here) and the logo's (Header).
+   The background is a layer of its own, over the fill (whole by the time a
+   band arrives, shadow and all) and under the nav's content. Taking the fill
+   away to put the band's colour in its place would jump, as a transition
+   doesn't run for an animation ending; on its own layer, every change of
+   tone (to and from none over the hero too) is the same 400ms fade, of
+   --nav-bg for the reason above. The colours of the menu buttons and the
+   button after them fade with it (their hover with them), as does the logo
+   (Header). The layer covers the nav's bottom border too, which is
+   see-through, and would show the fill as a line under it.
 
    A blend band's gradient won't fit the nav, so it takes the colour the band
    starts at. The invert layer can't be repeated over the page: what is
    behind the nav there is the layer already, and would be inverted back. So
    the nav takes the inverse of the hero's lavender, the colour under the
-   page's flowchart, which is what that layer mostly shows.
-
-   Nothing here animates background-color itself, which Chrome may do off
-   the main thread, repainting the nav from what it last recorded of it: with
-   the tone changing inside it, that can flash the previous band's colour at
-   any time as the page scrolls. So the tone's fade is of --nav-bg, and
-   nav-fill is swapped for nav-fill-amount, which brings in --nav-fill over
-   the same distance, for the lavender and the shadow to be mixed from.
-   Custom properties always animate with the page. */
-@property --nav-fill {
-  syntax: "<number>";
-  inherits: false;
-  initial-value: 0;
-}
-
-@keyframes nav-fill-amount {
-  to {
-    --nav-fill: 1;
-  }
-}
-
+   page's flowchart, which is what that layer mostly shows. */
 @property --nav-bg {
   syntax: "<color>";
   inherits: false;
@@ -154,27 +142,7 @@
 }
 
 @layer utilities {
-  @variant lg {
-    @variant scroll-linked {
-      /* The rest of nav-fill's animation (its timeline and range) holds.
-         Only its border colour is a transition, not the fill. */
-      .nav-tone [data-nav] {
-        animation-name: nav-fill-amount;
-        transition-property: border-color;
-        background-color: color-mix(
-          in oklab,
-          var(--lavender) calc(var(--nav-fill) * 100%),
-          transparent
-        );
-        box-shadow:
-          0 20px 25px -5px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent),
-          0 8px 10px -6px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent);
-      }
-    }
-  }
-  /* It covers the nav's bottom border too, which is see-through, and would
-     show nav-fill's lavender as a line under it. */
-  .nav-tone [data-nav]::before {
+  [data-nav]::before {
     content: "";
     position: absolute;
     inset: 0 0 -1px;
@@ -182,20 +150,19 @@
     background-color: var(--nav-bg);
     transition: --nav-bg 400ms;
   }
-  /* The menu buttons, and the button after them. */
-  .nav-tone [data-nav] :is([data-menu-btn], [data-nav-links] + div a) {
+  [data-nav] :is([data-menu-btn], [data-nav-links] + div a) {
     transition-duration: 400ms;
   }
-  .nav-tone [data-nav][data-tone="white"]::before {
+  [data-nav][data-tone="white"]::before {
     --nav-bg: #fff;
   }
-  .nav-tone [data-nav][data-tone="blend"]::before {
+  [data-nav][data-tone="blend"]::before {
     --nav-bg: var(--blue);
   }
-  .nav-tone [data-nav][data-tone="deep"]::before {
+  [data-nav][data-tone="deep"]::before {
     --nav-bg: var(--deep);
   }
-  .nav-tone [data-nav][data-tone="invert"]::before {
+  [data-nav][data-tone="invert"]::before {
     --nav-bg: rgb(from var(--lavender) calc(255 - r) calc(255 - g) calc(255 - b));
   }
 }

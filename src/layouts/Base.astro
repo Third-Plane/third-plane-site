@@ -16,9 +16,6 @@ interface Props {
   chart?: ChartName;
   // The page's call to action, shown in its footer.
   cta?: CtaCopy;
-  // PROTOTYPE: the pinned nav takes the tone of the band under it (see
-  // scripts/nav-tone.ts).
-  navTone?: boolean;
 }
 
 const {
@@ -29,7 +26,6 @@ const {
   noindex = false,
   chart = "placement",
   cta,
-  navTone = false,
 } = Astro.props;
 const full = fullTitle(title);
 const canonical = canonicalUrl(path);
@@ -82,7 +78,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       rel="stylesheet"
     />
   </head>
-  <body class:list={{ "nav-tone": navTone }}>
+  <body>
     {/* The page's flowchart, fixed behind everything: the hero and the bands over
          it let it show where they are see-through. It paints the hero wash under
          the chart, so the hero's colours (surface-hero) hold for it, and it is as
