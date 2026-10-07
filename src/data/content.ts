@@ -46,6 +46,7 @@ export const problem = home.problem;
 export const approach = home.approach;
 export const desk = home.desk;
 export const showcase = home.showcase;
+export const homeCta = home.cta;
 
 export const placementDesk: PlacementDeskFile = placementDeskJson;
 export const companyPage: CompanyFile = companyJson;

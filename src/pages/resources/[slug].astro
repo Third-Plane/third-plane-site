@@ -1,5 +1,5 @@
 ---
-import { site } from "../../data/content";
+import { resourcesPage, site } from "../../data/content";
 import { getPosts } from "../../data/get-posts";
 import Base from "../../layouts/Base.astro";
 import { ORIGIN, canonicalUrl } from "../../lib/head";
@@ -28,7 +28,15 @@ const jsonLd = [
 ];
 ---
 
-<Base path={path} title={post.title} description={post.standfirst} type="article" jsonLd={jsonLd}>
+{/* A post closes with the Resources page's call to action. */}
+<Base
+  path={path}
+  title={post.title}
+  description={post.standfirst}
+  type="article"
+  jsonLd={jsonLd}
+  cta={resourcesPage.cta}
+>
   <PostHero slot="hero" post={post} />
   <Post post={post} />
 </Base>

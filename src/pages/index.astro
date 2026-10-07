@@ -1,9 +1,10 @@
 ---
+import { homeCta } from "../data/content";
 import Base from "../layouts/Base.astro";
 import { Home, HomeHero } from "../views/Home";
 ---
 
-<Base path="/">
+<Base path="/" cta={homeCta}>
   <HomeHero slot="hero" />
   <Home />
 </Base>

@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 import { Company, CompanyHero } from "../views/Company";
 ---
 
-<Base path="/company" title="Company" description={page.lead}>
+<Base path="/company" title="Company" description={page.lead} cta={page.cta}>
   <CompanyHero slot="hero" />
   <Company />
 </Base>

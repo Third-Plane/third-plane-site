@@ -4,7 +4,7 @@
 // channel, and the results run back along the foot of the chart to the
 // producer (or to a person, when one needs to look).
 
-import type { ChartSpec, RouteSpec } from "./chart";
+import type { ChartSpec, LayoutSpec, RouteSpec } from "./chart";
 import { via } from "./grid";
 
 // The channel workers fan out from the market plan along one bus.
@@ -125,15 +125,181 @@ const JOBS: {
 
 const SPACING = 6.5;
 
-export const placement: ChartSpec<NodeId, RouteId> = {
-  cols: 172,
-  rows: 32,
-  nodes,
-  routes,
-  plate: { x: 2, y: 20, w: 30, lines: ["THIRD PLANE", "PLACEMENT DESK", "AI WORKFORCE   REV 1"] },
+// The landscape layout, for windows about 1.67:1 (most desktops, laptops and
+// landscape tablets). The desk's steps run along the top, the four workers
+// fan out below them in a row, each over its market, and the results come
+// back along the foot to the left, where collect, review, return and the
+// producer stand. It is drawn within columns 12 to 142, which stay on screen
+// from 1.44:1 (where the sides are cropped) to where the wide layout takes over.
+const landscape: LayoutSpec<NodeId, RouteId> = {
+  cols: 154,
+  rows: 46,
+  nodes: {
+    submission: { x: 12, y: 5, w: 14, label: "SUBMISSION" },
+    ams: { x: 12, y: 9, w: 14, label: "AMS" },
+    inbox: { x: 12, y: 13, w: 14, label: "INBOX" },
+
+    intake: { x: 32, y: 8, w: 17, label: "INTAKE", worker: true },
+    gaps: { x: 54, y: 8, w: 17, label: "CHECK GAPS", worker: true },
+    appetite: { x: 76, y: 8, w: 17, label: "APPETITE", worker: true },
+    plan: { x: 98, y: 8, w: 17, label: "MARKET PLAN", worker: true },
+
+    portal: { x: 54, y: 21, w: 20, label: "PORTAL WORKER", worker: true },
+    api: { x: 77, y: 21, w: 20, label: "API WORKER", worker: true },
+    email: { x: 100, y: 21, w: 20, label: "EMAIL WORKER", worker: true },
+    forms: { x: 123, y: 21, w: 20, label: "FORMS WORKER", worker: true },
+
+    carrierA: { x: 56, y: 29, w: 16, label: "CARRIER A" },
+    carrierB: { x: 79, y: 29, w: 16, label: "CARRIER B" },
+    mga: { x: 102, y: 29, w: 16, label: "MGA" },
+    underwriter: { x: 125, y: 29, w: 16, label: "UNDERWRITER" },
+
+    review: { x: 12, y: 25, w: 17, label: "REVIEW", worker: true },
+    collect: { x: 36, y: 33, w: 17, label: "COLLECT", worker: true },
+    ret: { x: 12, y: 33, w: 17, label: "RETURN", worker: true },
+    producer: { x: 12, y: 39, w: 16, label: "PRODUCER" },
+  },
+  routes: {
+    submission: { points: via(26, 6, 28, 6, 28, 10, 31, 10) },
+    ams: { points: via(26, 10, 31, 10) },
+    inbox: { points: via(26, 14, 28, 14, 28, 10, 31, 10) },
+    intake: { points: via(49, 10, 53, 10) },
+    missing: {
+      points: via(62, 12, 62, 17, 18, 17, 18, 16),
+      label: { text: " MISSING INFO ", x: 32, y: 17 },
+    },
+    appetite: { points: via(71, 10, 75, 10) },
+    plan: { points: via(93, 10, 97, 10) },
+
+    toPortal: { points: via(106, 12, 106, 18, 64, 18, 64, 20), head: "hollow" },
+    toApi: { points: via(106, 12, 106, 18, 87, 18, 87, 20), head: "hollow" },
+    toEmail: { points: via(106, 12, 106, 18, 110, 18, 110, 20), head: "hollow" },
+    toForms: { points: via(106, 12, 106, 18, 133, 18, 133, 20), head: "hollow" },
+
+    portal: { points: via(64, 25, 64, 28) },
+    api: { points: via(87, 25, 87, 28) },
+    email: { points: via(110, 25, 110, 28) },
+    forms: { points: via(133, 25, 133, 28) },
+
+    fromCarrierA: { points: via(64, 32, 64, 35, 53, 35) },
+    fromCarrierB: { points: via(87, 32, 87, 35, 53, 35) },
+    fromMga: { points: via(110, 32, 110, 35, 53, 35) },
+    fromUnderwriter: { points: via(133, 32, 133, 35, 53, 35) },
+
+    toReview: { points: via(44, 32, 44, 27, 29, 27) },
+    fromReview: { points: via(20, 29, 20, 32) },
+    ret: { points: via(35, 35, 29, 35) },
+    producer: { points: via(20, 37, 20, 38) },
+  },
+  plate: {
+    x: 112,
+    y: 37,
+    w: 30,
+    lines: ["THIRD PLANE", "PLACEMENT DESK", "AI WORKFORCE   REV 1"],
+  },
   notes: [
-    { x: 118, y: 22, text: "WORKFORCE · 4 CHANNELS", strong: true },
-    { x: 150, y: 22, text: "MARKETS" },
+    { x: 118, y: 10, text: "WORKFORCE · 4 CHANNELS", strong: true },
+    { x: 66, y: 26, text: "PORTAL" },
+    { x: 89, y: 26, text: "API" },
+    { x: 112, y: 26, text: "EMAIL" },
+    { x: 135, y: 26, text: "FORMS" },
+    { x: 46, y: 30, text: "MARKETS" },
+    { x: 66, y: 37, text: "QUOTES · INDICATIONS · DECLINATIONS" },
+  ],
+};
+
+// The portrait layout, for windows about 0.46:1 (phones). The desk's steps
+// snake down in two columns, the workers stand in a column each beside its
+// market, and the results come up the right edge and back across the foot.
+// No plate: there isn't the room. It keeps a cell or two clear of the sides,
+// which the lens's curve crops a little on a tall screen.
+const portrait: LayoutSpec<NodeId, RouteId> = {
+  cols: 52,
+  rows: 56,
+  nodes: {
+    submission: { x: 4, y: 6, w: 14, label: "SUBMISSION" },
+    ams: { x: 20, y: 6, w: 9, label: "AMS" },
+    inbox: { x: 34, y: 6, w: 11, label: "INBOX" },
+
+    intake: { x: 5, y: 12, w: 19, label: "INTAKE", worker: true },
+    gaps: { x: 28, y: 12, w: 20, label: "CHECK GAPS", worker: true },
+    appetite: { x: 28, y: 18, w: 20, label: "APPETITE", worker: true },
+    plan: { x: 5, y: 18, w: 19, label: "MARKET PLAN", worker: true },
+
+    portal: { x: 5, y: 24, w: 19, label: "PORTAL WORKER", worker: true },
+    api: { x: 5, y: 29, w: 19, label: "API WORKER", worker: true },
+    email: { x: 5, y: 34, w: 19, label: "EMAIL WORKER", worker: true },
+    forms: { x: 5, y: 39, w: 19, label: "FORMS WORKER", worker: true },
+
+    carrierA: { x: 30, y: 25, w: 16, label: "CARRIER A" },
+    carrierB: { x: 30, y: 30, w: 16, label: "CARRIER B" },
+    mga: { x: 30, y: 35, w: 16, label: "MGA" },
+    underwriter: { x: 30, y: 40, w: 16, label: "UNDERWRITER" },
+
+    ret: { x: 4, y: 45, w: 18, label: "RETURN", worker: true },
+    collect: { x: 26, y: 45, w: 18, label: "COLLECT", worker: true },
+    producer: { x: 4, y: 51, w: 16, label: "PRODUCER" },
+    review: { x: 26, y: 51, w: 18, label: "REVIEW", worker: true },
+  },
+  routes: {
+    submission: { points: via(10, 9, 10, 10, 13, 10, 13, 11) },
+    ams: { points: via(24, 9, 24, 10, 13, 10, 13, 11) },
+    inbox: { points: via(38, 9, 38, 10, 13, 10, 13, 11) },
+    intake: { points: via(24, 14, 27, 14) },
+    missing: { points: via(40, 11, 40, 9) },
+    appetite: { points: via(38, 16, 38, 17) },
+    plan: { points: via(27, 20, 24, 20) },
+
+    toPortal: { points: via(4, 20, 3, 20, 3, 26, 4, 26), head: "hollow" },
+    toApi: { points: via(4, 20, 3, 20, 3, 31, 4, 31), head: "hollow" },
+    toEmail: { points: via(4, 20, 3, 20, 3, 36, 4, 36), head: "hollow" },
+    toForms: { points: via(4, 20, 3, 20, 3, 41, 4, 41), head: "hollow" },
+
+    portal: { points: via(24, 26, 29, 26) },
+    api: { points: via(24, 31, 29, 31) },
+    email: { points: via(24, 36, 29, 36) },
+    forms: { points: via(24, 41, 29, 41) },
+
+    fromCarrierA: { points: via(46, 26, 48, 26, 48, 47, 44, 47) },
+    fromCarrierB: { points: via(46, 31, 48, 31, 48, 47, 44, 47) },
+    fromMga: { points: via(46, 36, 48, 36, 48, 47, 44, 47) },
+    fromUnderwriter: { points: via(46, 41, 48, 41, 48, 47, 44, 47) },
+
+    ret: { points: via(25, 47, 22, 47) },
+    toReview: { points: via(34, 49, 34, 50) },
+    fromReview: { points: via(25, 52, 24, 52, 24, 47, 22, 47) },
+    producer: { points: via(12, 49, 12, 50) },
+  },
+  notes: [
+    { x: 42, y: 10, text: "MISSING" },
+    { x: 5, y: 23, text: "WORKFORCE", strong: true },
+    { x: 31, y: 23, text: "MARKETS" },
+  ],
+};
+
+export const placement: ChartSpec<NodeId, RouteId> = {
+  // The wide layout, for windows about 2.3:1, is the reference. Drawn edge to
+  // edge, it is padded above (for the nav) and below.
+  layouts: [
+    {
+      cols: 172,
+      rows: 32,
+      pad: { top: 4, bottom: 1 },
+      nodes,
+      routes,
+      plate: {
+        x: 2,
+        y: 20,
+        w: 30,
+        lines: ["THIRD PLANE", "PLACEMENT DESK", "AI WORKFORCE   REV 1"],
+      },
+      notes: [
+        { x: 118, y: 22, text: "WORKFORCE · 4 CHANNELS", strong: true },
+        { x: 150, y: 22, text: "MARKETS" },
+      ],
+    },
+    landscape,
+    portrait,
   ],
   period: SPACING * JOBS.length,
   script: ({ go, work, note }) => {

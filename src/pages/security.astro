@@ -1,10 +1,10 @@
 ---
 import { securityPage as page } from "../data/content";
 import Base from "../layouts/Base.astro";
-import { Security, SecurityHero } from "../views/Security";
+import { Security, SecurityHero, chart } from "../views/Security";
 ---
 
-<Base path="/security" title="Security and governance" description={page.lead}>
+<Base path="/security" title="Security and governance" description={page.lead} chart={chart} cta={page.cta}>
   <SecurityHero slot="hero" />
   <Security />
 </Base>

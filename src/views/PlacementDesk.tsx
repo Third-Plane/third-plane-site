@@ -1,6 +1,5 @@
 import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
-import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { reveal } from "../lib/style";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
@@ -14,7 +13,7 @@ import { Button } from "../components/Ui";
 const systemScreens: SystemName[] = ["ams", "inbox"];
 
 // The hero is its own export: pages/placement-desk.astro puts it in Base's `hero`
-// slot, outside <main>.
+// slot.
 export function PlacementDeskHero() {
   return (
     <SplitHero
@@ -59,8 +58,6 @@ export function PlacementDesk() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...placementDesk.cta} />
     </>
   );
 }

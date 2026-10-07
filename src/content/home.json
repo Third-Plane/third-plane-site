@@ -106,5 +106,10 @@
   },
   "showcase": {
     "title": "Two minutes on what changes when the work moves to a desk."
+  },
+  "cta": {
+    "title": "See where Placement Desk fits.",
+    "body": "Tell us how placement runs today. We’ll look at your workflow, carrier mix and systems and identify where Placement Desk could take work off your team.",
+    "label": "Discuss your placement operation"
   }
 }

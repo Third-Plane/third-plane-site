@@ -1,8 +1,6 @@
-import { companyPage } from "../data/content";
 import type { Block, Post as PostData } from "../data/posts";
-import { Cta } from "../components/Cta";
 import { Display1, Lead } from "../components/Headings";
-import { Hero, Leave } from "../components/Hero";
+import { Hero } from "../components/Hero";
 import { PostMeta } from "../components/PostMeta";
 import { AppLink, Arrow } from "../components/Ui";
 
@@ -51,34 +49,24 @@ function BlockView({ block }: { block: Block }) {
 }
 
 // The hero is its own export: pages/resources/[slug].astro puts it in Base's
-// `hero` slot, outside <main>.
+// `hero` slot.
 export function PostHero({ post }: { post: PostData }) {
   return (
     <Hero>
-      <div className="px-(--gutter) pt-14 pb-16">
-        <div className="pointer-events-auto relative z-3 grid max-w-190 gap-5">
-          <Leave tier="heading">
-            <div className="grid gap-5">
-              <AppLink
-                className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"
-                href="/resources"
-              >
-                <Arrow className="size-3.5 shrink-0 rotate-180" />
-                Resources
-              </AppLink>
-              <PostMeta post={post} />
-              <Display1 size="editorial">{post.title}</Display1>
-            </div>
-          </Leave>
-          <Leave tier="lead">
-            <Lead tone="muted" className="max-w-[60ch]">
-              {post.standfirst}
-            </Lead>
-          </Leave>
-          <Leave tier="actions">
-            <p className="text-sm text-subtle-foreground">{post.author}</p>
-          </Leave>
-        </div>
+      <div className="grid max-w-190 gap-5 pt-14 pb-16">
+        <AppLink
+          className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"
+          href="/resources"
+        >
+          <Arrow className="size-3.5 shrink-0 rotate-180" />
+          Resources
+        </AppLink>
+        <PostMeta post={post} />
+        <Display1 size="editorial">{post.title}</Display1>
+        <Lead tone="muted" className="max-w-[60ch]">
+          {post.standfirst}
+        </Lead>
+        <p className="text-sm text-subtle-foreground">{post.author}</p>
       </div>
     </Hero>
   );
@@ -96,7 +84,6 @@ export function Post({ post }: { post: PostData }) {
           </div>
         </div>
       </article>
-      <Cta {...companyPage.cta} />
     </>
   );
 }

@@ -1,13 +1,11 @@
 import { companyPage as page } from "../data/content";
-import { Cta } from "../components/Cta";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 import { cn, reveal } from "../lib/style";
 
-// The hero is its own export: pages/company.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/company.astro puts it in Base's `hero` slot.
 export function CompanyHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }
@@ -68,8 +66,6 @@ export function Company() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...page.cta} />
     </>
   );
 }

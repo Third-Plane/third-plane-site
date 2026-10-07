@@ -1,13 +1,11 @@
-import { careersPage as page, site } from "../data/content";
-import { Cta } from "../components/Cta";
+import { careersPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 
-// The hero is its own export: pages/careers.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/careers.astro puts it in Base's `hero` slot.
 export function CareersHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }
@@ -54,8 +52,6 @@ export function Careers() {
           ))}
         </Grid>
       </Section>
-
-      <Cta {...page.cta} href={site.mailto} />
     </>
   );
 }

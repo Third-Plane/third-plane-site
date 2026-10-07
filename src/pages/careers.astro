@@ -1,10 +1,11 @@
 ---
-import { careersPage as page } from "../data/content";
+import { careersPage as page, site } from "../data/content";
 import Base from "../layouts/Base.astro";
 import { Careers, CareersHero } from "../views/Careers";
 ---
 
-<Base path="/careers" title="Careers" description={page.lead}>
+{/* Introductions come by email, not the conversation form. */}
+<Base path="/careers" title="Careers" description={page.lead} cta={{ ...page.cta, href: site.mailto }}>
   <CareersHero slot="hero" />
   <Careers />
 </Base>

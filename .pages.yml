@@ -89,7 +89,7 @@ components:
               label: Returned to a person
   cta:
     type: object
-    label: Call to action (bottom of page)
+    label: Call to action (in the footer)
     fields:
       - name: title
         type: string
@@ -97,6 +97,10 @@ components:
       - name: body
         type: text
         required: true
+      - name: label
+        label: Button label
+        type: string
+        description: Leave empty to use the main button label from Site settings.
 
 content:
   - name: site
@@ -172,7 +176,7 @@ content:
             component: strings
       - name: contact
         label: Default call to action
-        description: The closing section on pages that don’t set their own.
+        description: The call to action in the footer of pages that don’t set their own.
         type: object
         fields:
           - name: title
@@ -322,6 +326,8 @@ content:
                 type: image
               - name: caption
                 type: string
+          - name: cta
+            component: cta
 
       - name: placement-desk
         label: Placement Desk
@@ -424,8 +430,8 @@ content:
                 description: Shown as a grid of cards, two per row.
                 component: cards
           - name: cta
-            label: Call to action (bottom of page)
-            description: The label is used on the heading button and the closing button.
+            label: Call to action (in the footer)
+            description: The label is used on the heading button and the footer's button.
             type: object
             fields:
               - name: title
@@ -841,6 +847,8 @@ content:
               - name: press
                 type: string
                 required: true
+          - name: cta
+            component: cta
 
   - name: posts
     label: Posts

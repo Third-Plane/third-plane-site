@@ -2,7 +2,18 @@ import type { PropsWithChildren } from "react";
 import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
-export type SectionTone = "white" | "blend" | "deep";
+export type SectionTone = "white" | "blend" | "deep" | "invert";
+
+// How much of the page's flowchart (Base.astro) the band lets through: none
+// (opaque), some, under a translucent surface (veil), or all of it (clear,
+// which keeps only the tone's colours).
+export type SectionBackdrop = "opaque" | "veil" | "clear";
+
+const BACKDROP: Record<SectionBackdrop, string> = {
+  opaque: "",
+  veil: "veil",
+  clear: "clear",
+};
 
 // Each tone is a surface (see index.css), which sets the colours of the band
 // and everything in it.
@@ -10,19 +21,26 @@ const SURFACE: Record<SectionTone, string> = {
   white: "surface-white",
   blend: "surface-blend",
   deep: "surface-deep",
+  invert: "surface-invert",
 };
 
 export function Section({
   id,
   tone,
+  backdrop = "opaque",
   children,
 }: PropsWithChildren & {
   id?: string;
   tone: SectionTone;
+  backdrop?: SectionBackdrop;
 }) {
   return (
     <section
-      className={cn("relative overflow-hidden px-(--gutter) rounded-xl py-20", SURFACE[tone])}
+      className={cn(
+        "relative overflow-hidden px-(--gutter) py-20 z-1",
+        SURFACE[tone],
+        BACKDROP[backdrop],
+      )}
       id={id}
     >
       {children}

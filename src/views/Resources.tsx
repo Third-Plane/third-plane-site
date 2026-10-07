@@ -1,14 +1,12 @@
-import { companyPage, resourcesPage as page } from "../data/content";
+import { resourcesPage as page } from "../data/content";
 import type { Post } from "../data/posts";
-import { Cta } from "../components/Cta";
 import { PageHero } from "../components/PageHero";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
 import { reveal } from "../lib/style";
 
-// The hero is its own export: pages/resources.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/resources.astro puts it in Base's `hero` slot.
 export function ResourcesHero() {
   return <PageHero title={page.title} lead={page.lead} />;
 }
@@ -42,8 +40,6 @@ export function Resources({ posts }: { posts: Post[] }) {
           <p className="max-w-[60ch] text-base text-foreground">Nothing published yet.</p>
         )}
       </Section>
-
-      <Cta {...companyPage.cta} />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { approach, desk, homeHero, problem } from "../data/content";
-import { Cta } from "../components/Cta";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
@@ -15,8 +14,7 @@ const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "reven
 // The two operating models, one a plain card and one accented (its own surface,
 // see index.css). The accented model's last step is filled.
 
-// The hero is its own export: pages/index.astro puts it in Base's `hero` slot,
-// outside <main>.
+// The hero is its own export: pages/index.astro puts it in Base's `hero` slot.
 export function HomeHero() {
   return (
     <SplitHero
@@ -99,8 +97,6 @@ export function Home() {
           })}
         </div>
       </Section>
-
-      <Cta label="Discuss your placement operation" />
     </>
   );
 }

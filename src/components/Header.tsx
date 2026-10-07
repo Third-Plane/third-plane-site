@@ -19,7 +19,7 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   );
 }
 
-const panelItem = "grid gap-0.5 rounded-xl px-3 py-3 text-base font-medium";
+const panelItem = "grid gap-0.5 px-3 py-3 text-base font-medium";
 const drawerLink =
   "block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight";
 
@@ -27,15 +27,18 @@ const drawerLink =
 // leaves the descriptive ones to the dropdown.
 const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
-// The nav of the hero (see Hero): transparent and in the flow of the hero, the
-// full width with the same gutter as the hero's content. Static markup.
+// The nav of the hero (see Hero): the full width with the same gutter as the
+// hero's content, over the top of it in the hero's colours. From lg up it is
+// pinned over the page too, see-through over the hero and filling in as the
+// page slides up to it (nav-fill in tailwind.css); elsewhere it scrolls away
+// with the hero. Static markup.
 // scripts/nav.ts opens and closes the menus by setting `data-open` on the
 // elements below; the `group-data-[open=true]` and `data-[open=true]` classes
 // react to it.
 export function Header() {
   return (
     <header
-      className="group/nav relative z-50 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-border/50"
+      className="group/nav surface-hero absolute inset-x-0 top-0 z-40 border-b border-b-transparent transition-colors duration-250 data-[open=true]:border-b-border/50 lg:scroll-linked:fixed lg:scroll-linked:nav-fill"
       data-open="false"
       data-nav
     >

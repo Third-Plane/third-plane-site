@@ -37,7 +37,7 @@ export function Ledger({ chart, panel }: { chart: ChartName; panel: LedgerPanel 
 
   return (
     <figure
-      className="pointer-events-auto m-0 rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-5 shadow-2xl"
+      className="m-0 rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-5 shadow-2xl"
       data-ledger
       data-copy={JSON.stringify(copy)}
       aria-label={description}

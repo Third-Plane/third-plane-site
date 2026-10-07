@@ -1,8 +1,8 @@
 import { site, siteFooter } from "../data/content";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
+import { Cta, type CtaCopy } from "./Cta";
 import { AppLink } from "./Ui";
-import { cn } from "../lib/style";
 
 function LinkedInMark() {
   return (
@@ -18,21 +18,16 @@ function LinkedInMark() {
 const iconLink =
   "inline-flex text-subtle-foreground transition-colors duration-200 hover:text-accent";
 
-// From lg up, where scroll-driven animation is available (see the scroll-linked
-// variant in tailwind.css), the footer is the inverse of the hero: pinned to the
-// bottom of the window, square along its bottom edge and flush with it, showing
-// only its bottom bar until the page is scrolled to the end, which reveals the
-// rest. Anywhere else it is an ordinary rounded card at the end of the page.
-const PINNED =
-  "lg:scroll-linked:sticky lg:scroll-linked:bottom-0 lg:scroll-linked:z-40 lg:scroll-linked:mb-0 lg:scroll-linked:rounded-b-none lg:scroll-linked:footer-reveal";
-
-export function Footer() {
+// The last section of every page, positioned like the rest (see Section) so it
+// slides over the pinned hero with them. It opens with the page's call to
+// action (`cta`, the site's default where a page sets none), then the site's
+// links. The links have the invert surface to themselves: its blend would wash
+// out the call to action's photograph.
+export function Footer({ cta }: { cta?: CtaCopy }) {
   return (
-    <footer
-      className={cn("surface-deep mx-3 mb-3 rounded-xl px-(--gutter)", PINNED)}
-      data-footer-reveal
-    >
-      <div className="flex justify-between gap-16 py-16 max-lg:flex-col">
+    <footer className="surface-invert relative space-y-24 px-(--gutter) pt-24">
+      <Cta {...cta} />
+      <div className="flex justify-between gap-16 mix-blend-plus-lighter max-lg:flex-col">
         <div>
           <Logo tone="white" className="h-8.5 w-auto" />
           <p className="mt-4 text-base text-muted-foreground">{siteFooter.tagline}</p>

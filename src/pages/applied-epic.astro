@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 import { AppliedEpic, AppliedEpicHero } from "../views/AppliedEpic";
 ---
 
-<Base path="/applied-epic" title="Applied Epic" description={page.lead}>
+<Base path="/applied-epic" title="Applied Epic" description={page.lead} cta={page.cta}>
   <AppliedEpicHero slot="hero" />
   <AppliedEpic />
 </Base>
