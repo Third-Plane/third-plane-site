@@ -2,6 +2,7 @@ import { site, siteFooter } from "../data/content";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
 import { Cta, type CtaCopy } from "./Cta";
+import { Section } from "./Section";
 import { AppLink } from "./Ui";
 
 function LinkedInMark() {
@@ -21,13 +22,14 @@ const iconLink =
 // The last section of every page, positioned like the rest (see Section) so it
 // slides over the pinned hero with them. It opens with the page's call to
 // action (`cta`, the site's default where a page sets none), then the site's
-// links. The links have the invert surface to themselves: its blend would wash
+// links. The links have the invert theme to themselves: its blend would wash
 // out the call to action's photograph.
 export function Footer({ cta }: { cta?: CtaCopy }) {
   return (
-    <footer
-      className="surface-invert relative flex min-h-dvh flex-col space-y-24 px-(--gutter) pt-[calc(var(--spacing-bar)*2)]"
-      data-band="invert"
+    <Section
+      as="footer"
+      theme="invert"
+      className="z-auto flex min-h-dvh flex-col space-y-24 overflow-visible pb-0"
     >
       <div className="grid flex-1 place-items-center">
         <Cta {...cta} />
@@ -76,6 +78,6 @@ export function Footer({ cta }: { cta?: CtaCopy }) {
           © {site.year} {site.name}
         </p>
       </div>
-    </footer>
+    </Section>
   );
 }

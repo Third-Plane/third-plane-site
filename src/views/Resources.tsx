@@ -14,7 +14,7 @@ export function ResourcesHero() {
 export function Resources({ posts }: { posts: Post[] }) {
   return (
     <>
-      <Section tone="white" id="posts">
+      <Section theme="white" id="posts">
         {posts.length ? (
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (

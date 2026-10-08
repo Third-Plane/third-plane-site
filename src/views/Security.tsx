@@ -17,7 +17,7 @@ export function SecurityHero() {
 export function Security() {
   return (
     <>
-      <Section tone="white" id="authority">
+      <Section theme="white" id="authority">
         <div className="grid gap-x-10 border-t border-t-border md:auto-rows-[auto_1fr] md:grid-cols-2 md:items-start">
           {page.authority.sides.map((side, i) => (
             <div
@@ -45,7 +45,7 @@ export function Security() {
         </div>
       </Section>
 
-      <Section tone="deep" id="record">
+      <Section theme="deep" id="record">
         <SectionHeader title={page.record.title} />
         <Grid columns={3} className="wrap">
           {page.record.items.map((item, i) => (
@@ -57,7 +57,7 @@ export function Security() {
         </Grid>
       </Section>
 
-      <Section tone="blend" id="data">
+      <Section theme="blend" id="data">
         <SectionHeader title={page.data.title} />
         <Grid className="wrap">
           {page.data.items.map((item, i) => (

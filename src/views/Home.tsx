@@ -11,7 +11,7 @@ import { cn, reveal } from "../lib/style";
 // A mock AMS screen for each problem point, in the order of problem.points.
 const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "revenue"];
 
-// The two operating models, one a plain card and one accented (its own surface,
+// The two operating models, one a plain card and one accented (its own theme,
 // see index.css). The accented model's last step is filled.
 
 // The hero is its own export: pages/index.astro puts it in Base's `hero` slot.
@@ -33,7 +33,7 @@ export function Home() {
 
       <Showcase />
 
-      <Section tone="white" id="problem">
+      <Section theme="white" id="problem">
         <SectionHeader title={problem.title} body={problem.body} />
         <Grid className="wrap">
           {problem.points.map((point, i) => (
@@ -48,7 +48,7 @@ export function Home() {
         </Grid>
       </Section>
 
-      <Section id="approach" tone="blend">
+      <Section id="approach" theme="blend">
         <SectionHeader title={approach.title} body={approach.body} />
         <div className="wrap grid gap-5">
           {approach.models.map((model, i) => {
@@ -56,8 +56,9 @@ export function Home() {
               <div
                 className={cn(
                   "rounded-2xl border p-7 transition-colors duration-200 hover:border-accent/45",
-                  model.accent ? "surface-accent border-transparent" : "border-border bg-card",
+                  model.accent ? "border-transparent" : "border-border bg-card",
                 )}
+                data-theme={model.accent ? "accent" : undefined}
                 {...reveal(i)}
                 key={model.kicker}
               >

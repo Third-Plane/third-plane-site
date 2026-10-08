@@ -8,7 +8,7 @@ import { Section } from "./Section";
 export function Showcase() {
   if (!showcase.src) return null;
   return (
-    <Section tone="white" id="video">
+    <Section theme="white" id="video">
       <header className="mx-auto mb-13 max-w-190 text-center" data-reveal>
         <Display2>{showcase.title}</Display2>
       </header>

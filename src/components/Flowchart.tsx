@@ -6,7 +6,7 @@ export type { ChartName };
 // drawn as a box-drawing flowchart, in motion, filling the fixed backdrop
 // behind everything (Base.astro). Static markup: scripts/flowchart.ts reads
 // the settings from the data attributes and paints it. What lies over it
-// decides how much shows: the hero's wash, and each band's backdrop.
+// decides how much shows: the hero's wash, and the sections over it.
 
 // The chart shows the layout closest in shape to the window, scaled to cover
 // it and centred, cropped evenly where it doesn't fit.

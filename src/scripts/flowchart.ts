@@ -92,7 +92,7 @@ function cropOf(l: FlowLayout, w: number, h: number) {
 
 const flows: Partial<Record<ChartName, Flow>> = {};
 
-// One of the surface colours around an element (--background, --foreground),
+// One of the theme's colours around an element (--background, --foreground),
 // as 0 to 1 RGB: resolved by the browser on a probe, then read back off a
 // pixel, so any CSS colour works. Anything unreadable comes out white.
 function colorOf(el: HTMLElement, name: string) {

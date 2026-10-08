@@ -79,13 +79,13 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     />
   </head>
   <body>
-    {/* The page's flowchart, fixed behind everything: the hero and the bands over
-         it let it show where they are see-through. It paints the hero wash under
-         the chart, so the hero's colours (surface-hero) hold for it, and it is as
+    {/* The page's flowchart, fixed behind everything: the hero and the sections
+         over it let it show where they are see-through. It paints the hero wash under
+         the chart, so the hero's theme holds for it, and it is as
          tall as the largest window, so a phone's toolbar coming and going
          doesn't resize it. A page with a ledger must pass the chart the ledger
          follows (see SplitHero). */}
-    <div class="surface-hero bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh" aria-hidden="true">
+    <div class="bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh" data-theme="hero" aria-hidden="true">
       <Flowchart chart={chart} />
     </div>
     {/* The hero comes first, directly under <body>: a sticky element is held inside
@@ -101,7 +101,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
 
     <script>
       import "../scripts/nav";
-      import "../scripts/nav-tone";
+      import "../scripts/nav-theme";
       import "../scripts/reveal";
       import "../scripts/ledger";
       import "../scripts/particles";

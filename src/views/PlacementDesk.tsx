@@ -32,7 +32,7 @@ export function PlacementDesk() {
 
       <CarrierChannels />
 
-      <Section tone="white" id="systems">
+      <Section theme="white" id="systems">
         <SectionHeader title={placementDesk.systems.title} body={placementDesk.systems.body} />
         <Grid className="wrap">
           {placementDesk.systems.links.map((link, i) => (
@@ -47,7 +47,7 @@ export function PlacementDesk() {
         </Grid>
       </Section>
 
-      <Section tone="blend" id="human">
+      <Section theme="blend" id="human">
         <SectionHeader title={placementDesk.human.title} body={placementDesk.human.body} />
         <Grid className="wrap">
           {placementDesk.human.items.map((item, i) => (

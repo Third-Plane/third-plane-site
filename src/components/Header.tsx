@@ -2,6 +2,7 @@ import { primaryNav, site } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
 import { NavEntry } from "./NavEntry";
+import { Section } from "./Section";
 import { cn } from "../lib/style";
 
 // A disabled item has no page yet: it is shown, but not as a link.
@@ -12,14 +13,14 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   const tone = item.live ? "text-accent" : "text-subtle-foreground";
   return (
     <span
-      className={cn("text-base font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
+      className={cn("text-sm font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
     >
       {item.note}
     </span>
   );
 }
 
-const panelItem = "grid gap-0.5 px-3 py-3 text-base font-medium";
+const panelItem = "grid gap-0.5 px-3 py-2.5 text-base font-medium";
 const drawerLink =
   "block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight";
 
@@ -27,41 +28,43 @@ const drawerLink =
 // leaves the descriptive ones to the dropdown.
 const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
 
-// The nav of the hero (see Hero): the full width with the same gutter as the
-// hero's content, over the top of it in the hero's colours. Where the page
-// can follow the scroll (the scroll-linked variant in tailwind.css) it is
-// pinned over the page too, see-through over the hero and filling in as the
-// page reaches it (nav-fill), then taking the tone of the band below it
-// (scripts/nav-tone.ts); elsewhere it scrolls away with the hero. Only its
+// The nav of the hero (see Hero): a section, the full width with the same
+// gutter as the hero's content, over the top of it in the hero's theme. Where
+// the page can follow the scroll (the scroll-linked variant in tailwind.css)
+// it is pinned over the page too, see-through over the hero and filling in as
+// the page reaches it (nav-fill), then taking the theme of the section below
+// it (scripts/nav-theme.ts); elsewhere it scrolls away with the hero. Only its
 // border colour is a transition: its fill follows the scroll. Static markup.
 // scripts/nav.ts opens and closes the menus by setting `data-open` on the
 // elements below; the `group-data-[open=true]` and `data-[open=true]` classes
 // react to it.
 export function Header() {
   return (
-    <header
-      className="group/nav surface-hero absolute inset-x-0 top-0 z-40 border-b border-b-transparent transition-[border-color] duration-250 data-[open=true]:border-b-border/50 scroll-linked:fixed scroll-linked:nav-fill"
+    <Section
+      as="header"
+      theme="hero"
+      className="group/nav absolute inset-x-0 top-0 z-40 overflow-visible border-b border-b-transparent bg-none p-0 transition-[border-color] duration-250 data-[open=true]:border-b-border/50 scroll-linked:fixed scroll-linked:nav-fill"
       data-open="false"
       data-nav
     >
       <div className="flex h-bar items-center justify-between gap-8 px-(--gutter)">
         {/* Both lockups, stacked: the white one fades in over the purple one
-            over a dark band (see scripts/nav-tone.ts). The purple one only goes
+            over a dark section (see scripts/nav-theme.ts). The purple one only goes
             once the white is whole, and is back before it starts to go, so the
             two are never both part-faded, which would wash the logo out. */}
         <AppLink className="grid items-center" href="/" aria-label={`${site.name} home`}>
           <Logo
             className={cn(
               "h-7 w-auto transition-opacity duration-0 [grid-area:1/1]",
-              "group-data-[tone=deep]/nav:opacity-0 group-data-[tone=deep]/nav:delay-400",
-              "group-data-[tone=invert]/nav:opacity-0 group-data-[tone=invert]/nav:delay-400",
+              "group-data-[theme=deep]/nav:opacity-0 group-data-[theme=deep]/nav:delay-400",
+              "group-data-[theme=invert]/nav:opacity-0 group-data-[theme=invert]/nav:delay-400",
             )}
           />
           <Logo
             tone="white"
             className={cn(
               "h-7 w-auto opacity-0 transition-opacity duration-400 [grid-area:1/1]",
-              "group-data-[tone=deep]/nav:opacity-100 group-data-[tone=invert]/nav:opacity-100",
+              "group-data-[theme=deep]/nav:opacity-100 group-data-[theme=invert]/nav:opacity-100",
             )}
           />
         </AppLink>
@@ -78,15 +81,16 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="surface-white absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-border/50 bg-card p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
+                data-theme="white"
                 data-nav-panel
               >
                 {(group.items as Item[]).map((item) => (
                   <NavEntry
                     className={cn(
                       panelItem,
-                      "text-foreground transition-colors duration-150 hover:bg-muted",
+                      "text-foreground transition-colors duration-150 hover:bg-muted rounded-xl",
                     )}
                     disabledClassName={cn(panelItem, "cursor-default text-subtle-foreground")}
                     href={item.href}
@@ -132,12 +136,13 @@ export function Header() {
         </button>
       </div>
 
-      {/* The drawer keeps the hero's colours over whatever band the nav is
+      {/* The drawer keeps the hero's theme over whatever section the nav is
           over, as the dropdowns keep white. It fits under the nav in the
           window as it is, toolbars and all. */}
       <div
-        className="surface-hero hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100dvh-var(--nav-h))] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-border/50 max-lg:data-[open=true]:bg-background max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
+        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100dvh-var(--nav-h))] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-border/50 max-lg:data-[open=true]:bg-background max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
         data-open="false"
+        data-theme="hero"
         data-nav-drawer
       >
         <div className="grid gap-1 px-(--gutter)">
@@ -165,6 +170,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </Section>
   );
 }

@@ -2,6 +2,7 @@ import type { Block, Post as PostData } from "../data/posts";
 import { Display1, Lead } from "../components/Headings";
 import { Hero } from "../components/Hero";
 import { PostMeta } from "../components/PostMeta";
+import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
 
 function BlockView({ block }: { block: Block }) {
@@ -75,19 +76,13 @@ export function PostHero({ post }: { post: PostData }) {
 export function Post({ post }: { post: PostData }) {
   return (
     <>
-      <article>
-        {/* A white band, for the nav's tone (see Section). */}
-        <div
-          className="surface-white relative rounded-xl pt-[calc(var(--spacing-bar)*2)] pb-bar"
-          data-band="white"
-        >
-          <div className="wrap grid max-w-[68ch] gap-5 text-lg leading-relaxed">
-            {post.body.map((block, i) => (
-              <BlockView block={block} key={i} />
-            ))}
-          </div>
+      <Section as="article" theme="white" className="rounded-xl px-0">
+        <div className="wrap grid max-w-[68ch] gap-5 text-lg leading-relaxed">
+          {post.body.map((block, i) => (
+            <BlockView block={block} key={i} />
+          ))}
         </div>
-      </article>
+      </Section>
     </>
   );
 }
