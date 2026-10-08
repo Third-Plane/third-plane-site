@@ -1,7 +1,7 @@
 ---
 import { placementDesk } from "../data/content";
 import Base from "../layouts/Base.astro";
-import { PlacementDesk, PlacementDeskHero } from "../views/PlacementDesk";
+import { PlacementDesk } from "../views/PlacementDesk";
 ---
 
 <Base
@@ -10,6 +10,5 @@ import { PlacementDesk, PlacementDeskHero } from "../views/PlacementDesk";
   description={placementDesk.problem}
   cta={placementDesk.cta}
 >
-  <PlacementDeskHero slot="hero" />
   <PlacementDesk />
 </Base>

@@ -8,8 +8,8 @@ import { cn } from "../lib/style";
 // taller than the window, and the page slides up over it as it scrolls (what
 // follows it is positioned, so it paints on top) while the hero fades away
 // (hero-cover). A sticky element is held inside its container, so the hero
-// has to sit directly under <body> (Base's `hero` slot), or it would be pushed
-// off where its container ends.
+// has to sit directly under <body> (see Base), or it would be pushed off where
+// its container ends.
 const PINNED =
   "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:max-h-svh lg:scroll-linked:hero-cover";
 

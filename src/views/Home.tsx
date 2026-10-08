@@ -15,17 +15,13 @@ const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "reven
 // The two operating models, one a plain card and one accented (its own theme,
 // see index.css). The accented model's last step is filled.
 
-export function HomeHero() {
-  return (
-    <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button />}>
-      <Ledger chart="placement" panel={homeHero.ledger} />
-    </SplitHero>
-  );
-}
-
 export function Home() {
   return (
     <>
+      <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button />}>
+        <Ledger chart="placement" panel={homeHero.ledger} />
+      </SplitHero>
+
       <PlacementWorkflowSection id="desk" title={desk.title} body={desk.body} />
 
       <Showcase />

@@ -3,13 +3,11 @@ import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 
-export function AppliedEpicHero() {
-  return <PageHero title={page.title} lead={page.lead} />;
-}
-
 export function AppliedEpic() {
   return (
     <>
+      <PageHero title={page.title} lead={page.lead} />
+
       <Section theme="white" id="who">
         <SectionHeader title={page.who.title} body={page.who.body} />
         <Grid columns={3} className="wrap">

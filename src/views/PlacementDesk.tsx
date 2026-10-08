@@ -12,21 +12,17 @@ import { Button } from "../components/Ui";
 // for Applied Epic, the inbox for the other integrations.
 const systemScreens: SystemName[] = ["ams", "inbox"];
 
-export function PlacementDeskHero() {
-  return (
-    <SplitHero
-      title={placementDesk.title}
-      lead={placementDesk.problem}
-      actions={<Button>{placementDesk.cta.label}</Button>}
-    >
-      <Ledger chart="placement" panel={homeHero.ledger} />
-    </SplitHero>
-  );
-}
-
 export function PlacementDesk() {
   return (
     <>
+      <SplitHero
+        title={placementDesk.title}
+        lead={placementDesk.problem}
+        actions={<Button>{placementDesk.cta.label}</Button>}
+      >
+        <Ledger chart="placement" panel={homeHero.ledger} />
+      </SplitHero>
+
       <PlacementWorkflowSection id="work" title={placementDesk.work.title} />
 
       <CarrierChannels />

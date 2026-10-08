@@ -2,12 +2,11 @@
 import { resourcesPage as page } from "../data/content";
 import { getPosts } from "../data/get-posts";
 import Base from "../layouts/Base.astro";
-import { Resources, ResourcesHero } from "../views/Resources";
+import { Resources } from "../views/Resources";
 
 const posts = await getPosts();
 ---
 
 <Base path="/resources" title="Resources" description={page.lead} cta={page.cta}>
-  <ResourcesHero slot="hero" />
   <Resources posts={posts} />
 </Base>
