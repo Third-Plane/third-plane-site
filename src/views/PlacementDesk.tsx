@@ -3,6 +3,7 @@ import { CarrierChannels } from "../components/CarrierChannels";
 import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section, SectionHeader } from "../components/Section";
+import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/SplitHero";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { Button } from "../components/Ui";
@@ -19,8 +20,9 @@ export function PlacementDeskHero() {
       title={placementDesk.title}
       lead={placementDesk.problem}
       actions={<Button>{placementDesk.cta.label}</Button>}
-      ledger={homeHero.ledger}
-    />
+    >
+      <Ledger chart="placement" panel={homeHero.ledger} />
+    </SplitHero>
   );
 }
 

@@ -4,6 +4,7 @@ import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
 import { Section, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
+import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
 import { cn } from "../lib/style";
@@ -17,12 +18,9 @@ const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "reven
 // The hero is its own export: pages/index.astro puts it in Base's `hero` slot.
 export function HomeHero() {
   return (
-    <SplitHero
-      title={homeHero.title}
-      lead={homeHero.lead}
-      actions={<Button />}
-      ledger={homeHero.ledger}
-    />
+    <SplitHero title={homeHero.title} lead={homeHero.lead} actions={<Button />}>
+      <Ledger chart="placement" panel={homeHero.ledger} />
+    </SplitHero>
   );
 }
 
