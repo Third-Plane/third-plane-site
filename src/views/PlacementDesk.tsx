@@ -12,8 +12,6 @@ import { Button } from "../components/Ui";
 // for Applied Epic, the inbox for the other integrations.
 const systemScreens: SystemName[] = ["ams", "inbox"];
 
-// The hero is its own export: pages/placement-desk.astro puts it in Base's `hero`
-// slot.
 export function PlacementDeskHero() {
   return (
     <SplitHero

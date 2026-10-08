@@ -32,7 +32,7 @@ export function SplitHero({
 
   return (
     <Hero>
-      <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
+      <div className="my-16 grid items-center gap-16 lg:grid-cols-2">
         <div>
           {heading}
           <Lead className="mt-7 max-w-[46ch]">{lead}</Lead>

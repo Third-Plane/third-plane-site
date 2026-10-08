@@ -6,8 +6,6 @@ import { SplitHero } from "../components/SplitHero";
 import { Arrow, AppLink } from "../components/Ui";
 import { cn } from "../lib/style";
 
-// The hero is its own export: pages/company.astro puts it in Base's `hero` slot.
-// The open roles sit beside the copy, in a panel like the other heroes' ledger.
 export function CompanyHero() {
   return (
     <SplitHero title={page.title.join(" ")} lead={page.lead}>

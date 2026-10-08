@@ -814,7 +814,8 @@ content:
         format: json
         fields:
           - name: title
-            component: lines
+            type: string
+            required: true
           - name: lead
             type: text
             required: true
