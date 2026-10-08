@@ -63,7 +63,7 @@
 /* Where the page may slide over a pinned hero as it scrolls: only in browsers
    with scroll-driven animations, only for people who haven't asked for less
    motion, and only in a window tall enough to hold a pinned hero (see Hero).
-   Without them the hero is an ordinary, scrolling band. */
+   Without them the hero is an ordinary, scrolling section. */
 /* The scroll-driven animations below are written as longhands, never the
    animation shorthand: the build's minifier (lightningcss) folds a following
    animation-timeline into the shorthand, which browsers reject whole, so the
@@ -92,8 +92,8 @@
    half-filled nav either. What is animated is --nav-fill, which the lavender and
    the shadow are mixed from, not background-color itself: Chrome may animate
    that off the main thread, repainting the nav from what it last recorded of
-   it, and with the nav's tone changing inside it (below) that can flash the
-   previous band's colour at any time as the page scrolls. Custom properties
+   it, and with the nav's theme changing inside it (below) that can flash the
+   previous section's colour at any time as the page scrolls. Custom properties
    always animate with the page. */
 @property --nav-fill {
   syntax: "<number>";
@@ -122,25 +122,27 @@
     0 8px 10px -6px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent);
 }
 
-/* Over the page, the pinned nav takes the tone of the band just below it
-   (data-tone, set by scripts/nav-tone.ts): the band's colours (index.css)
-   and its background, so it reads as the top of the band.
+/* Over the page, the pinned nav takes the theme of the section just below it
+   (scripts/nav-theme.ts): the theme's colours (index.css), and a background,
+   so it reads as the top of the section.
 
    The background is a layer of its own, over the fill (whole by the time a
-   band arrives, shadow and all) and under the nav's content. Taking the fill
-   away to put the band's colour in its place would jump, as a transition
-   doesn't run for an animation ending; on its own layer, every change of
-   tone (to and from none over the hero too) is the same 400ms fade, of
+   section arrives, shadow and all) and under the nav's content. Taking the
+   fill away to put the section's colour in its place would jump, as a
+   transition doesn't run for an animation ending; on its own layer, every
+   change of theme (to and from the hero's too) is the same 400ms fade, of
    --nav-bg for the reason above. The colours of the menu buttons and the
    button after them fade with it (their hover with them), as does the logo
    (Header). The layer covers the nav's bottom border too, which is
    see-through, and would show the fill as a line under it.
 
-   A blend band's gradient won't fit the nav, so it takes the colour the band
-   starts at. The invert layer can't be repeated over the page: what is
-   behind the nav there is the layer already, and would be inverted back. So
-   the nav takes the inverse of the hero's lavender, the colour under the
-   page's flowchart, which is what that layer mostly shows. */
+   The themes' own backgrounds aren't the nav's: the fill is its colour, and
+   it drops the blend's gradient (Header). A blend section's gradient won't
+   fit the nav, so it takes the colour the section starts at. The invert
+   layer can't be repeated over the page: what is behind the nav there is the
+   layer already, and would be inverted back. So the nav takes the inverse of
+   the hero's lavender, the colour under the page's flowchart, which is what
+   that layer mostly shows; its own layer is this one, with no filter. */
 @property --nav-bg {
   syntax: "<color>";
   inherits: false;
@@ -154,21 +156,22 @@
     inset: 0 0 -1px;
     z-index: -1;
     background-color: var(--nav-bg);
+    backdrop-filter: none;
     transition: --nav-bg 400ms;
   }
   [data-nav] :is([data-menu-btn], [data-nav-links] + div a) {
     transition-duration: 400ms;
   }
-  [data-nav][data-tone="white"]::before {
+  [data-nav][data-theme="white"]::before {
     --nav-bg: #fff;
   }
-  [data-nav][data-tone="blend"]::before {
+  [data-nav][data-theme="blend"]::before {
     --nav-bg: var(--blue);
   }
-  [data-nav][data-tone="deep"]::before {
+  [data-nav][data-theme="deep"]::before {
     --nav-bg: var(--deep);
   }
-  [data-nav][data-tone="invert"]::before {
+  [data-nav][data-theme="invert"]::before {
     --nav-bg: rgb(from var(--lavender) calc(255 - r) calc(255 - g) calc(255 - b));
   }
 }
@@ -176,7 +179,7 @@
 /* The hero leaving as the page covers it: the whole of it, wash and all,
    fades and drops away over the first 60% of that distance, before the page's
    rising edge reaches the heading. Pinned behind the page, a hero left showing
-   would show through any see-through band that passes over it. */
+   would show through any see-through section that passes over it. */
 @keyframes hero-cover {
   to {
     opacity: 0;
@@ -229,7 +232,7 @@
   /* The bar (see index.css): h-bar, pb-bar, ... */
   --spacing-bar: var(--bar);
 
-  /* The semantic colours, which each surface sets (see index.css). */
+  /* The semantic colours, which each theme sets (see index.css). */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);

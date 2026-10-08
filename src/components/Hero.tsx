@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
+import { Section } from "./Section";
 import { cn } from "../lib/style";
 
 // Pinned from lg up, where scroll-driven animation is available (see the
@@ -16,24 +17,25 @@ const PINNED =
 // behind its copy (across the top where the copy stacks, down the copy column
 // from lg up), the full width with the page's gutter, starting below the nav.
 // From lg up it is at least 16:7, and taller where its content needs it, but
-// never taller than the window. The section is the hero's surface (see
-// index.css). Vertical spacing is the caller's.
+// never taller than the window, in the hero's theme. Vertical spacing is the
+// caller's.
 //
 // The nav comes with it (see Header), pinned over the page as well as the hero.
 export function Hero({ children }: { children?: ReactNode }) {
   return (
     <>
       <Header />
-      <section
+      <Section
+        theme="hero"
         className={cn(
-          "surface-hero hero-veil-stacked lg:hero-veil relative overflow-hidden px-(--gutter) pt-(--nav-h) lg:min-h-[min(43.75vw,100svh)]",
+          "hero-veil-stacked lg:hero-veil z-auto pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)]",
           PINNED,
         )}
         id="top"
         data-hero
       >
         {children}
-      </section>
+      </Section>
     </>
   );
 }

@@ -24,7 +24,7 @@ export function IntegrationsHero() {
 export function Integrations() {
   return (
     <>
-      <Section tone="white" id="systems">
+      <Section theme="white" id="systems">
         <SectionHeader title={page.systems.title} />
         <Grid className="wrap">
           {page.systems.items.slice(0, 4).map((item, i) => (
@@ -60,7 +60,7 @@ export function Integrations() {
 
       <CarrierChannels />
 
-      <Section tone="deep" id="how">
+      <Section theme="deep" id="how">
         <SectionHeader title={page.how.title} />
         <StepList steps={page.how.steps} />
       </Section>

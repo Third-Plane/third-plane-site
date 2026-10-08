@@ -21,14 +21,13 @@
 }
 
 /* The palette. Components use the semantic colours below instead (and the
-   palette only for a few fixed brand marks); the surfaces map one to the other. */
+   palette only for a few fixed brand marks); the themes map one to the other. */
 :root {
   --cream: #f6f3f0;
   --purple: #6338e3;
   --deep: #2d1f57;
   --pink: #f2d8ff;
   --blue: #e9f2f7;
-  --blend: linear-gradient(180deg, var(--blue) 0%, var(--pink) 100%);
   --lavender: color-mix(in srgb, var(--pink) 32%, var(--cream));
   --ink-body: #4a4166;
   --ink-muted: #7a7291;
@@ -36,7 +35,7 @@
   --font-body: "Archivo", system-ui, sans-serif;
   --font-code: "JetBrains Mono", ui-monospace, monospace;
   /* The bar: the height of the nav (Header) and of the footer's last row,
-     and the unit of a band's padding, twice over above its content and once
+     and the unit of a section's padding, twice over above its content and once
      below (Section). 16 steps of the spacing scale. */
   --bar: --spacing(16);
   /* The header: its bar plus the 1px border under it (Header.tsx). */
@@ -45,21 +44,19 @@
   --container: 1200px;
 }
 
-/* Surfaces. Each sets the semantic colours (text-foreground, bg-card,
+/* Themes. Each sets the semantic colours (text-foreground, bg-card,
    border-border, ...; see @theme in tailwind.css) for everything inside it,
    with its own background and default text colour, so a component reads
-   correctly on whichever surface it sits. The page itself (:root) is cream.
+   correctly on whichever theme it sits. An element takes one by its
+   data-theme (see Section); the page itself (:root) is cream.
 
    foreground is headings and emphasis, muted-foreground body copy and
-   subtle-foreground meta. card is a tile on the surface; muted a quieter fill.
-   primary is the button.
-
-   The pinned nav takes the colours of the band under it, by its data-tone
-   (see scripts/nav-tone.ts), and its background (tailwind.css). */
+   subtle-foreground meta. card is a tile on the theme; muted a quieter fill.
+   primary is the button. */
 :root,
-.surface-white,
-.surface-blend,
-.surface-hero {
+[data-theme="white"],
+[data-theme="blend"],
+[data-theme="hero"] {
   --background: var(--cream);
   --foreground: var(--deep);
   --muted-foreground: var(--ink-body);
@@ -71,17 +68,16 @@
   --primary: var(--deep);
   --primary-foreground: #fff;
 }
-.surface-white {
+[data-theme="white"] {
   --background: #fff;
 }
 /* The hero's wash (bg-hero) is painted by the page's backdrop and the nav's
-   fill (see Base and Hero); the surface sets just its colours. */
-.surface-hero {
+   fill (see Base and Hero); the theme sets just its colours. */
+[data-theme="hero"] {
   --background: var(--lavender);
 }
-.surface-deep,
-.surface-accent,
-[data-nav][data-tone="deep"] {
+[data-theme="deep"],
+[data-theme="accent"] {
   --foreground: var(--cream);
   --muted-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
   --subtle-foreground: color-mix(in oklab, var(--cream) 50%, transparent);
@@ -92,12 +88,13 @@
   --primary: #fff;
   --primary-foreground: var(--deep);
 }
-.surface-deep {
+[data-theme="deep"] {
   --background: var(--deep);
 }
-/* A purple tile on a band. It keeps the band's --background, so something
-   inside it that sits over the band (an arrow in a gap) still matches it. */
-.surface-accent {
+/* A purple tile on a section. It keeps the section's --background, so
+   something inside it that sits over the section (an arrow in a gap) still
+   matches it. */
+[data-theme="accent"] {
   --muted-foreground: color-mix(in oklab, var(--cream) 90%, transparent);
   --subtle-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
   --border: color-mix(in oklab, var(--cream) 35%, transparent);
@@ -105,26 +102,25 @@
   --primary-foreground: var(--purple);
   background-color: var(--purple);
 }
-.surface-white,
-.surface-deep {
+[data-theme="white"],
+[data-theme="deep"] {
   background-color: var(--background);
 }
-.surface-blend {
-  background-image: var(--blend);
+[data-theme="blend"] {
+  background-image: linear-gradient(180deg, var(--blue) 0%, var(--pink) 100%);
 }
 /* An inverted, blurred view of what lies behind (the page's flowchart). The
    filter is on a layer of its own behind the content, not on the element:
    an element with a backdrop filter is a backdrop root, and a backdrop filter
    inside it only sees what is painted within it, so a frosted card in the
-   band (see Cta) would blur nothing.
+   section (see Cta) would blur nothing.
 
    The layer sits at z-index -1 in the page's own stacking order, above the
-   page's backdrop (which comes earlier) and below the band's content. So the
-   band must be positioned, and must not make a stacking context of its own
-   (no z-index, isolation, opacity, transform...): in Chrome that cuts the
+   page's backdrop (which comes earlier) and below the section's content. So
+   the section must be positioned, and must not make a stacking context of its
+   own (no z-index, isolation, opacity, transform...): in Chrome that cuts the
    layer off from the page behind it too, and it inverts nothing. */
-.surface-invert,
-[data-nav][data-tone="invert"] {
+[data-theme="invert"] {
   --foreground: rgba(255, 255, 255, 0.8);
   --accent: white;
   --muted-foreground: rgba(255, 255, 255, 0.6);
@@ -132,35 +128,17 @@
   --primary: white;
   --primary-foreground: var(--deep);
 }
-.surface-invert::before {
+[data-theme="invert"]::before {
   @apply backdrop-blur-sm backdrop-invert;
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
 }
-/* The page's flowchart lies behind everything (Base.astro). A band can let it
-   show: veil leaves its surface translucent, clear drops it (see Section). */
-.surface-white.veil,
-.surface-deep.veil {
-  background-color: color-mix(in oklab, var(--background) 78%, transparent);
-}
-.surface-blend.veil {
-  background-image: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--blue) 78%, transparent) 0%,
-    color-mix(in oklab, var(--pink) 78%, transparent) 100%
-  );
-}
-.surface-white.clear,
-.surface-deep.clear,
-.surface-blend.clear {
-  background: none;
-}
-.surface-white,
-.surface-blend,
-.surface-deep,
-.surface-accent {
+[data-theme="white"],
+[data-theme="blend"],
+[data-theme="deep"],
+[data-theme="accent"] {
   color: var(--muted-foreground);
 }
 *,

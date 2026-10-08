@@ -13,7 +13,7 @@ export function CompanyHero() {
 export function Company() {
   return (
     <>
-      <Section tone="white" id="origin">
+      <Section theme="white" id="origin">
         <div className="wrap grid items-start gap-x-17 gap-y-13 md:grid-cols-2">
           <div data-reveal>
             <Display2>{page.origin.title}</Display2>
@@ -55,7 +55,7 @@ export function Company() {
         </div>
       </Section>
 
-      <Section id="principles" tone="blend">
+      <Section id="principles" theme="blend">
         <SectionHeader title={page.principles.title} />
         <Grid className="wrap">
           {page.principles.items.map((item, i) => (

@@ -12,7 +12,7 @@ const channelSnippets = ["portal", "api", "mail"] as const;
 export function CarrierChannels() {
   const { channels } = placementDesk;
   return (
-    <Section tone="blend" id="channels">
+    <Section theme="blend" id="channels">
       <SectionHeader title={channels.title} body={channels.body} />
       <Grid columns={3} className="wrap">
         {channels.items.map((item, i) => (

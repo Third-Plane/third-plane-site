@@ -8,7 +8,7 @@ type ButtonProps = {
   small?: boolean;
 };
 
-// primary is dark on a light surface and light on a dark one.
+// primary is dark on a light theme and light on a dark one.
 const BUTTON_BASE =
   "inline-flex items-center justify-center gap-2 rounded-full bg-primary font-sans font-medium whitespace-nowrap text-primary-foreground transition duration-200 hover:-translate-y-px hover:bg-primary/95 hover:shadow-lg hover:shadow-deep/20";
 

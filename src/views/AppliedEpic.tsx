@@ -13,7 +13,7 @@ export function AppliedEpicHero() {
 export function AppliedEpic() {
   return (
     <>
-      <Section tone="white" id="who">
+      <Section theme="white" id="who">
         <SectionHeader title={page.who.title} body={page.who.body} />
         <Grid columns={3} className="wrap">
           {page.who.items.map((item, i) => (
@@ -24,7 +24,7 @@ export function AppliedEpic() {
         </Grid>
       </Section>
 
-      <Section tone="blend" id="work">
+      <Section theme="blend" id="work">
         <SectionHeader title={page.work.title} />
         <Grid columns={3} className="wrap">
           {page.work.items.map((item, i) => (
@@ -37,7 +37,7 @@ export function AppliedEpic() {
       </Section>
 
       {page.certified ? (
-        <Section tone="white" id="meaning">
+        <Section theme="white" id="meaning">
           <SectionHeader title={page.meaning.title} />
           <Grid className="wrap">
             {page.meaning.items.map((item, i) => (
@@ -51,7 +51,7 @@ export function AppliedEpic() {
       ) : null}
 
       {page.quote?.text ? (
-        <Section tone="blend" id="quote">
+        <Section theme="blend" id="quote">
           <blockquote className="m-0 max-w-[58ch]" data-reveal>
             <p className="font-heading text-xl font-medium tracking-tight text-pretty text-foreground">
               {page.quote.text}

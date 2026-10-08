@@ -1,51 +1,34 @@
-import type { PropsWithChildren } from "react";
+import type { ElementType, HTMLAttributes } from "react";
 import { Display2, Lead } from "./Headings";
 import { cn } from "../lib/style";
 
-export type SectionTone = "white" | "blend" | "deep" | "invert";
+// A theme sets the colours of a section and everything in it (see index.css).
+export type Theme = "hero" | "white" | "blend" | "deep" | "invert";
 
-// How much of the page's flowchart (Base.astro) the band lets through: none
-// (opaque), some, under a translucent surface (veil), or all of it (clear,
-// which keeps only the tone's colours).
-export type SectionBackdrop = "opaque" | "veil" | "clear";
-
-const BACKDROP: Record<SectionBackdrop, string> = {
-  opaque: "",
-  veil: "veil",
-  clear: "clear",
-};
-
-// Each tone is a surface (see index.css), which sets the colours of the band
-// and everything in it.
-const SURFACE: Record<SectionTone, string> = {
-  white: "surface-white",
-  blend: "surface-blend",
-  deep: "surface-deep",
-  invert: "surface-invert",
-};
-
+// A full-width stripe of the page, in a theme: the nav, the hero, the page's
+// sections and the footer. The pinned nav takes the theme of the section just
+// below it (scripts/nav-theme.ts), which finds them as <body>'s children, so a
+// section must be one.
+//
+// A section has the page's gutter, and the bar's padding (see --bar), twice
+// over above its content and once below. It is positioned, so it paints over
+// the pinned hero (see Hero). `as` and `className` are for those that are laid
+// out otherwise (the nav, the hero, the footer).
 export function Section({
-  id,
-  tone,
-  backdrop = "opaque",
-  children,
-}: PropsWithChildren & {
-  id?: string;
-  tone: SectionTone;
-  backdrop?: SectionBackdrop;
-}) {
+  as: Tag = "section",
+  theme,
+  className,
+  ...props
+}: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme }) {
   return (
-    <section
+    <Tag
       className={cn(
-        "relative overflow-hidden px-(--gutter) pt-[calc(var(--spacing-bar)*2)] pb-bar z-1",
-        SURFACE[tone],
-        BACKDROP[backdrop],
+        "relative z-1 overflow-hidden px-(--gutter) pt-[calc(var(--bar)*2)] pb-(--bar)",
+        className,
       )}
-      id={id}
-      data-band={tone}
-    >
-      {children}
-    </section>
+      data-theme={theme}
+      {...props}
+    />
   );
 }
 

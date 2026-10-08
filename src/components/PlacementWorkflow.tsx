@@ -22,8 +22,9 @@ function PlacementWorkflow() {
         <div
           className={cn(
             "relative overflow-hidden rounded-2xl border lg:row-span-3 lg:grid lg:grid-rows-subgrid",
-            stage.accent ? "surface-accent border-transparent" : "border-border bg-card",
+            stage.accent ? "border-transparent" : "border-border bg-card",
           )}
+          data-theme={stage.accent ? "accent" : undefined}
           key={stage.kicker}
         >
           {i > 0 ? (
@@ -62,7 +63,7 @@ export function PlacementWorkflowSection({
   body?: string;
 }) {
   return (
-    <Section tone="deep" id={id}>
+    <Section theme="deep" id={id}>
       <ParticleField tone="cream" alpha={0.75} density={0.8} />
       <SectionHeader title={title} body={body} />
       <PlacementWorkflow />
