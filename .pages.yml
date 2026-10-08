@@ -113,7 +113,7 @@ content:
         label: Company name
         type: string
         required: true
-        description: Used in every page title, as in “Careers | Third Plane”.
+        description: Used in every page title, as in “Company | Third Plane”.
       - name: tagline
         type: string
         required: true
@@ -720,6 +720,47 @@ content:
             type: text
             required: true
             description: Also the page’s search and link-preview description.
+          - name: why
+            label: Why Third Plane
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: items
+                component: cards
+          - name: roles
+            label: Open roles
+            type: object
+            fields:
+              - name: title
+                type: string
+                required: true
+              - name: empty
+                label: Message when there are no roles
+                type: text
+                required: true
+              - name: items
+                label: Roles
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                    required: true
+                  - name: team
+                    type: string
+                    required: true
+                  - name: location
+                    type: string
+                    required: true
+                  - name: href
+                    label: Job posting link
+                    type: string
+                    required: true
           - name: origin
             label: Where we come from
             type: object
@@ -763,62 +804,6 @@ content:
                 type: string
                 required: true
                 description: Shown until a photo is set.
-          - name: cta
-            component: cta
-
-      - name: careers
-        label: Careers
-        type: file
-        path: src/content/careers.json
-        format: json
-        fields:
-          - name: title
-            component: lines
-          - name: lead
-            type: text
-            required: true
-            description: Also the page’s search and link-preview description.
-          - name: why
-            label: Why Third Plane
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: items
-                component: cards
-          - name: roles
-            label: Open roles
-            type: object
-            fields:
-              - name: title
-                type: string
-                required: true
-              - name: empty
-                label: Message when there are no roles
-                type: text
-                required: true
-              - name: items
-                label: Roles
-                type: object
-                list:
-                  collapsible:
-                    collapsed: true
-                    summary: "{title}"
-                fields:
-                  - name: title
-                    type: string
-                    required: true
-                  - name: team
-                    type: string
-                    required: true
-                  - name: location
-                    type: string
-                    required: true
-                  - name: href
-                    label: Job posting link
-                    type: string
-                    required: true
           - name: cta
             component: cta
 

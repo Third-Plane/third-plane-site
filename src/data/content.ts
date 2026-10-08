@@ -6,7 +6,6 @@
 
 import type {
   AppliedEpicFile,
-  CareersFile,
   CompanyFile,
   HomeFile,
   IntegrationsFile,
@@ -20,14 +19,13 @@ import homeJson from "../content/home.json";
 import placementDeskJson from "../content/placement-desk.json";
 import companyJson from "../content/company.json";
 import securityJson from "../content/security.json";
-import careersJson from "../content/careers.json";
 import resourcesJson from "../content/resources.json";
 import integrationsJson from "../content/integrations.json";
 import appliedEpicJson from "../content/applied-epic.json";
 
 const siteFile: SiteFile = siteJson;
 const home: HomeFile = homeJson;
-const careers: CareersFile = careersJson;
+const company: CompanyFile = companyJson;
 
 const { footer, contact: contactFile, samples, ...siteFields } = siteFile;
 
@@ -49,13 +47,12 @@ export const showcase = home.showcase;
 export const homeCta = home.cta;
 
 export const placementDesk: PlacementDeskFile = placementDeskJson;
-export const companyPage: CompanyFile = companyJson;
-export const securityPage: SecurityFile = securityJson;
-export const careersPage = {
-  ...careers,
+export const companyPage = {
+  ...company,
   // An editor can remove every role; the page then shows `roles.empty`.
-  roles: { ...careers.roles, items: careers.roles.items ?? [] },
+  roles: { ...company.roles, items: company.roles.items ?? [] },
 };
+export const securityPage: SecurityFile = securityJson;
 export const resourcesPage: ResourcesFile = resourcesJson;
 export const integrationsPage: IntegrationsFile = integrationsJson;
 export const appliedEpicPage: AppliedEpicFile = appliedEpicJson;
@@ -93,8 +90,7 @@ export const primaryNav: { menus: { label: string; items: NavItem[] }[] } = {
     {
       label: "Company",
       items: [
-        { label: "About", href: "/company", note: "Austin, origin and principles" },
-        { label: "Careers", href: "/careers", note: "Work with us" },
+        { label: "About", href: "/company", note: "Open roles, origin and principles" },
         { label: "Resources", href: "/resources", note: "Writing, technical notes and press" },
       ],
     },
@@ -124,7 +120,6 @@ export const siteFooter = {
       label: "Company",
       links: [
         { label: "About", href: "/company" },
-        { label: "Careers", href: "/careers" },
         { label: "Resources", href: "/resources" },
       ],
     },

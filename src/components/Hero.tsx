@@ -28,7 +28,7 @@ export function Hero({ children }: { children?: ReactNode }) {
       <Section
         theme="hero"
         className={cn(
-          "hero-veil-stacked lg:hero-veil z-auto pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)]",
+          "hero-veil-stacked lg:hero-veil z-auto grid place-items-center pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)]",
           PINNED,
         )}
         id="top"

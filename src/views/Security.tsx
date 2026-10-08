@@ -2,6 +2,7 @@ import { securityPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import type { ChartName } from "../components/Flowchart";
+import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/SplitHero";
 import { Section, SectionHeader } from "../components/Section";
 import { cn } from "../lib/style";
@@ -11,7 +12,11 @@ import { cn } from "../lib/style";
 export const chart: ChartName = "security";
 
 export function SecurityHero() {
-  return <SplitHero title={page.title} lead={page.lead} chart={chart} ledger={page.ledger} />;
+  return (
+    <SplitHero title={page.title} lead={page.lead}>
+      <Ledger chart={chart} panel={page.ledger} />
+    </SplitHero>
+  );
 }
 
 export function Security() {

@@ -10,6 +10,7 @@
   ],
   "redirects": [
     { "source": "/underwriting-desk", "destination": "/company", "permanent": true },
+    { "source": "/careers", "destination": "/company", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true }
   ]
 }

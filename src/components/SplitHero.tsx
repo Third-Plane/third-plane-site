@@ -1,26 +1,20 @@
 import type { ReactNode } from "react";
-import type { LedgerPanel } from "../data/content-types";
-import type { ChartName } from "./Flowchart";
 import { Display1, Lead } from "./Headings";
-import { Ledger } from "./Ledger";
 import { Hero } from "./Hero";
 
-// The hero with copy on the left and the activity ledger on the right, full
-// width (see Hero). A `title` array stacks its lines; a string flows as one.
-// The ledger follows `chart`, which must be the page's flowchart (the one its
-// Base shows), worded from `ledger`.
+// The hero with copy on the left and `children` (a panel: the activity
+// ledger, the open roles) on the right, full width (see Hero). A `title` array
+// stacks its lines; a string flows as one.
 export function SplitHero({
   title,
   lead,
   actions,
-  chart = "placement",
-  ledger,
+  children,
 }: {
   title: string | string[];
   lead: string;
   actions?: ReactNode;
-  chart?: ChartName;
-  ledger: LedgerPanel;
+  children: ReactNode;
 }) {
   const heading = Array.isArray(title) ? (
     <Display1>
@@ -38,13 +32,13 @@ export function SplitHero({
 
   return (
     <Hero>
-      <div className="grid items-center gap-14 pt-20 pb-22 lg:grid-cols-2">
+      <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
         <div>
           {heading}
           <Lead className="mt-7 max-w-[46ch]">{lead}</Lead>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
         </div>
-        <Ledger chart={chart} panel={ledger} />
+        {children}
       </div>
     </Hero>
   );

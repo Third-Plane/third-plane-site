@@ -86,7 +86,9 @@
     "body": "We started with placement because it is where skilled work, execution burden and growth meet. The model extends from there.",
     "origin.eyebrow": "Where we come from",
     "principles.eyebrow": "Principles",
-    "team.eyebrow": "The team"
+    "team.eyebrow": "The team",
+    "title": ["Insurance operators", "who build AI workforces."],
+    "lead": "Third Plane is based in Austin, Texas. An AI workforce is dedicated operating capacity that takes responsibility for defined work across the systems and carrier channels you already use."
   },
   "company.next": {
     "eyebrow": "Where this goes next"
@@ -111,7 +113,11 @@
     "body": "We hire people who know insurance deeply, people who build AI systems that do real work, and people who can do both.",
     "why.eyebrow": "Why Third Plane",
     "how.eyebrow": "How we work",
-    "roles.eyebrow": "Open roles"
+    "roles.eyebrow": "Open roles",
+    "cta": {
+      "title": "Introduce yourself.",
+      "body": "Tell us what you have built or what you have run, and what you would want to work on here."
+    }
   },
   "resources": {
     "crumb": "Resources"
