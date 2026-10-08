@@ -5,7 +5,6 @@ const nav = document.querySelector<HTMLElement>("[data-nav]");
 
 if (nav) {
   const toggle = nav.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
-  const drawer = nav.querySelector<HTMLElement>("[data-nav-drawer]")!;
   const menus = [...nav.querySelectorAll<HTMLElement>("[data-menu]")];
   const links = nav.querySelector<HTMLElement>("[data-nav-links]")!;
 
@@ -14,7 +13,6 @@ if (nav) {
 
   const render = () => {
     nav.dataset.open = String(drawerOpen);
-    drawer.dataset.open = String(drawerOpen);
     toggle.setAttribute("aria-expanded", String(drawerOpen));
     document.body.style.overflow = drawerOpen ? "hidden" : "";
     for (const menu of menus) {
@@ -52,7 +50,8 @@ if (nav) {
 
   // Following a link closes whatever it was in.
   nav.addEventListener("click", (event) => {
-    if ((event.target as Element).closest("[data-nav-panel] a, [data-nav-drawer] a")) closeAll();
+    if ((event.target as Element).closest("[data-nav-panel] a[href], [data-nav-drawer] a[href]"))
+      closeAll();
   });
 
   window.addEventListener("keydown", (event) => {

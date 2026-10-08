@@ -29,25 +29,29 @@ export function Button({
   );
 }
 
+// A link, opening another site in a new tab. With no `href` it is a link to a
+// page that doesn't exist yet: shown, but not followed, and aria-disabled for
+// styling.
 export function AppLink({
   href,
   className,
   children,
   ...rest
 }: {
-  href: string;
+  href?: string;
   className?: string;
   children: ReactNode;
   "aria-label"?: string;
   "data-reveal"?: boolean;
   style?: CSSProperties;
 }) {
-  const external = href.startsWith("http");
+  const external = href?.startsWith("http");
 
   return (
     <a
       className={className}
       href={href}
+      aria-disabled={href ? undefined : true}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
       {...rest}
     >

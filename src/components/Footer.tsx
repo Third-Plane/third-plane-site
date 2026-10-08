@@ -1,6 +1,5 @@
 import { site, siteFooter } from "../data/content";
 import { Logo } from "./Logo";
-import { NavEntry } from "./NavEntry";
 import { Cta, type CtaCopy } from "./Cta";
 import { Section } from "./Section";
 import { AppLink } from "./Ui";
@@ -50,15 +49,13 @@ export function Footer({ cta }: { cta?: CtaCopy }) {
                 {column.label}
               </p>
               {column.links.map((link) => (
-                <NavEntry
-                  className="transition-colors duration-200 hover:text-accent"
-                  disabledClassName="text-subtle-foreground"
+                <AppLink
+                  className="transition-colors duration-200 not-aria-disabled:hover:text-accent aria-disabled:text-subtle-foreground"
                   href={link.href}
-                  disabled={link.disabled}
                   key={link.label}
                 >
                   {link.label}
-                </NavEntry>
+                </AppLink>
               ))}
             </nav>
           ))}
