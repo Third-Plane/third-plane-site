@@ -9,16 +9,16 @@ Marketing site for [thirdplane.com](https://www.thirdplane.com).
 | `/security`        | Security and governance                        | `security.json`              |
 | `/integrations`    | System integrations                            | `integrations.json`          |
 | `/applied-epic`    | Applied Epic                                   | `applied-epic.json`          |
-| `/company`         | Company: Austin, origin, principles, team      | `company.json`               |
-| `/careers`         | Careers, with an open-roles list               | `careers.json`               |
+| `/company`         | Company: open roles, origin, principles, team  | `company.json`               |
 | `/resources`       | Resources index: technical, perspective, press | `resources.json`             |
 | `/resources/:slug` | One post                                       | `posts/<slug>.json`          |
 
 `site.json` holds the company name, contact details, the default meta description, the footer
 tagline and the default closing call to action. The primary nav (`primaryNav`) and footer links
 (`siteFooter`) stay in [`src/data/content.ts`](src/data/content.ts), because their links have to
-match the routes. `/underwriting-desk` redirects to `/company` (the Underwriting Desk is no
-longer a standalone page). Unknown paths get the Not found page with a 404 status.
+match the routes. `/underwriting-desk` and `/careers` redirect to `/company` (the Underwriting
+Desk is no longer a standalone page, and careers are part of the Company page). Unknown paths
+get the Not found page with a 404 status.
 
 ## Editing content
 
@@ -32,7 +32,7 @@ not need a GitHub account. The forms are defined in [`.pages.yml`](.pages.yml).
   soon as a video is set.
 - **Team photo:** set it under About → Team. Until then the Company page shows a marked
   placeholder.
-- **Open roles:** add them under Careers → Open roles. With none, the page shows an invitation to
+- **Open roles:** add them under About → Open roles. With none, the page shows an invitation to
   write in.
 
 Uploaded images and video go to `public/media/`.

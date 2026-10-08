@@ -67,6 +67,12 @@ export type PlacementDeskFile = {
 export type CompanyFile = {
   title: Lines;
   lead: string;
+  why: { title: string; items: Card[] };
+  roles: {
+    title: string;
+    empty: string;
+    items?: { title: string; team: string; location: string; href: string }[];
+  };
   origin: { title: string; body: string[] };
   principles: { title: string; items: Card[] };
   team: {
@@ -83,18 +89,6 @@ export type SecurityFile = {
   authority: { sides: { title: string; items: Card[] }[] };
   record: { title: string; items: Card[] };
   data: { title: string; items: Card[] };
-  cta: Cta;
-};
-
-export type CareersFile = {
-  title: Lines;
-  lead: string;
-  why: { title: string; items: Card[] };
-  roles: {
-    title: string;
-    empty: string;
-    items?: { title: string; team: string; location: string; href: string }[];
-  };
   cta: Cta;
 };
 
