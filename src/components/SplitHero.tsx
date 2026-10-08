@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import type { LedgerPanel } from "../data/content-types";
-import { reveal } from "../lib/style";
 import type { ChartName } from "./Flowchart";
 import { Display1, Lead } from "./Headings";
 import { Ledger } from "./Ledger";
@@ -24,7 +23,7 @@ export function SplitHero({
   ledger: LedgerPanel;
 }) {
   const heading = Array.isArray(title) ? (
-    <Display1 {...reveal(1)}>
+    <Display1>
       {title.map((line, i) => (
         // The space keeps the lines as separate words for crawlers and
         // screen readers; the spans are blocks, so it never shows.
@@ -34,28 +33,18 @@ export function SplitHero({
       ))}
     </Display1>
   ) : (
-    <Display1 wrap="pretty" {...reveal(1)}>
-      {title}
-    </Display1>
+    <Display1 wrap="pretty">{title}</Display1>
   );
 
   return (
     <Hero>
       <div className="grid items-center gap-14 pt-20 pb-22 lg:grid-cols-2">
-        <div className="max-w-150">
+        <div>
           {heading}
-          <Lead className="mt-7 max-w-[46ch]" {...reveal(2)}>
-            {lead}
-          </Lead>
-          {actions ? (
-            <div className="mt-9 flex flex-wrap gap-3" {...reveal(3)}>
-              {actions}
-            </div>
-          ) : null}
+          <Lead className="mt-7 max-w-[46ch]">{lead}</Lead>
+          {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
         </div>
-        <div {...reveal(3)}>
-          <Ledger chart={chart} panel={ledger} />
-        </div>
+        <Ledger chart={chart} panel={ledger} />
       </div>
     </Hero>
   );

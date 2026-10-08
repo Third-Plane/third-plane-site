@@ -14,10 +14,7 @@ const stageScreens: StageName[] = ["intake", "markets", "results"];
 // stages share their rows, so the screens, names and step lists line up.
 function PlacementWorkflow() {
   return (
-    <div
-      className="grid gap-5 lg:auto-rows-[auto_auto_1fr] lg:grid-cols-[3fr_4fr_3fr] lg:gap-y-0"
-      data-reveal
-    >
+    <div className="grid gap-5 lg:auto-rows-[auto_auto_1fr] lg:grid-cols-[3fr_4fr_3fr] lg:gap-y-0">
       {placementDesk.work.stages.map((stage, i) => (
         <div
           className={cn(

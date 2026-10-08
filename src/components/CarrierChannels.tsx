@@ -1,6 +1,5 @@
 import { placementDesk } from "../data/content";
 import { Card, Grid, ItemBody, ItemTitle } from "./Grid";
-import { reveal } from "../lib/style";
 import { Section, SectionHeader } from "./Section";
 import { ChannelSnippet } from "./ChannelSnippet";
 
@@ -16,7 +15,7 @@ export function CarrierChannels() {
       <SectionHeader title={channels.title} body={channels.body} />
       <Grid columns={3} className="wrap">
         {channels.items.map((item, i) => (
-          <Card key={item.title} {...reveal(i)} className="gap-0 p-0">
+          <Card key={item.title} className="gap-0 p-0">
             <ChannelSnippet name={channelSnippets[i]} />
             <div className="space-y-2 px-6 py-5">
               <ItemTitle>{item.title}</ItemTitle>

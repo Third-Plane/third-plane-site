@@ -42,7 +42,6 @@ export function AppLink({
   className?: string;
   children: ReactNode;
   "aria-label"?: string;
-  "data-reveal"?: boolean;
   style?: CSSProperties;
 }) {
   const external = href?.startsWith("http");
