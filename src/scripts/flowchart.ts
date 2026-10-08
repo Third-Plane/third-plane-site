@@ -8,9 +8,13 @@
 // backdrop, so the window). Of the chart's layouts (see flowchart/chart.ts)
 // it shows the one that loses least of its drawing to the window's edges,
 // scaled to cover the window and centred, so what doesn't fit is cropped
-// evenly from both sides; the font size follows from the cell. data-alpha sets the overall strength. It pauses
-// while off-screen or in a hidden tab, and under prefers-reduced-motion it
-// paints one frame and stops.
+// evenly from both sides; the font size follows from the cell. With
+// data-fit="contain" (a diagram in a figure, see Diagram) it is instead the
+// largest that fits whole, centred. data-alpha sets the overall strength,
+// past 1 for ink that holds up in the foreground, and data-ink the theme
+// colour it is drawn in (the brand purple when unset). It pauses while
+// off-screen or in a hidden tab, and under prefers-reduced-motion it paints
+// one frame and stops.
 //
 // Where WebGL is available the frame is drawn offscreen and shown through
 // the lens (flowchart/lens.ts), which bends it like a CRT and splits its
@@ -34,7 +38,7 @@ const ADVANCE = 0.6;
 const LINE = 1.2;
 const ASCENT = 0.956;
 
-const RGB = "99,56,227";
+const PURPLE = [99, 56, 227];
 const LEVELS = 32;
 
 // How strongly each kind of cell sits at rest, before data-alpha.
@@ -121,6 +125,8 @@ function chart(canvas: HTMLCanvasElement) {
     noise = "0",
     roll = "0",
     glow = "0",
+    fit = "cover",
+    ink,
   } = canvas.dataset;
   const optics = {
     curve: Number(curve),
@@ -153,11 +159,12 @@ function chart(canvas: HTMLCanvasElement) {
   let regular = "";
   let bold = "";
 
+  const rgb = (ink ? colorOf(canvas, ink).map((v) => Math.round(v * 255)) : PURPLE).join(",");
   const palette = Array.from(
     { length: LEVELS + 1 },
-    (_, i) => `rgba(${RGB},${((i / LEVELS) * a).toFixed(3)})`,
+    (_, i) => `rgba(${rgb},${(i / LEVELS).toFixed(3)})`,
   );
-  const tone = (level: number) => palette[Math.round(Math.min(1, level) * LEVELS)];
+  const tone = (level: number) => palette[Math.round(Math.min(1, level * a) * LEVELS)];
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const base = document.createElement("canvas");
@@ -360,12 +367,17 @@ function chart(canvas: HTMLCanvasElement) {
 
     // The smallest cell at which the layout covers the window, rounded up to
     // whole device pixels so every cell edge lands on a pixel (and lines join
-    // cleanly). Centred, so any overflow is cropped evenly.
+    // cleanly). Centred, so any overflow is cropped evenly. To contain it,
+    // the largest cell at which it all fits, rounded down.
     L = choose();
     const cols = L.cols + L.pad.left + L.pad.right;
     const rows = L.rows + L.pad.top + L.pad.bottom;
-    const cover = Math.max(w / cols, h / (rows * (LINE / ADVANCE)));
-    cw = Math.ceil(cover * dpr) / dpr;
+    const across = w / cols;
+    const down = h / (rows * (LINE / ADVANCE));
+    cw =
+      fit === "contain"
+        ? Math.floor(Math.min(across, down) * dpr) / dpr
+        : Math.ceil(Math.max(across, down) * dpr) / dpr;
     ch = cw * (LINE / ADVANCE);
     const size = cw / ADVANCE;
     baseline = size * ASCENT;

@@ -51,6 +51,8 @@ export type LayoutSpec<N extends string, R extends string> = {
   // The title plate, a double box as on a drawing. Its first line is bold.
   plate?: { x: number; y: number; w: number; lines: string[] };
   notes?: { x: number; y: number; text: string; strong?: boolean }[];
+  // Whether its boxes cast dithered shadows; they do unless this is false.
+  shadows?: boolean;
 };
 
 export type ChartSpec<N extends string, R extends string> = {
@@ -186,8 +188,10 @@ function layOut<N extends string, R extends string>(spec: LayoutSpec<N, R>): Flo
     g.text(note.x, note.y, note.text, note.strong ? Kind.strong : Kind.text);
   }
 
-  for (const [, n] of nodeSpecs) g.shadow(n.x, n.y, n.w, heightOf(n));
-  if (plate) g.shadow(plate.x, plate.y, plate.w, plate.lines.length + 2);
+  if (spec.shadows !== false) {
+    for (const [, n] of nodeSpecs) g.shadow(n.x, n.y, n.w, heightOf(n));
+    if (plate) g.shadow(plate.x, plate.y, plate.w, plate.lines.length + 2);
+  }
 
   const glyphs = g.resolve();
   const ink = { x0: spec.cols, y0: spec.rows, x1: 0, y1: 0 };

@@ -17,6 +17,11 @@ export type { ChartName };
 // for none). A slow bar rolls down the chart: roll is how much it strengthens
 // the ink as it passes (0.4 is 40%) and glow how far it lifts the screen
 // toward white (0.06 is 6%); 0 for both is no bar.
+//
+// fit="contain" shows the whole chart at the largest size that fits, for a
+// diagram in a figure (see Diagram), and ink names the theme colour it is
+// drawn in (a CSS custom property, "--foreground" say); the brand purple
+// when unset.
 export function Flowchart({
   chart = "placement",
   alpha = 1,
@@ -26,6 +31,8 @@ export function Flowchart({
   noise = 0.04,
   roll = 0.4,
   glow = 0.06,
+  fit = "cover",
+  ink,
 }: {
   chart?: ChartName;
   alpha?: number;
@@ -35,6 +42,8 @@ export function Flowchart({
   noise?: number;
   roll?: number;
   glow?: number;
+  fit?: "cover" | "contain";
+  ink?: string;
 }) {
   return (
     <canvas
@@ -49,6 +58,8 @@ export function Flowchart({
       data-noise={noise}
       data-roll={roll}
       data-glow={glow}
+      data-fit={fit}
+      data-ink={ink}
     />
   );
 }
