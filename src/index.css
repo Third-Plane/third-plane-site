@@ -20,8 +20,6 @@
   initial-value: 0px;
 }
 
-/* The palette. Components use the semantic colours below instead (and the
-   palette only for a few fixed brand marks); the themes map one to the other. */
 :root {
   --cream: #f6f3f0;
   --purple: #6338e3;
@@ -33,12 +31,8 @@
   --ink-muted: #7a7291;
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
-  --font-code: "JetBrains Mono", ui-monospace, monospace;
-  /* The bar: the height of the nav (Header) and of the footer's last row,
-     and the unit of a section's padding, twice over above its content and once
-     below (Section). 16 steps of the spacing scale. */
+  --font-code: "TX-02", ui-monospace, monospace;
   --bar: --spacing(16);
-  /* The header: its bar plus the 1px border under it (Header.tsx). */
   --nav-h: calc(var(--bar) + 1px);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --container: 1200px;
