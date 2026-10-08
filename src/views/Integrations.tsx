@@ -15,17 +15,13 @@ const systemScreens: SystemName[] = ["ams", "documents", "inbox", "data"];
 
 export const chart: ChartName = "integrations";
 
-export function IntegrationsHero() {
-  return (
-    <SplitHero title={page.title} lead={page.lead}>
-      <Ledger chart={chart} panel={page.ledger} />
-    </SplitHero>
-  );
-}
-
 export function Integrations() {
   return (
     <>
+      <SplitHero title={page.title} lead={page.lead}>
+        <Ledger chart={chart} panel={page.ledger} />
+      </SplitHero>
+
       <Section theme="white" id="systems">
         <SectionHeader title={page.systems.title} />
         <Grid className="wrap">

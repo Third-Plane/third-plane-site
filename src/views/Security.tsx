@@ -9,17 +9,13 @@ import { cn } from "../lib/style";
 
 export const chart: ChartName = "security";
 
-export function SecurityHero() {
-  return (
-    <SplitHero title={page.title} lead={page.lead}>
-      <Ledger chart={chart} panel={page.ledger} />
-    </SplitHero>
-  );
-}
-
 export function Security() {
   return (
     <>
+      <SplitHero title={page.title} lead={page.lead}>
+        <Ledger chart={chart} panel={page.ledger} />
+      </SplitHero>
+
       <Section theme="white" id="authority">
         <div className="grid gap-x-10 border-t border-t-border md:auto-rows-[auto_1fr] md:grid-cols-2 md:items-start">
           {page.authority.sides.map((side, i) => (

@@ -3,7 +3,7 @@ import { Button } from "../components/Ui";
 
 // Built to 404.html, which Vercel serves with a 404 status for any path that
 // has no page.
-export function NotFoundHero() {
+export function NotFound() {
   return (
     <PageHero
       title={["Page not found."]}
