@@ -1,43 +1,14 @@
 import { primaryNav, site } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
-import { NavEntry } from "./NavEntry";
 import { Section } from "./Section";
 import { cn } from "../lib/style";
 
-// A disabled item has no page yet: it is shown, but not as a link.
-type Item = { label: string; href?: string; note?: string; live?: boolean; disabled?: boolean };
-
-function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
-  if (!item.note) return null;
-  const tone = item.live ? "text-accent" : "text-subtle-foreground";
-  return (
-    <span
-      className={cn("text-sm font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
-    >
-      {item.note}
-    </span>
-  );
-}
-
-const panelItem = "grid gap-0.5 px-3 py-2.5 text-base font-medium";
-const drawerLink =
-  "block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight";
-
-// The drawer is compact: it shows status notes (live, or no page yet) but
-// leaves the descriptive ones to the dropdown.
-const showDrawerNote = (item: Item) => item.live !== undefined || item.disabled || !item.href;
-
-// The nav of the hero (see Hero): a section, the full width with the same
-// gutter as the hero's content, over the top of it in the hero's theme. Where
-// the page can follow the scroll (the scroll-linked variant in tailwind.css)
-// it is pinned over the page too, see-through over the hero and filling in as
-// the page reaches it (nav-fill), then taking the theme of the section below
-// it (scripts/nav-theme.ts); elsewhere it scrolls away with the hero. Only its
-// border colour is a transition: its fill follows the scroll. Static markup.
-// scripts/nav.ts opens and closes the menus by setting `data-open` on the
-// elements below; the `group-data-[open=true]` and `data-[open=true]` classes
-// react to it.
+// The site's nav, over the top of the hero. Where the page can follow the
+// scroll it is pinned over the page too, filling in as the page reaches it
+// (nav-fill in tailwind.css) and taking the theme of the section under it
+// (scripts/nav-theme.ts). Dropdowns from md up, a drawer below: scripts/nav.ts
+// opens and closes them by setting `data-open`.
 export function Header() {
   return (
     <Section
@@ -48,120 +19,118 @@ export function Header() {
       data-nav
     >
       <div className="flex h-bar items-center justify-between gap-8 px-(--gutter)">
-        {/* Both lockups, stacked: the white one fades in over the purple one
-            over a dark section (see scripts/nav-theme.ts). The purple one only goes
-            once the white is whole, and is back before it starts to go, so the
-            two are never both part-faded, which would wash the logo out. */}
+        {/* On a dark theme the white logo fades in over the purple one, which
+            hides once it's in, so the logo never looks washed out. */}
         <AppLink className="grid items-center" href="/" aria-label={`${site.name} home`}>
-          <Logo
-            className={cn(
-              "h-7 w-auto transition-opacity duration-0 [grid-area:1/1]",
-              "group-data-[theme=deep]/nav:opacity-0 group-data-[theme=deep]/nav:delay-400",
-              "group-data-[theme=invert]/nav:opacity-0 group-data-[theme=invert]/nav:delay-400",
-            )}
-          />
+          <Logo className="h-7 w-auto transition-opacity duration-0 [grid-area:1/1] group-data-[theme=deep]/nav:opacity-0 group-data-[theme=deep]/nav:delay-400 group-data-[theme=invert]/nav:opacity-0 group-data-[theme=invert]/nav:delay-400" />
           <Logo
             tone="white"
-            className={cn(
-              "h-7 w-auto opacity-0 transition-opacity duration-400 [grid-area:1/1]",
-              "group-data-[theme=deep]/nav:opacity-100 group-data-[theme=invert]/nav:opacity-100",
-            )}
+            className="h-7 w-auto opacity-0 transition-opacity duration-400 [grid-area:1/1] group-data-[theme=deep]/nav:opacity-100 group-data-[theme=invert]/nav:opacity-100"
           />
         </AppLink>
 
-        <nav className="ml-auto flex gap-8 max-lg:hidden" aria-label="Main" data-nav-links>
-          {primaryNav.menus.map((group) => (
-            <div className="group/menu relative" data-open="false" data-menu key={group.label}>
+        <nav className="ml-auto flex gap-8 max-md:hidden" aria-label="Main" data-nav-links>
+          {primaryNav.menus.map((menu) => (
+            <div className="group/menu relative" data-open="false" data-menu key={menu.label}>
               <button
                 className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-foreground transition-colors duration-200 [border:0] [font:inherit] hover:text-accent"
                 type="button"
                 aria-expanded="false"
                 data-menu-btn
               >
-                {group.label}
+                {menu.label}
               </button>
+              {/* The ::before bridges the gap down to the panel, so the pointer
+                  can cross it without the menu closing. */}
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4"
                 role="menu"
                 data-theme="white"
                 data-nav-panel
               >
-                {(group.items as Item[]).map((item) => (
-                  <NavEntry
-                    className={cn(
-                      panelItem,
-                      "text-foreground transition-colors duration-150 hover:bg-muted rounded-xl",
-                    )}
-                    disabledClassName={cn(panelItem, "cursor-default text-subtle-foreground")}
+                {menu.items.map((item) => (
+                  <AppLink
+                    className="grid gap-0.5 rounded-xl px-3 py-2.5 text-base font-medium text-foreground transition-colors duration-150 not-aria-disabled:hover:bg-muted aria-disabled:cursor-default aria-disabled:text-subtle-foreground"
                     href={item.href}
-                    disabled={item.disabled}
                     key={item.label}
                   >
                     <span>{item.label}</span>
-                    <Note item={item} />
-                  </NavEntry>
+                    {item.note ? (
+                      <span
+                        className={cn(
+                          "text-sm font-normal",
+                          item.live ? "text-accent" : "text-subtle-foreground",
+                        )}
+                      >
+                        {item.note}
+                      </span>
+                    ) : null}
+                  </AppLink>
                 ))}
               </div>
             </div>
           ))}
         </nav>
 
-        <div className="max-lg:hidden">
+        <div className="max-md:hidden">
           <Button small />
         </div>
 
         <button
-          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-foreground [border:0] max-lg:inline-flex"
+          className="-mr-2 hidden cursor-pointer bg-transparent p-2 text-foreground [border:0] max-md:inline-flex"
           type="button"
           aria-expanded="false"
           aria-label="Toggle navigation"
           data-nav-toggle
         >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-            <path
-              className="hidden group-data-[open=true]/nav:inline"
-              d="M5 5l12 12M17 5L5 17"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            />
-            <path
-              className="group-data-[open=true]/nav:hidden"
-              d="M3 7h16M3 15h16"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            />
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 22 22"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path className="hidden group-data-[open=true]/nav:inline" d="M5 5l12 12M17 5L5 17" />
+            <path className="group-data-[open=true]/nav:hidden" d="M3 7h16M3 15h16" />
           </svg>
         </button>
       </div>
 
-      {/* The drawer keeps the hero's theme over whatever section the nav is
-          over, as the dropdowns keep white. It fits under the nav in the
-          window as it is, toolbars and all. */}
+      {/* The drawer keeps the hero's theme, whatever section the nav is over,
+          and fits the window under the nav, toolbars and all. It only shows
+          the status notes, leaving the descriptions to the dropdowns. */}
       <div
-        className="hidden max-lg:data-[open=true]:block max-lg:data-[open=true]:max-h-[calc(100dvh-var(--nav-h))] max-lg:data-[open=true]:overflow-y-auto max-lg:data-[open=true]:border-t max-lg:data-[open=true]:border-t-border/50 max-lg:data-[open=true]:bg-background max-lg:data-[open=true]:pt-2 max-lg:data-[open=true]:pb-7"
-        data-open="false"
+        className="hidden max-h-[calc(100dvh-var(--nav-h))] overflow-y-auto border-t border-t-border/50 bg-background pt-2 pb-7 max-md:group-data-[open=true]/nav:block"
         data-theme="hero"
         data-nav-drawer
       >
         <div className="grid gap-1 px-(--gutter)">
-          {primaryNav.menus.map((group) => (
-            <div key={group.label}>
+          {primaryNav.menus.map((menu) => (
+            <div key={menu.label}>
               <p className="pt-5 pb-1 text-sm font-medium tracking-widest text-subtle-foreground uppercase">
-                {group.label}
+                {menu.label}
               </p>
-              {(group.items as Item[]).map((item) => (
-                <NavEntry
-                  className={cn(drawerLink, "text-foreground")}
-                  disabledClassName={cn(drawerLink, "text-subtle-foreground")}
+              {menu.items.map((item) => (
+                <AppLink
+                  className="block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight text-foreground aria-disabled:text-subtle-foreground"
                   href={item.href}
-                  disabled={item.disabled}
                   key={item.label}
                 >
                   {item.label}
-                  {showDrawerNote(item) ? <Note item={item} inDrawer /> : null}
-                </NavEntry>
+                  {item.live || !item.href ? (
+                    <span
+                      className={cn(
+                        "ml-2.5 font-sans text-sm font-normal tracking-normal",
+                        item.live ? "text-accent" : "text-subtle-foreground",
+                      )}
+                    >
+                      {item.note}
+                    </span>
+                  ) : null}
+                </AppLink>
               ))}
             </div>
           ))}

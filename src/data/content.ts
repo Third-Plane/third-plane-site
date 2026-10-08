@@ -61,17 +61,22 @@ export const integrationsPage: IntegrationsFile = integrationsJson;
 export const appliedEpicPage: AppliedEpicFile = appliedEpicJson;
 
 // ---------------------------------------------------------------------------
-// Site structure: primary nav with a Products group, and the footer.
+// Site structure: primary nav with a Products group, and the footer. An entry
+// with no `href` has no page yet: it is shown, but not as a link.
 // ---------------------------------------------------------------------------
 
-export const primaryNav = {
+// `note` is a status (live, or coming) or a description; `live` marks the one
+// that's available now.
+type NavItem = { label: string; href?: string; note?: string; live?: boolean };
+
+export const primaryNav: { menus: { label: string; items: NavItem[] }[] } = {
   menus: [
     {
       label: "Products",
       items: [
         { label: "Placement Desk", href: "/placement-desk", note: "Available now", live: true },
-        { label: "Inbound Desk", note: "Coming Soon", disabled: true },
-        { label: "Service Desk", note: "Coming Soon", disabled: true },
+        { label: "Inbound Desk", note: "Coming Soon" },
+        { label: "Service Desk", note: "Coming Soon" },
       ],
     },
     {
@@ -103,8 +108,8 @@ export const siteFooter = {
       label: "Products",
       links: [
         { label: "Placement Desk", href: "/placement-desk" },
-        { label: "Inbound Desk", disabled: true },
-        { label: "Service Desk", disabled: true },
+        { label: "Inbound Desk" },
+        { label: "Service Desk" },
       ],
     },
     {
