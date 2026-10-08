@@ -1,9 +1,9 @@
 import type { Block, Post as PostData } from "../data/posts";
 import { Display1, Lead } from "../components/Headings";
-import { Hero } from "../components/Hero";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
+import { Header } from "../components/Header";
 
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
@@ -49,35 +49,27 @@ function BlockView({ block }: { block: Block }) {
   }
 }
 
-// The hero is its own export: pages/resources/[slug].astro puts it in Base's
-// `hero` slot.
-export function PostHero({ post }: { post: PostData }) {
-  return (
-    <Hero>
-      <div className="grid max-w-190 gap-5 pt-14 pb-16">
-        <AppLink
-          className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"
-          href="/resources"
-        >
-          <Arrow className="size-3.5 shrink-0 rotate-180" />
-          Resources
-        </AppLink>
-        <PostMeta post={post} />
-        <Display1 size="editorial">{post.title}</Display1>
-        <Lead tone="muted" className="max-w-[60ch]">
-          {post.standfirst}
-        </Lead>
-        <p className="text-sm text-subtle-foreground">{post.author}</p>
-      </div>
-    </Hero>
-  );
-}
-
 export function Post({ post }: { post: PostData }) {
   return (
     <>
-      <Section as="article" theme="white" className="rounded-xl px-0">
-        <div className="wrap grid max-w-[68ch] gap-5 text-lg leading-relaxed">
+      <Header />
+      <Section as="article" theme="white">
+        <div className="wrap grid max-w-4xl gap-5">
+          <AppLink
+            className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"
+            href="/resources"
+          >
+            <Arrow className="size-3.5 shrink-0 rotate-180" />
+            Resources
+          </AppLink>
+          <PostMeta post={post} />
+          <Display1 size="editorial">{post.title}</Display1>
+          <Lead tone="muted" className="max-w-[60ch]">
+            {post.standfirst}
+          </Lead>
+          <p className="text-sm text-subtle-foreground">{post.author}</p>
+        </div>
+        <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">
           {post.body.map((block, i) => (
             <BlockView block={block} key={i} />
           ))}

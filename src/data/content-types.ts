@@ -93,7 +93,7 @@ export type SecurityFile = {
 };
 
 export type ResourcesFile = {
-  title: Lines;
+  title: string;
   lead: string;
   types: { technical: string; perspective: string; press: string };
   cta: Cta;
