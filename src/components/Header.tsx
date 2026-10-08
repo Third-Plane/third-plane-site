@@ -13,14 +13,14 @@ function Note({ item, inDrawer = false }: { item: Item; inDrawer?: boolean }) {
   const tone = item.live ? "text-accent" : "text-subtle-foreground";
   return (
     <span
-      className={cn("text-base font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
+      className={cn("text-sm font-normal", tone, inDrawer && "ml-2.5 font-sans tracking-normal")}
     >
       {item.note}
     </span>
   );
 }
 
-const panelItem = "grid gap-0.5 px-3 py-3 text-base font-medium";
+const panelItem = "grid gap-0.5 px-3 py-2.5 text-base font-medium";
 const drawerLink =
   "block border-b border-b-border/50 py-3.5 font-heading text-xl font-medium tracking-tight";
 
@@ -81,7 +81,7 @@ export function Header() {
                 {group.label}
               </button>
               <div
-                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 gap-0.5 rounded-2xl border border-border/50 bg-card p-2.5 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
+                className="absolute top-[calc(100%+0.9rem)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-['']"
                 role="menu"
                 data-theme="white"
                 data-nav-panel
@@ -90,7 +90,7 @@ export function Header() {
                   <NavEntry
                     className={cn(
                       panelItem,
-                      "text-foreground transition-colors duration-150 hover:bg-muted",
+                      "text-foreground transition-colors duration-150 hover:bg-muted rounded-xl",
                     )}
                     disabledClassName={cn(panelItem, "cursor-default text-subtle-foreground")}
                     href={item.href}
