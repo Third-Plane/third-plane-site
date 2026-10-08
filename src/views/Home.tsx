@@ -6,7 +6,7 @@ import { Section, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, Button } from "../components/Ui";
-import { cn, reveal } from "../lib/style";
+import { cn } from "../lib/style";
 
 // A mock AMS screen for each problem point, in the order of problem.points.
 const problemScreens: ScreenName[] = ["renewed", "overdue", "unassigned", "revenue"];
@@ -37,7 +37,7 @@ export function Home() {
         <SectionHeader title={problem.title} body={problem.body} />
         <Grid className="wrap">
           {problem.points.map((point, i) => (
-            <Card key={point.title} {...reveal(i)} className="gap-0 p-0">
+            <Card key={point.title} className="gap-0 p-0">
               <ProblemScreen name={problemScreens[i]} />
               <div className="space-y-2 px-6 py-5">
                 <ItemTitle>{point.title}</ItemTitle>
@@ -51,7 +51,7 @@ export function Home() {
       <Section id="approach" theme="blend">
         <SectionHeader title={approach.title} body={approach.body} />
         <div className="wrap grid gap-5">
-          {approach.models.map((model, i) => {
+          {approach.models.map((model) => {
             return (
               <div
                 className={cn(
@@ -59,7 +59,6 @@ export function Home() {
                   model.accent ? "border-transparent" : "border-border bg-card",
                 )}
                 data-theme={model.accent ? "accent" : undefined}
-                {...reveal(i)}
                 key={model.kicker}
               >
                 <p

@@ -9,10 +9,10 @@ export function Showcase() {
   if (!showcase.src) return null;
   return (
     <Section theme="white" id="video">
-      <header className="mx-auto mb-13 max-w-190 text-center" data-reveal>
+      <header className="mx-auto mb-13 max-w-190 text-center">
         <Display2>{showcase.title}</Display2>
       </header>
-      <figure className="m-0 grid justify-items-center gap-4" data-reveal>
+      <figure className="m-0 grid justify-items-center gap-4">
         <video
           className="aspect-video w-full max-w-260 rounded-2xl bg-deep shadow-2xl"
           src={showcase.src}

@@ -28,30 +28,6 @@
    otherwise generate a utility nobody uses. */
 @source "./**/*.{astro,tsx,ts}";
 
-/* Scroll reveal: elements with data-reveal start faded and lowered; scripts/reveal.ts
-   sets data-revealed as they enter the viewport, and the --i style (see
-   lib/style.ts) staggers siblings. This is in the utilities layer so its
-   transition keeps winning over a component's own transition utility, as a more
-   specific selector, the same way it always has. translate is listed so a
-   hover lift on a revealed element animates too. */
-@layer utilities {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal-ready [data-reveal] {
-      opacity: 0;
-      transform: translateY(18px);
-      transition:
-        opacity 0.7s ease calc(var(--i, 0) * 80ms),
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i, 0) * 80ms),
-        translate 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-    .reveal-ready [data-reveal][data-revealed="true"] {
-      opacity: 1;
-      transform: none;
-    }
-  }
-}
-
 /* The page-width column: the site's max width with a gutter each side. */
 @utility wrap {
   position: relative;

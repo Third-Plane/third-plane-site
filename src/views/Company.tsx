@@ -3,7 +3,7 @@ import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { Display2 } from "../components/Headings";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
-import { cn, reveal } from "../lib/style";
+import { cn } from "../lib/style";
 
 // The hero is its own export: pages/company.astro puts it in Base's `hero` slot.
 export function CompanyHero() {
@@ -15,7 +15,7 @@ export function Company() {
     <>
       <Section theme="white" id="origin">
         <div className="wrap grid items-start gap-x-17 gap-y-13 md:grid-cols-2">
-          <div data-reveal>
+          <div>
             <Display2>{page.origin.title}</Display2>
             {page.origin.body.map((paragraph, i) => (
               <p
@@ -31,10 +31,7 @@ export function Company() {
               </p>
             ))}
           </div>
-          <figure
-            className="relative m-0 aspect-4/3 overflow-hidden rounded-2xl bg-muted"
-            {...reveal(1)}
-          >
+          <figure className="relative m-0 aspect-4/3 overflow-hidden rounded-2xl bg-muted">
             {page.team.photo.src ? (
               <img
                 className="size-full object-cover"
@@ -58,8 +55,8 @@ export function Company() {
       <Section id="principles" theme="blend">
         <SectionHeader title={page.principles.title} />
         <Grid className="wrap">
-          {page.principles.items.map((item, i) => (
-            <Point key={item.title} {...reveal(i)}>
+          {page.principles.items.map((item) => (
+            <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
             </Point>

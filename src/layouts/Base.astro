@@ -57,11 +57,6 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     {!noindex && <link rel="canonical" href={canonical} />}
     {jsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, "\\u003c")} />)}
     <meta name="theme-color" content="#f6f3f0" />
-    <script is:inline>
-      // Set the reveal state before first paint so sections fade in
-      // (scripts/reveal.ts) instead of showing, hiding and fading in.
-      if ("IntersectionObserver" in window) document.documentElement.classList.add("reveal-ready");
-    </script>
 
     <meta property="og:type" content={type} />
     {!noindex && <meta property="og:url" content={canonical} />}
@@ -102,7 +97,6 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     <script>
       import "../scripts/nav";
       import "../scripts/nav-theme";
-      import "../scripts/reveal";
       import "../scripts/ledger";
       import "../scripts/particles";
       import "../scripts/flowchart";

@@ -35,7 +35,7 @@ export function Section({
 // A section's heading and optional lead, above its content in the column.
 export function SectionHeader({ title, body }: { title: string; body?: string }) {
   return (
-    <header className="wrap mb-13" data-reveal>
+    <header className="wrap mb-13">
       <Display2>{title}</Display2>
       {body ? <Lead className="mt-5 max-w-[62ch]">{body}</Lead> : null}
     </header>

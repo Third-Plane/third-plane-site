@@ -1,6 +1,5 @@
 import { appliedEpicPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
-import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 
@@ -16,8 +15,8 @@ export function AppliedEpic() {
       <Section theme="white" id="who">
         <SectionHeader title={page.who.title} body={page.who.body} />
         <Grid columns={3} className="wrap">
-          {page.who.items.map((item, i) => (
-            <Point key={item.title} {...reveal(i)}>
+          {page.who.items.map((item) => (
+            <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
             </Point>
           ))}
@@ -27,8 +26,8 @@ export function AppliedEpic() {
       <Section theme="blend" id="work">
         <SectionHeader title={page.work.title} />
         <Grid columns={3} className="wrap">
-          {page.work.items.map((item, i) => (
-            <Point key={item.title} {...reveal(i)}>
+          {page.work.items.map((item) => (
+            <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
             </Point>
@@ -40,8 +39,8 @@ export function AppliedEpic() {
         <Section theme="white" id="meaning">
           <SectionHeader title={page.meaning.title} />
           <Grid className="wrap">
-            {page.meaning.items.map((item, i) => (
-              <Point key={item.title} {...reveal(i)}>
+            {page.meaning.items.map((item) => (
+              <Point key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
                 <ItemBody>{item.body}</ItemBody>
               </Point>
@@ -52,7 +51,7 @@ export function AppliedEpic() {
 
       {page.quote?.text ? (
         <Section theme="blend" id="quote">
-          <blockquote className="m-0 max-w-[58ch]" data-reveal>
+          <blockquote className="m-0 max-w-[58ch]">
             <p className="font-heading text-xl font-medium tracking-tight text-pretty text-foreground">
               {page.quote.text}
             </p>

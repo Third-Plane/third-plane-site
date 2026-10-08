@@ -7,7 +7,6 @@ import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { AppLink } from "../components/Ui";
-import { reveal } from "../lib/style";
 
 // A mock screen for each system, in the order of systems.items. The fifth item,
 // carrier channels, isn't shown here: CarrierChannels below covers it.
@@ -28,7 +27,7 @@ export function Integrations() {
         <SectionHeader title={page.systems.title} />
         <Grid className="wrap">
           {page.systems.items.slice(0, 4).map((item, i) => (
-            <Card key={item.title} {...reveal(i)} className="gap-0 p-0">
+            <Card key={item.title} className="gap-0 p-0">
               <SystemScreen name={systemScreens[i]} />
               <div className="space-y-2 px-6 py-5">
                 <ItemTitle>{item.title}</ItemTitle>

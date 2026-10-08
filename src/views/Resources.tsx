@@ -4,7 +4,6 @@ import { PageHero } from "../components/PageHero";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
-import { reveal } from "../lib/style";
 
 // The hero is its own export: pages/resources.astro puts it in Base's `hero` slot.
 export function ResourcesHero() {
@@ -17,8 +16,8 @@ export function Resources({ posts }: { posts: Post[] }) {
       <Section theme="white" id="posts">
         {posts.length ? (
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, i) => (
-              <li key={post.slug} {...reveal(i % 3)}>
+            {posts.map((post) => (
+              <li key={post.slug}>
                 <AppLink
                   className="grid h-full content-start gap-3.5 rounded-2xl bg-muted p-7 text-foreground transition duration-200 hover:-translate-y-0.5 hover:shadow-lg"
                   href={`/resources/${post.slug}`}

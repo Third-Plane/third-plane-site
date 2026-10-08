@@ -26,7 +26,6 @@ type ItemProps = {
   href?: string;
   className?: string;
   children: ReactNode;
-  "data-reveal"?: boolean;
   style?: CSSProperties;
 };
 

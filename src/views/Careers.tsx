@@ -1,6 +1,5 @@
 import { careersPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
-import { reveal } from "../lib/style";
 import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
@@ -16,7 +15,7 @@ export function Careers() {
       <Section id="roles" theme="white">
         <SectionHeader title={page.roles.title} />
         {page.roles.items.length ? (
-          <ul className="wrap grid gap-3" data-reveal>
+          <ul className="wrap grid gap-3">
             {page.roles.items.map((role) => (
               <li key={role.href}>
                 <AppLink
@@ -35,17 +34,15 @@ export function Careers() {
             ))}
           </ul>
         ) : (
-          <p className="max-w-[60ch] text-base text-foreground" data-reveal>
-            {page.roles.empty}
-          </p>
+          <p className="max-w-[60ch] text-base text-foreground">{page.roles.empty}</p>
         )}
       </Section>
 
       <Section theme="blend" id="why">
         <SectionHeader title={page.why.title} />
         <Grid columns={4} className="wrap">
-          {page.why.items.map((item, i) => (
-            <Point key={item.title} {...reveal(i)}>
+          {page.why.items.map((item) => (
+            <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
             </Point>

@@ -4,7 +4,7 @@ import { Display2 } from "../components/Headings";
 import type { ChartName } from "../components/Flowchart";
 import { SplitHero } from "../components/SplitHero";
 import { Section, SectionHeader } from "../components/Section";
-import { cn, reveal } from "../lib/style";
+import { cn } from "../lib/style";
 
 // The hero is its own export: pages/security.astro puts it in Base's `hero` slot.
 // The page's flowchart: Base shows it, and the hero's ledger follows it.
@@ -26,7 +26,6 @@ export function Security() {
                 i > 0 &&
                   "mt-6 border-t border-t-border/50 md:mt-0 md:border-t-0 md:border-l md:border-l-border/50 md:pl-10",
               )}
-              {...reveal(i)}
               key={side.title}
             >
               <Display2 className="mb-5">{side.title}</Display2>
@@ -48,8 +47,8 @@ export function Security() {
       <Section theme="deep" id="record">
         <SectionHeader title={page.record.title} />
         <Grid columns={3} className="wrap">
-          {page.record.items.map((item, i) => (
-            <OutlineCard key={item.title} {...reveal(i)}>
+          {page.record.items.map((item) => (
+            <OutlineCard key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
             </OutlineCard>
@@ -60,8 +59,8 @@ export function Security() {
       <Section theme="blend" id="data">
         <SectionHeader title={page.data.title} />
         <Grid className="wrap">
-          {page.data.items.map((item, i) => (
-            <OutlineCard className="px-6 py-5" key={item.title} {...reveal(i)}>
+          {page.data.items.map((item) => (
+            <OutlineCard className="px-6 py-5" key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
             </OutlineCard>
