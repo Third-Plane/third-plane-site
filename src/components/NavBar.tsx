@@ -1,31 +1,33 @@
 import { primaryNav, site } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { Logo } from "./Logo";
+import type { Theme } from "./theme";
 import { cn } from "../lib/style";
 
 // The nav's bar: the logo, the dropdowns, the button and the drawer's toggle.
-// It is the nav's own (see Header) and, inert, each section's copy of it (see
-// NavCopy). It takes its colours from the theme of the group/nav around it.
-export function NavBar() {
+// It is the nav's own (see Header) and each section's copy of it (NavCopy).
+// It takes its colours from the theme around it. A copy is only ever seen, so
+// it leaves out the dropdowns' panels and the hooks scripts/nav.ts finds the
+// bar's controls by.
+export function NavBar({ copy = false }: { copy?: boolean }) {
+  const hook = copy ? undefined : true;
   return (
     <div className="flex h-bar items-center justify-between gap-8 px-(--gutter)">
-      {/* The white logo on a dark theme, the purple one otherwise. */}
+      {/* The white logo on a dark theme, the purple one otherwise (see
+          logo-white in index.css). */}
       <AppLink className="grid items-center" href="/" aria-label={`${site.name} home`}>
-        <Logo className="h-7 w-auto [grid-area:1/1] group-data-[theme=deep]/nav:opacity-0 group-data-[theme=invert]/nav:opacity-0" />
-        <Logo
-          tone="white"
-          className="h-7 w-auto opacity-0 [grid-area:1/1] group-data-[theme=deep]/nav:opacity-100 group-data-[theme=invert]/nav:opacity-100"
-        />
+        <Logo className="h-7 w-auto opacity-[calc(1-var(--logo-white))] [grid-area:1/1]" />
+        <Logo tone="white" className="h-7 w-auto opacity-(--logo-white) [grid-area:1/1]" />
       </AppLink>
 
-      <nav className="ml-auto flex gap-8 max-md:hidden" aria-label="Main" data-nav-links>
+      <nav className="ml-auto flex gap-8 max-md:hidden" aria-label="Main" data-nav-links={hook}>
         {primaryNav.menus.map((menu) => (
-          <div className="group/menu relative" data-open="false" data-menu key={menu.label}>
+          <div className="group/menu relative" data-open="false" data-menu={hook} key={menu.label}>
             <button
               className="inline-flex cursor-pointer items-center gap-2 bg-transparent p-0 text-base! font-bold! text-foreground transition-colors duration-200 [border:0] [font:inherit] hover:text-accent"
               type="button"
               aria-expanded="false"
-              data-menu-btn
+              data-menu-btn={hook}
             >
               {menu.label}
             </button>
@@ -34,32 +36,34 @@ export function NavBar() {
                 centred in the bar, so that is half its height and the rest of
                 the nav's below its middle. The ::before bridges the gap down
                 to it, so the pointer can cross it without the menu closing. */}
-            <div
-              className="absolute top-[calc(50%+var(--nav-h)-var(--bar)/2)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-6 before:h-6"
-              role="menu"
-              data-theme="white"
-              data-nav-panel
-            >
-              {menu.items.map((item) => (
-                <AppLink
-                  className="grid gap-0.5 rounded-xl px-3 py-2.5 text-base font-medium text-foreground transition-colors duration-150 not-aria-disabled:hover:bg-muted aria-disabled:cursor-default aria-disabled:text-subtle-foreground"
-                  href={item.href}
-                  key={item.label}
-                >
-                  <span>{item.label}</span>
-                  {item.note ? (
-                    <span
-                      className={cn(
-                        "text-sm font-normal",
-                        item.live ? "text-accent" : "text-subtle-foreground",
-                      )}
-                    >
-                      {item.note}
-                    </span>
-                  ) : null}
-                </AppLink>
-              ))}
-            </div>
+            {copy ? null : (
+              <div
+                className="absolute top-[calc(50%+var(--nav-h)-var(--bar)/2)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-6 before:h-6"
+                role="menu"
+                data-theme="white"
+                data-nav-panel
+              >
+                {menu.items.map((item) => (
+                  <AppLink
+                    className="grid gap-0.5 rounded-xl px-3 py-2.5 text-base font-medium text-foreground transition-colors duration-150 not-aria-disabled:hover:bg-muted aria-disabled:cursor-default aria-disabled:text-subtle-foreground"
+                    href={item.href}
+                    key={item.label}
+                  >
+                    <span>{item.label}</span>
+                    {item.note ? (
+                      <span
+                        className={cn(
+                          "text-sm font-normal",
+                          item.live ? "text-accent" : "text-subtle-foreground",
+                        )}
+                      >
+                        {item.note}
+                      </span>
+                    ) : null}
+                  </AppLink>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </nav>
@@ -73,7 +77,7 @@ export function NavBar() {
         type="button"
         aria-expanded="false"
         aria-label="Toggle navigation"
-        data-nav-toggle
+        data-nav-toggle={hook}
       >
         <svg
           width="22"
@@ -99,16 +103,16 @@ export function NavBar() {
 // so the section reads as sliding in under the nav (nav-reveal). It is only
 // shown while the edge crosses the nav and a little after, so it hides the
 // nav's own hover and focus only then.
-export function NavCopy({ theme }: { theme: string }) {
+export function NavCopy({ theme }: { theme: Theme }) {
   return (
     <div
-      className="group/nav pointer-events-none fixed inset-x-0 top-0 z-40 m-0 hidden h-(--nav-h) scroll-linked:block scroll-linked:nav-reveal"
+      className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden h-(--nav-h) scroll-linked:block scroll-linked:nav-reveal"
       data-theme={theme}
       data-nav-copy
       aria-hidden="true"
       inert
     >
-      <NavBar />
+      <NavBar copy />
     </div>
   );
 }

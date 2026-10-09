@@ -24,11 +24,7 @@ const iconLink =
 // call to action's photograph.
 export function Footer({ cta }: { cta?: CtaCopy }) {
   return (
-    <Section
-      as="footer"
-      theme="invert"
-      className="flex min-h-dvh flex-col space-y-24 pb-0"
-    >
+    <Section as="footer" theme="invert" className="flex min-h-dvh flex-col gap-24 pb-0">
       <div className="grid flex-1 place-items-center">
         <Cta {...cta} />
       </div>

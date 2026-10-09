@@ -40,11 +40,13 @@
 
    foreground is headings and emphasis, muted-foreground body copy and
    subtle-foreground meta. card is a tile on the theme; muted a quieter fill.
-   primary is the button. */
+   primary is the button. logo-white is 1 where the white logo goes, on a dark
+   theme, and 0 where the purple one does (see NavBar). */
 :root,
 [data-theme="white"],
 [data-theme="blend"],
 [data-theme="hero"] {
+  --logo-white: 0;
   --background: var(--cream);
   --foreground: var(--deep);
   --muted-foreground: var(--ink-body);
@@ -66,6 +68,7 @@
 }
 [data-theme="deep"],
 [data-theme="accent"] {
+  --logo-white: 1;
   --foreground: var(--cream);
   --muted-foreground: color-mix(in oklab, var(--cream) 70%, transparent);
   --subtle-foreground: color-mix(in oklab, var(--cream) 50%, transparent);
@@ -99,6 +102,7 @@
 /* An inverted, blurred view of what lies behind (the page's flowchart), from
    its layer (see Section). */
 [data-theme="invert"] {
+  --logo-white: 1;
   --foreground: rgba(255, 255, 255, 0.8);
   --accent: white;
   --muted-foreground: rgba(255, 255, 255, 0.6);

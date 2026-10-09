@@ -16,7 +16,7 @@ export function Hero({ children }: { children?: ReactNode }) {
       <Header />
       <Section
         theme="hero"
-        className="hero-veil-stacked lg:hero-veil grid items-center pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)]"
+        className="grid items-center hero-veil-stacked pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)] lg:hero-veil"
         id="top"
       >
         {children}

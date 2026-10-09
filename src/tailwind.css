@@ -92,9 +92,11 @@
    it (nav-reveal). The section is the copy's timeline (nav-timeline), inset to
    the nav's band at the top of the window, so its entry range is just that
    crossing: from the edge at the nav's foot to the edge at the window's top.
-   The copy then stays whole for twice the nav's height more, and the nav
-   switches theme halfway through that, out of sight under the copy, so the
-   switch needs no transition and the script can be a frame or two late. Then
+   The copy then stays whole for twice the nav's height more (the hold), and
+   the nav switches theme halfway through that, out of sight under the copy,
+   so the switch needs no transition and the script can be a frame or two
+   late. The hold's length is in nav-reveal's range and keyframes, and its
+   middle in scripts/nav-theme.ts: change them together. Then
    the copy goes, and the nav's own hover and focus show again. A later
    section's copy paints over an earlier one's, so where sections are short,
    the latest edge wins.
@@ -119,7 +121,7 @@
 }
 
 /* The entry range is one nav height and the hold two, so the reveal is the
-   first third. */
+   first third (see the hold, above). */
 @keyframes nav-reveal {
   0% {
     clip-path: inset(100% 0 0 0);
@@ -170,7 +172,6 @@
     inset: 0 0 -1px;
     z-index: -1;
     background-color: var(--nav-bg, transparent);
-    backdrop-filter: none;
   }
   [data-nav-copy] {
     background-color: var(--nav-bg);
@@ -181,8 +182,8 @@
   /* The section just after the nav, on a page with no hero, starts under it,
      so its edge never crosses it. And at the foot of the page, the last
      section's edge stops where it is, which may be while its copy covers the
-     nav: the nav takes its theme there, and the copy is put away (see
-     scripts/nav-theme.ts). */
+     nav: the nav takes its theme there, and the copy is put away. The script
+     reads the first from here, and sets the second (scripts/nav-theme.ts). */
   [data-nav] + * > [data-nav-copy],
   [data-settled] > [data-nav-copy] {
     visibility: hidden;

@@ -1,10 +1,8 @@
 import type { ElementType, HTMLAttributes } from "react";
 import { Display2, Lead } from "./Headings";
 import { NavCopy } from "./NavBar";
+import type { Theme } from "./theme";
 import { cn } from "../lib/style";
-
-// A theme sets the colours of a section and everything in it (see index.css).
-export type Theme = "hero" | "white" | "blend" | "deep" | "invert";
 
 // A theme's layer: its background, painted on a layer of its own behind the
 // section's content, so it can blend with or filter what lies behind the
@@ -24,8 +22,7 @@ const layers: Partial<Record<Theme, string>> = {
 
 // A full-width stripe of the page, in a theme: the nav, the hero, the page's
 // sections and the footer. The pinned nav takes the theme of the section just
-// below it (scripts/nav-theme.ts), which finds them as <body>'s children, so a
-// section must be one.
+// below it (scripts/nav-theme.ts), which finds them by data-section.
 //
 // A section has the page's gutter, and the bar's padding (see --bar), twice
 // over above its content and once below. `as` and `className` are for those
@@ -57,12 +54,12 @@ export function Section({
         className,
       )}
       data-theme={theme}
+      data-section
       {...props}
     >
-      {/* m-0, or a space-y on the section (the footer's) would cut it short. */}
       {layer ? (
         <div
-          className={cn("pointer-events-none absolute inset-0 m-0", layer)}
+          className={cn("pointer-events-none absolute inset-0", layer)}
           aria-hidden="true"
           data-layer
         />

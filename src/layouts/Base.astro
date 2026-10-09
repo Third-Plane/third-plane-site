@@ -83,8 +83,9 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     <div class="bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh" data-theme="hero" aria-hidden="true">
       <Flowchart chart={chart} />
     </div>
-    {/* The page: its hero first, then its sections, all directly under <body>
-         (see Section). */}
+    {/* The page: the nav, its hero, then its sections. On a page with no
+         hero the first section must come straight after the nav, so that its
+         copy of the bar is hidden (see the nav in tailwind.css). */}
     <slot />
 
     <Footer cta={cta} />
