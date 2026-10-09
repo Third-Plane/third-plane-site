@@ -18,11 +18,10 @@ function LinkedInMark() {
 const iconLink =
   "inline-flex text-subtle-foreground transition-colors duration-200 hover:text-accent";
 
-// The last section of every page, positioned like the rest (see Section) so it
-// slides over the pinned hero with them. It opens with the page's call to
-// action (`cta`, the site's default where a page sets none), then the site's
-// links. The links have the invert theme to themselves: its blend would wash
-// out the call to action's photograph.
+// The last section of every page. It opens with the page's call to action
+// (`cta`, the site's default where a page sets none), then the site's links.
+// The links have the invert theme to themselves: its blend would wash out the
+// call to action's photograph.
 export function Footer({ cta }: { cta?: CtaCopy }) {
   return (
     <Section

@@ -84,10 +84,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       <Flowchart chart={chart} />
     </div>
     {/* The page: its hero first, then its sections, all directly under <body>
-         (see Section). A sticky element is held inside its container, and under
-         <body> it sticks to the end of the page. The sections that follow the
-         hero, the footer among them, are positioned, so they paint over it where
-         it is pinned, and the page slides up over it (see Hero). */}
+         (see Section). */}
     <slot />
 
     <Footer cta={cta} />
@@ -97,7 +94,6 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       import "../scripts/nav-theme";
       import "../scripts/ledger";
       import "../scripts/flowchart";
-      import "../scripts/hero-cover";
     </script>
   </body>
 </html>

@@ -1,17 +1,6 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { Section } from "./Section";
-import { cn } from "../lib/style";
-
-// Pinned from lg up, where scroll-driven animation is available (see the
-// scroll-linked variant in tailwind.css): the hero stays where it is, no
-// taller than the window, and the page slides up over it as it scrolls (what
-// follows it is positioned, so it paints on top) while the hero fades away
-// (hero-cover). A sticky element is held inside its container, so the hero
-// has to sit directly under <body> (see Base), or it would be pushed off where
-// its container ends.
-const PINNED =
-  "lg:scroll-linked:sticky lg:scroll-linked:top-0 lg:scroll-linked:max-h-svh lg:scroll-linked:hero-cover";
 
 // A hero: see-through, over the page's flowchart (Base.astro), with a wash
 // behind its copy (across the top where the copy stacks, down the copy column
@@ -27,12 +16,8 @@ export function Hero({ children }: { children?: ReactNode }) {
       <Header />
       <Section
         theme="hero"
-        className={cn(
-          "hero-veil-stacked lg:hero-veil grid items-center pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)]",
-          PINNED,
-        )}
+        className="hero-veil-stacked lg:hero-veil grid items-center pt-(--nav-h) pb-0 lg:min-h-[min(43.75vw,100svh)]"
         id="top"
-        data-hero
       >
         {children}
       </Section>

@@ -1,8 +1,6 @@
 // Gives the pinned nav the theme of the section it reads as the top of. The
-// sections are <body>'s children with a theme (see Section): of those there,
-// the last, as a later one is painted over an earlier one (the page over the
-// pinned hero). Where the nav isn't pinned it scrolls away with the hero, and
-// keeps its own theme.
+// sections are <body>'s children with a theme (see Section). Where the nav
+// isn't pinned it scrolls away with the hero, and keeps its own theme.
 //
 // It switches once a section's top edge is a nav's height above the window,
 // halfway through the time the section's copy of the bar covers the nav (see

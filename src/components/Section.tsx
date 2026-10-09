@@ -8,7 +8,7 @@ export type Theme = "hero" | "white" | "blend" | "deep" | "invert";
 
 // A theme's layer: its background, painted on a layer of its own behind the
 // section's content, so it can blend with or filter what lies behind the
-// section (the page's flowchart, the pinned hero) without touching the content.
+// section (the page's flowchart) without touching the content.
 // invert's filter has to be on a layer: an element with a backdrop filter is a
 // backdrop root, and a backdrop filter inside it only sees what is painted
 // within it, so a frosted card in the section (see Cta) would blur nothing.
@@ -34,8 +34,7 @@ const layers: Partial<Record<Theme, string>> = {
 // A section makes no stacking context of its own (no z-index, isolation,
 // opacity, transform...), or its layer would blend with and filter nothing
 // but the section. The section, its layer and the content after it
-// (positioned, see index.css) join the page's stacking order instead, after
-// the hero, so they all paint over it where it is pinned (see Hero).
+// (positioned, see index.css) join the page's stacking order instead.
 //
 // Each section but the hero's carries a copy of the nav's bar in its theme
 // (NavCopy), and is the timeline that reveals it (nav-timeline in

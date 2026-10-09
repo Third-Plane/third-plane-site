@@ -36,10 +36,11 @@
   margin-inline: auto;
 }
 
-/* Where the page may slide over a pinned hero as it scrolls: only in browsers
-   with scroll-driven animations, only for people who haven't asked for less
-   motion, and only in a window tall enough to hold a pinned hero (see Hero).
-   Without them the hero is an ordinary, scrolling section. */
+/* Where the nav is pinned over the page, filling in and drawing each
+   section's edge through it, tied to scroll position: only in browsers with
+   scroll-driven animations, only for people who haven't asked for less
+   motion, and only in a window at least 40rem tall. Without them the nav
+   scrolls away with the hero. */
 /* The scroll-driven animations below are written as longhands, never the
    animation shorthand: the build's minifier (lightningcss) folds a following
    animation-timeline into the shorthand, which browsers reject whole, so the
@@ -52,25 +53,15 @@
   }
 }
 
-/* The page slides up over a hero that stays where it is (see Hero), tied to
-   scroll position. --hero-d is the scroll distance that takes the page's top
-   edge from the foot of the hero to the foot of the nav (the hero's height
-   less --nav-h); scripts/hero-cover.ts keeps it exact, and until then it is a
-   viewport height. A hero pinned for this must be no taller than the window,
-   or its foot could never be seen, so use it from lg up.
-
-   The nav is pinned over everything, see-through over the hero. Its fill (the
-   hero's lavender) comes in over the same distance, and is whole by the time
-   the page reaches it, so the page never shows through it. Below lg, where
-   the hero isn't pinned but scrolls away under the nav, the fill comes in
-   over the nav's own height instead, as the hero starts to pass under it, so
-   the hero's copy doesn't show through a half-filled nav either. What is
-   animated is --nav-fill, which the lavender is mixed from, not
-   background-color itself: Chrome may animate that off the main thread,
-   repainting the nav from what it last recorded of it, and with the nav's
-   theme changing inside it (below) that can flash the previous section's
-   colour at any time as the page scrolls. Custom properties always animate
-   with the page. */
+/* The nav is pinned over everything, see-through over the hero at the top of
+   the page. Its fill (the hero's lavender) comes in over the nav's own
+   height, as the hero starts to pass under it, so the hero's copy doesn't
+   show through a half-filled nav. What is animated is --nav-fill, which the
+   lavender is mixed from, not background-color itself: Chrome may animate
+   that off the main thread, repainting the nav from what it last recorded of
+   it, and with the nav's theme changing inside it (below) that can flash the
+   previous section's colour at any time as the page scrolls. Custom
+   properties always animate with the page. */
 @property --nav-fill {
   syntax: "<number>";
   inherits: false;
@@ -88,10 +79,7 @@
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-timeline: scroll(root);
-  animation-range: 0 var(--hero-d, 100svh);
-  @variant max-lg {
-    animation-range: 0 var(--nav-h);
-  }
+  animation-range: 0 var(--nav-h);
   background-color: color-mix(in oklab, var(--lavender) calc(var(--nav-fill) * 100%), transparent);
 }
 
@@ -212,27 +200,6 @@
   :is([data-nav], [data-nav-copy])[data-theme="invert"] {
     --nav-bg: rgb(from var(--lavender) calc(255 - r) calc(255 - g) calc(255 - b));
   }
-}
-
-/* The hero leaving as the page covers it: the whole of it, wash and all,
-   fades and drops away over the first 60% of that distance, before the page's
-   rising edge reaches the heading. Pinned behind the page, a hero left showing
-   would show through any see-through section that passes over it. */
-@keyframes hero-cover {
-  to {
-    opacity: 0;
-    translate: 0 2.5rem;
-    /* Switches at the halfway point, so a fading hero stops taking clicks. */
-    pointer-events: none;
-  }
-}
-
-@utility hero-cover {
-  animation-name: hero-cover;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: scroll(root);
-  animation-range: 0 calc(var(--hero-d, 100svh) * 0.6);
 }
 
 /* A wash over the flowchart behind the hero's copy, so the headline reads over

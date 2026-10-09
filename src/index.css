@@ -13,13 +13,6 @@
   font-display: swap;
 }
 
-/* Registered, so it is read back in px (scripts/hero-cover.ts). */
-@property --nav-h {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 0px;
-}
-
 :root {
   --cream: #f6f3f0;
   --purple: #6338e3;

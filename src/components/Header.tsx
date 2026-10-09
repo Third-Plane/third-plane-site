@@ -5,8 +5,8 @@ import { Section } from "./Section";
 import { cn } from "../lib/style";
 
 // The site's nav, over the top of the hero. Where the page can follow the
-// scroll it is pinned over the page too, filling in as the page reaches it
-// (nav-fill in tailwind.css) and taking the theme of the section under it
+// scroll it is pinned over the page too, filling in as the hero passes under
+// it (nav-fill in tailwind.css) and taking the theme of the section under it
 // (scripts/nav-theme.ts), while each section's copy of its bar draws the
 // section's edge through it (NavCopy). Dropdowns from md up, a drawer below:
 // scripts/nav.ts opens and closes them by setting `data-open`.
