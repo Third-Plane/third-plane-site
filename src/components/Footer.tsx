@@ -28,7 +28,7 @@ export function Footer({ cta }: { cta?: CtaCopy }) {
     <Section
       as="footer"
       theme="invert"
-      className="flex min-h-dvh flex-col space-y-24 overflow-visible pb-0"
+      className="flex min-h-dvh flex-col space-y-24 pb-0"
     >
       <div className="grid flex-1 place-items-center">
         <Cta {...cta} />

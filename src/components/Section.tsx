@@ -1,5 +1,6 @@
 import type { ElementType, HTMLAttributes } from "react";
 import { Display2, Lead } from "./Headings";
+import { NavCopy } from "./NavBar";
 import { cn } from "../lib/style";
 
 // A theme sets the colours of a section and everything in it (see index.css).
@@ -12,12 +13,13 @@ export type Theme = "hero" | "white" | "blend" | "deep" | "invert";
 // backdrop root, and a backdrop filter inside it only sees what is painted
 // within it, so a frosted card in the section (see Cta) would blur nothing.
 // The hero has none: its wash is the page's backdrop (see Base), and the nav,
-// a hero section too, must not have one (see the nav in tailwind.css).
+// a hero section too, must not have one (see the nav in tailwind.css). A
+// layer with a backdrop filter keeps out from under the nav (nav-clear).
 const layers: Partial<Record<Theme, string>> = {
   white: "bg-background",
   blend: "bg-linear-to-b/srgb from-blue to-pink",
-  deep: "bg-background mix-blend-multiply backdrop-blur-xs",
-  invert: "backdrop-blur-sm backdrop-invert",
+  deep: "bg-background mix-blend-multiply backdrop-blur-xs scroll-linked:nav-clear",
+  invert: "backdrop-blur-sm backdrop-invert scroll-linked:nav-clear",
 };
 
 // A full-width stripe of the page, in a theme: the nav, the hero, the page's
@@ -34,6 +36,11 @@ const layers: Partial<Record<Theme, string>> = {
 // but the section. The section, its layer and the content after it
 // (positioned, see index.css) join the page's stacking order instead, after
 // the hero, so they all paint over it where it is pinned (see Hero).
+//
+// Each section but the hero's carries a copy of the nav's bar in its theme
+// (NavCopy), and is the timeline that reveals it (nav-timeline in
+// tailwind.css). The copy is pinned to the window, so the section must not
+// hold fixed elements either (no transform, filter, contain...).
 export function Section({
   as: Tag = "section",
   theme,
@@ -42,10 +49,12 @@ export function Section({
   ...props
 }: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme }) {
   const layer = layers[theme];
+  const copy = theme !== "hero";
   return (
     <Tag
       className={cn(
         "relative overflow-clip px-(--gutter) pt-[calc(var(--bar)*2)] pb-(--bar)",
+        copy && "scroll-linked:nav-timeline",
         className,
       )}
       data-theme={theme}
@@ -59,6 +68,7 @@ export function Section({
           data-layer
         />
       ) : null}
+      {copy ? <NavCopy theme={theme} /> : null}
       {children}
     </Tag>
   );
