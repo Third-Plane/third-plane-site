@@ -38,16 +38,15 @@
 
 /* Where the nav is pinned over the page, filling in and drawing each
    section's edge through it, tied to scroll position: only in browsers with
-   scroll-driven animations, only for people who haven't asked for less
-   motion, and only in a window at least 40rem tall. Without them the nav
-   scrolls away with the hero. */
+   scroll-driven animations, and only for people who haven't asked for less
+   motion. Without them the nav scrolls away with the hero. */
 /* The scroll-driven animations below are written as longhands, never the
    animation shorthand: the build's minifier (lightningcss) folds a following
    animation-timeline into the shorthand, which browsers reject whole, so the
    animation silently never runs in production (the dev server doesn't minify). */
 @custom-variant scroll-linked {
   @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) and (min-height: 40rem) {
+    @media (prefers-reduced-motion: no-preference) {
       @slot;
     }
   }
