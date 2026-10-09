@@ -5,30 +5,62 @@ import { cn } from "../lib/style";
 // A theme sets the colours of a section and everything in it (see index.css).
 export type Theme = "hero" | "white" | "blend" | "deep" | "invert";
 
+// A theme's layer: its background, painted on a layer of its own behind the
+// section's content, so it can blend with or filter what lies behind the
+// section (the page's flowchart, the pinned hero) without touching the content.
+// invert's filter has to be on a layer: an element with a backdrop filter is a
+// backdrop root, and a backdrop filter inside it only sees what is painted
+// within it, so a frosted card in the section (see Cta) would blur nothing.
+// The hero has none: its wash is the page's backdrop (see Base), and the nav,
+// a hero section too, must not have one (see the nav in tailwind.css).
+const layers: Partial<Record<Theme, string>> = {
+  white: "bg-background",
+  blend: "bg-linear-to-b/srgb from-blue to-pink",
+  deep: "bg-background mix-blend-multiply backdrop-blur-xs",
+  invert: "backdrop-blur-sm backdrop-invert",
+};
+
 // A full-width stripe of the page, in a theme: the nav, the hero, the page's
 // sections and the footer. The pinned nav takes the theme of the section just
 // below it (scripts/nav-theme.ts), which finds them as <body>'s children, so a
 // section must be one.
 //
 // A section has the page's gutter, and the bar's padding (see --bar), twice
-// over above its content and once below. It is positioned, so it paints over
-// the pinned hero (see Hero). `as` and `className` are for those that are laid
-// out otherwise (the nav, the hero, the footer).
+// over above its content and once below. `as` and `className` are for those
+// that are laid out otherwise (the nav, the hero, the footer).
+//
+// A section makes no stacking context of its own (no z-index, isolation,
+// opacity, transform...), or its layer would blend with and filter nothing
+// but the section. The section, its layer and the content after it
+// (positioned, see index.css) join the page's stacking order instead, after
+// the hero, so they all paint over it where it is pinned (see Hero).
 export function Section({
   as: Tag = "section",
   theme,
   className,
+  children,
   ...props
 }: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme }) {
+  const layer = layers[theme];
   return (
     <Tag
       className={cn(
-        "relative z-1 overflow-hidden px-(--gutter) pt-[calc(var(--bar)*2)] pb-(--bar)",
+        "relative overflow-clip px-(--gutter) pt-[calc(var(--bar)*2)] pb-(--bar)",
         className,
       )}
       data-theme={theme}
       {...props}
-    />
+    >
+      {/* m-0, or a space-y on the section (the footer's) would cut it short. */}
+      {layer ? (
+        <div
+          className={cn("pointer-events-none absolute inset-0 m-0", layer)}
+          aria-hidden="true"
+          data-layer
+        />
+      ) : null}
+      {children}
+    </Tag>
   );
 }
 

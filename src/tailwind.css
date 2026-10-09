@@ -113,8 +113,8 @@
    see-through, and would show the fill as a line under it.
 
    The themes' own backgrounds aren't the nav's: the fill is its colour, and
-   it drops the blend's gradient (Header). A blend section's gradient won't
-   fit the nav, so it takes the colour the section starts at. The invert
+   it has no layer (see Section). A blend section's gradient won't fit the
+   nav, so it takes the colour the section starts at. The invert
    layer can't be repeated over the page: what is behind the nav there is the
    layer already, and would be inverted back. So the nav takes the inverse of
    the hero's lavender, the colour under the page's flowchart, which is what

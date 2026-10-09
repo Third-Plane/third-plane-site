@@ -14,7 +14,7 @@ export function Header() {
     <Section
       as="header"
       theme="hero"
-      className="group/nav absolute inset-x-0 top-0 z-40 overflow-visible border-b border-b-transparent bg-none p-0 transition-[border-color] duration-250 data-[open=true]:border-b-border/50 scroll-linked:fixed scroll-linked:nav-fill"
+      className="group/nav absolute inset-x-0 top-0 z-40 overflow-visible border-b border-b-transparent p-0 transition-[border-color] duration-250 data-[open=true]:border-b-border/50 scroll-linked:fixed scroll-linked:nav-fill"
       data-open="false"
       data-nav
     >

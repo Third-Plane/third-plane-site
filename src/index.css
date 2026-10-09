@@ -40,9 +40,10 @@
 
 /* Themes. Each sets the semantic colours (text-foreground, bg-card,
    border-border, ...; see @theme in tailwind.css) for everything inside it,
-   with its own background and default text colour, so a component reads
-   correctly on whichever theme it sits. An element takes one by its
-   data-theme (see Section); the page itself (:root) is cream.
+   and its default text colour, so a component reads correctly on whichever
+   theme it sits. An element takes one by its data-theme; a section's
+   background is its theme's layer (see Section). The page itself (:root) is
+   cream.
 
    foreground is headings and emphasis, muted-foreground body copy and
    subtle-foreground meta. card is a tile on the theme; muted a quieter fill.
@@ -96,24 +97,14 @@
   --primary-foreground: var(--purple);
   background-color: var(--purple);
 }
-[data-theme="white"],
-[data-theme="deep"] {
-  background-color: var(--background);
+/* A section's background is its theme's layer (see Section). Its content,
+   after the layer, is positioned so it paints over it. A utility (absolute,
+   fixed...) still wins. */
+[data-layer] ~ * {
+  position: relative;
 }
-[data-theme="blend"] {
-  background-image: linear-gradient(180deg, var(--blue) 0%, var(--pink) 100%);
-}
-/* An inverted, blurred view of what lies behind (the page's flowchart). The
-   filter is on a layer of its own behind the content, not on the element:
-   an element with a backdrop filter is a backdrop root, and a backdrop filter
-   inside it only sees what is painted within it, so a frosted card in the
-   section (see Cta) would blur nothing.
-
-   The layer sits at z-index -1 in the page's own stacking order, above the
-   page's backdrop (which comes earlier) and below the section's content. So
-   the section must be positioned, and must not make a stacking context of its
-   own (no z-index, isolation, opacity, transform...): in Chrome that cuts the
-   layer off from the page behind it too, and it inverts nothing. */
+/* An inverted, blurred view of what lies behind (the page's flowchart), from
+   its layer (see Section). */
 [data-theme="invert"] {
   --foreground: rgba(255, 255, 255, 0.8);
   --accent: white;
@@ -121,13 +112,6 @@
   --subtle-foreground: rgba(255, 255, 255, 0.4);
   --primary: white;
   --primary-foreground: var(--deep);
-}
-[data-theme="invert"]::before {
-  @apply backdrop-blur-sm backdrop-invert;
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
 }
 [data-theme="white"],
 [data-theme="blend"],

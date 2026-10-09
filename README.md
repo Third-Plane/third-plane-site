@@ -122,11 +122,11 @@ the site's design tokens to utilities (`bg-purple`, `text-ink`, `font-heading`, 
   `.vscode/settings.json`.
 
 The only JavaScript a visitor downloads is the few-KB script bundle from
-[`src/scripts/`](src/scripts): the header menus, scroll reveals, the activity ledger and the
-particle canvas. Each one finds its markup by a `data-*` attribute that the component renders, so a
-component that needs behaviour stays plain JSX and gets a script alongside it. Do not add hooks,
-state or `client:*` directives to a component: there is no React in the browser, and one island
-would bring the React runtime (about 45 KB gzipped) back.
+[`src/scripts/`](src/scripts): the header menus, scroll reveals and the activity ledger. Each one
+finds its markup by a `data-*` attribute that the component renders, so a component that needs
+behaviour stays plain JSX and gets a script alongside it. Do not add hooks, state or `client:*`
+directives to a component: there is no React in the browser, and one island would bring the React
+runtime (about 45 KB gzipped) back.
 
 ## Local development
 
@@ -169,6 +169,4 @@ The logo is the three-bar isometric mark from the sales deck. `public/brand/` ho
 lockups and marks extracted from it (purple for light surfaces, white for dark), and the
 favicons are cut from the same mark. Replace them with vector files when those exist.
 
-The Intelligence Field texture is painted in code by `src/scripts/particles.ts`, on the canvas
-that `src/components/ParticleField.tsx` renders. The channel card marks are the line drawings in
-`src/components/CardMark.tsx`.
+The channel card marks are the line drawings in `src/components/CardMark.tsx`.
