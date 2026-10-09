@@ -1,5 +1,4 @@
 import { placementDesk } from "../data/content";
-import { ParticleField } from "./ParticleField";
 import { Section, SectionHeader } from "./Section";
 import { Arrow } from "./Ui";
 import { StageScreen, type StageName } from "./WorkflowScreens";
@@ -61,7 +60,6 @@ export function PlacementWorkflowSection({
 }) {
   return (
     <Section theme="deep" id={id}>
-      <ParticleField tone="cream" alpha={0.75} density={0.8} />
       <SectionHeader title={title} body={body} />
       <PlacementWorkflow />
     </Section>

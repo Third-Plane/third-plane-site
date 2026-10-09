@@ -83,11 +83,9 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     <div class="bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh" data-theme="hero" aria-hidden="true">
       <Flowchart chart={chart} />
     </div>
-    {/* The page: its hero first, then its sections, all directly under <body>
-         (see Section). A sticky element is held inside its container, and under
-         <body> it sticks to the end of the page. The sections that follow the
-         hero, the footer among them, are positioned, so they paint over it where
-         it is pinned, and the page slides up over it (see Hero). */}
+    {/* The page: the nav, its hero, then its sections. On a page with no
+         hero the first section must come straight after the nav, so that its
+         copy of the bar is hidden (see the nav in tailwind.css). */}
     <slot />
 
     <Footer cta={cta} />
@@ -96,9 +94,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
       import "../scripts/nav";
       import "../scripts/nav-theme";
       import "../scripts/ledger";
-      import "../scripts/particles";
       import "../scripts/flowchart";
-      import "../scripts/hero-cover";
     </script>
   </body>
 </html>

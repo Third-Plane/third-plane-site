@@ -36,41 +36,31 @@
   margin-inline: auto;
 }
 
-/* Where the page may slide over a pinned hero as it scrolls: only in browsers
-   with scroll-driven animations, only for people who haven't asked for less
-   motion, and only in a window tall enough to hold a pinned hero (see Hero).
-   Without them the hero is an ordinary, scrolling section. */
+/* Where the nav is pinned over the page, filling in and drawing each
+   section's edge through it, tied to scroll position: only in browsers with
+   scroll-driven animations, and only for people who haven't asked for less
+   motion. Without them the nav scrolls away with the hero. */
 /* The scroll-driven animations below are written as longhands, never the
    animation shorthand: the build's minifier (lightningcss) folds a following
    animation-timeline into the shorthand, which browsers reject whole, so the
    animation silently never runs in production (the dev server doesn't minify). */
 @custom-variant scroll-linked {
   @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) and (min-height: 40rem) {
+    @media (prefers-reduced-motion: no-preference) {
       @slot;
     }
   }
 }
 
-/* The page slides up over a hero that stays where it is (see Hero), tied to
-   scroll position. --hero-d is the scroll distance that takes the page's top
-   edge from the foot of the hero to the foot of the nav (the hero's height
-   less --nav-h); scripts/hero-cover.ts keeps it exact, and until then it is a
-   viewport height. A hero pinned for this must be no taller than the window,
-   or its foot could never be seen, so use it from lg up.
-
-   The nav is pinned over everything, see-through over the hero. Its fill (the
-   hero's lavender, and a shadow to fall on the page) comes in over the same
-   distance, and is whole by the time the page reaches it, so the page never
-   shows through it. Below lg, where the hero isn't pinned but scrolls away
-   under the nav, the fill comes in over the nav's own height instead, as the
-   hero starts to pass under it, so the hero's copy doesn't show through a
-   half-filled nav either. What is animated is --nav-fill, which the lavender and
-   the shadow are mixed from, not background-color itself: Chrome may animate
+/* The nav is pinned over everything, see-through over the hero at the top of
+   the page. Its fill (the hero's lavender) comes in over the nav's own
+   height, as the hero starts to pass under it, so the hero's copy doesn't
+   show through a half-filled nav. What is animated is --nav-fill, which the
+   lavender is mixed from, not background-color itself: Chrome may animate
    that off the main thread, repainting the nav from what it last recorded of
    it, and with the nav's theme changing inside it (below) that can flash the
-   previous section's colour at any time as the page scrolls. Custom properties
-   always animate with the page. */
+   previous section's colour at any time as the page scrolls. Custom
+   properties always animate with the page. */
 @property --nav-fill {
   syntax: "<number>";
   inherits: false;
@@ -88,41 +78,66 @@
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-timeline: scroll(root);
-  animation-range: 0 var(--hero-d, 100svh);
-  @variant max-lg {
-    animation-range: 0 var(--nav-h);
-  }
+  animation-range: 0 var(--nav-h);
   background-color: color-mix(in oklab, var(--lavender) calc(var(--nav-fill) * 100%), transparent);
-  box-shadow:
-    0 20px 25px -5px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent),
-    0 8px 10px -6px color-mix(in oklab, var(--deep) calc(var(--nav-fill) * 10%), transparent);
 }
 
-/* Over the page, the pinned nav takes the theme of the section just below it
+/* Over the page, the pinned nav takes the theme of the section under it
    (scripts/nav-theme.ts): the theme's colours (index.css), and a background,
    so it reads as the top of the section.
 
+   The section's top edge is drawn through the nav as it rises, tied to scroll
+   position. Each section's copy of the nav's bar (NavCopy), in its theme and
+   pinned over the nav, is revealed from the nav's foot up as the edge crosses
+   it (nav-reveal). The section is the copy's timeline (nav-timeline), inset to
+   the nav's band at the top of the window, so its entry range is just that
+   crossing: from the edge at the nav's foot to the edge at the window's top.
+   The copy then stays whole for twice the nav's height more (the hold), and
+   the nav switches theme halfway through that, out of sight under the copy,
+   so the switch needs no transition and the script can be a frame or two
+   late. The hold's length is in nav-reveal's range and keyframes, and its
+   middle in scripts/nav-theme.ts: change them together. Then
+   the copy goes, and the nav's own hover and focus show again. A later
+   section's copy paints over an earlier one's, so where sections are short,
+   the latest edge wins.
+
    The background is a layer of its own, over the fill (whole by the time a
-   section arrives, shadow and all) and under the nav's content. Taking the
-   fill away to put the section's colour in its place would jump, as a
-   transition doesn't run for an animation ending; on its own layer, every
-   change of theme (to and from the hero's too) is the same 400ms fade, of
-   --nav-bg for the reason above. The colours of the menu buttons and the
-   button after them fade with it (their hover with them), as does the logo
-   (Header). The layer covers the nav's bottom border too, which is
-   see-through, and would show the fill as a line under it.
+   section arrives) and under the nav's content: the fill is an animation, and
+   can't be swapped out for the section's colour. The layer covers the nav's
+   bottom border too, which is see-through, and would show the fill as a line
+   under it. A copy has the same colour, and no fill.
 
    The themes' own backgrounds aren't the nav's: the fill is its colour, and
-   it drops the blend's gradient (Header). A blend section's gradient won't
-   fit the nav, so it takes the colour the section starts at. The invert
-   layer can't be repeated over the page: what is behind the nav there is the
-   layer already, and would be inverted back. So the nav takes the inverse of
-   the hero's lavender, the colour under the page's flowchart, which is what
-   that layer mostly shows; its own layer is this one, with no filter. */
-@property --nav-bg {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: transparent;
+   it has no layer (see Section). A blend section's gradient won't fit the
+   nav, so it takes the colour the section starts at. The invert layer can't
+   be repeated over the page: what is behind the nav there is the layer
+   already, and would be inverted back. So the nav takes the inverse of the
+   hero's lavender, the colour under the page's flowchart, which is what that
+   layer mostly shows. */
+@utility nav-timeline {
+  view-timeline-name: --section;
+  view-timeline-axis: block;
+  view-timeline-inset: 0 calc(100% - var(--nav-h));
+}
+
+/* The entry range is one nav height and the hold two, so the reveal is the
+   first third (see the hold, above). */
+@keyframes nav-reveal {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+  33.333%,
+  100% {
+    clip-path: inset(0);
+  }
+}
+
+@utility nav-reveal {
+  clip-path: inset(100% 0 0 0);
+  animation-name: nav-reveal;
+  animation-timing-function: linear;
+  animation-timeline: --section;
+  animation-range: entry 0% contain calc(var(--nav-h) * 2);
 }
 
 @layer utilities {
@@ -131,46 +146,35 @@
     position: absolute;
     inset: 0 0 -1px;
     z-index: -1;
+    background-color: var(--nav-bg, transparent);
+  }
+  [data-nav-copy] {
     background-color: var(--nav-bg);
-    backdrop-filter: none;
-    transition: --nav-bg 400ms;
   }
-  [data-nav] :is([data-menu-btn], [data-nav-links] + div a) {
-    transition-duration: 400ms;
+  [data-nav][data-switching] * {
+    transition: none !important;
   }
-  [data-nav][data-theme="white"]::before {
+  /* The section just after the nav, on a page with no hero, starts under it,
+     so its edge never crosses it. And at the foot of the page, the last
+     section's edge stops where it is, which may be while its copy covers the
+     nav: the nav takes its theme there, and the copy is put away. The script
+     reads the first from here, and sets the second (scripts/nav-theme.ts). */
+  [data-nav] + * > [data-nav-copy],
+  [data-settled] > [data-nav-copy] {
+    visibility: hidden;
+  }
+  :is([data-nav], [data-nav-copy])[data-theme="white"] {
     --nav-bg: #fff;
   }
-  [data-nav][data-theme="blend"]::before {
+  :is([data-nav], [data-nav-copy])[data-theme="blend"] {
     --nav-bg: var(--blue);
   }
-  [data-nav][data-theme="deep"]::before {
+  :is([data-nav], [data-nav-copy])[data-theme="deep"] {
     --nav-bg: var(--deep);
   }
-  [data-nav][data-theme="invert"]::before {
+  :is([data-nav], [data-nav-copy])[data-theme="invert"] {
     --nav-bg: rgb(from var(--lavender) calc(255 - r) calc(255 - g) calc(255 - b));
   }
-}
-
-/* The hero leaving as the page covers it: the whole of it, wash and all,
-   fades and drops away over the first 60% of that distance, before the page's
-   rising edge reaches the heading. Pinned behind the page, a hero left showing
-   would show through any see-through section that passes over it. */
-@keyframes hero-cover {
-  to {
-    opacity: 0;
-    translate: 0 2.5rem;
-    /* Switches at the halfway point, so a fading hero stops taking clicks. */
-    pointer-events: none;
-  }
-}
-
-@utility hero-cover {
-  animation-name: hero-cover;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: scroll(root);
-  animation-range: 0 calc(var(--hero-d, 100svh) * 0.6);
 }
 
 /* A wash over the flowchart behind the hero's copy, so the headline reads over
