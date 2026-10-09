@@ -140,31 +140,6 @@
   animation-range: entry 0% contain calc(var(--nav-h) * 2);
 }
 
-/* A section's layer with a backdrop filter (see Section) keeps out from under
-   the nav. Where it runs under the nav, Chrome's filter takes in the nav too,
-   though the nav is painted over the layer, and blurs it out past the nav's
-   foot: over the footer, the nav inverted, a light band under it. Clipping
-   the layer doesn't stop it; its box has to end at the nav's foot. So as the
-   section's edge rises past the nav, the layer's top edge is held at the
-   nav's foot, tied to scroll position: over the section's cover range (its
-   top edge at the nav's foot, to its bottom edge at the window's top) the
-   layer moves down by the section's height and the nav's. Under the nav, the
-   section is covered by the nav or a copy of it, so the layer isn't missed.
-   The part moved past the section's foot is clipped (see Section). */
-@keyframes nav-clear {
-  to {
-    translate: 0 calc(100% + var(--nav-h));
-  }
-}
-
-@utility nav-clear {
-  animation-name: nav-clear;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-timeline: --section;
-  animation-range: cover;
-}
-
 @layer utilities {
   [data-nav]::before {
     content: "";

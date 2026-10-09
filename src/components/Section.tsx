@@ -11,13 +11,19 @@ import { cn } from "../lib/style";
 // backdrop root, and a backdrop filter inside it only sees what is painted
 // within it, so a frosted card in the section (see Cta) would blur nothing.
 // The hero has none: its wash is the page's backdrop (see Base), and the nav,
-// a hero section too, must not have one (see the nav in tailwind.css). A
-// layer with a backdrop filter keeps out from under the nav (nav-clear).
-const layers: Partial<Record<Theme, string>> = {
-  white: "bg-background",
-  blend: "bg-linear-to-b/srgb from-blue to-pink",
-  deep: "bg-background mix-blend-multiply backdrop-blur-xs scroll-linked:nav-clear",
-  invert: "backdrop-blur-sm backdrop-invert scroll-linked:nav-clear",
+// a hero section too, must not have one (see the nav in tailwind.css).
+//
+// A theme's blur is a layer of its own, over its colour. Where a layer runs
+// under the nav, Chrome's backdrop filter takes the nav in too, though the
+// nav is painted over it, and a blur spreads it past the nav's foot. Blurred
+// in with the colour, the nav came out inverted (a light band over the
+// footer) or multiplied; blurred on its own, over the section's colour, it is
+// the nav's colour, which is the section's near enough, so it blurs in unseen.
+const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
+  white: { color: "bg-background" },
+  blend: { color: "bg-linear-to-b/srgb from-blue to-pink" },
+  deep: { color: "bg-background mix-blend-multiply", blur: "backdrop-blur-xs" },
+  invert: { color: "backdrop-invert", blur: "backdrop-blur-sm" },
 };
 
 // A full-width stripe of the page, in a theme: the nav, the hero, the page's
@@ -59,9 +65,15 @@ export function Section({
     >
       {layer ? (
         <div
-          className={cn("pointer-events-none absolute inset-0", layer)}
+          className={cn("pointer-events-none absolute inset-0", layer.color)}
           aria-hidden="true"
           data-layer
+        />
+      ) : null}
+      {layer?.blur ? (
+        <div
+          className={cn("pointer-events-none absolute inset-0", layer.blur)}
+          aria-hidden="true"
         />
       ) : null}
       {copy ? <NavCopy theme={theme} /> : null}
