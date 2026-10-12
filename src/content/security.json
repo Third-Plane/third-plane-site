@@ -53,6 +53,7 @@
     "sides": [
       {
         "title": "AI only acts within defined limits.",
+        "body": "The desk works inside boundaries you set and can tighten at any time. They belong to the desk rather than to any one model, so they hold as the technology underneath it changes.",
         "items": [
           {
             "title": "Scoped authority",
@@ -70,6 +71,7 @@
       },
       {
         "title": "Your people remain accountable.",
+        "body": "AI takes on the work, but responsibility for it stays with your team. Your people direct and review the desk rather than build and maintain it.",
         "items": [
           {
             "title": "Named supervision",

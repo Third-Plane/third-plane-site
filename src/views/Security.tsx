@@ -1,13 +1,21 @@
 import { securityPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
-import { Display2 } from "../components/Headings";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/SplitHero";
+import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
-import { cn } from "../lib/style";
+import { SecurityScreen, type SecurityName } from "../components/SecurityScreens";
+import type { Theme } from "../components/theme";
 
 export const chart: ChartName = "security";
+
+// authority's two sides, each a section of its own, with a mock screen for
+// each point, in the order of side.items.
+const sides: { id: string; theme: Theme; screens: SecurityName[] }[] = [
+  { id: "authority", theme: "white", screens: ["scope", "access", "models"] },
+  { id: "accountability", theme: "blend", screens: ["supervisor", "checkpoints", "configured"] },
+];
 
 export function Security() {
   return (
@@ -16,32 +24,18 @@ export function Security() {
         <Ledger chart={chart} panel={page.ledger} />
       </SplitHero>
 
-      <Section theme="white" id="authority">
-        <div className="grid gap-x-10 border-t border-t-border md:auto-rows-[auto_1fr] md:grid-cols-2 md:items-start">
-          {page.authority.sides.map((side, i) => (
-            <div
-              className={cn(
-                "pt-6 md:row-span-2 md:grid md:grid-rows-subgrid",
-                i > 0 &&
-                  "mt-6 border-t border-t-border/50 md:mt-0 md:border-t-0 md:border-l md:border-l-border/50 md:pl-10",
-              )}
-              key={side.title}
-            >
-              <Display2 className="mb-5">{side.title}</Display2>
-              <ul className="grid">
-                {side.items.map((item) => (
-                  <li className="border-b border-b-border/50 py-6" key={item.title}>
-                    <h3 className="mb-1.5 font-heading text-xl font-medium tracking-tight text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="text-base text-muted-foreground">{item.body}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {page.authority.sides.map((side, i) => (
+        <Section theme={sides[i].theme} id={sides[i].id} key={sides[i].id}>
+          <ScreenCycle
+            title={side.title}
+            body={side.body}
+            items={side.items.map((item, j) => ({
+              ...item,
+              screen: <SecurityScreen name={sides[i].screens[j]} className={cycleFrame} />,
+            }))}
+          />
+        </Section>
+      ))}
 
       <Section theme="deep" id="record">
         <SectionHeader title={page.record.title} />

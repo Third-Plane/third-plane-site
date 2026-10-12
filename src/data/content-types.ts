@@ -86,7 +86,7 @@ export type SecurityFile = {
   title: Lines;
   lead: string;
   ledger: LedgerPanel;
-  authority: { sides: { title: string; items: Card[] }[] };
+  authority: { sides: { title: string; body: string; items: Card[] }[] };
   record: { title: string; items: Card[] };
   data: { title: string; items: Card[] };
   cta: Cta;
