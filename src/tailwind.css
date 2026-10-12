@@ -146,10 +146,10 @@
     position: absolute;
     inset: 0 0 -1px;
     z-index: -1;
-    background-color: var(--nav-bg, transparent);
+    background-color: var(--edge, transparent);
   }
   [data-nav-copy] {
-    background-color: var(--nav-bg);
+    background-color: var(--edge);
   }
   [data-nav][data-switching] * {
     transition: none !important;
@@ -163,17 +163,47 @@
   [data-settled] > [data-nav-copy] {
     visibility: hidden;
   }
-  :is([data-nav], [data-nav-copy])[data-theme="white"] {
-    --nav-bg: #fff;
+  /* A theme's colour at a section's top edge (see the nav, above): the nav's
+     and its copies' background, and a section's fringe. The hero has none. */
+  [data-theme="white"] {
+    --edge: #fff;
   }
-  :is([data-nav], [data-nav-copy])[data-theme="blend"] {
-    --nav-bg: var(--blue);
+  [data-theme="blend"] {
+    --edge: var(--blue);
   }
-  :is([data-nav], [data-nav-copy])[data-theme="deep"] {
-    --nav-bg: var(--deep);
+  [data-theme="deep"] {
+    --edge: var(--deep);
   }
-  :is([data-nav], [data-nav-copy])[data-theme="invert"] {
-    --nav-bg: rgb(from var(--lavender) calc(255 - r) calc(255 - g) calc(255 - b));
+  [data-theme="invert"] {
+    --edge: rgb(from var(--lavender) calc(255 - r) calc(255 - g) calc(255 - b));
+  }
+}
+
+/* A fade of TX-02's shades, light to dark (░ ▒ ▓, a line each), the
+   flowchart's progress bar, in a section's edge colour, standing on the
+   section's top edge (see Section), so the section dissolves into the one
+   above. Only between light sections: against a dark one, the dots read as a
+   grey band rather than a fade, so a dark section has none, and nor does a
+   light one under a dark one (the rule after this).
+
+   Each shade is a pattern of square dots a twentieth of an em across, drawn
+   here as a mask of those patterns (public/fringe.svg) rather than as text,
+   so it needs no font, and with the dot a whole number of pixels, it stays
+   sharp. A line is 1.2em, 24 dots. --fringe-dot is the size: 1px is the
+   glyphs at 20px, near the flowchart's own. */
+@utility fringe {
+  --fringe-dot: 1px;
+  height: calc(var(--fringe-dot) * 72);
+  background-color: var(--edge);
+  mask-image: url("/fringe.svg");
+  mask-size: calc(var(--fringe-dot) * 4) 100%;
+  mask-repeat: repeat-x;
+  mask-position: 0 0;
+}
+
+@layer utilities {
+  :is([data-theme="deep"], [data-theme="invert"]) + * > .fringe {
+    display: none;
   }
 }
 
