@@ -249,6 +249,8 @@
 
   --animate-ledger-pulse: ledger-pulse 2s ease-out infinite;
   --animate-row-in: row-in 0.5s;
+  /* How long each problem shows (ProblemCycle). */
+  --animate-progress: progress 6s linear both;
 
   @keyframes ledger-pulse {
     0% {
@@ -258,6 +260,12 @@
     to {
       opacity: 0;
       transform: scale(1.6);
+    }
+  }
+
+  @keyframes progress {
+    from {
+      scale: 0 1;
     }
   }
 

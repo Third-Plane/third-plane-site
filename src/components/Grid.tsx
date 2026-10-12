@@ -79,9 +79,22 @@ export function Point({ className, ...props }: ItemProps) {
   );
 }
 
-export function ItemTitle({ arrow = false, children }: { arrow?: boolean; children: ReactNode }) {
+export function ItemTitle({
+  arrow = false,
+  children,
+  className,
+}: {
+  arrow?: boolean;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <h3 className="font-heading text-xl leading-tight font-medium tracking-tight text-balance text-foreground">
+    <h3
+      className={cn(
+        "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-foreground",
+        className,
+      )}
+    >
       {children}
       {arrow ? (
         <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover:translate-x-0.75" />
@@ -90,6 +103,6 @@ export function ItemTitle({ arrow = false, children }: { arrow?: boolean; childr
   );
 }
 
-export function ItemBody({ children }: { children: ReactNode }) {
-  return <p className="text-base text-pretty text-muted-foreground">{children}</p>;
+export function ItemBody({ children, className }: { children: ReactNode; className?: string }) {
+  return <p className={cn("text-base text-pretty text-muted-foreground", className)}>{children}</p>;
 }

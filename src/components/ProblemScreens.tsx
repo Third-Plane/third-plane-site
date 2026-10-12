@@ -4,7 +4,7 @@ import { Frame, Pill, Table, Toolbar, type Column } from "./MockUi";
 
 export type ScreenName = "renewed" | "overdue" | "unassigned" | "revenue";
 
-// Mock AMS screens for the homepage's problem cards, one per point. The card's
+// Mock AMS screens for the homepage's problems, one per point. The point's
 // title and body say the same thing in words; see MockUi for the pieces.
 
 type Policy = { name: string; line: string };
@@ -267,11 +267,12 @@ const SCREENS: Record<ScreenName, () => ReactNode> = {
 };
 
 // An editor can add problem points beyond the four drawn here; those get none.
-export function ProblemScreen({ name }: { name?: ScreenName }) {
+// `className` goes to the Frame.
+export function ProblemScreen({ name, className }: { name?: ScreenName; className?: string }) {
   if (!name) return null;
   const Screen = SCREENS[name];
   return (
-    <Frame>
+    <Frame className={className}>
       <Screen />
     </Frame>
   );
