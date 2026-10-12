@@ -1,0 +1,20 @@
+<!-- The fringe's mask (fringe in src/tailwind.css): a line each of TX-02's
+     light, medium and dark shade (░ ▒ ▓), top to bottom, one dot to a unit.
+     A line is 24 dots; each shade repeats every 4 down, and across within
+     the 4-wide tile. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="4" height="72">
+  <defs>
+    <pattern id="light" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0h1v1H0zM2 2h1v1H2z" />
+    </pattern>
+    <pattern id="medium" width="2" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0h1v1H0zM1 2h1v1H1z" />
+    </pattern>
+    <pattern id="dark" width="2" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0h2v1H0zM0 1h1v1H0zM0 2h2v1H0zM1 3h1v1H1z" />
+    </pattern>
+  </defs>
+  <rect width="4" height="24" fill="url(#light)" />
+  <rect y="24" width="4" height="24" fill="url(#medium)" />
+  <rect y="48" width="4" height="24" fill="url(#dark)" />
+</svg>

@@ -39,6 +39,12 @@ const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
 // but the section. The section, its layer and the content after it
 // (positioned, see index.css) join the page's stacking order instead.
 //
+// A light section stands a fringe on its top edge, a fade of the flowchart's
+// shades in its edge colour (see fringe in tailwind.css), in the bottom
+// padding of the section above, unless that one is dark. It's positioned, after the section
+// above, so it paints over that one's layer; a section doesn't clip its
+// overflow, for it.
+//
 // Each section but the hero's carries a copy of the nav's bar in its theme
 // (NavCopy), and is the timeline that reveals it (nav-timeline in
 // tailwind.css). The copy is pinned to the window, so the section must not
@@ -52,10 +58,11 @@ export function Section({
 }: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme }) {
   const layer = layers[theme];
   const copy = theme !== "hero";
+  const fringe = theme === "white" || theme === "blend";
   return (
     <Tag
       className={cn(
-        "relative overflow-clip px-(--gutter) pt-[calc(var(--bar)*2)] pb-(--bar)",
+        "relative px-(--gutter) py-[calc(var(--bar)*2)]",
         copy && "scroll-linked:nav-timeline",
         className,
       )}
@@ -73,6 +80,12 @@ export function Section({
       {layer?.blur ? (
         <div
           className={cn("pointer-events-none absolute inset-0", layer.blur)}
+          aria-hidden="true"
+        />
+      ) : null}
+      {fringe ? (
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-full fringe"
           aria-hidden="true"
         />
       ) : null}
