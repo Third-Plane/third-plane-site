@@ -1,12 +1,13 @@
-// The homepage's problems (ProblemCycle.tsx): one point is active at a time,
-// its cell highlighted and its screen showing. The active cell's progress bar
-// is a CSS animation, and when it ends the next point takes over, so the bar
-// is the timer: pausing it pauses the cycle. It holds still while a mouse is
-// over it (not a tap, which never leaves) and while it's off-screen, and
-// starts over at the first point the first time it comes into view. Clicking a cell makes it the active one, from the start.
+// A section's items on a cycle (ScreenCycle.tsx): one item is active at a
+// time, its cell highlighted and its screen showing. The active cell's
+// progress bar is a CSS animation, and when it ends the next item takes over,
+// so the bar is the timer: pausing it pauses the cycle. It holds still while a
+// mouse is over it (not a tap, which never leaves) and while it's off-screen,
+// and starts over at the first item the first time it comes into view.
+// Clicking a cell makes it the active one, from the start.
 //
 // Under reduced motion the bar doesn't animate (it's motion-safe), so nothing
-// ends and the points only change on a click.
+// ends and the items only change on a click.
 
 for (const cycle of document.querySelectorAll<HTMLElement>("[data-cycle]")) {
   const cells = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-cell]")];
