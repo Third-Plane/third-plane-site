@@ -5,7 +5,7 @@ import { cn } from "../lib/style";
 // props, so no two competing utilities land on one element.
 
 const DISPLAY_1_SIZE = {
-  hero: "text-[clamp(2.5rem,5vw,4.15rem)]/none",
+  hero: "text-[clamp(2.5rem,4.5vw,4rem)]/none",
   editorial: "text-4xl/none",
 } as const;
 

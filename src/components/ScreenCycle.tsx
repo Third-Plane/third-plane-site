@@ -31,7 +31,7 @@ export function ScreenCycle({
       {/* SectionHeader's, without its column or its margin (the gap's). */}
       <header>
         <Display2>{title}</Display2>
-        {body ? <Lead className="mt-5 max-w-[62ch]">{body}</Lead> : null}
+        {body ? <Lead className="mt-5">{body}</Lead> : null}
       </header>
       <div className="grid lg:col-start-2 lg:row-span-2 lg:row-start-1">
         {items.map((item, i) => (

@@ -21,7 +21,7 @@ export function SplitHero({
       <div className="my-16 grid items-center gap-16 lg:grid-cols-2">
         <div>
           <Display1>{title}</Display1>
-          <Lead className="mt-7 max-w-[46ch]">{lead}</Lead>
+          <Lead className="mt-7">{lead}</Lead>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
         </div>
         {children}
