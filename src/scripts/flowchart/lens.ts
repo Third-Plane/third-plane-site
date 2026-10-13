@@ -10,7 +10,9 @@
 // thin red fringe on one side and a blue one on the other.
 //
 // And it is ruled with faint scanlines, every LINE_PITCH CSS pixels. They are
-// part of the picture, so they bend with it.
+// part of the picture, so they bend with it, and they creep slowly down it,
+// SCAN_SPEED CSS pixels a second, as the raster sweeps a tube. Like the bar,
+// they stand still in the still frame.
 //
 // Over it all lies a fine grain that changes every frame, like noise on the
 // signal. It is in CSS pixels, so it reads as grain on any screen.
@@ -24,7 +26,8 @@
 //
 // Further effects (bloom) belong in FRAGMENT.
 
-const LINE_PITCH = 3;
+const LINE_PITCH = 4;
+const SCAN_SPEED = 3;
 const ROLL_PERIOD = 9;
 // The bar's centre runs from ROLL_FROM to ROLL_TO picture heights down, so it
 // enters and leaves out of sight.
@@ -53,8 +56,8 @@ void main() {
 //
 // The scanlines are a wash of ink (u_ink, the hero's text colour) laid over
 // the result, at most u_scan strong, on a soft cosine down the picture's own
-// height, u_lines of them in all. They cover paper and glyphs alike, as on a
-// tube. High precision where there is any: a few hundred cycles down the
+// height, u_lines of them in all, pushed down by u_drift of a line. They
+// cover paper and glyphs alike, as on a tube. High precision where there is any: a few hundred cycles down the
 // band is too fine for half floats.
 //
 // The grain is a hash of the CSS pixel, shifted by a new u_seed each frame:
@@ -78,6 +81,7 @@ uniform vec3 u_paper;
 uniform vec3 u_ink;
 uniform float u_scan;
 uniform float u_lines;
+uniform float u_drift;
 uniform float u_noise;
 uniform float u_dpr;
 uniform vec2 u_seed;
@@ -107,7 +111,7 @@ void main() {
   float d = (y - u_band) / 0.12;
   float bar = exp(-d * d);
   picture = min(picture * (1.0 + u_roll * bar), vec4(1.0));
-  float s = u_scan * (0.5 + 0.5 * cos(6.2831853 * y * u_lines));
+  float s = u_scan * (0.5 + 0.5 * cos(6.2831853 * (y * u_lines - u_drift)));
   vec4 scanned = vec4(u_ink * s, s) + picture * (1.0 - s);
   float w = u_glow * bar;
   scanned = vec4(w) + scanned * (1.0 - w);
@@ -187,6 +191,7 @@ export function createLens(
   const shape = gl.getUniformLocation(program, "u_shape");
   const split = gl.getUniformLocation(program, "u_fringe");
   const lines = gl.getUniformLocation(program, "u_lines");
+  const drift = gl.getUniformLocation(program, "u_drift");
   const pixel = gl.getUniformLocation(program, "u_dpr");
   const seed = gl.getUniformLocation(program, "u_seed");
   const strength = gl.getUniformLocation(program, "u_roll");
@@ -209,6 +214,9 @@ export function createLens(
       gl.uniform2f(seed, Math.floor(Math.random() * 4096), Math.floor(Math.random() * 4096));
       gl.uniform1f(strength, time === undefined ? 0 : roll);
       gl.uniform1f(lift, time === undefined ? 0 : glow);
+      // Kept to a fraction of a line, as a whole one looks the same, so the
+      // shader never sees a large number.
+      gl.uniform1f(drift, time === undefined ? 0 : ((time * SCAN_SPEED) / LINE_PITCH) % 1);
       if (time !== undefined) {
         const phase = (time % ROLL_PERIOD) / ROLL_PERIOD;
         gl.uniform1f(band, ROLL_FROM + phase * (ROLL_TO - ROLL_FROM));

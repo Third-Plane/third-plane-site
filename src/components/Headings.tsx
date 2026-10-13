@@ -5,26 +5,42 @@ import { cn } from "../lib/style";
 // props, so no two competing utilities land on one element.
 
 const DISPLAY_1_SIZE = {
-  hero: "text-[clamp(2.5rem,5vw,4.15rem)]/none",
+  hero: "text-[clamp(2.5rem,4.5vw,4rem)]/none",
   editorial: "text-4xl/none",
 } as const;
 
+// The title is a string, or an array of lines. Two or more lines stack, one to
+// a row; anything else flows as one.
 export function Display1({
   size = "hero",
-  wrap = "balance",
   className,
+  children,
   ...props
-}: ComponentProps<"h1"> & { size?: keyof typeof DISPLAY_1_SIZE; wrap?: "balance" | "pretty" }) {
+}: Omit<ComponentProps<"h1">, "children"> & {
+  children: string | readonly string[];
+  size?: keyof typeof DISPLAY_1_SIZE;
+}) {
+  const lines = typeof children === "string" ? [children] : children;
+  const stacked = lines.length > 1;
   return (
     <h1
       className={cn(
-        "font-heading font-medium tracking-tighter text-foreground",
+        "font-heading font-medium tracking-tighter text-pretty text-foreground",
         DISPLAY_1_SIZE[size],
-        wrap === "balance" ? "text-balance" : "text-pretty",
         className,
       )}
       {...props}
-    />
+    >
+      {stacked
+        ? lines.map((line, i) => (
+            // The space keeps the lines as separate words for crawlers and
+            // screen readers; the spans are blocks, so it never shows.
+            <span className="block" key={i}>
+              {i > 0 ? ` ${line}` : line}
+            </span>
+          ))
+        : lines.join(" ")}
+    </h1>
   );
 }
 

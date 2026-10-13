@@ -27,7 +27,7 @@ export function Flowchart({
   alpha = 1,
   curve = 0.12,
   fringe = 1.5,
-  scan = 0.05,
+  scan = 0.065,
   noise = 0.04,
   roll = 0.4,
   glow = 0.06,
