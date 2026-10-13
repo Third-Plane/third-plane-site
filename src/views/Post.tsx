@@ -63,7 +63,7 @@ export function Post({ post }: { post: PostData }) {
             Resources
           </AppLink>
           <PostMeta post={post} />
-          <Display1 size="editorial" wrap="balance">{post.title}</Display1>
+          <Display1 size="editorial">{post.title}</Display1>
           <Lead tone="muted" className="max-w-[60ch]">
             {post.standfirst}
           </Lead>

@@ -10,27 +10,23 @@ const DISPLAY_1_SIZE = {
 } as const;
 
 // The title is a string, or an array of lines. Two or more lines stack, one to
-// a row, and are balanced; anything else flows as one, and wraps pretty. wrap
-// overrides either.
+// a row; anything else flows as one.
 export function Display1({
   size = "hero",
-  wrap,
   className,
   children,
   ...props
 }: Omit<ComponentProps<"h1">, "children"> & {
   children: string | readonly string[];
   size?: keyof typeof DISPLAY_1_SIZE;
-  wrap?: "balance" | "pretty";
 }) {
   const lines = typeof children === "string" ? [children] : children;
   const stacked = lines.length > 1;
   return (
     <h1
       className={cn(
-        "font-heading font-medium tracking-tighter text-foreground",
+        "font-heading font-medium tracking-tighter text-pretty text-foreground",
         DISPLAY_1_SIZE[size],
-        (wrap ?? (stacked ? "balance" : "pretty")) === "balance" ? "text-balance" : "text-pretty",
         className,
       )}
       {...props}
