@@ -7,14 +7,14 @@ export function PageHero({
   lead,
   children,
 }: {
-  title: string[];
+  title: string | string[];
   lead: string;
   children?: ReactNode;
 }) {
   return (
     <Hero>
       <div className="py-16">
-        <Display1 wrap="pretty">{title.join(" ")}</Display1>
+        <Display1>{title}</Display1>
         <Lead tone="muted">{lead}</Lead>
         {children ? <div className="mt-9 flex flex-wrap gap-3">{children}</div> : null}
       </div>

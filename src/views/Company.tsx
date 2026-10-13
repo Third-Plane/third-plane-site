@@ -9,7 +9,7 @@ import { cn } from "../lib/style";
 export function Company() {
   return (
     <>
-      <SplitHero title={page.title.join(" ")} lead={page.lead}>
+      <SplitHero title={page.title} lead={page.lead}>
         <div
           className="rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-2 shadow-2xl"
           id="roles"

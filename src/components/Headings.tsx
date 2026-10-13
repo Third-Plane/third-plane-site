@@ -9,22 +9,42 @@ const DISPLAY_1_SIZE = {
   editorial: "text-4xl/none",
 } as const;
 
+// The title is a string, or an array of lines. Two or more lines stack, one to
+// a row, and are balanced; anything else flows as one, and wraps pretty. wrap
+// overrides either.
 export function Display1({
   size = "hero",
-  wrap = "balance",
+  wrap,
   className,
+  children,
   ...props
-}: ComponentProps<"h1"> & { size?: keyof typeof DISPLAY_1_SIZE; wrap?: "balance" | "pretty" }) {
+}: Omit<ComponentProps<"h1">, "children"> & {
+  children: string | readonly string[];
+  size?: keyof typeof DISPLAY_1_SIZE;
+  wrap?: "balance" | "pretty";
+}) {
+  const lines = typeof children === "string" ? [children] : children;
+  const stacked = lines.length > 1;
   return (
     <h1
       className={cn(
         "font-heading font-medium tracking-tighter text-foreground",
         DISPLAY_1_SIZE[size],
-        wrap === "balance" ? "text-balance" : "text-pretty",
+        (wrap ?? (stacked ? "balance" : "pretty")) === "balance" ? "text-balance" : "text-pretty",
         className,
       )}
       {...props}
-    />
+    >
+      {stacked
+        ? lines.map((line, i) => (
+            // The space keeps the lines as separate words for crawlers and
+            // screen readers; the spans are blocks, so it never shows.
+            <span className="block" key={i}>
+              {i > 0 ? ` ${line}` : line}
+            </span>
+          ))
+        : lines.join(" ")}
+    </h1>
   );
 }
 
