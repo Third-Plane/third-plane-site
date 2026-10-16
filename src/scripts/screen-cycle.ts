@@ -6,12 +6,18 @@
 // and starts over at the first item the first time it comes into view.
 // Clicking a cell makes it the active one, from the start.
 //
+// A staged cycle (StagedScreenCycle) has its cells in groups, a stage each,
+// with a tab for each: the group holding the active cell is the active one,
+// and clicking a tab makes its group's first cell the active one.
+//
 // Under reduced motion the bar doesn't animate (it's motion-safe), so nothing
 // ends and the items only change on a click.
 
 for (const cycle of document.querySelectorAll<HTMLElement>("[data-cycle]")) {
   const cells = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-cell]")];
   const screens = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-screen]")];
+  const groups = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-group]")];
+  const tabs = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-tab]")];
   if (cells.length < 2) continue;
 
   let active = 0;
@@ -36,6 +42,12 @@ for (const cycle of document.querySelectorAll<HTMLElement>("[data-cycle]")) {
       cell.querySelector("button")?.setAttribute("aria-pressed", String(i === index));
     });
     screens.forEach((screen, i) => screen.toggleAttribute("data-active", i === index));
+    const group = groups.findIndex((g) => g.contains(cells[index]));
+    groups.forEach((g, i) => g.toggleAttribute("data-active", i === group));
+    tabs.forEach((tab, i) => {
+      tab.toggleAttribute("data-active", i === group);
+      tab.setAttribute("aria-pressed", String(i === group));
+    });
     // Already active (clicked again, or the first point on first view): start over.
     const progress = cells[index].querySelector("[data-cycle-progress]");
     for (const animation of progress?.getAnimations() ?? []) animation.currentTime = 0;
@@ -49,6 +61,11 @@ for (const cycle of document.querySelectorAll<HTMLElement>("[data-cycle]")) {
 
   cells.forEach((cell, i) => {
     cell.querySelector("button")?.addEventListener("click", () => activate(i));
+  });
+
+  tabs.forEach((tab, i) => {
+    const first = groups[i]?.querySelector<HTMLElement>("[data-cycle-cell]");
+    if (first) tab.addEventListener("click", () => activate(cells.indexOf(first)));
   });
 
   cycle.addEventListener("pointerenter", (event) => {

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ItemBody, ItemTitle } from "./Grid";
 import { Display2, Lead } from "./Headings";
+import { Arrow } from "./Ui";
 import { cn } from "../lib/style";
 
 // For an item's screen: a mock screen's Frame (MockUi), standing on its own
@@ -8,6 +9,7 @@ import { cn } from "../lib/style";
 export const cycleFrame = "rounded-2xl border-b-0 shadow-lg";
 
 export type CycleItem = { title: string; body: ReactNode; screen: ReactNode };
+export type CycleStage = { title: string; items: CycleItem[] };
 
 // A section's heading and a grid of items on the left, the active item's
 // screen on the right (stacked above the items below lg), one item at a time.
@@ -25,6 +27,96 @@ export function ScreenCycle({
   title: string;
   body?: string;
   items: CycleItem[];
+}) {
+  return (
+    <CycleLayout title={title} body={body} items={items}>
+      <div className="grid gap-8 sm:grid-cols-2">
+        {items.map((item, i) => (
+          <CycleCell item={item} active={i === 0} key={item.title} />
+        ))}
+      </div>
+    </CycleLayout>
+  );
+}
+
+// A ScreenCycle whose items come in stages, run one after another: a tab for
+// each stage, always showing, over the active stage's items. All the items
+// make one cycle, so after a stage's last item comes the next stage's first,
+// and after the last stage's, the first's. The stages' items share one grid
+// cell, as the screens do, so the section keeps the height of the longest and
+// doesn't shift as the stage changes. Clicking a tab starts its stage over.
+//
+// Each item shows for `duration` seconds (6 in a ScreenCycle), since a full
+// round of every stage's items is a long one.
+export function StagedScreenCycle({
+  title,
+  body,
+  stages,
+  duration,
+}: {
+  title: string;
+  body?: string;
+  stages: CycleStage[];
+  duration?: number;
+}) {
+  return (
+    <CycleLayout title={title} body={body} items={stages.flatMap((stage) => stage.items)}>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-4">
+        {stages.map((stage, i) => (
+          <div className="contents" key={stage.title}>
+            {i > 0 ? <Arrow className="size-4 shrink-0 text-muted-foreground/60" /> : null}
+            <button
+              className={cn(
+                "cursor-pointer bg-transparent p-0 text-left font-heading text-lg leading-tight font-medium tracking-tight [border:0]",
+                "text-muted-foreground/70 transition-colors duration-300 hover:text-foreground data-active:text-foreground",
+              )}
+              type="button"
+              aria-pressed={i === 0}
+              data-active={i === 0 ? "" : undefined}
+              data-cycle-tab
+            >
+              {stage.title}
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 grid">
+        {stages.map((stage, i) => (
+          <div
+            className={cn(
+              "col-start-1 row-start-1 grid content-start gap-8 sm:grid-cols-2",
+              "transition-[opacity,visibility] duration-300 not-data-active:invisible not-data-active:opacity-0",
+            )}
+            data-active={i === 0 ? "" : undefined}
+            data-cycle-group
+            key={stage.title}
+          >
+            {stage.items.map((item, j) => (
+              <CycleCell
+                item={item}
+                active={i === 0 && j === 0}
+                duration={duration}
+                key={item.title}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </CycleLayout>
+  );
+}
+
+// The heading, then the screens to its right, then the items (`children`).
+function CycleLayout({
+  title,
+  body,
+  items,
+  children,
+}: {
+  title: string;
+  body?: string;
+  items: CycleItem[];
+  children: ReactNode;
 }) {
   return (
     <div className="grid gap-x-16 gap-y-13 lg:grid-cols-2" data-cycle>
@@ -45,35 +137,46 @@ export function ScreenCycle({
           </div>
         ))}
       </div>
-      <div className="grid gap-8 sm:grid-cols-2">
-        {items.map((item, i) => (
-          <div
-            className="group/cell relative space-y-2 border-t border-border pt-5 transition-opacity duration-300 not-data-active:opacity-50 hover:opacity-100 [&_a]:relative [&_a]:z-1"
-            data-active={i === 0 ? "" : undefined}
-            data-cycle-cell
-            key={item.title}
-          >
-            <span
-              className={cn(
-                "absolute inset-x-0 -top-px h-0.5 origin-left scale-x-0 bg-accent",
-                "group-data-active/cell:scale-x-100 motion-safe:group-data-active/cell:animate-progress",
-              )}
-              aria-hidden="true"
-              data-cycle-progress
-            />
-            <ItemTitle className="text-lg">
-              <button
-                className="cursor-pointer bg-transparent p-0 text-left tracking-[inherit] text-inherit [border:0] [font:inherit] after:absolute after:inset-0"
-                type="button"
-                aria-pressed={i === 0}
-              >
-                {item.title}
-              </button>
-            </ItemTitle>
-            <ItemBody className="text-sm">{item.body}</ItemBody>
-          </div>
-        ))}
-      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+function CycleCell({
+  item,
+  active,
+  duration,
+}: {
+  item: CycleItem;
+  active: boolean;
+  duration?: number;
+}) {
+  return (
+    <div
+      className="group/cell relative space-y-2 border-t border-border pt-5 transition-opacity duration-300 not-data-active:opacity-50 hover:opacity-100 [&_a]:relative [&_a]:z-1"
+      data-active={active ? "" : undefined}
+      data-cycle-cell
+    >
+      <span
+        className={cn(
+          "absolute inset-x-0 -top-px h-0.5 origin-left scale-x-0 bg-accent",
+          "group-data-active/cell:scale-x-100 motion-safe:group-data-active/cell:animate-progress",
+        )}
+        // Inline, so it holds over the animation's own duration.
+        style={duration ? { animationDuration: `${duration}s` } : undefined}
+        aria-hidden="true"
+        data-cycle-progress
+      />
+      <ItemTitle className="text-lg">
+        <button
+          className="cursor-pointer bg-transparent p-0 text-left tracking-[inherit] text-inherit [border:0] [font:inherit] after:absolute after:inset-0"
+          type="button"
+          aria-pressed={active}
+        >
+          {item.title}
+        </button>
+      </ItemTitle>
+      <ItemBody className="text-sm">{item.body}</ItemBody>
     </div>
   );
 }
