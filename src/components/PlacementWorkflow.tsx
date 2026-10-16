@@ -1,6 +1,6 @@
 import { placementDesk } from "../data/content";
-import { Section, SectionHeader } from "./Section";
-import { Arrow } from "./Ui";
+import { cycleFrame, StagedScreenCycle } from "./ScreenCycle";
+import { Section } from "./Section";
 import { StageScreen, type StageName } from "./WorkflowScreens";
 import { cn } from "../lib/style";
 
@@ -8,47 +8,9 @@ import { cn } from "../lib/style";
 const stageScreens: StageName[] = ["intake", "markets", "results"];
 
 // The Placement Desk's three stages, from work going in to results coming
-// back, with a screen and the steps under each. Shown on the homepage and on
-// /placement-desk; each page supplies its own id and heading. From lg the
-// stages share their rows, so the screens, names and step lists line up.
-function PlacementWorkflow() {
-  return (
-    <div className="grid gap-5 lg:auto-rows-[auto_auto_1fr] lg:grid-cols-[3fr_4fr_3fr] lg:gap-y-0">
-      {placementDesk.work.stages.map((stage, i) => (
-        <div
-          className={cn(
-            "relative overflow-hidden rounded-2xl border lg:row-span-3 lg:grid lg:grid-rows-subgrid",
-            stage.accent ? "border-transparent" : "border-border bg-card",
-          )}
-          data-theme={stage.accent ? "accent" : undefined}
-          key={stage.kicker}
-        >
-          {i > 0 ? (
-            <Arrow className="absolute -top-5.25 left-7 z-1 size-5.5 rotate-90 rounded-full bg-background p-0.5 text-accent lg:top-1/2 lg:-left-5.25 lg:-translate-y-1/2 lg:rotate-0" />
-          ) : null}
-          <StageScreen name={stageScreens[i]} />
-          <p className="px-7 pt-6 pb-5 font-heading text-2xl leading-tight font-medium tracking-tight text-foreground">
-            {stage.kicker}
-          </p>
-          <ul className="grid content-start px-7 pb-7">
-            {stage.steps.map((step) => (
-              <li
-                className="border-b border-b-border py-3.5 first:pt-0 last:border-b-0 last:pb-0"
-                key={step.title}
-              >
-                <p className="font-heading text-base font-medium tracking-tight text-foreground">
-                  {step.title}
-                </p>
-                <p className="mt-1 text-base text-pretty text-muted-foreground">{step.body}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
-}
-
+// back, as one cycle through every stage's steps: a tab for each stage, and
+// for each step its stage's screen in that step's state. Shown on the homepage
+// and on /placement-desk; each page supplies its own id and heading.
 export function PlacementWorkflowSection({
   id,
   title,
@@ -60,8 +22,24 @@ export function PlacementWorkflowSection({
 }) {
   return (
     <Section theme="deep" id={id}>
-      <SectionHeader title={title} body={body} />
-      <PlacementWorkflow />
+      <StagedScreenCycle
+        title={title}
+        body={body}
+        duration={5}
+        stages={placementDesk.work.stages.map((stage, i) => ({
+          title: stage.kicker,
+          items: stage.steps.map((step, j) => ({
+            ...step,
+            screen: (
+              <StageScreen
+                name={stageScreens[i]}
+                step={j}
+                className={cn(cycleFrame, "bg-cream/5")}
+              />
+            ),
+          })),
+        }))}
+      />
     </Section>
   );
 }
