@@ -20,9 +20,7 @@ export function Resources({ posts }: { posts: Post[] }) {
                   href={`/resources/${post.slug}`}
                 >
                   <PostMeta post={post} />
-                  <h2 className="font-heading text-xl leading-tight font-medium tracking-tight text-balance">
-                    {post.title}
-                  </h2>
+                  <h2 className="text-xl">{post.title}</h2>
                   <p className="text-base text-muted-foreground">{post.standfirst}</p>
                   <span className="mt-auto inline-flex items-center gap-1.5 font-medium text-accent">
                     Read

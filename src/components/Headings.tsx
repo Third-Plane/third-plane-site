@@ -1,8 +1,9 @@
 import type { ComponentProps } from "react";
 import { cn } from "../lib/style";
 
-// The site's type styles. Each takes the choices that differ between uses as
-// props, so no two competing utilities land on one element.
+// The site's type styles, beyond the headings' own (see index.css). Each takes
+// the choices that differ between uses as props, so no two competing utilities
+// land on one element.
 
 const DISPLAY_1_SIZE = {
   hero: "text-[clamp(2.5rem,4.5vw,4rem)]/none",
@@ -23,14 +24,7 @@ export function Display1({
   const lines = typeof children === "string" ? [children] : children;
   const stacked = lines.length > 1;
   return (
-    <h1
-      className={cn(
-        "font-heading font-medium tracking-tighter text-pretty text-foreground",
-        DISPLAY_1_SIZE[size],
-        className,
-      )}
-      {...props}
-    >
+    <h1 className={cn("tracking-tighter", DISPLAY_1_SIZE[size], className)} {...props}>
       {stacked
         ? lines.map((line, i) => (
             // The space keeps the lines as separate words for crawlers and
@@ -41,18 +35,6 @@ export function Display1({
           ))
         : lines.join(" ")}
     </h1>
-  );
-}
-
-export function Display2({ className, ...props }: ComponentProps<"h2">) {
-  return (
-    <h2
-      className={cn(
-        "font-heading text-4xl leading-none font-medium tracking-tight text-balance text-foreground",
-        className,
-      )}
-      {...props}
-    />
   );
 }
 

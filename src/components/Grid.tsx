@@ -89,12 +89,7 @@ export function ItemTitle({
   className?: string;
 }) {
   return (
-    <h3
-      className={cn(
-        "font-heading text-xl leading-tight font-medium tracking-tight text-balance text-foreground",
-        className,
-      )}
-    >
+    <h3 className={className}>
       {children}
       {arrow ? (
         <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover:translate-x-0.75" />

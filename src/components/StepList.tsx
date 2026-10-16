@@ -5,7 +5,7 @@ export function StepList({ steps }: { steps: ReadonlyArray<{ title: string; body
     <ol className="wrap grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {steps.map((step, i) => (
         <li className="space-y-3 rounded-2xl border border-border bg-card p-6" key={step.title}>
-          <h3 className="flex font-heading text-xl font-medium tracking-tight text-foreground">
+          <h3 className="flex">
             {step.title}
             <span className="ml-auto block font-bold text-accent/25">
               {String(i + 1).padStart(2, "0")}

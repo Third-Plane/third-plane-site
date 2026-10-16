@@ -1,5 +1,4 @@
 import { showcase } from "../data/content";
-import { Display2 } from "./Headings";
 import { Section } from "./Section";
 
 // Video showcase. Renders nothing until a video is set (home.json, showcase), so the
@@ -10,7 +9,7 @@ export function Showcase() {
   return (
     <Section theme="white" id="video">
       <header className="mx-auto mb-13 max-w-190 text-center">
-        <Display2>{showcase.title}</Display2>
+        <h2>{showcase.title}</h2>
       </header>
       <figure className="m-0 grid justify-items-center gap-4">
         <video
