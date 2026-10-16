@@ -15,8 +15,9 @@ export type CycleStage = { title: string; items: CycleItem[] };
 // screen on the right (stacked above the items below lg), one item at a time.
 // The markup is static, with the first item active; scripts/screen-cycle.ts
 // moves `data-active` along as each active cell's progress bar fills (see
-// animate-progress in tailwind.css), and to a cell when it's clicked. Under
-// reduced motion the bar doesn't fill, so the items only change on a click.
+// animate-progress in tailwind.css), and stops on a cell when it's clicked.
+// Under reduced motion the bar doesn't fill, so the items only change on a
+// click.
 //
 // The whole cell is its button's to click; a link in a body sits above it.
 export function ScreenCycle({
@@ -44,7 +45,8 @@ export function ScreenCycle({
 // make one cycle, so after a stage's last item comes the next stage's first,
 // and after the last stage's, the first's. The stages' items share one grid
 // cell, as the screens do, so the section keeps the height of the longest and
-// doesn't shift as the stage changes. Clicking a tab starts its stage over.
+// doesn't shift as the stage changes. Clicking a tab stops the cycle on its
+// stage's first item.
 //
 // Each item shows for `duration` seconds (6 in a ScreenCycle), since a full
 // round of every stage's items is a long one.
