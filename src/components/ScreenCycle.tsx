@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { ItemBody, ItemTitle } from "./Grid";
-import { Display2, Lead } from "./Headings";
+import { Lead } from "./Headings";
 import { Arrow } from "./Ui";
 import { cn } from "../lib/style";
 
@@ -124,7 +124,7 @@ function CycleLayout({
     <div className="grid gap-x-16 gap-y-13 lg:grid-cols-2" data-cycle>
       {/* SectionHeader's, without its column or its margin (the gap's). */}
       <header>
-        <Display2>{title}</Display2>
+        <h2>{title}</h2>
         {body ? <Lead className="mt-5">{body}</Lead> : null}
       </header>
       <div className="grid lg:col-start-2 lg:row-span-2 lg:row-start-1">

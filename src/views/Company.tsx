@@ -1,6 +1,5 @@
 import { companyPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
-import { Display2 } from "../components/Headings";
 import { Section, SectionHeader } from "../components/Section";
 import { SplitHero } from "../components/SplitHero";
 import { Arrow, AppLink } from "../components/Ui";
@@ -14,9 +13,7 @@ export function Company() {
           className="rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-2 shadow-2xl"
           id="roles"
         >
-          <h2 className="border-b border-b-border/50 pb-4 font-heading text-lg font-medium tracking-tight text-foreground">
-            {page.roles.title}
-          </h2>
+          <h2 className="border-b border-b-border/50 pb-4 text-lg">{page.roles.title}</h2>
           {page.roles.items.length ? (
             <ul>
               {page.roles.items.map((role) => (
@@ -57,7 +54,7 @@ export function Company() {
       <Section theme="white" id="origin">
         <div className="wrap grid items-start gap-x-17 gap-y-13 md:grid-cols-2">
           <div>
-            <Display2>{page.origin.title}</Display2>
+            <h2>{page.origin.title}</h2>
             {page.origin.body.map((paragraph, i) => (
               <p
                 className={cn(

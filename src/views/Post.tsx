@@ -8,11 +8,7 @@ import { Header } from "../components/Header";
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
     case "heading":
-      return (
-        <h2 className="mt-5 font-heading text-3xl font-medium tracking-tight text-balance text-foreground">
-          {block.text}
-        </h2>
-      );
+      return <h2 className="mt-5 text-3xl">{block.text}</h2>;
     case "bullets":
       return (
         <ul className="grid gap-2.5 pl-5">

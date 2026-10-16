@@ -1,5 +1,5 @@
 import type { ElementType, HTMLAttributes } from "react";
-import { Display2, Lead } from "./Headings";
+import { Lead } from "./Headings";
 import { NavCopy } from "./NavBar";
 import type { Theme } from "./theme";
 import { cn } from "../lib/style";
@@ -99,7 +99,7 @@ export function Section({
 export function SectionHeader({ title, body }: { title: string; body?: string }) {
   return (
     <header className="wrap mb-13">
-      <Display2>{title}</Display2>
+      <h2>{title}</h2>
       {body ? <Lead className="mt-5">{body}</Lead> : null}
     </header>
   );
