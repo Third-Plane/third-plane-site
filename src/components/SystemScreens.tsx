@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "../lib/style";
+import { BOOK } from "./book";
 import { Frame, Pill, Table, Toolbar } from "./MockUi";
 
 export type SystemName = "ams" | "documents" | "inbox" | "data";
@@ -52,10 +53,31 @@ const ACTIVITIES = [
   { code: "RSLT", activity: "Results returned to producer", date: "10/06", done: true },
   { code: "QUOT", activity: "Quote received: Sample Carrier Co.", date: "10/05", done: true },
   { code: "FLUP", activity: "Follow-up sent: Example Specialty", date: "10/05", done: false },
+  { code: "QUOT", activity: "Quote received: Demo Mutual", date: "10/05", done: true },
+  { code: "DECL", activity: "Declination: Example Casualty, cooking", date: "10/04", done: true },
+  { code: "ANSR", activity: "Underwriter questions answered", date: "10/04", done: true },
+  { code: "SUPP", activity: "Supplemental sent: Example Casualty", date: "10/03", done: true },
+  { code: "SUBM", activity: "Submitted to Example Specialty by email", date: "10/03", done: true },
+  {
+    code: "SUBM",
+    activity: "Submitted to Placeholder Insurance by MCP",
+    date: "10/02",
+    done: true,
+  },
   { code: "SUBM", activity: "Submitted to Demo Mutual by portal", date: "10/02", done: true },
+  { code: "SUBM", activity: "Submitted to Sample Carrier Co. by API", date: "10/02", done: true },
+  { code: "MKTS", activity: "Market plan approved by producer", date: "10/01", done: true },
   { code: "NOTE", activity: "Prior carrier confirmed by producer", date: "10/01", done: true },
+  { code: "APPT", activity: "Appetite checked: 20 markets", date: "09/30", done: true },
   { code: "ATTC", activity: "Loss runs attached to the account", date: "09/30", done: true },
+  { code: "INFO", activity: "Payroll requested from producer", date: "09/29", done: true },
+  { code: "INFO", activity: "Prior carrier requested from producer", date: "09/29", done: true },
+  { code: "ATTC", activity: "ACORD 140 attached to the account", date: "09/28", done: true },
+  { code: "ATTC", activity: "ACORD 125 attached to the account", date: "09/28", done: true },
+  { code: "CLRD", activity: "Cleared: no other submissions found", date: "09/28", done: true },
   { code: "RNWL", activity: "Renewal marketing started", date: "09/28", done: true },
+  { code: "RQST", activity: "Request received from J. Avery", date: "09/27", done: true },
+  { code: "NOTE", activity: "Renewal flagged at 35 days out", date: "09/27", done: true },
 ];
 
 function Ams() {
@@ -108,16 +130,36 @@ function Ams() {
 const DOCUMENTS = [
   { type: "PDF", name: "ACORD 125 Commercial Application", folder: "Applications", date: "09/28" },
   { type: "PDF", name: "ACORD 140 Property Section", folder: "Applications", date: "09/28" },
+  { type: "PDF", name: "ACORD 126 General Liability", folder: "Applications", date: "09/28" },
+  { type: "PDF", name: "Supplemental: bakery operations", folder: "Applications", date: "10/03" },
+  { type: "PDF", name: "Supplemental: cooking and frying", folder: "Applications", date: "10/03" },
   {
     type: "PDF",
     name: "Loss runs 2023–2026, Sample Carrier Co.",
     folder: "Loss runs",
     date: "09/30",
   },
+  { type: "PDF", name: "Loss runs 2020–2023, Demo Mutual", folder: "Loss runs", date: "09/30" },
   { type: "XLS", name: "Schedule of values", folder: "Schedules", date: "09/30" },
-  { type: "MSG", name: "RE: Renewal information request", folder: "Correspondence", date: "10/01" },
+  { type: "XLS", name: "Equipment schedule", folder: "Schedules", date: "09/30" },
+  { type: "XLS", name: "Payroll by class code", folder: "Schedules", date: "10/01" },
   { type: "PDF", name: "2025 BOP declarations", folder: "Policies", date: "10/02" },
-  { type: "PDF", name: "Supplemental: bakery operations", folder: "Applications", date: "10/03" },
+  { type: "PDF", name: "2025 BOP policy forms", folder: "Policies", date: "10/02" },
+  { type: "PDF", name: "2024 BOP declarations", folder: "Policies", date: "10/02" },
+  { type: "PDF", name: "Certificate of insurance, landlord", folder: "Policies", date: "10/02" },
+  { type: "PDF", name: "Lease agreement, 412 Example St.", folder: "Contracts", date: "10/02" },
+  { type: "PDF", name: "Fire inspection report 2026", folder: "Inspections", date: "10/02" },
+  { type: "JPG", name: "Kitchen hood and suppression", folder: "Inspections", date: "10/02" },
+  { type: "MSG", name: "RE: Renewal information request", folder: "Correspondence", date: "10/01" },
+  { type: "MSG", name: "RE: Payroll and prior carrier", folder: "Correspondence", date: "10/01" },
+  {
+    type: "MSG",
+    name: "Example Specialty: supplemental needed",
+    folder: "Correspondence",
+    date: "10/03",
+  },
+  { type: "DOC", name: "Producer notes, renewal meeting", folder: "Notes", date: "09/27" },
+  { type: "PDF", name: "Financial statement 2025", folder: "Financials", date: "10/01" },
 ];
 
 function Documents() {
@@ -126,7 +168,7 @@ function Documents() {
       <Toolbar
         title="Sample Bakery LLC"
         view="Clients › Commercial"
-        chip={<Pill alert>7 pulled</Pill>}
+        chip={<Pill alert>{DOCUMENTS.length} pulled</Pill>}
       />
       <div className="flex min-h-0 flex-1">
         <div className="min-w-0 flex-1">
@@ -159,7 +201,11 @@ function Documents() {
             "Loss runs",
             "Schedules",
             "Policies",
+            "Contracts",
+            "Inspections",
             "Correspondence",
+            "Notes",
+            "Financials",
           ]}
           active="All documents"
         />
@@ -204,6 +250,95 @@ const MESSAGES = [
     preview: "Need current payroll by class code before we go to market.",
     time: "8:30",
   },
+  {
+    from: "Sam Ortiz",
+    via: "Chat",
+    subject: "@Desk Sample Hardware wants higher property limits",
+    preview: "Can you get indications at $2M building before Friday?",
+    time: "8:12",
+  },
+  {
+    from: "Demo Mutual",
+    subject: "Quote: Placeholder Properties, Umbrella",
+    preview: "Quote attached. Subject to the underlying schedule on file.",
+    time: "7:55",
+  },
+  {
+    from: "Placement Desk",
+    subject: "Submitted: Example Brewing Co., Liquor",
+    preview: "Sent to 4 markets by portal and email. First responses due Thursday.",
+    time: "7:40",
+  },
+  {
+    from: "Sample Carrier Co.",
+    subject: "Declination: Demo Landscaping, GL",
+    preview: "Outside appetite for tree work over 30 feet.",
+    time: "Yesterday",
+  },
+  {
+    from: "Jordan Avery",
+    subject: "RE: Results: Sample Builders Inc., GL",
+    preview: "Client is going with Demo Mutual. Please let the others know.",
+    time: "Yesterday",
+  },
+  {
+    from: "Placement Desk",
+    subject: "Follow-up: Placeholder Café, BOP",
+    preview: "Second follow-up sent to Example Specialty. No response since 9/30.",
+    time: "Yesterday",
+  },
+  {
+    from: "Example Clinic",
+    subject: "Payroll for the WC renewal",
+    preview: "Attached is the payroll report you asked for, by class code.",
+    time: "Yesterday",
+  },
+  {
+    from: "Placement Desk",
+    subject: "Results: Demo Auto Body, Garage",
+    preview: "3 quotes, best terms from Placeholder Insurance. Record attached.",
+    time: "Mon",
+  },
+  {
+    from: "Renewals channel",
+    via: "Chat",
+    subject: "@Desk Sample Florist renewal moved up",
+    preview: "Client wants to bind by 10/15. Can the desk prioritize?",
+    time: "Mon",
+  },
+];
+
+// The first message's thread, open beside the list: each message's body as
+// lines of grey, its width per line.
+const THREAD = [
+  {
+    from: "Jordan Avery",
+    to: "Placement Desk",
+    time: "9:58 AM",
+    lines: ["w-full", "w-11/12", "w-full", "w-3/5"],
+    files: ["ACORD 125.pdf", "Loss runs.pdf"],
+  },
+  {
+    from: "Placement Desk",
+    to: "Jordan Avery",
+    time: "10:02 AM",
+    lines: ["w-full", "w-10/12", "w-full", "w-full", "w-2/5"],
+    files: [],
+  },
+  {
+    from: "Jordan Avery",
+    to: "Placement Desk",
+    time: "10:20 AM",
+    lines: ["w-full", "w-9/12", "w-1/2"],
+    files: ["Payroll by class.xls"],
+  },
+  {
+    from: "Placement Desk",
+    to: "Jordan Avery",
+    time: "10:24 AM",
+    lines: ["w-full", "w-11/12", "w-full", "w-3/4"],
+    files: [],
+  },
 ];
 
 function Inbox() {
@@ -236,19 +371,32 @@ function Inbox() {
             </li>
           ))}
         </ul>
-        {/* The first message, open, with its body as lines of grey. */}
         <div className="hidden min-w-0 flex-1 px-4 py-3 @lg:block">
           <p className="truncate font-medium">{open.subject}</p>
-          <p className="mt-1 truncate text-deep/50">{open.from} to Placement Desk</p>
-          <div className="mt-4 grid gap-2">
-            {["w-full", "w-11/12", "w-full", "w-3/5"].map((width, i) => (
-              <i className={cn("h-1.5 rounded-full bg-deep/10", width)} key={i} />
-            ))}
-          </div>
-          <p className="mt-4 flex gap-1.5">
-            <span className="rounded-md border border-deep/10 px-1.5 py-0.5">ACORD 125.pdf</span>
-            <span className="rounded-md border border-deep/10 px-1.5 py-0.5">Loss runs.pdf</span>
-          </p>
+          {THREAD.map((message) => (
+            <div className="mt-3 border-t border-deep/5 pt-3" key={message.time}>
+              <p className="flex justify-between gap-3 text-deep/50">
+                <span className="truncate">
+                  {message.from} to {message.to}
+                </span>
+                <span className="shrink-0 tabular-nums">{message.time}</span>
+              </p>
+              <div className="mt-2.5 grid gap-2">
+                {message.lines.map((width, i) => (
+                  <i className={cn("h-1.5 rounded-full bg-deep/10", width)} key={i} />
+                ))}
+              </div>
+              {message.files.length ? (
+                <p className="mt-3 flex gap-1.5">
+                  {message.files.map((file) => (
+                    <span className="rounded-md border border-deep/10 px-1.5 py-0.5" key={file}>
+                      {file}
+                    </span>
+                  ))}
+                </p>
+              ) : null}
+            </div>
+          ))}
         </div>
       </div>
     </>
@@ -267,16 +415,34 @@ const SHEET_COLUMNS: { letter: string; label: string; className?: string }[] = [
   { letter: "F", label: "Outcome", className: "hidden w-18 @md:block" },
 ];
 
-const SHEET_ROWS = [
-  ["Sample Bakery LLC", "BOP", "5", "3", "4.5", "Quoted"],
-  ["Placeholder Mfg", "GL", "6", "4", "3.0", "Bound"],
-  ["Example Logistics", "Auto", "4", "2", "5.5", "Quoted"],
-  ["Demo Dental Group", "WC", "7", "5", "2.5", "Bound"],
-  ["Sample Hardware", "Property", "5", "3", "4.0", "Quoted"],
-  ["Placeholder Properties", "Umbrella", "3", "2", "3.5", "Bound"],
-  ["Example Brewing Co.", "Liquor", "4", "1", "6.0", "Quoted"],
-  ["Demo Landscaping", "GL", "6", "4", "3.0", "Bound"],
+// Markets, quotes, days and outcome for each account in the book, in order.
+const SHEET_VALUES = [
+  ["5", "3", "4.5", "Quoted"],
+  ["6", "4", "3.0", "Bound"],
+  ["4", "2", "5.5", "Quoted"],
+  ["7", "5", "2.5", "Bound"],
+  ["5", "3", "4.0", "Quoted"],
+  ["3", "2", "3.5", "Bound"],
+  ["4", "1", "6.0", "Quoted"],
+  ["6", "4", "3.0", "Bound"],
+  ["5", "4", "2.0", "Bound"],
+  ["4", "2", "4.5", "Quoted"],
+  ["6", "3", "3.5", "Bound"],
+  ["5", "3", "5.0", "Quoted"],
+  ["3", "2", "2.5", "Bound"],
+  ["5", "3", "3.0", "Bound"],
+  ["6", "4", "4.0", "Quoted"],
+  ["4", "2", "6.5", "Quoted"],
+  ["3", "3", "2.0", "Bound"],
+  ["7", "3", "5.5", "Quoted"],
+  ["6", "5", "3.0", "Bound"],
+  ["4", "2", "4.0", "Declined"],
+  ["5", "4", "2.5", "Bound"],
+  ["6", "3", "3.5", "Quoted"],
+  ["5", "4", "3.0", "Bound"],
+  ["4", "1", "7.0", "Quoted"],
 ];
+const SHEET_ROWS = BOOK.map((policy, i) => [policy.name, policy.line, ...SHEET_VALUES[i]]);
 
 // The cell the formula bar describes: row 2 (the first account), column E.
 const SELECTED = { row: 0, column: 4 };
@@ -337,12 +503,11 @@ const SCREENS: Record<SystemName, () => ReactNode> = {
   data: Data,
 };
 
-// `className` goes to the Frame, for a ground or shape other than the default.
-export function SystemScreen({ name, className }: { name?: SystemName; className?: string }) {
+export function SystemScreen({ name }: { name?: SystemName }) {
   if (!name) return null;
   const Screen = SCREENS[name];
   return (
-    <Frame className={className}>
+    <Frame>
       <Screen />
     </Frame>
   );

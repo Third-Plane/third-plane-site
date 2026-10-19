@@ -4,10 +4,6 @@ import { AppLink, Arrow } from "./Ui";
 import { cn } from "../lib/style";
 import { SectionHeader } from "./Section";
 
-// For an item's screen: a mock screen's Frame (MockUi), standing on its own
-// rather than running into a card's caption.
-export const cycleFrame = "rounded-2xl border-b-0 shadow-lg";
-
 // With an `href`, the item's title links there.
 export type CycleItem = { title: string; body: ReactNode; screen: ReactNode; href?: string };
 export type CycleStage = { title: string; items: CycleItem[] };
@@ -111,6 +107,8 @@ export function StagedScreenCycle({
 }
 
 // The heading, then the screens to its right, then the items (`children`).
+// From lg up the screens are out of flow, filling their column, so the
+// column is as tall as the heading and items beside it and no taller.
 function CycleLayout({
   title,
   body,
@@ -128,10 +126,10 @@ function CycleLayout({
         <h2>{title}</h2>
         {body && <p className="lead">{body}</p>}
       </SectionHeader>
-      <div className="grid lg:col-start-2 lg:row-span-2 lg:row-start-1">
+      <div className="grid lg:relative lg:col-start-2 lg:row-span-2 lg:row-start-1">
         {items.map((item, i) => (
           <div
-            className="col-start-1 row-start-1 transition-opacity duration-500 not-data-active:opacity-0"
+            className="col-start-1 row-start-1 transition-opacity duration-500 not-data-active:opacity-0 lg:absolute lg:inset-0"
             data-active={i === 0 ? "" : undefined}
             data-cycle-screen
             key={item.title}

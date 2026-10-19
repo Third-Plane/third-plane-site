@@ -1,72 +1,57 @@
 import { securityPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, Point, OutlineCard } from "../components/Grid";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
-import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
-import { Section, SectionHeader } from "../components/Section";
+import { ScreenCycle, StagedScreenCycle } from "../components/ScreenCycle";
+import { Section } from "../components/Section";
 import { SecurityScreen, type SecurityName } from "../components/SecurityScreens";
-import type { Theme } from "../components/theme";
+import { Button } from "../components/Ui";
 
 export const chart: ChartName = "security";
 
-// authority's two sides, each a section of its own, with a mock screen for
-// each point, in the order of side.items.
-const sides: { id: string; theme: Theme; screens: SecurityName[] }[] = [
-  { id: "authority", theme: "white", screens: ["scope", "access", "models"] },
-  { id: "accountability", theme: "blend", screens: ["supervisor", "checkpoints", "configured"] },
+// A mock screen for each point of authority's stages, from definition to
+// evaluation: the limits, the people, the record. In the order of
+// authority.sides and each side's items.
+const stageScreens: SecurityName[][] = [
+  ["scope", "access", "models"],
+  ["supervisor", "checkpoints", "configured"],
+  ["audit", "context", "performance"],
 ];
+
+// A mock screen for each data point, in the order of data.items.
+const dataScreens: SecurityName[] = ["isolation", "sso", "privacy"];
 
 export function Security() {
   return (
     <>
-      <SplitHero title={page.title} lead={page.lead}>
+      <SplitHero title={page.title} lead={page.lead} actions={<Button />}>
         <Ledger chart={chart} panel={page.ledger} />
       </SplitHero>
 
-      {page.authority.sides.map((side, i) => (
-        <Section theme={sides[i].theme} id={sides[i].id} key={sides[i].id}>
-          <ScreenCycle
-            title={side.title}
-            body={side.body}
-            items={side.items.map((item, j) => ({
+      <Section theme="white" id="authority">
+        <StagedScreenCycle
+          title={page.authority.title}
+          body={page.authority.body}
+          duration={5}
+          stages={page.authority.sides.map((side, i) => ({
+            title: side.title,
+            items: side.items.map((item, j) => ({
               ...item,
-              screen: <SecurityScreen name={sides[i].screens[j]} className={cycleFrame} />,
-            }))}
-          />
-        </Section>
-      ))}
-
-      <Section theme="deep" id="record">
-        <div className="wrap">
-          <SectionHeader>
-            <h2>{page.record.title}</h2>
-          </SectionHeader>
-          <Grid columns={3}>
-            {page.record.items.map((item) => (
-              <OutlineCard key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
-              </OutlineCard>
-            ))}
-          </Grid>
-        </div>
+              screen: <SecurityScreen name={stageScreens[i]?.[j]} />,
+            })),
+          }))}
+        />
       </Section>
 
       <Section theme="blend" id="data">
-        <div className="wrap">
-          <SectionHeader>
-            <h2>{page.data.title}</h2>
-          </SectionHeader>
-          <Grid>
-            {page.data.items.map((item) => (
-              <Point className="px-6 py-5" key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
-              </Point>
-            ))}
-          </Grid>
-        </div>
+        <ScreenCycle
+          title={page.data.title}
+          body={page.data.body}
+          items={page.data.items.map((item, i) => ({
+            ...item,
+            screen: <SecurityScreen name={dataScreens[i]} />,
+          }))}
+        />
       </Section>
     </>
   );

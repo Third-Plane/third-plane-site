@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "../lib/style";
+import { BOOK } from "./book";
 import { Frame, Pill, Table, Toolbar, type Column } from "./MockUi";
 
 export type ScreenName = "renewed" | "overdue" | "unassigned" | "revenue";
@@ -33,16 +34,12 @@ function MarketDots({ shopped, of }: { shopped: number; of: number }) {
   );
 }
 
-const RENEWED = [
-  { name: "Sample Bakery LLC", line: "BOP", expires: "Nov 01", markets: 12 },
-  { name: "Placeholder Mfg", line: "GL", expires: "Nov 04", markets: 9 },
-  { name: "Example Logistics", line: "Auto", expires: "Nov 09", markets: 7 },
-  { name: "Demo Dental Group", line: "WC", expires: "Nov 12", markets: 11 },
-  { name: "Sample Hardware", line: "Property", expires: "Nov 15", markets: 8 },
-  { name: "Placeholder Properties", line: "Umbrella", expires: "Nov 18", markets: 10 },
-  { name: "Example Brewing Co.", line: "Liquor", expires: "Nov 21", markets: 6 },
-  { name: "Demo Landscaping", line: "GL", expires: "Nov 24", markets: 9 },
-];
+// A renewal a day through November, each shopped to one market of its many.
+const RENEWED = BOOK.map((policy, i) => ({
+  ...policy,
+  expires: `Nov ${String(i + 1).padStart(2, "0")}`,
+  markets: [12, 9, 7, 11, 8, 10, 6, 9, 11, 12, 8, 7, 10, 9, 6, 11, 12, 7, 8, 10, 9, 11, 6, 8][i],
+}));
 
 function Renewed() {
   return (
@@ -65,27 +62,20 @@ function Renewed() {
   );
 }
 
-const OVERDUE = [
-  { name: "Placeholder Mfg", line: "GL", carrier: "Demo Mutual", expires: 6, late: 9 },
-  { name: "Sample Bakery LLC", line: "BOP", carrier: "Example Specialty", expires: 9, late: 7 },
-  { name: "Example Logistics", line: "Auto", carrier: "Sample Carrier Co.", expires: 12, late: 6 },
-  { name: "Demo Dental Group", line: "WC", carrier: "Demo Mutual", expires: 15, late: 4 },
-  { name: "Sample Hardware", line: "Property", carrier: "Example Specialty", expires: 18, late: 3 },
-  {
-    name: "Placeholder Properties",
-    line: "Umbrella",
-    carrier: "Sample Carrier Co.",
-    expires: 21,
-    late: 2,
-  },
-  { name: "Example Brewing Co.", line: "Liquor", carrier: "Demo Mutual", expires: 24, late: 2 },
-  { name: "Demo Landscaping", line: "GL", carrier: "Example Specialty", expires: 27, late: 1 },
-];
+// Quotes outstanding, soonest expiry first: the closer the renewal, the longer
+// its quote has been late.
+const OVERDUE_CARRIERS = ["Demo Mutual", "Example Specialty", "Sample Carrier Co."];
+const OVERDUE = BOOK.map((policy, i) => ({
+  ...policy,
+  carrier: OVERDUE_CARRIERS[i % OVERDUE_CARRIERS.length],
+  expires: 6 + i * 2,
+  late: Math.max(1, 9 - Math.floor(i / 3)),
+}));
 
 function Overdue() {
   return (
     <>
-      <Toolbar title="Renewals" view="Quotes outstanding" chip={<Pill alert>14 overdue</Pill>} />
+      <Toolbar title="Renewals" view="Quotes outstanding" chip={<Pill alert>31 overdue</Pill>} />
       <Table
         columns={[
           account,
@@ -112,16 +102,11 @@ function Overdue() {
 }
 
 // One renewal has an owner, so the rest read as a gap rather than a column.
-const UNASSIGNED: (Policy & { expires: number; owner?: string })[] = [
-  { name: "Sample Bakery LLC", line: "BOP", expires: 88 },
-  { name: "Placeholder Mfg", line: "GL", expires: 84 },
-  { name: "Example Logistics", line: "Auto", expires: 79, owner: "K. Tran" },
-  { name: "Demo Dental Group", line: "WC", expires: 75 },
-  { name: "Sample Hardware", line: "Property", expires: 71 },
-  { name: "Placeholder Properties", line: "Umbrella", expires: 66 },
-  { name: "Example Brewing Co.", line: "Liquor", expires: 62 },
-  { name: "Demo Landscaping", line: "GL", expires: 59 },
-];
+const UNASSIGNED: (Policy & { expires: number; owner?: string })[] = BOOK.map((policy, i) => ({
+  ...policy,
+  expires: 88 - Math.round(i * 1.5),
+  owner: i === 2 ? "K. Tran" : undefined,
+}));
 
 function Owner({ owner }: { owner?: string }) {
   if (!owner) {
@@ -192,7 +177,7 @@ function Revenue() {
   return (
     <>
       <Toolbar title="Revenue" view="12-month projection" chip={<Pill>+0.4% YoY</Pill>} />
-      <div className="flex min-h-0 flex-1 flex-col px-4 pt-3 pb-9">
+      <div className="flex min-h-0 flex-1 flex-col px-4 pt-3 pb-3">
         <div className="flex items-baseline justify-between gap-3">
           <p className="flex items-baseline gap-2">
             <span className="font-heading text-xl font-medium tracking-tight tabular-nums">
@@ -267,12 +252,11 @@ const SCREENS: Record<ScreenName, () => ReactNode> = {
 };
 
 // An editor can add problem points beyond the four drawn here; those get none.
-// `className` goes to the Frame.
-export function ProblemScreen({ name, className }: { name?: ScreenName; className?: string }) {
+export function ProblemScreen({ name }: { name?: ScreenName }) {
   if (!name) return null;
   const Screen = SCREENS[name];
   return (
-    <Frame className={className}>
+    <Frame>
       <Screen />
     </Frame>
   );

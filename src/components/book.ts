@@ -1,0 +1,28 @@
+// The agency's book: the accounts the screens list, each with the line in
+// play, the same in every screen that lists them.
+export const BOOK = [
+  { name: "Sample Bakery LLC", line: "BOP" },
+  { name: "Placeholder Mfg", line: "GL" },
+  { name: "Example Logistics", line: "Auto" },
+  { name: "Demo Dental Group", line: "WC" },
+  { name: "Sample Hardware", line: "Property" },
+  { name: "Placeholder Properties", line: "Umbrella" },
+  { name: "Example Brewing Co.", line: "Liquor" },
+  { name: "Demo Landscaping", line: "GL" },
+  { name: "Sample Builders Inc.", line: "GL" },
+  { name: "Placeholder Café", line: "BOP" },
+  { name: "Example Clinic", line: "WC" },
+  { name: "Demo Auto Body", line: "Garage" },
+  { name: "Sample Florist", line: "BOP" },
+  { name: "Placeholder Plumbing", line: "GL" },
+  { name: "Example Fitness", line: "Package" },
+  { name: "Demo Veterinary", line: "Prof. liab." },
+  { name: "Sample Print Shop", line: "BOP" },
+  { name: "Placeholder Trucking", line: "Auto" },
+  { name: "Example Roofing", line: "WC" },
+  { name: "Demo Bistro", line: "Liquor" },
+  { name: "Sample Storage", line: "Property" },
+  { name: "Placeholder Pharmacy", line: "Package" },
+  { name: "Example Electric", line: "GL" },
+  { name: "Demo Day Care", line: "GL" },
+] as const;

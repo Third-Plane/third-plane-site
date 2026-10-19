@@ -3,7 +3,7 @@ import { Diagram } from "../components/Diagram";
 import type { ChartName } from "../components/Flowchart";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
-import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
+import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { Ledger } from "../components/Ledger";
@@ -35,7 +35,7 @@ export function Home() {
           body={problem.body}
           items={problem.points.map((point, i) => ({
             ...point,
-            screen: <ProblemScreen name={problemScreens[i]} className={cycleFrame} />,
+            screen: <ProblemScreen name={problemScreens[i]} />,
           }))}
         />
       </Section>

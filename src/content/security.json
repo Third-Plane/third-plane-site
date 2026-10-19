@@ -47,10 +47,11 @@
     }
   },
   "authority": {
+    "title": "Defined before the work, reviewed after it.",
+    "body": "You set the limits the desk works within and the people accountable for it. Every action it takes is recorded against them, so any placement can be checked later.",
     "sides": [
       {
-        "title": "AI only acts within defined limits.",
-        "body": "The desk works inside boundaries you set and can tighten at any time. They belong to the desk rather than to any one model, so they hold as the technology underneath it changes.",
+        "title": "Set the limits",
         "items": [
           {
             "title": "Scoped authority",
@@ -67,8 +68,7 @@
         ]
       },
       {
-        "title": "Your people remain accountable.",
-        "body": "AI takes on the work, but responsibility for it stays with your team. Your people direct and review the desk rather than build and maintain it.",
+        "title": "Name the people",
         "items": [
           {
             "title": "Named supervision",
@@ -83,28 +83,29 @@
             "body": "Your desk comes with the right access, controls and reporting already configured."
           }
         ]
-      }
-    ]
-  },
-  "record": {
-    "title": "Every action leaves a record.",
-    "items": [
-      {
-        "title": "Full audit trail",
-        "body": "See what was done, through which channel and under whose authority."
       },
       {
-        "title": "Context stays intact",
-        "body": "Keep the inputs, actions and outcomes together so any placement can be reviewed later."
-      },
-      {
-        "title": "Review performance",
-        "body": "Track outcomes, exceptions and patterns against the standards you set."
+        "title": "Review the record",
+        "items": [
+          {
+            "title": "Full audit trail",
+            "body": "See what was done, through which channel and under whose authority."
+          },
+          {
+            "title": "Context stays intact",
+            "body": "Keep the inputs, actions and outcomes together so any placement can be reviewed later."
+          },
+          {
+            "title": "Review performance",
+            "body": "Track outcomes, exceptions and patterns against the standards you set."
+          }
+        ]
       }
     ]
   },
   "data": {
     "title": "Your data stays yours, and stays separate.",
+    "body": "The desk works on your data without taking it anywhere. It’s kept apart from every other customer’s, reached through your own sign-in, and stays inside the systems you approve.",
     "items": [
       {
         "title": "Isolated by customer",
@@ -117,10 +118,6 @@
       {
         "title": "Your content stays private",
         "body": "Prompts, documents and completions stay inside approved systems."
-      },
-      {
-        "title": "No model lock-in",
-        "body": "Change models when needed without changing your controls or tying your data to one provider."
       }
     ]
   },

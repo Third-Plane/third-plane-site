@@ -497,38 +497,40 @@ content:
                     label: Recorded in the audit trail
                     component: activity
           - name: authority
-            type: object
-            fields:
-              - name: sides
-                type: object
-                list:
-                  min: 2
-                  max: 2
-                  collapsible:
-                    collapsed: true
-                    summary: "{title}"
-                fields:
-                  - name: title
-                    type: string
-                    required: true
-                  - name: body
-                    type: text
-                    required: true
-                  - name: items
-                    component: cards
-          - name: record
+            label: Authority and record
+            description: One section, with a tab for each stage, from the limits set up front to the record reviewed after.
             type: object
             fields:
               - name: title
                 type: string
                 required: true
-              - name: items
-                component: cards
+              - name: body
+                type: text
+                required: true
+              - name: sides
+                label: Stages
+                type: object
+                list:
+                  min: 3
+                  max: 3
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    label: Tab
+                    type: string
+                    required: true
+                  - name: items
+                    component: cards
           - name: data
             type: object
             fields:
               - name: title
                 type: string
+                required: true
+              - name: body
+                type: text
                 required: true
               - name: items
                 component: cards
