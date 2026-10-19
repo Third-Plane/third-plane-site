@@ -23,7 +23,7 @@ export function PlacementDesk() {
         <Ledger chart="placement" panel={homeHero.ledger} />
       </SplitHero>
 
-      <PlacementWorkflowSection id="work" title={placementDesk.work.title} />
+      <PlacementWorkflowSection id="work" />
 
       <CarrierChannels />
 

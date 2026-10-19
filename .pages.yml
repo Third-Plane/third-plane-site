@@ -299,7 +299,7 @@ content:
                     type: boolean
           - name: desk
             label: The Placement Desk
-            description: The stages and steps below the heading are edited under Placement Desk → What the desk does.
+            description: Shown on the homepage and on the Placement Desk page, above the stages and steps, which are edited under Placement Desk → What the desk does.
             type: object
             fields:
               - name: title
@@ -344,12 +344,9 @@ content:
             description: Also the page’s search and link-preview description.
           - name: work
             label: What the desk does
-            description: The stages are also shown on the homepage, under its Placement Desk heading.
+            description: The stages are also shown on the homepage. Their heading is edited under Home → The Placement Desk.
             type: object
             fields:
-              - name: title
-                type: string
-                required: true
               - name: stages
                 type: object
                 list:

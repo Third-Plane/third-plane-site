@@ -1,4 +1,4 @@
-import { placementDesk } from "../data/content";
+import { desk, placementDesk } from "../data/content";
 import { cycleFrame, StagedScreenCycle } from "./ScreenCycle";
 import { Section } from "./Section";
 import { StageScreen, type StageName } from "./WorkflowScreens";
@@ -10,21 +10,14 @@ const stageScreens: StageName[] = ["intake", "markets", "results"];
 // The Placement Desk's three stages, from work going in to results coming
 // back, as one cycle through every stage's steps: a tab for each stage, and
 // for each step its stage's screen in that step's state. Shown on the homepage
-// and on /placement-desk; each page supplies its own id and heading.
-export function PlacementWorkflowSection({
-  id,
-  title,
-  body,
-}: {
-  id: string;
-  title: string;
-  body?: string;
-}) {
+// and on /placement-desk, under the homepage's Placement Desk heading on both;
+// each page supplies its own id.
+export function PlacementWorkflowSection({ id }: { id: string }) {
   return (
     <Section theme="white" id={id}>
       <StagedScreenCycle
-        title={title}
-        body={body}
+        title={desk.title}
+        body={desk.body}
         duration={5}
         stages={placementDesk.work.stages.map((stage, i) => ({
           title: stage.kicker,

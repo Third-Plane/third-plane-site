@@ -55,7 +55,6 @@ export type PlacementDeskFile = {
   title: Lines;
   problem: string;
   work: {
-    title: string;
     stages: { kicker: string; accent?: boolean; steps: Card[] }[];
   };
   channels: { title: string; body: string; items: Card[] };

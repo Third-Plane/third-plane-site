@@ -1,4 +1,4 @@
-import { approach, desk, homeHero, problem } from "../data/content";
+import { approach, homeHero, problem } from "../data/content";
 import { Diagram } from "../components/Diagram";
 import type { ChartName } from "../components/Flowchart";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
@@ -25,7 +25,7 @@ export function Home() {
         <Ledger chart="placement" panel={homeHero.ledger} />
       </SplitHero>
 
-      <PlacementWorkflowSection id="desk" title={desk.title} body={desk.body} />
+      <PlacementWorkflowSection id="desk" />
 
       <Showcase />
 
