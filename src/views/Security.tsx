@@ -38,31 +38,35 @@ export function Security() {
       ))}
 
       <Section theme="deep" id="record">
-        <SectionHeader>
-          <h2>{page.record.title}</h2>
-        </SectionHeader>
-        <Grid columns={3}>
-          {page.record.items.map((item) => (
-            <OutlineCard key={item.title}>
-              <ItemTitle>{item.title}</ItemTitle>
-              <ItemBody>{item.body}</ItemBody>
-            </OutlineCard>
-          ))}
-        </Grid>
+        <div className="wrap">
+          <SectionHeader>
+            <h2>{page.record.title}</h2>
+          </SectionHeader>
+          <Grid columns={3}>
+            {page.record.items.map((item) => (
+              <OutlineCard key={item.title}>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemBody>{item.body}</ItemBody>
+              </OutlineCard>
+            ))}
+          </Grid>
+        </div>
       </Section>
 
       <Section theme="blend" id="data">
-        <SectionHeader>
-          <h2>{page.data.title}</h2>
-        </SectionHeader>
-        <Grid>
-          {page.data.items.map((item) => (
-            <Point className="px-6 py-5" key={item.title}>
-              <ItemTitle>{item.title}</ItemTitle>
-              <ItemBody>{item.body}</ItemBody>
-            </Point>
-          ))}
-        </Grid>
+        <div className="wrap">
+          <SectionHeader>
+            <h2>{page.data.title}</h2>
+          </SectionHeader>
+          <Grid>
+            {page.data.items.map((item) => (
+              <Point className="px-6 py-5" key={item.title}>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemBody>{item.body}</ItemBody>
+              </Point>
+            ))}
+          </Grid>
+        </div>
       </Section>
     </>
   );

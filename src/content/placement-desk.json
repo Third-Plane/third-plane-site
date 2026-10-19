@@ -1,7 +1,5 @@
 {
-  "title": [
-    "Placement that works for you."
-  ],
+  "title": "Placement that works for you.",
   "problem": "Placement Desk works the markets, pursues quotes and returns the results, so your best producers can stay focused on clients and revenue.",
   "work": {
     "stages": [
@@ -33,7 +31,7 @@
           },
           {
             "title": "Submit",
-            "body": "Work portals, APIs and underwriter email based on how each market operates."
+            "body": "Work portals, APIs, MCP servers and underwriter email based on how each market operates."
           },
           {
             "title": "Follow up",
@@ -59,19 +57,23 @@
   },
   "channels": {
     "title": "One placement process, regardless of channel.",
-    "body": "Placement Desk works each market through the channel that carrier uses, whether that’s a portal, API or underwriter email.",
+    "body": "Placement Desk works each market through the channel that carrier uses, whether that’s a portal, API, MCP server or underwriter email.",
     "items": [
       {
-        "title": "Carrier portals",
+        "title": "Web Portal",
         "body": "Completes forms, answers qualifying questions and retrieves quotes."
       },
       {
-        "title": "Carrier APIs",
+        "title": "API",
         "body": "Connects directly where a carrier offers an API."
       },
       {
         "title": "Email",
         "body": "Manages the thread, follows up and returns the response."
+      },
+      {
+        "title": "MCP",
+        "body": "Calls the quoting tools a carrier exposes to AI agents over MCP."
       }
     ]
   },

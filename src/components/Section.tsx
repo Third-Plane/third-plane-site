@@ -101,5 +101,5 @@ export function Section({
 }
 
 export function SectionHeader({ className, ...props }: ComponentProps<"header">) {
-  return <header className={cn("wrap space-y-4", className)} {...props} />;
+  return <header className={cn("space-y-4", className)} {...props} />;
 }

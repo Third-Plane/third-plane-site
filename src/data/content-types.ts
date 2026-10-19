@@ -6,7 +6,6 @@
 // so anything an editor may leave blank is optional here and has to be
 // handled where it is rendered.
 
-type Lines = string[]; // a heading, one entry per line
 type Card = { title: string; body: string };
 type Link = { label: string; href: string };
 // A page's call to action, shown in its footer. Without a label the button
@@ -52,7 +51,7 @@ export type HomeFile = {
 };
 
 export type PlacementDeskFile = {
-  title: Lines;
+  title: string;
   problem: string;
   work: {
     stages: { kicker: string; accent?: boolean; steps: Card[] }[];
@@ -64,7 +63,7 @@ export type PlacementDeskFile = {
 };
 
 export type CompanyFile = {
-  title: Lines;
+  title: string;
   lead: string;
   why: { title: string; items: Card[] };
   roles: {
@@ -82,7 +81,7 @@ export type CompanyFile = {
 };
 
 export type SecurityFile = {
-  title: Lines;
+  title: string;
   lead: string;
   ledger: LedgerPanel;
   authority: { sides: { title: string; body: string; items: Card[] }[] };
@@ -99,7 +98,7 @@ export type ResourcesFile = {
 };
 
 export type IntegrationsFile = {
-  title: Lines;
+  title: string;
   lead: string;
   ledger: LedgerPanel;
   systems: { title: string; items: (Card & { names?: string; link?: Link })[] };
@@ -111,7 +110,7 @@ export type AppliedEpicFile = {
   certified: boolean;
   status: string;
   date?: string;
-  title: Lines;
+  title: string;
   lead: string;
   who: { title: string; body: string; items: { title: string }[] };
   work: { title: string; items: Card[] };

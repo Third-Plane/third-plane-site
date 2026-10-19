@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { ItemBody, ItemTitle } from "./Grid";
-import { Arrow } from "./Ui";
+import { AppLink, Arrow } from "./Ui";
 import { cn } from "../lib/style";
 import { SectionHeader } from "./Section";
 
@@ -8,7 +8,8 @@ import { SectionHeader } from "./Section";
 // rather than running into a card's caption.
 export const cycleFrame = "rounded-2xl border-b-0 shadow-lg";
 
-export type CycleItem = { title: string; body: ReactNode; screen: ReactNode };
+// With an `href`, the item's title links there.
+export type CycleItem = { title: string; body: ReactNode; screen: ReactNode; href?: string };
 export type CycleStage = { title: string; items: CycleItem[] };
 
 // A section's heading and a grid of items on the left, the active item's
@@ -19,7 +20,8 @@ export type CycleStage = { title: string; items: CycleItem[] };
 // Under reduced motion the bar doesn't fill, so the items only change on a
 // click.
 //
-// The whole cell is its button's to click; a link in a body sits above it.
+// The whole cell is its button's to click; a link in it (a linked title, or
+// one in a body) sits above it.
 export function ScreenCycle({
   title,
   body,
@@ -168,15 +170,34 @@ function CycleCell({
         aria-hidden="true"
         data-cycle-progress
       />
-      <ItemTitle className="text-lg">
-        <button
-          className="cursor-pointer bg-transparent p-0 text-left tracking-[inherit] text-inherit [border:0] [font:inherit] after:absolute after:inset-0"
-          type="button"
-          aria-pressed={active}
-        >
-          {item.title}
-        </button>
-      </ItemTitle>
+      {item.href ? (
+        // The title is the link, so the button is the cell's alone, named for
+        // the item.
+        <>
+          <button
+            className="absolute inset-0 cursor-pointer bg-transparent [border:0]"
+            type="button"
+            aria-pressed={active}
+            aria-label={item.title}
+          />
+          <ItemTitle className="text-lg">
+            <AppLink className="group/link hover:text-accent" href={item.href}>
+              {item.title}
+              <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover/link:translate-x-0.75" />
+            </AppLink>
+          </ItemTitle>
+        </>
+      ) : (
+        <ItemTitle className="text-lg">
+          <button
+            className="cursor-pointer bg-transparent p-0 text-left tracking-[inherit] text-inherit [border:0] [font:inherit] after:absolute after:inset-0"
+            type="button"
+            aria-pressed={active}
+          >
+            {item.title}
+          </button>
+        </ItemTitle>
+      )}
       <ItemBody className="text-sm">{item.body}</ItemBody>
     </div>
   );

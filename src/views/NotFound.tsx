@@ -6,7 +6,7 @@ import { Button } from "../components/Ui";
 export function NotFound() {
   return (
     <PageHero
-      title={["Page not found."]}
+      title="Page not found."
       lead="The page you were looking for has moved or no longer exists."
     >
       <Button href="/">Back to the homepage</Button>

@@ -1,8 +1,5 @@
 {
-  "title": [
-    "Your systems",
-    "as they are."
-  ],
+  "title": "Your systems as they are.",
   "lead": "Placement Desk connects to the systems your brokerage already uses, so the work moves without another system for your team to manage.",
   "ledger": {
     "label": "Placement Desk",
@@ -73,7 +70,7 @@
       },
       {
         "title": "Carrier channels",
-        "body": "Portals, APIs and underwriter email, worked by the desk directly. Covered in detail on the carrier channels page."
+        "body": "Portals, APIs, MCP servers and underwriter email, worked by the desk directly. Covered in detail on the carrier channels page."
       }
     ]
   },

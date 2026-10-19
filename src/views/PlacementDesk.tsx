@@ -1,7 +1,8 @@
 import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
-import { Card, Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
+import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
@@ -28,36 +29,31 @@ export function PlacementDesk() {
       <CarrierChannels />
 
       <Section theme="white" id="systems">
-        <SectionHeader>
-          <h2>{placementDesk.systems.title}</h2>
-          <p className="lead">{placementDesk.systems.body}</p>
-        </SectionHeader>
-        <Grid>
-          {placementDesk.systems.links.map((link, i) => (
-            <Card href={link.href} key={link.href} className="gap-0 p-0">
-              <SystemScreen name={systemScreens[i]} />
-              <div className="space-y-2 px-6 py-5">
-                <ItemTitle arrow>{link.title}</ItemTitle>
-                <ItemBody>{link.body}</ItemBody>
-              </div>
-            </Card>
-          ))}
-        </Grid>
+        <ScreenCycle
+          title={placementDesk.systems.title}
+          body={placementDesk.systems.body}
+          items={placementDesk.systems.links.map((link, i) => ({
+            ...link,
+            screen: <SystemScreen name={systemScreens[i]} className={cycleFrame} />,
+          }))}
+        />
       </Section>
 
       <Section theme="blend" id="human">
-        <SectionHeader>
-          <h2>{placementDesk.human.title}</h2>
-          <p className="lead">{placementDesk.human.body}</p>
-        </SectionHeader>
-        <Grid>
-          {placementDesk.human.items.map((item) => (
-            <Point key={item.title}>
-              <ItemTitle>{item.title}</ItemTitle>
-              <ItemBody>{item.body}</ItemBody>
-            </Point>
-          ))}
-        </Grid>
+        <div className="wrap">
+          <SectionHeader>
+            <h2>{placementDesk.human.title}</h2>
+            <p className="lead">{placementDesk.human.body}</p>
+          </SectionHeader>
+          <Grid>
+            {placementDesk.human.items.map((item) => (
+              <Point key={item.title}>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemBody>{item.body}</ItemBody>
+              </Point>
+            ))}
+          </Grid>
+        </div>
       </Section>
     </>
   );

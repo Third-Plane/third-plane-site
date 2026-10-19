@@ -57,7 +57,7 @@ export function Integrations() {
       <CarrierChannels />
 
       <Section theme="deep" id="how">
-        <SectionHeader className="mb-(--gutter)">
+        <SectionHeader>
           <h2>{page.how.title}</h2>
         </SectionHeader>
         <StepList steps={page.how.steps} />

@@ -23,15 +23,14 @@ export function Hero({ children }: { children?: ReactNode }) {
 }
 
 // The hero with copy on the left and `children` (a panel: the activity
-// ledger, the open roles) on the right, full width (see Hero). The `title` is
-// as Display1 takes it.
+// ledger, the open roles) on the right, full width (see Hero).
 export function SplitHero({
   title,
   lead,
   actions,
   children,
 }: {
-  title: string | string[];
+  title: string;
   lead: string;
   actions?: ReactNode;
   children: ReactNode;
@@ -55,7 +54,7 @@ export function PageHero({
   lead,
   children,
 }: {
-  title: string | string[];
+  title: string;
   lead: string;
   children?: ReactNode;
 }) {
