@@ -8,13 +8,17 @@ export type SecurityName =
   | "models"
   | "supervisor"
   | "checkpoints"
-  | "configured";
+  | "configured"
+  | "isolation"
+  | "sso"
+  | "privacy";
 
 // Mock screens for /security, one per point under authority's two sides: the
 // limits the desk works within (scope, access, models) and the people
-// accountable for it (supervisor, checkpoints, configured). They're settings
-// and records of the desk itself, for the same agency and book of accounts as
-// the other mock screens; see MockUi for the pieces.
+// accountable for it (supervisor, checkpoints, configured), and one per point
+// under data (isolation, sso, privacy). They're settings and records of the
+// desk itself, for the same agency and book of accounts as the other mock
+// screens; see MockUi for the pieces.
 
 // An on/off setting.
 function Switch({ on }: { on: boolean }) {
@@ -424,6 +428,190 @@ function Configured() {
   );
 }
 
+// Where the agency's data is kept: every store its own, under its own key.
+const STORES = [
+  { store: "Documents", detail: "Applications, loss runs, schedules" },
+  { store: "Activity record", detail: "Every action the desk took" },
+  { store: "Work records", detail: "One per submission" },
+  { store: "Search index", detail: "Built from your documents only" },
+  { store: "Email archive", detail: "desk@sampleagency.example" },
+  { store: "Chat history", detail: "Teams › Renewals, Placement" },
+  { store: "Market plans", detail: "By account and line" },
+  { store: "Quotes and comparisons", detail: "As returned to producers" },
+  { store: "Carrier credentials", detail: "Portal and API logins" },
+  { store: "Settings", detail: "Authority, review points, models" },
+  { store: "Reports", detail: "Weekly desk reporting" },
+  { store: "Model logs", detail: "Inputs and outputs, by task" },
+  { store: "Audit log", detail: "Sign-ins and setting changes" },
+  { store: "Backups", detail: "Nightly, same region" },
+  { store: "Exports", detail: "Data warehouse › Desk" },
+  { store: "Attachments cache", detail: "Cleared after writeback" },
+  { store: "Templates", detail: "Letterhead and signatures" },
+];
+
+function Isolation() {
+  return (
+    <>
+      <Toolbar title="Data" view="Sample Agency" chip={<Pill>Isolated</Pill>} />
+      <p className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
+        {["Own tenant", "Own keys", "No shared indexes"].map((item, i) => (
+          <span
+            className={cn("inline-flex items-center gap-1", i > 1 && "hidden @sm:inline-flex")}
+            key={item}
+          >
+            <Check />
+            {item}
+          </span>
+        ))}
+      </p>
+      <Table
+        columns={[
+          {
+            label: "Store",
+            cell: (row) => (
+              <span className="truncate">
+                <span className="font-medium">{row.store}</span>{" "}
+                <span className="hidden text-deep/50 @sm:inline">{row.detail}</span>
+              </span>
+            ),
+          },
+          {
+            label: "Key",
+            className: "hidden w-28 @md:flex",
+            cell: () => (
+              <span className="truncate font-mono text-[0.625rem] text-deep/50">
+                kms/sampleagency
+              </span>
+            ),
+          },
+          { label: "Shared", className: "w-14", cell: () => <Pill>None</Pill> },
+        ]}
+        rows={STORES}
+      />
+    </>
+  );
+}
+
+// The people who can reach the desk, all signed in through the agency's own
+// identity provider, each with a role.
+const PEOPLE = [
+  { name: "K. Tran", role: "Supervisor", group: "Placement" },
+  { name: "J. Avery", role: "Producer", group: "Commercial" },
+  { name: "S. Ortiz", role: "Producer", group: "Commercial" },
+  { name: "M. Okafor", role: "Admin", group: "IT" },
+  { name: "R. Patel", role: "Account manager", group: "Commercial" },
+  { name: "L. Nguyen", role: "Account manager", group: "Commercial" },
+  { name: "D. Brooks", role: "Producer", group: "Small business" },
+  { name: "A. Kim", role: "Account manager", group: "Small business" },
+  { name: "T. Russo", role: "Producer", group: "Transportation" },
+  { name: "E. Walsh", role: "Account manager", group: "Transportation" },
+  { name: "C. Diaz", role: "Producer", group: "Construction" },
+  { name: "H. Laurent", role: "Account manager", group: "Construction" },
+  { name: "P. Shah", role: "Viewer", group: "Leadership" },
+  { name: "G. Moreno", role: "Viewer", group: "Finance" },
+  { name: "B. Ellis", role: "Producer", group: "Healthcare" },
+  { name: "N. Fischer", role: "Account manager", group: "Healthcare" },
+  { name: "O. Grant", role: "Viewer", group: "Compliance" },
+];
+
+function Sso() {
+  return (
+    <>
+      <Toolbar title="Access" view="People and roles" chip={<Pill>SSO enforced</Pill>} />
+      <p className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2">
+        <span className="mr-1 shrink-0 text-deep/50">Sign-in</span>
+        <Pill>Your identity provider</Pill>
+        <span className="hidden @xs:inline">
+          <Pill>MFA required</Pill>
+        </span>
+        <span className="ml-auto hidden shrink-0 text-deep/50 @md:inline">No desk passwords</span>
+      </p>
+      <Table
+        columns={[
+          {
+            label: "Person",
+            cell: (row) => (
+              <span className="flex min-w-0 items-center gap-1.5">
+                <Avatar initials={row.name.replace(/[^A-Z]/g, "")} />
+                <span className="truncate">{row.name}</span>
+              </span>
+            ),
+          },
+          {
+            label: "Group",
+            className: "hidden w-24 @sm:flex",
+            cell: (row) => <span className="truncate text-deep/50">{row.group}</span>,
+          },
+          {
+            label: "Role",
+            className: "w-24",
+            cell: (row) =>
+              row.role === "Supervisor" || row.role === "Admin" ? (
+                <Pill alert>{row.role}</Pill>
+              ) : (
+                <Pill>{row.role}</Pill>
+              ),
+          },
+        ]}
+        rows={PEOPLE}
+      />
+    </>
+  );
+}
+
+// What the desk reads and writes, and where each kind of content stays.
+const CONTENT = [
+  { content: "Prompts", kept: "Desk workspace" },
+  { content: "Completions", kept: "Desk workspace" },
+  { content: "ACORD applications", kept: "SharePoint › Clients" },
+  { content: "Loss runs", kept: "SharePoint › Clients" },
+  { content: "Schedules of values", kept: "SharePoint › Clients" },
+  { content: "Payroll reports", kept: "SharePoint › Clients" },
+  { content: "Policy forms", kept: "SharePoint › Clients" },
+  { content: "Underwriter email", kept: "Outlook" },
+  { content: "Producer email", kept: "Outlook" },
+  { content: "Chat messages", kept: "Teams" },
+  { content: "Activities", kept: "Applied Epic" },
+  { content: "Attachments", kept: "Applied Epic" },
+  { content: "Market plans", kept: "Applied Epic" },
+  { content: "Quotes", kept: "Applied Epic" },
+  { content: "Comparisons", kept: "Applied Epic" },
+  { content: "Work records", kept: "Desk workspace" },
+  { content: "Reports", kept: "Data warehouse › Desk" },
+];
+
+function Privacy() {
+  return (
+    <>
+      <Toolbar title="Content" view="Where it stays" chip={<Pill>0 outside</Pill>} />
+      <p className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
+        <span className="shrink-0 text-deep/50">Models</span>
+        {["No training on your data", "No retention"].map((item, i) => (
+          <span
+            className={cn("inline-flex items-center gap-1", i > 0 && "hidden @sm:inline-flex")}
+            key={item}
+          >
+            <Check />
+            {item}
+          </span>
+        ))}
+      </p>
+      <Table
+        columns={[
+          { label: "Content", cell: (row) => <span className="truncate">{row.content}</span> },
+          {
+            label: "Stays in",
+            className: "hidden w-36 @sm:flex",
+            cell: (row) => <span className="truncate text-deep/50">{row.kept}</span>,
+          },
+          { label: "Status", className: "w-16", cell: () => <Pill>Private</Pill> },
+        ]}
+        rows={CONTENT}
+      />
+    </>
+  );
+}
+
 const SCREENS: Record<SecurityName, () => ReactNode> = {
   scope: Scope,
   access: Access,
@@ -431,6 +619,9 @@ const SCREENS: Record<SecurityName, () => ReactNode> = {
   supervisor: Supervisor,
   checkpoints: Checkpoints,
   configured: Configured,
+  isolation: Isolation,
+  sso: Sso,
+  privacy: Privacy,
 };
 
 // An editor can add points beyond the ones drawn here; those get none.

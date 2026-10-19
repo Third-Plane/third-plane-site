@@ -530,6 +530,9 @@ content:
               - name: title
                 type: string
                 required: true
+              - name: body
+                type: text
+                required: true
               - name: items
                 component: cards
           - name: cta

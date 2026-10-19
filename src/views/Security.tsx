@@ -1,5 +1,5 @@
 import { securityPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, Point, OutlineCard } from "../components/Grid";
+import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
@@ -16,6 +16,9 @@ const sides: { id: string; theme: Theme; screens: SecurityName[] }[] = [
   { id: "authority", theme: "white", screens: ["scope", "access", "models"] },
   { id: "accountability", theme: "blend", screens: ["supervisor", "checkpoints", "configured"] },
 ];
+
+// A mock screen for each data point, in the order of data.items.
+const dataScreens: SecurityName[] = ["isolation", "sso", "privacy"];
 
 export function Security() {
   return (
@@ -54,19 +57,14 @@ export function Security() {
       </Section>
 
       <Section theme="blend" id="data">
-        <div className="wrap">
-          <SectionHeader>
-            <h2>{page.data.title}</h2>
-          </SectionHeader>
-          <Grid>
-            {page.data.items.map((item) => (
-              <Point className="px-6 py-5" key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
-              </Point>
-            ))}
-          </Grid>
-        </div>
+        <ScreenCycle
+          title={page.data.title}
+          body={page.data.body}
+          items={page.data.items.map((item, i) => ({
+            ...item,
+            screen: <SecurityScreen name={dataScreens[i]} />,
+          }))}
+        />
       </Section>
     </>
   );
