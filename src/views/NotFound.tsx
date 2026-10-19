@@ -1,4 +1,4 @@
-import { PageHero } from "../components/PageHero";
+import { PageHero } from "../components/Hero";
 import { Button } from "../components/Ui";
 
 // Built to 404.html, which Vercel serves with a 404 status for any path that

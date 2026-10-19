@@ -21,7 +21,7 @@ export function PlacementWorkflowSection({
   body?: string;
 }) {
   return (
-    <Section theme="deep" id={id}>
+    <Section theme="white" id={id}>
       <StagedScreenCycle
         title={title}
         body={body}
@@ -30,13 +30,7 @@ export function PlacementWorkflowSection({
           title: stage.kicker,
           items: stage.steps.map((step, j) => ({
             ...step,
-            screen: (
-              <StageScreen
-                name={stageScreens[i]}
-                step={j}
-                className={cn(cycleFrame, "bg-cream/5")}
-              />
-            ),
+            screen: <StageScreen name={stageScreens[i]} step={j} className={cn(cycleFrame)} />,
           })),
         }))}
       />

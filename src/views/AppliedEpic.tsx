@@ -1,7 +1,7 @@
 import { appliedEpicPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
-import { PageHero } from "../components/PageHero";
 import { Section, SectionHeader } from "../components/Section";
+import { PageHero } from "../components/Hero";
 
 export function AppliedEpic() {
   return (

@@ -1,10 +1,10 @@
 import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
-import { Card, Grid, ItemBody, ItemTitle } from "../components/Grid";
+import { Card, Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { Section, SectionHeader } from "../components/Section";
 import { Ledger } from "../components/Ledger";
-import { SplitHero } from "../components/SplitHero";
+import { SplitHero } from "../components/Hero";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { Button } from "../components/Ui";
 
@@ -46,10 +46,10 @@ export function PlacementDesk() {
         <SectionHeader title={placementDesk.human.title} body={placementDesk.human.body} />
         <Grid className="wrap">
           {placementDesk.human.items.map((item) => (
-            <Card key={item.title}>
+            <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
-            </Card>
+            </Point>
           ))}
         </Grid>
       </Section>

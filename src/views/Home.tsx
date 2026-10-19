@@ -7,7 +7,7 @@ import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { Ledger } from "../components/Ledger";
-import { SplitHero } from "../components/SplitHero";
+import { SplitHero } from "../components/Hero";
 import { Button } from "../components/Ui";
 
 // A mock AMS screen for each problem point, in the order of problem.points.
@@ -29,7 +29,7 @@ export function Home() {
 
       <Showcase />
 
-      <Section theme="white" id="problem">
+      <Section theme="blend" id="problem">
         <ScreenCycle
           title={problem.title}
           body={problem.body}
@@ -40,7 +40,7 @@ export function Home() {
         />
       </Section>
 
-      <Section id="approach" theme="blend">
+      <Section id="approach" theme="white">
         <SectionHeader title={approach.title} body={approach.body} />
         <div className="wrap grid gap-5 lg:grid-cols-2">
           {approach.models.map((model, i) => (
