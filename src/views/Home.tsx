@@ -41,8 +41,11 @@ export function Home() {
       </Section>
 
       <Section id="approach" theme="white">
-        <SectionHeader title={approach.title} body={approach.body} />
-        <div className="wrap grid gap-5 lg:grid-cols-2">
+        <SectionHeader>
+          <h2>{approach.title}</h2>
+          <p className="lead">{approach.body}</p>
+        </SectionHeader>
+        <div className="wrap mt-(--gutter) grid gap-5 lg:grid-cols-2">
           {approach.models.map((model, i) => (
             <Diagram
               key={model.kicker}

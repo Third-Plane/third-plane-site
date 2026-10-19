@@ -28,8 +28,11 @@ export function PlacementDesk() {
       <CarrierChannels />
 
       <Section theme="white" id="systems">
-        <SectionHeader title={placementDesk.systems.title} body={placementDesk.systems.body} />
-        <Grid className="wrap">
+        <SectionHeader>
+          <h2>{placementDesk.systems.title}</h2>
+          <p className="lead">{placementDesk.systems.body}</p>
+        </SectionHeader>
+        <Grid>
           {placementDesk.systems.links.map((link, i) => (
             <Card href={link.href} key={link.href} className="gap-0 p-0">
               <SystemScreen name={systemScreens[i]} />
@@ -43,8 +46,11 @@ export function PlacementDesk() {
       </Section>
 
       <Section theme="blend" id="human">
-        <SectionHeader title={placementDesk.human.title} body={placementDesk.human.body} />
-        <Grid className="wrap">
+        <SectionHeader>
+          <h2>{placementDesk.human.title}</h2>
+          <p className="lead">{placementDesk.human.body}</p>
+        </SectionHeader>
+        <Grid>
           {placementDesk.human.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>

@@ -1,5 +1,5 @@
 import type { Block, Post as PostData } from "../data/posts";
-import { Display1, Lead } from "../components/Headings";
+import { Display1 } from "../components/Headings";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
@@ -60,7 +60,7 @@ export function Post({ post }: { post: PostData }) {
           </AppLink>
           <PostMeta post={post} />
           <Display1 size="editorial">{post.title}</Display1>
-          <Lead tone="muted">{post.standfirst}</Lead>
+          <p className="lead">{post.standfirst}</p>
           <p className="text-sm text-subtle-foreground">{post.author}</p>
         </div>
         <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">

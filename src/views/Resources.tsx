@@ -10,9 +10,12 @@ export function Resources({ posts }: { posts: Post[] }) {
     <>
       <Header />
       <Section theme="white" id="posts">
-        <SectionHeader title={page.title} body={page.lead} />
+        <SectionHeader>
+          <h2>{page.title}</h2>
+          <p className="lead">{page.lead}</p>
+        </SectionHeader>
         {posts.length ? (
-          <ul className="wrap grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="wrap mt-(--gutter) grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <li key={post.slug}>
                 <AppLink

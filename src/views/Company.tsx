@@ -40,8 +40,10 @@ export function Company() {
       </SplitHero>
 
       <Section theme="white" id="why">
-        <SectionHeader title={page.why.title} />
-        <Grid columns={4} className="wrap">
+        <SectionHeader>
+          <h2>{page.why.title}</h2>
+        </SectionHeader>
+        <Grid columns={4}>
           {page.why.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -91,8 +93,10 @@ export function Company() {
       </Section>
 
       <Section id="principles" theme="white">
-        <SectionHeader title={page.principles.title} />
-        <Grid className="wrap">
+        <SectionHeader>
+          <h2>{page.principles.title}</h2>
+        </SectionHeader>
+        <Grid>
           {page.principles.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>

@@ -1,5 +1,4 @@
-import type { ElementType, HTMLAttributes } from "react";
-import { Lead } from "./Headings";
+import type { ComponentProps, ElementType, HTMLAttributes } from "react";
 import { NavCopy } from "./NavBar";
 import type { Theme } from "./theme";
 import { cn } from "../lib/style";
@@ -10,8 +9,9 @@ import { cn } from "../lib/style";
 // invert's filter has to be on a layer: an element with a backdrop filter is a
 // backdrop root, and a backdrop filter inside it only sees what is painted
 // within it, so a frosted card in the section (see Cta) would blur nothing.
-// The hero has none: its wash is the page's backdrop (see Base), and the nav,
-// a hero section too, must not have one (see the nav in tailwind.css).
+// The hero's is only a veil behind its copy (hero-veil in tailwind.css): its
+// wash is the page's backdrop (see Base). The nav, a hero section too, must
+// not have one (see the nav in tailwind.css), so it turns its layer off.
 //
 // A theme's blur is a layer of its own, over its colour. Where a layer runs
 // under the nav, Chrome's backdrop filter takes the nav in too, though the
@@ -20,6 +20,7 @@ import { cn } from "../lib/style";
 // footer) or multiplied; blurred on its own, over the section's colour, it is
 // the nav's colour, which is the section's near enough, so it blurs in unseen.
 const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
+  hero: { color: "hero-veil-stacked lg:hero-veil" },
   white: { color: "bg-background" },
   blend: { color: "bg-linear-to-b/srgb from-blue to-pink" },
   deep: { color: "bg-background mix-blend-multiply", blur: "backdrop-blur-xs" },
@@ -31,8 +32,10 @@ const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
 // below it (scripts/nav-theme.ts), which finds them by data-section.
 //
 // A section has the page's gutter, and the bar's padding (see --bar), twice
-// over above its content and once below. `as` and `className` are for those
-// that are laid out otherwise (the nav, the hero, the footer).
+// over above its content and once below; the hero, starting under the nav,
+// has the nav's (see --nav-h) twice over on both sides. `as` and `className`
+// are for those that are laid out otherwise (the nav, the footer), and
+// `layer={false}` for the nav, which has no layer (see layers, above).
 //
 // A section makes no stacking context of its own (no z-index, isolation,
 // opacity, transform...), or its layer would blend with and filter nothing
@@ -52,17 +55,19 @@ const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
 export function Section({
   as: Tag = "section",
   theme,
+  layer: hasLayer = true,
   className,
   children,
   ...props
-}: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme }) {
-  const layer = layers[theme];
+}: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme; layer?: boolean }) {
+  const layer = hasLayer ? layers[theme] : undefined;
   const copy = theme !== "hero";
   const fringe = theme === "white" || theme === "blend";
   return (
     <Tag
       className={cn(
-        "relative px-(--gutter) py-[calc(var(--bar)*2)]",
+        "relative px-(--gutter)",
+        theme === "hero" ? "py-[calc(var(--nav-h)*2)]" : "py-[calc(var(--bar)*2)]",
         copy && "scroll-linked:nav-timeline",
         className,
       )}
@@ -95,12 +100,6 @@ export function Section({
   );
 }
 
-// A section's heading and optional lead, above its content in the column.
-export function SectionHeader({ title, body }: { title: string; body?: string }) {
-  return (
-    <header className="wrap mb-13">
-      <h2>{title}</h2>
-      {body ? <Lead className="mt-5">{body}</Lead> : null}
-    </header>
-  );
+export function SectionHeader({ className, ...props }: ComponentProps<"header">) {
+  return <header className={cn("wrap space-y-4", className)} {...props} />;
 }

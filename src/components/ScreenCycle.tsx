@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { ItemBody, ItemTitle } from "./Grid";
-import { Lead } from "./Headings";
 import { Arrow } from "./Ui";
 import { cn } from "../lib/style";
+import { SectionHeader } from "./Section";
 
 // For an item's screen: a mock screen's Frame (MockUi), standing on its own
 // rather than running into a card's caption.
@@ -122,11 +122,10 @@ function CycleLayout({
 }) {
   return (
     <div className="grid gap-x-16 gap-y-13 lg:grid-cols-2" data-cycle>
-      {/* SectionHeader's, without its column or its margin (the gap's). */}
-      <header>
+      <SectionHeader>
         <h2>{title}</h2>
-        {body ? <Lead className="mt-5">{body}</Lead> : null}
-      </header>
+        {body && <p className="lead">{body}</p>}
+      </SectionHeader>
       <div className="grid lg:col-start-2 lg:row-span-2 lg:row-start-1">
         {items.map((item, i) => (
           <div

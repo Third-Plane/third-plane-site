@@ -19,7 +19,11 @@ export function Grid({
   className?: string;
   children: ReactNode;
 }) {
-  return <div className={cn("grid gap-5", COLUMNS[columns], className)}>{children}</div>;
+  return (
+    <div className={cn("grid gap-5 wrap mt-(--gutter)", COLUMNS[columns], className)}>
+      {children}
+    </div>
+  );
 }
 
 type ItemProps = {

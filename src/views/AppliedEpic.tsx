@@ -9,8 +9,11 @@ export function AppliedEpic() {
       <PageHero title={page.title} lead={page.lead} />
 
       <Section theme="white" id="who">
-        <SectionHeader title={page.who.title} body={page.who.body} />
-        <Grid columns={3} className="wrap">
+        <SectionHeader>
+          <h2>{page.who.title}</h2>
+          <p className="lead">{page.who.body}</p>
+        </SectionHeader>
+        <Grid columns={3}>
           {page.who.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -20,8 +23,10 @@ export function AppliedEpic() {
       </Section>
 
       <Section theme="blend" id="work">
-        <SectionHeader title={page.work.title} />
-        <Grid columns={3} className="wrap">
+        <SectionHeader>
+          <h2>{page.work.title}</h2>
+        </SectionHeader>
+        <Grid columns={3}>
           {page.work.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -33,8 +38,10 @@ export function AppliedEpic() {
 
       {page.certified ? (
         <Section theme="white" id="meaning">
-          <SectionHeader title={page.meaning.title} />
-          <Grid className="wrap">
+          <SectionHeader>
+            <h2>{page.meaning.title}</h2>
+          </SectionHeader>
+          <Grid>
             {page.meaning.items.map((item) => (
               <Point key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>

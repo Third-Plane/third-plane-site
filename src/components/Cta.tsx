@@ -1,5 +1,5 @@
 import { contact, site } from "../data/content";
-import { Lead } from "./Headings";
+import { SectionHeader } from "./Section";
 import { Button } from "./Ui";
 
 // What a page says in its call to action. Anything it leaves out comes from
@@ -20,8 +20,10 @@ export function Cta({
 }: CtaCopy) {
   return (
     <div className="wrap z-4 max-w-3xl rounded-xl px-(--gutter) py-12 shadow-2xl inset-ring-1 shadow-black/15 inset-ring-white/25 backdrop-blur-lg backdrop-invert-5">
-      <h2 className="text-white">{title}</h2>
-      <Lead className="mb-8 text-white/75">{body}</Lead>
+      <SectionHeader className="mb-(--gutter)">
+        <h2 className="text-white">{title}</h2>
+        <p className="lead text-white/75">{body}</p>
+      </SectionHeader>
       <Button href={href}>{label}</Button>
     </div>
   );

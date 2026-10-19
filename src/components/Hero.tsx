@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
-import { Section } from "./Section";
-import { Display1, Lead } from "./Headings";
+import { Section, SectionHeader } from "./Section";
+import { Display1 } from "./Headings";
 
 // A hero: see-through, over the page's flowchart (Base.astro), with a wash
 // behind its copy (across the top where the copy stacks, down the copy column
@@ -15,11 +15,7 @@ export function Hero({ children }: { children?: ReactNode }) {
   return (
     <>
       <Header />
-      <Section
-        theme="hero"
-        className="hero-veil-stacked py-[calc(var(--nav-h)*2)] lg:hero-veil"
-        id="top"
-      >
+      <Section theme="hero" id="top">
         {children}
       </Section>
     </>
@@ -43,11 +39,11 @@ export function SplitHero({
   return (
     <Hero>
       <div className="grid items-center gap-16 lg:grid-cols-2">
-        <div>
+        <SectionHeader>
           <Display1>{title}</Display1>
-          <Lead className="mt-7">{lead}</Lead>
+          <p className="lead">{lead}</p>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
-        </div>
+        </SectionHeader>
         {children}
       </div>
     </Hero>
@@ -65,11 +61,11 @@ export function PageHero({
 }) {
   return (
     <Hero>
-      <div className="py-16">
+      <SectionHeader>
         <Display1>{title}</Display1>
-        <Lead tone="muted">{lead}</Lead>
+        <p className="lead">{lead}</p>
         {children ? <div className="mt-9 flex flex-wrap gap-3">{children}</div> : null}
-      </div>
+      </SectionHeader>
     </Hero>
   );
 }

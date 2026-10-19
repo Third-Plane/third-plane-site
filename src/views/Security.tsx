@@ -38,8 +38,10 @@ export function Security() {
       ))}
 
       <Section theme="deep" id="record">
-        <SectionHeader title={page.record.title} />
-        <Grid columns={3} className="wrap">
+        <SectionHeader>
+          <h2>{page.record.title}</h2>
+        </SectionHeader>
+        <Grid columns={3}>
           {page.record.items.map((item) => (
             <OutlineCard key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -50,8 +52,10 @@ export function Security() {
       </Section>
 
       <Section theme="blend" id="data">
-        <SectionHeader title={page.data.title} />
-        <Grid className="wrap">
+        <SectionHeader>
+          <h2>{page.data.title}</h2>
+        </SectionHeader>
+        <Grid>
           {page.data.items.map((item) => (
             <Point className="px-6 py-5" key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
