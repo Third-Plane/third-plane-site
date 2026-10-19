@@ -10,32 +10,16 @@ const DISPLAY_1_SIZE = {
   editorial: "text-4xl/none",
 } as const;
 
-// The title is a string, or an array of lines. Two or more lines stack, one to
-// a row; anything else flows as one.
+// A page's title, one string the browser wraps.
 export function Display1({
   size = "hero",
   className,
-  children,
   ...props
 }: Omit<ComponentProps<"h1">, "children"> & {
-  children: string | readonly string[];
+  children: string;
   size?: keyof typeof DISPLAY_1_SIZE;
 }) {
-  const lines = typeof children === "string" ? [children] : children;
-  const stacked = lines.length > 1;
-  return (
-    <h1 className={cn("tracking-tighter", DISPLAY_1_SIZE[size], className)} {...props}>
-      {stacked
-        ? lines.map((line, i) => (
-            // The space keeps the lines as separate words for crawlers and
-            // screen readers; the spans are blocks, so it never shows.
-            <span className="block" key={i}>
-              {i > 0 ? ` ${line}` : line}
-            </span>
-          ))
-        : lines.join(" ")}
-    </h1>
-  );
+  return <h1 className={cn("tracking-tighter", DISPLAY_1_SIZE[size], className)} {...props} />;
 }
 
 export function Lead({ className, ...props }: ComponentProps<"p">) {

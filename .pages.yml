@@ -14,14 +14,10 @@ settings:
     identity: user
 
 components:
-  lines:
+  heading:
     type: string
     label: Heading
-    description: One entry per line. The second line is shown in purple.
     required: true
-    list:
-      min: 1
-      collapsible: false
   cards:
     type: object
     list:
@@ -336,7 +332,7 @@ content:
         format: json
         fields:
           - name: title
-            component: lines
+            component: heading
           - name: problem
             label: Lead
             type: text
@@ -449,7 +445,7 @@ content:
         format: json
         fields:
           - name: title
-            component: lines
+            component: heading
           - name: lead
             type: text
             required: true
@@ -546,7 +542,7 @@ content:
         format: json
         fields:
           - name: title
-            component: lines
+            component: heading
           - name: lead
             type: text
             required: true
@@ -657,7 +653,7 @@ content:
             description: Optional, shown after the status.
           - name: title
             label: Heading (certified)
-            component: lines
+            component: heading
           - name: lead
             type: text
             required: true
@@ -715,7 +711,7 @@ content:
         format: json
         fields:
           - name: title
-            component: lines
+            component: heading
           - name: lead
             type: text
             required: true
