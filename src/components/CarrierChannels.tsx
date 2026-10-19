@@ -12,8 +12,11 @@ export function CarrierChannels() {
   const { channels } = placementDesk;
   return (
     <Section theme="blend" id="channels">
-      <SectionHeader title={channels.title} body={channels.body} />
-      <Grid columns={3} className="wrap">
+      <SectionHeader>
+        <h2>{channels.title}</h2>
+        <p className="lead">{channels.body}</p>
+      </SectionHeader>
+      <Grid columns={3}>
         {channels.items.map((item, i) => (
           <Card key={item.title} className="gap-0 p-0">
             <ChannelSnippet name={channelSnippets[i]} />

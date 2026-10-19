@@ -38,23 +38,11 @@ export function Display1({
   );
 }
 
-// accent: the default. muted: quieter, in an inner-page hero. The caller sets
-// the measure (max-w-*) and any top margin.
-const LEAD_TONE = {
-  accent: "text-accent font-medium",
-  muted: "text-muted-foreground font-normal",
-} as const;
-
-export function Lead({
-  tone = "accent",
-  className,
-  ...props
-}: ComponentProps<"p"> & { tone?: keyof typeof LEAD_TONE }) {
+export function Lead({ className, ...props }: ComponentProps<"p">) {
   return (
     <p
       className={cn(
-        "font-sans mt-6 max-w-[60ch] text-xl leading-normal text-pretty",
-        LEAD_TONE[tone],
+        "font-sans max-w-[66ch] text-accent font-medium text-xl leading-normal text-pretty",
         className,
       )}
       {...props}

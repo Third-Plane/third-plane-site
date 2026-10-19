@@ -2,7 +2,7 @@ import { integrationsPage as page } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
-import { SplitHero } from "../components/SplitHero";
+import { SplitHero } from "../components/Hero";
 import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
@@ -57,7 +57,9 @@ export function Integrations() {
       <CarrierChannels />
 
       <Section theme="deep" id="how">
-        <SectionHeader title={page.how.title} />
+        <SectionHeader className="mb-(--gutter)">
+          <h2>{page.how.title}</h2>
+        </SectionHeader>
         <StepList steps={page.how.steps} />
       </Section>
     </>

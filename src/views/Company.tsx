@@ -1,9 +1,9 @@
 import { companyPage as page } from "../data/content";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { Section, SectionHeader } from "../components/Section";
-import { SplitHero } from "../components/SplitHero";
 import { Arrow, AppLink } from "../components/Ui";
 import { cn } from "../lib/style";
+import { SplitHero } from "../components/Hero";
 
 export function Company() {
   return (
@@ -39,9 +39,11 @@ export function Company() {
         </div>
       </SplitHero>
 
-      <Section theme="blend" id="why">
-        <SectionHeader title={page.why.title} />
-        <Grid columns={4} className="wrap">
+      <Section theme="white" id="why">
+        <SectionHeader>
+          <h2>{page.why.title}</h2>
+        </SectionHeader>
+        <Grid columns={4}>
           {page.why.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -51,7 +53,7 @@ export function Company() {
         </Grid>
       </Section>
 
-      <Section theme="white" id="origin">
+      <Section theme="blend" id="origin">
         <div className="wrap grid items-start gap-x-17 gap-y-13 md:grid-cols-2">
           <div>
             <h2>{page.origin.title}</h2>
@@ -90,9 +92,11 @@ export function Company() {
         </div>
       </Section>
 
-      <Section id="principles" theme="blend">
-        <SectionHeader title={page.principles.title} />
-        <Grid className="wrap">
+      <Section id="principles" theme="white">
+        <SectionHeader>
+          <h2>{page.principles.title}</h2>
+        </SectionHeader>
+        <Grid>
           {page.principles.items.map((item) => (
             <Point key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>

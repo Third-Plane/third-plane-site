@@ -1,4 +1,4 @@
-import { approach, desk, homeHero, problem } from "../data/content";
+import { approach, homeHero, problem } from "../data/content";
 import { Diagram } from "../components/Diagram";
 import type { ChartName } from "../components/Flowchart";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
@@ -7,7 +7,7 @@ import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { Ledger } from "../components/Ledger";
-import { SplitHero } from "../components/SplitHero";
+import { SplitHero } from "../components/Hero";
 import { Button } from "../components/Ui";
 
 // A mock AMS screen for each problem point, in the order of problem.points.
@@ -25,11 +25,11 @@ export function Home() {
         <Ledger chart="placement" panel={homeHero.ledger} />
       </SplitHero>
 
-      <PlacementWorkflowSection id="desk" title={desk.title} body={desk.body} />
+      <PlacementWorkflowSection id="desk" />
 
       <Showcase />
 
-      <Section theme="white" id="problem">
+      <Section theme="blend" id="problem">
         <ScreenCycle
           title={problem.title}
           body={problem.body}
@@ -40,9 +40,12 @@ export function Home() {
         />
       </Section>
 
-      <Section id="approach" theme="blend">
-        <SectionHeader title={approach.title} body={approach.body} />
-        <div className="wrap grid gap-5 lg:grid-cols-2">
+      <Section id="approach" theme="white">
+        <SectionHeader>
+          <h2>{approach.title}</h2>
+          <p className="lead">{approach.body}</p>
+        </SectionHeader>
+        <div className="wrap mt-(--gutter) grid gap-5 lg:grid-cols-2">
           {approach.models.map((model, i) => (
             <Diagram
               key={model.kicker}

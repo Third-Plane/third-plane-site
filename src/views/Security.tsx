@@ -1,8 +1,8 @@
 import { securityPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, OutlineCard } from "../components/Grid";
+import { Grid, ItemBody, ItemTitle, Point, OutlineCard } from "../components/Grid";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
-import { SplitHero } from "../components/SplitHero";
+import { SplitHero } from "../components/Hero";
 import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { SecurityScreen, type SecurityName } from "../components/SecurityScreens";
@@ -38,8 +38,10 @@ export function Security() {
       ))}
 
       <Section theme="deep" id="record">
-        <SectionHeader title={page.record.title} />
-        <Grid columns={3} className="wrap">
+        <SectionHeader>
+          <h2>{page.record.title}</h2>
+        </SectionHeader>
+        <Grid columns={3}>
           {page.record.items.map((item) => (
             <OutlineCard key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -50,13 +52,15 @@ export function Security() {
       </Section>
 
       <Section theme="blend" id="data">
-        <SectionHeader title={page.data.title} />
-        <Grid className="wrap">
+        <SectionHeader>
+          <h2>{page.data.title}</h2>
+        </SectionHeader>
+        <Grid>
           {page.data.items.map((item) => (
-            <OutlineCard className="px-6 py-5" key={item.title}>
+            <Point className="px-6 py-5" key={item.title}>
               <ItemTitle>{item.title}</ItemTitle>
               <ItemBody>{item.body}</ItemBody>
-            </OutlineCard>
+            </Point>
           ))}
         </Grid>
       </Section>

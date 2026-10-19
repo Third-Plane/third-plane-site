@@ -180,6 +180,9 @@ h2 {
 h3 {
   @apply text-xl;
 }
+.lead {
+  @apply max-w-[66ch] font-sans text-xl leading-normal font-medium text-pretty text-accent;
+}
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
