@@ -19,6 +19,20 @@ const INTAKE: { field: string; value?: string; source: string }[] = [
   { field: "Annual sales", value: "$1,240,000", source: "Email" },
   { field: "BPP limit", value: "$185,000", source: "ACORD 140" },
   { field: "Losses, 3 yrs", value: "None reported", source: "Loss runs" },
+  { field: "Effective date", value: "11/01/2026", source: "Email" },
+  { field: "Entity", value: "LLC", source: "ACORD 125" },
+  { field: "Mailing address", value: "412 Example St.", source: "AMS" },
+  { field: "Employees", value: "14 full-time", source: "ACORD 125" },
+  { field: "Hours", value: "6am–6pm daily", source: "ACORD 125" },
+  { field: "Square footage", value: "3,200", source: "ACORD 140" },
+  { field: "Construction", value: "Joisted masonry", source: "ACORD 140" },
+  { field: "Year built", value: "1987", source: "ACORD 140" },
+  { field: "Sprinklered", value: "No", source: "ACORD 140" },
+  { field: "Protection class", value: "3", source: "ACORD 140" },
+  { field: "Hood suppression", value: "Yes, inspected 2026", source: "Email" },
+  { field: "Deep fat frying", value: "No", source: "ACORD 125" },
+  { field: "Delivery", value: "Local, own vehicles", source: "Email" },
+  { field: "Business income", value: "$120,000", source: "ACORD 140" },
 ];
 
 // 0: gathered and structured, with gaps. 1: the gaps flagged and requested.
@@ -113,6 +127,19 @@ const MARKETS: {
   },
   { carrier: "Demo Indemnity", fit: 0 },
   { carrier: "Sample National", fit: 1 },
+  { carrier: "Demo Casualty", fit: 2 },
+  { carrier: "Sample Indemnity", fit: 1 },
+  { carrier: "Placeholder Mutual", fit: 2 },
+  { carrier: "Example National", fit: 0 },
+  { carrier: "Demo Specialty", fit: 1 },
+  { carrier: "Sample Mutual", fit: 2 },
+  { carrier: "Placeholder Casualty", fit: 1 },
+  { carrier: "Example Indemnity", fit: 0 },
+  { carrier: "Demo National", fit: 1 },
+  { carrier: "Sample Specialty", fit: 2 },
+  { carrier: "Placeholder National", fit: 0 },
+  { carrier: "Example Mutual", fit: 1 },
+  { carrier: "Demo Insurance Co.", fit: 0 },
 ];
 
 const muted = (text: string) => <span className="text-deep/50">{text}</span>;
@@ -128,8 +155,8 @@ function marketStatus(row: (typeof MARKETS)[number], step: number) {
 }
 
 const MARKET_CHIPS = [
-  <Pill key={0}>12 appointed</Pill>,
-  <Pill key={1}>5 of 12 markets</Pill>,
+  <Pill key={0}>20 appointed</Pill>,
+  <Pill key={1}>5 of 20 markets</Pill>,
   <Pill key={2}>5 submitted</Pill>,
   <Pill alert key={3}>
     4 open
@@ -184,36 +211,70 @@ const RESULTS: { carrier: string; response?: string; premium?: string }[] = [
   { carrier: "Placeholder Insurance" },
 ];
 
+// The terms of the three that quoted, side by side, as the producer gets them.
+const COMPARISON: { term: string; values: [string, string, string] }[] = [
+  { term: "Premium", values: ["$4,820", "$5,140", "$5,610"] },
+  { term: "Form", values: ["BOP", "BOP", "Package"] },
+  { term: "BPP limit", values: ["$185,000", "$185,000", "$200,000"] },
+  { term: "Business income", values: ["$120,000", "12 months", "$100,000"] },
+  { term: "GL occurrence", values: ["$1M", "$1M", "$1M"] },
+  { term: "GL aggregate", values: ["$2M", "$2M", "$2M"] },
+  { term: "Property deductible", values: ["$1,000", "$2,500", "$1,000"] },
+  { term: "Equipment breakdown", values: ["Included", "Included", "$1,200"] },
+  { term: "Spoilage", values: ["$25,000", "$10,000", "$15,000"] },
+  { term: "Flood", values: ["Excluded", "Excluded", "Excluded"] },
+  { term: "Hired and non-owned auto", values: ["Included", "$180", "Included"] },
+  { term: "Payment plan", values: ["Annual, 10-pay", "Annual", "Annual, 4-pay"] },
+  { term: "Valid until", values: ["11/20", "11/15", "11/10"] },
+];
+
+const SHORT = ["Sample Co.", "Demo Mutual", "Example Sp."];
+
 function Responses() {
   return (
-    <Table
-      columns={[
-        { label: "Market", cell: (row) => <span className="truncate">{row.carrier}</span> },
-        {
-          label: "Response",
-          className: "hidden w-20 @xs:flex",
-          cell: (row) =>
-            row.response === "Declination" ? (
-              muted("Declined")
-            ) : row.response ? (
-              <span>{row.response}</span>
-            ) : (
-              <Pill>Awaiting</Pill>
+    <>
+      <Table
+        columns={[
+          { label: "Market", cell: (row) => <span className="truncate">{row.carrier}</span> },
+          {
+            label: "Response",
+            className: "hidden w-20 @xs:flex",
+            cell: (row) =>
+              row.response === "Declination" ? (
+                muted("Declined")
+              ) : row.response ? (
+                <span>{row.response}</span>
+              ) : (
+                <Pill>Awaiting</Pill>
+              ),
+          },
+          {
+            label: "Premium",
+            className: "w-16 justify-end",
+            cell: (row) =>
+              row.premium ? (
+                <span className="font-medium tabular-nums">{row.premium}</span>
+              ) : (
+                muted("–")
+              ),
+          },
+        ]}
+        rows={RESULTS}
+      />
+      <Table
+        columns={[
+          { label: "Comparison", cell: (row) => <span className="truncate">{row.term}</span> },
+          ...SHORT.map((label, i) => ({
+            label,
+            className: cn("w-20 justify-end", i === 2 && "hidden @sm:flex"),
+            cell: (row: (typeof COMPARISON)[number]) => (
+              <span className="truncate tabular-nums">{row.values[i]}</span>
             ),
-        },
-        {
-          label: "Premium",
-          className: "w-16 justify-end",
-          cell: (row) =>
-            row.premium ? (
-              <span className="font-medium tabular-nums">{row.premium}</span>
-            ) : (
-              muted("–")
-            ),
-        },
-      ]}
-      rows={RESULTS}
-    />
+          })),
+        ]}
+        rows={COMPARISON}
+      />
+    </>
   );
 }
 
@@ -260,19 +321,11 @@ const SCREENS: Record<
 
 // An editor can add stages beyond the three drawn here; those get none. A
 // step beyond those drawn for its stage gets the stage's last state.
-export function StageScreen({
-  name,
-  step = 0,
-  className,
-}: {
-  name?: StageName;
-  step?: number;
-  className?: string;
-}) {
+export function StageScreen({ name, step = 0 }: { name?: StageName; step?: number }) {
   if (!name) return null;
   const { Screen, steps } = SCREENS[name];
   return (
-    <Frame className={className}>
+    <Frame>
       <Screen step={Math.min(step, steps - 1)} />
     </Frame>
   );

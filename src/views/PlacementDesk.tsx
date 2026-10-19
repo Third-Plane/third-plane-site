@@ -2,7 +2,7 @@ import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
-import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
+import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
@@ -34,7 +34,7 @@ export function PlacementDesk() {
           body={placementDesk.systems.body}
           items={placementDesk.systems.links.map((link, i) => ({
             ...link,
-            screen: <SystemScreen name={systemScreens[i]} className={cycleFrame} />,
+            screen: <SystemScreen name={systemScreens[i]} />,
           }))}
         />
       </Section>

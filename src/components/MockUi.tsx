@@ -1,26 +1,24 @@
 import type { ReactNode } from "react";
 import { cn } from "../lib/style";
 
-// The pieces of the mock app screens drawn into cards (ProblemScreens,
-// WorkflowScreens, SystemScreens). They're illustrations, so they are hidden
-// from assistive tech, and their rows live in code rather than in the CMS. The
-// window is a container, so a Table's columns can drop out as the card
-// narrows; its first column always stays and takes what room is left.
+// The pieces of the mock app screens shown beside a ScreenCycle's items
+// (ProblemScreens, WorkflowScreens, SystemScreens, SecurityScreens). They're
+// illustrations, so they are hidden from assistive tech, and their rows live
+// in code rather than in the CMS. The window is a container, so a Table's
+// columns can drop out as it narrows; its first column always stays and takes
+// what room is left.
 
-// A window on a ground, running off the bottom edge like a crop of a larger
-// screen. The ground is lavender and 16:9 unless `className` says otherwise.
-export function Frame({ className, children }: { className?: string; children: ReactNode }) {
+// An app window, edge to edge, like a crop of a larger screen: 16:9 below lg,
+// and from lg up as tall as the column it's in (see ScreenCycle). What runs
+// past its foot is cut off, so a screen has rows enough to reach it at any
+// size.
+export function Frame({ children }: { children: ReactNode }) {
   return (
     <div
-      className={cn(
-        "relative aspect-video overflow-hidden rounded-t-2xl border-b border-border/10 bg-lavender",
-        className,
-      )}
+      className="@container flex aspect-video flex-col overflow-hidden rounded-2xl border border-deep/10 bg-white text-xs text-deep shadow-lg lg:aspect-auto lg:h-full"
       aria-hidden="true"
     >
-      <div className="@container absolute inset-x-6 top-6 -bottom-6 flex flex-col overflow-hidden rounded-xl border border-deep/10 bg-white text-xs text-deep shadow-xl shadow-deep/10">
-        {children}
-      </div>
+      {children}
     </div>
   );
 }

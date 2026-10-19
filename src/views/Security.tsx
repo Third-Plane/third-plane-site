@@ -3,7 +3,7 @@ import { Grid, ItemBody, ItemTitle, Point, OutlineCard } from "../components/Gri
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
-import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
+import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { SecurityScreen, type SecurityName } from "../components/SecurityScreens";
 import type { Theme } from "../components/theme";
@@ -31,7 +31,7 @@ export function Security() {
             body={side.body}
             items={side.items.map((item, j) => ({
               ...item,
-              screen: <SecurityScreen name={sides[i].screens[j]} className={cycleFrame} />,
+              screen: <SecurityScreen name={sides[i].screens[j]} />,
             }))}
           />
         </Section>

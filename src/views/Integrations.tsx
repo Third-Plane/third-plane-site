@@ -3,7 +3,7 @@ import { CarrierChannels } from "../components/CarrierChannels";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
-import { cycleFrame, ScreenCycle } from "../components/ScreenCycle";
+import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
@@ -49,7 +49,7 @@ export function Integrations() {
                 {item.body}
               </>
             ),
-            screen: <SystemScreen name={systemScreens[i]} className={cycleFrame} />,
+            screen: <SystemScreen name={systemScreens[i]} />,
           }))}
         />
       </Section>

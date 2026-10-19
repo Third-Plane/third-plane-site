@@ -117,10 +117,6 @@
       {
         "title": "Your content stays private",
         "body": "Prompts, documents and completions stay inside approved systems."
-      },
-      {
-        "title": "No model lock-in",
-        "body": "Change models when needed without changing your controls or tying your data to one provider."
       }
     ]
   },
