@@ -9,14 +9,18 @@ export type SecurityName =
   | "supervisor"
   | "checkpoints"
   | "configured"
+  | "audit"
+  | "context"
+  | "performance"
   | "isolation"
   | "sso"
   | "privacy";
 
-// Mock screens for /security, one per point under authority's two sides: the
-// limits the desk works within (scope, access, models) and the people
-// accountable for it (supervisor, checkpoints, configured), and one per point
-// under data (isolation, sso, privacy). They're settings and records of the
+// Mock screens for /security, one per point under authority's three stages:
+// the limits the desk works within (scope, access, models), the people
+// accountable for it (supervisor, checkpoints, configured) and the record it
+// leaves (audit, context, performance); and one per point under data
+// (isolation, sso, privacy). They're settings and records of the
 // desk itself, for the same agency and book of accounts as the other mock
 // screens; see MockUi for the pieces.
 
@@ -428,6 +432,317 @@ function Configured() {
   );
 }
 
+// Every action the desk took, newest first: what, through which channel and
+// under whose authority (the desk's own scope, or a person's decision).
+const TRAIL = [
+  {
+    time: "9:42",
+    action: "Results returned",
+    account: "Sample Bakery LLC",
+    channel: "Email",
+    by: "Scope",
+  },
+  {
+    time: "9:40",
+    action: "Comparison approved",
+    account: "Sample Bakery LLC",
+    channel: "Teams",
+    by: "K. Tran",
+  },
+  {
+    time: "9:31",
+    action: "Quote retrieved",
+    account: "Sample Bakery LLC",
+    channel: "API",
+    by: "Scope",
+  },
+  {
+    time: "9:24",
+    action: "Submitted",
+    account: "Example Brewing Co.",
+    channel: "Portal",
+    by: "Scope",
+  },
+  {
+    time: "9:20",
+    action: "Market plan approved",
+    account: "Example Brewing Co.",
+    channel: "Teams",
+    by: "J. Avery",
+  },
+  {
+    time: "9:12",
+    action: "Results returned",
+    account: "Placeholder Mfg",
+    channel: "Email",
+    by: "Scope",
+  },
+  {
+    time: "9:05",
+    action: "Bind request refused",
+    account: "Placeholder Mfg",
+    channel: "Email",
+    by: "Blocked",
+  },
+  {
+    time: "8:58",
+    action: "Follow-up sent",
+    account: "Placeholder Café",
+    channel: "Email",
+    by: "Scope",
+  },
+  {
+    time: "8:47",
+    action: "Reply read",
+    account: "Sample Bakery LLC",
+    channel: "Email",
+    by: "Scope",
+  },
+  {
+    time: "8:41",
+    action: "Questions answered",
+    account: "Demo Auto Body",
+    channel: "Portal",
+    by: "Scope",
+  },
+  {
+    time: "8:30",
+    action: "Payroll requested",
+    account: "Demo Dental Group",
+    channel: "Email",
+    by: "Scope",
+  },
+  { time: "8:22", action: "Tools called", account: "Sample Hardware", channel: "MCP", by: "Scope" },
+  {
+    time: "8:15",
+    action: "Activity written",
+    account: "Example Logistics",
+    channel: "Applied Epic",
+    by: "Scope",
+  },
+  {
+    time: "8:09",
+    action: "Remarket approved",
+    account: "Example Logistics",
+    channel: "Teams",
+    by: "K. Tran",
+  },
+  {
+    time: "8:02",
+    action: "Loss runs pulled",
+    account: "Sample Florist",
+    channel: "SharePoint",
+    by: "Scope",
+  },
+  {
+    time: "7:55",
+    action: "Quote retrieved",
+    account: "Placeholder Properties",
+    channel: "Portal",
+    by: "Scope",
+  },
+  {
+    time: "7:48",
+    action: "Cleared",
+    account: "Example Clinic",
+    channel: "Applied Epic",
+    by: "Scope",
+  },
+  {
+    time: "7:40",
+    action: "Submitted",
+    account: "Example Brewing Co.",
+    channel: "Email",
+    by: "Scope",
+  },
+  {
+    time: "7:31",
+    action: "Appetite checked",
+    account: "Sample Print Shop",
+    channel: "API",
+    by: "Scope",
+  },
+];
+
+function Audit() {
+  return (
+    <>
+      <Toolbar title="Audit trail" view="Today" chip={<Pill>{TRAIL.length} actions</Pill>} />
+      <Table
+        columns={[
+          {
+            label: "Action",
+            cell: (row) => (
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="w-7 shrink-0 text-deep/40 tabular-nums">{row.time}</span>
+                <span className="truncate">
+                  <span className="font-medium">{row.action}</span>{" "}
+                  <span className="text-deep/50">{row.account}</span>
+                </span>
+              </span>
+            ),
+          },
+          {
+            label: "Channel",
+            className: "hidden w-20 @sm:flex",
+            cell: (row) => <span className="truncate text-deep/50">{row.channel}</span>,
+          },
+          {
+            label: "Authority",
+            className: "w-18",
+            cell: (row) =>
+              row.by === "Blocked" ? (
+                <Pill alert>Blocked</Pill>
+              ) : row.by === "Scope" ? (
+                <Pill>Scope</Pill>
+              ) : (
+                <span className="inline-flex items-center gap-1.5">
+                  <Avatar initials={row.by.replace(/[^A-Z]/g, "")} />
+                  {row.by}
+                </span>
+              ),
+          },
+        ]}
+        rows={TRAIL}
+      />
+    </>
+  );
+}
+
+// One placement's record, its inputs, actions and outcomes kept together.
+const RECORD: { kind: "Input" | "Action" | "Outcome"; entry: string; date: string }[] = [
+  { kind: "Input", entry: "Request from J. Avery, eff. 11/01", date: "09/27" },
+  { kind: "Input", entry: "ACORD 125 and 140", date: "09/28" },
+  { kind: "Input", entry: "Loss runs 2023–2026", date: "09/30" },
+  { kind: "Input", entry: "Schedule of values", date: "09/30" },
+  { kind: "Input", entry: "Payroll and prior carrier, from producer", date: "10/01" },
+  { kind: "Action", entry: "Cleared against Applied Epic", date: "09/28" },
+  { kind: "Action", entry: "Missing information requested", date: "09/29" },
+  { kind: "Action", entry: "Appetite checked across 20 markets", date: "09/30" },
+  { kind: "Action", entry: "Market plan approved by J. Avery", date: "10/01" },
+  { kind: "Action", entry: "Submitted to 5 markets by API, portal, MCP and email", date: "10/02" },
+  { kind: "Action", entry: "Supplemental sent to Example Casualty", date: "10/03" },
+  { kind: "Action", entry: "Qualifying questions answered", date: "10/04" },
+  { kind: "Action", entry: "3 follow-ups sent", date: "10/05" },
+  { kind: "Action", entry: "Flood exclusion escalated to K. Tran", date: "10/06" },
+  { kind: "Outcome", entry: "2 quotes, 1 indication, 1 declination", date: "10/05" },
+  { kind: "Outcome", entry: "Comparison approved by K. Tran", date: "10/06" },
+  { kind: "Outcome", entry: "Results returned to J. Avery", date: "10/06" },
+  { kind: "Outcome", entry: "Activities written to Applied Epic", date: "10/06" },
+];
+
+function Context() {
+  return (
+    <>
+      <Toolbar title="Sample Bakery LLC" view="Work record · BOP" chip={<Pill>Complete</Pill>} />
+      <p className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
+        {["5 inputs", "9 actions", "4 outcomes"].map((item, i) => (
+          <span
+            className={cn("inline-flex items-center gap-1", i > 1 && "hidden @xs:inline-flex")}
+            key={item}
+          >
+            <Check />
+            {item}
+          </span>
+        ))}
+        <span className="ml-auto hidden shrink-0 text-deep/50 @md:inline">
+          Kept with the account
+        </span>
+      </p>
+      <Table
+        columns={[
+          { label: "Entry", cell: (row) => <span className="truncate">{row.entry}</span> },
+          {
+            label: "Date",
+            className: "hidden w-9 @sm:flex",
+            cell: (row) => <span className="text-deep/50 tabular-nums">{row.date}</span>,
+          },
+          {
+            label: "Kind",
+            className: "w-16",
+            cell: (row) =>
+              row.kind === "Outcome" ? <Pill alert>{row.kind}</Pill> : <Pill>{row.kind}</Pill>,
+          },
+        ]}
+        rows={RECORD}
+      />
+    </>
+  );
+}
+
+// The desk's quarter against the standards the agency set for it; two
+// fell short, and are flagged for review.
+const STANDARDS = [
+  { standard: "Days to results", target: "≤ 5", actual: "4.1", met: true },
+  { standard: "Markets per placement", target: "≥ 4", actual: "5.2", met: true },
+  { standard: "Quotes per placement", target: "≥ 2", actual: "3.2", met: true },
+  { standard: "Follow-up within 2 days", target: "100%", actual: "98%", met: false },
+  { standard: "Gaps flagged at intake", target: "≥ 95%", actual: "97%", met: true },
+  { standard: "Escalations answered same day", target: "100%", actual: "100%", met: true },
+  { standard: "Actions outside authority", target: "0", actual: "0", met: true },
+  { standard: "Plans approved before submission", target: "100%", actual: "100%", met: true },
+  { standard: "Results with a work record", target: "100%", actual: "100%", met: true },
+  { standard: "Declinations explained", target: "100%", actual: "96%", met: false },
+  { standard: "Renewals started 60 days out", target: "≥ 90%", actual: "93%", met: true },
+  { standard: "Writeback within 1 hour", target: "≥ 99%", actual: "99.6%", met: true },
+  { standard: "Producer questions answered", target: "≤ 4h", actual: "1.8h", met: true },
+  { standard: "Exceptions reviewed", target: "100%", actual: "100%", met: true },
+  { standard: "Incumbent included at renewal", target: "100%", actual: "100%", met: true },
+];
+
+const STATS = [
+  { value: "142", label: "placements" },
+  { value: "4.1", label: "days to results" },
+  { value: "3.2", label: "quotes each" },
+  { value: "6", label: "exceptions" },
+];
+
+function Performance() {
+  return (
+    <>
+      <Toolbar title="Desk performance" view="Q3 2026" chip={<Pill alert>2 to review</Pill>} />
+      <div className="grid grid-cols-2 border-b border-deep/10 @md:grid-cols-4">
+        {STATS.map((stat, i) => (
+          <p
+            className={cn(
+              "border-deep/10 px-4 py-2.5",
+              i % 2 === 1 && "border-l",
+              i > 1 && "hidden @md:block @md:border-l",
+            )}
+            key={stat.label}
+          >
+            <span className="block font-heading text-lg font-medium tracking-tight tabular-nums">
+              {stat.value}
+            </span>
+            <span className="block truncate text-deep/50">{stat.label}</span>
+          </p>
+        ))}
+      </div>
+      <Table
+        columns={[
+          { label: "Standard", cell: (row) => <span className="truncate">{row.standard}</span> },
+          {
+            label: "Target",
+            className: "hidden w-12 justify-end @sm:flex",
+            cell: (row) => <span className="text-deep/50 tabular-nums">{row.target}</span>,
+          },
+          {
+            label: "Actual",
+            className: "w-12 justify-end",
+            cell: (row) => <span className="font-medium tabular-nums">{row.actual}</span>,
+          },
+          {
+            label: "Status",
+            className: "w-16 justify-end",
+            cell: (row) => (row.met ? <Pill>Met</Pill> : <Pill alert>Review</Pill>),
+          },
+        ]}
+        rows={STANDARDS}
+      />
+    </>
+  );
+}
+
 // Where the agency's data is kept: every store its own, under its own key.
 const STORES = [
   { store: "Documents", detail: "Applications, loss runs, schedules" },
@@ -619,6 +934,9 @@ const SCREENS: Record<SecurityName, () => ReactNode> = {
   supervisor: Supervisor,
   checkpoints: Checkpoints,
   configured: Configured,
+  audit: Audit,
+  context: Context,
+  performance: Performance,
   isolation: Isolation,
   sso: Sso,
   privacy: Privacy,

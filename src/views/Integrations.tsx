@@ -7,7 +7,7 @@ import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionHeader } from "../components/Section";
 import { StepList } from "../components/StepList";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
-import { AppLink } from "../components/Ui";
+import { AppLink, Button } from "../components/Ui";
 
 // A mock screen for each system, in the order of systems.items. The fifth item,
 // carrier channels, isn't shown here: CarrierChannels below covers it.
@@ -18,7 +18,7 @@ export const chart: ChartName = "integrations";
 export function Integrations() {
   return (
     <>
-      <SplitHero title={page.title} lead={page.lead}>
+      <SplitHero title={page.title} lead={page.lead} actions={<Button />}>
         <Ledger chart={chart} panel={page.ledger} />
       </SplitHero>
 

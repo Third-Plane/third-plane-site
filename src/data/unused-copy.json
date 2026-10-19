@@ -108,7 +108,18 @@
         "Negotiation with markets",
         "Approval at every review point you define"
       ]
-    }
+    },
+    "authority.sides (before the definition → evaluation cycle)": [
+      {
+        "title": "AI only acts within defined limits.",
+        "body": "The desk works inside boundaries you set and can tighten at any time. They belong to the desk rather than to any one model, so they hold as the technology underneath it changes."
+      },
+      {
+        "title": "Your people remain accountable.",
+        "body": "AI takes on the work, but responsibility for it stays with your team. Your people direct and review the desk rather than build and maintain it."
+      }
+    ],
+    "record.title": "Every action leaves a record."
   },
   "careers": {
     "body": "We hire people who know insurance deeply, people who build AI systems that do real work, and people who can do both.",
