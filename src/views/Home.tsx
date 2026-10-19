@@ -41,21 +41,23 @@ export function Home() {
       </Section>
 
       <Section id="approach" theme="white">
-        <SectionHeader>
-          <h2>{approach.title}</h2>
-          <p className="lead">{approach.body}</p>
-        </SectionHeader>
-        <div className="wrap mt-(--gutter) grid gap-5 lg:grid-cols-2">
-          {approach.models.map((model, i) => (
-            <Diagram
-              key={model.kicker}
-              chart={modelCharts[i]}
-              title={model.kicker}
-              caption={model.note}
-              description={model.chain.join(", then ")}
-              accent={model.accent}
-            />
-          ))}
+        <div className="wrap">
+          <SectionHeader>
+            <h2>{approach.title}</h2>
+            <p className="lead">{approach.body}</p>
+          </SectionHeader>
+          <div className="wrap mt-(--gutter) grid gap-5 lg:grid-cols-2">
+            {approach.models.map((model, i) => (
+              <Diagram
+                key={model.kicker}
+                chart={modelCharts[i]}
+                title={model.kicker}
+                caption={model.note}
+                description={model.chain.join(", then ")}
+                accent={model.accent}
+              />
+            ))}
+          </div>
         </div>
       </Section>
     </>

@@ -3,11 +3,8 @@ import { Card, Grid, ItemBody, ItemTitle } from "./Grid";
 import { Section, SectionHeader } from "./Section";
 import { ChannelSnippet } from "./ChannelSnippet";
 
-const channelSnippets = ["portal", "api", "mail"] as const;
+const channelSnippets = ["portal", "api", "mail", "mcp"] as const;
 
-// The three ways the desk reaches a carrier: portal, API and underwriter
-// email. Shown on /placement-desk and /integrations; the copy lives in
-// placement-desk.json under `channels`.
 export function CarrierChannels() {
   const { channels } = placementDesk;
   return (
@@ -16,7 +13,7 @@ export function CarrierChannels() {
         <h2>{channels.title}</h2>
         <p className="lead">{channels.body}</p>
       </SectionHeader>
-      <Grid columns={3}>
+      <Grid columns={4}>
         {channels.items.map((item, i) => (
           <Card key={item.title} className="gap-0 p-0">
             <ChannelSnippet name={channelSnippets[i]} />

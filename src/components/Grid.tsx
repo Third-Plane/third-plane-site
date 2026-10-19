@@ -20,9 +20,7 @@ export function Grid({
   children: ReactNode;
 }) {
   return (
-    <div className={cn("grid gap-5 wrap mt-(--gutter)", COLUMNS[columns], className)}>
-      {children}
-    </div>
+    <div className={cn("grid gap-5 mt-(--gutter)", COLUMNS[columns], className)}>{children}</div>
   );
 }
 

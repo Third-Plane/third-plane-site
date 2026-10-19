@@ -1,10 +1,11 @@
-export type SnippetName = "portal" | "api" | "mail";
+export type SnippetName = "portal" | "api" | "mail" | "mcp";
 
 // What the desk writes on each carrier channel, all for the same submission:
-// the portal's form, the API request and the email to the underwriter. They
-// are texture rather than reading matter, so they're set small, cropped at the
-// edges and hidden from assistive tech. Hosts are .example and addresses are
-// documentation ranges, and the tokens decode to a note saying they're fake.
+// the portal's form, the API request, the email to the underwriter and the
+// tool call to the carrier's MCP server. They are texture rather than reading
+// matter, so they're set small, cropped at the edges and hidden from assistive
+// tech. Hosts are .example and addresses are documentation ranges, and the
+// tokens decode to a note saying they're fake.
 const SNIPPETS: Record<SnippetName, string> = {
   portal: `<!-- New business · BOP · step 3 of 5 -->
 <form id="bop-qualify" action="/submissions/BOP-20481/questions" method="post">
@@ -72,6 +73,34 @@ Content-Type: text/plain; charset=utf-8
 Following up on Friday's submission. Attached are the
 prior loss runs you asked for. Can you confirm terms
 by Thursday?`,
+
+  mcp: `POST /mcp HTTP/1.1
+Host: mcp.samplecarrier.example
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0aGlyZC1wbGFuZS1kZXNrIiwiYXVkIjoic2FtcGxlY2Fycmllci1tY3AiLCJzY29wZSI6InF1b3Rlczp3cml0ZSIsImV4cCI6MTc5MTIxNjAwMH0.bm90IGEgcmVhbCBzaWduYXR1cmUsIGFuIGlsbHVzdHJhdGlvbiBvbmx5
+Content-Type: application/json
+Accept: application/json, text/event-stream
+Mcp-Session-Id: 3c9e71d0-bop-20481
+MCP-Protocol-Version: 2025-06-18
+
+{
+  "jsonrpc": "2.0",
+  "id": 7,
+  "method": "tools/call",
+  "params": {
+    "name": "create_quote",
+    "arguments": {
+      "insured": {
+        "name": "Sample Bakery LLC",
+        "naics": "311811",
+        "years_in_business": 8
+      },
+      "line": "BOP",
+      "effective_date": "2026-11-01",
+      "limits": { "occurrence": 1000000, "aggregate": 2000000 },
+      "producer_code": "TP-0042"
+    }
+  }
+}`,
 };
 
 // A dark panel for the top of a Card, with the snippet fading out at its foot.
