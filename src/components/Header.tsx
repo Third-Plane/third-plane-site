@@ -16,17 +16,18 @@ export function Header() {
       as="header"
       theme="hero"
       layer={false}
-      className="group/nav absolute inset-x-0 top-0 z-40 overflow-visible border-b border-b-transparent p-0 transition-[border-color] duration-250 data-[open=true]:border-b-border/50 scroll-linked:fixed scroll-linked:nav-fill"
+      className="group/nav absolute inset-x-0 top-0 z-40 overflow-visible p-0 scroll-linked:fixed scroll-linked:nav-fill"
       data-open="false"
       data-nav
     >
       <NavBar />
 
       {/* The drawer keeps the hero's theme, whatever section the nav is over,
-          and fits the window under the nav, toolbars and all. It only shows
-          the status notes, leaving the descriptions to the dropdowns. */}
+          and fits the window under the nav, toolbars and all, ruled off from
+          the bar above and the page below. It only shows the status notes,
+          leaving the descriptions to the dropdowns. */}
       <div
-        className="hidden max-h-[calc(100dvh-var(--nav-h))] overflow-y-auto border-t border-t-border/50 bg-background pt-2 pb-7 max-md:group-data-[open=true]/nav:block"
+        className="hidden max-h-[calc(100dvh-var(--nav-h))] overflow-y-auto border-y border-y-border/50 bg-background pt-2 pb-7 max-md:group-data-[open=true]/nav:block"
         data-theme="hero"
         data-nav-drawer
       >
