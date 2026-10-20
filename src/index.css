@@ -26,7 +26,8 @@
   --font-body: "Archivo", system-ui, sans-serif;
   --font-code: "TX-02", ui-monospace, monospace;
   --bar: --spacing(16);
-  --nav-h: calc(var(--bar) + 1px);
+  /* The nav is its bar, with no border. */
+  --nav-h: var(--bar);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --container: 1200px;
 }

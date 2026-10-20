@@ -103,9 +103,8 @@
 
    The background is a layer of its own, over the fill (whole by the time a
    section arrives) and under the nav's content: the fill is an animation, and
-   can't be swapped out for the section's colour. The layer covers the nav's
-   bottom border too, which is see-through, and would show the fill as a line
-   under it. A copy has the same colour, and no fill.
+   can't be swapped out for the section's colour. A copy has the same colour,
+   and no fill.
 
    The themes' own backgrounds aren't the nav's: the fill is its colour, and
    it has no layer (see Section). A blend section's gradient won't fit the
@@ -144,7 +143,7 @@
   [data-nav]::before {
     content: "";
     position: absolute;
-    inset: 0 0 -1px;
+    inset: 0;
     z-index: -1;
     background-color: var(--edge, transparent);
   }
