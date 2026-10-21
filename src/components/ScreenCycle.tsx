@@ -121,7 +121,7 @@ function CycleLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="grid gap-x-16 gap-y-13 lg:grid-cols-2" data-cycle>
+    <div className="grid gap-x-(--gutter) gap-y-10 lg:grid-cols-2" data-cycle>
       <SectionHeader>
         <h2>{title}</h2>
         {body && <p className="lead">{body}</p>}
