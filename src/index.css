@@ -173,7 +173,10 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-heading leading-[1.16667] font-medium tracking-tight text-pretty text-foreground;
+  @apply font-heading leading-[1.16667] font-medium tracking-tight text-pretty text-foreground mix-blend-multiply;
+}
+h1 {
+  @apply text-[clamp(2.5rem,4.5vw,4rem)]/none tracking-tighter;
 }
 h2 {
   @apply text-4xl;
@@ -182,7 +185,7 @@ h3 {
   @apply text-xl;
 }
 .lead {
-  @apply max-w-[66ch] font-sans text-xl leading-normal font-medium text-pretty text-accent;
+  @apply max-w-[66ch] font-sans text-xl leading-normal font-medium text-pretty text-accent mix-blend-multiply;
 }
 :focus-visible {
   outline: 2px solid var(--accent);

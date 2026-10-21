@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { Section, SectionHeader } from "./Section";
-import { Display1 } from "./Headings";
 
 // A hero: see-through, over the page's flowchart (Base.astro), with a wash
 // behind its copy (across the top where the copy stacks, down the copy column
@@ -39,7 +38,7 @@ export function SplitHero({
     <Hero>
       <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
         <SectionHeader>
-          <Display1>{title}</Display1>
+          <h1>{title}</h1>
           <p className="lead text-[22px]">{lead}</p>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
         </SectionHeader>
@@ -61,7 +60,7 @@ export function PageHero({
   return (
     <Hero>
       <SectionHeader>
-        <Display1>{title}</Display1>
+        <h1>{title}</h1>
         <p className="lead">{lead}</p>
         {children ? <div className="mt-9 flex flex-wrap gap-3">{children}</div> : null}
       </SectionHeader>

@@ -1,5 +1,4 @@
 import type { Block, Post as PostData } from "../data/posts";
-import { Display1 } from "../components/Headings";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
@@ -58,10 +57,9 @@ export function Post({ post }: { post: PostData }) {
             <Arrow className="size-3.5 shrink-0 rotate-180" />
             Resources
           </AppLink>
-          <PostMeta post={post} />
-          <Display1 size="editorial">{post.title}</Display1>
+          <h1>{post.title}</h1>
           <p className="lead">{post.standfirst}</p>
-          <p className="text-sm text-subtle-foreground">{post.author}</p>
+          <PostMeta post={post} />
         </div>
         <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">
           {post.body.map((block, i) => (
