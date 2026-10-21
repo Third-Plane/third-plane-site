@@ -58,7 +58,7 @@ export function Post({ post }: { post: PostData }) {
             Resources
           </AppLink>
           <h1>{post.title}</h1>
-          <p className="lead">{post.standfirst}</p>
+          <h3 className="lead">{post.standfirst}</h3>
           <PostMeta post={post} />
         </div>
         <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">

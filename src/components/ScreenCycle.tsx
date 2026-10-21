@@ -124,7 +124,7 @@ function CycleLayout({
     <div className="grid gap-x-(--gutter) gap-y-10 lg:grid-cols-2" data-cycle>
       <SectionHeader>
         <h2>{title}</h2>
-        {body && <p className="lead">{body}</p>}
+        {body && <h3 className="lead">{body}</h3>}
       </SectionHeader>
       <div className="grid lg:relative lg:col-start-2 lg:row-span-2 lg:row-start-1">
         {items.map((item, i) => (

@@ -11,7 +11,7 @@ export function AppliedEpic() {
       <Section theme="white" id="who">
         <SectionHeader>
           <h2>{page.who.title}</h2>
-          <p className="lead">{page.who.body}</p>
+          <h3 className="lead">{page.who.body}</h3>
         </SectionHeader>
         <Grid columns={3}>
           {page.who.items.map((item) => (

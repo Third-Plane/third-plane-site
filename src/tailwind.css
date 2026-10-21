@@ -212,8 +212,8 @@
 @utility hero-veil {
   background-image: linear-gradient(
     90deg,
-    color-mix(in oklab, var(--lavender) 85%, transparent) 30%,
-    transparent 58%
+    color-mix(in oklab, var(--lavender) 85%, transparent) 33%,
+    transparent 66%
   );
 }
 
@@ -221,8 +221,8 @@
   background-image: linear-gradient(
     180deg,
     var(--lavender) 0%,
-    color-mix(in oklab, var(--lavender) 85%, transparent) 30%,
-    transparent 100%
+    color-mix(in oklab, var(--lavender) 85%, transparent) 33%,
+    transparent 66%
   );
 }
 
