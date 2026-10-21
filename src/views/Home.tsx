@@ -44,7 +44,7 @@ export function Home() {
         <div className="wrap">
           <SectionHeader>
             <h2>{approach.title}</h2>
-            <p className="lead">{approach.body}</p>
+            <h3 className="lead">{approach.body}</h3>
           </SectionHeader>
           <div className="wrap mt-(--gutter) grid gap-5 lg:grid-cols-2">
             {approach.models.map((model, i) => (

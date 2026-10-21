@@ -12,7 +12,7 @@ export function Resources({ posts }: { posts: Post[] }) {
       <Section theme="white" id="posts">
         <SectionHeader>
           <h2>{page.title}</h2>
-          <p className="lead">{page.lead}</p>
+          <h3 className="lead">{page.lead}</h3>
         </SectionHeader>
         {posts.length ? (
           <ul className="wrap mt-(--gutter) grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

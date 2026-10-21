@@ -31,10 +31,10 @@ const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
 // sections and the footer. The pinned nav takes the theme of the section just
 // below it (scripts/nav-theme.ts), which finds them by data-section.
 //
-// A section has the page's gutter, and the bar's padding (see --bar), twice
-// over above its content and once below; the hero, starting under the nav,
-// has the nav's (see --nav-h) twice over on both sides. `as` and `className`
-// are for those that are laid out otherwise (the nav, the footer), and
+// A section has the page's gutter, and the bar's height (see --spacing-bar)
+// twice over above and below its content, so the hero's copy starts clear
+// of the nav. `as` and `className` are for those that are laid out otherwise
+// (the nav, the footer), and
 // `layer={false}` for the nav, which has no layer (see layers, above).
 //
 // A section makes no stacking context of its own (no z-index, isolation,
@@ -66,8 +66,7 @@ export function Section({
   return (
     <Tag
       className={cn(
-        "relative px-(--gutter)",
-        theme === "hero" ? "py-[calc(var(--nav-h)*2)]" : "py-[calc(var(--bar)*2)]",
+        "relative px-(--gutter) py-[calc(var(--spacing-bar)*2)]",
         copy && "scroll-linked:nav-timeline",
         className,
       )}

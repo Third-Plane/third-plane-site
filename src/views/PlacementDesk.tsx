@@ -43,7 +43,7 @@ export function PlacementDesk() {
         <div className="wrap">
           <SectionHeader>
             <h2>{placementDesk.human.title}</h2>
-            <p className="lead">{placementDesk.human.body}</p>
+            <h3 className="lead">{placementDesk.human.body}</h3>
           </SectionHeader>
           <Grid>
             {placementDesk.human.items.map((item) => (
