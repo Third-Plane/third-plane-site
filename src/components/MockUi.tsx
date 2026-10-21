@@ -15,7 +15,7 @@ import { cn } from "../lib/style";
 export function Frame({ children }: { children: ReactNode }) {
   return (
     <div
-      className="@container flex aspect-video flex-col overflow-hidden rounded-2xl border border-deep/10 bg-white text-xs text-deep shadow-lg lg:aspect-auto lg:h-full"
+      className="@container flex aspect-video flex-col overflow-hidden rounded-2xl bg-white text-xs text-deep shadow-xl ring-4 ring-accent/5 lg:aspect-auto lg:h-full"
       aria-hidden="true"
     >
       {children}

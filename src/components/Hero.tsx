@@ -37,10 +37,10 @@ export function SplitHero({
 }) {
   return (
     <Hero>
-      <div className="grid items-center gap-16 lg:grid-cols-2">
+      <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
         <SectionHeader>
           <Display1>{title}</Display1>
-          <p className="lead">{lead}</p>
+          <p className="lead text-[22px]">{lead}</p>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
         </SectionHeader>
         {children}

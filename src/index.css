@@ -28,7 +28,7 @@
   --bar: --spacing(16);
   /* The nav is its bar, with no border. */
   --nav-h: var(--bar);
-  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --gutter: max(1rem, 4vw);
   --container: 1200px;
 }
 

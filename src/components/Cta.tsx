@@ -20,7 +20,7 @@ export function Cta({
 }: CtaCopy) {
   return (
     <div className="wrap z-4 max-w-3xl rounded-xl px-(--gutter) py-12 shadow-2xl inset-ring-1 shadow-black/15 inset-ring-white/25 backdrop-blur-lg backdrop-invert-5">
-      <SectionHeader className="mb-(--gutter)">
+      <SectionHeader className="mb-10">
         <h2 className="text-white">{title}</h2>
         <p className="lead text-white/75">{body}</p>
       </SectionHeader>
