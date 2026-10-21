@@ -65,6 +65,7 @@ export function Section({
       className={cn(
         "relative px-(--gutter) py-[calc(var(--spacing-bar)*2)]",
         copy && "scroll-linked:nav-timeline",
+        "flex min-h-[80dvh] flex-col gap-(--gutter) justify-center",
         className,
       )}
       data-theme={theme}
