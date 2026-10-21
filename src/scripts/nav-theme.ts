@@ -1,6 +1,6 @@
 // Gives the pinned nav the theme of the section it reads as the top of: the
-// sections are those Section marks (data-section), the nav's own aside. Where
-// the nav isn't pinned it scrolls away with the hero, and keeps its own theme.
+// sections are those Section marks (data-section). Where the nav isn't pinned
+// it scrolls away with the hero, and keeps its own theme.
 //
 // It switches once a section's top edge is a nav's height above the window,
 // halfway through the hold, while the section's copy of the bar covers the
@@ -14,9 +14,7 @@ const pinnedNav = document.querySelector<HTMLElement>("[data-nav]");
 
 if (pinnedNav) {
   const own = pinnedNav.dataset.theme;
-  const sections = [...document.querySelectorAll<HTMLElement>("[data-section]")].filter(
-    (section) => section !== pinnedNav,
-  );
+  const sections = [...document.querySelectorAll<HTMLElement>("[data-section]")];
   // The sections whose copy draws their edge through the nav. Read before
   // data-settled can hide one; the stylesheet decides (see tailwind.css).
   const drawn = new Set(

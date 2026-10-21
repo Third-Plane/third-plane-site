@@ -60,7 +60,9 @@
    that off the main thread, repainting the nav from what it last recorded of
    it, and with the nav's theme changing inside it (below) that can flash the
    previous section's colour at any time as the page scrolls. Custom
-   properties always animate with the page. */
+   properties always animate with the page. A ring in the theme's accent
+   comes in with the fill, ring-accent/10 when it's whole, which the window's
+   edges crop to a line along the nav's foot. */
 @property --nav-fill {
   syntax: "<number>";
   inherits: false;
@@ -80,6 +82,7 @@
   animation-timeline: scroll(root);
   animation-range: 0 var(--spacing-bar);
   background-color: color-mix(in oklab, var(--lavender) calc(var(--nav-fill) * 100%), transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) calc(var(--nav-fill) * 10%), transparent);
 }
 
 /* Over the page, the pinned nav takes the theme of the section under it

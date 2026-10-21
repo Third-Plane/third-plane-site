@@ -1,22 +1,20 @@
 import { primaryNav } from "../data/content";
 import { AppLink, Button } from "./Ui";
 import { NavBar } from "./NavBar";
-import { Section } from "./Section";
 import { cn } from "../lib/style";
 
-// The site's nav, over the top of the hero. Where the page can follow the
-// scroll it is pinned over the page too, filling in as the hero passes under
-// it (nav-fill in tailwind.css) and taking the theme of the section under it
-// (scripts/nav-theme.ts), while each section's copy of its bar draws the
-// section's edge through it (NavCopy). Dropdowns from md up, a drawer below:
-// scripts/nav.ts opens and closes them by setting `data-open`.
+// The site's nav, over the top of the page (see Base), in the hero's theme.
+// Where the page can follow the scroll it is pinned over the page too, filling
+// in as the hero passes under it (nav-fill in tailwind.css) and taking the
+// theme of the section under it (scripts/nav-theme.ts), while each section's
+// copy of its bar draws the section's edge through it (NavCopy). Dropdowns
+// from md up, a drawer below: scripts/nav.ts opens and closes them by setting
+// `data-open`.
 export function Header() {
   return (
-    <Section
-      as="header"
-      theme="hero"
-      layer={false}
-      className="group/nav absolute inset-x-0 top-0 z-40 overflow-visible p-0 scroll-linked:fixed scroll-linked:nav-fill"
+    <header
+      className="group/nav absolute inset-x-0 top-0 z-40 scroll-linked:fixed scroll-linked:nav-fill"
+      data-theme="hero"
       data-open="false"
       data-nav
     >
@@ -63,6 +61,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </Section>
+    </header>
   );
 }
