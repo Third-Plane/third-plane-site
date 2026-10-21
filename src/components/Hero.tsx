@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Header } from "./Header";
 import { Section, SectionHeader } from "./Section";
 
 // A hero: see-through, over the page's flowchart (Base.astro), with a wash
@@ -8,16 +7,11 @@ import { Section, SectionHeader } from "./Section";
 // From lg up it is at least 16:7, and taller where its content needs it, but
 // never taller than the window, in the hero's theme. Vertical spacing is the
 // caller's.
-//
-// The nav comes with it (see Header), pinned over the page as well as the hero.
 export function Hero({ children }: { children?: ReactNode }) {
   return (
-    <>
-      <Header />
-      <Section theme="hero" id="top">
-        {children}
-      </Section>
-    </>
+    <Section theme="hero" id="top">
+      {children}
+    </Section>
   );
 }
 

@@ -2,7 +2,6 @@ import type { Block, Post as PostData } from "../data/posts";
 import { PostMeta } from "../components/PostMeta";
 import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
-import { Header } from "../components/Header";
 
 function BlockView({ block }: { block: Block }) {
   switch (block.type) {
@@ -46,27 +45,24 @@ function BlockView({ block }: { block: Block }) {
 
 export function Post({ post }: { post: PostData }) {
   return (
-    <>
-      <Header />
-      <Section as="article" theme="white">
-        <div className="wrap grid max-w-4xl gap-5">
-          <AppLink
-            className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"
-            href="/resources"
-          >
-            <Arrow className="size-3.5 shrink-0 rotate-180" />
-            Resources
-          </AppLink>
-          <h1>{post.title}</h1>
-          <h3 className="lead">{post.standfirst}</h3>
-          <PostMeta post={post} />
-        </div>
-        <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">
-          {post.body.map((block, i) => (
-            <BlockView block={block} key={i} />
-          ))}
-        </div>
-      </Section>
-    </>
+    <Section as="article" theme="white">
+      <div className="wrap grid max-w-4xl gap-5">
+        <AppLink
+          className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"
+          href="/resources"
+        >
+          <Arrow className="size-3.5 shrink-0 rotate-180" />
+          Resources
+        </AppLink>
+        <h1>{post.title}</h1>
+        <h3 className="lead">{post.standfirst}</h3>
+        <PostMeta post={post} />
+      </div>
+      <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">
+        {post.body.map((block, i) => (
+          <BlockView block={block} key={i} />
+        ))}
+      </div>
+    </Section>
   );
 }
