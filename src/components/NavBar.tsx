@@ -38,7 +38,7 @@ export function NavBar({ copy = false }: { copy?: boolean }) {
                 to it, so the pointer can cross it without the menu closing. */}
             {copy ? null : (
               <div
-                className="absolute top-[calc(50%+var(--nav-h)-var(--bar)/2)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-6 before:h-6"
+                className="absolute top-[calc(50%+var(--spacing-bar)/2)] -left-3 hidden w-80 rounded-2xl border border-border/50 bg-card p-1 shadow-2xl group-data-[open=true]/menu:grid before:absolute before:inset-x-0 before:-top-6 before:h-6"
                 role="menu"
                 data-theme="white"
                 data-nav-panel
@@ -106,7 +106,7 @@ export function NavBar({ copy = false }: { copy?: boolean }) {
 export function NavCopy({ theme }: { theme: Theme }) {
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden h-(--nav-h) scroll-linked:block scroll-linked:nav-reveal"
+      className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden h-bar scroll-linked:block scroll-linked:nav-reveal"
       data-theme={theme}
       data-nav-copy
       aria-hidden="true"

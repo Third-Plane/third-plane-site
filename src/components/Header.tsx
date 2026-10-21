@@ -27,7 +27,7 @@ export function Header() {
           the bar above and the page below. It only shows the status notes,
           leaving the descriptions to the dropdowns. */}
       <div
-        className="hidden max-h-[calc(100dvh-var(--nav-h))] overflow-y-auto border-y border-y-border/50 bg-background pt-2 pb-7 max-md:group-data-[open=true]/nav:block"
+        className="hidden max-h-[calc(100dvh-var(--spacing-bar))] overflow-y-auto border-y border-y-border/50 bg-background pt-2 pb-7 max-md:group-data-[open=true]/nav:block"
         data-theme="hero"
         data-nav-drawer
       >

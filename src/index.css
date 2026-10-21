@@ -25,9 +25,6 @@
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
   --font-code: "TX-02", ui-monospace, monospace;
-  --bar: --spacing(16);
-  /* The nav is its bar, with no border. */
-  --nav-h: var(--bar);
   --gutter: max(1rem, 4vw);
   --container: 1200px;
 }
@@ -173,16 +170,16 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-heading leading-[1.16667] font-medium tracking-tight text-pretty text-foreground;
+  @apply font-heading font-medium text-pretty text-foreground;
 }
 h1 {
   @apply text-[clamp(2.5rem,4vw,4rem)]/none tracking-tighter;
 }
 h2 {
-  @apply text-4xl;
+  @apply text-4xl/[1.16667] tracking-tighter;
 }
 h3 {
-  @apply text-xl;
+  @apply text-xl/[1.2] tracking-tight;
 }
 .lead {
   @apply max-w-[66ch] font-sans text-xl leading-normal font-medium tracking-normal text-pretty text-accent mix-blend-multiply;

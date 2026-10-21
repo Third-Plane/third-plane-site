@@ -78,7 +78,7 @@
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-timeline: scroll(root);
-  animation-range: 0 var(--nav-h);
+  animation-range: 0 var(--spacing-bar);
   background-color: color-mix(in oklab, var(--lavender) calc(var(--nav-fill) * 100%), transparent);
 }
 
@@ -116,7 +116,7 @@
 @utility nav-timeline {
   view-timeline-name: --section;
   view-timeline-axis: block;
-  view-timeline-inset: 0 calc(100% - var(--nav-h));
+  view-timeline-inset: 0 calc(100% - var(--spacing-bar));
 }
 
 /* The entry range is one nav height and the hold two, so the reveal is the
@@ -136,7 +136,7 @@
   animation-name: nav-reveal;
   animation-timing-function: linear;
   animation-timeline: --section;
-  animation-range: entry 0% contain calc(var(--nav-h) * 2);
+  animation-range: entry 0% contain calc(var(--spacing-bar) * 2);
 }
 
 @layer utilities {
@@ -238,9 +238,6 @@
 }
 
 @theme inline {
-  /* The bar (see index.css): h-bar, pb-bar, ... */
-  --spacing-bar: var(--bar);
-
   /* The semantic colours, which each theme sets (see index.css). */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -270,6 +267,12 @@
 }
 
 @theme {
+  /* The bar: the nav's height, which is its bar's, and the unit of a
+     section's padding. A token of the theme's own rather than index.css's, so
+     it is one variable for the utilities (h-bar, ...) and for CSS
+     (var(--spacing-bar)). */
+  --spacing-bar: --spacing(16);
+
   /* The CSS default, so transitions match index.css, which never set a curve. */
   --default-transition-timing-function: ease;
 
