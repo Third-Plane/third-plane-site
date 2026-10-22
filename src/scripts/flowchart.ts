@@ -16,6 +16,11 @@
 // off-screen or in a hidden tab, and under prefers-reduced-motion it paints
 // one frame and stops.
 //
+// The page's backdrop is kept from page to page (Base.astro), and runs on.
+// Where the next page's chart differs, it types its own out while that page
+// loads and the new one in once it shows, a row at a time; it types its first
+// in too. Under reduced motion the charts just swap.
+//
 // Where WebGL is available the frame is drawn offscreen and shown through
 // the lens (flowchart/lens.ts), which bends it like a CRT and splits its
 // colour toward the edges, under faint scanlines: data-curve sets how far it
@@ -29,6 +34,7 @@ import { CHARTS, type ChartName } from "./flowchart/charts";
 import { crossed } from "./flowchart/feed";
 import { Kind } from "./flowchart/grid";
 import { createLens } from "./flowchart/lens";
+import { onPage } from "./page";
 
 // The face is declared in index.css. Its cell is 0.6em wide and 1.2em tall,
 // with the baseline 0.956em down: box-drawing glyphs fill the cell exactly, so
@@ -71,6 +77,15 @@ const LOG_FROM = 1000;
 const STICK = 0.02;
 // The share of the window, at each edge, that the lens's curve crops.
 const LENS_EDGE = 0.03;
+// Seconds to type a whole chart in, and out. Each row is typed left to right,
+// starting STAGGER / rows of the way after the one above, so the rows run
+// together down the chart, and the cells typed in the last CURSOR of the way
+// stand as blocks, at CURSOR_LEVEL, as under a cursor.
+const TYPE_IN = 0.9;
+const TYPE_OUT = 0.35;
+const STAGGER = 0.5;
+const CURSOR = 0.03;
+const CURSOR_LEVEL = 0.7;
 
 // How much of a layout's drawing a w by h window would cut off, covered and
 // centred: the largest share of its width or height lost, past the lens's
@@ -113,11 +128,22 @@ function colorOf(el: HTMLElement, name: string) {
   return [...ctx.getImageData(0, 0, 1, 1).data.slice(0, 3)].map((v) => v / 255);
 }
 
-function chart(canvas: HTMLCanvasElement) {
+// A chart as the page drives it: show changes it to another, typing that in,
+// and typeOut types it out, settling once it's gone.
+type Chart = {
+  readonly name: ChartName;
+  show: (name: string | undefined) => void;
+  typeOut: () => Promise<void>;
+};
+
+const isChart = (name: string | undefined): name is ChartName => !!name && name in CHARTS;
+
+// Sets a canvas going, until signal aborts; intro types its first chart in.
+function chart(canvas: HTMLCanvasElement, signal: AbortSignal, intro: boolean): Chart | undefined {
   const parent = canvas.parentElement;
   if (!parent) return;
   const {
-    chart: name = "placement",
+    chart: first = "placement",
     alpha = "1",
     curve = "0",
     fringe = "0",
@@ -143,13 +169,7 @@ function chart(canvas: HTMLCanvasElement) {
   // The 2D frame: the canvas itself, or an offscreen one the lens shows.
   const surface = lens ? document.createElement("canvas") : canvas;
   const ctx = surface.getContext("2d");
-  if (!ctx) return;
-  const spec = CHARTS[name as ChartName];
-  if (!spec) return;
-  const flow = (flows[name as ChartName] ??= buildFlow<string, string>(spec));
-  const { layouts, events, logs, period } = flow;
-  // The layout showing, chosen on each resize.
-  let L: FlowLayout = layouts[0];
+  if (!ctx || !isChart(first)) return;
 
   const a = Number(alpha);
   // The cell and its type, set to fit on each resize.
@@ -185,10 +205,38 @@ function chart(canvas: HTMLCanvasElement) {
 
   // This frame's lit cells: how bright, and a glyph standing in for the
   // chart's own (a packet on a line, a spinner, a filling bar).
-  const cells = Math.max(...layouts.map((l) => l.glyphs.length));
-  const lit = new Float32Array(cells);
-  const swap: (string | undefined)[] = new Array(cells);
+  let lit = new Float32Array(0);
+  let swap: (string | undefined)[] = [];
   const touched: number[] = [];
+
+  // The chart showing, and the layout of it, chosen on each resize, and a
+  // moment with work in flight across it, for the still frame.
+  let name = first;
+  let flow: Flow;
+  let L: FlowLayout;
+  let still = 0;
+  const load = (next: ChartName) => {
+    name = next;
+    flow = flows[next] ??= buildFlow<string, string>(CHARTS[next]);
+    L = flow.layouts[0];
+    const cells = Math.max(...flow.layouts.map((l) => l.glyphs.length));
+    lit = new Float32Array(cells);
+    swap = new Array(cells);
+    touched.length = 0;
+    still = time = startOf(flow);
+  };
+  load(first);
+
+  // How much of the chart is typed, 0 to 1, and the typing under way, which
+  // runs on the frames and settles `done` once it gets `to`.
+  let typed = intro ? 0 : 1;
+  let typing: { from: number; to: number; start: number; ms: number; done: () => void } | undefined;
+  // The columns of chart row r typed with k of the chart typed.
+  const typedTo = (r: number, k: number) =>
+    Math.max(
+      0,
+      Math.min(L.cols, Math.round(((k - (r / L.rows) * STAGGER) / (1 - STAGGER)) * L.cols)),
+    );
   const light = (i: number, level: number, glyph?: string) => {
     if (!lit[i] && !swap[i]) touched.push(i);
     if (level >= lit[i]) {
@@ -262,6 +310,7 @@ function chart(canvas: HTMLCanvasElement) {
   const writeLog = (id: string, entries: LogEntry[], t: number) => {
     const lines = L.nodes[id]?.rows;
     if (!lines || !entries.length) return;
+    const { period } = flow;
     let loop = Math.floor(t / period);
     let k = entries.findLastIndex((e) => e.start <= t - loop * period);
     for (let r = lines.length - 1; r >= 0; r--, k--) {
@@ -284,7 +333,16 @@ function chart(canvas: HTMLCanvasElement) {
   const draw = (t: number) => {
     ctx.clearRect(0, 0, w, h);
     if (!ready) return;
+    const { events, logs, period } = flow;
+    const partial = typed < 1;
+    if (partial) {
+      ctx.save();
+      ctx.beginPath();
+      for (let r = 0; r < L.rows; r++) ctx.rect(ox, oy + r * ch, typedTo(r, typed) * cw, ch);
+      ctx.clip();
+    }
     ctx.drawImage(base, 0, 0, w, h);
+    if (partial) ctx.restore();
 
     for (const e of events) {
       const u = (((t - e.start) % period) + period) % period;
@@ -300,20 +358,69 @@ function chart(canvas: HTMLCanvasElement) {
 
     for (const i of touched) {
       const glyph = swap[i] ?? L.glyphs[i];
-      const x = ox + (i % L.cols) * cw;
-      const y = oy + Math.floor(i / L.cols) * ch;
-      ctx.clearRect(x, y, cw, ch);
-      if (glyph && glyph !== " ") paint(ctx, i, glyph, Math.max(lit[i], REST[L.kinds[i] as Kind]));
+      const c = i % L.cols;
+      const r = Math.floor(i / L.cols);
+      if (!partial || c < typedTo(r, typed)) {
+        ctx.clearRect(ox + c * cw, oy + r * ch, cw, ch);
+        if (glyph && glyph !== " ")
+          paint(ctx, i, glyph, Math.max(lit[i], REST[L.kinds[i] as Kind]));
+      }
       lit[i] = 0;
       swap[i] = undefined;
     }
     touched.length = 0;
+    if (partial) {
+      for (let r = 0; r < L.rows; r++) {
+        for (let c = typedTo(r, typed - CURSOR), to = typedTo(r, typed); c < to; c++) {
+          const i = r * L.cols + c;
+          if (!L.glyphs[i] || L.glyphs[i] === " ") continue;
+          ctx.clearRect(ox + c * cw, oy + r * ch, cw, ch);
+          paint(ctx, i, "█", CURSOR_LEVEL);
+        }
+      }
+    }
     lens?.render(surface, reduce.matches ? undefined : t);
   };
 
+  // Settles the typing under way where it was headed.
+  const finish = () => {
+    if (!typing) return;
+    const { to, done } = typing;
+    typing = undefined;
+    typed = to;
+    done();
+  };
+
+  // Types the chart to k of the way, settling once there. Nothing to watch it
+  // (still, hidden, or not yet drawn), it jumps.
+  const typeTo = (k: number, seconds: number) =>
+    new Promise<void>((done) => {
+      finish();
+      const ms = seconds * 1000 * Math.abs(k - typed);
+      const pending = (typing = { from: typed, to: k, start: performance.now(), ms, done });
+      if (!ms || !ready || !visible || reduce.matches || document.hidden) {
+        finish();
+        if (ready) draw(reduce.matches ? still : time);
+        return;
+      }
+      start();
+      // Should the frames stall unseen (a page can be shown and still not get
+      // them), it settles anyway, so nothing waits on it for long.
+      setTimeout(() => typing === pending && finish(), ms + 250);
+    });
+
   const frame = (now: number) => {
     raf = 0;
-    if (!visible || document.hidden) return;
+    if (!visible || document.hidden) return finish();
+    if (typing) {
+      const { from, to, start, ms } = typing;
+      const k = Math.min(1, (now - start) / ms);
+      typed = from + (to - from) * k;
+      if (k === 1) {
+        finish();
+        drawn = 0;
+      }
+    }
     const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
     last = now;
     // Tell the page each moment the chart passes (the activity panel follows
@@ -338,17 +445,15 @@ function chart(canvas: HTMLCanvasElement) {
   const stop = () => {
     if (raf) cancelAnimationFrame(raf);
     raf = 0;
+    finish();
   };
-
-  // A moment with work in flight across the chart, for the still frame.
-  const STILL = startOf(flow);
 
   // The layout that loses least of its drawing to the window, the closer in
   // shape breaking a tie: the current one unless another scores better by
   // more than STICK.
   const choose = () => {
     const score = (l: FlowLayout) => cropOf(l, w, h) + 0.02 * Math.abs(Math.log(w / h / l.shape));
-    const best = layouts.reduce((a, b) => (score(b) < score(a) ? b : a));
+    const best = flow.layouts.reduce((a, b) => (score(b) < score(a) ? b : a));
     return score(best) < score(L) - STICK ? best : L;
   };
 
@@ -389,7 +494,7 @@ function chart(canvas: HTMLCanvasElement) {
 
     if (!ready) return;
     layer();
-    draw(reduce.matches ? STILL : time);
+    draw(reduce.matches ? still : time);
   };
 
   resize();
@@ -398,33 +503,105 @@ function chart(canvas: HTMLCanvasElement) {
     document.fonts.load(`16px ${FAMILY}`, "─AB"),
     document.fonts.load(`700 16px ${FAMILY}`, "AB"),
   ]).then(() => {
+    if (signal.aborted) return;
     ready = true;
-    time = STILL;
+    time = still;
     resize();
     start();
+    if (intro) void typeTo(1, TYPE_IN);
   });
 
-  new ResizeObserver(resize).observe(parent);
+  const resizing = new ResizeObserver(resize);
+  resizing.observe(parent);
 
-  new IntersectionObserver(
+  const showing = new IntersectionObserver(
     ([entry]) => {
       visible = entry.isIntersecting;
       if (visible) start();
       else stop();
     },
     { rootMargin: "10% 0px" },
-  ).observe(canvas);
+  );
+  showing.observe(canvas);
 
-  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
-
-  reduce.addEventListener("change", () => {
-    if (reduce.matches) {
-      stop();
-      draw(STILL);
-    } else {
-      start();
-    }
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()), {
+    signal,
   });
+
+  reduce.addEventListener(
+    "change",
+    () => {
+      if (reduce.matches) {
+        stop();
+        draw(still);
+      } else {
+        start();
+      }
+    },
+    { signal },
+  );
+
+  signal.addEventListener("abort", () => {
+    stop();
+    resizing.disconnect();
+    showing.disconnect();
+  });
+
+  return {
+    get name() {
+      return name;
+    },
+    show(next) {
+      if (!isChart(next)) return;
+      if (next !== name) {
+        load(next);
+        typed = 0;
+        resize();
+      }
+      if (typed < 1) void typeTo(1, TYPE_IN);
+    },
+    typeOut: () => typeTo(0, TYPE_OUT),
+  };
 }
 
-document.querySelectorAll<HTMLCanvasElement>("canvas[data-flowchart]").forEach(chart);
+const charts = new WeakMap<HTMLCanvasElement, Chart>();
+
+// The page's backdrop (Base.astro), which the router keeps from page to page,
+// and its chart with it: it lives as long as the window does.
+const BACKDROP = '[data-astro-transition-persist="backdrop"] canvas[data-flowchart]';
+const forever = new AbortController().signal;
+
+onPage((signal) => {
+  for (const canvas of document.querySelectorAll<HTMLCanvasElement>("canvas[data-flowchart]")) {
+    const kept = charts.get(canvas);
+    if (kept) {
+      kept.show(canvas.dataset.chart);
+      continue;
+    }
+    const backdrop = canvas.matches(BACKDROP);
+    const made = chart(canvas, backdrop ? forever : signal, backdrop);
+    if (made) charts.set(canvas, made);
+  }
+});
+
+// Leaving for a page with another chart, the backdrop types its own out once
+// that page has loaded (links are prefetched as they're hovered, so mostly
+// already), and the page swaps in when it's gone.
+document.addEventListener("astro:before-preparation", (event) => {
+  const fetchPage = event.loader;
+  event.loader = async () => {
+    await fetchPage();
+    const canvas = document.querySelector<HTMLCanvasElement>(BACKDROP);
+    const backdrop = canvas && charts.get(canvas);
+    const next = event.newDocument.querySelector<HTMLCanvasElement>(BACKDROP)?.dataset.chart;
+    if (backdrop && isChart(next) && next !== backdrop.name) await backdrop.typeOut();
+  };
+});
+
+// The backdrop kept is the old page's, so it takes the new page's chart, to
+// type in as the page loads.
+document.addEventListener("astro:before-swap", (event) => {
+  const canvas = document.querySelector<HTMLCanvasElement>(BACKDROP);
+  const next = event.newDocument.querySelector<HTMLCanvasElement>(BACKDROP)?.dataset.chart;
+  if (canvas && next) canvas.dataset.chart = next;
+});

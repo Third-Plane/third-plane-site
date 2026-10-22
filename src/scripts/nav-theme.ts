@@ -10,9 +10,12 @@
 // page the last section's edge may stop while its copy covers the nav, so
 // there it switches it and puts the copy away (data-settled).
 
-const pinnedNav = document.querySelector<HTMLElement>("[data-nav]");
+import { onPage } from "./page";
 
-if (pinnedNav) {
+onPage((signal) => {
+  const pinnedNav = document.querySelector<HTMLElement>("[data-nav]");
+  if (!pinnedNav) return;
+
   const own = pinnedNav.dataset.theme;
   const sections = [...document.querySelectorAll<HTMLElement>("[data-section]")];
   // The sections whose copy draws their edge through the nav. Read before
@@ -57,7 +60,9 @@ if (pinnedNav) {
 
   window.addEventListener("scroll", () => (frame ||= requestAnimationFrame(update)), {
     passive: true,
+    signal,
   });
-  window.addEventListener("resize", measure);
+  window.addEventListener("resize", measure, { signal });
+  signal.addEventListener("abort", () => cancelAnimationFrame(frame));
   measure();
-}
+});
