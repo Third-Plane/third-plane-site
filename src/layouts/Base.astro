@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../tailwind.css";
 import type { CtaCopy } from "../components/Cta";
 import { Flowchart, type ChartName } from "../components/Flowchart";
@@ -54,6 +55,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
 
     <title>{full}</title>
     <meta name="description" content={description} />
+    <ClientRouter />
     {noindex && <meta name="robots" content="noindex" />}
     {!noindex && <link rel="canonical" href={canonical} />}
     {jsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, "\\u003c")} />)}
@@ -80,8 +82,15 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
          the chart, so the hero's theme holds for it, and it is as
          tall as the largest window, so a phone's toolbar coming and going
          doesn't resize it. A page with a ledger must pass the chart the ledger
-         follows (see Ledger). */}
-    <div class="bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh" data-theme="hero" aria-hidden="true">
+         follows (see Ledger). It is kept from page to page (transition:persist),
+         running on, and types its chart out and the next page's in where the
+         two differ (see scripts/flowchart.ts). */}
+    <div
+      class="bg-hero pointer-events-none fixed inset-x-0 top-0 -z-1 h-lvh"
+      data-theme="hero"
+      aria-hidden="true"
+      transition:persist="backdrop"
+    >
       <Flowchart chart={chart} />
     </div>
     {/* The nav, then the page: its hero, then its sections. On a page with no

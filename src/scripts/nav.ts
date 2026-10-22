@@ -1,9 +1,12 @@
 // The header: hover/click dropdowns on desktop and a drawer on narrow screens. The markup is static (Header.tsx);
 // this sets `data-open` and `aria-expanded` on it.
 
-const nav = document.querySelector<HTMLElement>("[data-nav]");
+import { onPage } from "./page";
 
-if (nav) {
+onPage((signal) => {
+  const nav = document.querySelector<HTMLElement>("[data-nav]");
+  if (!nav) return;
+
   const toggle = nav.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
   const menus = [...nav.querySelectorAll<HTMLElement>("[data-menu]")];
   const links = nav.querySelector<HTMLElement>("[data-nav-links]")!;
@@ -54,24 +57,36 @@ if (nav) {
       closeAll();
   });
 
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeAll();
-  });
+  window.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key === "Escape") closeAll();
+    },
+    { signal },
+  );
 
-  window.addEventListener("pointerdown", (event) => {
-    if (openMenu && !links.contains(event.target as Node)) {
-      openMenu = null;
-      render();
-    }
-  });
+  window.addEventListener(
+    "pointerdown",
+    (event) => {
+      if (openMenu && !links.contains(event.target as Node)) {
+        openMenu = null;
+        render();
+      }
+    },
+    { signal },
+  );
 
-  window.addEventListener("resize", () => {
-    // The toggle is only displayed where the drawer is (see Header.tsx), so once
-    // it is gone there is no drawer to leave open. Asking the stylesheet keeps
-    // the breakpoint in one place.
-    if (drawerOpen && getComputedStyle(toggle).display === "none") {
-      drawerOpen = false;
-      render();
-    }
-  });
-}
+  window.addEventListener(
+    "resize",
+    () => {
+      // The toggle is only displayed where the drawer is (see Header.tsx), so once
+      // it is gone there is no drawer to leave open. Asking the stylesheet keeps
+      // the breakpoint in one place.
+      if (drawerOpen && getComputedStyle(toggle).display === "none") {
+        drawerOpen = false;
+        render();
+      }
+    },
+    { signal },
+  );
+});

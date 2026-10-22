@@ -10,31 +10,39 @@
 // moments pass, so the list holds still with it.
 
 import { phrase, type LedgerCopy, type Note } from "./flowchart/feed";
+import { onPage } from "./page";
 
 const VISIBLE = 5;
 const formatTime = (value: number) => new Date(value).toTimeString().slice(0, 5);
 
-for (const ledger of document.querySelectorAll<HTMLElement>("[data-ledger]")) {
-  const copy: LedgerCopy = JSON.parse(ledger.dataset.copy ?? "{}");
-  const list = ledger.querySelector("[data-rows]");
-  const template = list?.firstElementChild;
-  if (!list || !template || !copy.events) continue;
+onPage((signal) => {
+  for (const ledger of document.querySelectorAll<HTMLElement>("[data-ledger]")) {
+    const copy: LedgerCopy = JSON.parse(ledger.dataset.copy ?? "{}");
+    const list = ledger.querySelector("[data-rows]");
+    const template = list?.firstElementChild;
+    if (!list || !template || !copy.events) continue;
 
-  const now = Date.now();
-  list.querySelectorAll("[data-time]").forEach((el, i) => {
-    el.textContent = formatTime(now - (VISIBLE - 1 - i) * 47_000);
-  });
+    const now = Date.now();
+    list.querySelectorAll("[data-time]").forEach((el, i) => {
+      el.textContent = formatTime(now - (VISIBLE - 1 - i) * 47_000);
+    });
 
-  // A page has one chart; its events bubble up from the canvas.
-  document.addEventListener("flowchart:note", (event) => {
-    const row = phrase((event as CustomEvent<Note>).detail, copy);
-    if (!row) return;
-    const item = template.cloneNode(true) as HTMLElement;
-    item.dataset.status = row.status;
-    item.querySelector("[data-time]")!.textContent = formatTime(Date.now());
-    item.querySelector("[data-task]")!.textContent = row.task;
+    // A page has one chart behind it (the backdrop's, which goes from page to
+    // page with it); its events bubble up from the canvas.
+    document.addEventListener(
+      "flowchart:note",
+      (event) => {
+        const row = phrase((event as CustomEvent<Note>).detail, copy);
+        if (!row) return;
+        const item = template.cloneNode(true) as HTMLElement;
+        item.dataset.status = row.status;
+        item.querySelector("[data-time]")!.textContent = formatTime(Date.now());
+        item.querySelector("[data-task]")!.textContent = row.task;
 
-    list.firstElementChild?.remove();
-    list.append(item);
-  });
-}
+        list.firstElementChild?.remove();
+        list.append(item);
+      },
+      { signal },
+    );
+  }
+});
