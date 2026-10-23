@@ -8,10 +8,6 @@ const COLUMNS = {
   4: "sm:grid-cols-2 lg:grid-cols-4",
 } as const;
 
-// A grid of GridItems, ruled off from each other. Each item draws a rule on its
-// right and its foot, and the grid clips its own right and foot by a pixel, so
-// the rules show only between items, at any number of columns. The clip cuts
-// off anything else drawn outside the grid too.
 export function Grid({
   columns = 2,
   className,
@@ -34,10 +30,6 @@ export function Grid({
   );
 }
 
-// An item of a Grid: open text between its rules. It spans one grid row per
-// part it renders (an illustration, a title, a body) as a subgrid, so the same
-// part lines up across a row of items even when one title wraps. Its gap-y is
-// its own, between its parts.
 export function GridItem({ children }: { children: ReactNode }) {
   return (
     <article
