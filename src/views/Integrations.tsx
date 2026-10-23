@@ -7,7 +7,7 @@ import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { AppLink, Button } from "../components/Ui";
-import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, ItemBody, ItemTitle, GridItem } from "../components/Grid";
 
 // A mock screen for each system, in the order of systems.items. The fifth item,
 // carrier channels, isn't shown here: CarrierChannels below covers it.
@@ -67,10 +67,10 @@ export function Integrations() {
         <SectionContent className="p-0">
           <Grid>
             {page.how.steps.map((item) => (
-              <Point key={item.title}>
+              <GridItem key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
                 <ItemBody>{item.body}</ItemBody>
-              </Point>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>

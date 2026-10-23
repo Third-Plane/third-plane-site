@@ -1,5 +1,5 @@
 import { appliedEpicPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, ItemBody, ItemTitle, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { PageHero } from "../components/Hero";
 
@@ -16,9 +16,9 @@ export function AppliedEpic() {
         <SectionContent className="p-0">
           <Grid columns={3}>
             {page.who.items.map((item) => (
-              <Point key={item.title}>
+              <GridItem key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
-              </Point>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>
@@ -31,10 +31,10 @@ export function AppliedEpic() {
         <SectionContent className="p-0">
           <Grid columns={3}>
             {page.work.items.map((item) => (
-              <Point key={item.title}>
+              <GridItem key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
                 <ItemBody>{item.body}</ItemBody>
-              </Point>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>
@@ -48,10 +48,10 @@ export function AppliedEpic() {
           <SectionContent className="p-0">
             <Grid>
               {page.meaning.items.map((item) => (
-                <Point key={item.title}>
+                <GridItem key={item.title}>
                   <ItemTitle>{item.title}</ItemTitle>
                   <ItemBody>{item.body}</ItemBody>
-                </Point>
+                </GridItem>
               ))}
             </Grid>
           </SectionContent>

@@ -1,5 +1,5 @@
 import { companyPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, ItemBody, ItemTitle, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 import { cn } from "../lib/style";
@@ -46,10 +46,10 @@ export function Company() {
         <SectionContent className="p-0">
           <Grid>
             {page.why.items.map((item) => (
-              <Point key={item.title}>
+              <GridItem key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
                 <ItemBody>{item.body}</ItemBody>
-              </Point>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>
@@ -105,10 +105,10 @@ export function Company() {
         <SectionContent className="p-0">
           <Grid>
             {page.principles.items.map((item) => (
-              <Point key={item.title}>
+              <GridItem key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
                 <ItemBody>{item.body}</ItemBody>
-              </Point>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>

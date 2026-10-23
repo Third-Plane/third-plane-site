@@ -8,7 +8,7 @@ const COLUMNS = {
   4: "sm:grid-cols-2 lg:grid-cols-4",
 } as const;
 
-// A grid of Points, ruled off from each other. Each item draws a rule on its
+// A grid of GridItems, ruled off from each other. Each item draws a rule on its
 // right and its foot, and the grid clips its own right and foot by a pixel, so
 // the rules show only between items, at any number of columns. The clip cuts
 // off anything else drawn outside the grid too.
@@ -38,7 +38,7 @@ export function Grid({
 // part it renders (an illustration, a title, a body) as a subgrid, so the same
 // part lines up across a row of items even when one title wraps. Its gap-y is
 // its own, between its parts.
-export function Point({ children }: { children: ReactNode }) {
+export function GridItem({ children }: { children: ReactNode }) {
   return (
     <article
       className="row-span-(--parts) grid grid-rows-subgrid gap-2 px-(--gutter) py-8"

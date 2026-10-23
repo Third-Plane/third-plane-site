@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ItemBody, ItemTitle } from "./Grid";
+import { ItemBody } from "./Grid";
 import { AppLink, Arrow } from "./Ui";
 import { cn } from "../lib/style";
 
@@ -147,15 +147,15 @@ function CycleCell({
             aria-pressed={active}
             aria-label={item.title}
           />
-          <ItemTitle className="text-lg">
+          <h4>
             <AppLink className="group/link hover:text-accent" href={item.href}>
               {item.title}
               <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover/link:translate-x-0.75" />
             </AppLink>
-          </ItemTitle>
+          </h4>
         </>
       ) : (
-        <ItemTitle className="text-lg">
+        <h4>
           <button
             className="cursor-pointer bg-transparent p-0 text-left tracking-[inherit] text-inherit [border:0] [font:inherit] after:absolute after:inset-0"
             type="button"
@@ -163,7 +163,7 @@ function CycleCell({
           >
             {item.title}
           </button>
-        </ItemTitle>
+        </h4>
       )}
       <ItemBody className="text-sm">{item.body}</ItemBody>
     </div>
