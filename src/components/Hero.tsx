@@ -15,7 +15,7 @@ export function SplitHero({
   children: ReactNode;
 }) {
   return (
-    <Section theme="hero" id="top" className="px-(--gutter)">
+    <Section theme="hero" id="top" className="px-(--gutter) py-[calc(var(--spacing-bar)*2)]">
       <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
         <div className="space-y-4">
           <h1>{title}</h1>

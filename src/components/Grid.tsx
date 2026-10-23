@@ -26,7 +26,7 @@ export function Grid({
   return (
     <div
       className={cn(
-        "grid [clip-path:inset(0_1px_1px_0)] *:border-r *:border-b *:border-accent/10",
+        "grid [clip-path:inset(0_1px_1px_0)] *:border-r *:border-b *:border-accent/5",
         COLUMNS[columns],
         className,
       )}
@@ -57,32 +57,9 @@ function Item({ href, className, style, children, ...rest }: ItemProps) {
   return href ? <AppLink href={href} {...props} /> : <article {...props} />;
 }
 
-// A raised tile.
-export function Card({ className, ...props }: ItemProps) {
-  return (
-    <Item
-      className={cn(
-        "gap-2 rounded-2xl bg-card p-6 shadow-lg transition duration-250 hover:-translate-y-0.5 hover:shadow-2xl",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
-// A flat, bordered tile.
-export function OutlineCard({ className, ...props }: ItemProps) {
-  return (
-    <Item
-      className={cn("gap-2 rounded-2xl border border-border bg-card p-6", className)}
-      {...props}
-    />
-  );
-}
-
 // Open text, between the grid's rules.
 export function Point({ className, ...props }: ItemProps) {
-  return <Item className={cn("gap-2 p-(--gutter)", className)} {...props} />;
+  return <Item className={cn("gap-2 px-(--gutter) py-8", className)} {...props} />;
 }
 
 export function ItemTitle({

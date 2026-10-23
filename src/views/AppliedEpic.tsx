@@ -8,7 +8,7 @@ export function AppliedEpic() {
     <>
       <PageHero title={page.title} lead={page.lead} />
 
-      <Section theme="white" id="who" className="pb-0">
+      <Section theme="white" id="who">
         <SectionHeader>
           <h2>{page.who.title}</h2>
           <h3 className="lead">{page.who.body}</h3>
@@ -24,7 +24,7 @@ export function AppliedEpic() {
         </SectionContent>
       </Section>
 
-      <Section theme="blend" id="work" className="pb-0">
+      <Section theme="blend" id="work">
         <SectionHeader>
           <h2>{page.work.title}</h2>
         </SectionHeader>
@@ -41,7 +41,7 @@ export function AppliedEpic() {
       </Section>
 
       {page.certified && (
-        <Section theme="white" id="meaning" className="pb-0">
+        <Section theme="white" id="meaning">
           <SectionHeader>
             <h2>{page.meaning.title}</h2>
           </SectionHeader>

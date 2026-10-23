@@ -43,7 +43,7 @@ export function PlacementDesk() {
         </SectionContent>
       </Section>
 
-      <Section theme="blend" id="human" className="pb-0">
+      <Section theme="blend" id="human">
         <SectionHeader>
           <h2>{placementDesk.human.title}</h2>
           <h3 className="lead">{placementDesk.human.body}</h3>
