@@ -33,7 +33,7 @@ export function ScreenCycle({
 }) {
   return (
     <div className="grid gap-x-(--gutter) gap-y-10 lg:grid-cols-2" data-cycle>
-      <div className="grid lg:relative lg:col-start-2 lg:row-start-1">
+      <div className="grid aspect-video lg:relative lg:col-start-2 lg:row-start-1">
         {items.map((item, i) => (
           <div
             className="col-start-1 row-start-1 transition-opacity duration-500 not-data-active:opacity-0 lg:absolute lg:inset-0"

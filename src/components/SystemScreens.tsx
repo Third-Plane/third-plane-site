@@ -353,7 +353,7 @@ function Inbox() {
               className={cn("border-b border-deep/5 py-2 pr-4 pl-3", i === 0 && "bg-lavender/60")}
               key={message.subject}
             >
-              <p className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5">
                 <i
                   className={cn(
                     "size-1.5 shrink-0 rounded-full",
@@ -365,35 +365,35 @@ function Inbox() {
                 </span>
                 {message.via ? <Pill>{message.via}</Pill> : null}
                 <span className="ml-auto shrink-0 text-deep/50 tabular-nums">{message.time}</span>
-              </p>
-              <p className="truncate pl-3">{message.subject}</p>
-              <p className="truncate pl-3 text-deep/50">{message.preview}</p>
+              </div>
+              <div className="truncate pl-3">{message.subject}</div>
+              <div className="truncate pl-3 text-deep/50">{message.preview}</div>
             </li>
           ))}
         </ul>
         <div className="hidden min-w-0 flex-1 px-4 py-3 @lg:block">
-          <p className="truncate font-medium">{open.subject}</p>
+          <div className="truncate font-medium">{open.subject}</div>
           {THREAD.map((message) => (
             <div className="mt-3 border-t border-deep/5 pt-3" key={message.time}>
-              <p className="flex justify-between gap-3 text-deep/50">
+              <div className="flex justify-between gap-3 text-deep/50">
                 <span className="truncate">
                   {message.from} to {message.to}
                 </span>
                 <span className="shrink-0 tabular-nums">{message.time}</span>
-              </p>
+              </div>
               <div className="mt-2.5 grid gap-2">
                 {message.lines.map((width, i) => (
                   <i className={cn("h-1.5 rounded-full bg-deep/10", width)} key={i} />
                 ))}
               </div>
               {message.files.length ? (
-                <p className="mt-3 flex gap-1.5">
+                <div className="mt-3 flex gap-1.5">
                   {message.files.map((file) => (
                     <span className="rounded-md border border-deep/10 px-1.5 py-0.5" key={file}>
                       {file}
                     </span>
                   ))}
-                </p>
+                </div>
               ) : null}
             </div>
           ))}
@@ -457,11 +457,11 @@ function Data() {
   return (
     <>
       <Toolbar title="Desk activity" view="Q3 2026" chip={<Pill>Synced 9:00</Pill>} />
-      <p className="flex gap-3 border-b border-deep/10 px-3 py-1.5 font-mono text-[0.625rem]">
+      <div className="flex gap-3 border-b border-deep/10 px-3 py-1.5 font-mono text-[0.625rem]">
         <span className="w-6 text-deep/50">E2</span>
         <span className="text-deep/40 italic">fx</span>
         <span className="truncate">=NETWORKDAYS(H2, I2)</span>
-      </p>
+      </div>
       <div className="tabular-nums">
         <div className="flex border-b border-deep/10 bg-cream/60 text-center text-deep/50">
           <span className="w-7 shrink-0 border-r border-deep/10 py-1" />

@@ -291,18 +291,18 @@ function Results({ step }: { step: number }) {
     <>
       <Toolbar title="Inbox" view="Producer" chip={<Pill alert>New</Pill>} />
       <div className="border-b border-deep/10 px-4 py-3">
-        <p className="flex justify-between gap-3 text-deep/50">
+        <div className="flex justify-between gap-3 text-deep/50">
           <span className="truncate">Placement Desk</span>
           <span className="shrink-0">9:42 AM</span>
-        </p>
-        <p className="mt-1 truncate font-medium">Results: Sample Bakery LLC, BOP</p>
-        <p className="mt-0.5 truncate text-deep/50">
+        </div>
+        <div className="mt-1 truncate font-medium">Results: Sample Bakery LLC, BOP</div>
+        <div className="mt-0.5 truncate text-deep/50">
           2 quotes, 1 indication and 1 declination, record attached.
-        </p>
-        <p className="mt-2.5 flex gap-1.5">
+        </div>
+        <div className="mt-2.5 flex gap-1.5">
           <span className="rounded-md border border-deep/10 px-1.5 py-0.5">Quotes.pdf</span>
           <span className="rounded-md border border-deep/10 px-1.5 py-0.5">Work record.pdf</span>
-        </p>
+        </div>
       </div>
       <Responses />
     </>

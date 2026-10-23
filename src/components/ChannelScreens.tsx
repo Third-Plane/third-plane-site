@@ -135,14 +135,14 @@ function Portal() {
           rows={QUESTIONS.slice(Math.max(0, current - SCROLLED_PAST))}
         />
       </div>
-      <p className="flex items-center justify-between gap-3 border-t border-deep/10 px-4 py-2.5">
+      <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-4 py-2.5">
         <span className="text-deep/50">
           {answered} of {QUESTIONS.length} answered
         </span>
         <span className="rounded-md bg-deep/15 px-2.5 py-1 font-medium text-deep/50">
           Continue to quote
         </span>
-      </p>
+      </div>
     </>
   );
 }
@@ -228,15 +228,15 @@ function Api() {
           />
         </div>
         <div className="hidden min-w-0 flex-1 @lg:block">
-          <p className="flex items-center justify-between gap-3 border-b border-deep/10 bg-cream/60 px-4 py-1.5 text-deep/50">
+          <div className="flex items-center justify-between gap-3 border-b border-deep/10 bg-cream/60 px-4 py-1.5 text-deep/50">
             <span className={mono}>Q-7731</span>
             <span>Parsed</span>
-          </p>
+          </div>
           {QUOTE.map((row) => (
-            <p className="flex gap-3 border-b border-deep/5 px-4 py-2" key={row.field}>
+            <div className="flex gap-3 border-b border-deep/5 px-4 py-2" key={row.field}>
               <span className="min-w-0 flex-1 truncate text-deep/50">{row.field}</span>
               <span className="shrink-0 font-medium tabular-nums">{row.value}</span>
-            </p>
+            </div>
           ))}
         </div>
       </div>
@@ -315,7 +315,7 @@ function Mail() {
             )}
             key={message.time}
           >
-            <p className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <span className="truncate font-medium">
                 {message.desk ? "Placement Desk" : "M. Chen, Underwriting"}
               </span>
@@ -326,16 +326,16 @@ function Mail() {
                   : "desk@sampleagency.example"}
               </span>
               <span className="ml-auto shrink-0 text-deep/50 tabular-nums">{message.time}</span>
-            </p>
-            <p className="mt-0.5 truncate text-deep/70">{message.text}</p>
+            </div>
+            <div className="mt-0.5 truncate text-deep/70">{message.text}</div>
             {message.files ? (
-              <p className="mt-1.5 flex gap-1.5">
+              <div className="mt-1.5 flex gap-1.5">
                 {message.files.map((file) => (
                   <span className="rounded-md border border-deep/10 px-1.5 py-0.5" key={file}>
                     {file}
                   </span>
                 ))}
-              </p>
+              </div>
             ) : null}
           </li>
         ))}

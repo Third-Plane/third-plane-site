@@ -98,7 +98,7 @@ function Scope() {
   return (
     <>
       <Toolbar title="Placement Desk" view="Settings › Authority" chip={<Pill>Scoped</Pill>} />
-      <p className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2">
+      <div className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2">
         <span className="mr-1 shrink-0 text-deep/50">Lines</span>
         {["BOP", "GL", "WC", "Auto", "Property"].map((line, i) => (
           <span className={cn(i > 2 && "hidden @sm:inline")} key={line}>
@@ -106,7 +106,7 @@ function Scope() {
           </span>
         ))}
         <span className="ml-auto hidden shrink-0 text-deep/50 @md:inline">20 markets</span>
-      </p>
+      </div>
       <Table
         columns={[
           { label: "Action", cell: (row) => <span className="truncate">{row.action}</span> },
@@ -151,13 +151,13 @@ function Access() {
   return (
     <>
       <Toolbar title="Access" view="Connected systems" chip={<Pill alert>1 removed</Pill>} />
-      <p className="flex items-center gap-1.5 border-b border-deep/10 bg-lavender/60 px-4 py-2">
+      <div className="flex items-center gap-1.5 border-b border-deep/10 bg-lavender/60 px-4 py-2">
         <Avatar initials="KT" />
         <span className="truncate">
           <span className="font-medium">K. Tran</span> removed Shared drive › Finance.{" "}
           <span className="text-deep/50">4 open submissions unaffected.</span>
         </span>
-      </p>
+      </div>
       <Table
         columns={[
           {
@@ -292,12 +292,12 @@ function Supervisor() {
         <i className="grid size-7 shrink-0 place-items-center rounded-full bg-pink text-[0.625rem] font-medium text-purple not-italic">
           KT
         </i>
-        <p className="min-w-0">
+        <div className="min-w-0">
           <span className="block truncate font-medium">K. Tran</span>
           <span className="block truncate text-deep/50">
             Supervisor · owns this desk’s outcomes
           </span>
-        </p>
+        </div>
       </div>
       <Table
         columns={[
@@ -408,10 +408,10 @@ function Configured() {
   return (
     <>
       <Toolbar title="Placement Desk" view="Sample Agency" chip={<Pill>Live</Pill>} />
-      <p className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2 text-deep/50">
+      <div className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2 text-deep/50">
         <Avatar initials="PD" desk />
         <span className="truncate">Configured for your agency · Live since 09/15</span>
-      </p>
+      </div>
       <Table
         columns={[
           {
@@ -635,7 +635,7 @@ function Context() {
   return (
     <>
       <Toolbar title="Sample Bakery LLC" view="Work record · BOP" chip={<Pill>Complete</Pill>} />
-      <p className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
+      <div className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
         {["5 inputs", "9 actions", "4 outcomes"].map((item, i) => (
           <span
             className={cn("inline-flex items-center gap-1", i > 1 && "hidden @xs:inline-flex")}
@@ -648,7 +648,7 @@ function Context() {
         <span className="ml-auto hidden shrink-0 text-deep/50 @md:inline">
           Kept with the account
         </span>
-      </p>
+      </div>
       <Table
         columns={[
           { label: "Entry", cell: (row) => <span className="truncate">{row.entry}</span> },
@@ -703,7 +703,7 @@ function Performance() {
       <Toolbar title="Desk performance" view="Q3 2026" chip={<Pill alert>2 to review</Pill>} />
       <div className="grid grid-cols-2 border-b border-deep/10 @md:grid-cols-4">
         {STATS.map((stat, i) => (
-          <p
+          <div
             className={cn(
               "border-deep/10 px-4 py-2.5",
               i % 2 === 1 && "border-l",
@@ -715,7 +715,7 @@ function Performance() {
               {stat.value}
             </span>
             <span className="block truncate text-deep/50">{stat.label}</span>
-          </p>
+          </div>
         ))}
       </div>
       <Table
@@ -768,7 +768,7 @@ function Isolation() {
   return (
     <>
       <Toolbar title="Data" view="Sample Agency" chip={<Pill>Isolated</Pill>} />
-      <p className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
+      <div className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
         {["Own tenant", "Own keys", "No shared indexes"].map((item, i) => (
           <span
             className={cn("inline-flex items-center gap-1", i > 1 && "hidden @sm:inline-flex")}
@@ -778,7 +778,7 @@ function Isolation() {
             {item}
           </span>
         ))}
-      </p>
+      </div>
       <Table
         columns={[
           {
@@ -833,14 +833,14 @@ function Sso() {
   return (
     <>
       <Toolbar title="Access" view="People and roles" chip={<Pill>SSO enforced</Pill>} />
-      <p className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2">
+      <div className="flex items-center gap-1.5 border-b border-deep/10 px-4 py-2">
         <span className="mr-1 shrink-0 text-deep/50">Sign-in</span>
         <Pill>Your identity provider</Pill>
         <span className="hidden @xs:inline">
           <Pill>MFA required</Pill>
         </span>
         <span className="ml-auto hidden shrink-0 text-deep/50 @md:inline">No desk passwords</span>
-      </p>
+      </div>
       <Table
         columns={[
           {
@@ -899,7 +899,7 @@ function Privacy() {
   return (
     <>
       <Toolbar title="Content" view="Where it stays" chip={<Pill>0 outside</Pill>} />
-      <p className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
+      <div className="flex items-center gap-3 border-b border-deep/10 px-4 py-2 text-deep/60">
         <span className="shrink-0 text-deep/50">Models</span>
         {["No training on your data", "No retention"].map((item, i) => (
           <span
@@ -910,7 +910,7 @@ function Privacy() {
             {item}
           </span>
         ))}
-      </p>
+      </div>
       <Table
         columns={[
           { label: "Content", cell: (row) => <span className="truncate">{row.content}</span> },

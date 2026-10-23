@@ -179,13 +179,13 @@ function Revenue() {
       <Toolbar title="Revenue" view="12-month projection" chip={<Pill>+0.4% YoY</Pill>} />
       <div className="flex min-h-0 flex-1 flex-col px-4 pt-3 pb-3">
         <div className="flex items-baseline justify-between gap-3">
-          <p className="flex items-baseline gap-2">
+          <div className="flex items-baseline gap-2">
             <span className="font-heading text-xl font-medium tracking-tight tabular-nums">
               $4.21M
             </span>
             <span className="text-deep/50">projected</span>
-          </p>
-          <p className="hidden items-center gap-3 text-deep/50 @sm:flex">
+          </div>
+          <div className="hidden items-center gap-3 text-deep/50 @sm:flex">
             <span className="inline-flex items-center gap-1.5">
               <i className="h-0.5 w-3 rounded-full bg-purple" />
               Projected
@@ -194,7 +194,7 @@ function Revenue() {
               <i className="h-0.5 w-3 rounded-full bg-deep/25" />
               Growth target
             </span>
-          </p>
+          </div>
         </div>
         <svg
           className="mt-2 min-h-0 w-full flex-1 overflow-visible"
