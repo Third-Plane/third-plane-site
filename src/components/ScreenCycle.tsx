@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { ItemBody, ItemTitle } from "./Grid";
 import { AppLink, Arrow } from "./Ui";
 import { cn } from "../lib/style";
-import { SectionHeader } from "./Section";
 
 // With an `href`, the item's title links there.
 export type CycleItem = { title: string; body: ReactNode; screen: ReactNode; href?: string };
@@ -18,17 +17,9 @@ export type CycleStage = { title: string; items: CycleItem[] };
 //
 // The whole cell is its button's to click; a link in it (a linked title, or
 // one in a body) sits above it.
-export function ScreenCycle({
-  title,
-  body,
-  items,
-}: {
-  title: string;
-  body?: string;
-  items: CycleItem[];
-}) {
+export function ScreenCycle({ body, items }: { body?: string; items: CycleItem[] }) {
   return (
-    <CycleLayout title={title} body={body} items={items}>
+    <CycleLayout body={body} items={items}>
       <div className="grid gap-8 sm:grid-cols-2">
         {items.map((item, i) => (
           <CycleCell item={item} active={i === 0} key={item.title} />
@@ -49,18 +40,16 @@ export function ScreenCycle({
 // Each item shows for `duration` seconds (6 in a ScreenCycle), since a full
 // round of every stage's items is a long one.
 export function StagedScreenCycle({
-  title,
   body,
   stages,
   duration,
 }: {
-  title: string;
   body?: string;
   stages: CycleStage[];
   duration?: number;
 }) {
   return (
-    <CycleLayout title={title} body={body} items={stages.flatMap((stage) => stage.items)}>
+    <CycleLayout body={body} items={stages.flatMap((stage) => stage.items)}>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-4">
         {stages.map((stage, i) => (
           <div className="contents" key={stage.title}>
@@ -110,22 +99,17 @@ export function StagedScreenCycle({
 // From lg up the screens are out of flow, filling their column, so the
 // column is as tall as the heading and items beside it and no taller.
 function CycleLayout({
-  title,
   body,
   items,
   children,
 }: {
-  title: string;
   body?: string;
   items: CycleItem[];
   children: ReactNode;
 }) {
   return (
     <div className="grid gap-x-(--gutter) gap-y-10 lg:grid-cols-2" data-cycle>
-      <SectionHeader>
-        <h2>{title}</h2>
-        {body && <h3 className="lead">{body}</h3>}
-      </SectionHeader>
+      {body && <h3 className="lead">{body}</h3>}
       <div className="grid lg:relative lg:col-start-2 lg:row-span-2 lg:row-start-1">
         {items.map((item, i) => (
           <div

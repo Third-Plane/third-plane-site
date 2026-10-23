@@ -8,12 +8,12 @@ export function AppliedEpic() {
     <>
       <PageHero title={page.title} lead={page.lead} />
 
-      <Section theme="white" id="who">
-        <SectionContent>
-          <SectionHeader>
-            <h2>{page.who.title}</h2>
-            <h3 className="lead">{page.who.body}</h3>
-          </SectionHeader>
+      <Section theme="white" id="who" className="pb-0">
+        <SectionHeader>
+          <h2>{page.who.title}</h2>
+          <h3 className="lead">{page.who.body}</h3>
+        </SectionHeader>
+        <SectionContent className="p-0">
           <Grid columns={3}>
             {page.who.items.map((item) => (
               <Point key={item.title}>
@@ -24,11 +24,11 @@ export function AppliedEpic() {
         </SectionContent>
       </Section>
 
-      <Section theme="blend" id="work">
-        <SectionContent>
-          <SectionHeader>
-            <h2>{page.work.title}</h2>
-          </SectionHeader>
+      <Section theme="blend" id="work" className="pb-0">
+        <SectionHeader>
+          <h2>{page.work.title}</h2>
+        </SectionHeader>
+        <SectionContent className="p-0">
           <Grid columns={3}>
             {page.work.items.map((item) => (
               <Point key={item.title}>
@@ -41,11 +41,11 @@ export function AppliedEpic() {
       </Section>
 
       {page.certified && (
-        <Section theme="white" id="meaning">
-          <SectionContent>
-            <SectionHeader>
-              <h2>{page.meaning.title}</h2>
-            </SectionHeader>
+        <Section theme="white" id="meaning" className="pb-0">
+          <SectionHeader>
+            <h2>{page.meaning.title}</h2>
+          </SectionHeader>
+          <SectionContent className="p-0">
             <Grid>
               {page.meaning.items.map((item) => (
                 <Point key={item.title}>

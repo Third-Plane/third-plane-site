@@ -178,10 +178,10 @@ h1 {
   @apply text-[clamp(2.5rem,4vw,4rem)]/none tracking-tighter;
 }
 h2 {
-  @apply text-4xl/[1.16667] tracking-tighter;
+  @apply text-[48px]/[48px] tracking-tighter;
 }
 h3 {
-  @apply text-xl/[1.2] tracking-tight;
+  @apply text-[24px]/[24px] tracking-tight;
 }
 .lead {
   @apply max-w-[66ch] font-sans text-xl leading-normal font-medium tracking-normal text-pretty text-accent mix-blend-multiply;

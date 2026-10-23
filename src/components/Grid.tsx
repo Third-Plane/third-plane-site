@@ -9,7 +9,11 @@ const COLUMNS = {
   4: "sm:grid-cols-2 lg:grid-cols-4",
 } as const;
 
-// A grid of items (Card, OutlineCard, Point).
+// A grid of items (Card, OutlineCard, Point), ruled off from each other. Each
+// item draws a rule on its right and its foot, and the grid clips its own right
+// and foot by a pixel, so the rules show only between items, at any number of
+// columns. The clip cuts off anything else drawn outside the grid too (a Card's
+// shadow).
 export function Grid({
   columns = 2,
   className,
@@ -20,7 +24,15 @@ export function Grid({
   children: ReactNode;
 }) {
   return (
-    <div className={cn("grid gap-5 mt-(--gutter)", COLUMNS[columns], className)}>{children}</div>
+    <div
+      className={cn(
+        "grid [clip-path:inset(0_1px_1px_0)] *:border-r *:border-b *:border-accent/10",
+        COLUMNS[columns],
+        className,
+      )}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -68,17 +80,9 @@ export function OutlineCard({ className, ...props }: ItemProps) {
   );
 }
 
-// Open text under a rule.
+// Open text, between the grid's rules.
 export function Point({ className, ...props }: ItemProps) {
-  return (
-    <Item
-      className={cn(
-        "gap-2 border-t border-border pt-6 transition-colors duration-200 hover:border-accent",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <Item className={cn("gap-2 p-(--gutter)", className)} {...props} />;
 }
 
 export function ItemTitle({

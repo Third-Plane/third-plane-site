@@ -1,6 +1,6 @@
 import { desk, placementDesk } from "../data/content";
 import { StagedScreenCycle } from "./ScreenCycle";
-import { Section, SectionContent } from "./Section";
+import { Section, SectionContent, SectionHeader } from "./Section";
 import { StageScreen, type StageName } from "./WorkflowScreens";
 
 // A mock screen for each stage, in the order of placementDesk.work.stages.
@@ -14,10 +14,12 @@ const stageScreens: StageName[] = ["intake", "markets", "results"];
 export function PlacementWorkflowSection({ id }: { id: string }) {
   return (
     <Section theme="white" id={id}>
+      <SectionHeader>
+        <h2>{desk.title}</h2>
+        <h3 className="lead">{desk.body}</h3>
+      </SectionHeader>
       <SectionContent>
         <StagedScreenCycle
-          title={desk.title}
-          body={desk.body}
           duration={5}
           stages={placementDesk.work.stages.map((stage, i) => ({
             title: stage.kicker,

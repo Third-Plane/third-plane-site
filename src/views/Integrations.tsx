@@ -23,9 +23,11 @@ export function Integrations() {
       </SplitHero>
 
       <Section theme="white" id="systems">
+        <SectionHeader>
+          <h2>{page.systems.title}</h2>
+        </SectionHeader>
         <SectionContent>
           <ScreenCycle
-            title={page.systems.title}
             items={page.systems.items.slice(0, 4).map((item, i) => ({
               title: item.title,
               body: (
@@ -59,10 +61,10 @@ export function Integrations() {
       <CarrierChannels />
 
       <Section theme="deep" id="how">
+        <SectionHeader>
+          <h2>{page.how.title}</h2>
+        </SectionHeader>
         <SectionContent>
-          <SectionHeader>
-            <h2>{page.how.title}</h2>
-          </SectionHeader>
           <StepList steps={page.how.steps} />
         </SectionContent>
       </Section>
