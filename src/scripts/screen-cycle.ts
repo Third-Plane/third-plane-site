@@ -9,9 +9,10 @@
 // its bar full and still, until another is clicked. A hover doesn't pause it;
 // a cycle that stops whenever the pointer crosses it seems to stop at random.
 //
-// A staged cycle (StagedScreenCycle) has its cells in groups, a stage each,
-// with a tab for each: the group holding the active cell is the active one,
-// and clicking a tab stops the cycle on its group's first cell.
+// A staged cycle (StagedScreenCycle) has its stages in groups, a ScreenCycle
+// each, with a tab for each, and runs them as one cycle: the group holding the
+// active cell is the active one, and clicking a tab stops the cycle on its
+// group's first cell. The stages' own cycles are left alone.
 //
 // Under reduced motion the bar doesn't animate (it's motion-safe), so nothing
 // ends and the items only change on a click.
@@ -22,7 +23,7 @@ import { onPage } from "./page";
 const IN_VIEW = 0.3;
 
 onPage((signal) => {
-  for (const cycle of document.querySelectorAll<HTMLElement>("[data-cycle]")) {
+  for (const cycle of document.querySelectorAll<HTMLElement>("[data-cycle]:not([data-cycle] *)")) {
     const cells = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-cell]")];
     const screens = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-screen]")];
     const groups = [...cycle.querySelectorAll<HTMLElement>("[data-cycle-group]")];
