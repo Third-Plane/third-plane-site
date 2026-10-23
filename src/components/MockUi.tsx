@@ -26,10 +26,10 @@ export function Frame({ children }: { children: ReactNode }) {
 export function Toolbar({ title, view, chip }: { title: string; view: string; chip: ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-3 border-b border-deep/10 px-4 py-3">
-      <p className="min-w-0 truncate">
+      <div className="min-w-0 truncate">
         <span className="font-heading text-sm font-medium tracking-tight">{title}</span>
         <span className="hidden text-deep/50 @xs:inline"> · {view}</span>
-      </p>
+      </div>
       {chip}
     </div>
   );
