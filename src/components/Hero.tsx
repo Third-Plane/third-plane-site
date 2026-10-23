@@ -38,7 +38,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <Section theme="hero" id="top" className="px-(--gutter)">
+    <Section theme="hero" id="top">
       <SectionHeader>
         <h1>{title}</h1>
         <h3 className="lead">{lead}</h3>
