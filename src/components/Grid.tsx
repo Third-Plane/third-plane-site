@@ -1,6 +1,5 @@
 import { Children, type CSSProperties, type ReactNode } from "react";
 import { cn } from "../lib/style";
-import { AppLink, Arrow } from "./Ui";
 
 // Columns from md for two (four shows two at md), from lg for three.
 const COLUMNS = {
@@ -9,11 +8,10 @@ const COLUMNS = {
   4: "sm:grid-cols-2 lg:grid-cols-4",
 } as const;
 
-// A grid of items (Card, OutlineCard, Point), ruled off from each other. Each
-// item draws a rule on its right and its foot, and the grid clips its own right
-// and foot by a pixel, so the rules show only between items, at any number of
-// columns. The clip cuts off anything else drawn outside the grid too (a Card's
-// shadow).
+// A grid of Points, ruled off from each other. Each item draws a rule on its
+// right and its foot, and the grid clips its own right and foot by a pixel, so
+// the rules show only between items, at any number of columns. The clip cuts
+// off anything else drawn outside the grid too.
 export function Grid({
   columns = 2,
   className,
@@ -36,49 +34,23 @@ export function Grid({
   );
 }
 
-type ItemProps = {
-  href?: string;
-  className?: string;
-  children: ReactNode;
-  style?: CSSProperties;
-};
-
-// An item of a Grid. It spans one grid row per part it renders (an illustration, a
-// title, a body) as a subgrid, so the same part lines up across a row of items
-// even when one title wraps. Its gap-y is its own, between its parts. With an
-// `href` it is a link (give its ItemTitle the `arrow`).
-function Item({ href, className, style, children, ...rest }: ItemProps) {
-  const props = {
-    ...rest,
-    className: cn("grid row-span-(--parts) grid-rows-subgrid", href && "group", className),
-    style: { ...style, "--parts": Children.toArray(children).length } as CSSProperties,
-    children,
-  };
-  return href ? <AppLink href={href} {...props} /> : <article {...props} />;
-}
-
-// Open text, between the grid's rules.
-export function Point({ className, ...props }: ItemProps) {
-  return <Item className={cn("gap-2 px-(--gutter) py-8", className)} {...props} />;
-}
-
-export function ItemTitle({
-  arrow = false,
-  children,
-  className,
-}: {
-  arrow?: boolean;
-  children: ReactNode;
-  className?: string;
-}) {
+// An item of a Grid: open text between its rules. It spans one grid row per
+// part it renders (an illustration, a title, a body) as a subgrid, so the same
+// part lines up across a row of items even when one title wraps. Its gap-y is
+// its own, between its parts.
+export function Point({ children }: { children: ReactNode }) {
   return (
-    <h3 className={className}>
+    <article
+      className="row-span-(--parts) grid grid-rows-subgrid gap-2 px-(--gutter) py-8"
+      style={{ "--parts": Children.toArray(children).length } as CSSProperties}
+    >
       {children}
-      {arrow ? (
-        <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover:translate-x-0.75" />
-      ) : null}
-    </h3>
+    </article>
   );
+}
+
+export function ItemTitle({ children, className }: { children: ReactNode; className?: string }) {
+  return <h3 className={className}>{children}</h3>;
 }
 
 export function ItemBody({ children, className }: { children: ReactNode; className?: string }) {
