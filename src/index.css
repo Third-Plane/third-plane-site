@@ -153,6 +153,9 @@ a {
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 p,
 ul,
 ol {
@@ -164,8 +167,9 @@ ol {
   list-style: none;
 }
 /* The site's heading type, set here rather than on each heading. A section's
-   title is an h2 and an item's an h3, so those are their sizes. A utility on a
-   heading (text-lg, text-white, leading-none...) still wins. */
+   title is an h2, its lead an h3 and an item's title an h4, so those are their
+   sizes. A utility on a heading (text-lg, text-white, leading-none...) still
+   wins. */
 h1,
 h2,
 h3,

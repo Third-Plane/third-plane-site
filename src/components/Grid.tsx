@@ -48,11 +48,3 @@ export function GridItem({ children }: { children: ReactNode }) {
     </article>
   );
 }
-
-export function ItemTitle({ children, className }: { children: ReactNode; className?: string }) {
-  return <h3 className={className}>{children}</h3>;
-}
-
-export function ItemBody({ children, className }: { children: ReactNode; className?: string }) {
-  return <p className={cn("text-base text-pretty text-muted-foreground", className)}>{children}</p>;
-}

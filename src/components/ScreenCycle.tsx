@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { ItemBody } from "./Grid";
 import { AppLink, Arrow } from "./Ui";
 import { cn } from "../lib/style";
 
@@ -165,7 +164,7 @@ function CycleCell({
           </button>
         </h4>
       )}
-      <ItemBody className="text-sm">{item.body}</ItemBody>
+      <p className="text-sm text-muted-foreground">{item.body}</p>
     </div>
   );
 }

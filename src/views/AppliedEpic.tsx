@@ -1,5 +1,5 @@
 import { appliedEpicPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, GridItem } from "../components/Grid";
+import { Grid, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { PageHero } from "../components/Hero";
 
@@ -17,7 +17,7 @@ export function AppliedEpic() {
           <Grid columns={3}>
             {page.who.items.map((item) => (
               <GridItem key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
+                <h4>{item.title}</h4>
               </GridItem>
             ))}
           </Grid>
@@ -32,8 +32,8 @@ export function AppliedEpic() {
           <Grid columns={3}>
             {page.work.items.map((item) => (
               <GridItem key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}
           </Grid>
@@ -49,8 +49,8 @@ export function AppliedEpic() {
             <Grid>
               {page.meaning.items.map((item) => (
                 <GridItem key={item.title}>
-                  <ItemTitle>{item.title}</ItemTitle>
-                  <ItemBody>{item.body}</ItemBody>
+                  <h4>{item.title}</h4>
+                  <p className="text-muted-foreground">{item.body}</p>
                 </GridItem>
               ))}
             </Grid>

@@ -1,5 +1,5 @@
 import { companyPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, GridItem } from "../components/Grid";
+import { Grid, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { Arrow, AppLink } from "../components/Ui";
 import { cn } from "../lib/style";
@@ -47,8 +47,8 @@ export function Company() {
           <Grid>
             {page.why.items.map((item) => (
               <GridItem key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}
           </Grid>
@@ -106,8 +106,8 @@ export function Company() {
           <Grid>
             {page.principles.items.map((item) => (
               <GridItem key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}
           </Grid>
