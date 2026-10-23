@@ -1,4 +1,4 @@
-import type { ComponentProps, ElementType, HTMLAttributes } from "react";
+import type { ElementType, HTMLAttributes } from "react";
 import { NavCopy } from "./NavBar";
 import type { Theme } from "./theme";
 import { cn } from "../lib/style";
@@ -8,9 +8,16 @@ type Layer = Record<Theme, { className: string; copyNav?: boolean; fringe?: bool
 const layers: Layer = {
   hero: { className: "hero-veil-stacked lg:hero-veil" },
   white: { className: "bg-background", copyNav: true, fringe: true },
-  blend: { className: "bg-linear-to-b/srgb from-blue to-pink", copyNav: true, fringe: true },
-  deep: { className: "backdrop-blur-xs bg-background mix-blend-multiply", copyNav: true },
-  invert: { className: "backdrop-blur-smbackdrop-invert", copyNav: true },
+  blend: {
+    className: "bg-linear-to-b/srgb from-blue to-pink",
+    copyNav: true,
+    fringe: true,
+  },
+  deep: {
+    className: "backdrop-blur-xs bg-background mix-blend-multiply",
+    copyNav: true,
+  },
+  invert: { className: "backdrop-blur-sm backdrop-invert", copyNav: true },
 };
 
 // A full-width stripe of the page, in a theme: the hero, the page's sections
@@ -51,7 +58,7 @@ export function Section({
   return (
     <Tag
       className={cn(
-        "flex flex-col gap-(--gutter) justify-center min-h-[75dvh] px-(--gutter) py-[calc(var(--spacing-bar)*2)] relative",
+        "px-(--gutter) py-[calc(var(--spacing-bar)*2)] relative",
         layer.copyNav && "scroll-linked:nav-timeline",
         className,
       )}
@@ -76,6 +83,15 @@ export function Section({
   );
 }
 
-export function SectionHeader({ className, ...props }: ComponentProps<"header">) {
+export function SectionHeader({ className, ...props }: HTMLAttributes<HTMLElement>) {
   return <header className={cn("space-y-4", className)} {...props} />;
+}
+
+export function SectionContent({ className, ...props }: HTMLAttributes<HTMLElement>) {
+  return (
+    <>
+      <div className="absolute inset-0 z-30 mx-auto flex max-w-(--page) flex-col justify-center gap-(--gutter) border-x border-accent/10" />
+      <div className={cn("wrap", className)} {...props} />
+    </>
+  );
 }

@@ -3,7 +3,7 @@ import { CarrierChannels } from "../components/CarrierChannels";
 import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ScreenCycle } from "../components/ScreenCycle";
-import { Section, SectionHeader } from "../components/Section";
+import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
@@ -29,18 +29,20 @@ export function PlacementDesk() {
       <CarrierChannels />
 
       <Section theme="white" id="systems">
-        <ScreenCycle
-          title={placementDesk.systems.title}
-          body={placementDesk.systems.body}
-          items={placementDesk.systems.links.map((link, i) => ({
-            ...link,
-            screen: <SystemScreen name={systemScreens[i]} />,
-          }))}
-        />
+        <SectionContent>
+          <ScreenCycle
+            title={placementDesk.systems.title}
+            body={placementDesk.systems.body}
+            items={placementDesk.systems.links.map((link, i) => ({
+              ...link,
+              screen: <SystemScreen name={systemScreens[i]} />,
+            }))}
+          />
+        </SectionContent>
       </Section>
 
       <Section theme="blend" id="human">
-        <div className="wrap">
+        <SectionContent>
           <SectionHeader>
             <h2>{placementDesk.human.title}</h2>
             <h3 className="lead">{placementDesk.human.body}</h3>
@@ -53,7 +55,7 @@ export function PlacementDesk() {
               </Point>
             ))}
           </Grid>
-        </div>
+        </SectionContent>
       </Section>
     </>
   );

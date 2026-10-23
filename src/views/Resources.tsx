@@ -11,7 +11,7 @@ export function Resources({ posts }: { posts: Post[] }) {
         <h2>{page.title}</h2>
         <h3 className="lead">{page.lead}</h3>
       </SectionHeader>
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-(--gutter) grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <li key={post.slug}>
             <AppLink
