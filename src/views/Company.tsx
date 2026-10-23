@@ -1,7 +1,6 @@
 import { companyPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
-import { StepList } from "../components/StepList";
 import { Arrow, AppLink } from "../components/Ui";
 import { cn } from "../lib/style";
 import { SplitHero } from "../components/Hero";
@@ -40,17 +39,17 @@ export function Company() {
         </div>
       </SplitHero>
 
-      <Section theme="white" id="why" className="pb-0">
+      <Section theme="white" id="why">
         <SectionHeader>
           <h2>{page.why.title}</h2>
         </SectionHeader>
         <SectionContent className="p-0">
           <Grid>
             {page.why.items.map((item) => (
-              <Point key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
-              </Point>
+              <GridItem key={item.title}>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>
@@ -103,8 +102,15 @@ export function Company() {
         <SectionHeader>
           <h2>{page.principles.title}</h2>
         </SectionHeader>
-        <SectionContent>
-          <StepList steps={page.principles.items} />
+        <SectionContent className="p-0">
+          <Grid>
+            {page.principles.items.map((item) => (
+              <GridItem key={item.title}>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
+              </GridItem>
+            ))}
+          </Grid>
         </SectionContent>
       </Section>
     </>

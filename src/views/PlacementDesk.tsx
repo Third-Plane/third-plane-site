@@ -1,6 +1,6 @@
 import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
-import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, GridItem } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
@@ -43,7 +43,7 @@ export function PlacementDesk() {
         </SectionContent>
       </Section>
 
-      <Section theme="blend" id="human" className="pb-0">
+      <Section theme="blend" id="human">
         <SectionHeader>
           <h2>{placementDesk.human.title}</h2>
           <h3 className="lead">{placementDesk.human.body}</h3>
@@ -51,10 +51,10 @@ export function PlacementDesk() {
         <SectionContent className="p-0">
           <Grid>
             {placementDesk.human.items.map((item) => (
-              <Point key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
-              </Point>
+              <GridItem key={item.title}>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>

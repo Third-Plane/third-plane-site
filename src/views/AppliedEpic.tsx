@@ -1,5 +1,5 @@
 import { appliedEpicPage as page } from "../data/content";
-import { Grid, ItemBody, ItemTitle, Point } from "../components/Grid";
+import { Grid, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { PageHero } from "../components/Hero";
 
@@ -8,7 +8,7 @@ export function AppliedEpic() {
     <>
       <PageHero title={page.title} lead={page.lead} />
 
-      <Section theme="white" id="who" className="pb-0">
+      <Section theme="white" id="who">
         <SectionHeader>
           <h2>{page.who.title}</h2>
           <h3 className="lead">{page.who.body}</h3>
@@ -16,42 +16,42 @@ export function AppliedEpic() {
         <SectionContent className="p-0">
           <Grid columns={3}>
             {page.who.items.map((item) => (
-              <Point key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-              </Point>
+              <GridItem key={item.title}>
+                <h4>{item.title}</h4>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>
       </Section>
 
-      <Section theme="blend" id="work" className="pb-0">
+      <Section theme="blend" id="work">
         <SectionHeader>
           <h2>{page.work.title}</h2>
         </SectionHeader>
         <SectionContent className="p-0">
           <Grid columns={3}>
             {page.work.items.map((item) => (
-              <Point key={item.title}>
-                <ItemTitle>{item.title}</ItemTitle>
-                <ItemBody>{item.body}</ItemBody>
-              </Point>
+              <GridItem key={item.title}>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
+              </GridItem>
             ))}
           </Grid>
         </SectionContent>
       </Section>
 
       {page.certified && (
-        <Section theme="white" id="meaning" className="pb-0">
+        <Section theme="white" id="meaning">
           <SectionHeader>
             <h2>{page.meaning.title}</h2>
           </SectionHeader>
           <SectionContent className="p-0">
             <Grid>
               {page.meaning.items.map((item) => (
-                <Point key={item.title}>
-                  <ItemTitle>{item.title}</ItemTitle>
-                  <ItemBody>{item.body}</ItemBody>
-                </Point>
+                <GridItem key={item.title}>
+                  <h4>{item.title}</h4>
+                  <p className="text-muted-foreground">{item.body}</p>
+                </GridItem>
               ))}
             </Grid>
           </SectionContent>

@@ -57,11 +57,7 @@ export function Section({
   const layer = layers[theme];
   return (
     <Tag
-      className={cn(
-        "py-[calc(var(--spacing-bar)*2)] relative",
-        layer.copyNav && "scroll-linked:nav-timeline",
-        className,
-      )}
+      className={cn("relative", layer.copyNav && "scroll-linked:nav-timeline", className)}
       data-theme={theme}
       data-section
       {...props}
@@ -91,8 +87,8 @@ export function Section({
 
 export function SectionHeader({ children }: HTMLAttributes<HTMLElement>) {
   return (
-    <header className="relative mx-auto mb-(--gutter) max-w-(--page) px-(--gutter)">
-      <div className="absolute inset-x-0 top-9.75 h-px bg-accent/5" />
+    <header className="relative mx-auto mb-(--gutter) max-w-(--page) px-(--gutter) pt-[calc(var(--spacing-bar)*2)]">
+      <div className="absolute inset-x-0 top-41.75 h-px bg-accent/5" />
       <div className="relative space-y-6">{children}</div>
     </header>
   );
@@ -108,7 +104,7 @@ export function SectionContent({
       <div className="pointer-events-none absolute inset-0 z-30 mx-auto max-w-(--page) border-x border-accent/10 max-page:hidden" />
       <div
         className={cn(
-          "mx-auto max-w-(--page) px-(--gutter) pt-(--gutter) relative z-25",
+          "mx-auto max-w-(--page) px-(--gutter) pt-(--gutter) pb-[calc(var(--spacing-bar)*2)] relative z-25",
           border && "border-t border-accent/10",
           className,
         )}

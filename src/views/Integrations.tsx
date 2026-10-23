@@ -5,9 +5,9 @@ import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
 import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
-import { StepList } from "../components/StepList";
 import { SystemScreen, type SystemName } from "../components/SystemScreens";
 import { AppLink, Button } from "../components/Ui";
+import { Grid, GridItem } from "../components/Grid";
 
 // A mock screen for each system, in the order of systems.items. The fifth item,
 // carrier channels, isn't shown here: CarrierChannels below covers it.
@@ -64,8 +64,15 @@ export function Integrations() {
         <SectionHeader>
           <h2>{page.how.title}</h2>
         </SectionHeader>
-        <SectionContent>
-          <StepList steps={page.how.steps} />
+        <SectionContent className="p-0">
+          <Grid>
+            {page.how.steps.map((item) => (
+              <GridItem key={item.title}>
+                <h4>{item.title}</h4>
+                <p className="text-muted-foreground">{item.body}</p>
+              </GridItem>
+            ))}
+          </Grid>
         </SectionContent>
       </Section>
     </>
