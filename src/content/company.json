@@ -70,6 +70,7 @@
   },
   "team": {
     "photo": {
+      "src": "/media/team-photo.jpg",
       "alt": "The Third Plane team in Austin."
     },
     "photoNote": "Team photo to come."
