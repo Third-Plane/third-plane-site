@@ -58,16 +58,16 @@ export function Company() {
 
       <Section theme="blend" id="origin">
         <SectionContent>
-          <div className="grid items-start gap-x-17 gap-y-13 md:grid-cols-2">
-            <div>
+          <div className="grid grid-cols-1 items-start gap-(--gutter) lg:grid-cols-2">
+            <div className="space-y-6">
               <h2>{page.origin.title}</h2>
               {page.origin.body.map((paragraph, i) => (
                 <p
                   className={cn(
-                    "max-w-[58ch] text-pretty",
+                    "text-pretty leading-normal",
                     i === 0
-                      ? "mt-6 text-base font-medium text-foreground"
-                      : "mt-5 text-muted-foreground",
+                      ? "text-xl font-medium text-foreground"
+                      : "text-lg text-muted-foreground",
                   )}
                   key={paragraph.slice(0, 20)}
                 >
@@ -75,7 +75,7 @@ export function Company() {
                 </p>
               ))}
             </div>
-            <figure className="relative m-0 aspect-4/3 overflow-hidden rounded-2xl bg-muted">
+            <figure className="relative m-0 aspect-3/2 overflow-hidden rounded-2xl shadow-xl ring-4 ring-accent/10">
               {page.team.photo.src ? (
                 <img
                   className="size-full object-cover"
