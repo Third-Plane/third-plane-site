@@ -6,7 +6,7 @@ import { AppLink, Arrow } from "../components/Ui";
 
 export function Resources({ posts }: { posts: Post[] }) {
   return (
-    <Section theme="white" id="posts">
+    <Section theme="white" id="posts" className="px-(--gutter)">
       <SectionHeader>
         <h2>{page.title}</h2>
         <h3 className="lead">{page.lead}</h3>

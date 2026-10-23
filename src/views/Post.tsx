@@ -45,7 +45,7 @@ function BlockView({ block }: { block: Block }) {
 
 export function Post({ post }: { post: PostData }) {
   return (
-    <Section as="article" theme="white">
+    <Section as="article" theme="white" className="px-(--gutter)">
       <div className="wrap grid max-w-4xl gap-5">
         <AppLink
           className="inline-flex items-center gap-1.5 justify-self-start text-sm font-medium text-accent"

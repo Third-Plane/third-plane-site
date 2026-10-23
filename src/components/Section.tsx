@@ -58,7 +58,7 @@ export function Section({
   return (
     <Tag
       className={cn(
-        "px-(--gutter) py-[calc(var(--spacing-bar)*2)] relative",
+        "py-[calc(var(--spacing-bar)*2)] relative",
         layer.copyNav && "scroll-linked:nav-timeline",
         className,
       )}
@@ -90,8 +90,8 @@ export function SectionHeader({ className, ...props }: HTMLAttributes<HTMLElemen
 export function SectionContent({ className, ...props }: HTMLAttributes<HTMLElement>) {
   return (
     <>
-      <div className="absolute inset-0 z-30 mx-auto flex max-w-(--page) flex-col justify-center gap-(--gutter) border-x border-accent/10" />
-      <div className={cn("wrap", className)} {...props} />
+      <div className="pointer-events-none absolute inset-0 z-30 mx-auto max-w-(--page) border-x border-accent/10" />
+      <div className={cn("mx-auto max-w-(--page) px-(--gutter)", className)} {...props} />
     </>
   );
 }
