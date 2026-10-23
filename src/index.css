@@ -25,8 +25,9 @@
   --font-head: "Karla", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
   --font-code: "TX-02", ui-monospace, monospace;
-  --gutter: max(1rem, 4vw);
+  --gutter: clamp(1rem, 4vw, 4rem);
   --container: 80rem;
+  /* Worked out again for the page breakpoint (tailwind.css): keep it in step. */
   --page: calc(var(--container) + var(--gutter) * 2);
 }
 

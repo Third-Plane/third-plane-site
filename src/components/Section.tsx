@@ -90,7 +90,7 @@ export function SectionHeader({ className, ...props }: HTMLAttributes<HTMLElemen
 export function SectionContent({ className, ...props }: HTMLAttributes<HTMLElement>) {
   return (
     <>
-      <div className="pointer-events-none absolute inset-0 z-30 mx-auto max-w-(--page) border-x border-accent/10" />
+      <div className="pointer-events-none absolute inset-0 z-30 mx-auto max-w-(--page) border-x border-accent/10 max-page:hidden" />
       <div className={cn("mx-auto max-w-(--page) px-(--gutter)", className)} {...props} />
     </>
   );
