@@ -4,7 +4,7 @@ import type { ChartName } from "../components/Flowchart";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
 import { ScreenCycle } from "../components/ScreenCycle";
-import { Section, SectionHeader } from "../components/Section";
+import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { Showcase } from "../components/Showcase";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
@@ -30,23 +30,25 @@ export function Home() {
       <Showcase />
 
       <Section theme="blend" id="problem">
-        <ScreenCycle
-          title={problem.title}
-          body={problem.body}
-          items={problem.points.map((point, i) => ({
-            ...point,
-            screen: <ProblemScreen name={problemScreens[i]} />,
-          }))}
-        />
+        <SectionContent>
+          <ScreenCycle
+            title={problem.title}
+            body={problem.body}
+            items={problem.points.map((point, i) => ({
+              ...point,
+              screen: <ProblemScreen name={problemScreens[i]} />,
+            }))}
+          />
+        </SectionContent>
       </Section>
 
       <Section id="approach" theme="white">
-        <div className="wrap">
+        <SectionContent>
           <SectionHeader>
             <h2>{approach.title}</h2>
             <h3 className="lead">{approach.body}</h3>
           </SectionHeader>
-          <div className="wrap mt-(--gutter) grid gap-5 lg:grid-cols-2">
+          <div className="mt-(--gutter) grid gap-5 lg:grid-cols-2">
             {approach.models.map((model, i) => (
               <Diagram
                 key={model.kicker}
@@ -58,7 +60,7 @@ export function Home() {
               />
             ))}
           </div>
-        </div>
+        </SectionContent>
       </Section>
     </>
   );

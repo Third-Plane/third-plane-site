@@ -276,6 +276,13 @@
      (var(--spacing-bar)). */
   --spacing-bar: --spacing(16);
 
+  /* The window as wide as the page (--page in index.css), past which the page
+     stops filling it (page:, max-page:). A media query can't read a variable,
+     so this is worked out from index.css's: w = 80rem + 2 * 4vw, so 80rem /
+     0.92 (4vw being between the gutter's 1rem floor and 4rem cap there).
+     Change it with them. */
+  --breakpoint-page: 86.9565rem;
+
   /* The CSS default, so transitions match index.css, which never set a curve. */
   --default-transition-timing-function: ease;
 

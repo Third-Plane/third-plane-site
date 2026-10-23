@@ -15,7 +15,7 @@ export function SplitHero({
   children: ReactNode;
 }) {
   return (
-    <Section theme="hero" id="top">
+    <Section theme="hero" id="top" className="px-(--gutter)">
       <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
         <SectionHeader>
           <h1>{title}</h1>
@@ -38,7 +38,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <Section theme="hero" id="top">
+    <Section theme="hero" id="top" className="px-(--gutter)">
       <SectionHeader>
         <h1>{title}</h1>
         <h3 className="lead">{lead}</h3>
