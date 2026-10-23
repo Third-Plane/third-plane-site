@@ -40,12 +40,12 @@ export function Company() {
         </div>
       </SplitHero>
 
-      <Section theme="white" id="why">
-        <SectionContent>
-          <SectionHeader>
-            <h2>{page.why.title}</h2>
-          </SectionHeader>
-          <Grid columns={4}>
+      <Section theme="white" id="why" className="pb-0">
+        <SectionHeader>
+          <h2>{page.why.title}</h2>
+        </SectionHeader>
+        <SectionContent className="p-0">
+          <Grid>
             {page.why.items.map((item) => (
               <Point key={item.title}>
                 <ItemTitle>{item.title}</ItemTitle>
@@ -57,10 +57,12 @@ export function Company() {
       </Section>
 
       <Section theme="blend" id="origin">
+        <SectionHeader>
+          <h2>{page.origin.title}</h2>
+        </SectionHeader>
         <SectionContent>
           <div className="grid grid-cols-1 items-start gap-(--gutter) lg:grid-cols-2">
             <div className="space-y-6">
-              <h2>{page.origin.title}</h2>
               {page.origin.body.map((paragraph, i) => (
                 <p
                   className={cn(
@@ -98,10 +100,10 @@ export function Company() {
       </Section>
 
       <Section id="principles" theme="deep">
+        <SectionHeader>
+          <h2>{page.principles.title}</h2>
+        </SectionHeader>
         <SectionContent>
-          <SectionHeader>
-            <h2>{page.principles.title}</h2>
-          </SectionHeader>
           <StepList steps={page.principles.items} />
         </SectionContent>
       </Section>

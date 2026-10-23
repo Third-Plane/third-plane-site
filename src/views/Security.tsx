@@ -3,7 +3,7 @@ import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
 import { ScreenCycle, StagedScreenCycle } from "../components/ScreenCycle";
-import { Section, SectionContent } from "../components/Section";
+import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { SecurityScreen, type SecurityName } from "../components/SecurityScreens";
 import { Button } from "../components/Ui";
 
@@ -29,10 +29,12 @@ export function Security() {
       </SplitHero>
 
       <Section theme="white" id="authority">
+        <SectionHeader>
+          <h2>{page.authority.title}</h2>
+          <h3 className="lead">{page.authority.body}</h3>
+        </SectionHeader>
         <SectionContent>
           <StagedScreenCycle
-            title={page.authority.title}
-            body={page.authority.body}
             duration={5}
             stages={page.authority.sides.map((side, i) => ({
               title: side.title,
@@ -46,10 +48,12 @@ export function Security() {
       </Section>
 
       <Section theme="blend" id="data">
+        <SectionHeader>
+          <h2>{page.data.title}</h2>
+          <h3 className="lead">{page.data.body}</h3>
+        </SectionHeader>
         <SectionContent>
           <ScreenCycle
-            title={page.data.title}
-            body={page.data.body}
             items={page.data.items.map((item, i) => ({
               ...item,
               screen: <SecurityScreen name={dataScreens[i]} />,

@@ -17,11 +17,11 @@ export function SplitHero({
   return (
     <Section theme="hero" id="top" className="px-(--gutter)">
       <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
-        <SectionHeader>
+        <div className="space-y-4">
           <h1>{title}</h1>
           <h3 className="lead text-[22px]">{lead}</h3>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
-        </SectionHeader>
+        </div>
         {children}
       </div>
     </Section>

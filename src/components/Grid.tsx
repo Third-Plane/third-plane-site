@@ -19,9 +19,7 @@ export function Grid({
   className?: string;
   children: ReactNode;
 }) {
-  return (
-    <div className={cn("grid gap-5 mt-(--gutter)", COLUMNS[columns], className)}>{children}</div>
-  );
+  return <div className={cn("grid", COLUMNS[columns], className)}>{children}</div>;
 }
 
 type ItemProps = {
@@ -73,7 +71,7 @@ export function Point({ className, ...props }: ItemProps) {
   return (
     <Item
       className={cn(
-        "gap-2 border-t border-border pt-6 transition-colors duration-200 hover:border-accent",
+        "gap-2 p-(--gutter) transition-colors duration-200 hover:border-accent",
         className,
       )}
       {...props}

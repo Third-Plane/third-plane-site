@@ -1,16 +1,16 @@
 import { resourcesPage as page } from "../data/content";
 import type { Post } from "../data/posts";
 import { PostMeta } from "../components/PostMeta";
-import { Section, SectionHeader } from "../components/Section";
+import { Section } from "../components/Section";
 import { AppLink, Arrow } from "../components/Ui";
 
 export function Resources({ posts }: { posts: Post[] }) {
   return (
     <Section theme="white" id="posts" className="px-(--gutter)">
-      <SectionHeader>
+      <div className="space-y-4">
         <h2>{page.title}</h2>
         <h3 className="lead">{page.lead}</h3>
-      </SectionHeader>
+      </div>
       <ul className="mt-(--gutter) grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <li key={post.slug}>

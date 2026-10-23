@@ -29,10 +29,12 @@ export function PlacementDesk() {
       <CarrierChannels />
 
       <Section theme="white" id="systems">
+        <SectionHeader>
+          <h2>{placementDesk.systems.title}</h2>
+          <h3 className="lead">{placementDesk.systems.body}</h3>
+        </SectionHeader>
         <SectionContent>
           <ScreenCycle
-            title={placementDesk.systems.title}
-            body={placementDesk.systems.body}
             items={placementDesk.systems.links.map((link, i) => ({
               ...link,
               screen: <SystemScreen name={systemScreens[i]} />,
@@ -41,12 +43,12 @@ export function PlacementDesk() {
         </SectionContent>
       </Section>
 
-      <Section theme="blend" id="human">
-        <SectionContent>
-          <SectionHeader>
-            <h2>{placementDesk.human.title}</h2>
-            <h3 className="lead">{placementDesk.human.body}</h3>
-          </SectionHeader>
+      <Section theme="blend" id="human" className="pb-0">
+        <SectionHeader>
+          <h2>{placementDesk.human.title}</h2>
+          <h3 className="lead">{placementDesk.human.body}</h3>
+        </SectionHeader>
+        <SectionContent className="p-0">
           <Grid>
             {placementDesk.human.items.map((item) => (
               <Point key={item.title}>

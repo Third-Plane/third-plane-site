@@ -1,4 +1,4 @@
-import type { ElementType, HTMLAttributes } from "react";
+import { type ElementType, type HTMLAttributes } from "react";
 import { NavCopy } from "./NavBar";
 import type { Theme } from "./theme";
 import { cn } from "../lib/style";
@@ -72,10 +72,16 @@ export function Section({
         data-layer
       />
       {layer.fringe && (
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-full fringe"
-          aria-hidden="true"
-        />
+        <>
+          <div
+            className="pointer-events-none absolute inset-x-0 top-px h-px bg-accent/10"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-full fringe"
+            aria-hidden="true"
+          />
+        </>
       )}
       {layer.copyNav && <NavCopy theme={theme} />}
       {children}
@@ -83,15 +89,31 @@ export function Section({
   );
 }
 
-export function SectionHeader({ className, ...props }: HTMLAttributes<HTMLElement>) {
-  return <header className={cn("space-y-4", className)} {...props} />;
+export function SectionHeader({ children }: HTMLAttributes<HTMLElement>) {
+  return (
+    <header className="relative mx-auto mb-(--gutter) max-w-(--page) px-(--gutter)">
+      <div className="absolute inset-x-0 top-9.75 h-px bg-accent/5" />
+      <div className="relative space-y-6">{children}</div>
+    </header>
+  );
 }
 
-export function SectionContent({ className, ...props }: HTMLAttributes<HTMLElement>) {
+export function SectionContent({
+  className,
+  border = true,
+  ...props
+}: HTMLAttributes<HTMLElement> & { border?: boolean }) {
   return (
     <>
       <div className="pointer-events-none absolute inset-0 z-30 mx-auto max-w-(--page) border-x border-accent/10 max-page:hidden" />
-      <div className={cn("mx-auto max-w-(--page) px-(--gutter)", className)} {...props} />
+      <div
+        className={cn(
+          "mx-auto max-w-(--page) px-(--gutter) pt-(--gutter) relative z-25",
+          border && "border-t border-accent/10",
+          className,
+        )}
+        {...props}
+      />
     </>
   );
 }

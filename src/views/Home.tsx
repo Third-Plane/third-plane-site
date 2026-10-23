@@ -5,7 +5,6 @@ import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
 import { ScreenCycle } from "../components/ScreenCycle";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
-import { Showcase } from "../components/Showcase";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
 import { Button } from "../components/Ui";
@@ -27,13 +26,13 @@ export function Home() {
 
       <PlacementWorkflowSection id="desk" />
 
-      <Showcase />
-
       <Section theme="blend" id="problem">
+        <SectionHeader>
+          <h2>{problem.title}</h2>
+          <h3 className="lead">{problem.body}</h3>
+        </SectionHeader>
         <SectionContent>
           <ScreenCycle
-            title={problem.title}
-            body={problem.body}
             items={problem.points.map((point, i) => ({
               ...point,
               screen: <ProblemScreen name={problemScreens[i]} />,
@@ -43,12 +42,12 @@ export function Home() {
       </Section>
 
       <Section id="approach" theme="white">
+        <SectionHeader>
+          <h2>{approach.title}</h2>
+          <h3 className="lead">{approach.body}</h3>
+        </SectionHeader>
         <SectionContent>
-          <SectionHeader>
-            <h2>{approach.title}</h2>
-            <h3 className="lead">{approach.body}</h3>
-          </SectionHeader>
-          <div className="mt-(--gutter) grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             {approach.models.map((model, i) => (
               <Diagram
                 key={model.kicker}
