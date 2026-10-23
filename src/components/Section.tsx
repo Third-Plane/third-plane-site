@@ -3,27 +3,14 @@ import { NavCopy } from "./NavBar";
 import type { Theme } from "./theme";
 import { cn } from "../lib/style";
 
-// A theme's layer: its background, painted on a layer of its own behind the
-// section's content, so it can blend with or filter what lies behind the
-// section (the page's flowchart) without touching the content.
-// invert's filter has to be on a layer: an element with a backdrop filter is a
-// backdrop root, and a backdrop filter inside it only sees what is painted
-// within it, so a frosted card in the section (see Cta) would blur nothing.
-// The hero's is only a veil behind its copy (hero-veil in tailwind.css): its
-// wash is the page's backdrop (see Base).
-//
-// A theme's blur is a layer of its own, over its colour. Where a layer runs
-// under the nav, Chrome's backdrop filter takes the nav in too, though the
-// nav is painted over it, and a blur spreads it past the nav's foot. Blurred
-// in with the colour, the nav came out inverted (a light band over the
-// footer) or multiplied; blurred on its own, over the section's colour, it is
-// the nav's colour, which is the section's near enough, so it blurs in unseen.
-const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
-  hero: { color: "hero-veil-stacked lg:hero-veil" },
-  white: { color: "bg-background" },
-  blend: { color: "bg-linear-to-b/srgb from-blue to-pink" },
-  deep: { color: "bg-background mix-blend-multiply", blur: "backdrop-blur-xs" },
-  invert: { color: "backdrop-invert", blur: "backdrop-blur-sm" },
+type Layer = Record<Theme, { className: string; copyNav?: boolean; fringe?: boolean }>;
+
+const layers: Layer = {
+  hero: { className: "hero-veil-stacked lg:hero-veil" },
+  white: { className: "bg-background", copyNav: true, fringe: true },
+  blend: { className: "bg-linear-to-b/srgb from-blue to-pink", copyNav: true, fringe: true },
+  deep: { className: "backdrop-blur-xs bg-background mix-blend-multiply", copyNav: true },
+  invert: { className: "backdrop-blur-smbackdrop-invert", copyNav: true },
 };
 
 // A full-width stripe of the page, in a theme: the hero, the page's sections
@@ -50,48 +37,40 @@ const layers: Partial<Record<Theme, { color: string; blur?: string }>> = {
 // (NavCopy), and is the timeline that reveals it (nav-timeline in
 // tailwind.css). The copy is pinned to the window, so the section must not
 // hold fixed elements either (no transform, filter, contain...).
+
+type SectionProps = HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme };
+
 export function Section({
   as: Tag = "section",
   theme,
   className,
   children,
   ...props
-}: HTMLAttributes<HTMLElement> & { as?: ElementType; theme: Theme }) {
+}: SectionProps) {
   const layer = layers[theme];
-  const copy = theme !== "hero";
-  const fringe = theme === "white" || theme === "blend";
   return (
     <Tag
       className={cn(
-        "relative px-(--gutter) py-[calc(var(--spacing-bar)*2)]",
-        copy && "scroll-linked:nav-timeline",
-        "flex min-h-[80dvh] flex-col gap-(--gutter) justify-center",
+        "flex flex-col gap-(--gutter) justify-center min-h-[75dvh] px-(--gutter) py-[calc(var(--spacing-bar)*2)] relative",
+        layer.copyNav && "scroll-linked:nav-timeline",
         className,
       )}
       data-theme={theme}
       data-section
       {...props}
     >
-      {layer ? (
-        <div
-          className={cn("pointer-events-none absolute inset-0", layer.color)}
-          aria-hidden="true"
-          data-layer
-        />
-      ) : null}
-      {layer?.blur ? (
-        <div
-          className={cn("pointer-events-none absolute inset-0", layer.blur)}
-          aria-hidden="true"
-        />
-      ) : null}
-      {fringe ? (
+      <div
+        className={cn("pointer-events-none absolute inset-0", layer.className)}
+        aria-hidden="true"
+        data-layer
+      />
+      {layer.fringe && (
         <div
           className="pointer-events-none absolute inset-x-0 bottom-full fringe"
           aria-hidden="true"
         />
-      ) : null}
-      {copy ? <NavCopy theme={theme} /> : null}
+      )}
+      {layer.copyNav && <NavCopy theme={theme} />}
       {children}
     </Tag>
   );
