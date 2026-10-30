@@ -97,6 +97,31 @@ components:
         label: Button label
         type: string
         description: Leave empty to use the main button label from Site settings.
+  faq:
+    type: object
+    label: Questions and answers
+    description: >-
+      Shown above the footer, and read by search engines and AI assistants. Ask what a buyer would type, and answer in the first sentence in
+      plain words that stand on their own. Remove every question to hide the section.
+    fields:
+      - name: title
+        label: Heading
+        type: string
+        required: true
+      - name: items
+        label: Questions
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{question}"
+        fields:
+          - name: question
+            type: string
+            required: true
+          - name: answer
+            type: text
+            required: true
 
 content:
   - name: site
@@ -333,6 +358,8 @@ content:
                 type: image
               - name: caption
                 type: string
+          - name: faq
+            component: faq
           - name: cta
             component: cta
 
@@ -433,6 +460,8 @@ content:
               - name: items
                 description: Shown as a grid of cards, two per row.
                 component: cards
+          - name: faq
+            component: faq
           - name: cta
             label: Call to action (in the footer)
             description: The label is used on the heading button and the footer's button.
@@ -545,6 +574,8 @@ content:
                 required: true
               - name: items
                 component: cards
+          - name: faq
+            component: faq
           - name: cta
             component: cta
 
@@ -645,6 +676,8 @@ content:
                 required: true
               - name: steps
                 component: cards
+          - name: faq
+            component: faq
           - name: cta
             component: cta
 
@@ -714,6 +747,8 @@ content:
                 type: text
               - name: attribution
                 type: string
+          - name: faq
+            component: faq
           - name: cta
             component: cta
 

@@ -1,5 +1,6 @@
-import { approach, homeHero, problem } from "../data/content";
+import { approach, homeFaq, homeHero, problem } from "../data/content";
 import { Diagram } from "../components/Diagram";
+import { Faq } from "../components/Faq";
 import type { ChartName } from "../components/Flowchart";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ProblemScreen, type ScreenName } from "../components/ProblemScreens";
@@ -61,6 +62,8 @@ export function Home() {
           </div>
         </SectionContent>
       </Section>
+
+      <Faq faq={homeFaq} theme="blend" />
     </>
   );
 }

@@ -115,6 +115,31 @@
       }
     ]
   },
+  "faq": {
+    "title": "Questions about Placement Desk.",
+    "items": [
+      {
+        "question": "What does Placement Desk do?",
+        "answer": "Placement Desk is a dedicated placement function staffed by AI. It gathers account information from the submission, your AMS and email, flags what’s missing, assesses appetite across your appointed markets, builds a market plan, submits to carriers and follows up. It returns quotes, indications and declinations to the producer with a record of the work."
+      },
+      {
+        "question": "Does Placement Desk handle renewals as well as new business?",
+        "answer": "Yes. Placement Desk takes new business and renewals from submission through returned quotes. With Applied Epic, it can identify upcoming renewals and begin defined placement work before your team has to start it manually."
+      },
+      {
+        "question": "How does Placement Desk submit to carriers?",
+        "answer": "Placement Desk works each market through the channel that carrier uses. It completes carrier portals, connects directly where a carrier offers an API, calls the quoting tools a carrier exposes to AI agents over MCP, and manages underwriter email threads, including follow-up."
+      },
+      {
+        "question": "Does Placement Desk bind coverage or advise clients?",
+        "answer": "No. Binding, coverage decisions and anything requiring a licensed professional stay with your team at the review points you define. The desk returns the quotes, market responses and the record behind them, and your brokers evaluate the options and advise the client."
+      },
+      {
+        "question": "Do we need a new system to use Placement Desk?",
+        "answer": "No. There is no new system of record and no second workflow for producers. Placement Desk connects to the AMS, document repositories and inboxes where account information already lives, and returns results to the producer’s inbox and, with Applied Epic, to Epic."
+      }
+    ]
+  },
   "cta": {
     "title": "Tell us how placement runs today.",
     "body": "The first conversation covers your current placement workflow, carrier mix and systems.",

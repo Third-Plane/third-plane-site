@@ -56,6 +56,31 @@
       }
     ]
   },
+  "faq": {
+    "title": "Applied Epic questions.",
+    "items": [
+      {
+        "question": "Does Placement Desk integrate with Applied Epic?",
+        "answer": "Yes. Third Plane is a Certified Applied Vendor. Placement Desk reads account and policy information from Applied Epic, works the placement across carrier channels, and writes activities, documents and results back to Epic."
+      },
+      {
+        "question": "Do we need to buy anything from Applied to connect Placement Desk?",
+        "answer": "No. Connecting a desk to Epic doesn’t require a separate product purchase from Applied."
+      },
+      {
+        "question": "Does Epic stay our system of record?",
+        "answer": "Yes. Epic stays your system of record. Placement Desk works around your existing workflow, and your team gets results back in Epic without moving into a new system or managing another daily tool."
+      },
+      {
+        "question": "Can Placement Desk start renewal work from Epic?",
+        "answer": "Yes. Placement Desk can identify upcoming renewals in Epic and begin defined placement work before your team has to start it manually."
+      },
+      {
+        "question": "Will the integration keep up with Applied Epic updates?",
+        "answer": "Yes. Certified vendors receive access to the latest Applied Epic releases, so the integration can stay current as Epic changes."
+      }
+    ]
+  },
   "cta": {
     "title": "Running Epic?",
     "body": "Tell us how placement works in your brokerage. We’ll show you where an AI workforce can connect to Epic and take work off your team’s plate."

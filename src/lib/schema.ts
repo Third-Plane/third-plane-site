@@ -1,13 +1,14 @@
 import { site, siteFooter } from "../data/content";
+import type { Faq } from "../data/content-types";
 import { ORIGIN, canonicalUrl } from "./head";
 
 // The page's structured data (schema.org JSON-LD), which search engines and
 // answer engines read to tell what the company is and what each page is
 // about. Every page gets one @graph: the company and its founder, the site,
-// the page itself
-// with its breadcrumb trail, and whatever nodes the page adds (a post's
-// article, a product's service). Nodes point at each other by @id, so the
-// company is described once and every page refers to it.
+// the page itself with its breadcrumb trail, and whatever nodes the page adds
+// (a post's article, a product's service, a page's questions and answers).
+// Nodes point at each other by @id, so the company is described once and
+// every page refers to it.
 
 export const ORGANIZATION_ID = `${ORIGIN}/#organization`;
 export const WEBSITE_ID = `${ORIGIN}/#website`;
@@ -62,6 +63,24 @@ const website = {
   publisher: { "@id": ORGANIZATION_ID },
   inLanguage: "en",
 };
+
+// A page's questions and answers (see Faq.tsx) as an FAQPage node, or nothing
+// when it has none.
+export function faqPage(path: string, faq?: Faq): object[] {
+  if (!faq?.items?.length) return [];
+  return [
+    {
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl(path)}#faq`,
+      isPartOf: { "@id": canonicalUrl(path) },
+      mainEntity: faq.items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    },
+  ];
+}
 
 // `trail` is the page's breadcrumb trail after Home, the page itself last.
 // The homepage has none.

@@ -1,5 +1,6 @@
 import { homeHero, placementDesk } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
+import { Faq } from "../components/Faq";
 import { Grid, GridItem } from "../components/Grid";
 import { PlacementWorkflowSection } from "../components/PlacementWorkflow";
 import { ScreenCycle } from "../components/ScreenCycle";
@@ -59,6 +60,8 @@ export function PlacementDesk() {
           </Grid>
         </SectionContent>
       </Section>
+
+      <Faq faq={placementDesk.faq} theme="white" />
     </>
   );
 }

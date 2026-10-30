@@ -95,6 +95,31 @@
       }
     ]
   },
+  "faq": {
+    "title": "Integration questions.",
+    "items": [
+      {
+        "question": "Which systems does Placement Desk connect to?",
+        "answer": "Placement Desk connects to agency management systems such as Applied Epic, AMS360 and Sagitta; document repositories such as ImageRight, SharePoint and shared drives; Outlook and Teams; and your data lake or reporting tools. Connections are configured per deployment."
+      },
+      {
+        "question": "What does Placement Desk read and write in our systems?",
+        "answer": "Only what you set. It typically reads client and policy data, applications, loss runs, schedules and correspondence for a submission, and writes activities, documents and results back to your AMS. Every read and write is logged."
+      },
+      {
+        "question": "How is Placement Desk connected to our systems?",
+        "answer": "We map what connects and where results should land, connect with scoped credentials to only the systems the desk needs, and configure what it can read and write back. From then on, every read and write is logged."
+      },
+      {
+        "question": "Where does work come from, and where do results go?",
+        "answer": "Work reaches the desk from Outlook and Teams, from its own inbox on your domain, or from your AMS, and results return to the same places your team already works."
+      },
+      {
+        "question": "Can we report on how the desk performs?",
+        "answer": "Yes. Every action and outcome is available to your data lake or reporting tools, so desk performance can be measured alongside the rest of the business."
+      }
+    ]
+  },
   "cta": {
     "title": "Tell us what you run.",
     "body": "Show us your AMS, inboxes and document systems. We’ll map how Placement Desk would connect."

@@ -107,6 +107,31 @@
   "showcase": {
     "title": "Two minutes on what changes when the work moves to a desk."
   },
+  "faq": {
+    "title": "Common questions.",
+    "items": [
+      {
+        "question": "What is Third Plane?",
+        "answer": "Third Plane builds AI workforces for insurance businesses. Its first product, Placement Desk, takes on defined placement work for brokerages across the systems and carrier channels they already use, then returns the results to their people for review. Third Plane is based in Austin, Texas, and was spun out of QuoteWell, a wholesale brokerage."
+      },
+      {
+        "question": "What is an AI workforce?",
+        "answer": "An AI workforce is dedicated operating capacity that takes responsibility for defined work across the systems and carrier channels a business already uses. Instead of giving each employee another AI tool to operate, the business assigns work to the workforce, which carries it out and returns the finished outcome to its people for review."
+      },
+      {
+        "question": "How is an AI workforce different from an AI tool?",
+        "answer": "With an AI tool, the employee operates the AI, reviews its output and still owns the work. With Third Plane, the business assigns the work to a desk, the desk carries it out across your systems and carrier channels, and your team gets the result back to review."
+      },
+      {
+        "question": "Who is Placement Desk for?",
+        "answer": "Placement Desk is for insurance brokerages whose placement workload is growing faster than the people available to handle it. It takes new business and renewals from submission through returned quotes, so producers and account teams can spend more time with clients and prospects."
+      },
+      {
+        "question": "How do we get started with Third Plane?",
+        "answer": "Start a conversation with us. The first conversation covers your current placement workflow, carrier mix and systems, and we identify where Placement Desk could take work off your team. Integration points are then scoped as part of deployment."
+      }
+    ]
+  },
   "cta": {
     "title": "See where Placement Desk fits.",
     "body": "Tell us how placement runs today. We’ll look at your workflow, carrier mix and systems and identify where Placement Desk could take work off your team.",
