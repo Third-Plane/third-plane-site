@@ -41,7 +41,7 @@ const founder = {
   "@type": "Person",
   "@id": FOUNDER_ID,
   name: site.founder.name,
-  jobTitle: "Founder",
+  jobTitle: "Founder and CEO",
   worksFor: { "@id": ORGANIZATION_ID },
   sameAs: [site.founder.linkedin],
 };
