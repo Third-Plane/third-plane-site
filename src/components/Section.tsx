@@ -85,11 +85,11 @@ export function Section({
   );
 }
 
-export function SectionHeader({ children }: HTMLAttributes<HTMLElement>) {
+export function SectionHeader({ className, children }: HTMLAttributes<HTMLElement>) {
   return (
     <header className="relative mx-auto mb-(--gutter) max-w-(--page) px-(--gutter) pt-[calc(var(--spacing-bar)*2)]">
       <div className="absolute inset-x-0 top-41.75 h-px bg-accent/5" />
-      <div className="relative space-y-6">{children}</div>
+      <div className={cn("relative space-y-6", className)}>{children}</div>
     </header>
   );
 }

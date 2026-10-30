@@ -20,11 +20,11 @@ export function Faq({ faq, theme }: { faq?: FaqCopy; theme: Theme }) {
   if (!faq?.items?.length) return null;
   return (
     <Section theme={theme} id="faq">
-      <SectionHeader>
+      <SectionHeader className="text-center">
         <h2>{faq.title}</h2>
       </SectionHeader>
       <SectionContent>
-        <div className="grid">
+        <div className="mx-auto grid max-w-2xl">
           {faq.items.map((item, i) => (
             <div
               className="group/faq border-b border-accent/10 last:border-b-0"
@@ -32,7 +32,7 @@ export function Faq({ faq, theme }: { faq?: FaqCopy; theme: Theme }) {
               data-faq
               key={item.question}
             >
-              <h3 className="leading-snug">
+              <h3 className="text-xl">
                 <button
                   className="flex w-full cursor-pointer items-center justify-between gap-6 bg-transparent py-6 text-left tracking-[inherit] text-inherit transition-colors duration-200 [border:0] [font:inherit] hover:text-accent"
                   type="button"
