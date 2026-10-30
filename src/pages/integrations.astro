@@ -1,9 +1,13 @@
 ---
 import { integrationsPage as page } from "../data/content";
 import Base from "../layouts/Base.astro";
+import { faqPage } from "../lib/schema";
 import { Integrations, chart } from "../views/Integrations";
 ---
 
-<Base path="/integrations" title="System integrations" description={page.lead} chart={chart} cta={page.cta}>
+<Base path="/integrations" title="System integrations" description={page.lead} chart={chart}
+  schema={faqPage("/integrations", page.faq)}
+  cta={page.cta}
+>
   <Integrations />
 </Base>

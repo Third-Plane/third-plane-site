@@ -1,5 +1,6 @@
 import { integrationsPage as page } from "../data/content";
 import { CarrierChannels } from "../components/CarrierChannels";
+import { Faq } from "../components/Faq";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
@@ -75,6 +76,8 @@ export function Integrations() {
           </Grid>
         </SectionContent>
       </Section>
+
+      <Faq faq={page.faq} theme="white" />
     </>
   );
 }

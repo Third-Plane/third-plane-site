@@ -2,7 +2,7 @@
 import { placementDesk } from "../data/content";
 import Base from "../layouts/Base.astro";
 import { canonicalUrl } from "../lib/head";
-import { ORGANIZATION_ID } from "../lib/schema";
+import { ORGANIZATION_ID, faqPage } from "../lib/schema";
 import { PlacementDesk } from "../views/PlacementDesk";
 
 const path = "/placement-desk";
@@ -23,7 +23,7 @@ const service = {
   path={path}
   title="Placement Desk"
   description={placementDesk.problem}
-  schema={[service]}
+  schema={[service, ...faqPage(path, placementDesk.faq)]}
   cta={placementDesk.cta}
 >
   <PlacementDesk />

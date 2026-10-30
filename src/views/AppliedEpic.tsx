@@ -1,4 +1,5 @@
 import { appliedEpicPage as page } from "../data/content";
+import { Faq } from "../components/Faq";
 import { Grid, GridItem } from "../components/Grid";
 import { Section, SectionContent, SectionHeader } from "../components/Section";
 import { PageHero } from "../components/Hero";
@@ -72,6 +73,9 @@ export function AppliedEpic() {
           </blockquote>
         </Section>
       )}
+
+      {/* Set apart from whichever section comes last above. */}
+      <Faq faq={page.faq} theme={page.quote?.text || !page.certified ? "white" : "blend"} />
     </>
   );
 }

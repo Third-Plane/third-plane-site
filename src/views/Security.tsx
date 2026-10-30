@@ -1,4 +1,5 @@
 import { securityPage as page } from "../data/content";
+import { Faq } from "../components/Faq";
 import type { ChartName } from "../components/Flowchart";
 import { Ledger } from "../components/Ledger";
 import { SplitHero } from "../components/Hero";
@@ -61,6 +62,8 @@ export function Security() {
           />
         </SectionContent>
       </Section>
+
+      <Faq faq={page.faq} theme="white" />
     </>
   );
 }

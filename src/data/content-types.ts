@@ -11,6 +11,9 @@ type Link = { label: string; href: string };
 // A page's call to action, shown in its footer. Without a label the button
 // takes the site's main button label.
 type Cta = { title: string; body: string; label?: string };
+// A page's questions and answers, shown above its footer (Faq.tsx). An editor
+// can remove every question; the section is then left out.
+export type Faq = { title: string; items?: { question: string; answer: string }[] };
 
 // An activity panel beside a hero heading (Ledger.tsx): its heading, legend
 // and the line for each moment its flowchart posts.
@@ -48,6 +51,7 @@ export type HomeFile = {
   };
   desk: { title: string; body: string };
   showcase: { title: string; src?: string; poster?: string; caption?: string };
+  faq?: Faq;
   cta: Cta;
 };
 
@@ -60,6 +64,7 @@ export type PlacementDeskFile = {
   channels: { title: string; body: string; items: Card[] };
   systems: { title: string; body: string; links: { title: string; body: string; href: string }[] };
   human: { title: string; body: string; items: Card[] };
+  faq?: Faq;
   cta: Cta & { label: string };
 };
 
@@ -87,6 +92,7 @@ export type SecurityFile = {
   ledger: LedgerPanel;
   authority: { title: string; body: string; sides: { title: string; items: Card[] }[] };
   data: { title: string; body: string; items: Card[] };
+  faq?: Faq;
   cta: Cta;
 };
 
@@ -103,6 +109,7 @@ export type IntegrationsFile = {
   ledger: LedgerPanel;
   systems: { title: string; items: (Card & { names?: string; link?: Link })[] };
   how: { title: string; steps: Card[] };
+  faq?: Faq;
   cta: Cta;
 };
 
@@ -116,5 +123,6 @@ export type AppliedEpicFile = {
   work: { title: string; items: Card[] };
   meaning: { title: string; items: Card[] };
   quote?: { text?: string; attribution?: string };
+  faq?: Faq;
   cta: Cta;
 };

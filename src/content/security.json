@@ -121,6 +121,31 @@
       }
     ]
   },
+  "faq": {
+    "title": "Security questions.",
+    "items": [
+      {
+        "question": "What is Placement Desk allowed to do on its own?",
+        "answer": "Only what you authorize. You set what the desk can do, where it can act and which work it can take on, and you can narrow or remove its access at any time. Work outside its defined authority is returned to its supervisor."
+      },
+      {
+        "question": "Who is accountable for the work Placement Desk does?",
+        "answer": "Every desk has a named supervisor who owns the outcome and makes the calls AI shouldn’t make. You choose the points where the desk stops, returns the work and waits for a person’s decision."
+      },
+      {
+        "question": "Is there an audit trail of what the desk did?",
+        "answer": "Yes. Every action is recorded: what was done, through which channel and under whose authority. The inputs, actions and outcomes are kept together so any placement can be reviewed later, and you can track outcomes and exceptions against the standards you set."
+      },
+      {
+        "question": "How is our data protected and kept separate?",
+        "answer": "Each customer’s data is kept separate from every other customer’s. The desk is reached through your own single sign-on and role-based permissions, and prompts, documents and completions stay inside the systems you approve."
+      },
+      {
+        "question": "Which AI models does Placement Desk use?",
+        "answer": "Placement Desk is model-agnostic. It can change models by task when needed without changing the desk’s rules, controls or record."
+      }
+    ]
+  },
   "cta": {
     "title": "Bring your compliance and IT teams to the first conversation.",
     "body": "We’ll tackle the hard questions early and walk through access, controls, records and data separation with your compliance and IT teams."

@@ -1,9 +1,13 @@
 ---
 import { securityPage as page } from "../data/content";
 import Base from "../layouts/Base.astro";
+import { faqPage } from "../lib/schema";
 import { Security, chart } from "../views/Security";
 ---
 
-<Base path="/security" title="Security and governance" description={page.lead} chart={chart} cta={page.cta}>
+<Base path="/security" title="Security and governance" description={page.lead} chart={chart}
+  schema={faqPage("/security", page.faq)}
+  cta={page.cta}
+>
   <Security />
 </Base>
