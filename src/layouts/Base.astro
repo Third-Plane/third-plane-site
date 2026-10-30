@@ -5,8 +5,8 @@ import type { CtaCopy } from "../components/Cta";
 import { Flowchart, type ChartName } from "../components/Flowchart";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import { site } from "../data/content";
 import { DEFAULT_DESCRIPTION, ORIGIN, canonicalUrl, fullTitle } from "../lib/head";
+import { pageGraph, type Crumb } from "../lib/schema";
 
 interface Props {
   title?: string;
@@ -14,7 +14,11 @@ interface Props {
   path: string;
   type?: "website" | "article";
   noindex?: boolean;
-  jsonLd?: object[];
+  // The page's own structured data nodes, added to the site-wide ones (see
+  // lib/schema.ts), and its breadcrumb trail after Home, if it isn't just
+  // the page itself.
+  schema?: object[];
+  trail?: Crumb[];
   chart?: ChartName;
   // The page's call to action, shown in its footer.
   cta?: CtaCopy;
@@ -26,22 +30,14 @@ const {
   path,
   type = "website",
   noindex = false,
+  schema,
+  trail = title ? [{ name: title, path }] : [],
   chart = "placement",
   cta,
 } = Astro.props;
 const full = fullTitle(title);
 const canonical = canonicalUrl(path);
-
-const organization = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: `${ORIGIN}/`,
-  logo: `${ORIGIN}/brand/mark-purple.png`,
-  email: site.email,
-  sameAs: [site.linkedin],
-};
-const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
+const graph = pageGraph({ title: full, description, path, trail, nodes: schema });
 ---
 
 <!doctype html>
@@ -58,7 +54,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     <ClientRouter />
     {noindex && <meta name="robots" content="noindex" />}
     {!noindex && <link rel="canonical" href={canonical} />}
-    {jsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, "\\u003c")} />)}
+    {!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify(graph).replace(/</g, "\\u003c")} />}
     <meta name="theme-color" content="#f6f3f0" />
 
     <meta property="og:type" content={type} />

@@ -58,7 +58,7 @@ export function Post({ post }: { post: PostData }) {
         </AppLink>
         <h1>{post.title}</h1>
         <p className="lead">{post.standfirst}</p>
-        <PostMeta post={post} />
+        <PostMeta post={post} author={post.author} />
       </div>
       <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">
         {post.body.map((block, i) => (

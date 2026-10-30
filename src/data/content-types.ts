@@ -28,6 +28,7 @@ export type SiteFile = {
   description: string;
   email: string;
   linkedin: string;
+  founder: { name: string; linkedin: string };
   ctaLabel: string;
   ctaHref: string;
   year: number;
