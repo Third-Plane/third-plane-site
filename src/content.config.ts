@@ -31,6 +31,12 @@ const posts = defineCollection({
     standfirst: z.string(),
     // YYYY-MM-DD, or YYYY-MM to show the month only.
     date: z.string().regex(/^\d{4}-\d{2}(-\d{2})?$/),
+    // YYYY-MM-DD, the last substantive change. Not shown on the page; it is
+    // the post's dateModified and sitemap lastmod.
+    updated: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}$/)
+      .optional(),
     author: z.string(),
     draft: z.boolean().default(false),
     body: z.array(block).default([]),

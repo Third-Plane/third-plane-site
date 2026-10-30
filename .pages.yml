@@ -126,6 +126,17 @@ content:
         label: LinkedIn URL
         type: string
         required: true
+      - name: founder
+        description: Not shown on the site; search engines and AI assistants read it. A post whose author is this name is credited to the founder.
+        type: object
+        fields:
+          - name: name
+            type: string
+            required: true
+          - name: linkedin
+            label: LinkedIn URL
+            type: string
+            required: true
       - name: ctaLabel
         label: Main button label
         type: string
@@ -883,10 +894,18 @@ content:
         pattern:
           regex: "^\\d{4}-\\d{2}(-\\d{2})?$"
           message: Use YYYY-MM-DD or YYYY-MM.
+      - name: updated
+        label: Last updated
+        type: string
+        description: YYYY-MM-DD. Set this when you change a published post substantively. It isn’t shown on the page, but search engines read it.
+        pattern:
+          regex: "^\\d{4}-\\d{2}-\\d{2}$"
+          message: Use YYYY-MM-DD.
       - name: author
         type: string
         required: true
         default: Third Plane
+        description: A person’s full name, or Third Plane for a company post. Search engines and AI assistants weigh a named author.
       - name: draft
         type: boolean
         default: true

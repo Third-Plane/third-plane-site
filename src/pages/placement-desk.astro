@@ -1,13 +1,29 @@
 ---
 import { placementDesk } from "../data/content";
 import Base from "../layouts/Base.astro";
+import { canonicalUrl } from "../lib/head";
+import { ORGANIZATION_ID } from "../lib/schema";
 import { PlacementDesk } from "../views/PlacementDesk";
+
+const path = "/placement-desk";
+
+const service = {
+  "@type": "Service",
+  "@id": `${canonicalUrl(path)}#service`,
+  name: "Placement Desk",
+  url: canonicalUrl(path),
+  description: placementDesk.problem,
+  serviceType: "Insurance placement",
+  provider: { "@id": ORGANIZATION_ID },
+  audience: { "@type": "BusinessAudience", audienceType: "Insurance brokerages" },
+};
 ---
 
 <Base
-  path="/placement-desk"
+  path={path}
   title="Placement Desk"
   description={placementDesk.problem}
+  schema={[service]}
   cta={placementDesk.cta}
 >
   <PlacementDesk />
