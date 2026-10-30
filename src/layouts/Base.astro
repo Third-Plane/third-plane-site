@@ -102,6 +102,7 @@ const jsonLd = Astro.props.jsonLd ?? (path === "/" ? [organization] : []);
     <Footer cta={cta} />
 
     <script>
+      import "../scripts/deferred";
       import "../scripts/nav";
       import "../scripts/nav-theme";
       import "../scripts/ledger";

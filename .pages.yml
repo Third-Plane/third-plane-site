@@ -908,6 +908,12 @@ content:
               - name: text
                 type: string
                 required: true
+          - name: subheading
+            label: Subheading
+            fields:
+              - name: text
+                type: string
+                required: true
           - name: bullets
             label: Bulleted list
             fields:

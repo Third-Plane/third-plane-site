@@ -68,7 +68,7 @@ export function Integrations() {
           <Grid>
             {page.how.steps.map((item) => (
               <GridItem key={item.title}>
-                <h4>{item.title}</h4>
+                <h3>{item.title}</h3>
                 <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}

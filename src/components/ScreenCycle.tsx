@@ -146,15 +146,15 @@ function CycleCell({
             aria-pressed={active}
             aria-label={item.title}
           />
-          <h4>
+          <h3>
             <AppLink className="group/link hover:text-accent" href={item.href}>
               {item.title}
               <Arrow className="ml-1.5 inline-block size-4 align-[-0.1em] text-accent transition-transform duration-200 group-hover/link:translate-x-0.75" />
             </AppLink>
-          </h4>
+          </h3>
         </>
       ) : (
-        <h4>
+        <h3>
           <button
             className="cursor-pointer bg-transparent p-0 text-left tracking-[inherit] text-inherit [border:0] [font:inherit] after:absolute after:inset-0"
             type="button"
@@ -162,7 +162,7 @@ function CycleCell({
           >
             {item.title}
           </button>
-        </h4>
+        </h3>
       )}
       <p className="text-sm text-muted-foreground">{item.body}</p>
     </div>

@@ -31,7 +31,7 @@ export function PlacementDesk() {
       <Section theme="white" id="systems">
         <SectionHeader>
           <h2>{placementDesk.systems.title}</h2>
-          <h3 className="lead">{placementDesk.systems.body}</h3>
+          <p className="lead">{placementDesk.systems.body}</p>
         </SectionHeader>
         <SectionContent>
           <ScreenCycle
@@ -46,13 +46,13 @@ export function PlacementDesk() {
       <Section theme="blend" id="human">
         <SectionHeader>
           <h2>{placementDesk.human.title}</h2>
-          <h3 className="lead">{placementDesk.human.body}</h3>
+          <p className="lead">{placementDesk.human.body}</p>
         </SectionHeader>
         <SectionContent className="p-0">
           <Grid>
             {placementDesk.human.items.map((item) => (
               <GridItem key={item.title}>
-                <h4>{item.title}</h4>
+                <h3>{item.title}</h3>
                 <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}

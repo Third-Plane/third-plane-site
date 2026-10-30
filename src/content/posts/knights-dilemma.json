@@ -201,7 +201,7 @@
       "text": "The prescription is not abstract. It is a set of principles learned by the organizations that have lived it."
     },
     {
-      "type": "heading",
+      "type": "subheading",
       "text": "1. Build Swarms, Not Monoliths"
     },
     {
@@ -209,7 +209,7 @@
       "text": "The temptation when building agentic systems is to write one impressive multi-step workflow that handles everything end-to-end. It fails constantly through context window exhaustion, compounding errors, and recursive loops that are impossible to debug. What does work is a swarm of small, specialized agents with rigidly defined inputs and outputs and clearly mapped dependencies. Each agent does one thing. Each node is independently testable. When something breaks, you know exactly where."
     },
     {
-      "type": "heading",
+      "type": "subheading",
       "text": "2. Treat Communication Channels as Source Systems"
     },
     {
@@ -217,7 +217,7 @@
       "text": "Stop treating your communication layer as noise. Email and messaging apps are where organizational reasoning lives. It’s where the decisions, exceptions, and institutional logic that make AI labor useful rather than merely active exist. Structure it, persist it, and capture provenance so the decision path can be audited later."
     },
     {
-      "type": "heading",
+      "type": "subheading",
       "text": "3. Make Proof Permanent"
     },
     {
@@ -225,7 +225,7 @@
       "text": "Every consequential action your AI worker takes should write evidence, provenance, and attribution into an append-only record. This isn’t for compliance theater, but for operational reality. ‘Who authorized this, under what obligation, against what conditions, with what evidence’ should have a one-query answer at any point in the future. This is not overhead; it is the product."
     },
     {
-      "type": "heading",
+      "type": "subheading",
       "text": "4. Find the Early Adopters. Make Them Look Like Rockstars"
     },
     {
@@ -233,7 +233,7 @@
       "text": "The rollout strategy is at least half the battle, and it is the thing technical organizations are most likely to under-invest in. The framing that works is not ‘AI will do your job.’ It is: your job is evolving from manually executing to architecting, orchestrating, and governing workflows. Find the people who want to level up, give them something that makes a real difference, and let them become the internal case study."
     },
     {
-      "type": "heading",
+      "type": "subheading",
       "text": "5. Pay the Context Tax Early"
     },
     {

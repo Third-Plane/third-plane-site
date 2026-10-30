@@ -24,7 +24,9 @@ function openingRows(chart: ChartName, copy: LedgerCopy) {
 
 // Static markup with the opening rows filled in. scripts/ledger.ts restamps
 // them with the reader's clock, then adds a row each time the chart passes
-// another moment, worded from the copy carried in `data-copy`.
+// another moment, worded from the copy carried in `data-copy`. Its rows are
+// about made-up accounts, so it is kept out of search snippets
+// (data-nosnippet).
 export function Ledger({ chart, panel }: { chart: ChartName; panel: LedgerPanel }) {
   const { label, sublabel, description, legend } = panel;
   const copy: LedgerCopy = { ...ledgerSamples, events: panel.events };
@@ -39,6 +41,7 @@ export function Ledger({ chart, panel }: { chart: ChartName; panel: LedgerPanel 
     <figure
       className="m-0 rounded-2xl bg-card px-6 py-4 shadow-xl ring-4 ring-accent/5"
       data-ledger
+      data-nosnippet=""
       data-copy={JSON.stringify(copy)}
       aria-label={description}
     >

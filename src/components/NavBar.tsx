@@ -102,13 +102,15 @@ export function NavBar({ copy = false }: { copy?: boolean }) {
 // the nav it is revealed from the nav's foot up, the edge drawn through it,
 // so the section reads as sliding in under the nav (nav-reveal). It is only
 // shown while the edge crosses the nav and a little after, so it hides the
-// nav's own hover and focus only then.
+// nav's own hover and focus only then. It repeats the nav's labels in every
+// section, so it is kept out of search snippets (data-nosnippet).
 export function NavCopy({ theme }: { theme: Theme }) {
   return (
     <div
       className="pointer-events-none fixed inset-x-0 top-0 z-40 hidden h-bar scroll-linked:block scroll-linked:nav-reveal"
       data-theme={theme}
       data-nav-copy
+      data-nosnippet=""
       aria-hidden="true"
       inert
     >

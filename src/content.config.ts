@@ -15,6 +15,7 @@ import { z } from "astro/zod";
 
 const block = z.discriminatedUnion("type", [
   z.object({ type: z.literal("heading"), text: z.string() }),
+  z.object({ type: z.literal("subheading"), text: z.string() }),
   z.object({ type: z.literal("paragraph"), text: z.string() }),
   z.object({ type: z.literal("bullets"), items: z.array(z.string()) }),
   z.object({ type: z.literal("numbered"), items: z.array(z.string()) }),

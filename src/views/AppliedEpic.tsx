@@ -11,13 +11,13 @@ export function AppliedEpic() {
       <Section theme="white" id="who">
         <SectionHeader>
           <h2>{page.who.title}</h2>
-          <h3 className="lead">{page.who.body}</h3>
+          <p className="lead">{page.who.body}</p>
         </SectionHeader>
         <SectionContent className="p-0">
           <Grid columns={3}>
             {page.who.items.map((item) => (
               <GridItem key={item.title}>
-                <h4>{item.title}</h4>
+                <h3>{item.title}</h3>
               </GridItem>
             ))}
           </Grid>
@@ -32,7 +32,7 @@ export function AppliedEpic() {
           <Grid columns={3}>
             {page.work.items.map((item) => (
               <GridItem key={item.title}>
-                <h4>{item.title}</h4>
+                <h3>{item.title}</h3>
                 <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}
@@ -49,7 +49,7 @@ export function AppliedEpic() {
             <Grid>
               {page.meaning.items.map((item) => (
                 <GridItem key={item.title}>
-                  <h4>{item.title}</h4>
+                  <h3>{item.title}</h3>
                   <p className="text-muted-foreground">{item.body}</p>
                 </GridItem>
               ))}

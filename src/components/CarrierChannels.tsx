@@ -12,7 +12,7 @@ export function CarrierChannels() {
     <Section theme="blend" id="channels">
       <SectionHeader>
         <h2>{channels.title}</h2>
-        <h3 className="lead">{channels.body}</h3>
+        <p className="lead">{channels.body}</p>
       </SectionHeader>
       <SectionContent>
         <ScreenCycle

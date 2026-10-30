@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { cn } from "../lib/style";
 
 // The pieces of the mock app screens shown beside a ScreenCycle's items
@@ -12,13 +13,21 @@ import { cn } from "../lib/style";
 // and from lg up as tall as the column it's in (see ScreenCycle). What runs
 // past its foot is cut off, so a screen has rows enough to reach it at any
 // size.
+//
+// Its contents ship as a JSON string that scripts/deferred.ts puts in place
+// on page load, not as markup: the made-up rows would otherwise be most of the
+// page's text to a crawler or answer engine that reads the HTML. aria-hidden
+// doesn't keep text from them, and data-nosnippet keeps it out of search
+// snippets for those that run the script (Google, Bing).
 export function Frame({ children }: { children: ReactNode }) {
+  const markup = JSON.stringify(renderToStaticMarkup(children)).replace(/</g, "\\u003c");
   return (
     <div
       className="@container flex aspect-video flex-col overflow-hidden rounded-2xl bg-white text-xs text-deep shadow-xl ring-4 ring-accent/5 lg:aspect-auto lg:h-full"
       aria-hidden="true"
+      data-nosnippet=""
     >
-      {children}
+      <script type="application/json" data-deferred dangerouslySetInnerHTML={{ __html: markup }} />
     </div>
   );
 }

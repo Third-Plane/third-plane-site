@@ -19,7 +19,7 @@ export function SplitHero({
       <div className="grid items-center gap-(--gutter) lg:grid-cols-2">
         <div className="space-y-4">
           <h1>{title}</h1>
-          <h3 className="lead text-[22px]">{lead}</h3>
+          <p className="lead text-[22px]">{lead}</p>
           {actions ? <div className="mt-9 flex flex-wrap gap-3">{actions}</div> : null}
         </div>
         {children}
@@ -41,7 +41,7 @@ export function PageHero({
     <Section theme="hero" id="top">
       <SectionHeader>
         <h1>{title}</h1>
-        <h3 className="lead">{lead}</h3>
+        <p className="lead">{lead}</p>
         {children ? <div className="mt-9 flex flex-wrap gap-3">{children}</div> : null}
       </SectionHeader>
     </Section>
