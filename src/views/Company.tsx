@@ -47,7 +47,7 @@ export function Company() {
           <Grid>
             {page.why.items.map((item) => (
               <GridItem key={item.title}>
-                <h4>{item.title}</h4>
+                <h3>{item.title}</h3>
                 <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}
@@ -106,7 +106,7 @@ export function Company() {
           <Grid>
             {page.principles.items.map((item) => (
               <GridItem key={item.title}>
-                <h4>{item.title}</h4>
+                <h3>{item.title}</h3>
                 <p className="text-muted-foreground">{item.body}</p>
               </GridItem>
             ))}

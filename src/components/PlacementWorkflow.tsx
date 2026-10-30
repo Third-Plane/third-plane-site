@@ -16,7 +16,7 @@ export function PlacementWorkflowSection({ id }: { id: string }) {
     <Section theme="white" id={id}>
       <SectionHeader>
         <h2>{desk.title}</h2>
-        <h3 className="lead">{desk.body}</h3>
+        <p className="lead">{desk.body}</p>
       </SectionHeader>
       <SectionContent>
         <StagedScreenCycle

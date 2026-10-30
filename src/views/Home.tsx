@@ -29,7 +29,7 @@ export function Home() {
       <Section theme="blend" id="problem">
         <SectionHeader>
           <h2>{problem.title}</h2>
-          <h3 className="lead">{problem.body}</h3>
+          <p className="lead">{problem.body}</p>
         </SectionHeader>
         <SectionContent>
           <ScreenCycle
@@ -44,7 +44,7 @@ export function Home() {
       <Section id="approach" theme="white">
         <SectionHeader>
           <h2>{approach.title}</h2>
-          <h3 className="lead">{approach.body}</h3>
+          <p className="lead">{approach.body}</p>
         </SectionHeader>
         <SectionContent>
           <div className="grid gap-5 lg:grid-cols-2">

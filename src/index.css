@@ -167,9 +167,10 @@ ol {
   list-style: none;
 }
 /* The site's heading type, set here rather than on each heading. A section's
-   title is an h2, its lead an h3 and an item's title an h4, so those are their
-   sizes. A utility on a heading (text-lg, text-white, leading-none...) still
-   wins. */
+   title is an h2 and an item's title an h3, so those are their sizes; its
+   lead is a paragraph (.lead), not a heading, so the outline that crawlers and
+   screen readers follow goes h1, h2, h3 with no levels skipped. A utility on a
+   heading (text-lg, text-white, leading-none...) still wins. */
 h1,
 h2,
 h3,
@@ -184,9 +185,7 @@ h1 {
 h2 {
   @apply text-[48px]/[48px] tracking-tighter;
 }
-h3 {
-  @apply text-[24px]/[24px] tracking-tight;
-}
+h3,
 h4 {
   @apply text-[18px]/[18px] tracking-tight;
 }

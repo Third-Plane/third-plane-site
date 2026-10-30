@@ -21,7 +21,7 @@ export function Cta({
     <div className="wrap z-4 max-w-3xl rounded-xl px-(--gutter) py-12 shadow-2xl inset-ring-1 shadow-black/15 inset-ring-white/25 backdrop-blur-lg backdrop-invert-5">
       <div className="mb-10 space-y-4">
         <h2 className="text-white">{title}</h2>
-        <h3 className="lead text-white/75">{body}</h3>
+        <p className="lead text-white/75">{body}</p>
       </div>
       <Button href={href}>{label}</Button>
     </div>

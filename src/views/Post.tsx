@@ -7,6 +7,8 @@ function BlockView({ block }: { block: Block }) {
   switch (block.type) {
     case "heading":
       return <h2 className="mt-5 text-3xl">{block.text}</h2>;
+    case "subheading":
+      return <h3 className="mt-3 text-2xl">{block.text}</h3>;
     case "bullets":
       return (
         <ul className="grid gap-2.5 pl-5">
@@ -55,7 +57,7 @@ export function Post({ post }: { post: PostData }) {
           Resources
         </AppLink>
         <h1>{post.title}</h1>
-        <h3 className="lead">{post.standfirst}</h3>
+        <p className="lead">{post.standfirst}</p>
         <PostMeta post={post} />
       </div>
       <div className="wrap mt-16 grid max-w-4xl gap-5 text-lg leading-relaxed">

@@ -31,7 +31,7 @@ export function Security() {
       <Section theme="white" id="authority">
         <SectionHeader>
           <h2>{page.authority.title}</h2>
-          <h3 className="lead">{page.authority.body}</h3>
+          <p className="lead">{page.authority.body}</p>
         </SectionHeader>
         <SectionContent>
           <StagedScreenCycle
@@ -50,7 +50,7 @@ export function Security() {
       <Section theme="blend" id="data">
         <SectionHeader>
           <h2>{page.data.title}</h2>
-          <h3 className="lead">{page.data.body}</h3>
+          <p className="lead">{page.data.body}</p>
         </SectionHeader>
         <SectionContent>
           <ScreenCycle

@@ -8,8 +8,10 @@ export function Resources({ posts }: { posts: Post[] }) {
   return (
     <Section theme="white" id="posts" className="px-(--gutter)">
       <SectionHeader>
-        <h2>{page.title}</h2>
-        <h3 className="lead">{page.lead}</h3>
+        {/* The page's only heading above the posts, so its h1, in a section
+            title's size. */}
+        <h1 className="text-[48px]/[48px]">{page.title}</h1>
+        <p className="lead">{page.lead}</p>
       </SectionHeader>
       <SectionContent>
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
